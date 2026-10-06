@@ -1,0 +1,70 @@
+# Colors for the Fool
+
+> A tarot site that gives you one lucky color for today. Draw one of the 22 major arcana, read what the card means upright or reversed, then open a short illustrated story that ends with today's lucky color. Free, no sign-up. Written in Japanese and offered in 16 languages, plus two playful historical versions.
+
+How it works:
+
+- Each card has 20 lucky colors: 10 for upright and 10 for reversed, so there are 440 stories in all.
+- Every color has its own page with the story, the color's name and hex code, and a painting.
+- The same cards, colors and stories exist in every language. Pages share the same path after the language prefix (Japanese has no prefix).
+- URL pattern: `/{lang}/cards/{card}/` for a card, `/{lang}/cards/{card}/{color}/` for a color, e.g. https://colorsforthefool.engawa5656.com/en/cards/the-fool/azure/
+
+## Start here
+
+- [Draw a card (English)](https://colorsforthefool.engawa5656.com/en/): the main page. Tap the card to draw, tap again to open today's color.
+- [引く（日本語）](https://colorsforthefool.engawa5656.com/): the original Japanese site.
+- [Language Reach](https://colorsforthefool.engawa5656.com/en/language-scale.html): why the site is offered in these languages, with speaker, internet and web-content figures.
+- [Card designs](https://colorsforthefool.engawa5656.com/en/design/): alternative visual designs for the deck.
+
+## The 22 cards (English)
+
+- [0. The Fool](https://colorsforthefool.engawa5656.com/en/cards/the-fool/): the card and its 20 lucky colors
+- [1. The Magician](https://colorsforthefool.engawa5656.com/en/cards/the-magician/): the card and its 20 lucky colors
+- [2. The High Priestess](https://colorsforthefool.engawa5656.com/en/cards/the-high-priestess/): the card and its 20 lucky colors
+- [3. The Empress](https://colorsforthefool.engawa5656.com/en/cards/the-empress/): the card and its 20 lucky colors
+- [4. The Emperor](https://colorsforthefool.engawa5656.com/en/cards/the-emperor/): the card and its 20 lucky colors
+- [5. The Hierophant](https://colorsforthefool.engawa5656.com/en/cards/the-hierophant/): the card and its 20 lucky colors
+- [6. The Lovers](https://colorsforthefool.engawa5656.com/en/cards/the-lovers/): the card and its 20 lucky colors
+- [7. The Chariot](https://colorsforthefool.engawa5656.com/en/cards/the-chariot/): the card and its 20 lucky colors
+- [8. Strength](https://colorsforthefool.engawa5656.com/en/cards/strength/): the card and its 20 lucky colors
+- [9. The Hermit](https://colorsforthefool.engawa5656.com/en/cards/the-hermit/): the card and its 20 lucky colors
+- [10. Wheel of Fortune](https://colorsforthefool.engawa5656.com/en/cards/wheel-of-fortune/): the card and its 20 lucky colors
+- [11. Justice](https://colorsforthefool.engawa5656.com/en/cards/justice/): the card and its 20 lucky colors
+- [12. The Hanged Man](https://colorsforthefool.engawa5656.com/en/cards/the-hanged-man/): the card and its 20 lucky colors
+- [13. Death](https://colorsforthefool.engawa5656.com/en/cards/death/): the card and its 20 lucky colors
+- [14. Temperance](https://colorsforthefool.engawa5656.com/en/cards/temperance/): the card and its 20 lucky colors
+- [15. The Devil](https://colorsforthefool.engawa5656.com/en/cards/the-devil/): the card and its 20 lucky colors
+- [16. The Tower](https://colorsforthefool.engawa5656.com/en/cards/the-tower/): the card and its 20 lucky colors
+- [17. The Star](https://colorsforthefool.engawa5656.com/en/cards/the-star/): the card and its 20 lucky colors
+- [18. The Moon](https://colorsforthefool.engawa5656.com/en/cards/the-moon/): the card and its 20 lucky colors
+- [19. The Sun](https://colorsforthefool.engawa5656.com/en/cards/the-sun/): the card and its 20 lucky colors
+- [20. Judgement](https://colorsforthefool.engawa5656.com/en/cards/judgement/): the card and its 20 lucky colors
+- [21. The World](https://colorsforthefool.engawa5656.com/en/cards/the-world/): the card and its 20 lucky colors
+
+## Languages
+
+- [Japanese (original)](https://colorsforthefool.engawa5656.com/) (`ja`)
+- [English](https://colorsforthefool.engawa5656.com/en/) (`en`)
+- [Traditional Chinese](https://colorsforthefool.engawa5656.com/zh/) (`zh-Hant`)
+- [Simplified Chinese](https://colorsforthefool.engawa5656.com/zh-hans/) (`zh-Hans`)
+- [Spanish](https://colorsforthefool.engawa5656.com/es/) (`es`)
+- [Portuguese](https://colorsforthefool.engawa5656.com/pt/) (`pt-BR`)
+- [French](https://colorsforthefool.engawa5656.com/fr/) (`fr`)
+- [German](https://colorsforthefool.engawa5656.com/de/) (`de`)
+- [Dutch](https://colorsforthefool.engawa5656.com/nl/) (`nl`)
+- [Russian](https://colorsforthefool.engawa5656.com/ru/) (`ru`)
+- [Arabic](https://colorsforthefool.engawa5656.com/ar/) (`ar`)
+- [Hindi](https://colorsforthefool.engawa5656.com/hi/) (`hi`)
+- [Thai](https://colorsforthefool.engawa5656.com/th/) (`th`)
+- [Indonesian](https://colorsforthefool.engawa5656.com/id/) (`id`)
+- [Malay](https://colorsforthefool.engawa5656.com/ms/) (`ms`)
+- [Vietnamese](https://colorsforthefool.engawa5656.com/vi/) (`vi`)
+- [Old English (playful historical rendering)](https://colorsforthefool.engawa5656.com/ang/) (`ang`)
+- [Edo-period epistolary Japanese, sōrōbun (playful historical rendering)](https://colorsforthefool.engawa5656.com/soro/) (`ja-x-soro`)
+
+## Optional
+
+- [Contact](https://colorsforthefool.engawa5656.com/en/contact/)
+- [Privacy policy](https://colorsforthefool.engawa5656.com/privacy/) (Japanese and English)
+- [Instagram](https://www.instagram.com/colors.for.the.fool/): daily posts of the cards and colors
+- [Sitemap](https://colorsforthefool.engawa5656.com/sitemap.xml)

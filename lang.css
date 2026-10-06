@@ -1,0 +1,169 @@
+/* Generated from data/languages.json. */
+html[lang="zh-Hans"] body {
+  font-family: "Noto Serif SC", "Shippori Mincho", "Hiragino Mincho ProN", "Yu Mincho", serif;
+}
+
+html[lang="zh-Hant"] body {
+  font-family: "Noto Serif TC", "Shippori Mincho", "Hiragino Mincho ProN", "Yu Mincho", serif;
+}
+
+html[lang="hi"] body {
+  font-family: "Noto Serif Devanagari", "Shippori Mincho", serif;
+}
+
+html[lang="ar"] body {
+  font-family: "Noto Naskh Arabic", "Shippori Mincho", serif;
+}
+
+html[lang="bn"] body {
+  font-family: "Noto Serif Bengali", "Bangla Sangam MN", "Nirmala UI", "Vrinda", serif;
+}
+
+html[lang="ru"] body {
+  font-family: "Noto Serif", "Shippori Mincho", serif;
+}
+
+html[lang="de"] body {
+  font-family: "Noto Serif", "Shippori Mincho", serif;
+}
+
+html[lang="vi"] body {
+  font-family: "Noto Serif", "Times New Roman", Times, serif;
+}
+
+html[lang="ko"] body {
+  font-family: "Noto Serif KR", "Nanum Myeongjo", "AppleMyungjo", "Batang", serif;
+}
+
+html[lang="th"] body {
+  font-family: "Noto Serif Thai", "Shippori Mincho", serif;
+}
+
+html[lang="uk"] body {
+  font-family: "Noto Serif", "Times New Roman", Times, serif;
+}
+
+html[lang="ang"] body {
+  font-family: "EB Garamond", "Noto Serif", serif;
+}
+
+.lang[lang="ru"],
+.lang-list a[lang="ru"],
+.lang-links a[lang="ru"] {
+  font-family: "Noto Serif", serif;
+  font-weight: 500;
+  letter-spacing: 0;
+  text-transform: none;
+}
+
+.lang[lang="hi"],
+.lang-list a[lang="hi"],
+.lang-links a[lang="hi"] {
+  font-family: "Noto Serif Devanagari", serif;
+  font-weight: 500;
+  letter-spacing: 0;
+  text-transform: none;
+}
+
+html[lang="hi"] body * {
+  letter-spacing: 0 !important;
+  text-indent: 0 !important;
+}
+
+html[lang="hi"] .brand {
+  letter-spacing: 0.22em !important;
+}
+
+.lang[lang="bn"],
+.lang-list a[lang="bn"],
+.lang-links a[lang="bn"] {
+  font-family: "Noto Serif Bengali", "Bangla Sangam MN", "Nirmala UI", "Vrinda", serif;
+  font-weight: 500;
+  letter-spacing: 0;
+  text-transform: none;
+}
+
+html[lang="bn"] body * {
+  letter-spacing: 0 !important;
+  text-indent: 0 !important;
+}
+
+html[lang="bn"] .brand {
+  letter-spacing: 0.22em !important;
+}
+
+.lang[lang="th"],
+.lang-list a[lang="th"],
+.lang-links a[lang="th"] {
+  font-family: "Noto Serif Thai", serif;
+  font-weight: 500;
+  letter-spacing: 0;
+  text-transform: none;
+}
+
+html[lang="th"] body * {
+  letter-spacing: 0 !important;
+  text-indent: 0 !important;
+}
+
+html[lang="th"] .brand {
+  letter-spacing: 0.22em !important;
+}
+
+.lang[lang="vi"],
+.lang-list a[lang="vi"],
+.lang-links a[lang="vi"] {
+  font-family: "Noto Serif", "Times New Roman", Times, serif;
+  font-weight: 500;
+  letter-spacing: 0;
+  text-transform: none;
+}
+
+.lang[lang="ko"],
+.lang-list a[lang="ko"],
+.lang-links a[lang="ko"] {
+  font-family: "Noto Serif KR", "Nanum Myeongjo", "AppleMyungjo", "Batang", serif;
+  font-weight: 500;
+  letter-spacing: 0;
+  text-transform: none;
+}
+
+html[lang="ko"] body * {
+  letter-spacing: 0 !important;
+  text-indent: 0 !important;
+}
+
+html[lang="ko"] .brand {
+  letter-spacing: 0.22em !important;
+}
+
+.lang[lang="uk"],
+.lang-list a[lang="uk"],
+.lang-links a[lang="uk"] {
+  font-family: "Noto Serif", "Times New Roman", Times, serif;
+  font-weight: 500;
+  letter-spacing: 0;
+  text-transform: none;
+}
+
+html[lang="uk"] body * {
+  letter-spacing: 0 !important;
+  text-indent: 0 !important;
+}
+
+html[lang="uk"] .brand {
+  letter-spacing: 0.22em !important;
+}
+
+.lang-list > .lang-break {
+  height: 0;
+  margin: 0.35rem 0.85rem;
+  border-top: 1px solid rgba(92, 67, 24, 0.35);
+}
+
+.lang-links > .lang-break {
+  flex: 0 0 100%;
+  height: 0;
+  margin: 0.15rem 0;
+  border-top: 1px solid rgba(92, 67, 24, 0.35);
+}

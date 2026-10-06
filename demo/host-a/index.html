@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>SECRET COLOR（見本A） — Colors for the Fool</title>
+<meta name="description" content="ホストクラブ向けのタロット。正位置だけを一枚引き、最後は今夜のシャンパンの色に着地します。">
+<link rel="canonical" href="https://colorsforthefool.engawa5656.com/demo/host-a/">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="ja_JP">
+<meta property="og:site_name" content="Colors for the Fool">
+<meta property="og:title" content="SECRET COLOR（見本A）">
+<meta property="og:description" content="今夜のあなたを解き放つ、特別な色。">
+<meta property="og:url" content="https://colorsforthefool.engawa5656.com/demo/host-a/">
+<meta property="og:image" content="https://colorsforthefool.engawa5656.com/demo/host-a/assets/back-rose.webp">
+<link rel="icon" href="../../favicon.png" type="image/png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600&family=Cormorant+Garamond:ital,wght@1,500&family=Shippori+Mincho:wght@400;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+<link rel="preload" as="image" href="assets/back-rose.webp">
+</head>
+<body class="theme-a">
+<canvas id="bubbles" aria-hidden="true"></canvas>
+<main>
+  <h1 class="brand">SECRET COLOR</h1>
+  <div class="rule"><span>✦</span></div>
+  <p class="catch">今夜のあなたを解き放つ、特別な色。</p>
+  <p class="sub">Find Your Secret Color</p>
+
+  <div class="stage">
+    <div class="float">
+      <div class="card" id="card" role="button" tabindex="0" aria-label="カードを一枚引く">
+        <div class="side back"><img src="assets/back-rose.webp" alt=""></div>
+        <div class="side front"><img id="face" src="" alt=""></div>
+      </div>
+    </div>
+  </div>
+  <p class="hint">カードにふれて、一枚引く</p>
+
+  <section class="panel" id="panel" aria-live="polite">
+    <h2 class="card-title"><span class="en" id="title-en"></span><span class="ja" id="title-ja"></span></h2>
+    <p class="story" id="story"></p>
+    <div class="landing" id="landing">
+      <p class="lead" id="lead"></p>
+      <div class="bottle"><img id="bottle" src="" alt=""></div>
+      <p class="color-name"><span class="en" id="color-en"></span><span class="ja" id="color-ja"></span></p>
+      <p class="close" id="close"></p>
+    </div>
+    <div style="text-align:center"><button class="again" id="again" type="button">もう一度引く</button></div>
+  </section>
+  <p class="foot">SECRET COLOR</p>
+  <p class="foot-links"><a href="/contact/">あなたのお店のオリジナル、<br>タロット占いを作ることができます。</a><br><a href="../../">Colors for the Fool</a></p>
+</main>
+<script src="stories.js"></script>
+<script src="app.js"></script>
+</body>
+</html>

@@ -1,0 +1,158 @@
+:root {
+  --story-size: clamp(14px, 3.6vw, 16px);
+  --gold-1: #f6e7b8;
+  --gold-2: #d4af6a;
+  --gold-3: #9c7a3c;
+  --text: #ece4d4;
+  --text-dim: #b7ab95;
+  --gold-grad: linear-gradient(100deg, #9c7a3c 0%, #f6e7b8 28%, #d4af6a 50%, #fff3cf 70%, #a8853f 100%);
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { -webkit-text-size-adjust: 100%; }
+body {
+  min-height: 100vh;
+  color: var(--text);
+  font-family: "Shippori Mincho", "Hiragino Mincho ProN", serif;
+  background: var(--bg-color);
+  overflow-x: hidden;
+  -webkit-tap-highlight-color: transparent;
+}
+/* 背景は固定（iOS でも効くよう疑似要素で） */
+body::before {
+  content: ""; position: fixed; inset: 0; z-index: -2;
+  background: var(--bg-image) center / cover no-repeat, var(--bg-color);
+}
+body::after {
+  content: ""; position: fixed; inset: 0; z-index: -1; pointer-events: none;
+  background: var(--bg-vignette);
+}
+#bubbles { position: fixed; inset: 0; z-index: -1; pointer-events: none; }
+
+main { max-width: 480px; margin: 0 auto; padding: 44px 16px 80px; text-align: center; }
+
+/* ヒーロー */
+.brand {
+  font-family: "Cinzel", serif; font-weight: 600;
+  font-size: clamp(26px, 8.6vw, 40px); letter-spacing: .1em; white-space: nowrap;
+  background: var(--gold-grad); -webkit-background-clip: text; background-clip: text; color: transparent;
+  filter: drop-shadow(0 2px 10px rgba(212, 175, 106, .25));
+}
+.rule { display: flex; align-items: center; justify-content: center; gap: 10px; margin: 12px auto 16px; color: var(--gold-2); }
+.rule::before, .rule::after { content: ""; height: 1px; width: 64px; background: linear-gradient(90deg, transparent, var(--gold-2)); }
+.rule::after { transform: scaleX(-1); }
+.rule span { font-size: 10px; }
+.catch { font-size: 17px; letter-spacing: .08em; line-height: 1.8; }
+.sub { font-family: "Cormorant Garamond", serif; font-style: italic; font-size: 17px; color: var(--text-dim); letter-spacing: .06em; margin-top: 2px; }
+
+/* カード */
+.stage { margin: 34px auto 0; width: min(66vw, 280px); perspective: 1400px; }
+.float { animation: float 5.5s ease-in-out infinite; }
+.is-open .float { animation: none; }
+@keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-12px); } }
+.card {
+  position: relative; aspect-ratio: 2 / 3; cursor: pointer;
+  transform-style: preserve-3d; transition: transform 1.1s cubic-bezier(.3, .1, .2, 1);
+}
+.is-open .card { transform: rotateY(180deg); cursor: default; }
+.side {
+  position: absolute; inset: 0; backface-visibility: hidden; -webkit-backface-visibility: hidden;
+  border-radius: 10px; overflow: hidden;
+  box-shadow: 0 0 0 1px rgba(212, 175, 106, .55), 0 0 26px rgba(212, 175, 106, .35), 0 0 70px rgba(212, 175, 106, .18);
+  animation: aura 5.5s ease-in-out infinite;
+}
+@keyframes aura {
+  0%, 100% { box-shadow: 0 0 0 1px rgba(212, 175, 106, .55), 0 0 22px rgba(212, 175, 106, .3), 0 0 60px rgba(212, 175, 106, .14); }
+  50% { box-shadow: 0 0 0 1px rgba(212, 175, 106, .7), 0 0 34px rgba(212, 175, 106, .45), 0 0 90px rgba(212, 175, 106, .24); }
+}
+.side img { display: block; width: 100%; height: 100%; object-fit: cover; }
+.front { transform: rotateY(180deg); }
+.hint {
+  margin-top: 26px; font-size: 14px; letter-spacing: .14em; color: var(--text-dim);
+  animation: blink 2.8s ease-in-out infinite; transition: opacity .4s;
+}
+.is-open .hint { animation: none; opacity: 0; pointer-events: none; }
+@keyframes blink { 0%, 100% { opacity: .55; } 50% { opacity: 1; } }
+
+/* 結果パネル */
+.panel {
+  margin-top: 30px; padding: 30px 16px 34px; border-radius: 14px; text-align: left;
+  background: var(--panel-bg); border: 1px solid rgba(212, 175, 106, .32);
+  -webkit-backdrop-filter: blur(12px); backdrop-filter: blur(12px);
+  box-shadow: 0 20px 50px rgba(0, 0, 0, .45);
+  opacity: 0; transform: translateY(24px); transition: opacity 1s ease, transform 1s ease;
+  display: none;
+}
+.panel.show { display: block; }
+.panel.in { opacity: 1; transform: none; }
+.card-title { text-align: center; margin-bottom: 22px; }
+.card-title .en {
+  display: block; font-family: "Cinzel", serif; font-size: 22px; letter-spacing: .14em;
+  background: var(--gold-grad); -webkit-background-clip: text; background-clip: text; color: transparent;
+}
+.card-title .ja { display: block; font-size: 13px; letter-spacing: .3em; color: var(--text-dim); margin-top: 4px; }
+.story { white-space: pre-line; font-size: var(--story-size); line-height: 2.05; letter-spacing: .01em; }
+
+/* 色の着地 */
+.landing { margin: 30px 0 4px; text-align: center; }
+.landing .lead { white-space: pre-line; text-align: left; font-size: var(--story-size); line-height: 2.05; letter-spacing: .01em; }
+.bottle {
+  position: relative; width: 78%; margin: 26px auto 18px; border-radius: 10px; overflow: hidden;
+  opacity: 0; transform: scale(.94); filter: brightness(.4);
+  transition: opacity 1.4s ease, transform 1.6s cubic-bezier(.2, .7, .2, 1), filter 1.6s ease;
+}
+.bottle img { display: block; width: 100%; }
+.bottle::after {
+  content: ""; position: absolute; inset: 0;
+  background: linear-gradient(115deg, transparent 35%, rgba(255, 246, 220, .55) 50%, transparent 65%);
+  transform: translateX(-120%);
+}
+.landing.lit .bottle { opacity: 1; transform: none; filter: none; box-shadow: 0 0 0 1px rgba(212, 175, 106, .6), 0 0 40px var(--glow, rgba(212, 175, 106, .45)); }
+.landing.lit .bottle::after { animation: shine 1.6s .9s ease forwards; }
+@keyframes shine { to { transform: translateX(120%); } }
+.color-name { opacity: 0; transition: opacity 1.2s .6s ease; }
+.landing.lit .color-name { opacity: 1; }
+.color-name .en {
+  display: block; font-family: "Cinzel", serif; font-weight: 600; font-size: 30px; letter-spacing: .22em;
+  background: var(--gold-grad); -webkit-background-clip: text; background-clip: text; color: transparent;
+  filter: drop-shadow(0 0 12px var(--glow, rgba(212, 175, 106, .5)));
+}
+.color-name .ja { display: block; font-size: 14px; letter-spacing: .4em; color: var(--text-dim); margin-top: 6px; }
+.close { white-space: pre-line; text-align: left; margin-top: 26px; font-size: var(--story-size); line-height: 2.05; letter-spacing: .01em; opacity: 0; transition: opacity 1.2s 1.1s ease; }
+.landing.lit .close { opacity: 1; }
+
+.again {
+  display: inline-block; margin-top: 34px; padding: 13px 34px;
+  font-family: "Shippori Mincho", serif; font-size: 15px; letter-spacing: .16em; color: var(--gold-1);
+  background: rgba(0, 0, 0, .25); border: 1px solid var(--gold-2); border-radius: 2px; cursor: pointer;
+  box-shadow: inset 0 0 0 3px rgba(0, 0, 0, .4), inset 0 0 0 4px rgba(212, 175, 106, .35), 0 0 18px rgba(212, 175, 106, .2);
+}
+.again:active { transform: translateY(1px); }
+.foot { margin-top: 40px; font-family: "Cormorant Garamond", serif; font-size: 13px; letter-spacing: .2em; color: var(--text-dim); opacity: .6; }
+
+/* ===== A：表面の世界に寄せる（黒・金・薔薇） ===== */
+.theme-a {
+  --bg-color: #0a0a0d;
+  --bg-image: url("assets/bg-black.webp");
+  --bg-vignette: radial-gradient(ellipse at 50% 42%, rgba(30, 26, 22, .0) 0%, rgba(5, 5, 7, .55) 75%);
+  --panel-bg: rgba(14, 13, 16, .82);
+}
+
+/* ===== B：Gemini の世界に寄せる（ネイビー・線画・目） ===== */
+.theme-b {
+  --bg-color: #0d1022;
+  --bg-image: url("assets/bg-navy.webp");
+  --bg-vignette: radial-gradient(ellipse at 50% 42%, rgba(0, 0, 0, 0) 0%, rgba(4, 6, 16, .45) 80%);
+  --panel-bg: rgba(13, 16, 34, .8);
+}
+/* 表面をネイビーの台紙に収め、裏返したときの差を和らげる */
+.theme-b .front { background: #10142c; padding: 6%; }
+.theme-b .front::before {
+  content: ""; position: absolute; inset: 2.6%; border: 1px solid rgba(212, 175, 106, .7); border-radius: 6px; pointer-events: none;
+}
+.theme-b .front img { border-radius: 4px; box-shadow: 0 0 0 1px rgba(212, 175, 106, .5); }
+
+.story, .lead, .close { word-break: auto-phrase; text-wrap: pretty; line-break: strict; }
+
+/* サイトへの導線（見本として置くときだけ） */
+.foot-links { margin: 14px 0 0; font-size: 12px; line-height: 2; text-align: center; }
+.foot-links a { color: var(--text-dim); opacity: .75; text-decoration: none; border-bottom: 1px solid currentColor; }

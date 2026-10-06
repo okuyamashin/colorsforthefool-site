@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<script src="../consent-gate.js?v=4"></script>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>お店のタロット — Colors for the Fool</title>
+<meta name="description" content="どの札を引いても、最後はあなたのお店の一品へ。お店のためだけに描く22枚のタロット占い。QRコードを置くだけで、15言語のお客さまに届きます。">
+<link rel="canonical" href="https://colorsforthefool.engawa5656.com/shop-tarot/">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="ja_JP">
+<meta property="og:site_name" content="Colors for the Fool">
+<meta property="og:title" content="お店のタロット">
+<meta property="og:description" content="どの札を引いても、最後はあなたのお店の一品へ。">
+<meta property="og:url" content="https://colorsforthefool.engawa5656.com/shop-tarot/">
+<meta property="og:image" content="https://colorsforthefool.engawa5656.com/demo/cafe/img/cafe.jpg">
+<link rel="icon" href="../favicon.png" type="image/png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&family=Shippori+Mincho:wght@500;600;700&display=swap" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&family=Shippori+Mincho:wght@500;600;700&display=swap"></noscript>
+<link rel="preload" as="image" href="img/cafe.webp" fetchpriority="high">
+<style>
+/* Layout: a sales page in the site's paper-and-gold world. Hero scene, the promise (no bad cards), how it works, what you get, languages, price, steps, FAQ, call to action. */
+:root {
+  --ink: #2a2118; --muted: #6d5c48; --gold: #a6843d; --gold-deep: #8a6a2a; --gold-soft: #e4d2a4;
+  --paper: #f7f1e4; --bg: #efe6d6; --glow: #fbf6ec; --line: rgba(166,132,61,.45); --night: #1f2236; --night-ink: #f3e9d2;
+  --display: Cinzel, "Palatino Linotype", Palatino, serif;
+  --body: "Shippori Mincho", "Hiragino Mincho ProN", "Yu Mincho", serif;
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+body { margin: 0; color: var(--ink); background: var(--bg); background-image: radial-gradient(1100px 640px at 50% -8%, var(--glow), var(--bg) 70%);
+  font-family: var(--body); font-weight: 500; line-height: 1.9; letter-spacing: .03em; }
+img { max-width: 100%; height: auto; display: block; }
+a { color: var(--gold-deep); }
+.wrap { width: min(100% - 32px, 60rem); margin: 0 auto; }
+.narrow { width: min(100% - 32px, 40rem); margin: 0 auto; }
+.top { display: flex; justify-content: space-between; align-items: baseline; padding-block: 1.3rem .4rem; }
+.brand { font-family: var(--display); font-size: .74rem; letter-spacing: .24em; text-transform: uppercase; margin: 0; }
+.brand a { color: var(--ink); text-decoration: none; }
+.top .cta-mini { font-size: .82rem; }
+
+.hero { display: grid; grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr); gap: 2.4rem; align-items: center; padding-block: 1.6rem 3rem; }
+.hero figure { margin: 0; }
+.hero img { border-radius: 1rem; box-shadow: 0 22px 50px rgba(62,44,22,.22); }
+.eyebrow { font-family: var(--display); color: var(--gold); letter-spacing: .3em; font-size: .78rem; text-transform: uppercase; margin: 0 0 .4rem; }
+h1 { font-size: clamp(1.75rem, 4.6vw, 2.6rem); line-height: 1.45; letter-spacing: .08em; margin: 0 0 1rem; font-weight: 700; text-wrap: balance; }
+.nb { display: inline-block; }
+.lede { font-size: 1.02rem; margin: 0 0 1.6rem; color: var(--ink); }
+.acts { display: flex; flex-wrap: wrap; gap: .8rem; }
+.btn { display: inline-flex; align-items: center; justify-content: center; min-height: 48px; padding: .55rem 1.5rem; border-radius: 999px; text-decoration: none;
+  font-weight: 600; letter-spacing: .1em; border: 1px solid var(--gold); transition: transform .15s ease, background .15s ease; }
+.btn.primary { background: var(--gold); color: #fffaf0; box-shadow: 0 8px 20px rgba(166,132,61,.3); }
+.btn.primary:hover { background: var(--gold-deep); }
+.btn.ghost { color: var(--gold-deep); background: rgba(255,255,255,.35); }
+.btn:hover { transform: translateY(-1px); }
+.btn:focus-visible { outline: 2px solid var(--gold-deep); outline-offset: 3px; }
+.small { font-size: .82rem; color: var(--muted); margin: .9rem 0 0; }
+
+section { padding-block: 3.6rem; }
+.kicker { font-family: var(--display); color: var(--gold); letter-spacing: .26em; font-size: .76rem; text-transform: uppercase; margin: 0 0 .3rem; text-align: center; }
+h2 { font-size: clamp(1.35rem, 3.6vw, 1.8rem); letter-spacing: .08em; margin: 0 0 1rem; text-align: center; font-weight: 700; text-wrap: balance; }
+.sub { text-align: center; color: var(--muted); max-width: 36rem; margin: 0 auto 2.2rem; text-wrap: pretty; }
+
+/* no bad cards */
+.night { background: var(--night); color: var(--night-ink); }
+.night .kicker { color: var(--gold-soft); }
+.night .sub { color: rgba(243,233,210,.75); }
+.cards { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 1.2rem; }
+.card { margin: 0; }
+.card img { border-radius: .7rem; box-shadow: 0 14px 30px rgba(0,0,0,.35); aspect-ratio: 2 / 3; object-fit: cover; }
+.card figcaption { font-size: .86rem; line-height: 1.75; margin-top: .8rem; }
+.card .name { display: block; font-family: var(--display); color: var(--gold-soft); letter-spacing: .14em; font-size: .78rem; margin-bottom: .2rem; }
+.card q { quotes: "「" "」"; }
+
+/* steps */
+.steps { display: grid; grid-template-columns: repeat(3, minmax(0,1fr)); gap: 1.4rem; counter-reset: s; list-style: none; padding: 0; margin: 0; }
+.steps li { background: var(--paper); border: 1px solid var(--line); border-radius: .9rem; padding: 1.3rem 1.2rem 1.2rem; counter-increment: s; }
+.steps li::before { content: counter(s); display: grid; place-items: center; width: 2rem; height: 2rem; border-radius: 50%; border: 1px solid var(--gold); color: var(--gold-deep); font-family: var(--display); margin-bottom: .6rem; }
+.steps h3 { margin: 0 0 .3rem; font-size: 1.02rem; }
+.steps p { margin: 0; font-size: .9rem; color: var(--muted); }
+
+/* what you get */
+.get { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.2fr); gap: 2.4rem; align-items: center; }
+.get .pair { display: grid; grid-template-columns: 1fr 1fr; gap: .9rem; }
+.get .pair img { border-radius: .7rem; box-shadow: 0 12px 28px rgba(62,44,22,.2); }
+.get ul { list-style: none; padding: 0; margin: 0; display: grid; gap: .9rem; }
+.get li { padding-left: 1.6rem; position: relative; }
+.get li::before { content: "✦"; position: absolute; left: 0; color: var(--gold); }
+.get li strong { display: block; }
+.get li span { color: var(--muted); font-size: .9rem; }
+
+/* why */
+.why { display: grid; grid-template-columns: repeat(3, minmax(0,1fr)); gap: 1.6rem; }
+.why div { border-top: 1px solid var(--line); padding-top: 1rem; }
+.why h3 { margin: 0 0 .4rem; font-size: 1.02rem; }
+.why p { margin: 0; color: var(--muted); font-size: .92rem; }
+
+/* languages */
+.langs { display: flex; flex-wrap: wrap; justify-content: center; gap: .45rem; list-style: none; padding: 0; margin: 0 auto; max-width: 44rem; }
+.langs li { background: var(--paper); border: 1px solid var(--line); padding: .15rem .8rem; font-size: .88rem; }
+
+/* price */
+.price { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1.4rem; max-width: 46rem; margin: 0 auto; }
+.plan { background: var(--paper); border: 1px solid var(--line); border-radius: 1rem; padding: 1.6rem 1.5rem; text-align: center; }
+.plan.main { border: 2px solid var(--gold); box-shadow: 0 16px 36px rgba(166,132,61,.18); }
+.plan h3 { margin: 0 0 .6rem; font-size: 1.05rem; letter-spacing: .1em; }
+.amount { font-family: var(--display); font-size: 2.2rem; color: var(--gold-deep); line-height: 1.2; font-variant-numeric: tabular-nums; }
+.amount small { font-family: var(--body); font-size: .9rem; color: var(--muted); margin-left: .2rem; }
+.plan .plus { margin: .4rem 0 0; font-size: .95rem; }
+.plan ul { text-align: left; margin: 1rem 0 0; padding-left: 1.2rem; font-size: .9rem; color: var(--muted); }
+.note { text-align: center; font-size: .82rem; color: var(--muted); margin: 1.2rem 0 0; }
+
+/* flow */
+.flow { list-style: none; padding: 0; margin: 0 auto; max-width: 38rem; display: grid; gap: 0; counter-reset: f; }
+.flow li { counter-increment: f; display: grid; grid-template-columns: 2.6rem minmax(0,1fr); gap: .8rem; padding: .9rem 0; border-bottom: 1px dashed var(--line); }
+.flow li::before { content: counter(f); font-family: var(--display); color: var(--gold); font-size: 1.3rem; text-align: center; }
+.flow strong { display: block; }
+.flow span { color: var(--muted); font-size: .9rem; }
+
+/* faq */
+.faq { max-width: 40rem; margin: 0 auto; }
+.faq details { border-bottom: 1px solid var(--line); padding: .9rem .2rem; }
+.faq summary { cursor: pointer; font-weight: 600; list-style: none; display: flex; justify-content: space-between; gap: 1rem; }
+.faq summary::-webkit-details-marker { display: none; }
+.faq summary::after { content: "＋"; color: var(--gold); flex: none; }
+.faq details[open] summary::after { content: "－"; }
+.faq p { margin: .6rem 0 0; color: var(--muted); font-size: .94rem; }
+
+.final { text-align: center; padding-block: 4rem 4.4rem; }
+.final .acts { justify-content: center; }
+footer { border-top: 1px solid var(--line); padding-block: 1.4rem 2.4rem; font-size: .8rem; color: var(--muted); }
+footer .wrap { display: flex; flex-wrap: wrap; gap: .4rem 1.2rem; justify-content: space-between; }
+footer a { color: var(--muted); }
+
+@media (max-width: 52rem) {
+  .hero, .get { grid-template-columns: minmax(0, 1fr); gap: 1.6rem; }
+  .hero { padding-block: .8rem 2.4rem; }
+  .cards { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .steps, .why { grid-template-columns: minmax(0, 1fr); }
+  .price { grid-template-columns: minmax(0, 1fr); }
+}
+</style>
+</head>
+<body>
+<header class="wrap top">
+  <p class="brand"><a href="../">Colors for the Fool</a></p>
+  <a class="cta-mini" href="#price">料金を見る</a>
+</header>
+
+<main>
+  <div class="wrap hero">
+    <div>
+      <p class="eyebrow">Tarot for your shop</p>
+      <h1><span class="nb">どの札を引いても、</span><br><span class="nb">最後は</span><span class="nb">あなたのお店の</span><span class="nb">一品へ。</span></h1>
+      <p class="lede">お店のためだけに描く、22枚のタロット占いです。お客さまがスマホで一枚引くと、短い物語が始まり、結末で今日のおすすめに出会います。QRコードを置くだけで、外国からのお客さまにも、その人の言葉で届きます。</p>
+      <div class="acts">
+        <a class="btn primary" href="../contact/">相談してみる</a>
+        <a class="btn ghost" href="../demo/cafe/">見本を引いてみる</a>
+      </div>
+      <p class="small">見本は「メニューがカフェラテしかないカフェ」です。どの札を引いても、カフェラテにたどり着きます。</p>
+    </div>
+    <figure><img src="img/cafe.webp" alt="星と月の飾りのある、夕暮れのテラスのカフェ。客がカップを前にくつろいでいる絵。" width="1000" height="750" fetchpriority="high"></figure>
+  </div>
+
+  <section class="night">
+    <div class="wrap">
+      <p class="kicker">No bad cards</p>
+      <h2>月も、塔も、死神も。悪い結果は出ません。</h2>
+      <p class="sub">怖い札ほど、前向きな読み方で、お店の一品へつなげます。お客さまは嫌な気分で帰りません。</p>
+      <div class="cards">
+        <figure class="card"><img src="img/the-moon.webp" alt="月の札。満月の下、テラスで湯気の立つカップを前に座る人。" width="440" height="660" loading="lazy">
+          <figcaption><span class="name">THE MOON</span><q>見える範囲のまま、次の一歩を置けるしるしです。</q><br>月の今日の道は、そのカフェラテです。</figcaption></figure>
+        <figure class="card"><img src="img/the-tower.webp" alt="塔の札。光の入るカフェの塔から、カップとクロワッサンが空へ出ていく絵。" width="440" height="660" loading="lazy">
+          <figcaption><span class="name">THE TOWER</span><q>閉じていた席が開き、中のものが外の光に触れるしるしです。</q><br>塔の今日の開口は、そのカフェラテです。</figcaption></figure>
+        <figure class="card"><img src="img/death.webp" alt="死神の札。閉店のカウンターで、新しいカップにコーヒーを注ぐ人。" width="440" height="660" loading="lazy">
+          <figcaption><span class="name">DEATH</span><q>一章が閉じて、次の章のカップがすでに温かいしるしです。</q><br>死神の今日の始まりは、そのカフェラテです。</figcaption></figure>
+        <figure class="card"><img src="img/the-devil.webp" alt="悪魔の札。カウンターでカップを掲げる角のある主人と、ケーキとラテの並ぶ席。" width="440" height="660" loading="lazy">
+          <figcaption><span class="name">THE DEVIL</span><q>今日、選んで残る甘さを、この一杯にまとめてください。</q><br>悪魔の今日の快楽は、そのカフェラテです。</figcaption></figure>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap">
+      <p class="kicker">How it works</p>
+      <h2>お客さまは、3つの動きで楽しめます</h2>
+      <p class="sub">アプリも会員登録もいりません。スマホのカメラでQRコードを読むだけです。</p>
+      <ol class="steps">
+        <li><h3>QRコードを読む</h3><p>テーブル、レジ横、メニュー、ショップカードに。待ち時間にそのまま始められます。</p></li>
+        <li><h3>一枚引く</h3><p>大アルカナ22枚から一枚。お店のために描いた絵と、札の意味が出ます。</p></li>
+        <li><h3>今日の一品に出会う</h3><p>物語の結末で、お店のおすすめが「今日のあなたへの一品」として現れます。</p></li>
+      </ol>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap get">
+      <div class="pair">
+        <img src="img/back.webp" alt="カードの裏面。お店に合わせて描いた模様。" width="440" height="660" loading="lazy">
+        <img src="img/cafe-latte.webp" alt="結末で出会う一品、カフェラテの絵。" width="440" height="660" loading="lazy">
+      </div>
+      <div>
+        <p class="kicker" style="text-align:left">What you get</p>
+        <h2 style="text-align:left">お店のためだけの、ひと組のタロット</h2>
+        <ul>
+          <li><strong>22枚の絵と、カードの裏面</strong><span>お店の雰囲気や一品に合わせて描きます。</span></li>
+          <li><strong>22の物語</strong><span>どの札も、お店の一品で終わる短い物語です。悪い結果は出ません。</span></li>
+          <li><strong>専用のページとQRコード</strong><span>印刷してそのまま置けるQRコードをお渡しします。</span></li>
+          <li><strong>スマホにも、パソコンにも</strong><span>お客さまの端末を選びません。</span></li>
+          <li><strong>多言語（オプション）</strong><span>同じ占いを、日本語を含む15言語で出せます。</span></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section style="padding-top:1rem">
+    <div class="wrap">
+      <p class="kicker">Why</p>
+      <h2>おすすめを、押し売りせずに伝えられます</h2>
+      <div class="why">
+        <div><h3>自然に、一品を勧められる</h3><p>「これがおすすめです」ではなく、「今日のあなたへの一品」として届きます。勧められた感じがしません。</p></div>
+        <div><h3>待ち時間が、楽しみになる</h3><p>料理を待つあいだ、レジに並ぶあいだに、一枚引くだけ。会話のきっかけにもなります。</p></div>
+        <div><h3>思わず、人に見せたくなる</h3><p>お店のためだけに描いた絵なので、引いた札を写真に撮って、友だちに見せたくなります。</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap">
+      <p class="kicker">15 languages</p>
+      <h2>外国からのお客さまにも、その人の言葉で</h2>
+      <p class="sub">QRコードは1枚のまま。お客さまがページの中で自分の言葉を選べば、同じ占いがその言葉で出ます。英語が通じない国のお客さまにも、母語で届きます。</p>
+      <ul class="langs" aria-label="対応している言語">
+        <li>日本語</li><li lang="en">English</li><li lang="zh-Hant">繁體中文</li><li lang="zh-Hans">简体中文</li><li lang="es">Español</li><li lang="pt">Português</li><li lang="fr">Français</li><li lang="de">Deutsch</li><li lang="nl">Nederlands</li><li lang="ru">Русский</li><li lang="ar">العربية</li><li lang="hi">हिन्दी</li><li lang="th">ไทย</li><li lang="id">Bahasa Indonesia</li><li lang="ms">Bahasa Melayu</li>
+      </ul>
+    </div>
+  </section>
+
+  <section id="price">
+    <div class="wrap">
+      <p class="kicker">Price</p>
+      <h2>料金</h2>
+      <div class="price">
+        <div class="plan main">
+          <h3>お店のタロット</h3>
+          <div class="amount">30,000<small>円</small></div>
+          <p class="plus">＋ 月額 3,000円</p>
+          <ul>
+            <li>22枚の絵とカードの裏面</li>
+            <li>22の物語（日本語）</li>
+            <li>専用のページとQRコード</li>
+            <li>月額は、ページの公開と運用の費用です</li>
+          </ul>
+        </div>
+        <div class="plan">
+          <h3>多言語オプション</h3>
+          <div class="amount">+20,000<small>円</small></div>
+          <p class="plus">全言語に対応</p>
+          <ul>
+            <li>英語・中国語・スペイン語・アラビア語など、日本語を含む15言語</li>
+            <li>お客さまがページの中で言葉を選べます</li>
+            <li>QRコードは1枚のまま</li>
+          </ul>
+        </div>
+      </div>
+      <p class="note">金額は税別です。一品の入れ替えや、絵の描き直しはご相談ください。</p>
+    </div>
+  </section>
+
+  <section style="padding-top:1rem">
+    <div class="narrow">
+      <p class="kicker">Flow</p>
+      <h2>はじめるまでの流れ</h2>
+      <ol class="flow">
+        <li><div><strong>ご相談</strong><span>お店のこと、勧めたい一品を教えてください。</span></div></li>
+        <li><div><strong>一品の写真と、お店の雰囲気を送る</strong><span>写真や、お店の好きな色・モチーフがあれば一緒に。</span></div></li>
+        <li><div><strong>絵と物語をつくる</strong><span>22枚の絵と物語を作り、見本のページでご確認いただきます。</span></div></li>
+        <li><div><strong>公開とQRコードのお渡し</strong><span>あとは、お店に置くだけです。</span></div></li>
+      </ol>
+    </div>
+  </section>
+
+  <section>
+    <div class="narrow faq">
+      <p class="kicker">FAQ</p>
+      <h2>よくある質問</h2>
+      <details><summary>本当に悪い結果は出ませんか？</summary><p>出ません。すべて正位置で、月や塔、死神のような札も、前向きな読み方でお店の一品につなげます。</p></details>
+      <details><summary>アプリを入れる必要はありますか？</summary><p>ありません。スマホのカメラでQRコードを読めば、ブラウザでそのまま始まります。</p></details>
+      <details><summary>どんなお店でも作れますか？</summary><p>カフェや飲食店のほか、雑貨店、パン屋、和菓子屋、美容室など、勧めたい一品があるお店ならどこでも作れます。</p></details>
+      <details><summary>勧める一品を、あとで変えられますか？</summary><p>変えられます。季節の一品への入れ替えなど、内容に応じてご相談ください。</p></details>
+      <details><summary>外国語は、どうやって切り替わりますか？</summary><p>多言語オプションでは、ページの中の言語メニューから、お客さまが自分の言葉を選べます。QRコードは1枚のままです。</p></details>
+    </div>
+  </section>
+
+  <section class="final">
+    <div class="narrow">
+      <h2>あなたのお店の一品を、<br>今日の運勢にしませんか。</h2>
+      <p class="sub">まずは見本を一枚引いてみてください。<br>ご相談は、問い合わせフォームから受け付けています。</p>
+      <div class="acts">
+        <a class="btn primary" href="../contact/">相談してみる</a>
+        <a class="btn ghost" href="../demo/cafe/">見本を引いてみる</a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <span>© 2026 Engawa Inc.</span>
+    <span><a href="../">Colors for the Fool</a>　<a href="../contact/">問い合わせ</a>　<a href="../privacy/">プライバシーポリシー</a></span>
+  </div>
+</footer>
+<script src="../consent.js?v=5"></script>
+</body>
+</html>

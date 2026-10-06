@@ -1,0 +1,323 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="How far the languages of Colors for the Fool reach: speakers, internet users, web content and time spent online.">
+<link rel="icon" href="../favicon.png" type="image/png">
+<title>Language Reach</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&family=Shippori+Mincho:wght@400;500;700&display=swap">
+<style>
+/* Layout: one narrow paper column like the tarot site; figures first, then four charts, then the attention-vs-content map. */
+:root {
+  --bg: #efe6d6;
+  --bg-glow: #fbf6ec;
+  --paper: #f7f1e4;
+  --ink: #2a2118;
+  --muted: #6d5c48;
+  --gold: #a6843d;
+  --gold-soft: #e4d2a4;
+  --line: rgba(166,132,61,.45);
+  --other: #d3c6ae;
+  --grid: rgba(109,92,72,.18);
+  --font-display: Cinzel, "Palatino Linotype", Palatino, serif;
+  --font-body: "Shippori Mincho", "Hiragino Mincho ProN", "Yu Mincho", serif;
+}
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) {
+  --bg: #1b1610; --bg-glow: #2a2219; --paper: #241e17; --ink: #efe4cf; --muted: #b6a387;
+  --gold: #d2ac5c; --gold-soft: #5a4826; --line: rgba(210,172,92,.4); --other: #4b4134; --grid: rgba(239,228,207,.12);
+  color-scheme: dark; } }
+:root[data-theme="dark"] {
+  --bg: #1b1610; --bg-glow: #2a2219; --paper: #241e17; --ink: #efe4cf; --muted: #b6a387;
+  --gold: #d2ac5c; --gold-soft: #5a4826; --line: rgba(210,172,92,.4); --other: #4b4134; --grid: rgba(239,228,207,.12);
+  color-scheme: dark; }
+
+* { box-sizing: border-box; }
+body {
+  margin: 0; color: var(--ink); background: var(--bg);
+  background-image: radial-gradient(1100px 640px at 50% -8%, var(--bg-glow), var(--bg) 70%);
+  font-family: var(--font-body); font-weight: 500; line-height: 1.85;
+  padding-inline: 16px; padding-block: 0 64px;
+}
+.wrap { width: min(100%, 44rem); margin: 0 auto; }
+a { color: var(--gold); }
+.brand { font-family: var(--font-display); font-size: .74rem; letter-spacing: .24em; text-transform: uppercase; padding-block: 1.4rem .2rem; margin: 0; }
+.brand a { color: var(--ink); text-decoration: none; }
+header.hero { text-align: center; padding-block: 2.6rem 1.6rem; }
+.eyebrow { font-family: var(--font-display); letter-spacing: .3em; font-size: .8rem; color: var(--gold); margin: 0; text-transform: uppercase; }
+h1 { font-size: clamp(2rem, 7vw, 2.9rem); letter-spacing: .12em; margin: .3rem 0 .6rem; font-weight: 600; text-wrap: balance; }
+.lede { color: var(--muted); max-width: 34rem; margin: 0 auto; text-wrap: pretty; }
+.ornament { display: flex; align-items: center; gap: .8rem; justify-content: center; color: var(--gold); margin: 1.6rem 0 0; }
+.ornament::before, .ornament::after { content: ""; height: 1px; width: 4.5rem; background: var(--line); }
+
+.figures { display: grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap: 1px; background: var(--line); border: 1px solid var(--line); margin: 1.4rem 0 1rem; }
+.fig { background: var(--paper); padding: 1.1rem 1rem 1rem; text-align: center; }
+.fig .num { font-family: var(--font-display); font-size: clamp(1.9rem, 6vw, 2.5rem); color: var(--gold); line-height: 1.1; font-variant-numeric: tabular-nums; }
+.fig .num small { font-size: .55em; margin-left: .1em; }
+.fig .what { font-size: .92rem; margin-top: .35rem; }
+.fig .src { font-size: .74rem; color: var(--muted); }
+.langs { display: flex; flex-wrap: wrap; gap: .4rem; justify-content: center; margin: 1.2rem 0 0; padding: 0; list-style: none; }
+.langs li { border: 1px solid var(--line); padding: .1rem .7rem; font-size: .85rem; background: var(--paper); }
+.langs li.old { border-style: dashed; color: var(--muted); }
+
+section.chart { margin-top: 3.4rem; }
+.chart h2 { font-size: 1.3rem; letter-spacing: .08em; margin: 0; font-weight: 600; text-wrap: balance; }
+.chart .kicker { font-family: var(--font-display); color: var(--gold); letter-spacing: .2em; font-size: .78rem; margin: 0 0 .15rem; }
+.chart p.note { color: var(--muted); font-size: .88rem; margin: .4rem 0 1rem; max-width: 40rem; }
+.key { display: flex; gap: 1.2rem; font-size: .8rem; color: var(--muted); margin: 0 0 .6rem; }
+.key span::before { content: ""; display: inline-block; width: .8rem; height: .8rem; margin-right: .35rem; vertical-align: -.1rem; background: var(--other); }
+.key .on::before { background: var(--gold); }
+
+.bars { display: grid; grid-template-columns: minmax(6rem, 11rem) minmax(0,1fr); column-gap: .8rem; row-gap: .28rem; font-size: .86rem; }
+.bars .lab { text-align: right; line-height: 1.4; align-self: center; overflow-wrap: anywhere; }
+.bars .lab.on { font-weight: 700; }
+.bars .rank { color: var(--muted); font-family: var(--font-display); font-size: .72rem; margin-right: .35rem; font-variant-numeric: tabular-nums; }
+.bars .track { display: flex; align-items: center; gap: .45rem; min-width: 0; }
+.bars .bar { height: .95rem; background: var(--other); flex: none; min-width: 2px; }
+.bars .bar.on { background: var(--gold); }
+.bars .val { font-variant-numeric: tabular-nums; font-size: .8rem; color: var(--muted); white-space: nowrap; }
+.bars .val.on { color: var(--ink); }
+.bars .sep { grid-column: 1 / -1; border-top: 1px dashed var(--line); margin: .5rem 0 .2rem; font-size: .74rem; color: var(--muted); padding-top: .2rem; }
+
+.map { width: 100%; height: auto; display: block; background: var(--paper); border: 1px solid var(--line); }
+.map text { font-family: var(--font-body); }
+.callout { border-left: 2px solid var(--gold); padding: .2rem 0 .2rem 1rem; margin: 1rem 0 0; font-size: .92rem; }
+
+.topbar { display: flex; justify-content: space-between; align-items: baseline; gap: 1rem; padding-block: 1.4rem .2rem; }
+.topbar .brand { padding-block: 0; }
+.switch { font-size: .82rem; }
+.switch a, .switch span { margin-left: .7rem; }
+.switch span { color: var(--muted); }
+.cands { display: grid; grid-template-columns: minmax(6.5rem, 10rem) minmax(0, 1fr); gap: .55rem 1rem; margin: 0; font-size: .9rem; }
+.cands dt { font-weight: 700; text-align: right; overflow-wrap: anywhere; }
+.cands dt small { display: block; font-weight: 500; font-size: .72rem; color: var(--muted); }
+.cands dd { margin: 0; color: var(--muted); min-width: 0; }
+.cands dd b { color: var(--ink); font-weight: 600; }
+.pick { border: 1px solid var(--gold); background: var(--paper); padding: .9rem 1.1rem; margin: 1rem 0; }
+.pick h3 { margin: 0 0 .5rem; font-size: 1rem; letter-spacing: .06em; }
+@media (max-width: 30rem) { .cands { grid-template-columns: minmax(0, 1fr); } .cands dt { text-align: left; } }
+.dual .track { position: relative; }
+.dual .bar.total { background: var(--gold-soft); }
+.dual .bar.native { position: absolute; left: 0; top: 50%; transform: translateY(-50%); background: var(--gold); }
+.key .soft::before { background: var(--gold-soft); }
+footer { margin-top: 4rem; border-top: 1px solid var(--line); padding-top: 1.2rem; font-size: .8rem; color: var(--muted); }
+footer ul { padding-left: 1.1rem; margin: .4rem 0 1rem; }
+footer li { margin: .15rem 0; overflow-wrap: anywhere; }
+@media (max-width: 30rem) {
+  .bars { grid-template-columns: minmax(4.6rem, 6.8rem) minmax(0,1fr); font-size: .8rem; }
+}
+</style>
+</head>
+<body>
+
+<div class="wrap">
+  <div class="topbar"><p class="brand"><a href="./">Colors for the Fool</a></p><nav class="switch" aria-label="Language"><a lang="ja" href="../language-scale.html">日本語</a><span lang="en">English</span></nav></div>
+
+  <header class="hero">
+    <p class="eyebrow">Languages &amp; Reach</p>
+    <h1>Language Reach</h1>
+    <p class="lede">Today's lucky color, drawn from the tarot. To decide which languages should carry its stories, we measured each language four ways: the people who speak it, the people online, the words on the web, and the hours spent there.</p>
+    <div class="ornament">✦</div>
+  </header>
+
+  <div class="figures" aria-label="Share covered by the site's languages">
+    <div class="fig"><div class="num">73.1<small>%</small></div><div class="what">of the world's population, by speakers</div><div class="src">Ethnologue 2026 / UN population estimate</div></div>
+    <div class="fig"><div class="num">77<small>%</small></div><div class="what">of internet users</div><div class="src">Internet World Stats, March 2020</div></div>
+    <div class="fig"><div class="num">85.3<small>%</small></div><div class="what">of websites, by content language</div><div class="src">W3Techs, 3 October 2026</div></div>
+    <div class="fig"><div class="num">~74<small>%</small></div><div class="what">of daily time online</div><div class="src">Claude estimate, October 2026</div></div>
+  </div>
+  <p class="note" style="color:var(--muted);font-size:.82rem;margin:0">People who speak several languages, and sites written in several languages, are counted once for each language.</p>
+
+  <ul class="langs" aria-label="Languages on the site">
+    <li>日本語</li><li>English</li><li>简体中文</li><li>繁體中文</li><li>हिन्दी</li><li>Español</li><li>العربية</li><li>Français</li><li>বাংলা</li><li>Português</li><li>Bahasa Indonesia</li><li>Bahasa Melayu</li><li>Русский</li><li>Deutsch</li><li>Tiếng Việt</li><li>한국어</li><li>ไทย</li><li>Nederlands</li><li class="old">Englisc (Old English)</li><li class="old">御座候 (Edo-period Japanese)</li>
+  </ul>
+
+  <section class="chart" id="speakers">
+    <p class="kicker">I · Speakers</p>
+    <h2>Speakers (first and second language)</h2>
+    <p class="note">The world's top 20 languages, in millions of speakers. Ethnologue 2026. Traditional and Simplified Chinese are counted once, as Mandarin.</p>
+    <div class="key"><span class="on">On the site</span><span>Not yet</span></div>
+    <div class="bars" id="b-speakers"></div>
+  </section>
+
+  <section class="chart" id="native">
+    <p class="kicker">I′ · Native speakers</p>
+    <h2>Counting first languages only</h2>
+    <p class="note">Native speakers (dark) against all speakers (light) for the site's languages, in millions. Ethnologue (2026). By first language, these 13 languages add up to about 3.33 billion people, roughly 40% of the world. The gap to the 73% by all speakers is people who learned the language as a second language.</p>
+    <div class="key"><span class="on">First language</span><span class="soft">All speakers, including second language</span></div>
+    <div class="bars dual" id="b-native"></div>
+    <p class="note">For English and French, native speakers are a quarter or less of all speakers; most learned them at school or work. Indonesian is about 30% native. Portuguese, Japanese, Vietnamese, Korean and Spanish are almost entirely native. Arabic is left out because the standard Arabic used on the site has no native speakers (the spoken varieties used at home total over 300 million).</p>
+    <p class="note">Large first languages the site does not cover yet: Western Punjabi 90M, Turkish 86M, Marathi and Telugu 83M each, Tamil 79M, Urdu 78M.</p>
+  </section>
+
+  <section class="chart" id="users">
+    <p class="kicker">II · Internet users</p>
+    <h2>Internet users</h2>
+    <p class="note">Share of all internet users. Internet World Stats, March 2020, which is still the latest published count of users by language. It lists only the top 10.</p>
+    <div class="bars" id="b-users"></div>
+  </section>
+
+  <section class="chart" id="content">
+    <p class="kicker">III · Web content</p>
+    <h2>Web content</h2>
+    <p class="note">Share of websites whose language could be identified. W3Techs, 3 October 2026. English alone is half the web.</p>
+    <div class="bars" id="b-content"></div>
+  </section>
+
+  <section class="chart" id="time">
+    <p class="kicker">IV · Attention</p>
+    <h2>Total hours online per day</h2>
+    <p class="note">People who mainly read the language online × average daily hours, in billions of hours per day. Claude's estimate from DataReportal 2025–2026 country figures. How India and the Philippines are split between languages moves these numbers a lot.</p>
+    <div class="bars" id="b-time"></div>
+  </section>
+
+  <section class="chart" id="map-sec">
+    <p class="kicker">V · Where attention outruns content</p>
+    <h2>Attention against content</h2>
+    <p class="note">Up: daily hours online. Across: share of websites. Both scales are logarithmic. The further up and left, the more time people spend online in that language compared with how much is written in it.</p>
+    <svg class="map" id="map" viewBox="0 0 640 400" role="img" aria-label="Scatter plot of daily hours online against share of websites, by language"></svg>
+    <p class="callout">Arabic gets 2.3 billion hours a day online, yet only 0.6% of websites are in Arabic. Chinese, Indonesian, Portuguese and Spanish sit on the same side. New languages should come from this upper-left corner.</p>
+    <p class="note">Hindi (1.74 billion hours), Bengali, Urdu, Thai (510 million hours) and Filipino are not in the top 20 for web content (under 0.6%), so they would sit further left than this chart reaches.</p>
+  </section>
+
+  <section class="chart" id="unseen">
+    <p class="kicker">VI · Beyond the yardsticks</p>
+    <h2>Languages the numbers miss</h2>
+    <p class="note">In the charts above, African languages appear only in the speaker count. Internet users, web content and time online all measure people who are already online and already reading in an existing language. Most people in Africa are counted as users of English, French or Arabic.</p>
+    <p class="note">English and French reach mainly people who went through school or use them at work. The people this site wants to reach, those whom schooling did not reach, fall through that gap. So when choosing languages we also look at <strong>how many people read only that language</strong> and <strong>how fast it is growing</strong>. About one in five or six people in the world live in Africa, the youngest region, where both population and internet use are still growing.</p>
+    <div class="pick">
+      <h3>Languages to add from Africa</h3>
+      <dl class="cands">
+        <dt>Swahili<small>~95M speakers</small></dt><dd><b>The common language of East Africa.</b> Tanzania teaches primary school in Swahili, so many people read it. Also used in Kenya, Uganda and eastern Congo.</dd>
+        <dt>Hausa<small>~94M speakers</small></dt><dd><b>The common language of West Africa.</b> Northern Nigeria, Niger, northern Ghana. Written in Latin script, though some read it in Arabic script (Ajami).</dd>
+      </dl>
+    </div>
+    <p class="note">Some people speak a language without being used to reading it. Read-aloud audio, not only text, would help. Nigerian Pidgin (~120M) and Amharic (~60M) are the next candidates.</p>
+  </section>
+
+  <section class="chart" id="next">
+    <p class="kicker">VII · Next</p>
+    <h2>Languages coming next</h2>
+    <p class="note">The language menu is ordered by total speakers.</p>
+    <dl class="cands">
+      <dt>Filipino</dt><dd><b>Among the longest daily time online in the world.</b> A test of whether people come to a local-language version in a country where English works.</dd>
+      <dt>اردو</dt><dd><b>About 250M speakers.</b> Pakistan and India. Written right to left.</dd>
+      <dt>فارسی</dt><dd><b>Writes far more of the web than its size suggests.</b> 1.0% of websites, 14th. Home of fal-e Hafez, telling fortunes with Hafez's poems.</dd>
+      <dt>Türkçe</dt><dd><b>Much time online compared with its web content.</b> Coffee-cup reading and tarot are part of everyday life.</dd>
+      <dt>Українська</dt><dd><b>Many can read Russian, and many would rather not.</b></dd>
+      <dt>Kiswahili / Hausa</dt><dd>See above.</dd>
+    </dl>
+  </section>
+
+  <footer>
+    <strong>Sources</strong>
+    <ul>
+      <li>Speakers: Ethnologue 2026 (<a href="https://en.wikipedia.org/wiki/List_of_languages_by_total_number_of_speakers">Wikipedia: List of languages by total number of speakers</a>). World population: UN World Population Prospects 2024, medium variant, mid-2026, about 8.30 billion. Dutch is a 2021 estimate.</li>
+      <li>Internet users: Internet World Stats, 31 March 2020 (<a href="https://en.wikipedia.org/wiki/Languages_used_on_the_Internet">Wikipedia: Languages used on the Internet</a>).</li>
+      <li>Web content: <a href="https://w3techs.com/technologies/overview/content_language">W3Techs, Usage statistics of content languages for websites</a> (3 October 2026).</li>
+      <li>Time online: Claude's estimate from DataReportal 2025–2026 country figures for users and average daily time (survey of ages 16–64). The world total is put at about 37 billion hours a day.</li>
+    </ul>
+    Malay is often grouped with Indonesian in these statistics, so it appears only where it has its own figure. Old English and 御座候 are not counted. Figures checked on 4 October 2026; site languages as of 6 October 2026, including Korean and Bengali.
+  </footer>
+</div>
+
+<script>
+const speakers = [
+  ["English",14.93,1],["Chinese (Mandarin)",11.83,1],["Hindi",6.11,1],["Spanish",5.61,1],["Arabic (Standard)",3.35,1],
+  ["French",3.34,1],["Bengali",2.74,1],["Portuguese",2.69,1],["Indonesian",2.55,1],["Urdu",2.46,0],
+  ["Russian",2.10,1],["German",1.33,1],["Japanese",1.26,1],["Nigerian Pidgin",1.21,0],["Egyptian Arabic",1.18,0],
+  ["Marathi",0.99,0],["Vietnamese",0.97,1],["Telugu",0.96,0],["Swahili",0.95,0],["Turkish / Hausa",0.94,0],
+  "Site languages outside the top 20",["Korean",0.82,1],["Thai",0.71,1],["Dutch",0.30,1]
+];
+const users = [
+  ["English",25.9,1],["Chinese",19.4,1],["Spanish",7.9,1],["Arabic",5.2,1],["Indonesian / Malay",4.3,1],
+  ["Portuguese",3.7,1],["French",3.3,1],["Japanese",2.6,1],["Russian",2.5,1],["German",2.0,1]
+];
+const content = [
+  ["English",49.5,1],["Spanish",6.0,1],["German",5.9,1],["Japanese",4.9,1],["French",4.5,1],
+  ["Portuguese",4.1,1],["Russian",3.4,1],["Italian",2.8,0],["Dutch",2.1,1],["Polish",1.8,0],
+  ["Turkish",1.6,0],["Chinese",1.3,1],["Indonesian",1.2,1],["Persian",1.0,0],["Czech",0.9,0],
+  ["Vietnamese",0.9,1],["Korean",0.9,1],["Ukrainian",0.6,0],["Arabic",0.6,1],["Hungarian",0.6,0]
+];
+const time = [
+  ["Chinese (Simp./Trad.)",62.0,1],["English",57.8,1],["Spanish",29.6,1],["Arabic",23.1,1],["Portuguese",18.9,1],
+  ["Hindi",17.4,1],["Indonesian",15.5,1],["Russian",11.6,1],["French",7.5,1],["Bengali",6.1,1],
+  ["Turkish",5.6,0],["Filipino",5.3,0],["Urdu",5.2,0],["Thai",5.1,1],["Vietnamese",5.0,1],
+  ["Persian",4.9,0],["German",4.8,1],["Japanese",3.9,1],["Italian",2.9,0],["Korean",2.7,1],
+  "Site languages outside the top 20",["Malay",1.6,1],["Dutch",1.3,1]
+];
+
+
+const native = [
+  ["Chinese (Mandarin)",9.88,11.83],["Spanish",4.87,5.61],["English",3.72,14.93],["Hindi",3.47,6.11],
+  ["Portuguese",2.52,2.69],["Bengali",2.32,2.74],["Russian",1.33,2.10],["Japanese",1.24,1.26],["Vietnamese",0.86,0.97],
+  ["Indonesian",0.78,2.55],["German",0.76,1.33],["French",0.76,3.34],["Korean",0.82,0.82]
+];
+function dual(id, rows, fmt) {
+  const max = Math.max(...rows.map(r => r[2]));
+  document.getElementById(id).innerHTML = rows.map(([k, n, t]) =>
+    `<div class="lab on">${k}</div><div class="track"><div class="bar total" style="width:${(t / max * 60).toFixed(2)}%"></div><div class="bar native" style="width:${(n / max * 60).toFixed(2)}%"></div><span class="val on">${fmt(n, t)}</span></div>`
+  ).join("");
+}
+
+function bars(id, rows, fmt) {
+  const el = document.getElementById(id);
+  const max = Math.max(...rows.filter(r => Array.isArray(r)).map(r => r[1]));
+  let rank = 0, html = "";
+  for (const r of rows) {
+    if (typeof r === "string") { html += `<div class="sep">${r}</div>`; rank = null; continue; }
+    if (rank !== null) rank++;
+    const on = r[2] ? " on" : "";
+    const w = (r[1] / max * 82).toFixed(2);
+    html += `<div class="lab${on}">${rank !== null ? `<span class="rank">${rank}</span>` : ""}${r[0]}</div>` +
+            `<div class="track"><div class="bar${on}" style="width:${w}%"></div><span class="val${on}">${fmt(r[1])}</span></div>`;
+  }
+  el.innerHTML = html;
+}
+bars("b-speakers", speakers, v => Math.round(v * 100).toLocaleString("en") + "M");
+dual("b-native", native, (n, t) => Math.round(n * 100).toLocaleString("en") + "M / " + Math.round(t * 100).toLocaleString("en") + "M");
+bars("b-users", users, v => v.toFixed(1) + "%");
+bars("b-content", content, v => v.toFixed(1) + "%");
+bars("b-time", time, v => (v / 10).toFixed(2) + "B");
+
+// Scatter: x = web content share (log), y = daily hours (log)
+const pts = [
+  ["Chinese",1.3,62.0,1,"r"],["English",49.5,57.8,1,"l"],["Spanish",6.0,29.6,1,"r"],["Arabic",0.6,23.1,1,"r"],
+  ["Portuguese",4.1,18.9,1,"r"],["Indonesian",1.2,15.5,1,"r"],["Russian",3.4,11.6,1,"r"],["French",4.5,7.5,1,"r"],
+  ["Turkish",1.6,5.6,0,"r"],["Vietnamese",0.9,5.0,1,"l"],["Persian",1.0,4.9,0,"b"],["German",5.9,4.8,1,"r"],
+  ["Japanese",4.9,3.9,1,"r"],["Italian",2.8,2.9,0,"r"],["Korean",0.9,2.7,1,"l"],["Polish",1.8,2.1,0,"r"],["Dutch",2.1,1.3,1,"r"]
+];
+const svg = document.getElementById("map"), NS = "http://www.w3.org/2000/svg";
+const L = 56, R = 616, T = 22, B = 352;
+const x0 = Math.log10(0.5), x1 = Math.log10(70), y0 = Math.log10(1), y1 = Math.log10(80);
+const fx = v => L + (Math.log10(v) - x0) / (x1 - x0) * (R - L);
+const fy = v => B - (Math.log10(v) - y0) / (y1 - y0) * (B - T);
+function el(tag, a, txt) { const e = document.createElementNS(NS, tag); for (const k in a) e.setAttribute(k, a[k]); if (txt != null) e.textContent = txt; svg.appendChild(e); return e; }
+// shaded quadrant hint
+el("rect", { x: L, y: T, width: fx(3) - L, height: fy(10) - T, fill: "var(--gold-soft)", opacity: .45 });
+el("text", { x: L + 8, y: fy(10) - 8, "font-size": 11, fill: "var(--gold)" }, "More time, fewer words");
+for (const v of [0.5, 1, 2, 5, 10, 20, 50]) {
+  el("line", { x1: fx(v), x2: fx(v), y1: T, y2: B, stroke: "var(--grid)", "stroke-width": 1 });
+  el("text", { x: fx(v), y: B + 16, "font-size": 11, "text-anchor": "middle", fill: "var(--muted)" }, v + "%");
+}
+for (const v of [1, 2, 5, 10, 20, 50]) {
+  el("line", { x1: L, x2: R, y1: fy(v), y2: fy(v), stroke: "var(--grid)", "stroke-width": 1 });
+  el("text", { x: L - 8, y: fy(v) + 4, "font-size": 11, "text-anchor": "end", fill: "var(--muted)" }, v / 10);
+}
+el("text", { x: (L + R) / 2, y: B + 36, "font-size": 12, "text-anchor": "middle", fill: "var(--muted)" }, "Share of websites (W3Techs) →");
+el("text", { x: 16, y: (T + B) / 2, "font-size": 12, "text-anchor": "middle", fill: "var(--muted)", transform: `rotate(-90 16 ${(T + B) / 2})` }, "Hours online per day (billions) →");
+for (const [name, c, t, on, pos] of pts) {
+  const cx = fx(c), cy = fy(t);
+  el("circle", { cx, cy, r: on ? 5.5 : 4, fill: on ? "var(--gold)" : "var(--other)", stroke: on ? "var(--paper)" : "var(--muted)", "stroke-width": on ? 1.5 : .8 });
+  const a = { "font-size": on ? 12 : 11, fill: on ? "var(--ink)" : "var(--muted)", "font-weight": on ? 700 : 500 };
+  if (pos === "r") Object.assign(a, { x: cx + 9, y: cy + 4 });
+  if (pos === "l") Object.assign(a, { x: cx - 9, y: cy + 4, "text-anchor": "end" });
+  if (pos === "b") Object.assign(a, { x: cx, y: cy + 17, "text-anchor": "middle" });
+  el("text", a, name);
+}
+</script>
+
+</body>
+</html>
