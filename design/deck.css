@@ -138,3 +138,12 @@ main.catalog {
   color: inherit;
   text-underline-offset: 0.18em;
 }
+
+/* Urdu: Nastaliq needs deep lines; numerals and Latin stay left to right. */
+html[lang="ur"] .catalog h1 { line-height: 1.9; }
+html[lang="ur"] .catalog :is(.lead, .index, figcaption, .return) { line-height: 2.2; }
+html[lang="ur"] .catalog figcaption span { direction: ltr; unicode-bidi: isolate; }
+
+/* Persian: joined script; numerals and Latin stay left to right. */
+html[lang="fa"] .catalog :is(h1, h2, .lead, .index, figcaption, .return) { letter-spacing: 0; }
+html[lang="fa"] .catalog figcaption span { direction: ltr; unicode-bidi: isolate; }

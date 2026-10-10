@@ -1,0 +1,798 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Colors for the Fool이 지원하는 28개 언어를 소개합니다. 각 언어를 쓰는 사람의 수와 함께, 가상의 인물과 그 모습을 담은 그림을 나란히 실었습니다.">
+<link rel="icon" href="../../favicon.png" type="image/png">
+<title>언어 소개</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&family=Noto+Serif+KR:wght@400;500;600&display=swap">
+<style>
+/* Layout: same paper column as language-scale.html; one card per language (numbers, persona + image, details). */
+:root {
+  --bg: #efe6d6;
+  --bg-glow: #fbf6ec;
+  --paper: #f7f1e4;
+  --ink: #2a2118;
+  --muted: #6d5c48;
+  --gold: #a6843d;
+  --gold-soft: #e4d2a4;
+  --line: rgba(166,132,61,.45);
+  --other: #d3c6ae;
+  --grid: rgba(109,92,72,.18);
+  --font-display: Cinzel, "Palatino Linotype", Palatino, serif;
+  --font-body: "Noto Serif KR", "Nanum Myeongjo", "AppleMyungjo", "Batang", serif;
+}
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) {
+  --bg: #1b1610; --bg-glow: #2a2219; --paper: #241e17; --ink: #efe4cf; --muted: #b6a387;
+  --gold: #d2ac5c; --gold-soft: #5a4826; --line: rgba(210,172,92,.4); --other: #4b4134; --grid: rgba(239,228,207,.12);
+  color-scheme: dark; } }
+:root[data-theme="dark"] {
+  --bg: #1b1610; --bg-glow: #2a2219; --paper: #241e17; --ink: #efe4cf; --muted: #b6a387;
+  --gold: #d2ac5c; --gold-soft: #5a4826; --line: rgba(210,172,92,.4); --other: #4b4134; --grid: rgba(239,228,207,.12);
+  color-scheme: dark; }
+
+* { box-sizing: border-box; }
+body {
+  margin: 0; color: var(--ink); background: var(--bg);
+  background-image: radial-gradient(1100px 640px at 50% -8%, var(--bg-glow), var(--bg) 70%);
+  font-family: var(--font-body); font-weight: 500; line-height: 1.85;
+  padding-inline: 16px; padding-block: 0 64px;
+}
+.wrap { width: min(100%, 44rem); margin: 0 auto; }
+a { color: var(--gold); }
+code { font-size: .88em; overflow-wrap: anywhere; }
+.brand { font-family: var(--font-display); font-size: .74rem; letter-spacing: .24em; text-transform: uppercase; padding-block: 1.4rem .2rem; margin: 0; }
+.brand a { color: var(--ink); text-decoration: none; }
+header.hero { text-align: center; padding-block: 2.6rem 1.6rem; }
+.eyebrow { font-family: var(--font-display); letter-spacing: .3em; font-size: .8rem; color: var(--gold); margin: 0; text-transform: uppercase; }
+h1 { font-size: clamp(2rem, 7vw, 2.9rem); letter-spacing: .12em; margin: .3rem 0 .6rem; font-weight: 600; text-wrap: balance; }
+.lede { color: var(--muted); max-width: 34rem; margin: 0 auto; text-wrap: pretty; }
+.ornament { display: flex; align-items: center; gap: .8rem; justify-content: center; color: var(--gold); margin: 1.6rem 0 0; }
+.ornament::before, .ornament::after { content: ""; height: 1px; width: 4.5rem; background: var(--line); }
+
+.topbar { display: flex; justify-content: space-between; align-items: baseline; gap: 1rem; padding-block: 1.4rem .2rem; }
+.topbar .brand { padding-block: 0; }
+.switch { font-size: .82rem; }
+.switch a, .switch span { margin-left: .7rem; }
+.switch span { color: var(--muted); }
+
+.about { font-size: .86rem; color: var(--muted); margin: 0 0 1rem; }
+.about p { margin: .5rem 0; }
+.langs { display: flex; flex-wrap: wrap; gap: .4rem; justify-content: center; margin: 1.2rem 0 0; padding: 0; list-style: none; }
+.langs li { border: 1px solid var(--line); font-size: .85rem; background: var(--paper); }
+.langs li a { display: block; padding: .1rem .7rem; color: var(--ink); text-decoration: none; }
+.langs li a:hover, .langs li a:focus-visible { color: var(--gold); }
+.langs li:nth-last-child(-n+2) { border-style: dashed; }
+.langs li:nth-last-child(-n+2) a { color: var(--muted); }
+
+section.chart, section.lang { margin-top: 3.4rem; scroll-margin-top: 1rem; }
+.chart h2, .lang h2 { font-size: 1.3rem; letter-spacing: .08em; margin: 0; font-weight: 600; text-wrap: balance; }
+.lang h2 small { display: block; font-size: .8rem; letter-spacing: .04em; color: var(--muted); font-weight: 500; }
+.kicker { font-family: var(--font-display); color: var(--gold); letter-spacing: .2em; font-size: .78rem; margin: 0 0 .15rem; }
+p.note { color: var(--muted); font-size: .88rem; margin: .4rem 0 1rem; max-width: 40rem; }
+.chart ul { font-size: .88rem; color: var(--muted); padding-left: 1.1rem; }
+
+.scroll { overflow-x: auto; -webkit-overflow-scrolling: touch; border: 1px solid var(--line); background: var(--paper); }
+table { border-collapse: collapse; font-size: .8rem; line-height: 1.55; }
+table.overview { min-width: 42rem; width: 100%; }
+th, td { padding: .45rem .6rem; border-bottom: 1px solid var(--grid); text-align: left; vertical-align: top; }
+thead th { font-weight: 700; border-bottom: 1px solid var(--line); background: var(--bg-glow); }
+tbody th { font-weight: 700; white-space: nowrap; }
+tbody th a { color: var(--ink); text-decoration: none; }
+tbody tr:last-child th, tbody tr:last-child td { border-bottom: 0; }
+table.overview td { font-variant-numeric: tabular-nums; }
+
+.lang { border-top: 1px solid var(--line); padding-top: 1.6rem; }
+.nums { display: flex; flex-wrap: wrap; gap: 1px; background: var(--line); border: 1px solid var(--line); margin: 1rem 0; }
+.nums div { flex: 1 1 7.6rem; background: var(--paper); padding: .55rem .7rem .6rem; min-width: 0; }
+.nums dt { font-family: var(--font-body); font-size: .72rem; color: var(--muted); letter-spacing: .06em; }
+.nums dd { margin: 0; font-size: .9rem; line-height: 1.45; font-variant-numeric: tabular-nums; overflow-wrap: anywhere; }
+.region { font-size: .9rem; margin: 0 0 1rem; }
+.region b { color: var(--gold); font-weight: 700; margin-right: .6rem; }
+
+.persona { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 15rem); gap: 1.2rem; align-items: start; margin: 1.2rem 0 .8rem; }
+.persona figure { grid-column: 2; grid-row: 1; margin: 0; }
+.persona .ptext { grid-column: 1; grid-row: 1; }
+.persona img { display: block; width: 100%; height: auto; border: 1px solid var(--line); background: var(--paper); }
+.persona h3 { font-size: 1rem; letter-spacing: .08em; margin: 0 0 .3rem; font-weight: 600; }
+.persona p { margin: 0; font-size: .94rem; text-wrap: pretty; }
+@media (max-width: 36rem) {
+  .persona { grid-template-columns: minmax(0, 1fr); }
+  .persona figure, .persona .ptext { grid-column: 1; grid-row: auto; }
+  .persona figure { max-width: 22rem; }
+}
+
+details { border-top: 1px dashed var(--line); padding: .35rem 0; font-size: .88rem; }
+details:last-of-type { border-bottom: 1px dashed var(--line); }
+summary { cursor: pointer; color: var(--gold); letter-spacing: .06em; }
+details[open] summary { margin-bottom: .5rem; }
+details p { margin: .2rem 0 .8rem; color: var(--ink); }
+details h4 { font-size: .86rem; margin: .6rem 0 0; color: var(--muted); font-weight: 700; }
+details pre { white-space: pre-wrap; overflow-wrap: anywhere; font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: .78rem; line-height: 1.6; background: var(--paper); border: 1px solid var(--line); padding: .7rem .8rem; margin: 0 0 .6rem; }
+table.facts { width: 100%; min-width: 34rem; }
+table.facts tbody th { white-space: normal; min-width: 8rem; }
+
+footer { margin-top: 4rem; border-top: 1px solid var(--line); padding-top: 1.2rem; font-size: .8rem; color: var(--muted); }
+footer ul { padding-left: 1.1rem; margin: .4rem 0 1rem; }
+footer ul ul { margin: .2rem 0 .3rem; }
+footer li { margin: .15rem 0; overflow-wrap: anywhere; }
+
+/* Per-language adjustments (generated by render.py). */
+html[lang="ko"] body * {
+  letter-spacing: 0 !important;
+  text-indent: 0 !important;
+}
+html[lang="ko"] .brand {
+  letter-spacing: 0.22em !important;
+}
+</style>
+</head>
+<body>
+
+<div class="wrap">
+  <div class="topbar"><p class="brand"><a href="../">Colors for the Fool</a></p><nav class="switch" aria-label="관련 페이지"><span>언어 소개</span></nav></div>
+
+  <header class="hero">
+    <p class="eyebrow">Languages &amp; Readers</p>
+    <h1>언어 소개</h1>
+    <p class="lede">Colors for the Fool이 지원하는 28개 언어를, 그 언어를 쓰는 사람의 수와 이 점을 보러 올 것 같은 사람의 모습으로 소개합니다(2026년 10월 9일 기준).</p>
+    <div class="ornament">✦</div>
+  </header>
+
+  <nav aria-label="언어 목록">
+    <ul class="langs"><li><a href="#ja"><span lang="ja">日本語</span></a></li><li><a href="#en"><span lang="en">English</span></a></li><li><a href="#zh-hans"><span lang="zh-Hans">简体中文</span></a></li><li><a href="#zh"><span lang="zh-Hant">繁體中文</span></a></li><li><a href="#hi"><span lang="hi">हिन्दी</span></a></li><li><a href="#es"><span lang="es">Español</span></a></li><li><a href="#ar"><span lang="ar" dir="rtl">العربية</span></a></li><li><a href="#fr"><span lang="fr">Français</span></a></li><li><a href="#bn"><span lang="bn">বাংলা</span></a></li><li><a href="#pt"><span lang="pt">Português</span></a></li><li><a href="#id"><span lang="id">Bahasa Indonesia</span></a></li><li><a href="#ms"><span lang="ms">Bahasa Melayu</span></a></li><li><a href="#ur"><span lang="ur" dir="rtl">اردو</span></a></li><li><a href="#ru"><span lang="ru">Русский</span></a></li><li><a href="#de"><span lang="de">Deutsch</span></a></li><li><a href="#vi"><span lang="vi">Tiếng Việt</span></a></li><li><a href="#sw"><span lang="sw">Kiswahili</span></a></li><li><a href="#tr"><span lang="tr">Türkçe</span></a></li><li><a href="#tl"><span lang="fil">Filipino</span></a></li><li><a href="#fa"><span lang="fa" dir="rtl">فارسی</span></a></li><li><a href="#ko"><span lang="ko">한국어</span></a></li><li><a href="#th"><span lang="th">ไทย</span></a></li><li><a href="#it"><span lang="it">Italiano</span></a></li><li><a href="#pl"><span lang="pl">Polski</span></a></li><li><a href="#uk"><span lang="uk">Українська</span></a></li><li><a href="#nl"><span lang="nl">Nederlands</span></a></li><li><a href="#ang"><span lang="ang">Englisc</span></a></li><li><a href="#soro"><span lang="ja">御座候</span></a></li></ul>
+  </nav>
+
+<section class="lang" id="ja" aria-labelledby="h-ja">
+  <p class="kicker">01 · ja</p>
+  <h2 id="h-ja"><span lang="ja">日本語</span><small>일본어</small></h2>
+  <dl class="nums">
+    <div><dt>사용자 수</dt><dd>1억 2,600만 명</dd></div>
+    <div><dt>웹</dt><dd>4.9%(4위)</dd></div>
+    <div><dt>이용 시간</dt><dd>3억 9천만 시간</dd></div>
+  </dl>
+  <p class="region"><b>지역</b>일본입니다. 일본 밖에서는 브라질과 미국(하와이, 캘리포니아)의 일본계 사람들, 해외에 사는 일본인이 읽습니다. 세계 곳곳에 일본어를 배우는 사람도 많습니다.</p>
+  <div class="persona">
+    <figure><img src="../../language-intro/img/ja.webp" width="800" height="1000" loading="lazy" decoding="async" alt="가상의 페르소나. 森下 由佳(Yuka Morishita), 34세, 후쿠오카 거주. 종합병원의 의료 사무원입니다."></figure>
+    <div class="ptext"><h3>페르소나</h3><p><span lang="ja">森下 由佳</span>(Yuka Morishita), 34세, 후쿠오카 거주. 종합병원의 의료 사무원입니다. 아침 7시 40분, 지하철 좌석에서 iPhone을 열고 Instagram 릴스를 통해 들어옵니다. 점을 너무 믿지는 않지만, 빗나가도 웃어넘길 수 있을 만큼은 좋아하는 사람입니다. 카드를 한 장 뽑아 역방향이 나오면 “오늘은 무리하지 않는 날”로 정합니다. 이야기가 하카타 직물이나 지쿠고의 쪽염색처럼 친숙한 고장과 공예를 거쳐 색에 다다르면 기분이 좋아집니다. 마음에 드는 색은 그날의 손수건이나 네일 색을 고를 때 참고합니다. 가끔 직장 동료에게 LINE으로 “오늘의 나는 쪽빛이래”라고 보냅니다.</p></div>
+  </div>
+  <details><summary>숫자와 주석</summary>
+    <div class="scroll"><table class="facts"><thead><tr><th scope="col">항목</th><th scope="col">값</th><th scope="col">주석</th></tr></thead><tbody>
+      <tr><th scope="row">전체 사용자 수(모어+제2언어)</th><td>1억 2,600만 명</td><td>Ethnologue 2026년판</td></tr>
+      <tr><th scope="row">웹 콘텐츠 비율</th><td>4.9%(4위)</td><td>W3Techs, 2026년 10월</td></tr>
+      <tr><th scope="row">언어별 인터넷 사용자 비율</th><td>2.6%(8위)</td><td>Internet World Stats, 2020년 3월</td></tr>
+      <tr><th scope="row">인터넷 이용 시간</th><td>추정 인터넷 인구 1억 명, 하루 평균 3.9시간, 총 하루 3억 9천만 시간(18위)</td><td>Claude 추정. 1인당 시간은 세계에서 가장 짧은 편</td></tr>
+    </tbody></table></div>
+  </details>
+</section>
+
+<section class="lang" id="en" aria-labelledby="h-en">
+  <p class="kicker">02 · en</p>
+  <h2 id="h-en"><span lang="en">English</span><small>영어</small></h2>
+  <dl class="nums">
+    <div><dt>사용자 수</dt><dd>14억 9,300만 명(1위)</dd></div>
+    <div><dt>웹</dt><dd>49.5%(1위)</dd></div>
+    <div><dt>이용 시간</dt><dd>57억 8천만 시간</dd></div>
+  </dl>
+  <p class="region"><b>지역</b>미국, 영국, 캐나다, 오스트레일리아, 뉴질랜드, 아일랜드에서 모어로 쓰입니다. 인도, 필리핀, 나이지리아, 싱가포르, 케냐 등에서는 공용어나 교육 언어입니다. 전 세계의 제2언어 사용자들도 영어 페이지를 읽습니다.</p>
+  <div class="persona">
+    <figure><img src="../../language-intro/img/en.webp" width="800" height="1000" loading="lazy" decoding="async" alt="가상의 페르소나. Maya Reynolds, 29세, 영국 맨체스터 거주. 초등학교 보조 교사입니다."></figure>
+    <div class="ptext"><h3>페르소나</h3><p>Maya Reynolds, 29세, 영국 맨체스터 거주. 초등학교 보조 교사입니다. 밤 10시, 침대에서 Android 스마트폰을 엽니다. TikTok에서 타로 영상을 자주 보는데, 한 장 뽑기의 가벼움이 마음에 듭니다. 카드의 의미를 읽다가 이야기 끝에 색 이름이 나오는 순간을 좋아합니다. 스코틀랜드의 엉겅퀴나 요크셔의 양모처럼 영국의 고장과 이어지는 색 이야기가 나오면 친구에게 링크를 보냅니다. 카드 스타일을 바꿔 가며 아르누보와 스테인드글라스를 비교해 보는 것도 즐깁니다.</p></div>
+  </div>
+  <details><summary>숫자와 주석</summary>
+    <div class="scroll"><table class="facts"><thead><tr><th scope="col">항목</th><th scope="col">값</th><th scope="col">주석</th></tr></thead><tbody>
+      <tr><th scope="row">전체 사용자 수(모어+제2언어)</th><td>14억 9,300만 명(1위)</td><td>Ethnologue 2026년판</td></tr>
+      <tr><th scope="row">웹 콘텐츠 비율</th><td>49.5%(1위)</td><td>W3Techs, 2026년 10월</td></tr>
+      <tr><th scope="row">언어별 인터넷 사용자 비율</th><td>25.9%(1위)</td><td>Internet World Stats, 2020년 3월</td></tr>
+      <tr><th scope="row">인터넷 이용 시간</th><td>추정 인터넷 인구 8억 5천만 명, 하루 평균 6.8시간, 총 하루 57억 8천만 시간(2위)</td><td>Claude 추정. 영어를 주로 읽는 사람만 셌으며, 제2언어로 읽는 사람까지 포함하면 1위가 된다는 주석이 있음</td></tr>
+    </tbody></table></div>
+  </details>
+</section>
+
+<section class="lang" id="zh-hans" aria-labelledby="h-zh-hans">
+  <p class="kicker">03 · zh-hans</p>
+  <h2 id="h-zh-hans"><span lang="zh-Hans">简体中文</span><small>중국어 간체</small></h2>
+  <dl class="nums">
+    <div><dt>사용자 수</dt><dd>11억 8,300만 명(표준 중국어)</dd></div>
+    <div><dt>웹</dt><dd>1.3%(12위, 중국어 전체)</dd></div>
+    <div><dt>이용 시간</dt><dd>62억 시간(간체·번체 합계)</dd></div>
+  </dl>
+  <p class="region"><b>지역</b>중국 본토에서 학교와 행정의 문자로 쓰입니다. 싱가포르와 말레이시아의 화교 사회도 간체자가 표준입니다. 북미, 오스트레일리아, 유럽, 동남아시아에 큰 화교 사회가 있고, 유학생도 많습니다.</p>
+  <div class="persona">
+    <figure><img src="../../language-intro/img/zh-hans.webp" width="800" height="1000" loading="lazy" decoding="async" alt="가상의 페르소나. 林悦(Lin Yue), 26세, 청두 거주. 게임 회사의 UI 디자이너입니다."></figure>
+    <div class="ptext"><h3>페르소나</h3><p><span lang="zh-Hans">林悦</span>(Lin Yue), 26세, 청두 거주. 게임 회사의 UI 디자이너입니다. 점심시간인 12시 반, Huawei 스마트폰으로 다음 달 교토 여행을 샤오훙수에서 찾아보다가 어느 여행자의 메모에서 이 사이트를 알게 되었습니다. 일 때문에 색 이름과 배색에 민감합니다. 한 장을 뽑아 이야기가 송나라 청자나 촉금(쓰촨의 비단)을 거쳐 색에 다다르면, 화면을 저장해 WeChat으로 동료에게 보냅니다. 수묵화 스타일로 카드를 보는 것을 좋아합니다.</p></div>
+  </div>
+  <details><summary>숫자와 주석</summary>
+    <div class="scroll"><table class="facts"><thead><tr><th scope="col">항목</th><th scope="col">값</th><th scope="col">주석</th></tr></thead><tbody>
+      <tr><th scope="row">전체 사용자 수(모어+제2언어)</th><td>11억 8,300만 명(표준 중국어)</td><td>Ethnologue 2026년판. 번체와 간체는 표준 중국어로 한 번만 셈</td></tr>
+      <tr><th scope="row">웹 콘텐츠 비율</th><td>1.3%(12위, 중국어 전체)</td><td>W3Techs는 간체와 번체를 나누지 않음</td></tr>
+      <tr><th scope="row">언어별 인터넷 사용자 비율</th><td>19.4%(2위, 중국어 전체)</td><td>Internet World Stats, 2020년 3월</td></tr>
+      <tr><th scope="row">인터넷 이용 시간</th><td>추정 인터넷 인구 11억 7천만 명, 하루 평균 5.3시간, 총 하루 62억 시간(1위, 간체·번체 합계)</td><td>Claude 추정. 중국 본토 11억 1천만 명에 타이완, 홍콩, 해외 화교를 더함</td></tr>
+    </tbody></table></div>
+  </details>
+</section>
+
+<section class="lang" id="zh" aria-labelledby="h-zh">
+  <p class="kicker">04 · zh</p>
+  <h2 id="h-zh"><span lang="zh-Hant">繁體中文</span><small>중국어 번체</small></h2>
+  <dl class="nums">
+    <div><dt>사용자 수</dt><dd>간체와 함께 표준 중국어로 셈(11억 8,300만 명)</dd></div>
+    <div><dt>웹</dt><dd>1.3%(12위, 중국어 전체)</dd></div>
+    <div><dt>이용 시간</dt><dd>간체와 합쳐 총 하루 62억 시간(1위)</dd></div>
+  </dl>
+  <p class="region"><b>지역</b>타이완, 홍콩, 마카오에서 쓰이는 문자입니다. 북미와 오스트레일리아의 오래된 화교 사회에서도 번체자를 쓰는 사람이 많습니다. 타이완은 표준 중국어(화어)를 쓰고, 홍콩과 마카오는 말은 광둥어로 하며 글은 번체자 문어로 씁니다.</p>
+  <div class="persona">
+    <figure><img src="../../language-intro/img/zh.webp" width="800" height="1000" loading="lazy" decoding="async" alt="가상의 페르소나. 陳怡君(Chen Yi-chun), 31세, 타이중 거주. 은행 창구 직원입니다."></figure>
+    <div class="ptext"><h3>페르소나</h3><p><span lang="zh-Hant">陳怡君</span>(Chen Yi-chun), 31세, 타이중 거주. 은행 창구 직원입니다. 밤 11시, 자기 전에 iPhone으로 다음 달 가나자와 여행 계획을 세우고 있습니다. 친구가 LINE으로 보내 준 링크로 이 사이트를 열었습니다. 사원에서 제비를 뽑는 것과 비슷한 마음으로 한 장을 뽑습니다. 이야기가 가가 유젠 염색이나 금박 같은 일본 공예를 거쳐 색에 다다르면, 여행에서 가 볼 곳이 하나 늘어납니다. 결과 페이지를 친구에게 LINE으로 다시 보냅니다.</p></div>
+  </div>
+  <details><summary>숫자와 주석</summary>
+    <div class="scroll"><table class="facts"><thead><tr><th scope="col">항목</th><th scope="col">값</th><th scope="col">주석</th></tr></thead><tbody>
+      <tr><th scope="row">전체 사용자 수(모어+제2언어)</th><td>간체와 함께 표준 중국어로 셈(11억 8,300만 명)</td><td>번체와 간체는 표준 중국어로 한 번만 셈. 번체를 읽는 사람만의 수는 자료 없음</td></tr>
+      <tr><th scope="row">웹 콘텐츠 비율</th><td>1.3%(12위, 중국어 전체)</td><td>W3Techs는 간체와 번체를 나누지 않음</td></tr>
+      <tr><th scope="row">언어별 인터넷 사용자 비율</th><td>19.4%(2위, 중국어 전체)</td><td>Internet World Stats, 2020년 3월</td></tr>
+      <tr><th scope="row">인터넷 이용 시간</th><td>간체와 합쳐 총 하루 62억 시간(1위)</td><td>Claude 추정. 번체만 따로 추정한 값은 없음</td></tr>
+    </tbody></table></div>
+  </details>
+</section>
+
+<section class="lang" id="hi" aria-labelledby="h-hi">
+  <p class="kicker">05 · hi</p>
+  <h2 id="h-hi"><span lang="hi">हिन्दी</span><small>힌디어</small></h2>
+  <dl class="nums">
+    <div><dt>사용자 수</dt><dd>6억 1,100만 명(3위)</dd></div>
+    <div><dt>웹</dt><dd>0.1% 미만(38위)</dd></div>
+    <div><dt>이용 시간</dt><dd>17억 4천만 시간</dd></div>
+  </dl>
+  <p class="region"><b>지역</b>인도 북부와 중부(우타르프라데시, 비하르, 라자스탄, 마디아프라데시, 델리 등)입니다. 네팔과 피지에도 사용자가 있습니다. 걸프 국가, 영국, 미국, 캐나다에 큰 인도계 사회가 있습니다.</p>
+  <div class="persona">
+    <figure><img src="../../language-intro/img/hi.webp" width="800" height="1000" loading="lazy" decoding="async" alt="가상의 페르소나. Neha Verma, 24세, 자이푸르 거주. 공인회계사 수습생입니다."></figure>
+    <div class="ptext"><h3>페르소나</h3><p>Neha Verma, 24세, 자이푸르 거주. 공인회계사 수습생입니다. 아침 8시, 지하철을 타기 전에 Redmi 스마트폰으로 한 장을 뽑습니다. 어머니가 늘 챙겨 보는 라시팔(오늘의 운세)의 연장선 같은 느낌입니다. 영어도 읽을 수 있지만, 색 이야기는 힌디어로 읽어야 더 마음에 남는다고 느낍니다. 이야기가 자이푸르 ‘핑크 시티’의 건물이나 라자스탄의 홀치기염색을 거쳐 색에 다다르면, 그 색의 두파타(숄)를 고릅니다. 마음에 든 결과는 언니에게 WhatsApp으로 보냅니다.</p></div>
+  </div>
+  <details><summary>숫자와 주석</summary>
+    <div class="scroll"><table class="facts"><thead><tr><th scope="col">항목</th><th scope="col">값</th><th scope="col">주석</th></tr></thead><tbody>
+      <tr><th scope="row">전체 사용자 수(모어+제2언어)</th><td>6억 1,100만 명(3위)</td><td>Ethnologue 2026년판</td></tr>
+      <tr><th scope="row">웹 콘텐츠 비율</th><td>0.1% 미만(38위)</td><td>W3Techs, 2026년 10월. 사용자 수에 비해 웹페이지가 매우 적음</td></tr>
+      <tr><th scope="row">언어별 인터넷 사용자 비율</th><td>10위권 밖</td><td>Internet World Stats, 2020년 3월</td></tr>
+      <tr><th scope="row">인터넷 이용 시간</th><td>추정 인터넷 인구 2억 9천만 명, 하루 평균 6.0시간, 총 하루 17억 4천만 시간(6위)</td><td>Claude 추정. 인도 사용자의 약 35%를 힌디어 사용자로 가정함. 가장 불확실한 가정</td></tr>
+    </tbody></table></div>
+  </details>
+</section>
+
+<section class="lang" id="es" aria-labelledby="h-es">
+  <p class="kicker">06 · es</p>
+  <h2 id="h-es"><span lang="es">Español</span><small>스페인어</small></h2>
+  <dl class="nums">
+    <div><dt>사용자 수</dt><dd>5억 6,100만 명(4위)</dd></div>
+    <div><dt>웹</dt><dd>6.0%(2위)</dd></div>
+    <div><dt>이용 시간</dt><dd>29억 6천만 시간</dd></div>
+  </dl>
+  <p class="region"><b>지역</b>스페인, 그리고 멕시코, 콜롬비아, 아르헨티나, 페루, 칠레, 베네수엘라 등 라틴아메리카의 많은 나라입니다. 미국에도 집에서 스페인어를 쓰는 사람이 많습니다(그 수는 여기서 확인하지 않았습니다). 적도기니의 공용어이기도 합니다.</p>
+  <div class="persona">
+    <figure><img src="../../language-intro/img/es.webp" width="800" height="1000" loading="lazy" decoding="async" alt="가상의 페르소나. Valeria Ortiz, 32세, 멕시코 과달라하라 거주. 치과위생사입니다."></figure>
+    <div class="ptext"><h3>페르소나</h3><p>Valeria Ortiz, 32세, 멕시코 과달라하라 거주. 치과위생사입니다. 밤 9시 반, 퇴근 후 소파에서 Android 스마트폰을 엽니다. TikTok에서 본 타로 이야기를 보고 이 사이트에 왔습니다. 카드의 의미를 읽는 것도 즐겁지만, 가장 좋아하는 건 마지막에 나올 색 이름을 기다리는 순간입니다. 이야기가 멕시코의 코치닐(선인장에 사는 벌레에서 얻는 빨강)을 거쳐 진홍색에 다다르면, 바로 여동생에게 WhatsApp으로 보냅니다. 연말에는 이 사이트로 속옷 색을 고를 생각입니다.</p></div>
+  </div>
+  <details><summary>숫자와 주석</summary>
+    <div class="scroll"><table class="facts"><thead><tr><th scope="col">항목</th><th scope="col">값</th><th scope="col">주석</th></tr></thead><tbody>
+      <tr><th scope="row">전체 사용자 수(모어+제2언어)</th><td>5억 6,100만 명(4위)</td><td>Ethnologue 2026년판</td></tr>
+      <tr><th scope="row">웹 콘텐츠 비율</th><td>6.0%(2위)</td><td>W3Techs, 2026년 10월</td></tr>
+      <tr><th scope="row">언어별 인터넷 사용자 비율</th><td>7.9%(3위)</td><td>Internet World Stats, 2020년 3월</td></tr>
+      <tr><th scope="row">인터넷 이용 시간</th><td>추정 인터넷 인구 3억 9천만 명, 하루 평균 7.6시간, 총 하루 29억 6천만 시간(3위)</td><td>Claude 추정. 멕시코, 스페인, 콜롬비아, 아르헨티나 등에 미국의 스페인어 우세 사용자를 더함</td></tr>
+    </tbody></table></div>
+  </details>
+</section>
+
+<section class="lang" id="ar" aria-labelledby="h-ar">
+  <p class="kicker">07 · ar</p>
+  <h2 id="h-ar"><span lang="ar" dir="rtl">العربية</span><small>아랍어(현대 표준 아랍어)</small></h2>
+  <dl class="nums">
+    <div><dt>사용자 수</dt><dd>3억 3,500만 명(5위, 현대 표준 아랍어)</dd></div>
+    <div><dt>웹</dt><dd>0.6%(19위)</dd></div>
+    <div><dt>이용 시간</dt><dd>23억 1천만 시간</dd></div>
+  </dl>
+  <p class="region"><b>지역</b>이집트, 사우디아라비아, 이라크, 알제리, 모로코, 수단, 시리아, 요르단, 아랍에미리트 등 중동과 북아프리카 약 22개국의 공용어입니다. 유럽(프랑스, 독일 등)과 북미에도 아랍어를 쓰는 사람이 많이 삽니다. 사이트는 오른쪽에서 왼쪽으로 배치됩니다.</p>
+  <div class="persona">
+    <figure><img src="../../language-intro/img/ar.webp" width="800" height="1000" loading="lazy" decoding="async" alt="가상의 페르소나. Nour Haddad, 28세, 요르단 암만 거주. 건축 설계 사무소에서 일합니다."></figure>
+    <div class="ptext"><h3>페르소나</h3><p>Nour Haddad, 28세, 요르단 암만 거주. 건축 설계 사무소에서 일합니다. 저녁 8시, 집 발코니에서 iPhone을 엽니다. 점은 믿지 않고, 카드 그림과 이야기를 ‘짧은 읽을거리’로 즐깁니다. 이야기가 이슬람 건축 타일의 파랑이나 페트라 바위의 장밋빛을 거쳐 색에 다다르면, 일할 때 배색의 참고로 메모해 둡니다. 가끔 건축가 동료들의 WhatsApp 그룹에 결과 페이지를 보냅니다.</p></div>
+  </div>
+  <details><summary>숫자와 주석</summary>
+    <div class="scroll"><table class="facts"><thead><tr><th scope="col">항목</th><th scope="col">값</th><th scope="col">주석</th></tr></thead><tbody>
+      <tr><th scope="row">전체 사용자 수(모어+제2언어)</th><td>3억 3,500만 명(5위, 현대 표준 아랍어)</td><td>Ethnologue 2026년판</td></tr>
+      <tr><th scope="row">웹 콘텐츠 비율</th><td>0.6%(19위)</td><td>W3Techs, 2026년 10월</td></tr>
+      <tr><th scope="row">언어별 인터넷 사용자 비율</th><td>5.2%(4위)</td><td>Internet World Stats, 2020년 3월</td></tr>
+      <tr><th scope="row">인터넷 이용 시간</th><td>추정 인터넷 인구 3억 3천만 명, 하루 평균 7.0시간, 총 하루 23억 1천만 시간(4위)</td><td>Claude 추정. 이집트, 사우디아라비아, 이라크, 알제리, 모로코 등</td></tr>
+    </tbody></table></div>
+  </details>
+</section>
+
+<section class="lang" id="fr" aria-labelledby="h-fr">
+  <p class="kicker">08 · fr</p>
+  <h2 id="h-fr"><span lang="fr">Français</span><small>프랑스어</small></h2>
+  <dl class="nums">
+    <div><dt>사용자 수</dt><dd>3억 3,400만 명(6위)</dd></div>
+    <div><dt>웹</dt><dd>4.5%(5위)</dd></div>
+    <div><dt>이용 시간</dt><dd>7억 5천만 시간</dd></div>
+  </dl>
+  <p class="region"><b>지역</b>프랑스, 벨기에 남부, 스위스 서부, 캐나다 퀘벡, 룩셈부르크입니다. 서아프리카와 중앙아프리카(코트디부아르, 세네갈, 콩고민주공화국, 카메룬 등)에서는 학교와 행정의 언어입니다. 북아프리카의 모로코, 알제리, 튀니지에서도 널리 쓰입니다.</p>
+  <div class="persona">
+    <figure><img src="../../language-intro/img/fr.webp" width="800" height="1000" loading="lazy" decoding="async" alt="가상의 페르소나. Hélène Garnier, 41세, 리옹 거주. 제본과 종이 보존 공방을 운영합니다."></figure>
+    <div class="ptext"><h3>페르소나</h3><p>Hélène Garnier, 41세, 리옹 거주. 제본과 종이 보존 공방을 운영합니다. 일요일 오전 10시, 공방 작업대에서 태블릿을 엽니다. 할머니 집에 있던 마르세유 덱을 기억하고 있어서, 메이저 아르카나의 이름이 친숙합니다. 이야기가 리옹의 실크 염색이나 파리의 안료 상인을 거쳐 색에 다다르면, 다음 제본의 면지 색을 고르는 데 씁니다. 아르누보 스타일을 고릅니다.</p></div>
+  </div>
+  <details><summary>숫자와 주석</summary>
+    <div class="scroll"><table class="facts"><thead><tr><th scope="col">항목</th><th scope="col">값</th><th scope="col">주석</th></tr></thead><tbody>
+      <tr><th scope="row">전체 사용자 수(모어+제2언어)</th><td>3억 3,400만 명(6위)</td><td>Ethnologue 2026년판</td></tr>
+      <tr><th scope="row">웹 콘텐츠 비율</th><td>4.5%(5위)</td><td>W3Techs, 2026년 10월</td></tr>
+      <tr><th scope="row">언어별 인터넷 사용자 비율</th><td>3.3%(7위)</td><td>Internet World Stats, 2020년 3월</td></tr>
+      <tr><th scope="row">인터넷 이용 시간</th><td>추정 인터넷 인구 1억 2,500만 명, 하루 평균 6.0시간, 총 하루 7억 5천만 시간(9위)</td><td>Claude 추정. 프랑스, 벨기에, 퀘벡에 프랑스어권 아프리카를 더함</td></tr>
+    </tbody></table></div>
+  </details>
+</section>
+
+<section class="lang" id="bn" aria-labelledby="h-bn">
+  <p class="kicker">09 · bn</p>
+  <h2 id="h-bn"><span lang="bn">বাংলা</span><small>벵골어</small></h2>
+  <dl class="nums">
+    <div><dt>사용자 수</dt><dd>2억 7,400만 명(7위)</dd></div>
+    <div><dt>웹</dt><dd>0.1% 미만(39위)</dd></div>
+    <div><dt>이용 시간</dt><dd>6억 1천만 시간</dd></div>
+  </dl>
+  <p class="region"><b>지역</b>방글라데시(국어)와 인도의 서벵골주, 트리푸라주, 아삼주 일부입니다. 방글라데시 출신의 많은 사람이 영국(런던 동부), 걸프 국가, 미국, 말레이시아에 삽니다.</p>
+  <div class="persona">
+    <figure><img src="../../language-intro/img/bn.webp" width="800" height="1000" loading="lazy" decoding="async" alt="가상의 페르소나. Farhana Akter, 23세, 다카 거주. 대학에서 영문학을 공부합니다."></figure>
+    <div class="ptext"><h3>페르소나</h3><p>Farhana Akter, 23세, 다카 거주. 대학에서 영문학을 공부합니다. 밤 10시, 공부하다 쉬는 틈에 Samsung 스마트폰으로 Facebook을 보다가, 친구가 공유한 결과 페이지를 통해 들어왔습니다. 점이 아니라 벵골어로 읽을 수 있는 짧은 이야기로 즐깁니다. 이야기가 다카 모슬린이나 잠다니 직물을 거쳐 아이보리에 다다르면, 그 색 이름을 시 노트에 옮겨 적습니다.</p></div>
+  </div>
+  <details><summary>숫자와 주석</summary>
+    <div class="scroll"><table class="facts"><thead><tr><th scope="col">항목</th><th scope="col">값</th><th scope="col">주석</th></tr></thead><tbody>
+      <tr><th scope="row">전체 사용자 수(모어+제2언어)</th><td>2억 7,400만 명(7위)</td><td>Ethnologue 2026년판</td></tr>
+      <tr><th scope="row">웹 콘텐츠 비율</th><td>0.1% 미만(39위)</td><td>W3Techs, 2026년 10월</td></tr>
+      <tr><th scope="row">언어별 인터넷 사용자 비율</th><td>10위권 밖</td><td>Internet World Stats, 2020년 3월</td></tr>
+      <tr><th scope="row">인터넷 이용 시간</th><td>추정 인터넷 인구 1억 1천만 명, 하루 평균 5.5시간, 총 하루 6억 1천만 시간(10위)</td><td>Claude 추정. 방글라데시에 서벵골을 더함</td></tr>
+    </tbody></table></div>
+  </details>
+</section>
+
+<section class="lang" id="pt" aria-labelledby="h-pt">
+  <p class="kicker">10 · pt</p>
+  <h2 id="h-pt"><span lang="pt">Português</span><small>포르투갈어(브라질)</small></h2>
+  <dl class="nums">
+    <div><dt>사용자 수</dt><dd>2억 6,900만 명(8위)</dd></div>
+    <div><dt>웹</dt><dd>4.1%(6위)</dd></div>
+    <div><dt>이용 시간</dt><dd>18억 9천만 시간</dd></div>
+  </dl>
+  <p class="region"><b>지역</b>브라질(사이트는 pt-BR을 씁니다)과 포르투갈입니다. 앙골라, 모잠비크, 카보베르데 같은 아프리카 나라의 공용어이기도 합니다. 일본에는 일본계 브라질인이 많이 삽니다. 미국, 포르투갈, 일본에 브라질인 사회가 있습니다.</p>
+  <div class="persona">
+    <figure><img src="../../language-intro/img/pt.webp" width="800" height="1000" loading="lazy" decoding="async" alt="가상의 페르소나. Juliana Costa, 30세, 헤시피 거주. 야간 근무도 하는 병원 간호사입니다."></figure>
+    <div class="ptext"><h3>페르소나</h3><p>Juliana Costa, 30세, 헤시피 거주. 야간 근무도 하는 병원 간호사입니다. 아침 6시 반, 야간 근무를 마치고 집으로 가는 버스에서 Samsung 스마트폰을 열어 한 장을 뽑습니다. 카드의 의미보다 이야기 끝에 나올 색을 더 기다립니다. 이야기가 파우브라질(브라질이라는 나라 이름의 유래가 된 붉은 염료 나무)을 거쳐 색에 다다르면, 동료들의 WhatsApp 그룹에 보냅니다. 새해 전날 밤에 입을 옷의 색도 여기서 뽑아 고를 생각입니다.</p></div>
+  </div>
+  <details><summary>숫자와 주석</summary>
+    <div class="scroll"><table class="facts"><thead><tr><th scope="col">항목</th><th scope="col">값</th><th scope="col">주석</th></tr></thead><tbody>
+      <tr><th scope="row">전체 사용자 수(모어+제2언어)</th><td>2억 6,900만 명(8위)</td><td>Ethnologue 2026년판</td></tr>
+      <tr><th scope="row">웹 콘텐츠 비율</th><td>4.1%(6위)</td><td>W3Techs, 2026년 10월</td></tr>
+      <tr><th scope="row">언어별 인터넷 사용자 비율</th><td>3.7%(6위)</td><td>Internet World Stats, 2020년 3월</td></tr>
+      <tr><th scope="row">인터넷 이용 시간</th><td>추정 인터넷 인구 2억 1천만 명, 하루 평균 9.0시간, 총 하루 18억 9천만 시간(5위)</td><td>Claude 추정. 대부분 브라질. 이용 시간은 세계에서 가장 긴 편</td></tr>
+    </tbody></table></div>
+  </details>
+</section>
+
+<section class="lang" id="id" aria-labelledby="h-id">
+  <p class="kicker">11 · id</p>
+  <h2 id="h-id"><span lang="id">Bahasa Indonesia</span><small>인도네시아어</small></h2>
+  <dl class="nums">
+    <div><dt>사용자 수</dt><dd>2억 5,500만 명(9위)</dd></div>
+    <div><dt>웹</dt><dd>1.2%(13위)</dd></div>
+    <div><dt>이용 시간</dt><dd>15억 5천만 시간</dd></div>
+  </dl>
+  <p class="region"><b>지역</b>인도네시아의 국어로, 2억이 넘는 사람이 학교와 직장에서 씁니다. 동티모르에서는 실무 언어입니다. 말레이시아, 브루나이, 싱가포르의 말레이어와 대체로 서로 통합니다. 일본에서는 기능실습이나 특정기능 제도로 일하는 인도네시아 사람이 늘고 있습니다.</p>
+  <div class="persona">
+    <figure><img src="../../language-intro/img/id.webp" width="800" height="1000" loading="lazy" decoding="async" alt="가상의 페르소나. Dimas Pratama, 25세, 반둥 거주. 스타트업의 주니어 그래픽 디자이너입니다."></figure>
+    <div class="ptext"><h3>페르소나</h3><p>Dimas Pratama, 25세, 반둥 거주. 스타트업의 주니어 그래픽 디자이너입니다. 아침 9시, 공유 오피스에서 Android 스마트폰을 엽니다. 점이 아니라 배색 아이디어를 찾는 도구로 씁니다. 카드의 의미는 가볍게 훑고, 색 이야기는 꼼꼼히 읽습니다. 이야기가 자바 바틱의 쪽빛이나 순다의 대나무 공예를 거쳐 색에 다다르면, 그날 포스터 시안의 기본색으로 삼습니다. Instagram 스토리에는 색 이름만 공유합니다.</p></div>
+  </div>
+  <details><summary>숫자와 주석</summary>
+    <div class="scroll"><table class="facts"><thead><tr><th scope="col">항목</th><th scope="col">값</th><th scope="col">주석</th></tr></thead><tbody>
+      <tr><th scope="row">전체 사용자 수(모어+제2언어)</th><td>2억 5,500만 명(9위)</td><td>Ethnologue 2026년판</td></tr>
+      <tr><th scope="row">웹 콘텐츠 비율</th><td>1.2%(13위)</td><td>W3Techs, 2026년 10월</td></tr>
+      <tr><th scope="row">언어별 인터넷 사용자 비율</th><td>4.3%(5위)</td><td>Internet World Stats, 2020년 3월. 말레이어와 같은 행이며, 숫자는 인도네시아어의 것</td></tr>
+      <tr><th scope="row">인터넷 이용 시간</th><td>추정 인터넷 인구 2억 1천만 명, 하루 평균 7.4시간, 총 하루 15억 5천만 시간(7위)</td><td>Claude 추정</td></tr>
+    </tbody></table></div>
+  </details>
+</section>
+
+<section class="lang" id="ms" aria-labelledby="h-ms">
+  <p class="kicker">12 · ms</p>
+  <h2 id="h-ms"><span lang="ms">Bahasa Melayu</span><small>말레이어</small></h2>
+  <dl class="nums">
+    <div><dt>사용자 수</dt><dd>알 수 없음</dd></div>
+    <div><dt>웹</dt><dd>자료 없음</dd></div>
+    <div><dt>이용 시간</dt><dd>약 1억 6천만 시간(순위 밖 참고치)</dd></div>
+  </dl>
+  <p class="region"><b>지역</b>말레이시아, 브루나이, 싱가포르(국어)입니다. 태국 남부에도 말레이어 사용자가 있습니다. 말레이시아에서는 말레이계 사람들이 일상에서 쓰고, 화교와 인도계 사람들도 학교에서 배웁니다.</p>
+  <div class="persona">
+    <figure><img src="../../language-intro/img/ms.webp" width="800" height="1000" loading="lazy" decoding="async" alt="가상의 페르소나. Nur Aisyah binti Rahman, 27세, 샤알람 거주. 병원 약사입니다."></figure>
+    <div class="ptext"><h3>페르소나</h3><p>Nur Aisyah binti Rahman, 27세, 샤알람 거주. 병원 약사입니다. 오후 1시 점심시간, Android 스마트폰으로 내년 3월 오사카 여행 정보를 TikTok에서 보고 있습니다. 점은 믿지 않지만, 카드 그림과 색 이야기는 ‘아름다운 읽을거리’로 좋아합니다. 이야기가 말레이 송켓의 금실이나 믈라카 항구 이야기를 거쳐 색에 다다르면, 여행 때 쓸 투둥(스카프) 색을 고르는 데 참고합니다. 가족 WhatsApp 그룹에는 색 이름만 보냅니다.</p></div>
+  </div>
+  <details><summary>숫자와 주석</summary>
+    <div class="scroll"><table class="facts"><thead><tr><th scope="col">항목</th><th scope="col">값</th><th scope="col">주석</th></tr></thead><tbody>
+      <tr><th scope="row">전체 사용자 수(모어+제2언어)</th><td>알 수 없음</td><td>말레이어는 인도네시아어를 포함하는 거시 언어로 함께 집계되는 경우가 많아, 따로 나눈 숫자가 없음. 위키백과 “Malay language” 문서(Ethnologue 제28판, 2025년 인용)는 거시 언어로서의 말레이어를 모어 화자 약 9,000만 명(2020~2023년), 제2언어 화자 약 1억 8,000만 명(2020년)으로 제시함. 이 집계는 인도네시아 각지의 말레이어를 포함하며, 표준 말레이어만의 수가 아님</td></tr>
+      <tr><th scope="row">웹 콘텐츠 비율</th><td>자료 없음</td><td>W3Techs 상위 40위 밖</td></tr>
+      <tr><th scope="row">언어별 인터넷 사용자 비율</th><td>인도네시아어와 같은 행</td><td>Internet World Stats에서 인도네시아어/말레이어 행의 숫자는 인도네시아어의 4.3%뿐임</td></tr>
+      <tr><th scope="row">인터넷 이용 시간</th><td>하루 약 1억 6천만 시간(순위 밖 참고치)</td><td>Claude 추정의 순위 밖 참고치. 말레이시아 사용자의 약 60%에 브루나이를 더함</td></tr>
+    </tbody></table></div>
+  </details>
+</section>
+
+<section class="lang" id="ur" aria-labelledby="h-ur">
+  <p class="kicker">13 · ur</p>
+  <h2 id="h-ur"><span lang="ur" dir="rtl">اردو</span><small>우르두어</small></h2>
+  <dl class="nums">
+    <div><dt>사용자 수</dt><dd>2억 4,600만 명(10위)</dd></div>
+    <div><dt>웹</dt><dd>자료 없음</dd></div>
+    <div><dt>이용 시간</dt><dd>5억 2천만 시간</dd></div>
+  </dl>
+  <p class="region"><b>지역</b>파키스탄(국어)과 인도 북부(우타르프라데시, 텔랑가나주 하이데라바드, 델리 등)입니다. 파키스탄계 사람이 영국, 걸프 국가, 미국, 캐나다에 많이 삽니다. 말은 힌디어와 가깝지만 문자(나스탈리크체 아랍 문자)가 다릅니다. 사이트는 오른쪽에서 왼쪽으로 배치됩니다.</p>
+  <div class="persona">
+    <figure><img src="../../language-intro/img/ur.webp" width="800" height="1000" loading="lazy" decoding="async" alt="가상의 페르소나. Hamza Qureshi, 30세, 라호르 거주. 핀테크 회사의 소프트웨어 엔지니어입니다."></figure>
+    <div class="ptext"><h3>페르소나</h3><p>Hamza Qureshi, 30세, 라호르 거주. 핀테크 회사의 소프트웨어 엔지니어입니다. 밤 12시 반, 일을 마치고 짜이 한 잔을 앞에 두고 Android 스마트폰을 엽니다. 점과는 거리를 두지만, 우르두어 글자가 아름답게 조판된 페이지를 좋아해서 이야기를 읽으러 옵니다. 이야기가 무굴 세밀화의 군청색이나 라호르 요새 벽의 타일을 거쳐 색에 다다르면, 시인 친구에게 WhatsApp으로 링크를 보냅니다.</p></div>
+  </div>
+  <details><summary>숫자와 주석</summary>
+    <div class="scroll"><table class="facts"><thead><tr><th scope="col">항목</th><th scope="col">값</th><th scope="col">주석</th></tr></thead><tbody>
+      <tr><th scope="row">전체 사용자 수(모어+제2언어)</th><td>2억 4,600만 명(10위)</td><td>Ethnologue 2026년판</td></tr>
+      <tr><th scope="row">웹 콘텐츠 비율</th><td>자료 없음</td><td>W3Techs 상위 40위 밖</td></tr>
+      <tr><th scope="row">언어별 인터넷 사용자 비율</th><td>10위권 밖</td><td>Internet World Stats, 2020년 3월</td></tr>
+      <tr><th scope="row">인터넷 이용 시간</th><td>추정 인터넷 인구 9,500만 명, 하루 평균 5.5시간, 총 하루 5억 2천만 시간(13위)</td><td>Claude 추정. 파키스탄의 약 75%에 인도 일부를 더함</td></tr>
+    </tbody></table></div>
+  </details>
+</section>
+
+<section class="lang" id="ru" aria-labelledby="h-ru">
+  <p class="kicker">14 · ru</p>
+  <h2 id="h-ru"><span lang="ru">Русский</span><small>러시아어</small></h2>
+  <dl class="nums">
+    <div><dt>사용자 수</dt><dd>2억 1,000만 명(11위)</dd></div>
+    <div><dt>웹</dt><dd>3.4%(7위)</dd></div>
+    <div><dt>이용 시간</dt><dd>11억 6천만 시간</dd></div>
+  </dl>
+  <p class="region"><b>지역</b>러시아, 벨라루스, 카자흐스탄, 키르기스스탄의 공용어입니다. 다른 옛 소련 국가(중앙아시아, 캅카스, 발트 3국)에서도 러시아어를 쓰는 사람이 많습니다. 이스라엘, 독일, 미국에도 러시아어권 사회가 있습니다.</p>
+  <div class="persona">
+    <figure><img src="../../language-intro/img/ru.webp" width="800" height="1000" loading="lazy" decoding="async" alt="가상의 페르소나. Анна Соколова(Anna Sokolova), 35세, 노보시비르스크 거주. 연구소의 화학 분석 기술자입니다."></figure>
+    <div class="ptext"><h3>페르소나</h3><p><span lang="ru">Анна Соколова</span>(Anna Sokolova), 35세, 노보시비르스크 거주. 연구소의 화학 분석 기술자입니다. 밤 10시, 부엌에서 차를 마시며 Android 스마트폰을 엽니다. 색과 예술을 소개하는 Telegram 채널에서 이 사이트를 알게 되었습니다. 일이 일이다 보니, 한 장을 뽑아 이야기가 광물과 안료를 거쳐 색에 다다르는 과정을 특히 즐깁니다. 공작석 초록이 나온 날에는 딸에게 그 돌의 사진을 보여 줍니다.</p></div>
+  </div>
+  <details><summary>숫자와 주석</summary>
+    <div class="scroll"><table class="facts"><thead><tr><th scope="col">항목</th><th scope="col">값</th><th scope="col">주석</th></tr></thead><tbody>
+      <tr><th scope="row">전체 사용자 수(모어+제2언어)</th><td>2억 1,000만 명(11위)</td><td>Ethnologue 2026년판</td></tr>
+      <tr><th scope="row">웹 콘텐츠 비율</th><td>3.4%(7위)</td><td>W3Techs, 2026년 10월</td></tr>
+      <tr><th scope="row">언어별 인터넷 사용자 비율</th><td>2.5%(9위)</td><td>Internet World Stats, 2020년 3월</td></tr>
+      <tr><th scope="row">인터넷 이용 시간</th><td>추정 인터넷 인구 1억 5,500만 명, 하루 평균 7.5시간, 총 하루 11억 6천만 시간(8위)</td><td>Claude 추정. 러시아에 벨라루스, 카자흐스탄, 중앙아시아 일부를 더함</td></tr>
+    </tbody></table></div>
+  </details>
+</section>
+
+<section class="lang" id="de" aria-labelledby="h-de">
+  <p class="kicker">15 · de</p>
+  <h2 id="h-de"><span lang="de">Deutsch</span><small>독일어</small></h2>
+  <dl class="nums">
+    <div><dt>사용자 수</dt><dd>1억 3,300만 명(12위)</dd></div>
+    <div><dt>웹</dt><dd>5.9%(3위)</dd></div>
+    <div><dt>이용 시간</dt><dd>4억 8천만 시간</dd></div>
+  </dl>
+  <p class="region"><b>지역</b>독일, 오스트리아, 스위스(북부와 중부), 리히텐슈타인, 룩셈부르크, 이탈리아의 남티롤, 벨기에 동부입니다.</p>
+  <div class="persona">
+    <figure><img src="../../language-intro/img/de.webp" width="800" height="1000" loading="lazy" decoding="async" alt="가상의 페르소나. Jonas Weber, 38세, 라이프치히 거주. 극장의 음향 엔지니어입니다."></figure>
+    <div class="ptext"><h3>페르소나</h3><p>Jonas Weber, 38세, 라이프치히 거주. 극장의 음향 엔지니어입니다. 평일 오후 1시 휴식 시간에 노트북의 Firefox로 엽니다. 광고 차단기를 쓰고, 동의 배너는 거부합니다. 점은 믿지 않지만, 카드 스타일(초현실주의 사진, 브루탈리즘 그래픽)을 비교하는 것을 좋아합니다. 이야기가 18세기 초 베를린에서 태어난 프러시안 블루를 거쳐 색에 다다르면, 반가워하며 동료들에게 이야기합니다.</p></div>
+  </div>
+  <details><summary>숫자와 주석</summary>
+    <div class="scroll"><table class="facts"><thead><tr><th scope="col">항목</th><th scope="col">값</th><th scope="col">주석</th></tr></thead><tbody>
+      <tr><th scope="row">전체 사용자 수(모어+제2언어)</th><td>1억 3,300만 명(12위)</td><td>Ethnologue 2026년판</td></tr>
+      <tr><th scope="row">웹 콘텐츠 비율</th><td>5.9%(3위)</td><td>W3Techs, 2026년 10월</td></tr>
+      <tr><th scope="row">언어별 인터넷 사용자 비율</th><td>2.0%(10위)</td><td>Internet World Stats, 2020년 3월</td></tr>
+      <tr><th scope="row">인터넷 이용 시간</th><td>추정 인터넷 인구 9,300만 명, 하루 평균 5.2시간, 총 하루 4억 8천만 시간(17위)</td><td>Claude 추정. 독일, 오스트리아, 스위스</td></tr>
+    </tbody></table></div>
+  </details>
+</section>
+
+<section class="lang" id="vi" aria-labelledby="h-vi">
+  <p class="kicker">16 · vi</p>
+  <h2 id="h-vi"><span lang="vi">Tiếng Việt</span><small>베트남어</small></h2>
+  <dl class="nums">
+    <div><dt>사용자 수</dt><dd>9,700만 명(17위)</dd></div>
+    <div><dt>웹</dt><dd>0.9%(16위)</dd></div>
+    <div><dt>이용 시간</dt><dd>5억 시간</dd></div>
+  </dl>
+  <p class="region"><b>지역</b>베트남입니다. 미국(캘리포니아, 텍사스), 오스트레일리아, 프랑스, 캐나다에 큰 베트남계 사회가 있습니다. 일본에도 기능실습생이나 유학생으로 사는 베트남 사람이 많습니다.</p>
+  <div class="persona">
+    <figure><img src="../../language-intro/img/vi.webp" width="800" height="1000" loading="lazy" decoding="async" alt="가상의 페르소나. Trần Văn Minh, 24세, 아이치현 도요타시 거주. 자동차 부품 공장의 기능실습생입니다."></figure>
+    <div class="ptext"><h3>페르소나</h3><p>Trần Văn Minh, 24세, 아이치현 도요타시 거주. 자동차 부품 공장의 기능실습생입니다. 저녁 5시, 야간 근무를 나가기 전에 기숙사 방에서 Android 스마트폰을 엽니다. 일본에 사는 친구들의 Facebook 그룹에 이 사이트의 결과가 공유되어 있었습니다. 어머니가 말하는 <i lang="vi">mệnh</i>(명)의 색과 견주어 보며 한 장을 뽑습니다. 이야기가 호이안 등불의 비단이나 고향의 옻칠을 거쳐 색에 다다르면, 가족에게 Zalo로 보냅니다.</p></div>
+  </div>
+  <details><summary>숫자와 주석</summary>
+    <div class="scroll"><table class="facts"><thead><tr><th scope="col">항목</th><th scope="col">값</th><th scope="col">주석</th></tr></thead><tbody>
+      <tr><th scope="row">전체 사용자 수(모어+제2언어)</th><td>9,700만 명(17위)</td><td>Ethnologue 2026년판</td></tr>
+      <tr><th scope="row">웹 콘텐츠 비율</th><td>0.9%(16위)</td><td>W3Techs, 2026년 10월</td></tr>
+      <tr><th scope="row">언어별 인터넷 사용자 비율</th><td>10위권 밖</td><td>Internet World Stats, 2020년 3월</td></tr>
+      <tr><th scope="row">인터넷 이용 시간</th><td>추정 인터넷 인구 7,900만 명, 하루 평균 6.3시간, 총 하루 5억 시간(15위)</td><td>Claude 추정</td></tr>
+    </tbody></table></div>
+  </details>
+</section>
+
+<section class="lang" id="sw" aria-labelledby="h-sw">
+  <p class="kicker">17 · sw</p>
+  <h2 id="h-sw"><span lang="sw">Kiswahili</span><small>스와힐리어</small></h2>
+  <dl class="nums">
+    <div><dt>사용자 수</dt><dd>9,500만 명(19위)</dd></div>
+    <div><dt>웹</dt><dd>자료 없음</dd></div>
+    <div><dt>이용 시간</dt><dd>추정 없음</dd></div>
+  </dl>
+  <p class="region"><b>지역</b>탄자니아와 케냐입니다. 탄자니아에서는 국어로, 초등학교는 스와힐리어로 가르치고 중학교부터 영어로 바뀝니다. 케냐에서는 공용어 중 하나로, 저학년은 모어나 스와힐리어로 가르치다가 영어로 바뀌며, 스와힐리어는 필수 과목입니다. 우간다, 르완다, 부룬디, 콩고민주공화국 동부, 코모로에서도 널리 쓰입니다. 아프리카연합의 실무 언어 중 하나이기도 합니다.</p>
+  <div class="persona">
+    <figure><img src="../../language-intro/img/sw.webp" width="800" height="1000" loading="lazy" decoding="async" alt="가상의 페르소나. Amina Juma, 28세, 다르에스살람 거주. 초등학교 교사입니다."></figure>
+    <div class="ptext"><h3>페르소나</h3><p>Amina Juma, 28세, 다르에스살람 거주. 초등학교 교사입니다. 오후 3시 반, 수업을 마치고 교무실에서 Android 스마트폰을 엽니다. 동료들의 WhatsApp 그룹에 이 사이트의 결과가 돌았습니다. 캉가 천의 색과 견주어 보며 한 장을 뽑습니다. 이야기가 캉가의 쪽빛이나 인도양의 저녁 하늘을 거쳐 색에 다다르면, 어머니에게 WhatsApp으로 보냅니다.</p></div>
+  </div>
+  <details><summary>숫자와 주석</summary>
+    <div class="scroll"><table class="facts"><thead><tr><th scope="col">항목</th><th scope="col">값</th><th scope="col">주석</th></tr></thead><tbody>
+      <tr><th scope="row">전체 사용자 수(모어+제2언어)</th><td>9,500만 명(19위)</td><td>Ethnologue 2026년판</td></tr>
+      <tr><th scope="row">웹 콘텐츠 비율</th><td>자료 없음</td><td>W3Techs 상위 40위 밖</td></tr>
+      <tr><th scope="row">언어별 인터넷 사용자 비율</th><td>10위권 밖</td><td>Internet World Stats, 2020년 3월</td></tr>
+      <tr><th scope="row">인터넷 이용 시간</th><td>추정 없음</td><td>Claude 추정에는 스와힐리어 행이 없음. 케냐와 탄자니아는 영어나 스와힐리어 전체에 포함되어 있어, 스와힐리어만의 시간은 따로 나뉘어 있지 않음</td></tr>
+    </tbody></table></div>
+  </details>
+</section>
+
+<section class="lang" id="tr" aria-labelledby="h-tr">
+  <p class="kicker">18 · tr</p>
+  <h2 id="h-tr"><span lang="tr">Türkçe</span><small>튀르키예어</small></h2>
+  <dl class="nums">
+    <div><dt>사용자 수</dt><dd>9,400만 명(20위, 하우사어와 공동)</dd></div>
+    <div><dt>웹</dt><dd>1.6%(11위)</dd></div>
+    <div><dt>이용 시간</dt><dd>5억 6천만 시간</dd></div>
+  </dl>
+  <p class="region"><b>지역</b>튀르키예와 북키프로스입니다. 독일에 큰 튀르키예계 사회가 있고, 네덜란드, 오스트리아, 프랑스에도 많이 삽니다. 불가리아와 그리스 북부에도 사용자가 있습니다.</p>
+  <div class="persona">
+    <figure><img src="../../language-intro/img/tr.webp" width="800" height="1000" loading="lazy" decoding="async" alt="가상의 페르소나. Elif Yıldız, 33세, 이즈미르 거주. 고등학교 화학 교사입니다."></figure>
+    <div class="ptext"><h3>페르소나</h3><p>Elif Yıldız, 33세, 이즈미르 거주. 고등학교 화학 교사입니다. 오후 4시 반, 수업을 마치고 카페에서 친구들과 커피 점을 본 뒤 iPhone으로 이 사이트를 열었습니다. 친구들과 함께 카드의 의미를 읽습니다. 이야기가 터키석이나 이즈니크 타일의 파랑을 거쳐 색에 다다르면 모두 들뜨고, 그녀는 Instagram 스토리에 올립니다.</p></div>
+  </div>
+  <details><summary>숫자와 주석</summary>
+    <div class="scroll"><table class="facts"><thead><tr><th scope="col">항목</th><th scope="col">값</th><th scope="col">주석</th></tr></thead><tbody>
+      <tr><th scope="row">전체 사용자 수(모어+제2언어)</th><td>9,400만 명(20위, 하우사어와 공동)</td><td>Ethnologue 2026년판</td></tr>
+      <tr><th scope="row">웹 콘텐츠 비율</th><td>1.6%(11위)</td><td>W3Techs, 2026년 10월</td></tr>
+      <tr><th scope="row">언어별 인터넷 사용자 비율</th><td>10위권 밖</td><td>Internet World Stats, 2020년 3월</td></tr>
+      <tr><th scope="row">인터넷 이용 시간</th><td>추정 인터넷 인구 8,000만 명, 하루 평균 7.0시간, 총 하루 5억 6천만 시간(11위)</td><td>Claude 추정</td></tr>
+    </tbody></table></div>
+  </details>
+</section>
+
+<section class="lang" id="tl" aria-labelledby="h-tl">
+  <p class="kicker">19 · tl</p>
+  <h2 id="h-tl"><span lang="fil">Filipino</span><small>필리핀어</small></h2>
+  <dl class="nums">
+    <div><dt>사용자 수</dt><dd>8,700만 명</dd></div>
+    <div><dt>웹</dt><dd>0.1% 미만(40위, 타갈로그어)</dd></div>
+    <div><dt>이용 시간</dt><dd>5억 3천만 시간</dd></div>
+  </dl>
+  <p class="region"><b>지역</b>필리핀의 국어이며, 영어와 함께 공용어입니다. 미국(캘리포니아, 하와이), 걸프 국가, 홍콩, 싱가포르, 캐나다, 일본 등 세계 곳곳에서 일하는 필리핀 사람들이 씁니다.</p>
+  <div class="persona">
+    <figure><img src="../../language-intro/img/tl.webp" width="800" height="1000" loading="lazy" decoding="async" alt="가상의 페르소나. Joanna “Jo” Dela Cruz, 28세, 케손시티 거주. 미국 고객을 상대하는 콜센터에서 야간 근무를 합니다."></figure>
+    <div class="ptext"><h3>페르소나</h3><p>Joanna “Jo” Dela Cruz, 28세, 케손시티 거주. 미국 고객을 상대하는 콜센터에서 야간 근무를 합니다. 새벽 4시 휴식 시간에 Android 스마트폰으로 한 장을 뽑습니다. 일은 영어로 하니까, 쉬는 시간에는 필리핀어로 읽고 싶습니다. 이야기가 마닐라만의 노을이나 피냐(파인애플 섬유로 짠 천)를 거쳐 색에 다다르면, Facebook에 올리고 중동에서 일하는 사촌에게도 보냅니다.</p></div>
+  </div>
+  <details><summary>숫자와 주석</summary>
+    <div class="scroll"><table class="facts"><thead><tr><th scope="col">항목</th><th scope="col">값</th><th scope="col">주석</th></tr></thead><tbody>
+      <tr><th scope="row">전체 사용자 수(모어+제2언어)</th><td>8,700만 명</td><td>Ethnologue 2026년판(타갈로그어로 집계)</td></tr>
+      <tr><th scope="row">웹 콘텐츠 비율</th><td>0.1% 미만(40위, 타갈로그어)</td><td>W3Techs, 2026년 10월</td></tr>
+      <tr><th scope="row">언어별 인터넷 사용자 비율</th><td>10위권 밖</td><td>Internet World Stats, 2020년 3월</td></tr>
+      <tr><th scope="row">인터넷 이용 시간</th><td>추정 인터넷 인구 6,000만 명, 하루 평균 8.9시간, 총 하루 5억 3천만 시간(12위)</td><td>Claude 추정. 필리핀 사용자의 약 60%로 가정하고, 나머지는 영어로 셈</td></tr>
+    </tbody></table></div>
+  </details>
+</section>
+
+<section class="lang" id="fa" aria-labelledby="h-fa">
+  <p class="kicker">20 · fa</p>
+  <h2 id="h-fa"><span lang="fa" dir="rtl">فارسی</span><small>페르시아어</small></h2>
+  <dl class="nums">
+    <div><dt>사용자 수</dt><dd>8,200만 명(이란 페르시아어)</dd></div>
+    <div><dt>웹</dt><dd>1.0%(14위)</dd></div>
+    <div><dt>이용 시간</dt><dd>4억 9천만 시간</dd></div>
+  </dl>
+  <p class="region"><b>지역</b>이란의 공용어입니다. 아프가니스탄(다리어)과 타지키스탄(타지크어)에서 아주 가까운 형태가 쓰입니다. 미국(로스앤젤레스), 캐나다, 독일, 영국, 튀르키예에 큰 이란계 사회가 있습니다. 사이트는 오른쪽에서 왼쪽으로 배치됩니다.</p>
+  <div class="persona">
+    <figure><img src="../../language-intro/img/fa.webp" width="800" height="1000" loading="lazy" decoding="async" alt="가상의 페르소나. Parisa Hosseini, 31세, 이스파한 거주. 역사적 건축물의 타일을 복원합니다."></figure>
+    <div class="ptext"><h3>페르소나</h3><p>Parisa Hosseini, 31세, 이스파한 거주. 역사적 건축물의 타일을 복원합니다. 밤 11시, 일을 마치고 Android 스마트폰을 엽니다. 얄다의 밤이면 가족이 함께 하페즈 시집을 펼치기 때문에, 카드 한 장으로 보는 점이 친숙합니다. 이야기가 니샤푸르의 터키석이나 이스파한 모스크 타일의 파랑을 거쳐 색에 다다르면, 일손을 멈춘 듯 가만히 바라봅니다. 외국에 사는 언니에게 Telegram으로 링크를 보냅니다.</p></div>
+  </div>
+  <details><summary>숫자와 주석</summary>
+    <div class="scroll"><table class="facts"><thead><tr><th scope="col">항목</th><th scope="col">값</th><th scope="col">주석</th></tr></thead><tbody>
+      <tr><th scope="row">전체 사용자 수(모어+제2언어)</th><td>8,200만 명(이란 페르시아어)</td><td>Ethnologue 2026년판. 다리어(아프가니스탄)와 타지크어는 포함하지 않음</td></tr>
+      <tr><th scope="row">웹 콘텐츠 비율</th><td>1.0%(14위)</td><td>W3Techs, 2026년 10월</td></tr>
+      <tr><th scope="row">언어별 인터넷 사용자 비율</th><td>10위권 밖</td><td>Internet World Stats, 2020년 3월</td></tr>
+      <tr><th scope="row">인터넷 이용 시간</th><td>추정 인터넷 인구 8,200만 명, 하루 평균 6.0시간, 총 하루 4억 9천만 시간(16위)</td><td>Claude 추정. 이란에 아프가니스탄(다리어)을 포함</td></tr>
+    </tbody></table></div>
+  </details>
+</section>
+
+<section class="lang" id="ko" aria-labelledby="h-ko">
+  <p class="kicker">21 · ko</p>
+  <h2 id="h-ko"><span lang="ko">한국어</span></h2>
+  <dl class="nums">
+    <div><dt>사용자 수</dt><dd>8,200만 명</dd></div>
+    <div><dt>웹</dt><dd>0.9%(17위)</dd></div>
+    <div><dt>이용 시간</dt><dd>2억 7천만 시간</dd></div>
+  </dl>
+  <p class="region"><b>지역</b>대한민국과 북한입니다. 중국의 옌볜 조선족 자치주, 미국(로스앤젤레스, 뉴욕), 일본, 중앙아시아에도 한반도에 뿌리를 둔 사람들의 사회가 있습니다.</p>
+  <div class="persona">
+    <figure><img src="../../language-intro/img/ko.webp" width="800" height="1000" loading="lazy" decoding="async" alt="가상의 페르소나. 김서연, 29세, 서울 마포구 거주. 웹툰 채색 담당입니다."></figure>
+    <div class="ptext"><h3>페르소나</h3><p>김서연, 29세, 서울 마포구 거주. 웹툰 채색 담당입니다. 아침 8시 20분, 지하철 안에서 iPhone을 엽니다. 한 달에 한 번은 친구들과 타로 카페에 갑니다. 다음 달 후쿠오카 여행 정보를 NAVER에서 찾다가 이 사이트를 발견했습니다. 이야기가 한국의 오방색(전통 다섯 색)이나 일본의 염색을 거쳐 색에 다다르면, 그 색을 그날 작업 팔레트에 하나 넣습니다. 결과는 KakaoTalk으로 친구에게 보냅니다.</p></div>
+  </div>
+  <details><summary>숫자와 주석</summary>
+    <div class="scroll"><table class="facts"><thead><tr><th scope="col">항목</th><th scope="col">값</th><th scope="col">주석</th></tr></thead><tbody>
+      <tr><th scope="row">전체 사용자 수(모어+제2언어)</th><td>8,200만 명</td><td>Ethnologue 2026년판</td></tr>
+      <tr><th scope="row">웹 콘텐츠 비율</th><td>0.9%(17위)</td><td>W3Techs, 2026년 10월</td></tr>
+      <tr><th scope="row">언어별 인터넷 사용자 비율</th><td>10위권 밖</td><td>Internet World Stats, 2020년 3월</td></tr>
+      <tr><th scope="row">인터넷 이용 시간</th><td>추정 인터넷 인구 5,000만 명, 하루 평균 5.3시간, 총 하루 2억 7천만 시간(20위)</td><td>Claude 추정</td></tr>
+    </tbody></table></div>
+  </details>
+</section>
+
+<section class="lang" id="th" aria-labelledby="h-th">
+  <p class="kicker">22 · th</p>
+  <h2 id="h-th"><span lang="th">ไทย</span><small>태국어</small></h2>
+  <dl class="nums">
+    <div><dt>사용자 수</dt><dd>7,100만 명</dd></div>
+    <div><dt>웹</dt><dd>0.3%(28위)</dd></div>
+    <div><dt>이용 시간</dt><dd>5억 1천만 시간</dd></div>
+  </dl>
+  <p class="region"><b>지역</b>태국의 국어입니다. 라오스 사람 대부분은 태국어를 읽을 수 있습니다. 미국(로스앤젤레스), 오스트레일리아, 유럽에도 태국 출신 사람들이 삽니다.</p>
+  <div class="persona">
+    <figure><img src="../../language-intro/img/th.webp" width="800" height="1000" loading="lazy" decoding="async" alt="가상의 페르소나. Napassorn “Pim” Srisuk, 27세, 방콕 거주. 화장품 브랜드의 마케팅 담당입니다."></figure>
+    <div class="ptext"><h3>페르소나</h3><p>Napassorn “Pim” Srisuk, 27세, 방콕 거주. 화장품 브랜드의 마케팅 담당입니다. 아침 7시, 입을 옷을 정하기 전에 iPhone으로 한 장을 뽑습니다. 요일의 색과 이 사이트의 색을 견주어 보는 것이 매일 아침의 즐거움입니다. 내년 1월에 홋카이도 여행을 계획하고 있습니다. 이야기가 태국 실크나 홋카이도 눈의 흰빛을 거쳐 색에 다다르면, 그 색을 립스틱이나 스카프에 담아 봅니다. 동료들에게 LINE으로 보냅니다.</p></div>
+  </div>
+  <details><summary>숫자와 주석</summary>
+    <div class="scroll"><table class="facts"><thead><tr><th scope="col">항목</th><th scope="col">값</th><th scope="col">주석</th></tr></thead><tbody>
+      <tr><th scope="row">전체 사용자 수(모어+제2언어)</th><td>7,100만 명</td><td>Ethnologue 2026년판</td></tr>
+      <tr><th scope="row">웹 콘텐츠 비율</th><td>0.3%(28위)</td><td>W3Techs, 2026년 10월</td></tr>
+      <tr><th scope="row">언어별 인터넷 사용자 비율</th><td>10위권 밖</td><td>Internet World Stats, 2020년 3월</td></tr>
+      <tr><th scope="row">인터넷 이용 시간</th><td>추정 인터넷 인구 6,500만 명, 하루 평균 7.8시간, 총 하루 5억 1천만 시간(14위)</td><td>Claude 추정</td></tr>
+    </tbody></table></div>
+  </details>
+</section>
+
+<section class="lang" id="it" aria-labelledby="h-it">
+  <p class="kicker">23 · it</p>
+  <h2 id="h-it"><span lang="it">Italiano</span><small>이탈리아어</small></h2>
+  <dl class="nums">
+    <div><dt>사용자 수</dt><dd>6,600만 명</dd></div>
+    <div><dt>웹</dt><dd>2.8%(8위)</dd></div>
+    <div><dt>이용 시간</dt><dd>2억 9천만 시간</dd></div>
+  </dl>
+  <p class="region"><b>지역</b>이탈리아, 산마리노, 스위스 남부(티치노), 바티칸 시국입니다. 아르헨티나, 브라질, 미국, 독일 등에 이탈리아계 사람이 많이 삽니다.</p>
+  <div class="persona">
+    <figure><img src="../../language-intro/img/it.webp" width="800" height="1000" loading="lazy" decoding="async" alt="가상의 페르소나. Giulia Bernardi, 45세, 볼로냐 거주. 동네 약국의 약사입니다."></figure>
+    <div class="ptext"><h3>페르소나</h3><p>Giulia Bernardi, 45세, 볼로냐 거주. 동네 약국의 약사입니다. 밤 9시 반, 저녁을 먹고 소파에서 Android 스마트폰을 엽니다. 어릴 때 아버지와 타로키노를 하며 놀았기 때문에, 메이저 아르카나의 그림이 그립게 느껴집니다. 이야기가 볼로냐 회랑의 붉은 벽돌이나 르네상스 화가들의 안료를 거쳐 색에 다다르면, 아버지에게 WhatsApp으로 보냅니다. ‘클래식 타로’ 스타일을 고릅니다.</p></div>
+  </div>
+  <details><summary>숫자와 주석</summary>
+    <div class="scroll"><table class="facts"><thead><tr><th scope="col">항목</th><th scope="col">값</th><th scope="col">주석</th></tr></thead><tbody>
+      <tr><th scope="row">전체 사용자 수(모어+제2언어)</th><td>6,600만 명</td><td>Ethnologue 2026년판</td></tr>
+      <tr><th scope="row">웹 콘텐츠 비율</th><td>2.8%(8위)</td><td>W3Techs, 2026년 10월</td></tr>
+      <tr><th scope="row">언어별 인터넷 사용자 비율</th><td>10위권 밖</td><td>Internet World Stats, 2020년 3월</td></tr>
+      <tr><th scope="row">인터넷 이용 시간</th><td>추정 인터넷 인구 5,100만 명, 하루 평균 5.7시간, 총 하루 2억 9천만 시간(19위)</td><td>Claude 추정</td></tr>
+    </tbody></table></div>
+  </details>
+</section>
+
+<section class="lang" id="pl" aria-labelledby="h-pl">
+  <p class="kicker">24 · pl</p>
+  <h2 id="h-pl"><span lang="pl">Polski</span><small>폴란드어</small></h2>
+  <dl class="nums">
+    <div><dt>사용자 수</dt><dd>약 4,260만 명</dd></div>
+    <div><dt>웹</dt><dd>1.8%(10위)</dd></div>
+    <div><dt>이용 시간</dt><dd>약 2억 1천만 시간(순위 밖 참고치)</dd></div>
+  </dl>
+  <p class="region"><b>지역</b>폴란드입니다. 영국, 독일, 미국(시카고), 아일랜드, 캐나다에 큰 폴란드계 사회가 있습니다. 리투아니아와 우크라이나 서부에도 사용자가 있습니다.</p>
+  <div class="persona">
+    <figure><img src="../../language-intro/img/pl.webp" width="800" height="1000" loading="lazy" decoding="async" alt="가상의 페르소나. Marta Kowalczyk, 30세, 크라쿠프 거주. 소프트웨어 회사의 UX 리서처입니다."></figure>
+    <div class="ptext"><h3>페르소나</h3><p>Marta Kowalczyk, 30세, 크라쿠프 거주. 소프트웨어 회사의 UX 리서처입니다. 일요일 오전 10시, 카페에서 iPhone을 엽니다. 해마다 안제이키(성 안드레아 축일 전야)에는 친구들과 밀랍 점을 칩니다. 이야기가 발트해의 호박이나 크라쿠프의 직물회관을 거쳐 색에 다다르면, Instagram 스토리에 올립니다. 내년 봄에 교토 여행을 계획하고 있습니다.</p></div>
+  </div>
+  <details><summary>숫자와 주석</summary>
+    <div class="scroll"><table class="facts"><thead><tr><th scope="col">항목</th><th scope="col">값</th><th scope="col">주석</th></tr></thead><tbody>
+      <tr><th scope="row">전체 사용자 수(모어+제2언어)</th><td>약 4,260만 명</td><td>위키백과 “Polish language” 문서에 인용된 Ethnologue 제27판(2021년 수치). Ethnologue 2026의 공개 목록(5,000만 명 이상)에는 없음</td></tr>
+      <tr><th scope="row">웹 콘텐츠 비율</th><td>1.8%(10위)</td><td>W3Techs, 2026년 10월</td></tr>
+      <tr><th scope="row">언어별 인터넷 사용자 비율</th><td>10위권 밖</td><td>Internet World Stats, 2020년 3월</td></tr>
+      <tr><th scope="row">인터넷 이용 시간</th><td>하루 약 2억 1천만 시간(순위 밖 참고치)</td><td>Claude 추정의 순위 밖 참고치</td></tr>
+    </tbody></table></div>
+  </details>
+</section>
+
+<section class="lang" id="uk" aria-labelledby="h-uk">
+  <p class="kicker">25 · uk</p>
+  <h2 id="h-uk"><span lang="uk">Українська</span><small>우크라이나어</small></h2>
+  <dl class="nums">
+    <div><dt>사용자 수</dt><dd>약 3,900만 명</dd></div>
+    <div><dt>웹</dt><dd>0.6%(18위)</dd></div>
+    <div><dt>이용 시간</dt><dd>추정 없음</dd></div>
+  </dl>
+  <p class="region"><b>지역</b>우크라이나의 국어입니다. 2022년부터 이어진 전쟁으로 많은 사람이 폴란드, 독일, 체코 같은 유럽 나라로 피란했습니다. 캐나다와 미국에도 오래된 우크라이나계 사회가 있습니다. 러시아어를 함께 쓰는 사람도 많습니다.</p>
+  <div class="persona">
+    <figure><img src="../../language-intro/img/uk.webp" width="800" height="1000" loading="lazy" decoding="async" alt="가상의 페르소나. Олена Коваленко(Olena Kovalenko), 37세, 리비우 거주. 초등학교 교사입니다."></figure>
+    <div class="ptext"><h3>페르소나</h3><p><span lang="uk">Олена Коваленко</span>(Olena Kovalenko), 37세, 리비우 거주. 초등학교 교사입니다. 밤 9시, 아이를 재운 뒤 Android 스마트폰으로 한 장을 뽑습니다. 카드의 의미를 읽는 것보다, 우크라이나어로 정성껏 쓰인 이야기를 읽는 시간을 소중히 여깁니다. 이야기가 페트리키우카 꽃 그림이나 카르파티아의 양모를 거쳐 색에 다다르면, 폴란드에 있는 여동생에게 Telegram으로 보냅니다.</p></div>
+  </div>
+  <details><summary>숫자와 주석</summary>
+    <div class="scroll"><table class="facts"><thead><tr><th scope="col">항목</th><th scope="col">값</th><th scope="col">주석</th></tr></thead><tbody>
+      <tr><th scope="row">전체 사용자 수(모어+제2언어)</th><td>약 3,900만 명</td><td>Ethnologue(2023년). 위키백과 “Ukrainian language” 문서(Ethnologue 제28판)도 같은 수치</td></tr>
+      <tr><th scope="row">웹 콘텐츠 비율</th><td>0.6%(18위)</td><td>W3Techs, 2026년 10월</td></tr>
+      <tr><th scope="row">언어별 인터넷 사용자 비율</th><td>10위권 밖</td><td>Internet World Stats, 2020년 3월</td></tr>
+      <tr><th scope="row">인터넷 이용 시간</th><td>추정 없음</td><td>우크라이나어는 Claude 추정의 표에도, 순위 밖 참고치에도 없음</td></tr>
+    </tbody></table></div>
+  </details>
+</section>
+
+<section class="lang" id="nl" aria-labelledby="h-nl">
+  <p class="kicker">26 · nl</p>
+  <h2 id="h-nl"><span lang="nl">Nederlands</span><small>네덜란드어</small></h2>
+  <dl class="nums">
+    <div><dt>사용자 수</dt><dd>약 3,000만 명</dd></div>
+    <div><dt>웹</dt><dd>2.1%(9위)</dd></div>
+    <div><dt>이용 시간</dt><dd>약 1억 3천만 시간(순위 밖 참고치)</dd></div>
+  </dl>
+  <p class="region"><b>지역</b>네덜란드와 벨기에 북부(플란데런)입니다. 수리남과 카리브해의 아루바, 퀴라소에서도 공용어입니다. 남아프리카공화국의 아프리칸스어는 네덜란드어에서 갈라져 나왔습니다.</p>
+  <div class="persona">
+    <figure><img src="../../language-intro/img/nl.webp" width="800" height="1000" loading="lazy" decoding="async" alt="가상의 페르소나. Sanne de Vries, 36세, 위트레흐트 거주. 시청에서 기후 정책을 담당합니다."></figure>
+    <div class="ptext"><h3>페르소나</h3><p>Sanne de Vries, 36세, 위트레흐트 거주. 시청에서 기후 정책을 담당합니다. 12시 반, 자리에서 노트북을 열고 색 이름을 검색하다가 이 사이트에 왔습니다. 점은 믿지 않지만, 색 이름의 유래에 관한 이야기를 아주 좋아합니다. 이야기가 델프트 블루나 17세기 네덜란드 화가들이 쓴 안료를 거쳐 색에 다다르면, 동료들에게 이야기합니다. 자전거로 퇴근하기 전에 한 장을 더 뽑을 때도 있습니다.</p></div>
+  </div>
+  <details><summary>숫자와 주석</summary>
+    <div class="scroll"><table class="facts"><thead><tr><th scope="col">항목</th><th scope="col">값</th><th scope="col">주석</th></tr></thead><tbody>
+      <tr><th scope="row">전체 사용자 수(모어+제2언어)</th><td>약 3,000만 명</td><td>2021년. 위키백과 “Dutch language” 문서(Eurobarometer 등 인용)도 같은 수치</td></tr>
+      <tr><th scope="row">웹 콘텐츠 비율</th><td>2.1%(9위)</td><td>W3Techs, 2026년 10월. 플라망어 포함</td></tr>
+      <tr><th scope="row">언어별 인터넷 사용자 비율</th><td>10위권 밖</td><td>Internet World Stats, 2020년 3월</td></tr>
+      <tr><th scope="row">인터넷 이용 시간</th><td>하루 약 1억 3천만 시간(순위 밖 참고치)</td><td>Claude 추정의 순위 밖 참고치</td></tr>
+    </tbody></table></div>
+  </details>
+</section>
+
+<section class="lang" id="ang" aria-labelledby="h-ang">
+  <p class="kicker">27 · ang</p>
+  <h2 id="h-ang"><span lang="ang">Englisc</span><small>고대 영어</small></h2>
+  <p class="note">놀이와 역사를 위한 언어입니다. 대략 450년부터 1100년 무렵까지의 영어로, 지금은 모어로 쓰는 사람이 없습니다. 숫자 칸은 해당 없음입니다.</p>
+  <dl class="nums">
+    <div><dt>사용자 수</dt><dd>해당 없음</dd></div>
+    <div><dt>웹</dt><dd>해당 없음</dd></div>
+    <div><dt>이용 시간</dt><dd>해당 없음</dd></div>
+  </dl>
+  <p class="region"><b>즐겨 줄 것 같은 사람</b>중세 영문학과 영어사를 공부하는 학생과 연구자, <cite>베오울프</cite>와 J. R. R. 톨킨의 작품을 좋아하는 사람, 룬 문자와 북유럽 신화에 관심 있는 사람입니다. 영어권 밖으로는 독일, 북유럽, 일본의 영문학도에게도 닿습니다.</p>
+  <div class="persona">
+    <figure><img src="../../language-intro/img/ang.webp" width="800" height="1000" loading="lazy" decoding="async" alt="가상의 페르소나. Hannah Brooks, 24세, 영국 리즈 거주. 대학원에서 고대 영어를 공부합니다."></figure>
+    <div class="ptext"><h3>페르소나</h3><p>Hannah Brooks, 24세, 영국 리즈 거주. 대학원에서 고대 영어를 공부합니다. 저녁 5시, 대학 도서관에서 노트북을 열고 동사 활용을 찾아보다가 이 사이트에 왔습니다. 현대 영어 번역을 옆에 두고 카드 이름과 색 이름을 풀어 읽는 것을 즐깁니다. 마음에 드는 문장은 세미나 동료들에게 보냅니다.</p></div>
+  </div>
+  <details><summary>숫자와 주석</summary>
+    <div class="scroll"><table class="facts"><thead><tr><th scope="col">항목</th><th scope="col">값</th></tr></thead><tbody>
+      <tr><th scope="row">전체 사용자 수(모어+제2언어)</th><td>해당 없음</td></tr>
+      <tr><th scope="row">웹 콘텐츠 비율</th><td>해당 없음</td></tr>
+      <tr><th scope="row">언어별 인터넷 사용자 비율</th><td>해당 없음</td></tr>
+      <tr><th scope="row">인터넷 이용 시간</th><td>해당 없음</td></tr>
+    </tbody></table></div>
+  </details>
+</section>
+
+<section class="lang" id="soro" aria-labelledby="h-soro">
+  <p class="kicker">28 · soro</p>
+  <h2 id="h-soro"><span lang="ja">御座候</span><small>소로분(일본 근세의 서간체)</small></h2>
+  <p class="note">놀이와 역사를 위한 언어입니다. 대략 1600년부터 1868년까지 편지와 공문서에 쓰인 문체로, 문장 끝에 <span lang="ja">候</span>(<i>sōrō</i>)를 붙입니다. 지금은 모어로 쓰는 사람이 없습니다. 숫자 칸은 해당 없음입니다.</p>
+  <dl class="nums">
+    <div><dt>사용자 수</dt><dd>해당 없음</dd></div>
+    <div><dt>웹</dt><dd>해당 없음</dd></div>
+    <div><dt>이용 시간</dt><dd>해당 없음</dd></div>
+  </dl>
+  <p class="region"><b>즐겨 줄 것 같은 사람</b>고문서와 흘림체를 배우는 사람, 시대 소설과 NHK 대하드라마를 좋아하는 사람, 역사를 좋아하는 학생입니다. 일본어를 깊이 공부한 외국인과 일본사 연구자에게도 닿습니다.</p>
+  <div class="persona">
+    <figure><img src="../../language-intro/img/soro.webp" width="800" height="1000" loading="lazy" decoding="async" alt="가상의 페르소나. 工藤 誠一(Seiichi Kudo), 58세, 가나자와 거주. 시청 직원으로, 주말에는 고문서 강좌에 다닙니다."></figure>
+    <div class="ptext"><h3>페르소나</h3><p><span lang="ja">工藤 誠一</span>(Seiichi Kudo), 58세, 가나자와 거주. 시청 직원으로, 주말에는 고문서 강좌에 다닙니다. 일요일 오후 3시, 거실에서 태블릿을 엽니다. 강좌 동료들에게 듣고 찾아왔습니다. 소로분으로 쓰인 카드 이름과 색 이름을 하나씩 소리 내어 읽습니다. 이야기가 가가의 염색이나 옛 성하마을 이야기를 거쳐 색에 다다르면, 강좌 노트에 그 색 이름을 적어 둡니다.</p></div>
+  </div>
+  <details><summary>숫자와 주석</summary>
+    <div class="scroll"><table class="facts"><thead><tr><th scope="col">항목</th><th scope="col">값</th></tr></thead><tbody>
+      <tr><th scope="row">전체 사용자 수(모어+제2언어)</th><td>해당 없음</td></tr>
+      <tr><th scope="row">웹 콘텐츠 비율</th><td>해당 없음</td></tr>
+      <tr><th scope="row">언어별 인터넷 사용자 비율</th><td>해당 없음</td></tr>
+      <tr><th scope="row">인터넷 이용 시간</th><td>해당 없음</td></tr>
+    </tbody></table></div>
+  </details>
+</section>
+
+</div>
+
+</body>
+</html>

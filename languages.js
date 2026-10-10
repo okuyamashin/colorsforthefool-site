@@ -29,7 +29,8 @@ window.LANG_PACKS = [
       "scene": "中央に色を映す鏡の絵",
       "cardError": "カードを開けませんでした。もう一度タップしてください。",
       "colorError": "今日の色を開けませんでした。もう一度タップしてください。",
-      "testError": "test は 4-10 の形です。カードは1から22、色は正位置が1から10、逆位置が11から20です。"
+      "testError": "test は 4-10 の形です。カードは1から22、色は正位置が1から10、逆位置が11から20です。",
+      "drawAgain": "もう一度引く"
     }
   },
   {
@@ -67,7 +68,8 @@ window.LANG_PACKS = [
       "greetMorning": "Good morning",
       "greetAfternoon": "Good afternoon",
       "greetEvening": "Good evening",
-      "taglineDated": "The lucky color for {date}, drawn from the tarot."
+      "taglineDated": "The lucky color for {date}, drawn from the tarot.",
+      "drawAgain": "Draw again"
     }
   },
   {
@@ -105,7 +107,8 @@ window.LANG_PACKS = [
       "greetMorning": "早上好",
       "greetAfternoon": "下午好",
       "greetEvening": "晚上好",
-      "taglineDated": "用塔罗抽取{date}的幸运色"
+      "taglineDated": "用塔罗抽取{date}的幸运色",
+      "drawAgain": "再抽一张"
     }
   },
   {
@@ -143,7 +146,8 @@ window.LANG_PACKS = [
       "greetMorning": "早安",
       "greetAfternoon": "午安",
       "greetEvening": "晚上好",
-      "taglineDated": "用塔羅抽取{date}的幸運色"
+      "taglineDated": "用塔羅抽取{date}的幸運色",
+      "drawAgain": "再抽一張"
     }
   },
   {
@@ -181,7 +185,8 @@ window.LANG_PACKS = [
       "greetMorning": "सुप्रभात",
       "greetAfternoon": "नमस्कार",
       "greetEvening": "शुभ संध्या",
-      "taglineDated": "{date} का भाग्य रंग, टैरो से खींचा गया"
+      "taglineDated": "{date} का भाग्य रंग, टैरो से खींचा गया",
+      "drawAgain": "फिर से निकालें"
     }
   },
   {
@@ -219,7 +224,8 @@ window.LANG_PACKS = [
       "greetMorning": "Buenos días",
       "greetAfternoon": "Buenas tardes",
       "greetEvening": "Buenas noches",
-      "taglineDated": "El color de la suerte del {date}, sacado del tarot."
+      "taglineDated": "El color de la suerte del {date}, sacado del tarot.",
+      "drawAgain": "Sacar otra"
     }
   },
   {
@@ -257,7 +263,8 @@ window.LANG_PACKS = [
       "greetMorning": "صباح الخير",
       "greetAfternoon": "نهارك سعيد",
       "greetEvening": "مساء الخير",
-      "taglineDated": "لون الحظ في {date}، يُسحب من التاروت"
+      "taglineDated": "لون الحظ في {date}، يُسحب من التاروت",
+      "drawAgain": "اسحب مرة أخرى"
     }
   },
   {
@@ -295,7 +302,8 @@ window.LANG_PACKS = [
       "greetMorning": "Bonjour",
       "greetAfternoon": "Bon après-midi",
       "greetEvening": "Bonsoir",
-      "taglineDated": "La couleur porte-bonheur du {date}, tirée du tarot."
+      "taglineDated": "La couleur porte-bonheur du {date}, tirée du tarot.",
+      "drawAgain": "Tirer encore"
     }
   },
   {
@@ -333,7 +341,8 @@ window.LANG_PACKS = [
       "greetMorning": "সুপ্রভাত",
       "greetAfternoon": "শুভ অপরাহ্ন",
       "greetEvening": "শুভ সন্ধ্যা",
-      "taglineDated": "{date}-এর ভাগ্যের রং, ট্যারো থেকে তোলা"
+      "taglineDated": "{date}-এর ভাগ্যের রং, ট্যারো থেকে তোলা",
+      "drawAgain": "আবার তুলুন"
     }
   },
   {
@@ -371,7 +380,8 @@ window.LANG_PACKS = [
       "greetMorning": "Bom dia",
       "greetAfternoon": "Boa tarde",
       "greetEvening": "Boa noite",
-      "taglineDated": "A cor da sorte em {date}, tirada do tarô."
+      "taglineDated": "A cor da sorte em {date}, tirada do tarô.",
+      "drawAgain": "Tirar de novo"
     }
   },
   {
@@ -409,7 +419,8 @@ window.LANG_PACKS = [
       "greetMorning": "Selamat pagi",
       "greetAfternoon": "Selamat siang",
       "greetEvening": "Selamat malam",
-      "taglineDated": "Warna keberuntungan {date}, ditarik dari tarot."
+      "taglineDated": "Warna keberuntungan {date}, ditarik dari tarot.",
+      "drawAgain": "Tarik lagi"
     }
   },
   {
@@ -447,7 +458,47 @@ window.LANG_PACKS = [
       "greetMorning": "Selamat pagi",
       "greetAfternoon": "Selamat tengah hari",
       "greetEvening": "Selamat malam",
-      "taglineDated": "Warna tuah {date}, ditarik daripada tarot."
+      "taglineDated": "Warna tuah {date}, ditarik daripada tarot.",
+      "drawAgain": "Tarik lagi"
+    }
+  },
+  {
+    "id": "ur",
+    "htmlLang": "ur",
+    "hreflang": "ur",
+    "prefix": "ur",
+    "switchLabel": "اردو",
+    "cookie": "cftf-ur",
+    "session": "cftf-reading-ur",
+    "data": "/data",
+    "cardName": "nameUr",
+    "colorName": "nameUr",
+    "textField": "textUr",
+    "textSuffix": ".ur",
+    "latinSubtitle": false,
+    "titlePattern": "[―—-]\\s*(سیدھا|الٹا)\\s*$",
+    "shareText": "آج کا خوش قسمت رنگ {color} ہے۔",
+    "copy": {
+      "upright": "سیدھا",
+      "reversed": "الٹا",
+      "meaningFallback": "اس کارڈ کی تصویر آج کا اشارہ ہے۔",
+      "renewed": "بائیس کے بائیس کارڈ نکل چکے، اور گڈی پھر سے پھینٹ دی گئی ہے۔",
+      "hintReveal": "آج کا رنگ کھولنے کے لیے ایک بار اور چھوئیے",
+      "revealButton": "آج کا خوش قسمت رنگ",
+      "hintDraw": "کارڈ نکالنے کے لیے چھوئیے",
+      "drawLabel": "ایک کارڈ نکالیے",
+      "openLabel": "رنگ کھولنے کے لیے ایک بار اور چھوئیے",
+      "mirror": "بیچ میں رنگ تھامے آئینہ",
+      "scene": "بیچ میں رنگ تھامے آئینے کی تصویر",
+      "cardError": "کارڈ نہیں کھلا۔ ایک بار اور چھوئیے۔",
+      "colorError": "آج کا رنگ نہیں کھلا۔ ایک بار اور چھوئیے۔",
+      "testError": "test کی شکل 4-10 ہے۔ کارڈ 1 سے 22 تک ہیں۔ رنگ 1 سے 10 تک سیدھے اور 11 سے 20 تک الٹے ہیں۔",
+      "dateLocale": "ur-PK",
+      "greetMorning": "صبح بخیر",
+      "greetAfternoon": "آداب",
+      "greetEvening": "شام بخیر",
+      "taglineDated": "{date} کا خوش قسمت رنگ، ٹیرو سے",
+      "drawAgain": "پھر سے نکالیے"
     }
   },
   {
@@ -485,7 +536,8 @@ window.LANG_PACKS = [
       "greetMorning": "Доброе утро",
       "greetAfternoon": "Добрый день",
       "greetEvening": "Добрый вечер",
-      "taglineDated": "Счастливый цвет {date}, вытянутый из таро."
+      "taglineDated": "Счастливый цвет {date}, вытянутый из таро.",
+      "drawAgain": "Вытянуть ещё"
     }
   },
   {
@@ -523,7 +575,8 @@ window.LANG_PACKS = [
       "greetMorning": "Guten Morgen",
       "greetAfternoon": "Guten Tag",
       "greetEvening": "Guten Abend",
-      "taglineDated": "Die Glücksfarbe für den {date}, aus dem Tarot gezogen."
+      "taglineDated": "Die Glücksfarbe für den {date}, aus dem Tarot gezogen.",
+      "drawAgain": "Noch einmal ziehen"
     }
   },
   {
@@ -561,7 +614,164 @@ window.LANG_PACKS = [
       "greetMorning": "Chào buổi sáng",
       "greetAfternoon": "Chào buổi chiều",
       "greetEvening": "Chào buổi tối",
-      "taglineDated": "Màu may mắn ngày {date}, rút từ tarot."
+      "taglineDated": "Màu may mắn ngày {date}, rút từ tarot.",
+      "drawAgain": "Rút thêm"
+    }
+  },
+  {
+    "id": "sw",
+    "htmlLang": "sw",
+    "hreflang": "sw",
+    "prefix": "sw",
+    "switchLabel": "Kiswahili",
+    "cookie": "cftf-sw",
+    "session": "cftf-reading-sw",
+    "data": "/data",
+    "cardName": "nameSw",
+    "colorName": "nameSw",
+    "textField": "textSw",
+    "textSuffix": ".sw",
+    "latinSubtitle": false,
+    "titlePattern": "[―—-]\\s*([Ww]ima|[Kk]inyume)\\s*$",
+    "shareText": "Rangi ya bahati ya leo ni {color}.",
+    "copy": {
+      "upright": "Wima",
+      "reversed": "Kinyume",
+      "meaningFallback": "Picha ya kadi hii ndiyo ujumbe wa leo.",
+      "renewed": "Kadi zote ishirini na mbili zimeshachaguliwa, kwa hiyo kadi zimechanganywa upya.",
+      "hintReveal": "Gusa tena, na rangi ya leo itafunguka",
+      "revealButton": "Rangi ya bahati ya leo",
+      "hintDraw": "Gusa ili kuchagua kadi",
+      "drawLabel": "Chagua kadi",
+      "openLabel": "Gusa tena ili kufungua rangi",
+      "mirror": "Kioo kinachohifadhi rangi",
+      "scene": "Picha ya kioo kinachohifadhi rangi",
+      "cardError": "Kadi haikuweza kufunguka. Gusa tena.",
+      "colorError": "Rangi ya leo haikuweza kufunguka. Gusa tena.",
+      "testError": "test iko katika umbo la 4-10. Kadi zina namba 1 hadi 22. Rangi 1 hadi 10 ni za wima, na 11 hadi 20 ni za kinyume.",
+      "dateLocale": "sw-TZ",
+      "greetMorning": "Habari za asubuhi",
+      "greetAfternoon": "Habari za mchana",
+      "greetEvening": "Habari za jioni",
+      "taglineDated": "Rangi yako ya bahati ya leo, {date}, kutoka kadi za tarot.",
+      "drawAgain": "Chagua tena"
+    }
+  },
+  {
+    "id": "tr",
+    "htmlLang": "tr",
+    "hreflang": "tr",
+    "prefix": "tr",
+    "switchLabel": "Türkçe",
+    "cookie": "cftf-tr",
+    "session": "cftf-reading-tr",
+    "data": "/data",
+    "cardName": "nameTr",
+    "colorName": "nameTr",
+    "textField": "textTr",
+    "textSuffix": ".tr",
+    "latinSubtitle": false,
+    "titlePattern": "[―—-]\\s*(düz|ters)\\s*$",
+    "shareText": "Bugünün şans rengi {color}.",
+    "copy": {
+      "upright": "düz",
+      "reversed": "ters",
+      "meaningFallback": "Bu karttaki görüntü, bugünün işaretidir.",
+      "renewed": "Yirmi iki kartın hepsi çıktı ve deste yeniden karıldı.",
+      "hintReveal": "Bugünün rengini açmak için bir kez daha dokunun",
+      "revealButton": "Bugünün şans rengi",
+      "hintDraw": "Bir kart çekmek için dokunun",
+      "drawLabel": "Bir kart çekin",
+      "openLabel": "Rengi açmak için bir kez daha dokunun",
+      "mirror": "Rengi tutan ayna",
+      "scene": "Rengi tutan aynanın görüntüsü",
+      "cardError": "Kart açılmadı. Bir kez daha dokunun.",
+      "colorError": "Bugünün rengi açılmadı. Bir kez daha dokunun.",
+      "testError": "test 4-10 biçimindedir. Kart 1’den 22’ye kadardır. Renk 1’den 10’a kadar düz, 11’den 20’ye kadar terstir.",
+      "dateLocale": "tr-TR",
+      "greetMorning": "Günaydın",
+      "greetAfternoon": "İyi günler",
+      "greetEvening": "İyi akşamlar",
+      "taglineDated": "{date} tarihinin şans rengi, tarottan.",
+      "drawAgain": "Yeniden çek"
+    }
+  },
+  {
+    "id": "tl",
+    "htmlLang": "tl",
+    "hreflang": "tl",
+    "prefix": "tl",
+    "switchLabel": "Filipino",
+    "cookie": "cftf-tl",
+    "session": "cftf-reading-tl",
+    "data": "/data",
+    "cardName": "nameTl",
+    "colorName": "nameTl",
+    "textField": "textTl",
+    "textSuffix": ".tl",
+    "latinSubtitle": false,
+    "titlePattern": "[―—-]\\s*(tuwid|baligtad)\\s*$",
+    "shareText": "Ang kulay ng suwerte ngayon ay {color}.",
+    "copy": {
+      "upright": "tuwid",
+      "reversed": "baligtad",
+      "meaningFallback": "Ang larawan sa barahang ito ang tanda ng araw na ito.",
+      "renewed": "Nailabas na ang dalawampu’t dalawang baraha, at muling pinaghalo ang bunton.",
+      "hintReveal": "Pindutin ulit, at magbubukas ang kulay ngayong araw",
+      "revealButton": "Kulay ng suwerte ngayon",
+      "hintDraw": "Pindutin para bumunot ng isang baraha",
+      "drawLabel": "Bumunot ng isang baraha",
+      "openLabel": "Pindutin ulit para buksan ang kulay",
+      "mirror": "Salamin na humahawak ng kulay",
+      "scene": "Larawan ng salamin na humahawak ng kulay",
+      "cardError": "Hindi nabuksan ang baraha. Pindutin ulit.",
+      "colorError": "Hindi nabuksan ang kulay ngayong araw. Pindutin ulit.",
+      "testError": "Ang test ay may anyong 4-10. Baraha mula 1 hanggang 22. Kulay 1 hanggang 10 ay tuwid, 11 hanggang 20 ay baligtad.",
+      "dateLocale": "tl-PH",
+      "greetMorning": "Magandang umaga",
+      "greetAfternoon": "Magandang hapon",
+      "greetEvening": "Magandang gabi",
+      "taglineDated": "Ang kulay ng suwerte ng {date}, hango sa tarot.",
+      "drawAgain": "Bumunot muli"
+    }
+  },
+  {
+    "id": "fa",
+    "htmlLang": "fa",
+    "hreflang": "fa",
+    "prefix": "fa",
+    "switchLabel": "فارسی",
+    "cookie": "cftf-fa",
+    "session": "cftf-reading-fa",
+    "data": "/data",
+    "cardName": "nameFa",
+    "colorName": "nameFa",
+    "textField": "textFa",
+    "textSuffix": ".fa",
+    "latinSubtitle": false,
+    "titlePattern": "[―—-]\\s*(مستقیم|وارونه)\\s*$",
+    "shareText": "رنگ خوش‌شانسی امروز {color} است.",
+    "copy": {
+      "upright": "مستقیم",
+      "reversed": "وارونه",
+      "meaningFallback": "تصویر این کارت، نشانهٔ امروز است.",
+      "renewed": "هر بیست‌ودو کارت کشیده شد و دسته دوباره بُر خورد.",
+      "hintReveal": "برای باز کردن رنگ امروز یک بار دیگر ضربه بزنید",
+      "revealButton": "رنگ خوش‌شانسی امروز",
+      "hintDraw": "برای کشیدن کارت ضربه بزنید",
+      "drawLabel": "یک کارت بکشید",
+      "openLabel": "برای باز کردن رنگ یک بار دیگر ضربه بزنید",
+      "mirror": "آینه‌ای که رنگ را در میان نگه داشته",
+      "scene": "تصویر آینه‌ای که رنگ را در میان نگه داشته",
+      "cardError": "کارت باز نشد. یک بار دیگر ضربه بزنید.",
+      "colorError": "رنگ امروز باز نشد. یک بار دیگر ضربه بزنید.",
+      "testError": "شکل test مانند 4-10 است. کارت‌ها از 1 تا 22 هستند. رنگ‌های 1 تا 10 مستقیم و 11 تا 20 وارونه‌اند.",
+      "dateLocale": "fa-IR",
+      "greetMorning": "صبح بخیر",
+      "greetAfternoon": "روز بخیر",
+      "greetEvening": "شب بخیر",
+      "taglineDated": "رنگ خوش‌شانسی {date}، با فال تاروت",
+      "drawAgain": "دوباره بکشید"
     }
   },
   {
@@ -599,7 +809,8 @@ window.LANG_PACKS = [
       "greetMorning": "좋은 아침입니다",
       "greetAfternoon": "안녕하세요",
       "greetEvening": "좋은 저녁입니다",
-      "taglineDated": "타로로 뽑는 {date}의 행운의 색"
+      "taglineDated": "타로로 뽑는 {date}의 행운의 색",
+      "drawAgain": "다시 뽑기"
     }
   },
   {
@@ -637,7 +848,86 @@ window.LANG_PACKS = [
       "greetMorning": "สวัสดีตอนเช้า",
       "greetAfternoon": "สวัสดีตอนบ่าย",
       "greetEvening": "สวัสดีตอนเย็น",
-      "taglineDated": "สีนำโชค{date} จั่วจากไพ่ทาโรต์"
+      "taglineDated": "สีนำโชค{date} จั่วจากไพ่ทาโรต์",
+      "drawAgain": "จั่วอีกครั้ง"
+    }
+  },
+  {
+    "id": "it",
+    "htmlLang": "it",
+    "hreflang": "it",
+    "prefix": "it",
+    "switchLabel": "Italiano",
+    "cookie": "cftf-it",
+    "session": "cftf-reading-it",
+    "data": "/data",
+    "cardName": "nameIt",
+    "colorName": "nameIt",
+    "textField": "textIt",
+    "textSuffix": ".it",
+    "latinSubtitle": false,
+    "titlePattern": "[―—-]\\s*(Al dritto|Al rovescio)\\s*$",
+    "shareText": "Il colore portafortuna di oggi è {color}.",
+    "copy": {
+      "upright": "Al dritto",
+      "reversed": "Al rovescio",
+      "meaningFallback": "Il disegno di questa carta è il messaggio di oggi.",
+      "renewed": "Sono uscite tutte e ventidue le carte, e il mazzo è stato rimescolato.",
+      "hintReveal": "Tocchi ancora, e si apre il colore di oggi",
+      "revealButton": "Il colore portafortuna di oggi",
+      "hintDraw": "Tocchi per pescare una carta",
+      "drawLabel": "Peschi una carta",
+      "openLabel": "Tocchi ancora per aprire il colore",
+      "mirror": "Uno specchio che custodisce il colore",
+      "scene": "Il disegno di uno specchio che custodisce il colore",
+      "cardError": "La carta non si è aperta. Tocchi ancora.",
+      "colorError": "Il colore di oggi non si è aperto. Tocchi ancora.",
+      "testError": "test ha la forma 4-10. Le carte vanno da 1 a 22. I colori da 1 a 10 sono al dritto, da 11 a 20 al rovescio.",
+      "dateLocale": "it-IT",
+      "greetMorning": "Buongiorno",
+      "greetAfternoon": "Buon pomeriggio",
+      "greetEvening": "Buonasera",
+      "taglineDated": "Il colore portafortuna di oggi, {date}, estratto dai tarocchi.",
+      "drawAgain": "Peschi ancora"
+    }
+  },
+  {
+    "id": "pl",
+    "htmlLang": "pl",
+    "hreflang": "pl",
+    "prefix": "pl",
+    "switchLabel": "Polski",
+    "cookie": "cftf-pl",
+    "session": "cftf-reading-pl",
+    "data": "/data",
+    "cardName": "namePl",
+    "colorName": "namePl",
+    "textField": "textPl",
+    "textSuffix": ".pl",
+    "latinSubtitle": false,
+    "titlePattern": "[―—-]\\s*([Pp]ozycja prosta|[Pp]ozycja odwrócona)\\s*$",
+    "shareText": "Dzisiejszy szczęśliwy kolor to {color}.",
+    "copy": {
+      "upright": "Pozycja prosta",
+      "reversed": "Pozycja odwrócona",
+      "meaningFallback": "Obraz tej karty jest dzisiejszym przesłaniem.",
+      "renewed": "Wylosowano wszystkie dwadzieścia dwie karty, więc talia została przetasowana.",
+      "hintReveal": "Dotknij jeszcze raz, a odsłoni się dzisiejszy kolor",
+      "revealButton": "Dzisiejszy szczęśliwy kolor",
+      "hintDraw": "Dotknij, aby wylosować kartę",
+      "drawLabel": "Wylosuj kartę",
+      "openLabel": "Dotknij jeszcze raz, aby odsłonić kolor",
+      "mirror": "Lustro, które przechowuje kolor",
+      "scene": "Obraz lustra, które przechowuje kolor",
+      "cardError": "Nie udało się odsłonić karty. Dotknij jeszcze raz.",
+      "colorError": "Nie udało się odsłonić dzisiejszego koloru. Dotknij jeszcze raz.",
+      "testError": "test ma postać 4-10. Karty mają numery od 1 do 22. Kolory od 1 do 10 to pozycja prosta, od 11 do 20 – pozycja odwrócona.",
+      "dateLocale": "pl-PL",
+      "greetMorning": "Dzień dobry",
+      "greetAfternoon": "Dzień dobry",
+      "greetEvening": "Dobry wieczór",
+      "taglineDated": "Szczęśliwy kolor na dziś, {date}, z kart tarota.",
+      "drawAgain": "Wylosuj ponownie"
     }
   },
   {
@@ -675,7 +965,8 @@ window.LANG_PACKS = [
       "greetMorning": "Доброго ранку",
       "greetAfternoon": "Добрий день",
       "greetEvening": "Добрий вечір",
-      "taglineDated": "Щасливий колір {date}, витягнутий із таро."
+      "taglineDated": "Щасливий колір {date}, витягнутий із таро.",
+      "drawAgain": "Витягти ще"
     }
   },
   {
@@ -713,7 +1004,8 @@ window.LANG_PACKS = [
       "greetMorning": "Goedemorgen",
       "greetAfternoon": "Goedemiddag",
       "greetEvening": "Goedenavond",
-      "taglineDated": "De gelukskleur van {date}, getrokken uit de tarot."
+      "taglineDated": "De gelukskleur van {date}, getrokken uit de tarot.",
+      "drawAgain": "Nog eens trekken"
     }
   },
   {
@@ -752,7 +1044,8 @@ window.LANG_PACKS = [
       "greetMorning": "Gōdne morgen",
       "greetAfternoon": "Gōdne dæg",
       "greetEvening": "Gōdne ǣfen",
-      "taglineDated": "Wyrdblēo {date}, of þǣm tārote ātogen."
+      "taglineDated": "Wyrdblēo {date}, of þǣm tārote ātogen.",
+      "drawAgain": "Tēoh eft"
     }
   },
   {
@@ -791,7 +1084,8 @@ window.LANG_PACKS = [
       "greetMorning": "おはよう候",
       "greetAfternoon": "こんにちは候",
       "greetEvening": "こんばんは候",
-      "taglineDated": "牌より引く、{date}の色"
+      "taglineDated": "牌より引く、{date}の色",
+      "drawAgain": "今一度引き候"
     }
   }
 ];

@@ -133,6 +133,55 @@ const COPY = {
     deny: "Відмовитися",
     accept: "Погодитися",
     privacy: "Політика конфіденційності"
+  },
+  tl: {
+    title: "Pagsukat ng pagbisita",
+    text: "Sinusukat ng site na ito ang pagbisita gamit ang Google Analytics. Maaari kayong pumayag, o tumanggi.",
+    deny: "Tumanggi",
+    accept: "Pumayag",
+    privacy: "Patakaran sa pagkapribado"
+  },
+  tr: {
+    title: "Ziyaret ölçümü",
+    text: "Bu site, ziyaretleri Google Analytics ile ölçer. Kabul edebilir ya da reddedebilirsiniz.",
+    deny: "Reddet",
+    accept: "Kabul et",
+    privacy: "Gizlilik politikası"
+  },
+  ur: {
+    title: "دوروں کی پیمائش",
+    text: "یہ سائٹ Google Analytics سے دورے ناپتی ہے۔ آپ قبول کر سکتے ہیں، یا انکار کر سکتے ہیں۔",
+    deny: "انکار",
+    accept: "قبول",
+    privacy: "رازداری کی پالیسی"
+  },
+  fa: {
+    title: "سنجش بازدیدها",
+    text: "این سایت بازدیدها را با Google Analytics می‌سنجد. می‌توانید بپذیرید یا رد کنید.",
+    deny: "رد کردن",
+    accept: "پذیرفتن",
+    privacy: "سیاست حفظ حریم خصوصی"
+  },
+  it: {
+    title: "Misurazione delle visite",
+    text: "Questo sito misura le visite con Google Analytics. Può accettare o rifiutare.",
+    deny: "Rifiuti",
+    accept: "Accetti",
+    privacy: "Informativa sulla privacy"
+  },
+  pl: {
+    title: "Pomiar odwiedzin",
+    text: "Ta strona mierzy odwiedziny za pomocą Google Analytics. Możesz zaakceptować albo odrzucić.",
+    deny: "Odrzuć",
+    accept: "Akceptuj",
+    privacy: "Polityka prywatności"
+  },
+  sw: {
+    title: "Kupima ziara",
+    text: "Tovuti hii hupima ziara kwa kutumia Google Analytics. Unaweza kukubali au kukataa.",
+    deny: "Kataa",
+    accept: "Kubali",
+    privacy: "Sera ya faragha"
   }
 };
 

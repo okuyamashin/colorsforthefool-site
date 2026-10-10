@@ -1,0 +1,45 @@
+/* Urdu top page: right to left, Nastaliq. Deep line height, no letter spacing. */
+html[lang="ur"] body {
+  font-family: "Noto Nastaliq Urdu", "Jameel Noori Nastaleeq", "Noto Naskh Arabic", serif;
+  line-height: 2.2;
+}
+
+html[lang="ur"] body * {
+  letter-spacing: 0 !important;
+  text-indent: 0 !important;
+  font-style: normal;
+  text-transform: none;
+}
+
+html[lang="ur"] :is(h1, h2, h3, .tagline, .orientation, .hint, .reveal-button, button, .lang-list a, .lang-links a) {
+  line-height: 1.9;
+}
+
+html[lang="ur"] button {
+  font-family: inherit;
+  overflow: visible;
+  padding-block: 0.35em;
+}
+
+html[lang="ur"] .consent p {
+  line-height: 2.2;
+}
+
+html[lang="ur"] :is(.brand, .en, [dir="ltr"]) {
+  direction: ltr;
+  unicode-bidi: isolate;
+}
+
+html[lang="ur"] .brand { letter-spacing: 0.22em !important; }
+
+html[lang="ur"] .lang-list a:not([lang="ur"]),
+html[lang="ur"] .lang-links a:not([lang="ur"]),
+html[lang="ur"] .colophon a[href^="http"],
+html[lang="ur"] .colophon a[href$="language-scale.html"] {
+  unicode-bidi: isolate;
+}
+
+html[lang="ur"] .lang-list a:not([lang="ur"]),
+html[lang="ur"] .lang-links a:not([lang="ur"]) {
+  font-family: "Shippori Mincho", "Noto Serif", serif;
+}

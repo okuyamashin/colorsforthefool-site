@@ -1,0 +1,36 @@
+/* Persian top page: right to left, Noto Naskh Arabic like Arabic. No letter spacing; joined script. */
+html[lang="fa"] body {
+  font-family: "Noto Naskh Arabic", "Vazirmatn", Tahoma, serif;
+}
+
+html[lang="fa"] body * {
+  letter-spacing: 0 !important;
+  text-indent: 0 !important;
+  font-style: normal;
+  text-transform: none;
+}
+
+html[lang="fa"] button {
+  font-family: inherit;
+  overflow: visible;
+  padding-block: 0.25em;
+}
+
+html[lang="fa"] :is(.brand, .en, [dir="ltr"]) {
+  direction: ltr;
+  unicode-bidi: isolate;
+}
+
+html[lang="fa"] .brand { letter-spacing: 0.22em !important; }
+
+html[lang="fa"] .lang-list a:not([lang="fa"]),
+html[lang="fa"] .lang-links a:not([lang="fa"]),
+html[lang="fa"] .colophon a[href^="http"],
+html[lang="fa"] .colophon a[href$="language-scale.html"] {
+  unicode-bidi: isolate;
+}
+
+html[lang="fa"] .lang-list a:not([lang="fa"]),
+html[lang="fa"] .lang-links a:not([lang="fa"]) {
+  font-family: "Shippori Mincho", "Noto Serif", serif;
+}

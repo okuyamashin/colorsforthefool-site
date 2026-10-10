@@ -1,0 +1,798 @@
+<!doctype html>
+<html lang="bn">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Colors for the Fool-এর ২৮টি ভাষার সঙ্গে পরিচয়: প্রতিটি ভাষায় কত মানুষ কথা বলেন, পাশে একজন কাল্পনিক পারসোনা আর তাঁর ছবি।">
+<link rel="icon" href="../../favicon.png" type="image/png">
+<title>ভাষাগুলোর পরিচয়</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&family=Noto+Serif+Bengali:wght@400;500;600&display=swap">
+<style>
+/* Layout: same paper column as language-scale.html; one card per language (numbers, persona + image, details). */
+:root {
+  --bg: #efe6d6;
+  --bg-glow: #fbf6ec;
+  --paper: #f7f1e4;
+  --ink: #2a2118;
+  --muted: #6d5c48;
+  --gold: #a6843d;
+  --gold-soft: #e4d2a4;
+  --line: rgba(166,132,61,.45);
+  --other: #d3c6ae;
+  --grid: rgba(109,92,72,.18);
+  --font-display: Cinzel, "Palatino Linotype", Palatino, serif;
+  --font-body: "Noto Serif Bengali", "Bangla Sangam MN", "Nirmala UI", "Vrinda", serif;
+}
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) {
+  --bg: #1b1610; --bg-glow: #2a2219; --paper: #241e17; --ink: #efe4cf; --muted: #b6a387;
+  --gold: #d2ac5c; --gold-soft: #5a4826; --line: rgba(210,172,92,.4); --other: #4b4134; --grid: rgba(239,228,207,.12);
+  color-scheme: dark; } }
+:root[data-theme="dark"] {
+  --bg: #1b1610; --bg-glow: #2a2219; --paper: #241e17; --ink: #efe4cf; --muted: #b6a387;
+  --gold: #d2ac5c; --gold-soft: #5a4826; --line: rgba(210,172,92,.4); --other: #4b4134; --grid: rgba(239,228,207,.12);
+  color-scheme: dark; }
+
+* { box-sizing: border-box; }
+body {
+  margin: 0; color: var(--ink); background: var(--bg);
+  background-image: radial-gradient(1100px 640px at 50% -8%, var(--bg-glow), var(--bg) 70%);
+  font-family: var(--font-body); font-weight: 500; line-height: 1.85;
+  padding-inline: 16px; padding-block: 0 64px;
+}
+.wrap { width: min(100%, 44rem); margin: 0 auto; }
+a { color: var(--gold); }
+code { font-size: .88em; overflow-wrap: anywhere; }
+.brand { font-family: var(--font-display); font-size: .74rem; letter-spacing: .24em; text-transform: uppercase; padding-block: 1.4rem .2rem; margin: 0; }
+.brand a { color: var(--ink); text-decoration: none; }
+header.hero { text-align: center; padding-block: 2.6rem 1.6rem; }
+.eyebrow { font-family: var(--font-display); letter-spacing: .3em; font-size: .8rem; color: var(--gold); margin: 0; text-transform: uppercase; }
+h1 { font-size: clamp(2rem, 7vw, 2.9rem); letter-spacing: .12em; margin: .3rem 0 .6rem; font-weight: 600; text-wrap: balance; }
+.lede { color: var(--muted); max-width: 34rem; margin: 0 auto; text-wrap: pretty; }
+.ornament { display: flex; align-items: center; gap: .8rem; justify-content: center; color: var(--gold); margin: 1.6rem 0 0; }
+.ornament::before, .ornament::after { content: ""; height: 1px; width: 4.5rem; background: var(--line); }
+
+.topbar { display: flex; justify-content: space-between; align-items: baseline; gap: 1rem; padding-block: 1.4rem .2rem; }
+.topbar .brand { padding-block: 0; }
+.switch { font-size: .82rem; }
+.switch a, .switch span { margin-left: .7rem; }
+.switch span { color: var(--muted); }
+
+.about { font-size: .86rem; color: var(--muted); margin: 0 0 1rem; }
+.about p { margin: .5rem 0; }
+.langs { display: flex; flex-wrap: wrap; gap: .4rem; justify-content: center; margin: 1.2rem 0 0; padding: 0; list-style: none; }
+.langs li { border: 1px solid var(--line); font-size: .85rem; background: var(--paper); }
+.langs li a { display: block; padding: .1rem .7rem; color: var(--ink); text-decoration: none; }
+.langs li a:hover, .langs li a:focus-visible { color: var(--gold); }
+.langs li:nth-last-child(-n+2) { border-style: dashed; }
+.langs li:nth-last-child(-n+2) a { color: var(--muted); }
+
+section.chart, section.lang { margin-top: 3.4rem; scroll-margin-top: 1rem; }
+.chart h2, .lang h2 { font-size: 1.3rem; letter-spacing: .08em; margin: 0; font-weight: 600; text-wrap: balance; }
+.lang h2 small { display: block; font-size: .8rem; letter-spacing: .04em; color: var(--muted); font-weight: 500; }
+.kicker { font-family: var(--font-display); color: var(--gold); letter-spacing: .2em; font-size: .78rem; margin: 0 0 .15rem; }
+p.note { color: var(--muted); font-size: .88rem; margin: .4rem 0 1rem; max-width: 40rem; }
+.chart ul { font-size: .88rem; color: var(--muted); padding-left: 1.1rem; }
+
+.scroll { overflow-x: auto; -webkit-overflow-scrolling: touch; border: 1px solid var(--line); background: var(--paper); }
+table { border-collapse: collapse; font-size: .8rem; line-height: 1.55; }
+table.overview { min-width: 42rem; width: 100%; }
+th, td { padding: .45rem .6rem; border-bottom: 1px solid var(--grid); text-align: left; vertical-align: top; }
+thead th { font-weight: 700; border-bottom: 1px solid var(--line); background: var(--bg-glow); }
+tbody th { font-weight: 700; white-space: nowrap; }
+tbody th a { color: var(--ink); text-decoration: none; }
+tbody tr:last-child th, tbody tr:last-child td { border-bottom: 0; }
+table.overview td { font-variant-numeric: tabular-nums; }
+
+.lang { border-top: 1px solid var(--line); padding-top: 1.6rem; }
+.nums { display: flex; flex-wrap: wrap; gap: 1px; background: var(--line); border: 1px solid var(--line); margin: 1rem 0; }
+.nums div { flex: 1 1 7.6rem; background: var(--paper); padding: .55rem .7rem .6rem; min-width: 0; }
+.nums dt { font-family: var(--font-body); font-size: .72rem; color: var(--muted); letter-spacing: .06em; }
+.nums dd { margin: 0; font-size: .9rem; line-height: 1.45; font-variant-numeric: tabular-nums; overflow-wrap: anywhere; }
+.region { font-size: .9rem; margin: 0 0 1rem; }
+.region b { color: var(--gold); font-weight: 700; margin-right: .6rem; }
+
+.persona { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 15rem); gap: 1.2rem; align-items: start; margin: 1.2rem 0 .8rem; }
+.persona figure { grid-column: 2; grid-row: 1; margin: 0; }
+.persona .ptext { grid-column: 1; grid-row: 1; }
+.persona img { display: block; width: 100%; height: auto; border: 1px solid var(--line); background: var(--paper); }
+.persona h3 { font-size: 1rem; letter-spacing: .08em; margin: 0 0 .3rem; font-weight: 600; }
+.persona p { margin: 0; font-size: .94rem; text-wrap: pretty; }
+@media (max-width: 36rem) {
+  .persona { grid-template-columns: minmax(0, 1fr); }
+  .persona figure, .persona .ptext { grid-column: 1; grid-row: auto; }
+  .persona figure { max-width: 22rem; }
+}
+
+details { border-top: 1px dashed var(--line); padding: .35rem 0; font-size: .88rem; }
+details:last-of-type { border-bottom: 1px dashed var(--line); }
+summary { cursor: pointer; color: var(--gold); letter-spacing: .06em; }
+details[open] summary { margin-bottom: .5rem; }
+details p { margin: .2rem 0 .8rem; color: var(--ink); }
+details h4 { font-size: .86rem; margin: .6rem 0 0; color: var(--muted); font-weight: 700; }
+details pre { white-space: pre-wrap; overflow-wrap: anywhere; font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: .78rem; line-height: 1.6; background: var(--paper); border: 1px solid var(--line); padding: .7rem .8rem; margin: 0 0 .6rem; }
+table.facts { width: 100%; min-width: 34rem; }
+table.facts tbody th { white-space: normal; min-width: 8rem; }
+
+footer { margin-top: 4rem; border-top: 1px solid var(--line); padding-top: 1.2rem; font-size: .8rem; color: var(--muted); }
+footer ul { padding-left: 1.1rem; margin: .4rem 0 1rem; }
+footer ul ul { margin: .2rem 0 .3rem; }
+footer li { margin: .15rem 0; overflow-wrap: anywhere; }
+
+/* Per-language adjustments (generated by render.py). */
+html[lang="bn"] body * {
+  letter-spacing: 0 !important;
+  text-indent: 0 !important;
+}
+html[lang="bn"] .brand {
+  letter-spacing: 0.22em !important;
+}
+</style>
+</head>
+<body>
+
+<div class="wrap">
+  <div class="topbar"><p class="brand"><a href="../">Colors for the Fool</a></p><nav class="switch" aria-label="সম্পর্কিত পাতা"><span>ভাষাগুলোর পরিচয়</span></nav></div>
+
+  <header class="hero">
+    <p class="eyebrow">Languages &amp; Readers</p>
+    <h1>ভাষাগুলোর পরিচয়</h1>
+    <p class="lede">Colors for the Fool-এর ২৮টি ভাষার পরিচয়, দুইভাবে: কত মানুষ ভাষাটিতে কথা বলেন, আর কেমন মানুষ হয়তো এই ট্যারো দেখতে আসবেন (২০২৬ সালের ৯ অক্টোবর অনুযায়ী)।</p>
+    <div class="ornament">✦</div>
+  </header>
+
+  <nav aria-label="ভাষাসমূহ">
+    <ul class="langs"><li><a href="#ja"><span lang="ja">日本語</span></a></li><li><a href="#en"><span lang="en">English</span></a></li><li><a href="#zh-hans"><span lang="zh-Hans">简体中文</span></a></li><li><a href="#zh"><span lang="zh-Hant">繁體中文</span></a></li><li><a href="#hi"><span lang="hi">हिन्दी</span></a></li><li><a href="#es"><span lang="es">Español</span></a></li><li><a href="#ar"><span lang="ar" dir="rtl">العربية</span></a></li><li><a href="#fr"><span lang="fr">Français</span></a></li><li><a href="#bn"><span lang="bn">বাংলা</span></a></li><li><a href="#pt"><span lang="pt">Português</span></a></li><li><a href="#id"><span lang="id">Bahasa Indonesia</span></a></li><li><a href="#ms"><span lang="ms">Bahasa Melayu</span></a></li><li><a href="#ur"><span lang="ur" dir="rtl">اردو</span></a></li><li><a href="#ru"><span lang="ru">Русский</span></a></li><li><a href="#de"><span lang="de">Deutsch</span></a></li><li><a href="#vi"><span lang="vi">Tiếng Việt</span></a></li><li><a href="#sw"><span lang="sw">Kiswahili</span></a></li><li><a href="#tr"><span lang="tr">Türkçe</span></a></li><li><a href="#tl"><span lang="fil">Filipino</span></a></li><li><a href="#fa"><span lang="fa" dir="rtl">فارسی</span></a></li><li><a href="#ko"><span lang="ko">한국어</span></a></li><li><a href="#th"><span lang="th">ไทย</span></a></li><li><a href="#it"><span lang="it">Italiano</span></a></li><li><a href="#pl"><span lang="pl">Polski</span></a></li><li><a href="#uk"><span lang="uk">Українська</span></a></li><li><a href="#nl"><span lang="nl">Nederlands</span></a></li><li><a href="#ang"><span lang="ang">Englisc</span></a></li><li><a href="#soro"><span lang="ja">御座候</span></a></li></ul>
+  </nav>
+
+<section class="lang" id="ja" aria-labelledby="h-ja">
+  <p class="kicker">01 · ja</p>
+  <h2 id="h-ja"><span lang="ja">日本語</span><small>জাপানি</small></h2>
+  <dl class="nums">
+    <div><dt>মোট ভাষাভাষী</dt><dd>১২.৬ কোটি</dd></div>
+    <div><dt>ওয়েব</dt><dd>৪.৯% (চতুর্থ স্থান)</dd></div>
+    <div><dt>অনলাইনে সময়</dt><dd>৩৯ কোটি ঘণ্টা</dd></div>
+  </dl>
+  <p class="region"><b>কোথায়</b>জাপান। জাপানের বাইরে ব্রাজিল ও যুক্তরাষ্ট্রের (হাওয়াই, ক্যালিফোর্নিয়া) জাপানি বংশোদ্ভূত মানুষ এবং প্রবাসী জাপানিরা এটি পড়েন। সারা বিশ্বে অনেকে জাপানি ভাষা শেখেনও।</p>
+  <div class="persona">
+    <figure><img src="../../language-intro/img/ja.webp" width="800" height="1000" loading="lazy" decoding="async" alt="একজন কাল্পনিক পারসোনা। 森下 由佳 (Yuka Morishita), ৩৪ বছর, ফুকুওকায় থাকেন। তিনি একটি সাধারণ হাসপাতালের মেডিকেল ক্লার্ক।"></figure>
+    <div class="ptext"><h3>পারসোনা</h3><p><span lang="ja">森下 由佳</span> (Yuka Morishita), ৩৪ বছর, ফুকুওকায় থাকেন। তিনি একটি সাধারণ হাসপাতালের মেডিকেল ক্লার্ক। সকাল ৭:৪০-এ পাতাল রেলের আসনে বসে তিনি iPhone খোলেন, Instagram-এর একটি Reel থেকে এখানে আসেন। ভাগ্যগণনাকে তিনি খুব গুরুত্ব দিয়ে নেন না, তবে এতটা ভালোবাসেন যে না মিললে হেসে ফেলেন। তিনি একটি কার্ড তোলেন, আর সেটি উলটো এলে ঠিক করে নেন, “আজ নিজের ওপর চাপ না দেওয়ার দিন।” গল্প যখন হাকাতা বুনন বা চিকুগোর নীল রং করার মতো চেনা জায়গা আর কারুশিল্পের পথ ধরে রঙে পৌঁছায়, তিনি খুব খুশি হন। পছন্দের রংটি সেদিনের রুমাল বা নেইলপলিশের রঙের ইঙ্গিত হয়ে যায়। মাঝে মাঝে সহকর্মীকে LINE-এ লিখে পাঠান: “আজ আমি নাকি নীল।”</p></div>
+  </div>
+  <details><summary>সংখ্যা ও টীকা</summary>
+    <div class="scroll"><table class="facts"><thead><tr><th scope="col">বিষয়</th><th scope="col">মান</th><th scope="col">টীকা</th></tr></thead><tbody>
+      <tr><th scope="row">মোট ভাষাভাষী (মাতৃভাষা + দ্বিতীয় ভাষা)</th><td>১২.৬ কোটি</td><td>Ethnologue, ২০২৬ সংস্করণ</td></tr>
+      <tr><th scope="row">ওয়েব কনটেন্টে অংশ</th><td>৪.৯% (চতুর্থ স্থান)</td><td>W৩Techs, অক্টোবর ২০২৬</td></tr>
+      <tr><th scope="row">ভাষাভিত্তিক ইন্টারনেট ব্যবহারকারী</th><td>২.৬% (অষ্টম স্থান)</td><td>Internet World Stats, মার্চ ২০২০</td></tr>
+      <tr><th scope="row">অনলাইনে সময়</th><td>আনুমানিক ১০ কোটি ইন্টারনেট ব্যবহারকারী, দিনে গড়ে ৩.৯ ঘণ্টা, মোট ৩৯ কোটি ঘণ্টা/দিন (১৮তম স্থান)</td><td>Claude-এর অনুমান</td></tr>
+    </tbody></table></div>
+  </details>
+</section>
+
+<section class="lang" id="en" aria-labelledby="h-en">
+  <p class="kicker">02 · en</p>
+  <h2 id="h-en"><span lang="en">English</span><small>ইংরেজি</small></h2>
+  <dl class="nums">
+    <div><dt>মোট ভাষাভাষী</dt><dd>১৪৯.৩ কোটি (প্রথম স্থান)</dd></div>
+    <div><dt>ওয়েব</dt><dd>৪৯.৫% (প্রথম স্থান)</dd></div>
+    <div><dt>অনলাইনে সময়</dt><dd>৫৭৮ কোটি ঘণ্টা</dd></div>
+  </dl>
+  <p class="region"><b>কোথায়</b>যুক্তরাষ্ট্র, যুক্তরাজ্য, কানাডা, অস্ট্রেলিয়া, নিউজিল্যান্ড ও আয়ারল্যান্ডে মাতৃভাষা হিসেবে বলা হয়। ভারত, ফিলিপাইন, নাইজেরিয়া, সিঙ্গাপুর, কেনিয়া ও অন্যান্য দেশে এটি সরকারি ভাষা বা শিক্ষার ভাষা। সারা বিশ্বে দ্বিতীয় ভাষা হিসেবে ইংরেজি জানা মানুষ ইংরেজি পাতা পড়েন।</p>
+  <div class="persona">
+    <figure><img src="../../language-intro/img/en.webp" width="800" height="1000" loading="lazy" decoding="async" alt="একজন কাল্পনিক পারসোনা। Maya Reynolds, ২৯ বছর, যুক্তরাজ্যের ম্যানচেস্টারে থাকেন। তিনি একটি প্রাথমিক বিদ্যালয়ের শিক্ষণ সহকারী।"></figure>
+    <div class="ptext"><h3>পারসোনা</h3><p>Maya Reynolds, ২৯ বছর, যুক্তরাজ্যের ম্যানচেস্টারে থাকেন। তিনি একটি প্রাথমিক বিদ্যালয়ের শিক্ষণ সহকারী। রাত ১০টায় বিছানায় শুয়ে তিনি Android ফোন খোলেন। TikTok-এ প্রায়ই ট্যারোর ভিডিও দেখেন, আর একটি কার্ড তোলার সহজ ব্যাপারটা তাঁর ভালো লাগে। কার্ডের অর্থ পড়েন, আর গল্পের শেষে রঙের নামটি আসার মুহূর্তটা তাঁর খুব প্রিয়। রঙের গল্প যখন স্কটল্যান্ডের থিসল বা ইয়র্কশায়ারের উলের মতো ব্রিটিশ জায়গার সঙ্গে জুড়ে যায়, তিনি লিংকটি বন্ধুদের পাঠান। কার্ডের স্টাইল বদলে আর্ট নুভো আর স্টেইনড গ্লাস মিলিয়ে দেখতেও তিনি ভালোবাসেন।</p></div>
+  </div>
+  <details><summary>সংখ্যা ও টীকা</summary>
+    <div class="scroll"><table class="facts"><thead><tr><th scope="col">বিষয়</th><th scope="col">মান</th><th scope="col">টীকা</th></tr></thead><tbody>
+      <tr><th scope="row">মোট ভাষাভাষী (মাতৃভাষা + দ্বিতীয় ভাষা)</th><td>১৪৯.৩ কোটি (প্রথম স্থান)</td><td>Ethnologue, ২০২৬ সংস্করণ</td></tr>
+      <tr><th scope="row">ওয়েব কনটেন্টে অংশ</th><td>৪৯.৫% (প্রথম স্থান)</td><td>W৩Techs, অক্টোবর ২০২৬</td></tr>
+      <tr><th scope="row">ভাষাভিত্তিক ইন্টারনেট ব্যবহারকারী</th><td>২৫.৯% (প্রথম স্থান)</td><td>Internet World Stats, মার্চ ২০২০</td></tr>
+      <tr><th scope="row">অনলাইনে সময়</th><td>আনুমানিক ৮৫ কোটি ইন্টারনেট ব্যবহারকারী, দিনে গড়ে ৬.৮ ঘণ্টা, মোট ৫৭৮ কোটি ঘণ্টা/দিন (দ্বিতীয় স্থান)</td><td>Claude-এর অনুমান। শুধু যাঁরা প্রধানত ইংরেজি পড়েন তাঁদের গোনা হয়েছে; একটি টীকা অনুযায়ী দ্বিতীয় ভাষা হিসেবে পড়েন এমন মানুষদের ধরলে এটি প্রথম স্থানে থাকত</td></tr>
+    </tbody></table></div>
+  </details>
+</section>
+
+<section class="lang" id="zh-hans" aria-labelledby="h-zh-hans">
+  <p class="kicker">03 · zh-hans</p>
+  <h2 id="h-zh-hans"><span lang="zh-Hans">简体中文</span><small>সরলীকৃত চীনা</small></h2>
+  <dl class="nums">
+    <div><dt>মোট ভাষাভাষী</dt><dd>১১৮.৩ কোটি (ম্যান্ডারিন)</dd></div>
+    <div><dt>ওয়েব</dt><dd>১.৩% (১২তম স্থান, সব চীনা মিলিয়ে)</dd></div>
+    <div><dt>অনলাইনে সময়</dt><dd>৬২০ কোটি ঘণ্টা (সরলীকৃত + প্রথাগত)</dd></div>
+  </dl>
+  <p class="region"><b>কোথায়</b>মূল ভূখণ্ড চীন, যেখানে স্কুল ও সরকারের লিপি এটিই। সিঙ্গাপুর ও মালয়েশিয়ার চীনা সম্প্রদায়েও সরলীকৃত অক্ষরই মান্য। উত্তর আমেরিকা, অস্ট্রেলিয়া, ইউরোপ ও দক্ষিণ-পূর্ব এশিয়ায় বড় চীনা সম্প্রদায় আছে, বিদেশে পড়তে যাওয়া শিক্ষার্থীও অনেক।</p>
+  <div class="persona">
+    <figure><img src="../../language-intro/img/zh-hans.webp" width="800" height="1000" loading="lazy" decoding="async" alt="একজন কাল্পনিক পারসোনা। 林悦 (Lin Yue), ২৬ বছর, চেংদুতে থাকেন। তিনি একটি গেম কোম্পানির UI ডিজাইনার।"></figure>
+    <div class="ptext"><h3>পারসোনা</h3><p><span lang="zh-Hans">林悦</span> (Lin Yue), ২৬ বছর, চেংদুতে থাকেন। তিনি একটি গেম কোম্পানির UI ডিজাইনার। দুপুর ১২:৩০-এ, লাঞ্চ ব্রেকে Huawei ফোনে Xiaohongshu-তে আগামী মাসের কিয়োটো ভ্রমণের খোঁজ করতে গিয়ে এক ভ্রমণকারীর নোট থেকে তিনি এই সাইটটি পান। কাজের সূত্রে রঙের নাম আর প্যালেট নিয়ে তিনি সচেতন। একটি কার্ড তোলেন, আর গল্প যখন সং রাজবংশের সেলাডন বা শু ব্রোকেডের (সিচুয়ানের ব্রোকেড) পথ ধরে রঙে পৌঁছায়, তিনি স্ক্রিনটি সেভ করে WeChat-এ সহকর্মীদের পাঠান। কার্ডগুলো কালি-তুলির (ইঙ্ক-ওয়াশ) স্টাইলে দেখতে তাঁর ভালো লাগে।</p></div>
+  </div>
+  <details><summary>সংখ্যা ও টীকা</summary>
+    <div class="scroll"><table class="facts"><thead><tr><th scope="col">বিষয়</th><th scope="col">মান</th><th scope="col">টীকা</th></tr></thead><tbody>
+      <tr><th scope="row">মোট ভাষাভাষী (মাতৃভাষা + দ্বিতীয় ভাষা)</th><td>১১৮.৩ কোটি (ম্যান্ডারিন)</td><td>Ethnologue, ২০২৬ সংস্করণ। প্রথাগত ও সরলীকৃত চীনা ম্যান্ডারিন হিসেবে একবারই গোনা হয়েছে</td></tr>
+      <tr><th scope="row">ওয়েব কনটেন্টে অংশ</th><td>১.৩% (১২তম স্থান, সব চীনা মিলিয়ে)</td><td>W৩Techs সরলীকৃত ও প্রথাগত চীনা আলাদা করে না</td></tr>
+      <tr><th scope="row">ভাষাভিত্তিক ইন্টারনেট ব্যবহারকারী</th><td>১৯.৪% (দ্বিতীয় স্থান, সব চীনা মিলিয়ে)</td><td>Internet World Stats, মার্চ ২০২০</td></tr>
+      <tr><th scope="row">অনলাইনে সময়</th><td>আনুমানিক ১১৭ কোটি ইন্টারনেট ব্যবহারকারী, দিনে গড়ে ৫.৩ ঘণ্টা, মোট ৬২০ কোটি ঘণ্টা/দিন (প্রথম স্থান, সরলীকৃত + প্রথাগত)</td><td>Claude-এর অনুমান। মূল ভূখণ্ড চীনের ১১১ কোটি, সঙ্গে তাইওয়ান, হংকং ও প্রবাসী চীনারা</td></tr>
+    </tbody></table></div>
+  </details>
+</section>
+
+<section class="lang" id="zh" aria-labelledby="h-zh">
+  <p class="kicker">04 · zh</p>
+  <h2 id="h-zh"><span lang="zh-Hant">繁體中文</span><small>প্রথাগত চীনা</small></h2>
+  <dl class="nums">
+    <div><dt>মোট ভাষাভাষী</dt><dd>সরলীকৃত চীনার সঙ্গে ম্যান্ডারিন হিসেবে গোনা (১১৮.৩ কোটি)</dd></div>
+    <div><dt>ওয়েব</dt><dd>১.৩% (১২তম স্থান, সব চীনা মিলিয়ে)</dd></div>
+    <div><dt>অনলাইনে সময়</dt><dd>সরলীকৃত চীনা মিলিয়ে মোট ৬২০ কোটি ঘণ্টা/দিন (প্রথম স্থান)</dd></div>
+  </dl>
+  <p class="region"><b>কোথায়</b>তাইওয়ান, হংকং ও ম্যাকাওয়ে ব্যবহৃত লিপি। উত্তর আমেরিকা ও অস্ট্রেলিয়ার পুরোনো চীনা সম্প্রদায়েও অনেকে প্রথাগত অক্ষর ব্যবহার করেন। তাইওয়ানে বলা হয় প্রমিত চীনা (হুয়াইউ); হংকং ও ম্যাকাওয়ে মুখের ভাষা ক্যান্টোনিজ, আর লেখায় চলে প্রথাগত অক্ষরের লিখিত মান।</p>
+  <div class="persona">
+    <figure><img src="../../language-intro/img/zh.webp" width="800" height="1000" loading="lazy" decoding="async" alt="একজন কাল্পনিক পারসোনা। 陳怡君 (Chen Yi-chun), ৩১ বছর, তাইচুংয়ে থাকেন। তিনি একটি ব্যাংকের টেলার।"></figure>
+    <div class="ptext"><h3>পারসোনা</h3><p><span lang="zh-Hant">陳怡君</span> (Chen Yi-chun), ৩১ বছর, তাইচুংয়ে থাকেন। তিনি একটি ব্যাংকের টেলার। রাত ১১টায়, ঘুমানোর আগে iPhone-এ আগামী মাসের কানাজাওয়া ভ্রমণের পরিকল্পনা করছেন। এক বন্ধু LINE-এ যে লিংক পাঠিয়েছিলেন, সেটি থেকেই সাইটটি খোলেন। মন্দিরে ভাগ্যের চিরকুট তোলার মতো মেজাজেই তিনি একটি কার্ড তোলেন। গল্প যখন কাগা ইউজেন রং বা সোনার পাতের মতো জাপানি কারুশিল্পের পথ ধরে রঙে পৌঁছায়, তাঁর ভ্রমণে দেখার জায়গা আরও একটি বাড়ে। ফলাফলের পাতাটি তিনি LINE-এ সেই বন্ধুকেই ফেরত পাঠান।</p></div>
+  </div>
+  <details><summary>সংখ্যা ও টীকা</summary>
+    <div class="scroll"><table class="facts"><thead><tr><th scope="col">বিষয়</th><th scope="col">মান</th><th scope="col">টীকা</th></tr></thead><tbody>
+      <tr><th scope="row">মোট ভাষাভাষী (মাতৃভাষা + দ্বিতীয় ভাষা)</th><td>সরলীকৃত চীনার সঙ্গে ম্যান্ডারিন হিসেবে গোনা (১১৮.৩ কোটি)</td><td>প্রথাগত ও সরলীকৃত চীনা ম্যান্ডারিন হিসেবে একবারই গোনা হয়েছে। শুধু প্রথাগত চীনা পড়েন এমন মানুষের সংখ্যার তথ্য নেই</td></tr>
+      <tr><th scope="row">ওয়েব কনটেন্টে অংশ</th><td>১.৩% (১২তম স্থান, সব চীনা মিলিয়ে)</td><td>W৩Techs সরলীকৃত ও প্রথাগত চীনা আলাদা করে না</td></tr>
+      <tr><th scope="row">ভাষাভিত্তিক ইন্টারনেট ব্যবহারকারী</th><td>১৯.৪% (দ্বিতীয় স্থান, সব চীনা মিলিয়ে)</td><td>Internet World Stats, মার্চ ২০২০</td></tr>
+      <tr><th scope="row">অনলাইনে সময়</th><td>সরলীকৃত চীনা মিলিয়ে মোট ৬২০ কোটি ঘণ্টা/দিন (প্রথম স্থান)</td><td>Claude-এর অনুমান। শুধু প্রথাগত চীনার আলাদা অনুমান নেই</td></tr>
+    </tbody></table></div>
+  </details>
+</section>
+
+<section class="lang" id="hi" aria-labelledby="h-hi">
+  <p class="kicker">05 · hi</p>
+  <h2 id="h-hi"><span lang="hi">हिन्दी</span><small>হিন্দি</small></h2>
+  <dl class="nums">
+    <div><dt>মোট ভাষাভাষী</dt><dd>৬১.১ কোটি (তৃতীয় স্থান)</dd></div>
+    <div><dt>ওয়েব</dt><dd>০.১%-এর কম (৩৮তম স্থান)</dd></div>
+    <div><dt>অনলাইনে সময়</dt><dd>১৭৪ কোটি ঘণ্টা</dd></div>
+  </dl>
+  <p class="region"><b>কোথায়</b>উত্তর ও মধ্য ভারত (উত্তরপ্রদেশ, বিহার, রাজস্থান, মধ্যপ্রদেশ, দিল্লি প্রভৃতি)। নেপাল ও ফিজিতেও এ ভাষার মানুষ আছেন। উপসাগরীয় দেশগুলো, যুক্তরাজ্য, যুক্তরাষ্ট্র ও কানাডায় বড় ভারতীয় সম্প্রদায় বাস করে।</p>
+  <div class="persona">
+    <figure><img src="../../language-intro/img/hi.webp" width="800" height="1000" loading="lazy" decoding="async" alt="একজন কাল্পনিক পারসোনা। Neha Verma, ২৪ বছর, জয়পুরে থাকেন। তিনি চার্টার্ড অ্যাকাউন্ট্যান্সির আর্টিকেলড শিক্ষানবিশ।"></figure>
+    <div class="ptext"><h3>পারসোনা</h3><p>Neha Verma, ২৪ বছর, জয়পুরে থাকেন। তিনি চার্টার্ড অ্যাকাউন্ট্যান্সির আর্টিকেলড শিক্ষানবিশ। সকাল ৮টায়, মেট্রোতে ওঠার আগে Redmi ফোনে একটি কার্ড তোলেন, যেন মা রোজ যে রাশিফল দেখেন তারই পরের অংশ। ইংরেজিও পড়তে পারেন, তবে তাঁর মনে হয় রঙের গল্প হিন্দিতেই বেশি মনে থাকে। গল্প যখন জয়পুরের “গোলাপি শহর”-এর বাড়িঘর বা রাজস্থানের বাঁধনি রঙের পথ ধরে রঙে পৌঁছায়, তিনি সেই রঙের দোপাট্টা বেছে নেন। পছন্দের ফলাফল WhatsApp-এ বড় বোনকে পাঠান।</p></div>
+  </div>
+  <details><summary>সংখ্যা ও টীকা</summary>
+    <div class="scroll"><table class="facts"><thead><tr><th scope="col">বিষয়</th><th scope="col">মান</th><th scope="col">টীকা</th></tr></thead><tbody>
+      <tr><th scope="row">মোট ভাষাভাষী (মাতৃভাষা + দ্বিতীয় ভাষা)</th><td>৬১.১ কোটি (তৃতীয় স্থান)</td><td>Ethnologue, ২০২৬ সংস্করণ</td></tr>
+      <tr><th scope="row">ওয়েব কনটেন্টে অংশ</th><td>০.১%-এর কম (৩৮তম স্থান)</td><td>W৩Techs, অক্টোবর ২০২৬। ভাষাভাষীর সংখ্যার তুলনায় ওয়েব পাতা খুবই কম</td></tr>
+      <tr><th scope="row">ভাষাভিত্তিক ইন্টারনেট ব্যবহারকারী</th><td>শীর্ষ ১০-এ নেই</td><td>Internet World Stats, মার্চ ২০২০</td></tr>
+      <tr><th scope="row">অনলাইনে সময়</th><td>আনুমানিক ২৯ কোটি ইন্টারনেট ব্যবহারকারী, দিনে গড়ে ৬.০ ঘণ্টা, মোট ১৭৪ কোটি ঘণ্টা/দিন (ষষ্ঠ স্থান)</td><td>Claude-এর অনুমান। ধরে নেওয়া হয়েছে ভারতের ব্যবহারকারীদের প্রায় ৩৫% হিন্দি ব্যবহারকারী। এটিই সবচেয়ে নড়বড়ে অনুমান</td></tr>
+    </tbody></table></div>
+  </details>
+</section>
+
+<section class="lang" id="es" aria-labelledby="h-es">
+  <p class="kicker">06 · es</p>
+  <h2 id="h-es"><span lang="es">Español</span><small>স্প্যানিশ</small></h2>
+  <dl class="nums">
+    <div><dt>মোট ভাষাভাষী</dt><dd>৫৬.১ কোটি (চতুর্থ স্থান)</dd></div>
+    <div><dt>ওয়েব</dt><dd>৬.০% (দ্বিতীয় স্থান)</dd></div>
+    <div><dt>অনলাইনে সময়</dt><dd>২৯৬ কোটি ঘণ্টা</dd></div>
+  </dl>
+  <p class="region"><b>কোথায়</b>স্পেন এবং লাতিন আমেরিকার অনেক দেশ, যেমন মেক্সিকো, কলম্বিয়া, আর্জেন্টিনা, পেরু, চিলি ও ভেনেজুয়েলা। যুক্তরাষ্ট্রেও অনেকে ঘরে স্প্যানিশ বলেন (সংখ্যাটি এখানে যাচাই করা হয়নি)। এটি বিষুবীয় গিনিরও সরকারি ভাষা।</p>
+  <div class="persona">
+    <figure><img src="../../language-intro/img/es.webp" width="800" height="1000" loading="lazy" decoding="async" alt="একজন কাল্পনিক পারসোনা। Valeria Ortiz, ৩২ বছর, মেক্সিকোর গুয়াদালাহারায় থাকেন। তিনি একজন ডেন্টাল হাইজিনিস্ট।"></figure>
+    <div class="ptext"><h3>পারসোনা</h3><p>Valeria Ortiz, ৩২ বছর, মেক্সিকোর গুয়াদালাহারায় থাকেন। তিনি একজন ডেন্টাল হাইজিনিস্ট। রাত ৯:৩০-এ, কাজের পর সোফায় বসে Android ফোন খোলেন; TikTok-এ দেখা একটি ট্যারো গল্প থেকে তিনি এই সাইটে এসেছেন। কার্ডের অর্থ পড়তে ভালো লাগে, কিন্তু সবচেয়ে প্রিয় অংশ হলো শেষে রঙের নামের জন্য অপেক্ষা। গল্প যখন মেক্সিকোর কোচিনিয়ালের (ক্যাকটাসে বাস করা এক পোকা থেকে পাওয়া লাল রং) পথ ধরে টকটকে লালে পৌঁছায়, তিনি সঙ্গে সঙ্গে WhatsApp-এ ছোট বোনকে পাঠান। বছরের শেষে অন্তর্বাসের রং বাছতেও তিনি এই সাইট ব্যবহারের কথা ভাবছেন।</p></div>
+  </div>
+  <details><summary>সংখ্যা ও টীকা</summary>
+    <div class="scroll"><table class="facts"><thead><tr><th scope="col">বিষয়</th><th scope="col">মান</th><th scope="col">টীকা</th></tr></thead><tbody>
+      <tr><th scope="row">মোট ভাষাভাষী (মাতৃভাষা + দ্বিতীয় ভাষা)</th><td>৫৬.১ কোটি (চতুর্থ স্থান)</td><td>Ethnologue, ২০২৬ সংস্করণ</td></tr>
+      <tr><th scope="row">ওয়েব কনটেন্টে অংশ</th><td>৬.০% (দ্বিতীয় স্থান)</td><td>W৩Techs, অক্টোবর ২০২৬</td></tr>
+      <tr><th scope="row">ভাষাভিত্তিক ইন্টারনেট ব্যবহারকারী</th><td>৭.৯% (তৃতীয় স্থান)</td><td>Internet World Stats, মার্চ ২০২০</td></tr>
+      <tr><th scope="row">অনলাইনে সময়</th><td>আনুমানিক ৩৯ কোটি ইন্টারনেট ব্যবহারকারী, দিনে গড়ে ৭.৬ ঘণ্টা, মোট ২৯৬ কোটি ঘণ্টা/দিন (তৃতীয় স্থান)</td><td>Claude-এর অনুমান। মেক্সিকো, স্পেন, কলম্বিয়া, আর্জেন্টিনা প্রভৃতি, সঙ্গে যুক্তরাষ্ট্রের যাঁদের প্রধান ভাষা স্প্যানিশ</td></tr>
+    </tbody></table></div>
+  </details>
+</section>
+
+<section class="lang" id="ar" aria-labelledby="h-ar">
+  <p class="kicker">07 · ar</p>
+  <h2 id="h-ar"><span lang="ar" dir="rtl">العربية</span><small>আরবি (আধুনিক প্রমিত আরবি)</small></h2>
+  <dl class="nums">
+    <div><dt>মোট ভাষাভাষী</dt><dd>৩৩.৫ কোটি (পঞ্চম স্থান, আধুনিক প্রমিত আরবি)</dd></div>
+    <div><dt>ওয়েব</dt><dd>০.৬% (১৯তম স্থান)</dd></div>
+    <div><dt>অনলাইনে সময়</dt><dd>২৩১ কোটি ঘণ্টা</dd></div>
+  </dl>
+  <p class="region"><b>কোথায়</b>মধ্যপ্রাচ্য ও উত্তর আফ্রিকার প্রায় ২২টি দেশের সরকারি ভাষা, যেমন মিশর, সৌদি আরব, ইরাক, আলজেরিয়া, মরক্কো, সুদান, সিরিয়া, জর্ডান ও সংযুক্ত আরব আমিরাত। ইউরোপে (ফ্রান্স, জার্মানি প্রভৃতি) ও উত্তর আমেরিকাতেও অনেক আরবিভাষী বাস করেন। সাইটটি ডান থেকে বাঁয়ে লেখার বিন্যাসে।</p>
+  <div class="persona">
+    <figure><img src="../../language-intro/img/ar.webp" width="800" height="1000" loading="lazy" decoding="async" alt="একজন কাল্পনিক পারসোনা। Nour Haddad, ২৮ বছর, জর্ডানের আম্মানে থাকেন। তিনি একটি স্থাপত্য নকশা প্রতিষ্ঠানে কাজ করেন।"></figure>
+    <div class="ptext"><h3>পারসোনা</h3><p>Nour Haddad, ২৮ বছর, জর্ডানের আম্মানে থাকেন। তিনি একটি স্থাপত্য নকশা প্রতিষ্ঠানে কাজ করেন। সন্ধ্যা ৮টায় বাড়ির বারান্দায় বসে iPhone খোলেন। ভাগ্যগণনায় বিশ্বাস করেন না; কার্ডের ছবি আর গল্পকে “ছোট্ট একটা পাঠ” হিসেবে উপভোগ করেন। গল্প যখন ইসলামি স্থাপত্যের টাইলের নীল বা পেট্রার পাথরের গোলাপি আভার পথ ধরে রঙে পৌঁছায়, কাজের রংবিন্যাসের জন্য তিনি তা টুকে রাখেন। মাঝে মাঝে ফলাফলের পাতাটি সহকর্মী স্থপতিদের WhatsApp গ্রুপে পাঠান।</p></div>
+  </div>
+  <details><summary>সংখ্যা ও টীকা</summary>
+    <div class="scroll"><table class="facts"><thead><tr><th scope="col">বিষয়</th><th scope="col">মান</th><th scope="col">টীকা</th></tr></thead><tbody>
+      <tr><th scope="row">মোট ভাষাভাষী (মাতৃভাষা + দ্বিতীয় ভাষা)</th><td>৩৩.৫ কোটি (পঞ্চম স্থান, আধুনিক প্রমিত আরবি)</td><td>Ethnologue, ২০২৬ সংস্করণ</td></tr>
+      <tr><th scope="row">ওয়েব কনটেন্টে অংশ</th><td>০.৬% (১৯তম স্থান)</td><td>W৩Techs, অক্টোবর ২০২৬</td></tr>
+      <tr><th scope="row">ভাষাভিত্তিক ইন্টারনেট ব্যবহারকারী</th><td>৫.২% (চতুর্থ স্থান)</td><td>Internet World Stats, মার্চ ২০২০</td></tr>
+      <tr><th scope="row">অনলাইনে সময়</th><td>আনুমানিক ৩৩ কোটি ইন্টারনেট ব্যবহারকারী, দিনে গড়ে ৭.০ ঘণ্টা, মোট ২৩১ কোটি ঘণ্টা/দিন (চতুর্থ স্থান)</td><td>Claude-এর অনুমান। মিশর, সৌদি আরব, ইরাক, আলজেরিয়া, মরক্কো প্রভৃতি</td></tr>
+    </tbody></table></div>
+  </details>
+</section>
+
+<section class="lang" id="fr" aria-labelledby="h-fr">
+  <p class="kicker">08 · fr</p>
+  <h2 id="h-fr"><span lang="fr">Français</span><small>ফরাসি</small></h2>
+  <dl class="nums">
+    <div><dt>মোট ভাষাভাষী</dt><dd>৩৩.৪ কোটি (ষষ্ঠ স্থান)</dd></div>
+    <div><dt>ওয়েব</dt><dd>৪.৫% (পঞ্চম স্থান)</dd></div>
+    <div><dt>অনলাইনে সময়</dt><dd>৭৫ কোটি ঘণ্টা</dd></div>
+  </dl>
+  <p class="region"><b>কোথায়</b>ফ্রান্স, দক্ষিণ বেলজিয়াম, পশ্চিম সুইজারল্যান্ড, কানাডার কুইবেক ও লুক্সেমবুর্গ। পশ্চিম ও মধ্য আফ্রিকায় (কোত দিভোয়ার, সেনেগাল, গণতান্ত্রিক কঙ্গো প্রজাতন্ত্র, ক্যামেরুন প্রভৃতি) এটি স্কুল ও সরকারের ভাষা। উত্তর আফ্রিকার মরক্কো, আলজেরিয়া ও তিউনিসিয়াতেও এর ব্যাপক ব্যবহার।</p>
+  <div class="persona">
+    <figure><img src="../../language-intro/img/fr.webp" width="800" height="1000" loading="lazy" decoding="async" alt="একজন কাল্পনিক পারসোনা। Hélène Garnier, ৪১ বছর, লিওঁতে থাকেন। তিনি বই বাঁধাই ও কাগজ সংরক্ষণের একটি স্টুডিও চালান।"></figure>
+    <div class="ptext"><h3>পারসোনা</h3><p>Hélène Garnier, ৪১ বছর, লিওঁতে থাকেন। তিনি বই বাঁধাই ও কাগজ সংরক্ষণের একটি স্টুডিও চালান। রবিবার সকাল ১০টায় স্টুডিওর কাজের টেবিলে ট্যাবলেট খোলেন। নানির বাড়ির মার্সেই ট্যারোর কথা তাঁর মনে আছে, তাই মেজর আর্কানার নামগুলো তাঁর চেনা লাগে। গল্প যখন লিওঁর রেশম রং বা প্যারিসের কোনো রং-ব্যবসায়ীর পথ ধরে রঙে পৌঁছায়, তা দিয়েই তিনি পরের বাঁধাইয়ের এন্ডপেপারের রং বাছেন। তিনি আর্ট নুভো স্টাইল বেছে নেন।</p></div>
+  </div>
+  <details><summary>সংখ্যা ও টীকা</summary>
+    <div class="scroll"><table class="facts"><thead><tr><th scope="col">বিষয়</th><th scope="col">মান</th><th scope="col">টীকা</th></tr></thead><tbody>
+      <tr><th scope="row">মোট ভাষাভাষী (মাতৃভাষা + দ্বিতীয় ভাষা)</th><td>৩৩.৪ কোটি (ষষ্ঠ স্থান)</td><td>Ethnologue, ২০২৬ সংস্করণ</td></tr>
+      <tr><th scope="row">ওয়েব কনটেন্টে অংশ</th><td>৪.৫% (পঞ্চম স্থান)</td><td>W৩Techs, অক্টোবর ২০২৬</td></tr>
+      <tr><th scope="row">ভাষাভিত্তিক ইন্টারনেট ব্যবহারকারী</th><td>৩.৩% (সপ্তম স্থান)</td><td>Internet World Stats, মার্চ ২০২০</td></tr>
+      <tr><th scope="row">অনলাইনে সময়</th><td>আনুমানিক ১২.৫ কোটি ইন্টারনেট ব্যবহারকারী, দিনে গড়ে ৬.০ ঘণ্টা, মোট ৭৫ কোটি ঘণ্টা/দিন (নবম স্থান)</td><td>Claude-এর অনুমান। ফ্রান্স, বেলজিয়াম ও কুইবেক, সঙ্গে ফরাসিভাষী আফ্রিকা</td></tr>
+    </tbody></table></div>
+  </details>
+</section>
+
+<section class="lang" id="bn" aria-labelledby="h-bn">
+  <p class="kicker">09 · bn</p>
+  <h2 id="h-bn"><span lang="bn">বাংলা</span></h2>
+  <dl class="nums">
+    <div><dt>মোট ভাষাভাষী</dt><dd>২৭.৪ কোটি (সপ্তম স্থান)</dd></div>
+    <div><dt>ওয়েব</dt><dd>০.১%-এর কম (৩৯তম স্থান)</dd></div>
+    <div><dt>অনলাইনে সময়</dt><dd>৬১ কোটি ঘণ্টা</dd></div>
+  </dl>
+  <p class="region"><b>কোথায়</b>বাংলাদেশ (রাষ্ট্রভাষা) এবং ভারতের পশ্চিমবঙ্গ, ত্রিপুরা ও আসামের কিছু অংশ। যুক্তরাজ্য (পূর্ব লন্ডন), উপসাগরীয় দেশগুলো, যুক্তরাষ্ট্র ও মালয়েশিয়ায় বাংলাদেশ থেকে যাওয়া অনেক মানুষ বাস করেন।</p>
+  <div class="persona">
+    <figure><img src="../../language-intro/img/bn.webp" width="800" height="1000" loading="lazy" decoding="async" alt="একজন কাল্পনিক পারসোনা। ফারহানা আক্তার, ২৩ বছর, ঢাকায় থাকেন। তিনি বিশ্ববিদ্যালয়ে ইংরেজি সাহিত্য পড়েন।"></figure>
+    <div class="ptext"><h3>পারসোনা</h3><p>ফারহানা আক্তার, ২৩ বছর, ঢাকায় থাকেন। তিনি বিশ্ববিদ্যালয়ে ইংরেজি সাহিত্য পড়েন। রাত ১০টায়, পড়ার ফাঁকে Samsung ফোনে Facebook দেখছিলেন, আর এক বন্ধুর শেয়ার করা ফলাফলের পাতা থেকে এখানে এলেন। এটিকে তিনি ভাগ্যগণনা হিসেবে নয়, বাংলায় পড়া যায় এমন একটি ছোট গল্প হিসেবে উপভোগ করেন। গল্প যখন ঢাকাই মসলিন বা জামদানির পথ ধরে হাতির দাঁতের রঙে পৌঁছায়, তিনি রঙের নামটি তাঁর কবিতার খাতায় টুকে রাখেন।</p></div>
+  </div>
+  <details><summary>সংখ্যা ও টীকা</summary>
+    <div class="scroll"><table class="facts"><thead><tr><th scope="col">বিষয়</th><th scope="col">মান</th><th scope="col">টীকা</th></tr></thead><tbody>
+      <tr><th scope="row">মোট ভাষাভাষী (মাতৃভাষা + দ্বিতীয় ভাষা)</th><td>২৭.৪ কোটি (সপ্তম স্থান)</td><td>Ethnologue, ২০২৬ সংস্করণ</td></tr>
+      <tr><th scope="row">ওয়েব কনটেন্টে অংশ</th><td>০.১%-এর কম (৩৯তম স্থান)</td><td>W৩Techs, অক্টোবর ২০২৬</td></tr>
+      <tr><th scope="row">ভাষাভিত্তিক ইন্টারনেট ব্যবহারকারী</th><td>শীর্ষ ১০-এ নেই</td><td>Internet World Stats, মার্চ ২০২০</td></tr>
+      <tr><th scope="row">অনলাইনে সময়</th><td>আনুমানিক ১১ কোটি ইন্টারনেট ব্যবহারকারী, দিনে গড়ে ৫.৫ ঘণ্টা, মোট ৬১ কোটি ঘণ্টা/দিন (দশম স্থান)</td><td>Claude-এর অনুমান। বাংলাদেশ ও পশ্চিমবঙ্গ</td></tr>
+    </tbody></table></div>
+  </details>
+</section>
+
+<section class="lang" id="pt" aria-labelledby="h-pt">
+  <p class="kicker">10 · pt</p>
+  <h2 id="h-pt"><span lang="pt">Português</span><small>পর্তুগিজ (ব্রাজিল)</small></h2>
+  <dl class="nums">
+    <div><dt>মোট ভাষাভাষী</dt><dd>২৬.৯ কোটি (অষ্টম স্থান)</dd></div>
+    <div><dt>ওয়েব</dt><dd>৪.১% (ষষ্ঠ স্থান)</dd></div>
+    <div><dt>অনলাইনে সময়</dt><dd>১৮৯ কোটি ঘণ্টা</dd></div>
+  </dl>
+  <p class="region"><b>কোথায়</b>ব্রাজিল (সাইটে pt-BR ব্যবহার হয়) ও পর্তুগাল। অ্যাঙ্গোলা, মোজাম্বিক ও কেপ ভার্দের মতো আফ্রিকার দেশেও এটি সরকারি ভাষা। জাপানি বংশোদ্ভূত অনেক ব্রাজিলীয় জাপানে বাস করেন। যুক্তরাষ্ট্র, পর্তুগাল ও জাপানে ব্রাজিলীয় সম্প্রদায় আছে।</p>
+  <div class="persona">
+    <figure><img src="../../language-intro/img/pt.webp" width="800" height="1000" loading="lazy" decoding="async" alt="একজন কাল্পনিক পারসোনা। Juliana Costa, ৩০ বছর, রেসিফিতে থাকেন। তিনি হাসপাতালের নার্স, রাতের শিফটেও কাজ করেন।"></figure>
+    <div class="ptext"><h3>পারসোনা</h3><p>Juliana Costa, ৩০ বছর, রেসিফিতে থাকেন। তিনি হাসপাতালের নার্স, রাতের শিফটেও কাজ করেন। সকাল ৬:৩০-এ, রাতের শিফট সেরে বাড়ি ফেরার বাসে Samsung ফোন খুলে একটি কার্ড তোলেন। কার্ডের অর্থের চেয়ে গল্পের শেষে আসা রংটির অপেক্ষাই তাঁর বেশি। গল্প যখন পাউ-ব্রাজিলের (যে লাল রঙের গাছ থেকে ব্রাজিল নামটি এসেছে) পথ ধরে রঙে পৌঁছায়, তিনি তা সহকর্মীদের WhatsApp গ্রুপে পাঠান। নববর্ষের আগের রাতের পোশাকের রং বাছতেও তিনি এখানে কার্ড তুলবেন বলে ভাবছেন।</p></div>
+  </div>
+  <details><summary>সংখ্যা ও টীকা</summary>
+    <div class="scroll"><table class="facts"><thead><tr><th scope="col">বিষয়</th><th scope="col">মান</th><th scope="col">টীকা</th></tr></thead><tbody>
+      <tr><th scope="row">মোট ভাষাভাষী (মাতৃভাষা + দ্বিতীয় ভাষা)</th><td>২৬.৯ কোটি (অষ্টম স্থান)</td><td>Ethnologue, ২০২৬ সংস্করণ</td></tr>
+      <tr><th scope="row">ওয়েব কনটেন্টে অংশ</th><td>৪.১% (ষষ্ঠ স্থান)</td><td>W৩Techs, অক্টোবর ২০২৬</td></tr>
+      <tr><th scope="row">ভাষাভিত্তিক ইন্টারনেট ব্যবহারকারী</th><td>৩.৭% (ষষ্ঠ স্থান)</td><td>Internet World Stats, মার্চ ২০২০</td></tr>
+      <tr><th scope="row">অনলাইনে সময়</th><td>আনুমানিক ২১ কোটি ইন্টারনেট ব্যবহারকারী, দিনে গড়ে ৯.০ ঘণ্টা, মোট ১৮৯ কোটি ঘণ্টা/দিন (পঞ্চম স্থান)</td><td>Claude-এর অনুমান। বেশির ভাগই ব্রাজিল। অনলাইনে সময় বিশ্বে সবচেয়ে বেশিগুলোর একটি</td></tr>
+    </tbody></table></div>
+  </details>
+</section>
+
+<section class="lang" id="id" aria-labelledby="h-id">
+  <p class="kicker">11 · id</p>
+  <h2 id="h-id"><span lang="id">Bahasa Indonesia</span><small>ইন্দোনেশীয়</small></h2>
+  <dl class="nums">
+    <div><dt>মোট ভাষাভাষী</dt><dd>২৫.৫ কোটি (নবম স্থান)</dd></div>
+    <div><dt>ওয়েব</dt><dd>১.২% (১৩তম স্থান)</dd></div>
+    <div><dt>অনলাইনে সময়</dt><dd>১৫৫ কোটি ঘণ্টা</dd></div>
+  </dl>
+  <p class="region"><b>কোথায়</b>ইন্দোনেশিয়ার রাষ্ট্রভাষা, যা ২০ কোটির বেশি মানুষ স্কুলে ও কাজে ব্যবহার করেন। তিমুর-লেস্তেতে এটি কাজের ভাষা। মালয়েশিয়া, ব্রুনেই ও সিঙ্গাপুরের মালয় ভাষার সঙ্গে মোটামুটি পারস্পরিকভাবে বোধগম্য। কারিগরি ইন্টার্ন প্রশিক্ষণার্থী বা নির্দিষ্ট দক্ষ কর্মী (Specified Skilled Worker) কর্মসূচির আওতায় জাপানে কাজ করা ইন্দোনেশীয়দের সংখ্যা বাড়ছে।</p>
+  <div class="persona">
+    <figure><img src="../../language-intro/img/id.webp" width="800" height="1000" loading="lazy" decoding="async" alt="একজন কাল্পনিক পারসোনা। Dimas Pratama, ২৫ বছর, বান্দুংয়ে থাকেন। তিনি একটি স্টার্টআপের জুনিয়র গ্রাফিক ডিজাইনার।"></figure>
+    <div class="ptext"><h3>পারসোনা</h3><p>Dimas Pratama, ২৫ বছর, বান্দুংয়ে থাকেন। তিনি একটি স্টার্টআপের জুনিয়র গ্রাফিক ডিজাইনার। সকাল ৯টায় একটি কো-ওয়ার্কিং স্পেসে Android ফোন খোলেন। ভাগ্যগণনার জন্য নয়, রংবিন্যাসের আইডিয়া খোঁজার হাতিয়ার হিসেবে এটি ব্যবহার করেন। কার্ডের অর্থে চোখ বুলিয়ে নেন, আর রঙের গল্প মন দিয়ে পড়েন। গল্প যখন জাভার বাটিকের নীল বা সুন্দার বাঁশের কারুকাজের পথ ধরে রঙে পৌঁছায়, সেদিনের পোস্টারের খসড়ার মূল রং সেটিই করেন। Instagram স্টোরিতে শুধু রঙের নামটি শেয়ার করেন।</p></div>
+  </div>
+  <details><summary>সংখ্যা ও টীকা</summary>
+    <div class="scroll"><table class="facts"><thead><tr><th scope="col">বিষয়</th><th scope="col">মান</th><th scope="col">টীকা</th></tr></thead><tbody>
+      <tr><th scope="row">মোট ভাষাভাষী (মাতৃভাষা + দ্বিতীয় ভাষা)</th><td>২৫.৫ কোটি (নবম স্থান)</td><td>Ethnologue, ২০২৬ সংস্করণ</td></tr>
+      <tr><th scope="row">ওয়েব কনটেন্টে অংশ</th><td>১.২% (১৩তম স্থান)</td><td>W৩Techs, অক্টোবর ২০২৬</td></tr>
+      <tr><th scope="row">ভাষাভিত্তিক ইন্টারনেট ব্যবহারকারী</th><td>৪.৩% (পঞ্চম স্থান)</td><td>Internet World Stats, মার্চ ২০২০। মালয়ের সঙ্গে একই সারি; সংখ্যাটি ইন্দোনেশীয়র</td></tr>
+      <tr><th scope="row">অনলাইনে সময়</th><td>আনুমানিক ২১ কোটি ইন্টারনেট ব্যবহারকারী, দিনে গড়ে ৭.৪ ঘণ্টা, মোট ১৫৫ কোটি ঘণ্টা/দিন (সপ্তম স্থান)</td><td>Claude-এর অনুমান</td></tr>
+    </tbody></table></div>
+  </details>
+</section>
+
+<section class="lang" id="ms" aria-labelledby="h-ms">
+  <p class="kicker">12 · ms</p>
+  <h2 id="h-ms"><span lang="ms">Bahasa Melayu</span><small>মালয়</small></h2>
+  <dl class="nums">
+    <div><dt>মোট ভাষাভাষী</dt><dd>অজানা</dd></div>
+    <div><dt>ওয়েব</dt><dd>তথ্য নেই</dd></div>
+    <div><dt>অনলাইনে সময়</dt><dd>প্রায় ১৬ কোটি ঘণ্টা (সহায়ক সংখ্যা, র‍্যাঙ্কিংয়ের বাইরে)</dd></div>
+  </dl>
+  <p class="region"><b>কোথায়</b>মালয়েশিয়া, ব্রুনেই ও সিঙ্গাপুর (রাষ্ট্রভাষা)। দক্ষিণ থাইল্যান্ডেও মালয়ভাষী আছেন। মালয়েশিয়ায় মালয়রা দৈনন্দিন জীবনে এটি বলেন, আর চীনা ও ভারতীয় বংশোদ্ভূত মালয়েশীয়রাও স্কুলে শেখেন।</p>
+  <div class="persona">
+    <figure><img src="../../language-intro/img/ms.webp" width="800" height="1000" loading="lazy" decoding="async" alt="একজন কাল্পনিক পারসোনা। Nur Aisyah binti Rahman, ২৭ বছর, শাহ আলমে থাকেন। তিনি হাসপাতালের ফার্মাসিস্ট।"></figure>
+    <div class="ptext"><h3>পারসোনা</h3><p>Nur Aisyah binti Rahman, ২৭ বছর, শাহ আলমে থাকেন। তিনি হাসপাতালের ফার্মাসিস্ট। দুপুর ১টায়, লাঞ্চ ব্রেকে Android ফোনে TikTok-এ আগামী বছরের মার্চে ওসাকা ভ্রমণের টিপস দেখছেন। ভাগ্যগণনায় বিশ্বাস করেন না, তবে কার্ডের ছবি আর রঙের গল্পকে “পড়ার মতো সুন্দর কিছু” হিসেবে খুব ভালোবাসেন। গল্প যখন মালয় সংকেতের সোনালি সুতো বা মালাক্কার বন্দরের পথ ধরে রঙে পৌঁছায়, ভ্রমণের তুদুংয়ের (মাথার স্কার্ফ) রং বাছতে সেটিকেই সূত্র ধরেন। পরিবারের WhatsApp গ্রুপে শুধু রঙের নামটি পাঠান।</p></div>
+  </div>
+  <details><summary>সংখ্যা ও টীকা</summary>
+    <div class="scroll"><table class="facts"><thead><tr><th scope="col">বিষয়</th><th scope="col">মান</th><th scope="col">টীকা</th></tr></thead><tbody>
+      <tr><th scope="row">মোট ভাষাভাষী (মাতৃভাষা + দ্বিতীয় ভাষা)</th><td>অজানা</td><td>মালয়কে প্রায়ই ইন্দোনেশীয়সহ একটি বৃহৎ ভাষা (ম্যাক্রোল্যাঙ্গুয়েজ) হিসেবে একসঙ্গে গোনা হয়, তাই আলাদা সংখ্যা নেই। Wikipedia-র “Malay language” পাতা (Ethnologue, ২৮তম সংস্করণ, ২০২৫-এর উদ্ধৃতি দিয়ে) ম্যাক্রোল্যাঙ্গুয়েজ হিসেবে মালয়ের প্রায় ৯ কোটি মাতৃভাষী (২০২০–২০২৩) ও প্রায় ১৮ কোটি দ্বিতীয় ভাষাভাষী (২০২০) উল্লেখ করে। এই গণনায় ইন্দোনেশিয়ার স্থানীয় মালয় রূপগুলোও আছে, এটি শুধু প্রমিত মালয়ের হিসাব নয়</td></tr>
+      <tr><th scope="row">ওয়েব কনটেন্টে অংশ</th><td>তথ্য নেই</td><td>W৩Techs-এর শীর্ষ ৪০-এ নেই</td></tr>
+      <tr><th scope="row">ভাষাভিত্তিক ইন্টারনেট ব্যবহারকারী</th><td>ইন্দোনেশীয়র সঙ্গে একই সারিতে</td><td>Internet World Stats-এ ইন্দোনেশীয়/মালয় সারির সংখ্যাটি কেবল ইন্দোনেশীয়র ৪.৩%</td></tr>
+      <tr><th scope="row">অনলাইনে সময়</th><td>প্রায় ১৬ কোটি ঘণ্টা/দিন (সহায়ক সংখ্যা, র‍্যাঙ্কিংয়ের বাইরে)</td><td>Claude-এর অনুমানে র‍্যাঙ্কিংয়ের বাইরের সহায়ক সংখ্যা। মালয়েশিয়ার ব্যবহারকারীদের প্রায় ৬০%, সঙ্গে ব্রুনেই</td></tr>
+    </tbody></table></div>
+  </details>
+</section>
+
+<section class="lang" id="ur" aria-labelledby="h-ur">
+  <p class="kicker">13 · ur</p>
+  <h2 id="h-ur"><span lang="ur" dir="rtl">اردو</span><small>উর্দু</small></h2>
+  <dl class="nums">
+    <div><dt>মোট ভাষাভাষী</dt><dd>২৪.৬ কোটি (দশম স্থান)</dd></div>
+    <div><dt>ওয়েব</dt><dd>তথ্য নেই</dd></div>
+    <div><dt>অনলাইনে সময়</dt><dd>৫২ কোটি ঘণ্টা</dd></div>
+  </dl>
+  <p class="region"><b>কোথায়</b>পাকিস্তান (রাষ্ট্রভাষা) ও উত্তর ভারত (উত্তরপ্রদেশ, তেলেঙ্গানার হায়দরাবাদ, দিল্লি প্রভৃতি)। যুক্তরাজ্য, উপসাগরীয় দেশগুলো, যুক্তরাষ্ট্র ও কানাডায় পাকিস্তানি বংশোদ্ভূত অনেক মানুষ বাস করেন। মুখের ভাষা হিন্দির কাছাকাছি; লিপি (নাস্তালিক রীতির আরবি লিপি) আলাদা। সাইটটি ডান থেকে বাঁয়ে লেখার বিন্যাসে।</p>
+  <div class="persona">
+    <figure><img src="../../language-intro/img/ur.webp" width="800" height="1000" loading="lazy" decoding="async" alt="একজন কাল্পনিক পারসোনা। Hamza Qureshi, ৩০ বছর, লাহোরে থাকেন। তিনি একটি ফিনটেক কোম্পানির সফটওয়্যার ইঞ্জিনিয়ার।"></figure>
+    <div class="ptext"><h3>পারসোনা</h3><p>Hamza Qureshi, ৩০ বছর, লাহোরে থাকেন। তিনি একটি ফিনটেক কোম্পানির সফটওয়্যার ইঞ্জিনিয়ার। রাত ১২:৩০-এ, কাজ শেষে এক কাপ চা হাতে Android ফোন খোলেন। ভাগ্যগণনা থেকে দূরত্ব রাখেন, তবে উর্দু লেখা সুন্দরভাবে সাজানো পাতা তাঁর প্রিয়, তাই গল্প পড়তে আসেন। গল্প যখন মুঘল অণুচিত্রের গাঢ় নীল (আল্ট্রামেরিন) বা লাহোর দুর্গের দেয়ালের টাইলের পথ ধরে রঙে পৌঁছায়, তিনি WhatsApp-এ এক কবি বন্ধুকে লিংক পাঠান।</p></div>
+  </div>
+  <details><summary>সংখ্যা ও টীকা</summary>
+    <div class="scroll"><table class="facts"><thead><tr><th scope="col">বিষয়</th><th scope="col">মান</th><th scope="col">টীকা</th></tr></thead><tbody>
+      <tr><th scope="row">মোট ভাষাভাষী (মাতৃভাষা + দ্বিতীয় ভাষা)</th><td>২৪.৬ কোটি (দশম স্থান)</td><td>Ethnologue, ২০২৬ সংস্করণ</td></tr>
+      <tr><th scope="row">ওয়েব কনটেন্টে অংশ</th><td>তথ্য নেই</td><td>W৩Techs-এর শীর্ষ ৪০-এ নেই</td></tr>
+      <tr><th scope="row">ভাষাভিত্তিক ইন্টারনেট ব্যবহারকারী</th><td>শীর্ষ ১০-এ নেই</td><td>Internet World Stats, মার্চ ২০২০</td></tr>
+      <tr><th scope="row">অনলাইনে সময়</th><td>আনুমানিক ৯.৫ কোটি ইন্টারনেট ব্যবহারকারী, দিনে গড়ে ৫.৫ ঘণ্টা, মোট ৫২ কোটি ঘণ্টা/দিন (১৩তম স্থান)</td><td>Claude-এর অনুমান। পাকিস্তানের প্রায় ৭৫%, সঙ্গে ভারতের একাংশ</td></tr>
+    </tbody></table></div>
+  </details>
+</section>
+
+<section class="lang" id="ru" aria-labelledby="h-ru">
+  <p class="kicker">14 · ru</p>
+  <h2 id="h-ru"><span lang="ru">Русский</span><small>রুশ</small></h2>
+  <dl class="nums">
+    <div><dt>মোট ভাষাভাষী</dt><dd>২১ কোটি (১১তম স্থান)</dd></div>
+    <div><dt>ওয়েব</dt><dd>৩.৪% (সপ্তম স্থান)</dd></div>
+    <div><dt>অনলাইনে সময়</dt><dd>১১৬ কোটি ঘণ্টা</dd></div>
+  </dl>
+  <p class="region"><b>কোথায়</b>রাশিয়া, বেলারুশ, কাজাখস্তান ও কিরগিজস্তানের সরকারি ভাষা। সাবেক সোভিয়েত ইউনিয়নের অন্যান্য দেশেও (মধ্য এশিয়া, ককেশাস, বাল্টিক দেশগুলো) অনেকে রুশ ব্যবহার করেন। ইসরায়েল, জার্মানি ও যুক্তরাষ্ট্রেও রুশভাষী সম্প্রদায় আছে।</p>
+  <div class="persona">
+    <figure><img src="../../language-intro/img/ru.webp" width="800" height="1000" loading="lazy" decoding="async" alt="একজন কাল্পনিক পারসোনা। Анна Соколова (Anna Sokolova), ৩৫ বছর, নোভোসিবিরস্কে থাকেন। তিনি একটি গবেষণা প্রতিষ্ঠানের রাসায়নিক বিশ্লেষণ টেকনিশিয়ান।"></figure>
+    <div class="ptext"><h3>পারসোনা</h3><p><span lang="ru">Анна Соколова</span> (Anna Sokolova), ৩৫ বছর, নোভোসিবিরস্কে থাকেন। তিনি একটি গবেষণা প্রতিষ্ঠানের রাসায়নিক বিশ্লেষণ টেকনিশিয়ান। রাত ১০টায়, রান্নাঘরে চা খেতে খেতে Android ফোন খোলেন। রং আর শিল্পকলা নিয়ে একটি Telegram চ্যানেল থেকে এই সাইটের খোঁজ পান। কাজের সূত্রেই কার্ড তুলে খনিজ আর রঞ্জকের পথ ধরে রঙে পৌঁছানো গল্পটি তাঁর বিশেষ ভালো লাগে। যেদিন ম্যালাকাইট সবুজ আসে, মেয়েকে সেই পাথরের ছবি দেখান।</p></div>
+  </div>
+  <details><summary>সংখ্যা ও টীকা</summary>
+    <div class="scroll"><table class="facts"><thead><tr><th scope="col">বিষয়</th><th scope="col">মান</th><th scope="col">টীকা</th></tr></thead><tbody>
+      <tr><th scope="row">মোট ভাষাভাষী (মাতৃভাষা + দ্বিতীয় ভাষা)</th><td>২১ কোটি (১১তম স্থান)</td><td>Ethnologue, ২০২৬ সংস্করণ</td></tr>
+      <tr><th scope="row">ওয়েব কনটেন্টে অংশ</th><td>৩.৪% (সপ্তম স্থান)</td><td>W৩Techs, অক্টোবর ২০২৬</td></tr>
+      <tr><th scope="row">ভাষাভিত্তিক ইন্টারনেট ব্যবহারকারী</th><td>২.৫% (নবম স্থান)</td><td>Internet World Stats, মার্চ ২০২০</td></tr>
+      <tr><th scope="row">অনলাইনে সময়</th><td>আনুমানিক ১৫.৫ কোটি ইন্টারনেট ব্যবহারকারী, দিনে গড়ে ৭.৫ ঘণ্টা, মোট ১১৬ কোটি ঘণ্টা/দিন (অষ্টম স্থান)</td><td>Claude-এর অনুমান। রাশিয়া, সঙ্গে বেলারুশ, কাজাখস্তান ও মধ্য এশিয়ার কিছু অংশ</td></tr>
+    </tbody></table></div>
+  </details>
+</section>
+
+<section class="lang" id="de" aria-labelledby="h-de">
+  <p class="kicker">15 · de</p>
+  <h2 id="h-de"><span lang="de">Deutsch</span><small>জার্মান</small></h2>
+  <dl class="nums">
+    <div><dt>মোট ভাষাভাষী</dt><dd>১৩.৩ কোটি (১২তম স্থান)</dd></div>
+    <div><dt>ওয়েব</dt><dd>৫.৯% (তৃতীয় স্থান)</dd></div>
+    <div><dt>অনলাইনে সময়</dt><dd>৪৮ কোটি ঘণ্টা</dd></div>
+  </dl>
+  <p class="region"><b>কোথায়</b>জার্মানি, অস্ট্রিয়া, সুইজারল্যান্ড (উত্তর ও মধ্যাঞ্চল), লিখটেনস্টাইন, লুক্সেমবুর্গ, ইতালির দক্ষিণ টিরোল ও পূর্ব বেলজিয়াম।</p>
+  <div class="persona">
+    <figure><img src="../../language-intro/img/de.webp" width="800" height="1000" loading="lazy" decoding="async" alt="একজন কাল্পনিক পারসোনা। Jonas Weber, ৩৮ বছর, লাইপৎসিগে থাকেন। তিনি একটি থিয়েটারের সাউন্ড ইঞ্জিনিয়ার।"></figure>
+    <div class="ptext"><h3>পারসোনা</h3><p>Jonas Weber, ৩৮ বছর, লাইপৎসিগে থাকেন। তিনি একটি থিয়েটারের সাউন্ড ইঞ্জিনিয়ার। কোনো এক কাজের দিনে দুপুর ১টায়, বিরতিতে ল্যাপটপের Firefox-এ এটি খোলেন। তিনি অ্যাড ব্লকার ব্যবহার করেন, আর সম্মতির ব্যানার এলে প্রত্যাখ্যান করেন। ভাগ্যগণনায় বিশ্বাস করেন না, তবে কার্ডের স্টাইলগুলো (পরাবাস্তব আলোকচিত্র, ব্রুটালিস্ট গ্রাফিক্স) মিলিয়ে দেখতে ভালোবাসেন। গল্প যখন ১৮ শতকের গোড়ায় বার্লিনে জন্ম নেওয়া প্রুশিয়ান ব্লুর পথ ধরে রঙে পৌঁছায়, তিনি খুশি হয়ে সহকর্মীদের সে কথা বলেন।</p></div>
+  </div>
+  <details><summary>সংখ্যা ও টীকা</summary>
+    <div class="scroll"><table class="facts"><thead><tr><th scope="col">বিষয়</th><th scope="col">মান</th><th scope="col">টীকা</th></tr></thead><tbody>
+      <tr><th scope="row">মোট ভাষাভাষী (মাতৃভাষা + দ্বিতীয় ভাষা)</th><td>১৩.৩ কোটি (১২তম স্থান)</td><td>Ethnologue, ২০২৬ সংস্করণ</td></tr>
+      <tr><th scope="row">ওয়েব কনটেন্টে অংশ</th><td>৫.৯% (তৃতীয় স্থান)</td><td>W৩Techs, অক্টোবর ২০২৬</td></tr>
+      <tr><th scope="row">ভাষাভিত্তিক ইন্টারনেট ব্যবহারকারী</th><td>২.০% (দশম স্থান)</td><td>Internet World Stats, মার্চ ২০২০</td></tr>
+      <tr><th scope="row">অনলাইনে সময়</th><td>আনুমানিক ৯.৩ কোটি ইন্টারনেট ব্যবহারকারী, দিনে গড়ে ৫.২ ঘণ্টা, মোট ৪৮ কোটি ঘণ্টা/দিন (১৭তম স্থান)</td><td>Claude-এর অনুমান। জার্মানি, অস্ট্রিয়া, সুইজারল্যান্ড</td></tr>
+    </tbody></table></div>
+  </details>
+</section>
+
+<section class="lang" id="vi" aria-labelledby="h-vi">
+  <p class="kicker">16 · vi</p>
+  <h2 id="h-vi"><span lang="vi">Tiếng Việt</span><small>ভিয়েতনামি</small></h2>
+  <dl class="nums">
+    <div><dt>মোট ভাষাভাষী</dt><dd>৯.৭ কোটি (১৭তম স্থান)</dd></div>
+    <div><dt>ওয়েব</dt><dd>০.৯% (১৬তম স্থান)</dd></div>
+    <div><dt>অনলাইনে সময়</dt><dd>৫০ কোটি ঘণ্টা</dd></div>
+  </dl>
+  <p class="region"><b>কোথায়</b>ভিয়েতনাম। যুক্তরাষ্ট্র (ক্যালিফোর্নিয়া, টেক্সাস), অস্ট্রেলিয়া, ফ্রান্স ও কানাডায় বড় ভিয়েতনামি সম্প্রদায় আছে। অনেক ভিয়েতনামি কারিগরি ইন্টার্ন প্রশিক্ষণার্থী বা শিক্ষার্থী হিসেবে জাপানেও থাকেন।</p>
+  <div class="persona">
+    <figure><img src="../../language-intro/img/vi.webp" width="800" height="1000" loading="lazy" decoding="async" alt="একজন কাল্পনিক পারসোনা। Trần Văn Minh, ২৪ বছর, আইচি প্রিফেকচারের তোয়োতা শহরে থাকেন। তিনি একটি গাড়ির যন্ত্রাংশ কারখানার কারিগরি ইন্টার্ন প্রশিক্ষণার্থী।"></figure>
+    <div class="ptext"><h3>পারসোনা</h3><p>Trần Văn Minh, ২৪ বছর, আইচি প্রিফেকচারের তোয়োতা শহরে থাকেন। তিনি একটি গাড়ির যন্ত্রাংশ কারখানার কারিগরি ইন্টার্ন প্রশিক্ষণার্থী। বিকেল ৫টায়, রাতের শিফটে বেরোনোর আগে হোস্টেলের ঘরে Android ফোন খোলেন। জাপানে থাকা বন্ধুদের একটি Facebook গ্রুপে এই সাইটের ফলাফল শেয়ার হয়েছিল। মা যে <i lang="vi">mệnh</i>-এর রঙের কথা বলেন, তার সঙ্গে মিলিয়ে তিনি একটি কার্ড তোলেন। গল্প যখন হোই আনের লণ্ঠনের রেশম বা নিজের গ্রামের গালার কাজের পথ ধরে রঙে পৌঁছায়, তিনি Zalo-তে পরিবারকে পাঠান।</p></div>
+  </div>
+  <details><summary>সংখ্যা ও টীকা</summary>
+    <div class="scroll"><table class="facts"><thead><tr><th scope="col">বিষয়</th><th scope="col">মান</th><th scope="col">টীকা</th></tr></thead><tbody>
+      <tr><th scope="row">মোট ভাষাভাষী (মাতৃভাষা + দ্বিতীয় ভাষা)</th><td>৯.৭ কোটি (১৭তম স্থান)</td><td>Ethnologue, ২০২৬ সংস্করণ</td></tr>
+      <tr><th scope="row">ওয়েব কনটেন্টে অংশ</th><td>০.৯% (১৬তম স্থান)</td><td>W৩Techs, অক্টোবর ২০২৬</td></tr>
+      <tr><th scope="row">ভাষাভিত্তিক ইন্টারনেট ব্যবহারকারী</th><td>শীর্ষ ১০-এ নেই</td><td>Internet World Stats, মার্চ ২০২০</td></tr>
+      <tr><th scope="row">অনলাইনে সময়</th><td>আনুমানিক ৭.৯ কোটি ইন্টারনেট ব্যবহারকারী, দিনে গড়ে ৬.৩ ঘণ্টা, মোট ৫০ কোটি ঘণ্টা/দিন (১৫তম স্থান)</td><td>Claude-এর অনুমান</td></tr>
+    </tbody></table></div>
+  </details>
+</section>
+
+<section class="lang" id="sw" aria-labelledby="h-sw">
+  <p class="kicker">17 · sw</p>
+  <h2 id="h-sw"><span lang="sw">Kiswahili</span><small>সোয়াহিলি</small></h2>
+  <dl class="nums">
+    <div><dt>মোট ভাষাভাষী</dt><dd>৯.৫ কোটি (১৯তম স্থান)</dd></div>
+    <div><dt>ওয়েব</dt><dd>তথ্য নেই</dd></div>
+    <div><dt>অনলাইনে সময়</dt><dd>অনুমান নেই</dd></div>
+  </dl>
+  <p class="region"><b>কোথায়</b>তানজানিয়া ও কেনিয়া। তানজানিয়ায় এটি রাষ্ট্রভাষা; প্রাথমিক বিদ্যালয়ে পড়ানো হয় সোয়াহিলিতে, মাধ্যমিক থেকে ইংরেজি। কেনিয়ায় এটি সরকারি ভাষাগুলোর একটি; নিচের শ্রেণিগুলোতে মাতৃভাষা বা সোয়াহিলিতে পড়ানো হয়, পরে ইংরেজিতে, আর সোয়াহিলি একটি আবশ্যিক বিষয়। উগান্ডা, রুয়ান্ডা, বুরুন্ডি, গণতান্ত্রিক কঙ্গো প্রজাতন্ত্রের পূর্বাঞ্চল ও কোমোরোসেও এর ব্যাপক ব্যবহার। এটি আফ্রিকান ইউনিয়নের কাজের ভাষাগুলোর একটি।</p>
+  <div class="persona">
+    <figure><img src="../../language-intro/img/sw.webp" width="800" height="1000" loading="lazy" decoding="async" alt="একজন কাল্পনিক পারসোনা। Amina Juma, ২৮ বছর, দার এস সালামে থাকেন। তিনি একটি প্রাথমিক বিদ্যালয়ের শিক্ষক।"></figure>
+    <div class="ptext"><h3>পারসোনা</h3><p>Amina Juma, ২৮ বছর, দার এস সালামে থাকেন। তিনি একটি প্রাথমিক বিদ্যালয়ের শিক্ষক। বিকেল ৩:৩০-এ, ক্লাস শেষে শিক্ষকদের ঘরে Android ফোন খোলেন। সহকর্মীদের WhatsApp গ্রুপে এই সাইটের একটি ফলাফল ঘুরছিল। কাঙ্গা কাপড়ের রঙের সঙ্গে মিলিয়ে তিনি একটি কার্ড তোলেন। গল্প যখন কাঙ্গার নীল বা ভারত মহাসাগরের সন্ধ্যার আকাশের পথ ধরে রঙে পৌঁছায়, তিনি WhatsApp-এ মাকে পাঠান।</p></div>
+  </div>
+  <details><summary>সংখ্যা ও টীকা</summary>
+    <div class="scroll"><table class="facts"><thead><tr><th scope="col">বিষয়</th><th scope="col">মান</th><th scope="col">টীকা</th></tr></thead><tbody>
+      <tr><th scope="row">মোট ভাষাভাষী (মাতৃভাষা + দ্বিতীয় ভাষা)</th><td>৯.৫ কোটি (১৯তম স্থান)</td><td>Ethnologue, ২০২৬ সংস্করণ</td></tr>
+      <tr><th scope="row">ওয়েব কনটেন্টে অংশ</th><td>তথ্য নেই</td><td>W৩Techs-এর শীর্ষ ৪০-এ নেই</td></tr>
+      <tr><th scope="row">ভাষাভিত্তিক ইন্টারনেট ব্যবহারকারী</th><td>শীর্ষ ১০-এ নেই</td><td>Internet World Stats, মার্চ ২০২০</td></tr>
+      <tr><th scope="row">অনলাইনে সময়</th><td>অনুমান নেই</td><td>Claude-এর অনুমানে সোয়াহিলির কোনো সারি নেই। কেনিয়া ও তানজানিয়াকে সামগ্রিকভাবে ইংরেজি বা সোয়াহিলিতে ধরা হয়েছে, শুধু সোয়াহিলির সময় আলাদা করা হয়নি</td></tr>
+    </tbody></table></div>
+  </details>
+</section>
+
+<section class="lang" id="tr" aria-labelledby="h-tr">
+  <p class="kicker">18 · tr</p>
+  <h2 id="h-tr"><span lang="tr">Türkçe</span><small>তুর্কি</small></h2>
+  <dl class="nums">
+    <div><dt>মোট ভাষাভাষী</dt><dd>৯.৪ কোটি (২০তম স্থান, হাউসার সঙ্গে সমান)</dd></div>
+    <div><dt>ওয়েব</dt><dd>১.৬% (১১তম স্থান)</dd></div>
+    <div><dt>অনলাইনে সময়</dt><dd>৫৬ কোটি ঘণ্টা</dd></div>
+  </dl>
+  <p class="region"><b>কোথায়</b>তুরস্ক ও উত্তর সাইপ্রাস। জার্মানিতে বড় তুর্কি সম্প্রদায় আছে, নেদারল্যান্ডস, অস্ট্রিয়া ও ফ্রান্সেও অনেকে থাকেন। বুলগেরিয়া ও উত্তর গ্রিসেও এ ভাষার মানুষ আছেন।</p>
+  <div class="persona">
+    <figure><img src="../../language-intro/img/tr.webp" width="800" height="1000" loading="lazy" decoding="async" alt="একজন কাল্পনিক পারসোনা। Elif Yıldız, ৩৩ বছর, ইজমিরে থাকেন। তিনি হাইস্কুলের রসায়নের শিক্ষক।"></figure>
+    <div class="ptext"><h3>পারসোনা</h3><p>Elif Yıldız, ৩৩ বছর, ইজমিরে থাকেন। তিনি হাইস্কুলের রসায়নের শিক্ষক। বিকেল ৪:৩০-এ, ক্লাসের পর এক ক্যাফেতে বন্ধুদের সঙ্গে কফির তলানি দেখে ভাগ্য পড়িয়ে, তারপর iPhone-এ এই সাইটটি খোলেন। বন্ধুদের সঙ্গে মিলে কার্ডের অর্থ পড়েন। গল্প যখন ফিরোজা বা ইজনিক টাইলের নীলের পথ ধরে রঙে পৌঁছায়, সবাই মেতে ওঠেন, আর তিনি সেটি Instagram স্টোরিতে দেন।</p></div>
+  </div>
+  <details><summary>সংখ্যা ও টীকা</summary>
+    <div class="scroll"><table class="facts"><thead><tr><th scope="col">বিষয়</th><th scope="col">মান</th><th scope="col">টীকা</th></tr></thead><tbody>
+      <tr><th scope="row">মোট ভাষাভাষী (মাতৃভাষা + দ্বিতীয় ভাষা)</th><td>৯.৪ কোটি (২০তম স্থান, হাউসার সঙ্গে সমান)</td><td>Ethnologue, ২০২৬ সংস্করণ</td></tr>
+      <tr><th scope="row">ওয়েব কনটেন্টে অংশ</th><td>১.৬% (১১তম স্থান)</td><td>W৩Techs, অক্টোবর ২০২৬</td></tr>
+      <tr><th scope="row">ভাষাভিত্তিক ইন্টারনেট ব্যবহারকারী</th><td>শীর্ষ ১০-এ নেই</td><td>Internet World Stats, মার্চ ২০২০</td></tr>
+      <tr><th scope="row">অনলাইনে সময়</th><td>আনুমানিক ৮ কোটি ইন্টারনেট ব্যবহারকারী, দিনে গড়ে ৭.০ ঘণ্টা, মোট ৫৬ কোটি ঘণ্টা/দিন (১১তম স্থান)</td><td>Claude-এর অনুমান</td></tr>
+    </tbody></table></div>
+  </details>
+</section>
+
+<section class="lang" id="tl" aria-labelledby="h-tl">
+  <p class="kicker">19 · tl</p>
+  <h2 id="h-tl"><span lang="fil">Filipino</span><small>ফিলিপিনো</small></h2>
+  <dl class="nums">
+    <div><dt>মোট ভাষাভাষী</dt><dd>৮.৭ কোটি</dd></div>
+    <div><dt>ওয়েব</dt><dd>০.১%-এর কম (৪০তম স্থান, তাগালগ)</dd></div>
+    <div><dt>অনলাইনে সময়</dt><dd>৫৩ কোটি ঘণ্টা</dd></div>
+  </dl>
+  <p class="region"><b>কোথায়</b>ফিলিপাইনের জাতীয় ভাষা, ইংরেজির পাশাপাশি সরকারি ভাষা। সারা বিশ্বে কাজ করা ফিলিপিনোরা এটি ব্যবহার করেন, যুক্তরাষ্ট্র (ক্যালিফোর্নিয়া, হাওয়াই), উপসাগরীয় দেশগুলো, হংকং, সিঙ্গাপুর, কানাডা ও জাপান সহ।</p>
+  <div class="persona">
+    <figure><img src="../../language-intro/img/tl.webp" width="800" height="1000" loading="lazy" decoding="async" alt="একজন কাল্পনিক পারসোনা। Joanna “Jo” Dela Cruz, ২৮ বছর, কেজন সিটিতে থাকেন। তিনি যুক্তরাষ্ট্রের গ্রাহকদের জন্য একটি কল সেন্টারে রাতের শিফটে কাজ করেন।"></figure>
+    <div class="ptext"><h3>পারসোনা</h3><p>Joanna “Jo” Dela Cruz, ২৮ বছর, কেজন সিটিতে থাকেন। তিনি যুক্তরাষ্ট্রের গ্রাহকদের জন্য একটি কল সেন্টারে রাতের শিফটে কাজ করেন। ভোর ৪টার বিরতিতে Android ফোনে একটি কার্ড তোলেন। কাজ চলে ইংরেজিতে, তাই বিরতিতে তিনি ফিলিপিনোতে পড়তে চান। গল্প যখন ম্যানিলা উপসাগরের সূর্যাস্ত বা পিনিয়ার (আনারসের আঁশে বোনা কাপড়) পথ ধরে রঙে পৌঁছায়, তিনি Facebook-এ পোস্ট করেন আর মধ্যপ্রাচ্যে কাজ করা এক কাজিনকে পাঠান।</p></div>
+  </div>
+  <details><summary>সংখ্যা ও টীকা</summary>
+    <div class="scroll"><table class="facts"><thead><tr><th scope="col">বিষয়</th><th scope="col">মান</th><th scope="col">টীকা</th></tr></thead><tbody>
+      <tr><th scope="row">মোট ভাষাভাষী (মাতৃভাষা + দ্বিতীয় ভাষা)</th><td>৮.৭ কোটি</td><td>Ethnologue, ২০২৬ সংস্করণ (তাগালগ হিসেবে গোনা)</td></tr>
+      <tr><th scope="row">ওয়েব কনটেন্টে অংশ</th><td>০.১%-এর কম (৪০তম স্থান, তাগালগ)</td><td>W৩Techs, অক্টোবর ২০২৬</td></tr>
+      <tr><th scope="row">ভাষাভিত্তিক ইন্টারনেট ব্যবহারকারী</th><td>শীর্ষ ১০-এ নেই</td><td>Internet World Stats, মার্চ ২০২০</td></tr>
+      <tr><th scope="row">অনলাইনে সময়</th><td>আনুমানিক ৬ কোটি ইন্টারনেট ব্যবহারকারী, দিনে গড়ে ৮.৯ ঘণ্টা, মোট ৫৩ কোটি ঘণ্টা/দিন (১২তম স্থান)</td><td>Claude-এর অনুমান। ফিলিপাইনের ব্যবহারকারীদের প্রায় ৬০% ধরে; বাকিদের ইংরেজিতে গোনা হয়েছে</td></tr>
+    </tbody></table></div>
+  </details>
+</section>
+
+<section class="lang" id="fa" aria-labelledby="h-fa">
+  <p class="kicker">20 · fa</p>
+  <h2 id="h-fa"><span lang="fa" dir="rtl">فارسی</span><small>ফারসি</small></h2>
+  <dl class="nums">
+    <div><dt>মোট ভাষাভাষী</dt><dd>৮.২ কোটি (ইরানি ফারসি)</dd></div>
+    <div><dt>ওয়েব</dt><dd>১.০% (১৪তম স্থান)</dd></div>
+    <div><dt>অনলাইনে সময়</dt><dd>৪৯ কোটি ঘণ্টা</dd></div>
+  </dl>
+  <p class="region"><b>কোথায়</b>ইরানের সরকারি ভাষা। আফগানিস্তানে (দারি) ও তাজিকিস্তানে (তাজিক) খুব কাছাকাছি রূপ ব্যবহৃত হয়। যুক্তরাষ্ট্র (লস অ্যাঞ্জেলেস), কানাডা, জার্মানি, যুক্তরাজ্য ও তুরস্কে বড় ইরানি সম্প্রদায় আছে। সাইটটি ডান থেকে বাঁয়ে লেখার বিন্যাসে।</p>
+  <div class="persona">
+    <figure><img src="../../language-intro/img/fa.webp" width="800" height="1000" loading="lazy" decoding="async" alt="একজন কাল্পনিক পারসোনা। Parisa Hosseini, ৩১ বছর, ইসফাহানে থাকেন। তিনি ঐতিহাসিক ভবনের টাইল পুনরুদ্ধার করেন।"></figure>
+    <div class="ptext"><h3>পারসোনা</h3><p>Parisa Hosseini, ৩১ বছর, ইসফাহানে থাকেন। তিনি ঐতিহাসিক ভবনের টাইল পুনরুদ্ধার করেন। রাত ১১টায় কাজ শেষ করে Android ফোন খোলেন। ইয়ালদার রাতে পরিবারের সবাই মিলে হাফিজের দিওয়ান খোলেন, তাই একটি কার্ডে ভাগ্য দেখার ব্যাপারটা তাঁর চেনা। গল্প যখন নিশাপুরের ফিরোজা বা ইসফাহানের মসজিদের টাইলের নীলের পথ ধরে রঙে পৌঁছায়, তিনি যেন কাজ থামিয়ে তাকিয়ে থাকেন। বিদেশে থাকা বড় বোনকে Telegram-এ লিংক পাঠান।</p></div>
+  </div>
+  <details><summary>সংখ্যা ও টীকা</summary>
+    <div class="scroll"><table class="facts"><thead><tr><th scope="col">বিষয়</th><th scope="col">মান</th><th scope="col">টীকা</th></tr></thead><tbody>
+      <tr><th scope="row">মোট ভাষাভাষী (মাতৃভাষা + দ্বিতীয় ভাষা)</th><td>৮.২ কোটি (ইরানি ফারসি)</td><td>Ethnologue, ২০২৬ সংস্করণ। দারি (আফগানিস্তান) ও তাজিক ধরা হয়নি</td></tr>
+      <tr><th scope="row">ওয়েব কনটেন্টে অংশ</th><td>১.০% (১৪তম স্থান)</td><td>W৩Techs, অক্টোবর ২০২৬</td></tr>
+      <tr><th scope="row">ভাষাভিত্তিক ইন্টারনেট ব্যবহারকারী</th><td>শীর্ষ ১০-এ নেই</td><td>Internet World Stats, মার্চ ২০২০</td></tr>
+      <tr><th scope="row">অনলাইনে সময়</th><td>আনুমানিক ৮.২ কোটি ইন্টারনেট ব্যবহারকারী, দিনে গড়ে ৬.০ ঘণ্টা, মোট ৪৯ কোটি ঘণ্টা/দিন (১৬তম স্থান)</td><td>Claude-এর অনুমান। ইরানের সঙ্গে আফগানিস্তানও (দারি) ধরা হয়েছে</td></tr>
+    </tbody></table></div>
+  </details>
+</section>
+
+<section class="lang" id="ko" aria-labelledby="h-ko">
+  <p class="kicker">21 · ko</p>
+  <h2 id="h-ko"><span lang="ko">한국어</span><small>কোরীয়</small></h2>
+  <dl class="nums">
+    <div><dt>মোট ভাষাভাষী</dt><dd>৮.২ কোটি</dd></div>
+    <div><dt>ওয়েব</dt><dd>০.৯% (১৭তম স্থান)</dd></div>
+    <div><dt>অনলাইনে সময়</dt><dd>২৭ কোটি ঘণ্টা</dd></div>
+  </dl>
+  <p class="region"><b>কোথায়</b>দক্ষিণ কোরিয়া ও উত্তর কোরিয়া। চীনের ইয়ানবিয়ান কোরীয় স্বায়ত্তশাসিত অঞ্চল, যুক্তরাষ্ট্র (লস অ্যাঞ্জেলেস, নিউ ইয়র্ক), জাপান ও মধ্য এশিয়াতেও কোরীয় উপদ্বীপে শিকড় থাকা সম্প্রদায় আছে।</p>
+  <div class="persona">
+    <figure><img src="../../language-intro/img/ko.webp" width="800" height="1000" loading="lazy" decoding="async" alt="একজন কাল্পনিক পারসোনা। 김서연 (Kim Seo-yeon), ২৯ বছর, সিউলের মাপো-গুতে থাকেন। তিনি ওয়েবটুনের কালারিস্ট।"></figure>
+    <div class="ptext"><h3>পারসোনা</h3><p><span lang="ko">김서연</span> (Kim Seo-yeon), ২৯ বছর, সিউলের মাপো-গুতে থাকেন। তিনি ওয়েবটুনের কালারিস্ট। সকাল ৮:২০-এ পাতাল রেলে iPhone খোলেন। মাসে একবার বন্ধুদের সঙ্গে ট্যারো ক্যাফেতে যান। আগামী মাসের ফুকুওকা ভ্রমণের টিপস NAVER-এ খুঁজতে গিয়ে এই সাইটটি পান। গল্প যখন কোরিয়ার <i lang="ko-Latn">obangsaek</i> (পাঁচটি ঐতিহ্যবাহী রং) বা জাপানি রং করার কাজের পথ ধরে রঙে পৌঁছায়, তিনি সেই রংটি দিনের কালার প্যালেটের এক কোণে রাখেন। ফলাফল KakaoTalk-এ বন্ধুদের পাঠান।</p></div>
+  </div>
+  <details><summary>সংখ্যা ও টীকা</summary>
+    <div class="scroll"><table class="facts"><thead><tr><th scope="col">বিষয়</th><th scope="col">মান</th><th scope="col">টীকা</th></tr></thead><tbody>
+      <tr><th scope="row">মোট ভাষাভাষী (মাতৃভাষা + দ্বিতীয় ভাষা)</th><td>৮.২ কোটি</td><td>Ethnologue, ২০২৬ সংস্করণ</td></tr>
+      <tr><th scope="row">ওয়েব কনটেন্টে অংশ</th><td>০.৯% (১৭তম স্থান)</td><td>W৩Techs, অক্টোবর ২০২৬</td></tr>
+      <tr><th scope="row">ভাষাভিত্তিক ইন্টারনেট ব্যবহারকারী</th><td>শীর্ষ ১০-এ নেই</td><td>Internet World Stats, মার্চ ২০২০</td></tr>
+      <tr><th scope="row">অনলাইনে সময়</th><td>আনুমানিক ৫ কোটি ইন্টারনেট ব্যবহারকারী, দিনে গড়ে ৫.৩ ঘণ্টা, মোট ২৭ কোটি ঘণ্টা/দিন (২০তম স্থান)</td><td>Claude-এর অনুমান</td></tr>
+    </tbody></table></div>
+  </details>
+</section>
+
+<section class="lang" id="th" aria-labelledby="h-th">
+  <p class="kicker">22 · th</p>
+  <h2 id="h-th"><span lang="th">ไทย</span><small>থাই</small></h2>
+  <dl class="nums">
+    <div><dt>মোট ভাষাভাষী</dt><dd>৭.১ কোটি</dd></div>
+    <div><dt>ওয়েব</dt><dd>০.৩% (২৮তম স্থান)</dd></div>
+    <div><dt>অনলাইনে সময়</dt><dd>৫১ কোটি ঘণ্টা</dd></div>
+  </dl>
+  <p class="region"><b>কোথায়</b>থাইল্যান্ডের রাষ্ট্রভাষা। লাওসে অনেকে থাই পড়তে পারেন। থাইল্যান্ডের মানুষ যুক্তরাষ্ট্র (লস অ্যাঞ্জেলেস), অস্ট্রেলিয়া ও ইউরোপেও থাকেন।</p>
+  <div class="persona">
+    <figure><img src="../../language-intro/img/th.webp" width="800" height="1000" loading="lazy" decoding="async" alt="একজন কাল্পনিক পারসোনা। Napassorn “Pim” Srisuk, ২৭ বছর, ব্যাংককে থাকেন। তিনি একটি প্রসাধনী ব্র্যান্ডে মার্কেটিংয়ের কাজ করেন।"></figure>
+    <div class="ptext"><h3>পারসোনা</h3><p>Napassorn “Pim” Srisuk, ২৭ বছর, ব্যাংককে থাকেন। তিনি একটি প্রসাধনী ব্র্যান্ডে মার্কেটিংয়ের কাজ করেন। সকাল ৭টায়, কী পরবেন ঠিক করার আগে iPhone-এ একটি কার্ড তোলেন। সপ্তাহের দিনের রঙের সঙ্গে এই সাইটের রং মিলিয়ে দেখা তাঁর সকালের আনন্দ। আগামী জানুয়ারিতে হোক্কাইদো ভ্রমণের পরিকল্পনা করছেন। গল্প যখন থাই রেশম বা হোক্কাইদোর বরফের সাদার পথ ধরে রঙে পৌঁছায়, তিনি রংটি লিপস্টিক বা স্কার্ফে নিয়ে আসেন। LINE-এ সহকর্মীদের পাঠান।</p></div>
+  </div>
+  <details><summary>সংখ্যা ও টীকা</summary>
+    <div class="scroll"><table class="facts"><thead><tr><th scope="col">বিষয়</th><th scope="col">মান</th><th scope="col">টীকা</th></tr></thead><tbody>
+      <tr><th scope="row">মোট ভাষাভাষী (মাতৃভাষা + দ্বিতীয় ভাষা)</th><td>৭.১ কোটি</td><td>Ethnologue, ২০২৬ সংস্করণ</td></tr>
+      <tr><th scope="row">ওয়েব কনটেন্টে অংশ</th><td>০.৩% (২৮তম স্থান)</td><td>W৩Techs, অক্টোবর ২০২৬</td></tr>
+      <tr><th scope="row">ভাষাভিত্তিক ইন্টারনেট ব্যবহারকারী</th><td>শীর্ষ ১০-এ নেই</td><td>Internet World Stats, মার্চ ২০২০</td></tr>
+      <tr><th scope="row">অনলাইনে সময়</th><td>আনুমানিক ৬.৫ কোটি ইন্টারনেট ব্যবহারকারী, দিনে গড়ে ৭.৮ ঘণ্টা, মোট ৫১ কোটি ঘণ্টা/দিন (১৪তম স্থান)</td><td>Claude-এর অনুমান</td></tr>
+    </tbody></table></div>
+  </details>
+</section>
+
+<section class="lang" id="it" aria-labelledby="h-it">
+  <p class="kicker">23 · it</p>
+  <h2 id="h-it"><span lang="it">Italiano</span><small>ইতালীয়</small></h2>
+  <dl class="nums">
+    <div><dt>মোট ভাষাভাষী</dt><dd>৬.৬ কোটি</dd></div>
+    <div><dt>ওয়েব</dt><dd>২.৮% (অষ্টম স্থান)</dd></div>
+    <div><dt>অনলাইনে সময়</dt><dd>২৯ কোটি ঘণ্টা</dd></div>
+  </dl>
+  <p class="region"><b>কোথায়</b>ইতালি, সান মারিনো, দক্ষিণ সুইজারল্যান্ড (তিচিনো) ও ভ্যাটিকান সিটি। আর্জেন্টিনা, ব্রাজিল, যুক্তরাষ্ট্র, জার্মানি ও অন্যান্য দেশে ইতালীয় বংশোদ্ভূত অনেক মানুষ থাকেন।</p>
+  <div class="persona">
+    <figure><img src="../../language-intro/img/it.webp" width="800" height="1000" loading="lazy" decoding="async" alt="একজন কাল্পনিক পারসোনা। Giulia Bernardi, ৪৫ বছর, বোলোনিয়ায় থাকেন। তিনি পাড়ার একটি ফার্মেসির ফার্মাসিস্ট।"></figure>
+    <div class="ptext"><h3>পারসোনা</h3><p>Giulia Bernardi, ৪৫ বছর, বোলোনিয়ায় থাকেন। তিনি পাড়ার একটি ফার্মেসির ফার্মাসিস্ট। রাত ৯:৩০-এ, রাতের খাবারের পর সোফায় বসে Android ফোন খোলেন। ছোটবেলায় বাবার সঙ্গে তারোক্কিনো খেলতেন, তাই মেজর আর্কানার ছবিগুলো তাঁকে স্মৃতিকাতর করে। গল্প যখন বোলোনিয়ার পোর্টিকোর লাল ইট বা রেনেসাঁর চিত্রশিল্পীদের রঞ্জকের পথ ধরে রঙে পৌঁছায়, তিনি WhatsApp-এ বাবাকে পাঠান। তিনি “ক্লাসিক ট্যারো” স্টাইল বেছে নেন।</p></div>
+  </div>
+  <details><summary>সংখ্যা ও টীকা</summary>
+    <div class="scroll"><table class="facts"><thead><tr><th scope="col">বিষয়</th><th scope="col">মান</th><th scope="col">টীকা</th></tr></thead><tbody>
+      <tr><th scope="row">মোট ভাষাভাষী (মাতৃভাষা + দ্বিতীয় ভাষা)</th><td>৬.৬ কোটি</td><td>Ethnologue, ২০২৬ সংস্করণ</td></tr>
+      <tr><th scope="row">ওয়েব কনটেন্টে অংশ</th><td>২.৮% (অষ্টম স্থান)</td><td>W৩Techs, অক্টোবর ২০২৬</td></tr>
+      <tr><th scope="row">ভাষাভিত্তিক ইন্টারনেট ব্যবহারকারী</th><td>শীর্ষ ১০-এ নেই</td><td>Internet World Stats, মার্চ ২০২০</td></tr>
+      <tr><th scope="row">অনলাইনে সময়</th><td>আনুমানিক ৫.১ কোটি ইন্টারনেট ব্যবহারকারী, দিনে গড়ে ৫.৭ ঘণ্টা, মোট ২৯ কোটি ঘণ্টা/দিন (১৯তম স্থান)</td><td>Claude-এর অনুমান</td></tr>
+    </tbody></table></div>
+  </details>
+</section>
+
+<section class="lang" id="pl" aria-labelledby="h-pl">
+  <p class="kicker">24 · pl</p>
+  <h2 id="h-pl"><span lang="pl">Polski</span><small>পোলিশ</small></h2>
+  <dl class="nums">
+    <div><dt>মোট ভাষাভাষী</dt><dd>প্রায় ৪.২৬ কোটি</dd></div>
+    <div><dt>ওয়েব</dt><dd>১.৮% (দশম স্থান)</dd></div>
+    <div><dt>অনলাইনে সময়</dt><dd>প্রায় ২১ কোটি ঘণ্টা (সহায়ক সংখ্যা, র‍্যাঙ্কিংয়ের বাইরে)</dd></div>
+  </dl>
+  <p class="region"><b>কোথায়</b>পোল্যান্ড। যুক্তরাজ্য, জার্মানি, যুক্তরাষ্ট্র (শিকাগো), আয়ারল্যান্ড ও কানাডায় বড় পোলিশ সম্প্রদায় আছে। লিথুয়ানিয়া ও পশ্চিম ইউক্রেনেও এ ভাষার মানুষ আছেন।</p>
+  <div class="persona">
+    <figure><img src="../../language-intro/img/pl.webp" width="800" height="1000" loading="lazy" decoding="async" alt="একজন কাল্পনিক পারসোনা। Marta Kowalczyk, ৩০ বছর, ক্রাকুফে থাকেন। তিনি একটি সফটওয়্যার কোম্পানির UX গবেষক।"></figure>
+    <div class="ptext"><h3>পারসোনা</h3><p>Marta Kowalczyk, ৩০ বছর, ক্রাকুফে থাকেন। তিনি একটি সফটওয়্যার কোম্পানির UX গবেষক। রবিবার সকাল ১০টায় একটি ক্যাফেতে iPhone খোলেন। প্রতি বছর আন্দ্রেইকির রাতে বন্ধুদের সঙ্গে গলানো মোম দিয়ে ভাগ্য দেখেন। গল্প যখন বাল্টিকের অ্যাম্বার বা ক্রাকুফের ক্লথ হলের পথ ধরে রঙে পৌঁছায়, তিনি Instagram স্টোরিতে দেন। আগামী বসন্তে কিয়োটো ভ্রমণের পরিকল্পনা করছেন।</p></div>
+  </div>
+  <details><summary>সংখ্যা ও টীকা</summary>
+    <div class="scroll"><table class="facts"><thead><tr><th scope="col">বিষয়</th><th scope="col">মান</th><th scope="col">টীকা</th></tr></thead><tbody>
+      <tr><th scope="row">মোট ভাষাভাষী (মাতৃভাষা + দ্বিতীয় ভাষা)</th><td>প্রায় ৪.২৬ কোটি</td><td>Ethnologue, ২৭তম সংস্করণ (২০২১ সালের সংখ্যা), Wikipedia-র “Polish language” পাতায় উদ্ধৃত। Ethnologue ২০২৬-এর প্রকাশ্য তালিকায় (৫ কোটি বা তার বেশি) নেই</td></tr>
+      <tr><th scope="row">ওয়েব কনটেন্টে অংশ</th><td>১.৮% (দশম স্থান)</td><td>W৩Techs, অক্টোবর ২০২৬</td></tr>
+      <tr><th scope="row">ভাষাভিত্তিক ইন্টারনেট ব্যবহারকারী</th><td>শীর্ষ ১০-এ নেই</td><td>Internet World Stats, মার্চ ২০২০</td></tr>
+      <tr><th scope="row">অনলাইনে সময়</th><td>প্রায় ২১ কোটি ঘণ্টা/দিন (সহায়ক সংখ্যা, র‍্যাঙ্কিংয়ের বাইরে)</td><td>Claude-এর অনুমানে র‍্যাঙ্কিংয়ের বাইরের সহায়ক সংখ্যা</td></tr>
+    </tbody></table></div>
+  </details>
+</section>
+
+<section class="lang" id="uk" aria-labelledby="h-uk">
+  <p class="kicker">25 · uk</p>
+  <h2 id="h-uk"><span lang="uk">Українська</span><small>ইউক্রেনীয়</small></h2>
+  <dl class="nums">
+    <div><dt>মোট ভাষাভাষী</dt><dd>প্রায় ৩.৯ কোটি</dd></div>
+    <div><dt>ওয়েব</dt><dd>০.৬% (১৮তম স্থান)</dd></div>
+    <div><dt>অনলাইনে সময়</dt><dd>অনুমান নেই</dd></div>
+  </dl>
+  <p class="region"><b>কোথায়</b>ইউক্রেনের রাষ্ট্রভাষা। ২০২২ থেকে চলা যুদ্ধের কারণে অনেকে পোল্যান্ড, জার্মানি ও চেক প্রজাতন্ত্রের মতো ইউরোপীয় দেশে আশ্রয় নিয়েছেন। কানাডা ও যুক্তরাষ্ট্রেও পুরোনো ইউক্রেনীয় সম্প্রদায় আছে। অনেকে রুশও বলেন।</p>
+  <div class="persona">
+    <figure><img src="../../language-intro/img/uk.webp" width="800" height="1000" loading="lazy" decoding="async" alt="একজন কাল্পনিক পারসোনা। Олена Коваленко (Olena Kovalenko), ৩৭ বছর, লভিভে থাকেন। তিনি একটি প্রাথমিক বিদ্যালয়ের শিক্ষক।"></figure>
+    <div class="ptext"><h3>পারসোনা</h3><p><span lang="uk">Олена Коваленко</span> (Olena Kovalenko), ৩৭ বছর, লভিভে থাকেন। তিনি একটি প্রাথমিক বিদ্যালয়ের শিক্ষক। রাত ৯টায়, সন্তানকে ঘুম পাড়িয়ে Android ফোনে একটি কার্ড তোলেন। কার্ডের অর্থ পড়ার চেয়েও ইউক্রেনীয় ভাষায় যত্ন করে লেখা একটি গল্প পড়ার সময়টুকু তাঁর কাছে মূল্যবান। গল্প যখন পেত্রিকিভকার ফুলের চিত্রকলা বা কার্পেথিয়ান উলের পথ ধরে রঙে পৌঁছায়, তিনি Telegram-এ পোল্যান্ডে থাকা ছোট বোনকে পাঠান।</p></div>
+  </div>
+  <details><summary>সংখ্যা ও টীকা</summary>
+    <div class="scroll"><table class="facts"><thead><tr><th scope="col">বিষয়</th><th scope="col">মান</th><th scope="col">টীকা</th></tr></thead><tbody>
+      <tr><th scope="row">মোট ভাষাভাষী (মাতৃভাষা + দ্বিতীয় ভাষা)</th><td>প্রায় ৩.৯ কোটি</td><td>Ethnologue (২০২৩)। Wikipedia-র “Ukrainian language” পাতাতেও (Ethnologue, ২৮তম সংস্করণ) একই সংখ্যা</td></tr>
+      <tr><th scope="row">ওয়েব কনটেন্টে অংশ</th><td>০.৬% (১৮তম স্থান)</td><td>W৩Techs, অক্টোবর ২০২৬</td></tr>
+      <tr><th scope="row">ভাষাভিত্তিক ইন্টারনেট ব্যবহারকারী</th><td>শীর্ষ ১০-এ নেই</td><td>Internet World Stats, মার্চ ২০২০</td></tr>
+      <tr><th scope="row">অনলাইনে সময়</th><td>অনুমান নেই</td><td>ইউক্রেনীয় ভাষা Claude-এর অনুমানের সারণিতেও নেই, র‍্যাঙ্কিংয়ের বাইরের সহায়ক সংখ্যাতেও নেই</td></tr>
+    </tbody></table></div>
+  </details>
+</section>
+
+<section class="lang" id="nl" aria-labelledby="h-nl">
+  <p class="kicker">26 · nl</p>
+  <h2 id="h-nl"><span lang="nl">Nederlands</span><small>ডাচ</small></h2>
+  <dl class="nums">
+    <div><dt>মোট ভাষাভাষী</dt><dd>প্রায় ৩ কোটি</dd></div>
+    <div><dt>ওয়েব</dt><dd>২.১% (নবম স্থান)</dd></div>
+    <div><dt>অনলাইনে সময়</dt><dd>প্রায় ১৩ কোটি ঘণ্টা (সহায়ক সংখ্যা, র‍্যাঙ্কিংয়ের বাইরে)</dd></div>
+  </dl>
+  <p class="region"><b>কোথায়</b>নেদারল্যান্ডস ও উত্তর বেলজিয়াম (ফ্ল্যান্ডার্স)। সুরিনাম এবং ক্যারিবিয়ানের আরুবা ও কুরাসাওতেও এটি সরকারি ভাষা। দক্ষিণ আফ্রিকার আফ্রিকান্স ডাচ থেকেই আলাদা হয়ে এসেছে।</p>
+  <div class="persona">
+    <figure><img src="../../language-intro/img/nl.webp" width="800" height="1000" loading="lazy" decoding="async" alt="একজন কাল্পনিক পারসোনা। Sanne de Vries, ৩৬ বছর, ইউট্রেখটে থাকেন। তিনি সিটি হলে জলবায়ু নীতি নিয়ে কাজ করেন।"></figure>
+    <div class="ptext"><h3>পারসোনা</h3><p>Sanne de Vries, ৩৬ বছর, ইউট্রেখটে থাকেন। তিনি সিটি হলে জলবায়ু নীতি নিয়ে কাজ করেন। দুপুর ১২:৩০-এ, নিজের ডেস্কে ল্যাপটপ খুলে একটি রঙের নাম খুঁজতে গিয়ে এই সাইটে এসে পড়েন। ভাগ্যগণনায় বিশ্বাস করেন না, তবে রঙের নাম কোথা থেকে এল সেই গল্প তাঁর খুব প্রিয়। গল্প যখন ডেলফট ব্লু বা ১৭ শতকের ডাচ চিত্রশিল্পীদের রঞ্জকের পথ ধরে রঙে পৌঁছায়, তিনি সহকর্মীদের বলেন। মাঝে মাঝে সাইকেলে বাড়ি ফেরার আগে আরও একটি কার্ড তোলেন।</p></div>
+  </div>
+  <details><summary>সংখ্যা ও টীকা</summary>
+    <div class="scroll"><table class="facts"><thead><tr><th scope="col">বিষয়</th><th scope="col">মান</th><th scope="col">টীকা</th></tr></thead><tbody>
+      <tr><th scope="row">মোট ভাষাভাষী (মাতৃভাষা + দ্বিতীয় ভাষা)</th><td>প্রায় ৩ কোটি</td><td>২০২১। Wikipedia-র “Dutch language” পাতাতেও (Eurobarometer প্রভৃতির উদ্ধৃতি দিয়ে) একই সংখ্যা</td></tr>
+      <tr><th scope="row">ওয়েব কনটেন্টে অংশ</th><td>২.১% (নবম স্থান)</td><td>W৩Techs, অক্টোবর ২০২৬। ফ্লেমিশ ধরা হয়েছে</td></tr>
+      <tr><th scope="row">ভাষাভিত্তিক ইন্টারনেট ব্যবহারকারী</th><td>শীর্ষ ১০-এ নেই</td><td>Internet World Stats, মার্চ ২০২০</td></tr>
+      <tr><th scope="row">অনলাইনে সময়</th><td>প্রায় ১৩ কোটি ঘণ্টা/দিন (সহায়ক সংখ্যা, র‍্যাঙ্কিংয়ের বাইরে)</td><td>Claude-এর অনুমানে র‍্যাঙ্কিংয়ের বাইরের সহায়ক সংখ্যা</td></tr>
+    </tbody></table></div>
+  </details>
+</section>
+
+<section class="lang" id="ang" aria-labelledby="h-ang">
+  <p class="kicker">27 · ang</p>
+  <h2 id="h-ang"><span lang="ang">Englisc</span><small>প্রাচীন ইংরেজি</small></h2>
+  <p class="note">খেলা আর ইতিহাসের জন্য একটি ভাষা। এটি মোটামুটি ৪৫০ থেকে ১১০০ সালের ইংরেজি, আজ কেউ এটি মাতৃভাষা হিসেবে বলেন না। সংখ্যার ঘরগুলো প্রযোজ্য নয়।</p>
+  <dl class="nums">
+    <div><dt>মোট ভাষাভাষী</dt><dd>প্রযোজ্য নয়</dd></div>
+    <div><dt>ওয়েব</dt><dd>প্রযোজ্য নয়</dd></div>
+    <div><dt>অনলাইনে সময়</dt><dd>প্রযোজ্য নয়</dd></div>
+  </dl>
+  <p class="region"><b>কারা উপভোগ করতে পারেন</b>মধ্যযুগের ইংরেজি সাহিত্য ও ইংরেজি ভাষার ইতিহাসের শিক্ষার্থী ও গবেষক, <cite>Beowulf</cite> আর জে. আর. আর. টোলকিনের লেখার অনুরাগী, এবং রুন লিপি ও নর্স পুরাণে আগ্রহী মানুষ। ইংরেজিভাষী বিশ্বের বাইরে জার্মানি, নর্ডিক দেশগুলো ও জাপানের ইংরেজি সাহিত্যের শিক্ষার্থীদের কাছেও পৌঁছায়।</p>
+  <div class="persona">
+    <figure><img src="../../language-intro/img/ang.webp" width="800" height="1000" loading="lazy" decoding="async" alt="একজন কাল্পনিক পারসোনা। Hannah Brooks, ২৪ বছর, যুক্তরাজ্যের লিডসে থাকেন। তিনি স্নাতকোত্তর পর্যায়ে প্রাচীন ইংরেজি পড়ছেন।"></figure>
+    <div class="ptext"><h3>পারসোনা</h3><p>Hannah Brooks, ২৪ বছর, যুক্তরাজ্যের লিডসে থাকেন। তিনি স্নাতকোত্তর পর্যায়ে প্রাচীন ইংরেজি পড়ছেন। বিকেল ৫টায় বিশ্ববিদ্যালয়ের গ্রন্থাগারে ল্যাপটপ খুলে ক্রিয়ার রূপ খুঁজতে খুঁজতে এই সাইটে এসে পড়েন। পাশে আধুনিক ইংরেজি অনুবাদ রেখে কার্ড আর রঙের নামের পাঠোদ্ধার করতে তাঁর ভালো লাগে। পছন্দের লাইনগুলো সেমিনারের সহপাঠীদের পাঠান।</p></div>
+  </div>
+  <details><summary>সংখ্যা ও টীকা</summary>
+    <div class="scroll"><table class="facts"><thead><tr><th scope="col">বিষয়</th><th scope="col">মান</th></tr></thead><tbody>
+      <tr><th scope="row">মোট ভাষাভাষী (মাতৃভাষা + দ্বিতীয় ভাষা)</th><td>প্রযোজ্য নয়</td></tr>
+      <tr><th scope="row">ওয়েব কনটেন্টে অংশ</th><td>প্রযোজ্য নয়</td></tr>
+      <tr><th scope="row">ভাষাভিত্তিক ইন্টারনেট ব্যবহারকারী</th><td>প্রযোজ্য নয়</td></tr>
+      <tr><th scope="row">অনলাইনে সময়</th><td>প্রযোজ্য নয়</td></tr>
+    </tbody></table></div>
+  </details>
+</section>
+
+<section class="lang" id="soro" aria-labelledby="h-soro">
+  <p class="kicker">28 · soro</p>
+  <h2 id="h-soro"><span lang="ja">御座候</span><small>সোরোবুন (ধ্রুপদি জাপানি পত্রশৈলী)</small></h2>
+  <p class="note">খেলা আর ইতিহাসের জন্য একটি ভাষা। এটি মোটামুটি ১৬০০ থেকে ১৮৬৮ সালের চিঠি ও সরকারি নথির লেখার রীতি, যেখানে বাক্যের শেষে <span lang="ja">候</span> (<i>sōrō</i>) বসে। আজ কেউ এটি মাতৃভাষা হিসেবে বলেন না। সংখ্যার ঘরগুলো প্রযোজ্য নয়।</p>
+  <dl class="nums">
+    <div><dt>মোট ভাষাভাষী</dt><dd>প্রযোজ্য নয়</dd></div>
+    <div><dt>ওয়েব</dt><dd>প্রযোজ্য নয়</dd></div>
+    <div><dt>অনলাইনে সময়</dt><dd>প্রযোজ্য নয়</dd></div>
+  </dl>
+  <p class="region"><b>কারা উপভোগ করতে পারেন</b>পুরোনো নথি আর টানা হাতের লেখা পড়তে শিখছেন এমন মানুষ, ঐতিহাসিক উপন্যাস ও NHK-র ঐতিহাসিক ধারাবাহিকের অনুরাগী, আর ইতিহাসপ্রেমী শিক্ষার্থীরা। জাপানি ভাষা গভীরভাবে শিখেছেন এমন বিদেশি আর জাপানের ইতিহাসের গবেষকদের কাছেও পৌঁছায়।</p>
+  <div class="persona">
+    <figure><img src="../../language-intro/img/soro.webp" width="800" height="1000" loading="lazy" decoding="async" alt="একজন কাল্পনিক পারসোনা। 工藤 誠一 (Seiichi Kudo), ৫৮ বছর, কানাজাওয়ায় থাকেন। তিনি সিটি হলে কাজ করেন এবং সপ্তাহান্তে পুরোনো নথি পড়ার একটি কোর্সে যান।"></figure>
+    <div class="ptext"><h3>পারসোনা</h3><p><span lang="ja">工藤 誠一</span> (Seiichi Kudo), ৫৮ বছর, কানাজাওয়ায় থাকেন। তিনি সিটি হলে কাজ করেন এবং সপ্তাহান্তে পুরোনো নথি পড়ার একটি কোর্সে যান। রবিবার বিকেল ৩টায় বসার ঘরে ট্যাবলেট খোলেন। কোর্সের সহপাঠীদের কাছে সাইটটির কথা শুনেছেন। সোরোবুনে লেখা কার্ড আর রঙের নামগুলো একটি একটি করে জোরে পড়েন। গল্প যখন কাগার রং করার কাজ বা পুরোনো দুর্গনগরের পথ ধরে রঙে পৌঁছায়, তিনি রঙের নামটি কোর্সের খাতায় লিখে রাখেন।</p></div>
+  </div>
+  <details><summary>সংখ্যা ও টীকা</summary>
+    <div class="scroll"><table class="facts"><thead><tr><th scope="col">বিষয়</th><th scope="col">মান</th></tr></thead><tbody>
+      <tr><th scope="row">মোট ভাষাভাষী (মাতৃভাষা + দ্বিতীয় ভাষা)</th><td>প্রযোজ্য নয়</td></tr>
+      <tr><th scope="row">ওয়েব কনটেন্টে অংশ</th><td>প্রযোজ্য নয়</td></tr>
+      <tr><th scope="row">ভাষাভিত্তিক ইন্টারনেট ব্যবহারকারী</th><td>প্রযোজ্য নয়</td></tr>
+      <tr><th scope="row">অনলাইনে সময়</th><td>প্রযোজ্য নয়</td></tr>
+    </tbody></table></div>
+  </details>
+</section>
+
+</div>
+
+</body>
+</html>

@@ -1,0 +1,789 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Знакомство с 28 языками Colors for the Fool: сколько людей говорит на каждом из них, а рядом вымышленная персона и её портрет.">
+<link rel="icon" href="../../favicon.png" type="image/png">
+<title>О языках</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&family=Noto+Serif:wght@400;500;600&family=Shippori+Mincho:wght@400;500;700&display=swap">
+<style>
+/* Layout: same paper column as language-scale.html; one card per language (numbers, persona + image, details). */
+:root {
+  --bg: #efe6d6;
+  --bg-glow: #fbf6ec;
+  --paper: #f7f1e4;
+  --ink: #2a2118;
+  --muted: #6d5c48;
+  --gold: #a6843d;
+  --gold-soft: #e4d2a4;
+  --line: rgba(166,132,61,.45);
+  --other: #d3c6ae;
+  --grid: rgba(109,92,72,.18);
+  --font-display: Cinzel, "Palatino Linotype", Palatino, serif;
+  --font-body: "Noto Serif", "Shippori Mincho", serif;
+}
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) {
+  --bg: #1b1610; --bg-glow: #2a2219; --paper: #241e17; --ink: #efe4cf; --muted: #b6a387;
+  --gold: #d2ac5c; --gold-soft: #5a4826; --line: rgba(210,172,92,.4); --other: #4b4134; --grid: rgba(239,228,207,.12);
+  color-scheme: dark; } }
+:root[data-theme="dark"] {
+  --bg: #1b1610; --bg-glow: #2a2219; --paper: #241e17; --ink: #efe4cf; --muted: #b6a387;
+  --gold: #d2ac5c; --gold-soft: #5a4826; --line: rgba(210,172,92,.4); --other: #4b4134; --grid: rgba(239,228,207,.12);
+  color-scheme: dark; }
+
+* { box-sizing: border-box; }
+body {
+  margin: 0; color: var(--ink); background: var(--bg);
+  background-image: radial-gradient(1100px 640px at 50% -8%, var(--bg-glow), var(--bg) 70%);
+  font-family: var(--font-body); font-weight: 500; line-height: 1.85;
+  padding-inline: 16px; padding-block: 0 64px;
+}
+.wrap { width: min(100%, 44rem); margin: 0 auto; }
+a { color: var(--gold); }
+code { font-size: .88em; overflow-wrap: anywhere; }
+.brand { font-family: var(--font-display); font-size: .74rem; letter-spacing: .24em; text-transform: uppercase; padding-block: 1.4rem .2rem; margin: 0; }
+.brand a { color: var(--ink); text-decoration: none; }
+header.hero { text-align: center; padding-block: 2.6rem 1.6rem; }
+.eyebrow { font-family: var(--font-display); letter-spacing: .3em; font-size: .8rem; color: var(--gold); margin: 0; text-transform: uppercase; }
+h1 { font-size: clamp(2rem, 7vw, 2.9rem); letter-spacing: .12em; margin: .3rem 0 .6rem; font-weight: 600; text-wrap: balance; }
+.lede { color: var(--muted); max-width: 34rem; margin: 0 auto; text-wrap: pretty; }
+.ornament { display: flex; align-items: center; gap: .8rem; justify-content: center; color: var(--gold); margin: 1.6rem 0 0; }
+.ornament::before, .ornament::after { content: ""; height: 1px; width: 4.5rem; background: var(--line); }
+
+.topbar { display: flex; justify-content: space-between; align-items: baseline; gap: 1rem; padding-block: 1.4rem .2rem; }
+.topbar .brand { padding-block: 0; }
+.switch { font-size: .82rem; }
+.switch a, .switch span { margin-left: .7rem; }
+.switch span { color: var(--muted); }
+
+.about { font-size: .86rem; color: var(--muted); margin: 0 0 1rem; }
+.about p { margin: .5rem 0; }
+.langs { display: flex; flex-wrap: wrap; gap: .4rem; justify-content: center; margin: 1.2rem 0 0; padding: 0; list-style: none; }
+.langs li { border: 1px solid var(--line); font-size: .85rem; background: var(--paper); }
+.langs li a { display: block; padding: .1rem .7rem; color: var(--ink); text-decoration: none; }
+.langs li a:hover, .langs li a:focus-visible { color: var(--gold); }
+.langs li:nth-last-child(-n+2) { border-style: dashed; }
+.langs li:nth-last-child(-n+2) a { color: var(--muted); }
+
+section.chart, section.lang { margin-top: 3.4rem; scroll-margin-top: 1rem; }
+.chart h2, .lang h2 { font-size: 1.3rem; letter-spacing: .08em; margin: 0; font-weight: 600; text-wrap: balance; }
+.lang h2 small { display: block; font-size: .8rem; letter-spacing: .04em; color: var(--muted); font-weight: 500; }
+.kicker { font-family: var(--font-display); color: var(--gold); letter-spacing: .2em; font-size: .78rem; margin: 0 0 .15rem; }
+p.note { color: var(--muted); font-size: .88rem; margin: .4rem 0 1rem; max-width: 40rem; }
+.chart ul { font-size: .88rem; color: var(--muted); padding-left: 1.1rem; }
+
+.scroll { overflow-x: auto; -webkit-overflow-scrolling: touch; border: 1px solid var(--line); background: var(--paper); }
+table { border-collapse: collapse; font-size: .8rem; line-height: 1.55; }
+table.overview { min-width: 42rem; width: 100%; }
+th, td { padding: .45rem .6rem; border-bottom: 1px solid var(--grid); text-align: left; vertical-align: top; }
+thead th { font-weight: 700; border-bottom: 1px solid var(--line); background: var(--bg-glow); }
+tbody th { font-weight: 700; white-space: nowrap; }
+tbody th a { color: var(--ink); text-decoration: none; }
+tbody tr:last-child th, tbody tr:last-child td { border-bottom: 0; }
+table.overview td { font-variant-numeric: tabular-nums; }
+
+.lang { border-top: 1px solid var(--line); padding-top: 1.6rem; }
+.nums { display: flex; flex-wrap: wrap; gap: 1px; background: var(--line); border: 1px solid var(--line); margin: 1rem 0; }
+.nums div { flex: 1 1 7.6rem; background: var(--paper); padding: .55rem .7rem .6rem; min-width: 0; }
+.nums dt { font-family: var(--font-body); font-size: .72rem; color: var(--muted); letter-spacing: .06em; }
+.nums dd { margin: 0; font-size: .9rem; line-height: 1.45; font-variant-numeric: tabular-nums; overflow-wrap: anywhere; }
+.region { font-size: .9rem; margin: 0 0 1rem; }
+.region b { color: var(--gold); font-weight: 700; margin-right: .6rem; }
+
+.persona { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 15rem); gap: 1.2rem; align-items: start; margin: 1.2rem 0 .8rem; }
+.persona figure { grid-column: 2; grid-row: 1; margin: 0; }
+.persona .ptext { grid-column: 1; grid-row: 1; }
+.persona img { display: block; width: 100%; height: auto; border: 1px solid var(--line); background: var(--paper); }
+.persona h3 { font-size: 1rem; letter-spacing: .08em; margin: 0 0 .3rem; font-weight: 600; }
+.persona p { margin: 0; font-size: .94rem; text-wrap: pretty; }
+@media (max-width: 36rem) {
+  .persona { grid-template-columns: minmax(0, 1fr); }
+  .persona figure, .persona .ptext { grid-column: 1; grid-row: auto; }
+  .persona figure { max-width: 22rem; }
+}
+
+details { border-top: 1px dashed var(--line); padding: .35rem 0; font-size: .88rem; }
+details:last-of-type { border-bottom: 1px dashed var(--line); }
+summary { cursor: pointer; color: var(--gold); letter-spacing: .06em; }
+details[open] summary { margin-bottom: .5rem; }
+details p { margin: .2rem 0 .8rem; color: var(--ink); }
+details h4 { font-size: .86rem; margin: .6rem 0 0; color: var(--muted); font-weight: 700; }
+details pre { white-space: pre-wrap; overflow-wrap: anywhere; font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: .78rem; line-height: 1.6; background: var(--paper); border: 1px solid var(--line); padding: .7rem .8rem; margin: 0 0 .6rem; }
+table.facts { width: 100%; min-width: 34rem; }
+table.facts tbody th { white-space: normal; min-width: 8rem; }
+
+footer { margin-top: 4rem; border-top: 1px solid var(--line); padding-top: 1.2rem; font-size: .8rem; color: var(--muted); }
+footer ul { padding-left: 1.1rem; margin: .4rem 0 1rem; }
+footer ul ul { margin: .2rem 0 .3rem; }
+footer li { margin: .15rem 0; overflow-wrap: anywhere; }
+</style>
+</head>
+<body>
+
+<div class="wrap">
+  <div class="topbar"><p class="brand"><a href="../">Colors for the Fool</a></p><nav class="switch" aria-label="Связанные страницы"><span>О языках</span></nav></div>
+
+  <header class="hero">
+    <p class="eyebrow">Languages &amp; Readers</p>
+    <h1>О языках</h1>
+    <p class="lede">28 языков Colors for the Fool: сколько людей на них говорит и что за человек мог бы прийти к этому гаданию (по состоянию на 9 октября 2026 года).</p>
+    <div class="ornament">✦</div>
+  </header>
+
+  <nav aria-label="Языки">
+    <ul class="langs"><li><a href="#ja"><span lang="ja">日本語</span></a></li><li><a href="#en"><span lang="en">English</span></a></li><li><a href="#zh-hans"><span lang="zh-Hans">简体中文</span></a></li><li><a href="#zh"><span lang="zh-Hant">繁體中文</span></a></li><li><a href="#hi"><span lang="hi">हिन्दी</span></a></li><li><a href="#es"><span lang="es">Español</span></a></li><li><a href="#ar"><span lang="ar" dir="rtl">العربية</span></a></li><li><a href="#fr"><span lang="fr">Français</span></a></li><li><a href="#bn"><span lang="bn">বাংলা</span></a></li><li><a href="#pt"><span lang="pt">Português</span></a></li><li><a href="#id"><span lang="id">Bahasa Indonesia</span></a></li><li><a href="#ms"><span lang="ms">Bahasa Melayu</span></a></li><li><a href="#ur"><span lang="ur" dir="rtl">اردو</span></a></li><li><a href="#ru"><span lang="ru">Русский</span></a></li><li><a href="#de"><span lang="de">Deutsch</span></a></li><li><a href="#vi"><span lang="vi">Tiếng Việt</span></a></li><li><a href="#sw"><span lang="sw">Kiswahili</span></a></li><li><a href="#tr"><span lang="tr">Türkçe</span></a></li><li><a href="#tl"><span lang="fil">Filipino</span></a></li><li><a href="#fa"><span lang="fa" dir="rtl">فارسی</span></a></li><li><a href="#ko"><span lang="ko">한국어</span></a></li><li><a href="#th"><span lang="th">ไทย</span></a></li><li><a href="#it"><span lang="it">Italiano</span></a></li><li><a href="#pl"><span lang="pl">Polski</span></a></li><li><a href="#uk"><span lang="uk">Українська</span></a></li><li><a href="#nl"><span lang="nl">Nederlands</span></a></li><li><a href="#ang"><span lang="ang">Englisc</span></a></li><li><a href="#soro"><span lang="ja">御座候</span></a></li></ul>
+  </nav>
+
+<section class="lang" id="ja" aria-labelledby="h-ja">
+  <p class="kicker">01 · ja</p>
+  <h2 id="h-ja"><span lang="ja">日本語</span><small>Японский</small></h2>
+  <dl class="nums">
+    <div><dt>Носители</dt><dd>126 млн</dd></div>
+    <div><dt>Веб</dt><dd>4,9% (4-е место)</dd></div>
+    <div><dt>Время в сети</dt><dd>390 млн часов</dd></div>
+  </dl>
+  <p class="region"><b>Где</b>Япония. За её пределами японский читают потомки японских переселенцев в Бразилии и США (Гавайи, Калифорния) и японцы, живущие за границей. Японский изучают и многие люди по всему миру.</p>
+  <div class="persona">
+    <figure><img src="../../language-intro/img/ja.webp" width="800" height="1000" loading="lazy" decoding="async" alt="Вымышленная персона. 森下 由佳 (Юка Морисита), 34 года, живёт в Фукуоке. Работает медицинским регистратором в многопрофильной больнице."></figure>
+    <div class="ptext"><h3>Персона</h3><p><span lang="ja">森下 由佳</span> (Юка Морисита), 34 года, живёт в Фукуоке. Работает медицинским регистратором в многопрофильной больнице. В 7:40 утра она открывает iPhone, сидя в вагоне метро, и приходит сюда из Reels в Instagram. К гаданиям она относится без лишней серьёзности, но любит их настолько, чтобы посмеяться, если не сбылось. Она тянет одну карту и, если та выпала перевёрнутой, решает: «сегодня день, когда не надо себя перегружать». Ей приятно, когда история приходит к цвету через знакомые места и ремёсла, вроде ткачества Хаката или индиго-крашения Тикуго. Понравившийся цвет подсказывает ей, какой выбрать платок или лак для ногтей. Иногда она пишет коллеге в LINE: «Сегодня я, похоже, индиго».</p></div>
+  </div>
+  <details><summary>Цифры и примечания</summary>
+    <div class="scroll"><table class="facts"><thead><tr><th scope="col">Показатель</th><th scope="col">Значение</th><th scope="col">Примечание</th></tr></thead><tbody>
+      <tr><th scope="row">Всего говорящих (родной + второй язык)</th><td>126 млн</td><td>Ethnologue, издание 2026 года</td></tr>
+      <tr><th scope="row">Доля веб-контента</th><td>4,9% (4-е место)</td><td>W3Techs, октябрь 2026 года</td></tr>
+      <tr><th scope="row">Пользователи интернета по языку</th><td>2,6% (8-е место)</td><td>Internet World Stats, март 2020 года</td></tr>
+      <tr><th scope="row">Время в сети</th><td>По оценке, 100 млн пользователей интернета, в среднем 3,9 часа в день, всего 390 млн часов в сутки (18-е место)</td><td>Оценка Claude. Время на человека одно из самых коротких в мире</td></tr>
+    </tbody></table></div>
+  </details>
+</section>
+
+<section class="lang" id="en" aria-labelledby="h-en">
+  <p class="kicker">02 · en</p>
+  <h2 id="h-en"><span lang="en">English</span><small>Английский</small></h2>
+  <dl class="nums">
+    <div><dt>Носители</dt><dd>1,493 млрд (1-е место)</dd></div>
+    <div><dt>Веб</dt><dd>49,5% (1-е место)</dd></div>
+    <div><dt>Время в сети</dt><dd>5,78 млрд часов</dd></div>
+  </dl>
+  <p class="region"><b>Где</b>Родной язык в США, Великобритании, Канаде, Австралии, Новой Зеландии и Ирландии. В Индии, на Филиппинах, в Нигерии, Сингапуре, Кении и других странах это официальный язык или язык образования. Англоязычные страницы читают люди со всего мира, для которых английский второй язык.</p>
+  <div class="persona">
+    <figure><img src="../../language-intro/img/en.webp" width="800" height="1000" loading="lazy" decoding="async" alt="Вымышленная персона. Maya Reynolds, 29 лет, живёт в Манчестере, Великобритания. Работает помощником учителя в начальной школе."></figure>
+    <div class="ptext"><h3>Персона</h3><p>Maya Reynolds, 29 лет, живёт в Манчестере, Великобритания. Работает помощником учителя в начальной школе. В 10 вечера она открывает телефон на Android, лёжа в постели. Она часто смотрит ролики про таро в TikTok, и ей нравится, как просто вытянуть одну карту. Она читает значение карты и обожает момент, когда в конце истории появляется название цвета. Если история цвета связана с британскими местами, например с шотландским чертополохом или йоркширской шерстью, она отправляет ссылку друзьям. Ещё ей нравится переключать стиль карт и сравнивать модерн с витражом.</p></div>
+  </div>
+  <details><summary>Цифры и примечания</summary>
+    <div class="scroll"><table class="facts"><thead><tr><th scope="col">Показатель</th><th scope="col">Значение</th><th scope="col">Примечание</th></tr></thead><tbody>
+      <tr><th scope="row">Всего говорящих (родной + второй язык)</th><td>1,493 млрд (1-е место)</td><td>Ethnologue, издание 2026 года</td></tr>
+      <tr><th scope="row">Доля веб-контента</th><td>49,5% (1-е место)</td><td>W3Techs, октябрь 2026 года</td></tr>
+      <tr><th scope="row">Пользователи интернета по языку</th><td>25,9% (1-е место)</td><td>Internet World Stats, март 2020 года</td></tr>
+      <tr><th scope="row">Время в сети</th><td>По оценке, 850 млн пользователей интернета, в среднем 6,8 часа в день, всего 5,78 млрд часов в сутки (2-е место)</td><td>Оценка Claude. Учтены только те, кто в основном читает по-английски; в примечании сказано, что с учётом читающих на английском как на втором языке он был бы на 1-м месте</td></tr>
+    </tbody></table></div>
+  </details>
+</section>
+
+<section class="lang" id="zh-hans" aria-labelledby="h-zh-hans">
+  <p class="kicker">03 · zh-hans</p>
+  <h2 id="h-zh-hans"><span lang="zh-Hans">简体中文</span><small>Упрощённый китайский</small></h2>
+  <dl class="nums">
+    <div><dt>Носители</dt><dd>1,183 млрд (путунхуа)</dd></div>
+    <div><dt>Веб</dt><dd>1,3% (12-е место, весь китайский)</dd></div>
+    <div><dt>Время в сети</dt><dd>6,20 млрд часов (упрощённый + традиционный)</dd></div>
+  </dl>
+  <p class="region"><b>Где</b>Материковый Китай, где это письменность школы и государства. Упрощённые иероглифы — стандарт и в китайских общинах Сингапура и Малайзии. Большие китайские общины есть в Северной Америке, Австралии, Европе и Юго-Восточной Азии, много и китайских студентов за рубежом.</p>
+  <div class="persona">
+    <figure><img src="../../language-intro/img/zh-hans.webp" width="800" height="1000" loading="lazy" decoding="async" alt="Вымышленная персона. 林悦 (Линь Юэ), 26 лет, живёт в Чэнду. Работает UI-дизайнером в компании, которая делает игры."></figure>
+    <div class="ptext"><h3>Персона</h3><p><span lang="zh-Hans">林悦</span> (Линь Юэ), 26 лет, живёт в Чэнду. Работает UI-дизайнером в компании, которая делает игры. В 12:30, в обеденный перерыв, она искала на телефоне Huawei в Xiaohongshu материалы о поездке в Киото в следующем месяце и нашла этот сайт в заметках одного путешественника. Работа сделала её чуткой к названиям цветов и палитрам. Она тянет одну карту, и когда история приходит к цвету через сунский селадон или шускую парчу (парча Сычуани), сохраняет экран и отправляет коллегам в WeChat. Ей нравится смотреть карты в стиле живописи тушью.</p></div>
+  </div>
+  <details><summary>Цифры и примечания</summary>
+    <div class="scroll"><table class="facts"><thead><tr><th scope="col">Показатель</th><th scope="col">Значение</th><th scope="col">Примечание</th></tr></thead><tbody>
+      <tr><th scope="row">Всего говорящих (родной + второй язык)</th><td>1,183 млрд (путунхуа)</td><td>Ethnologue, издание 2026 года. Традиционный и упрощённый китайский учтены только один раз, как путунхуа</td></tr>
+      <tr><th scope="row">Доля веб-контента</th><td>1,3% (12-е место, весь китайский)</td><td>W3Techs не разделяет упрощённый и традиционный китайский</td></tr>
+      <tr><th scope="row">Пользователи интернета по языку</th><td>19,4% (2-е место, весь китайский)</td><td>Internet World Stats, март 2020 года</td></tr>
+      <tr><th scope="row">Время в сети</th><td>По оценке, 1,17 млрд пользователей интернета, в среднем 5,3 часа в день, всего 6,20 млрд часов в сутки (1-е место, упрощённый + традиционный)</td><td>Оценка Claude. 1,11 млрд в материковом Китае плюс Тайвань, Гонконг и зарубежные китайцы</td></tr>
+    </tbody></table></div>
+  </details>
+</section>
+
+<section class="lang" id="zh" aria-labelledby="h-zh">
+  <p class="kicker">04 · zh</p>
+  <h2 id="h-zh"><span lang="zh-Hant">繁體中文</span><small>Традиционный китайский</small></h2>
+  <dl class="nums">
+    <div><dt>Носители</dt><dd>Учтён вместе с упрощённым китайским как путунхуа (1,183 млрд)</dd></div>
+    <div><dt>Веб</dt><dd>1,3% (12-е место, весь китайский)</dd></div>
+    <div><dt>Время в сети</dt><dd>Всего 6,20 млрд часов в сутки вместе с упрощённым китайским (1-е место)</dd></div>
+  </dl>
+  <p class="region"><b>Где</b>Письменность Тайваня, Гонконга и Макао. Традиционными иероглифами пользуются и многие в давних китайских общинах Северной Америки и Австралии. На Тайване говорят на стандартном китайском (хуаюй); в Гонконге и Макао разговорный язык — кантонский, а на письме используют традиционную письменную норму.</p>
+  <div class="persona">
+    <figure><img src="../../language-intro/img/zh.webp" width="800" height="1000" loading="lazy" decoding="async" alt="Вымышленная персона. 陳怡君 (Чэнь Ицзюнь), 31 год, живёт в Тайчжуне. Работает операционистом в банке."></figure>
+    <div class="ptext"><h3>Персона</h3><p><span lang="zh-Hant">陳怡君</span> (Чэнь Ицзюнь), 31 год, живёт в Тайчжуне. Работает операционистом в банке. В 11 вечера, перед сном, она планирует на iPhone поездку в Канадзаву в следующем месяце. Этот сайт она открыла по ссылке, которую подруга прислала ей в LINE. Одну карту она тянет примерно с тем же настроением, с каким тянут бумажку с предсказанием в храме. Когда история приходит к цвету через японские ремёсла, вроде крашения кага-юдзэн или сусального золота, в её поездке появляется ещё одно место. Страницу с результатом она отправляет подруге в LINE в ответ.</p></div>
+  </div>
+  <details><summary>Цифры и примечания</summary>
+    <div class="scroll"><table class="facts"><thead><tr><th scope="col">Показатель</th><th scope="col">Значение</th><th scope="col">Примечание</th></tr></thead><tbody>
+      <tr><th scope="row">Всего говорящих (родной + второй язык)</th><td>Учтён вместе с упрощённым китайским как путунхуа (1,183 млрд)</td><td>Традиционный и упрощённый китайский учтены только один раз, как путунхуа. Данных только о читающих на традиционном китайском нет</td></tr>
+      <tr><th scope="row">Доля веб-контента</th><td>1,3% (12-е место, весь китайский)</td><td>W3Techs не разделяет упрощённый и традиционный китайский</td></tr>
+      <tr><th scope="row">Пользователи интернета по языку</th><td>19,4% (2-е место, весь китайский)</td><td>Internet World Stats, март 2020 года</td></tr>
+      <tr><th scope="row">Время в сети</th><td>Всего 6,20 млрд часов в сутки вместе с упрощённым китайским (1-е место)</td><td>Оценка Claude. Отдельной оценки для традиционного китайского нет</td></tr>
+    </tbody></table></div>
+  </details>
+</section>
+
+<section class="lang" id="hi" aria-labelledby="h-hi">
+  <p class="kicker">05 · hi</p>
+  <h2 id="h-hi"><span lang="hi">हिन्दी</span><small>Хинди</small></h2>
+  <dl class="nums">
+    <div><dt>Носители</dt><dd>611 млн (3-е место)</dd></div>
+    <div><dt>Веб</dt><dd>Менее 0,1% (38-е место)</dd></div>
+    <div><dt>Время в сети</dt><dd>1,74 млрд часов</dd></div>
+  </dl>
+  <p class="region"><b>Где</b>Север и центр Индии (Уттар-Прадеш, Бихар, Раджастхан, Мадхья-Прадеш, Дели и другие). Говорящие есть также в Непале и на Фиджи. Большие индийские общины живут в странах Персидского залива, Великобритании, США и Канаде.</p>
+  <div class="persona">
+    <figure><img src="../../language-intro/img/hi.webp" width="800" height="1000" loading="lazy" decoding="async" alt="Вымышленная персона. Neha Verma, 24 года, живёт в Джайпуре. Стажёр-практикант на пути к профессии дипломированного бухгалтера."></figure>
+    <div class="ptext"><h3>Персона</h3><p>Neha Verma, 24 года, живёт в Джайпуре. Стажёр-практикант на пути к профессии дипломированного бухгалтера. В 8 утра, перед тем как сесть в метро, она тянет одну карту на телефоне Redmi, словно продолжая рашифал, который всегда смотрит её мама. Она читает и по-английски, но чувствует, что истории о цветах на хинди запоминаются лучше. Когда история приходит к цвету через здания «Розового города» Джайпура или раджастханскую узелковую окраску, она выбирает дупатту этого цвета. Понравившиеся результаты она отправляет старшей сестре в WhatsApp.</p></div>
+  </div>
+  <details><summary>Цифры и примечания</summary>
+    <div class="scroll"><table class="facts"><thead><tr><th scope="col">Показатель</th><th scope="col">Значение</th><th scope="col">Примечание</th></tr></thead><tbody>
+      <tr><th scope="row">Всего говорящих (родной + второй язык)</th><td>611 млн (3-е место)</td><td>Ethnologue, издание 2026 года</td></tr>
+      <tr><th scope="row">Доля веб-контента</th><td>Менее 0,1% (38-е место)</td><td>W3Techs, октябрь 2026 года. Веб-страниц очень мало по сравнению с числом говорящих</td></tr>
+      <tr><th scope="row">Пользователи интернета по языку</th><td>Вне первой десятки</td><td>Internet World Stats, март 2020 года</td></tr>
+      <tr><th scope="row">Время в сети</th><td>По оценке, 290 млн пользователей интернета, в среднем 6,0 часа в день, всего 1,74 млрд часов в сутки (6-е место)</td><td>Оценка Claude. Предполагается, что около 35% пользователей Индии пользуются хинди. Это самое шаткое допущение</td></tr>
+    </tbody></table></div>
+  </details>
+</section>
+
+<section class="lang" id="es" aria-labelledby="h-es">
+  <p class="kicker">06 · es</p>
+  <h2 id="h-es"><span lang="es">Español</span><small>Испанский</small></h2>
+  <dl class="nums">
+    <div><dt>Носители</dt><dd>561 млн (4-е место)</dd></div>
+    <div><dt>Веб</dt><dd>6,0% (2-е место)</dd></div>
+    <div><dt>Время в сети</dt><dd>2,96 млрд часов</dd></div>
+  </dl>
+  <p class="region"><b>Где</b>Испания и многие страны Латинской Америки, включая Мексику, Колумбию, Аргентину, Перу, Чили и Венесуэлу. Многие люди в США тоже говорят дома по-испански (их число здесь не проверялось). Это также официальный язык Экваториальной Гвинеи.</p>
+  <div class="persona">
+    <figure><img src="../../language-intro/img/es.webp" width="800" height="1000" loading="lazy" decoding="async" alt="Вымышленная персона. Valeria Ortiz, 32 года, живёт в Гвадалахаре, Мексика. Работает гигиенистом в стоматологии."></figure>
+    <div class="ptext"><h3>Персона</h3><p>Valeria Ortiz, 32 года, живёт в Гвадалахаре, Мексика. Работает гигиенистом в стоматологии. В 9:30 вечера, на диване после работы, она открывает телефон на Android; на этот сайт она пришла после истории о таро, увиденной в TikTok. Ей нравится читать значение карты, но больше всего она любит ждать название цвета в конце. Когда история приходит к малиновому через мексиканскую кошениль (красный краситель из насекомого, живущего на кактусах), она сразу отправляет её младшей сестре в WhatsApp. В конце года она собирается выбрать с помощью этого сайта цвет нижнего белья.</p></div>
+  </div>
+  <details><summary>Цифры и примечания</summary>
+    <div class="scroll"><table class="facts"><thead><tr><th scope="col">Показатель</th><th scope="col">Значение</th><th scope="col">Примечание</th></tr></thead><tbody>
+      <tr><th scope="row">Всего говорящих (родной + второй язык)</th><td>561 млн (4-е место)</td><td>Ethnologue, издание 2026 года</td></tr>
+      <tr><th scope="row">Доля веб-контента</th><td>6,0% (2-е место)</td><td>W3Techs, октябрь 2026 года</td></tr>
+      <tr><th scope="row">Пользователи интернета по языку</th><td>7,9% (3-е место)</td><td>Internet World Stats, март 2020 года</td></tr>
+      <tr><th scope="row">Время в сети</th><td>По оценке, 390 млн пользователей интернета, в среднем 7,6 часа в день, всего 2,96 млрд часов в сутки (3-е место)</td><td>Оценка Claude. Мексика, Испания, Колумбия, Аргентина и другие страны плюс люди в США, для которых испанский основной</td></tr>
+    </tbody></table></div>
+  </details>
+</section>
+
+<section class="lang" id="ar" aria-labelledby="h-ar">
+  <p class="kicker">07 · ar</p>
+  <h2 id="h-ar"><span lang="ar" dir="rtl">العربية</span><small>Арабский (современный литературный)</small></h2>
+  <dl class="nums">
+    <div><dt>Носители</dt><dd>335 млн (5-е место, современный литературный арабский)</dd></div>
+    <div><dt>Веб</dt><dd>0,6% (19-е место)</dd></div>
+    <div><dt>Время в сети</dt><dd>2,31 млрд часов</dd></div>
+  </dl>
+  <p class="region"><b>Где</b>Официальный язык примерно 22 стран Ближнего Востока и Северной Африки, среди них Египет, Саудовская Аравия, Ирак, Алжир, Марокко, Судан, Сирия, Иордания и ОАЭ. Много арабоязычных людей живёт также в Европе (Франция, Германия и другие страны) и Северной Америке. Сайт свёрстан справа налево.</p>
+  <div class="persona">
+    <figure><img src="../../language-intro/img/ar.webp" width="800" height="1000" loading="lazy" decoding="async" alt="Вымышленная персона. Nour Haddad, 28 лет, живёт в Аммане, Иордания. Работает в архитектурном бюро."></figure>
+    <div class="ptext"><h3>Персона</h3><p>Nour Haddad, 28 лет, живёт в Аммане, Иордания. Работает в архитектурном бюро. В 8 вечера она открывает iPhone на балконе дома. В гадания она не верит; рисунки карт и истории для неё — «короткое чтение». Когда история приходит к цвету через синеву изразцов исламской архитектуры или розовый камень Петры, она записывает его как идею для цветовых решений на работе. Иногда она отправляет страницу с результатом в группу коллег-архитекторов в WhatsApp.</p></div>
+  </div>
+  <details><summary>Цифры и примечания</summary>
+    <div class="scroll"><table class="facts"><thead><tr><th scope="col">Показатель</th><th scope="col">Значение</th><th scope="col">Примечание</th></tr></thead><tbody>
+      <tr><th scope="row">Всего говорящих (родной + второй язык)</th><td>335 млн (5-е место, современный литературный арабский)</td><td>Ethnologue, издание 2026 года</td></tr>
+      <tr><th scope="row">Доля веб-контента</th><td>0,6% (19-е место)</td><td>W3Techs, октябрь 2026 года</td></tr>
+      <tr><th scope="row">Пользователи интернета по языку</th><td>5,2% (4-е место)</td><td>Internet World Stats, март 2020 года</td></tr>
+      <tr><th scope="row">Время в сети</th><td>По оценке, 330 млн пользователей интернета, в среднем 7,0 часа в день, всего 2,31 млрд часов в сутки (4-е место)</td><td>Оценка Claude. Египет, Саудовская Аравия, Ирак, Алжир, Марокко и другие</td></tr>
+    </tbody></table></div>
+  </details>
+</section>
+
+<section class="lang" id="fr" aria-labelledby="h-fr">
+  <p class="kicker">08 · fr</p>
+  <h2 id="h-fr"><span lang="fr">Français</span><small>Французский</small></h2>
+  <dl class="nums">
+    <div><dt>Носители</dt><dd>334 млн (6-е место)</dd></div>
+    <div><dt>Веб</dt><dd>4,5% (5-е место)</dd></div>
+    <div><dt>Время в сети</dt><dd>750 млн часов</dd></div>
+  </dl>
+  <p class="region"><b>Где</b>Франция, юг Бельгии, запад Швейцарии, Квебек в Канаде и Люксембург. В Западной и Центральной Африке (Кот-д’Ивуар, Сенегал, Демократическая Республика Конго, Камерун и другие страны) это язык школы и государства. Он широко используется и в Марокко, Алжире и Тунисе в Северной Африке.</p>
+  <div class="persona">
+    <figure><img src="../../language-intro/img/fr.webp" width="800" height="1000" loading="lazy" decoding="async" alt="Вымышленная персона. Hélène Garnier, 41 год, живёт в Лионе. Держит мастерскую переплёта и реставрации бумаги."></figure>
+    <div class="ptext"><h3>Персона</h3><p>Hélène Garnier, 41 год, живёт в Лионе. Держит мастерскую переплёта и реставрации бумаги. В 10 утра в воскресенье она открывает планшет на верстаке в мастерской. Она помнит марсельскую колоду в доме бабушки, и названия старших арканов ей знакомы. Когда история приходит к цвету через лионское крашение шёлка или парижского торговца красками, она выбирает по нему цвет форзаца для следующего переплёта. Она выбирает стиль модерн.</p></div>
+  </div>
+  <details><summary>Цифры и примечания</summary>
+    <div class="scroll"><table class="facts"><thead><tr><th scope="col">Показатель</th><th scope="col">Значение</th><th scope="col">Примечание</th></tr></thead><tbody>
+      <tr><th scope="row">Всего говорящих (родной + второй язык)</th><td>334 млн (6-е место)</td><td>Ethnologue, издание 2026 года</td></tr>
+      <tr><th scope="row">Доля веб-контента</th><td>4,5% (5-е место)</td><td>W3Techs, октябрь 2026 года</td></tr>
+      <tr><th scope="row">Пользователи интернета по языку</th><td>3,3% (7-е место)</td><td>Internet World Stats, март 2020 года</td></tr>
+      <tr><th scope="row">Время в сети</th><td>По оценке, 125 млн пользователей интернета, в среднем 6,0 часа в день, всего 750 млн часов в сутки (9-е место)</td><td>Оценка Claude. Франция, Бельгия и Квебек плюс франкоязычная Африка</td></tr>
+    </tbody></table></div>
+  </details>
+</section>
+
+<section class="lang" id="bn" aria-labelledby="h-bn">
+  <p class="kicker">09 · bn</p>
+  <h2 id="h-bn"><span lang="bn">বাংলা</span><small>Бенгальский</small></h2>
+  <dl class="nums">
+    <div><dt>Носители</dt><dd>274 млн (7-е место)</dd></div>
+    <div><dt>Веб</dt><dd>Менее 0,1% (39-е место)</dd></div>
+    <div><dt>Время в сети</dt><dd>610 млн часов</dd></div>
+  </dl>
+  <p class="region"><b>Где</b>Бангладеш (государственный язык) и индийские штаты Западная Бенгалия, Трипура и часть Ассама. Много выходцев из Бангладеш живёт в Великобритании (Восточный Лондон), странах Персидского залива, США и Малайзии.</p>
+  <div class="persona">
+    <figure><img src="../../language-intro/img/bn.webp" width="800" height="1000" loading="lazy" decoding="async" alt="Вымышленная персона. Farhana Akter, 23 года, живёт в Дакке. Изучает английскую литературу в университете."></figure>
+    <div class="ptext"><h3>Персона</h3><p>Farhana Akter, 23 года, живёт в Дакке. Изучает английскую литературу в университете. В 10 вечера, отдыхая от учёбы, она листала Facebook на телефоне Samsung и пришла со страницы с результатом, которой поделилась подруга. Для неё это не гадание, а короткий рассказ, который можно прочитать по-бенгальски. Когда история приходит к цвету слоновой кости через даккский муслин или ткачество джамдани, она переписывает название цвета в тетрадь со стихами.</p></div>
+  </div>
+  <details><summary>Цифры и примечания</summary>
+    <div class="scroll"><table class="facts"><thead><tr><th scope="col">Показатель</th><th scope="col">Значение</th><th scope="col">Примечание</th></tr></thead><tbody>
+      <tr><th scope="row">Всего говорящих (родной + второй язык)</th><td>274 млн (7-е место)</td><td>Ethnologue, издание 2026 года</td></tr>
+      <tr><th scope="row">Доля веб-контента</th><td>Менее 0,1% (39-е место)</td><td>W3Techs, октябрь 2026 года</td></tr>
+      <tr><th scope="row">Пользователи интернета по языку</th><td>Вне первой десятки</td><td>Internet World Stats, март 2020 года</td></tr>
+      <tr><th scope="row">Время в сети</th><td>По оценке, 110 млн пользователей интернета, в среднем 5,5 часа в день, всего 610 млн часов в сутки (10-е место)</td><td>Оценка Claude. Бангладеш плюс Западная Бенгалия</td></tr>
+    </tbody></table></div>
+  </details>
+</section>
+
+<section class="lang" id="pt" aria-labelledby="h-pt">
+  <p class="kicker">10 · pt</p>
+  <h2 id="h-pt"><span lang="pt">Português</span><small>Португальский (Бразилия)</small></h2>
+  <dl class="nums">
+    <div><dt>Носители</dt><dd>269 млн (8-е место)</dd></div>
+    <div><dt>Веб</dt><dd>4,1% (6-е место)</dd></div>
+    <div><dt>Время в сети</dt><dd>1,89 млрд часов</dd></div>
+  </dl>
+  <p class="region"><b>Где</b>Бразилия (на сайте pt-BR) и Португалия. Это также официальный язык в африканских странах, таких как Ангола, Мозамбик и Кабо-Верде. В Японии живёт много бразильцев японского происхождения. Бразильские общины есть в США, Португалии и Японии.</p>
+  <div class="persona">
+    <figure><img src="../../language-intro/img/pt.webp" width="800" height="1000" loading="lazy" decoding="async" alt="Вымышленная персона. Juliana Costa, 30 лет, живёт в Ресифи. Медсестра в больнице, работает и в ночные смены."></figure>
+    <div class="ptext"><h3>Персона</h3><p>Juliana Costa, 30 лет, живёт в Ресифи. Медсестра в больнице, работает и в ночные смены. В 6:30 утра, в автобусе домой после ночной смены, она открывает телефон Samsung и тянет одну карту. Цвета в конце истории она ждёт больше, чем значения карты. Когда история приходит к цвету через пау-бразил (красильное дерево, давшее имя Бразилии), она отправляет его в группу коллег в WhatsApp. Цвет наряда на новогоднюю ночь она тоже собирается вытянуть здесь.</p></div>
+  </div>
+  <details><summary>Цифры и примечания</summary>
+    <div class="scroll"><table class="facts"><thead><tr><th scope="col">Показатель</th><th scope="col">Значение</th><th scope="col">Примечание</th></tr></thead><tbody>
+      <tr><th scope="row">Всего говорящих (родной + второй язык)</th><td>269 млн (8-е место)</td><td>Ethnologue, издание 2026 года</td></tr>
+      <tr><th scope="row">Доля веб-контента</th><td>4,1% (6-е место)</td><td>W3Techs, октябрь 2026 года</td></tr>
+      <tr><th scope="row">Пользователи интернета по языку</th><td>3,7% (6-е место)</td><td>Internet World Stats, март 2020 года</td></tr>
+      <tr><th scope="row">Время в сети</th><td>По оценке, 210 млн пользователей интернета, в среднем 9,0 часа в день, всего 1,89 млрд часов в сутки (5-е место)</td><td>Оценка Claude. В основном Бразилия. Время в сети одно из самых долгих в мире</td></tr>
+    </tbody></table></div>
+  </details>
+</section>
+
+<section class="lang" id="id" aria-labelledby="h-id">
+  <p class="kicker">11 · id</p>
+  <h2 id="h-id"><span lang="id">Bahasa Indonesia</span><small>Индонезийский</small></h2>
+  <dl class="nums">
+    <div><dt>Носители</dt><dd>255 млн (9-е место)</dd></div>
+    <div><dt>Веб</dt><dd>1,2% (13-е место)</dd></div>
+    <div><dt>Время в сети</dt><dd>1,55 млрд часов</dd></div>
+  </dl>
+  <p class="region"><b>Где</b>Государственный язык Индонезии, которым в школе и на работе пользуются более 200 млн человек. В Восточном Тиморе это рабочий язык. Он в целом взаимопонятен с малайским Малайзии, Брунея и Сингапура. Всё больше индонезийцев работают в Японии как технические стажёры или по программе «особо квалифицированный работник».</p>
+  <div class="persona">
+    <figure><img src="../../language-intro/img/id.webp" width="800" height="1000" loading="lazy" decoding="async" alt="Вымышленная персона. Dimas Pratama, 25 лет, живёт в Бандунге. Младший графический дизайнер в стартапе."></figure>
+    <div class="ptext"><h3>Персона</h3><p>Dimas Pratama, 25 лет, живёт в Бандунге. Младший графический дизайнер в стартапе. В 9 утра он открывает телефон на Android в коворкинге. Сайт для него не гадание, а инструмент для поиска идей цветовых сочетаний. Значение карты он пробегает глазами, а историю цвета читает внимательно. Когда история приходит к цвету через индиго яванского батика или сунданские изделия из бамбука, он делает его основным цветом в эскизах плакатов на этот день. В сторис Instagram он выкладывает только название цвета.</p></div>
+  </div>
+  <details><summary>Цифры и примечания</summary>
+    <div class="scroll"><table class="facts"><thead><tr><th scope="col">Показатель</th><th scope="col">Значение</th><th scope="col">Примечание</th></tr></thead><tbody>
+      <tr><th scope="row">Всего говорящих (родной + второй язык)</th><td>255 млн (9-е место)</td><td>Ethnologue, издание 2026 года</td></tr>
+      <tr><th scope="row">Доля веб-контента</th><td>1,2% (13-е место)</td><td>W3Techs, октябрь 2026 года</td></tr>
+      <tr><th scope="row">Пользователи интернета по языку</th><td>4,3% (5-е место)</td><td>Internet World Stats, март 2020 года. Делит строку с малайским; цифра относится к индонезийскому</td></tr>
+      <tr><th scope="row">Время в сети</th><td>По оценке, 210 млн пользователей интернета, в среднем 7,4 часа в день, всего 1,55 млрд часов в сутки (7-е место)</td><td>Оценка Claude</td></tr>
+    </tbody></table></div>
+  </details>
+</section>
+
+<section class="lang" id="ms" aria-labelledby="h-ms">
+  <p class="kicker">12 · ms</p>
+  <h2 id="h-ms"><span lang="ms">Bahasa Melayu</span><small>Малайский</small></h2>
+  <dl class="nums">
+    <div><dt>Носители</dt><dd>неизвестно</dd></div>
+    <div><dt>Веб</dt><dd>нет данных</dd></div>
+    <div><dt>Время в сети</dt><dd>Около 160 млн часов (справочная цифра, вне рейтинга)</dd></div>
+  </dl>
+  <p class="region"><b>Где</b>Малайзия, Бруней и Сингапур (государственный язык). На малайском говорят и на юге Таиланда. В Малайзии малайцы пользуются им в повседневной жизни, а малайзийские китайцы и индийцы тоже учат его в школе.</p>
+  <div class="persona">
+    <figure><img src="../../language-intro/img/ms.webp" width="800" height="1000" loading="lazy" decoding="async" alt="Вымышленная персона. Nur Aisyah binti Rahman, 27 лет, живёт в Шах-Аламе. Работает фармацевтом в больнице."></figure>
+    <div class="ptext"><h3>Персона</h3><p>Nur Aisyah binti Rahman, 27 лет, живёт в Шах-Аламе. Работает фармацевтом в больнице. В час дня, в обеденный перерыв, она смотрит в TikTok на телефоне с Android советы для поездки в Осаку в марте следующего года. В гадания она не верит, но рисунки карт и истории о цветах любит как «что-то красивое для чтения». Когда история приходит к цвету через золотую нить малайского сонгкета или порт Малакки, она ориентируется на него, выбирая цвет тудунга (платка) для поездки. В семейную группу в WhatsApp она отправляет только название цвета.</p></div>
+  </div>
+  <details><summary>Цифры и примечания</summary>
+    <div class="scroll"><table class="facts"><thead><tr><th scope="col">Показатель</th><th scope="col">Значение</th><th scope="col">Примечание</th></tr></thead><tbody>
+      <tr><th scope="row">Всего говорящих (родной + второй язык)</th><td>неизвестно</td><td>Малайский часто считают вместе с индонезийским как макроязык, поэтому отдельной цифры нет. Страница Википедии «Malay language» (со ссылкой на Ethnologue, 28-е издание, 2025) даёт для малайского как макроязыка около 90 млн носителей родного языка (2020–2023) и около 180 млн говорящих на нём как на втором (2020). Этот подсчёт включает местные малайские наречия Индонезии и не относится только к стандартному малайскому</td></tr>
+      <tr><th scope="row">Доля веб-контента</th><td>нет данных</td><td>Не входит в первые 40 у W3Techs</td></tr>
+      <tr><th scope="row">Пользователи интернета по языку</th><td>Та же строка, что и индонезийский</td><td>В Internet World Stats цифра строки «индонезийский/малайский» — это только 4,3% индонезийского</td></tr>
+      <tr><th scope="row">Время в сети</th><td>Около 160 млн часов в сутки (справочная цифра, вне рейтинга)</td><td>Справочная цифра вне рейтинга в оценке Claude. Около 60% пользователей Малайзии плюс Бруней</td></tr>
+    </tbody></table></div>
+  </details>
+</section>
+
+<section class="lang" id="ur" aria-labelledby="h-ur">
+  <p class="kicker">13 · ur</p>
+  <h2 id="h-ur"><span lang="ur" dir="rtl">اردو</span><small>Урду</small></h2>
+  <dl class="nums">
+    <div><dt>Носители</dt><dd>246 млн (10-е место)</dd></div>
+    <div><dt>Веб</dt><dd>нет данных</dd></div>
+    <div><dt>Время в сети</dt><dd>520 млн часов</dd></div>
+  </dl>
+  <p class="region"><b>Где</b>Пакистан (государственный язык) и север Индии (Уттар-Прадеш, Хайдарабад в Телангане, Дели и другие места). Много людей пакистанского происхождения живёт в Великобритании, странах Персидского залива, США и Канаде. Разговорный язык близок к хинди, а письменность (арабское письмо в стиле насталик) другая. Сайт свёрстан справа налево.</p>
+  <div class="persona">
+    <figure><img src="../../language-intro/img/ur.webp" width="800" height="1000" loading="lazy" decoding="async" alt="Вымышленная персона. Hamza Qureshi, 30 лет, живёт в Лахоре. Инженер-программист в финтех-компании."></figure>
+    <div class="ptext"><h3>Персона</h3><p>Hamza Qureshi, 30 лет, живёт в Лахоре. Инженер-программист в финтех-компании. В половине первого ночи, после работы, он открывает телефон на Android за чашкой чая. От гаданий он держится в стороне, но любит страницы, где текст на урду красиво набран, и приходит читать истории. Когда история приходит к цвету через ультрамарин могольской миниатюры или изразцы на стенах Лахорского форта, он отправляет ссылку другу-поэту в WhatsApp.</p></div>
+  </div>
+  <details><summary>Цифры и примечания</summary>
+    <div class="scroll"><table class="facts"><thead><tr><th scope="col">Показатель</th><th scope="col">Значение</th><th scope="col">Примечание</th></tr></thead><tbody>
+      <tr><th scope="row">Всего говорящих (родной + второй язык)</th><td>246 млн (10-е место)</td><td>Ethnologue, издание 2026 года</td></tr>
+      <tr><th scope="row">Доля веб-контента</th><td>нет данных</td><td>Не входит в первые 40 у W3Techs</td></tr>
+      <tr><th scope="row">Пользователи интернета по языку</th><td>Вне первой десятки</td><td>Internet World Stats, март 2020 года</td></tr>
+      <tr><th scope="row">Время в сети</th><td>По оценке, 95 млн пользователей интернета, в среднем 5,5 часа в день, всего 520 млн часов в сутки (13-е место)</td><td>Оценка Claude. Около 75% Пакистана плюс часть Индии</td></tr>
+    </tbody></table></div>
+  </details>
+</section>
+
+<section class="lang" id="ru" aria-labelledby="h-ru">
+  <p class="kicker">14 · ru</p>
+  <h2 id="h-ru"><span lang="ru">Русский</span></h2>
+  <dl class="nums">
+    <div><dt>Носители</dt><dd>210 млн (11-е место)</dd></div>
+    <div><dt>Веб</dt><dd>3,4% (7-е место)</dd></div>
+    <div><dt>Время в сети</dt><dd>1,16 млрд часов</dd></div>
+  </dl>
+  <p class="region"><b>Где</b>Официальный язык России, Беларуси, Казахстана и Киргизии. Многие в других бывших советских странах (Центральная Азия, Кавказ, Прибалтика) тоже пользуются русским. Русскоязычные общины есть также в Израиле, Германии и США.</p>
+  <div class="persona">
+    <figure><img src="../../language-intro/img/ru.webp" width="800" height="1000" loading="lazy" decoding="async" alt="Вымышленная персона. Анна Соколова, 35 лет, живёт в Новосибирске. Работает лаборантом химического анализа в научном институте."></figure>
+    <div class="ptext"><h3>Персона</h3><p>Анна Соколова, 35 лет, живёт в Новосибирске. Работает лаборантом химического анализа в научном институте. В 10 вечера она открывает телефон на Android на кухне за чаем. Об этом сайте она узнала из Telegram-канала о цвете и искусстве. По роду работы ей особенно нравится вытянуть карту и проследить, как история приходит к цвету через минералы и пигменты. В дни, когда выпадает малахитовый зелёный, она показывает дочери фотографию этого камня.</p></div>
+  </div>
+  <details><summary>Цифры и примечания</summary>
+    <div class="scroll"><table class="facts"><thead><tr><th scope="col">Показатель</th><th scope="col">Значение</th><th scope="col">Примечание</th></tr></thead><tbody>
+      <tr><th scope="row">Всего говорящих (родной + второй язык)</th><td>210 млн (11-е место)</td><td>Ethnologue, издание 2026 года</td></tr>
+      <tr><th scope="row">Доля веб-контента</th><td>3,4% (7-е место)</td><td>W3Techs, октябрь 2026 года</td></tr>
+      <tr><th scope="row">Пользователи интернета по языку</th><td>2,5% (9-е место)</td><td>Internet World Stats, март 2020 года</td></tr>
+      <tr><th scope="row">Время в сети</th><td>По оценке, 155 млн пользователей интернета, в среднем 7,5 часа в день, всего 1,16 млрд часов в сутки (8-е место)</td><td>Оценка Claude. Россия плюс Беларусь, Казахстан и часть Центральной Азии</td></tr>
+    </tbody></table></div>
+  </details>
+</section>
+
+<section class="lang" id="de" aria-labelledby="h-de">
+  <p class="kicker">15 · de</p>
+  <h2 id="h-de"><span lang="de">Deutsch</span><small>Немецкий</small></h2>
+  <dl class="nums">
+    <div><dt>Носители</dt><dd>133 млн (12-е место)</dd></div>
+    <div><dt>Веб</dt><dd>5,9% (3-е место)</dd></div>
+    <div><dt>Время в сети</dt><dd>480 млн часов</dd></div>
+  </dl>
+  <p class="region"><b>Где</b>Германия, Австрия, Швейцария (север и центр), Лихтенштейн, Люксембург, Южный Тироль в Италии и восток Бельгии.</p>
+  <div class="persona">
+    <figure><img src="../../language-intro/img/de.webp" width="800" height="1000" loading="lazy" decoding="async" alt="Вымышленная персона. Jonas Weber, 38 лет, живёт в Лейпциге. Звукорежиссёр в театре."></figure>
+    <div class="ptext"><h3>Персона</h3><p>Jonas Weber, 38 лет, живёт в Лейпциге. Звукорежиссёр в театре. В час дня в будний день, в перерыве, он открывает сайт в Firefox на ноутбуке. У него стоит блокировщик рекламы, а баннеры с согласием он отклоняет. В гадания он не верит, но любит сравнивать стили карт (сюрреалистическая фотография, бруталистская графика). Когда история приходит к цвету через берлинскую лазурь, появившуюся в Берлине в начале XVIII века, он доволен и рассказывает о ней коллегам.</p></div>
+  </div>
+  <details><summary>Цифры и примечания</summary>
+    <div class="scroll"><table class="facts"><thead><tr><th scope="col">Показатель</th><th scope="col">Значение</th><th scope="col">Примечание</th></tr></thead><tbody>
+      <tr><th scope="row">Всего говорящих (родной + второй язык)</th><td>133 млн (12-е место)</td><td>Ethnologue, издание 2026 года</td></tr>
+      <tr><th scope="row">Доля веб-контента</th><td>5,9% (3-е место)</td><td>W3Techs, октябрь 2026 года</td></tr>
+      <tr><th scope="row">Пользователи интернета по языку</th><td>2,0% (10-е место)</td><td>Internet World Stats, март 2020 года</td></tr>
+      <tr><th scope="row">Время в сети</th><td>По оценке, 93 млн пользователей интернета, в среднем 5,2 часа в день, всего 480 млн часов в сутки (17-е место)</td><td>Оценка Claude. Германия, Австрия, Швейцария</td></tr>
+    </tbody></table></div>
+  </details>
+</section>
+
+<section class="lang" id="vi" aria-labelledby="h-vi">
+  <p class="kicker">16 · vi</p>
+  <h2 id="h-vi"><span lang="vi">Tiếng Việt</span><small>Вьетнамский</small></h2>
+  <dl class="nums">
+    <div><dt>Носители</dt><dd>97 млн (17-е место)</dd></div>
+    <div><dt>Веб</dt><dd>0,9% (16-е место)</dd></div>
+    <div><dt>Время в сети</dt><dd>500 млн часов</dd></div>
+  </dl>
+  <p class="region"><b>Где</b>Вьетнам. Большие вьетнамские общины есть в США (Калифорния, Техас), Австралии, Франции и Канаде. Многие вьетнамцы живут и в Японии как технические стажёры или студенты.</p>
+  <div class="persona">
+    <figure><img src="../../language-intro/img/vi.webp" width="800" height="1000" loading="lazy" decoding="async" alt="Вымышленная персона. Trần Văn Minh, 24 года, живёт в городе Тоёта, префектура Айти. Технический стажёр на заводе автокомпонентов."></figure>
+    <div class="ptext"><h3>Персона</h3><p>Trần Văn Minh, 24 года, живёт в городе Тоёта, префектура Айти. Технический стажёр на заводе автокомпонентов. В 5 вечера, перед ночной сменой, он открывает телефон на Android в комнате общежития. Результаты с этого сайта выкладывали в группе Facebook его друзей, живущих в Японии. Он тянет одну карту, сверяя её с цветами своей <i lang="vi">mệnh</i>, о которой говорит мама. Когда история приходит к цвету через шёлк фонарей Хойана или лак его родных мест, он отправляет его семье в Zalo.</p></div>
+  </div>
+  <details><summary>Цифры и примечания</summary>
+    <div class="scroll"><table class="facts"><thead><tr><th scope="col">Показатель</th><th scope="col">Значение</th><th scope="col">Примечание</th></tr></thead><tbody>
+      <tr><th scope="row">Всего говорящих (родной + второй язык)</th><td>97 млн (17-е место)</td><td>Ethnologue, издание 2026 года</td></tr>
+      <tr><th scope="row">Доля веб-контента</th><td>0,9% (16-е место)</td><td>W3Techs, октябрь 2026 года</td></tr>
+      <tr><th scope="row">Пользователи интернета по языку</th><td>Вне первой десятки</td><td>Internet World Stats, март 2020 года</td></tr>
+      <tr><th scope="row">Время в сети</th><td>По оценке, 79 млн пользователей интернета, в среднем 6,3 часа в день, всего 500 млн часов в сутки (15-е место)</td><td>Оценка Claude</td></tr>
+    </tbody></table></div>
+  </details>
+</section>
+
+<section class="lang" id="sw" aria-labelledby="h-sw">
+  <p class="kicker">17 · sw</p>
+  <h2 id="h-sw"><span lang="sw">Kiswahili</span><small>Суахили</small></h2>
+  <dl class="nums">
+    <div><dt>Носители</dt><dd>95 млн (19-е место)</dd></div>
+    <div><dt>Веб</dt><dd>нет данных</dd></div>
+    <div><dt>Время в сети</dt><dd>Оценки нет</dd></div>
+  </dl>
+  <p class="region"><b>Где</b>Танзания и Кения. В Танзании это государственный язык; в начальной школе учат на суахили, а со средней школы — на английском. В Кении это один из официальных языков; в первых классах учат на родном языке или на суахили, потом на английском, а суахили остаётся обязательным предметом. Он широко используется также в Уганде, Руанде, Бурунди, на востоке Демократической Республики Конго и на Коморах. Это один из рабочих языков Африканского союза.</p>
+  <div class="persona">
+    <figure><img src="../../language-intro/img/sw.webp" width="800" height="1000" loading="lazy" decoding="async" alt="Вымышленная персона. Amina Juma, 28 лет, живёт в Дар-эс-Саламе. Учительница начальной школы."></figure>
+    <div class="ptext"><h3>Персона</h3><p>Amina Juma, 28 лет, живёт в Дар-эс-Саламе. Учительница начальной школы. В 3:30 дня, после уроков, она открывает телефон на Android в учительской. Результат с этого сайта ходил по группе коллег в WhatsApp. Она тянет одну карту, сверяя её с цветами ткани канга. Когда история приходит к цвету через индиго канги или вечернее небо над Индийским океаном, она отправляет его маме в WhatsApp.</p></div>
+  </div>
+  <details><summary>Цифры и примечания</summary>
+    <div class="scroll"><table class="facts"><thead><tr><th scope="col">Показатель</th><th scope="col">Значение</th><th scope="col">Примечание</th></tr></thead><tbody>
+      <tr><th scope="row">Всего говорящих (родной + второй язык)</th><td>95 млн (19-е место)</td><td>Ethnologue, издание 2026 года</td></tr>
+      <tr><th scope="row">Доля веб-контента</th><td>нет данных</td><td>Не входит в первые 40 у W3Techs</td></tr>
+      <tr><th scope="row">Пользователи интернета по языку</th><td>Вне первой десятки</td><td>Internet World Stats, март 2020 года</td></tr>
+      <tr><th scope="row">Время в сети</th><td>Оценки нет</td><td>В оценке Claude нет строки для суахили. Кения и Танзания отнесены к английскому или суахили в целом, а время только на суахили отдельно не выделено</td></tr>
+    </tbody></table></div>
+  </details>
+</section>
+
+<section class="lang" id="tr" aria-labelledby="h-tr">
+  <p class="kicker">18 · tr</p>
+  <h2 id="h-tr"><span lang="tr">Türkçe</span><small>Турецкий</small></h2>
+  <dl class="nums">
+    <div><dt>Носители</dt><dd>94 млн (20-е место, наравне с хауса)</dd></div>
+    <div><dt>Веб</dt><dd>1,6% (11-е место)</dd></div>
+    <div><dt>Время в сети</dt><dd>560 млн часов</dd></div>
+  </dl>
+  <p class="region"><b>Где</b>Турция и Северный Кипр. В Германии большая турецкая община, многие живут также в Нидерландах, Австрии и Франции. Говорящие есть и в Болгарии, и на севере Греции.</p>
+  <div class="persona">
+    <figure><img src="../../language-intro/img/tr.webp" width="800" height="1000" loading="lazy" decoding="async" alt="Вымышленная персона. Elif Yıldız, 33 года, живёт в Измире. Учительница химии в старшей школе."></figure>
+    <div class="ptext"><h3>Персона</h3><p>Elif Yıldız, 33 года, живёт в Измире. Учительница химии в старшей школе. В 4:30 дня, после уроков, она погадала с подругами на кофейной гуще в кафе, а потом открыла этот сайт на iPhone. Значение карты они читают вместе. Когда история приходит к цвету через бирюзу или синеву изникских изразцов, все оживляются, и она выкладывает его в сторис Instagram.</p></div>
+  </div>
+  <details><summary>Цифры и примечания</summary>
+    <div class="scroll"><table class="facts"><thead><tr><th scope="col">Показатель</th><th scope="col">Значение</th><th scope="col">Примечание</th></tr></thead><tbody>
+      <tr><th scope="row">Всего говорящих (родной + второй язык)</th><td>94 млн (20-е место, наравне с хауса)</td><td>Ethnologue, издание 2026 года</td></tr>
+      <tr><th scope="row">Доля веб-контента</th><td>1,6% (11-е место)</td><td>W3Techs, октябрь 2026 года</td></tr>
+      <tr><th scope="row">Пользователи интернета по языку</th><td>Вне первой десятки</td><td>Internet World Stats, март 2020 года</td></tr>
+      <tr><th scope="row">Время в сети</th><td>По оценке, 80 млн пользователей интернета, в среднем 7,0 часа в день, всего 560 млн часов в сутки (11-е место)</td><td>Оценка Claude</td></tr>
+    </tbody></table></div>
+  </details>
+</section>
+
+<section class="lang" id="tl" aria-labelledby="h-tl">
+  <p class="kicker">19 · tl</p>
+  <h2 id="h-tl"><span lang="fil">Filipino</span><small>Филиппинский</small></h2>
+  <dl class="nums">
+    <div><dt>Носители</dt><dd>87 млн</dd></div>
+    <div><dt>Веб</dt><dd>Менее 0,1% (40-е место, тагальский)</dd></div>
+    <div><dt>Время в сети</dt><dd>530 млн часов</dd></div>
+  </dl>
+  <p class="region"><b>Где</b>Государственный язык Филиппин и официальный язык наряду с английским. Им пользуются филиппинцы, работающие по всему миру, в том числе в США (Калифорния, Гавайи), странах Персидского залива, Гонконге, Сингапуре, Канаде и Японии.</p>
+  <div class="persona">
+    <figure><img src="../../language-intro/img/tl.webp" width="800" height="1000" loading="lazy" decoding="async" alt="Вымышленная персона. Joanna “Jo” Dela Cruz, 28 лет, живёт в Кесон-Сити. Работает в ночные смены в колл-центре, обслуживающем США."></figure>
+    <div class="ptext"><h3>Персона</h3><p>Joanna “Jo” Dela Cruz, 28 лет, живёт в Кесон-Сити. Работает в ночные смены в колл-центре, обслуживающем США. В перерыве в 4 утра она тянет одну карту на телефоне с Android. Работает она на английском, поэтому в перерывах хочет читать по-филиппински. Когда история приходит к цвету через закат над Манильским заливом или пинью (ткань из волокон ананаса), она выкладывает его в Facebook и отправляет двоюродной сестре, работающей на Ближнем Востоке.</p></div>
+  </div>
+  <details><summary>Цифры и примечания</summary>
+    <div class="scroll"><table class="facts"><thead><tr><th scope="col">Показатель</th><th scope="col">Значение</th><th scope="col">Примечание</th></tr></thead><tbody>
+      <tr><th scope="row">Всего говорящих (родной + второй язык)</th><td>87 млн</td><td>Ethnologue, издание 2026 года (учтён как тагальский)</td></tr>
+      <tr><th scope="row">Доля веб-контента</th><td>Менее 0,1% (40-е место, тагальский)</td><td>W3Techs, октябрь 2026 года</td></tr>
+      <tr><th scope="row">Пользователи интернета по языку</th><td>Вне первой десятки</td><td>Internet World Stats, март 2020 года</td></tr>
+      <tr><th scope="row">Время в сети</th><td>По оценке, 60 млн пользователей интернета, в среднем 8,9 часа в день, всего 530 млн часов в сутки (12-е место)</td><td>Оценка Claude. Предполагается около 60% пользователей на Филиппинах; остальные учтены в английском</td></tr>
+    </tbody></table></div>
+  </details>
+</section>
+
+<section class="lang" id="fa" aria-labelledby="h-fa">
+  <p class="kicker">20 · fa</p>
+  <h2 id="h-fa"><span lang="fa" dir="rtl">فارسی</span><small>Персидский</small></h2>
+  <dl class="nums">
+    <div><dt>Носители</dt><dd>82 млн (иранский персидский)</dd></div>
+    <div><dt>Веб</dt><dd>1,0% (14-е место)</dd></div>
+    <div><dt>Время в сети</dt><dd>490 млн часов</dd></div>
+  </dl>
+  <p class="region"><b>Где</b>Официальный язык Ирана. Близкие формы используются в Афганистане (дари) и Таджикистане (таджикский). Большие иранские общины есть в США (Лос-Анджелес), Канаде, Германии, Великобритании и Турции. Сайт свёрстан справа налево.</p>
+  <div class="persona">
+    <figure><img src="../../language-intro/img/fa.webp" width="800" height="1000" loading="lazy" decoding="async" alt="Вымышленная персона. Parisa Hosseini, 31 год, живёт в Исфахане. Реставрирует изразцы на исторических зданиях."></figure>
+    <div class="ptext"><h3>Персона</h3><p>Parisa Hosseini, 31 год, живёт в Исфахане. Реставрирует изразцы на исторических зданиях. В 11 вечера, закончив работу, она открывает телефон на Android. В ночь Ялда её семья вместе раскрывает Хафиза, поэтому гадание по одной карте кажется ей привычным. Когда история приходит к цвету через нишапурскую бирюзу или синеву изразцов исфаханских мечетей, она засматривается на него, будто отложила работу. Ссылку она отправляет старшей сестре за границу в Telegram.</p></div>
+  </div>
+  <details><summary>Цифры и примечания</summary>
+    <div class="scroll"><table class="facts"><thead><tr><th scope="col">Показатель</th><th scope="col">Значение</th><th scope="col">Примечание</th></tr></thead><tbody>
+      <tr><th scope="row">Всего говорящих (родной + второй язык)</th><td>82 млн (иранский персидский)</td><td>Ethnologue, издание 2026 года. Не включает дари (Афганистан) и таджикский</td></tr>
+      <tr><th scope="row">Доля веб-контента</th><td>1,0% (14-е место)</td><td>W3Techs, октябрь 2026 года</td></tr>
+      <tr><th scope="row">Пользователи интернета по языку</th><td>Вне первой десятки</td><td>Internet World Stats, март 2020 года</td></tr>
+      <tr><th scope="row">Время в сети</th><td>По оценке, 82 млн пользователей интернета, в среднем 6,0 часа в день, всего 490 млн часов в сутки (16-е место)</td><td>Оценка Claude. Включает Иран плюс Афганистан (дари)</td></tr>
+    </tbody></table></div>
+  </details>
+</section>
+
+<section class="lang" id="ko" aria-labelledby="h-ko">
+  <p class="kicker">21 · ko</p>
+  <h2 id="h-ko"><span lang="ko">한국어</span><small>Корейский</small></h2>
+  <dl class="nums">
+    <div><dt>Носители</dt><dd>82 млн</dd></div>
+    <div><dt>Веб</dt><dd>0,9% (17-е место)</dd></div>
+    <div><dt>Время в сети</dt><dd>270 млн часов</dd></div>
+  </dl>
+  <p class="region"><b>Где</b>Южная Корея и Северная Корея. Общины людей с корнями на Корейском полуострове есть также в Яньбянь-Корейском автономном округе Китая, в США (Лос-Анджелес, Нью-Йорк), Японии и Центральной Азии.</p>
+  <div class="persona">
+    <figure><img src="../../language-intro/img/ko.webp" width="800" height="1000" loading="lazy" decoding="async" alt="Вымышленная персона. 김서연 (Ким Со Ён), 29 лет, живёт в районе Мапхо, Сеул. Колорист вебтунов."></figure>
+    <div class="ptext"><h3>Персона</h3><p><span lang="ko">김서연</span> (Ким Со Ён), 29 лет, живёт в районе Мапхо, Сеул. Колорист вебтунов. В 8:20 утра она открывает iPhone в метро. Раз в месяц она ходит с подругами в таро-кафе. Этот сайт она нашла, когда искала в NAVER советы для поездки в Фукуоку в следующем месяце. Когда история приходит к цвету через корейские <i lang="ko-Latn">obangsaek</i> (пять традиционных цветов) или японское крашение, она вводит этот цвет в одну часть палитры на этот день. Результаты она отправляет подругам в KakaoTalk.</p></div>
+  </div>
+  <details><summary>Цифры и примечания</summary>
+    <div class="scroll"><table class="facts"><thead><tr><th scope="col">Показатель</th><th scope="col">Значение</th><th scope="col">Примечание</th></tr></thead><tbody>
+      <tr><th scope="row">Всего говорящих (родной + второй язык)</th><td>82 млн</td><td>Ethnologue, издание 2026 года</td></tr>
+      <tr><th scope="row">Доля веб-контента</th><td>0,9% (17-е место)</td><td>W3Techs, октябрь 2026 года</td></tr>
+      <tr><th scope="row">Пользователи интернета по языку</th><td>Вне первой десятки</td><td>Internet World Stats, март 2020 года</td></tr>
+      <tr><th scope="row">Время в сети</th><td>По оценке, 50 млн пользователей интернета, в среднем 5,3 часа в день, всего 270 млн часов в сутки (20-е место)</td><td>Оценка Claude</td></tr>
+    </tbody></table></div>
+  </details>
+</section>
+
+<section class="lang" id="th" aria-labelledby="h-th">
+  <p class="kicker">22 · th</p>
+  <h2 id="h-th"><span lang="th">ไทย</span><small>Тайский</small></h2>
+  <dl class="nums">
+    <div><dt>Носители</dt><dd>71 млн</dd></div>
+    <div><dt>Веб</dt><dd>0,3% (28-е место)</dd></div>
+    <div><dt>Время в сети</dt><dd>510 млн часов</dd></div>
+  </dl>
+  <p class="region"><b>Где</b>Государственный язык Таиланда. Многие в Лаосе могут читать по-тайски. Выходцы из Таиланда живут также в США (Лос-Анджелес), Австралии и Европе.</p>
+  <div class="persona">
+    <figure><img src="../../language-intro/img/th.webp" width="800" height="1000" loading="lazy" decoding="async" alt="Вымышленная персона. Napassorn “Pim” Srisuk, 27 лет, живёт в Бангкоке. Занимается маркетингом в косметическом бренде."></figure>
+    <div class="ptext"><h3>Персона</h3><p>Napassorn “Pim” Srisuk, 27 лет, живёт в Бангкоке. Занимается маркетингом в косметическом бренде. В 7 утра, ещё не решив, что надеть, она тянет одну карту на iPhone. Сравнивать цвет дня недели с цветом этого сайта — её утреннее удовольствие. В январе следующего года она собирается на Хоккайдо. Когда история приходит к цвету через тайский шёлк или белизну хоккайдского снега, она добавляет этот цвет в помаду или шарф. Она отправляет его коллегам в LINE.</p></div>
+  </div>
+  <details><summary>Цифры и примечания</summary>
+    <div class="scroll"><table class="facts"><thead><tr><th scope="col">Показатель</th><th scope="col">Значение</th><th scope="col">Примечание</th></tr></thead><tbody>
+      <tr><th scope="row">Всего говорящих (родной + второй язык)</th><td>71 млн</td><td>Ethnologue, издание 2026 года</td></tr>
+      <tr><th scope="row">Доля веб-контента</th><td>0,3% (28-е место)</td><td>W3Techs, октябрь 2026 года</td></tr>
+      <tr><th scope="row">Пользователи интернета по языку</th><td>Вне первой десятки</td><td>Internet World Stats, март 2020 года</td></tr>
+      <tr><th scope="row">Время в сети</th><td>По оценке, 65 млн пользователей интернета, в среднем 7,8 часа в день, всего 510 млн часов в сутки (14-е место)</td><td>Оценка Claude</td></tr>
+    </tbody></table></div>
+  </details>
+</section>
+
+<section class="lang" id="it" aria-labelledby="h-it">
+  <p class="kicker">23 · it</p>
+  <h2 id="h-it"><span lang="it">Italiano</span><small>Итальянский</small></h2>
+  <dl class="nums">
+    <div><dt>Носители</dt><dd>66 млн</dd></div>
+    <div><dt>Веб</dt><dd>2,8% (8-е место)</dd></div>
+    <div><dt>Время в сети</dt><dd>290 млн часов</dd></div>
+  </dl>
+  <p class="region"><b>Где</b>Италия, Сан-Марино, юг Швейцарии (Тичино) и Ватикан. Много людей итальянского происхождения живёт в Аргентине, Бразилии, США, Германии и других странах.</p>
+  <div class="persona">
+    <figure><img src="../../language-intro/img/it.webp" width="800" height="1000" loading="lazy" decoding="async" alt="Вымышленная персона. Giulia Bernardi, 45 лет, живёт в Болонье. Фармацевт в районной аптеке."></figure>
+    <div class="ptext"><h3>Персона</h3><p>Giulia Bernardi, 45 лет, живёт в Болонье. Фармацевт в районной аптеке. В 9:30 вечера, на диване после ужина, она открывает телефон на Android. В детстве она играла с отцом в тарокино, поэтому картинки старших арканов вызывают у неё ностальгию. Когда история приходит к цвету через красный кирпич болонских портиков или пигменты художников Возрождения, она отправляет его отцу в WhatsApp. Она выбирает стиль «Классическое таро».</p></div>
+  </div>
+  <details><summary>Цифры и примечания</summary>
+    <div class="scroll"><table class="facts"><thead><tr><th scope="col">Показатель</th><th scope="col">Значение</th><th scope="col">Примечание</th></tr></thead><tbody>
+      <tr><th scope="row">Всего говорящих (родной + второй язык)</th><td>66 млн</td><td>Ethnologue, издание 2026 года</td></tr>
+      <tr><th scope="row">Доля веб-контента</th><td>2,8% (8-е место)</td><td>W3Techs, октябрь 2026 года</td></tr>
+      <tr><th scope="row">Пользователи интернета по языку</th><td>Вне первой десятки</td><td>Internet World Stats, март 2020 года</td></tr>
+      <tr><th scope="row">Время в сети</th><td>По оценке, 51 млн пользователей интернета, в среднем 5,7 часа в день, всего 290 млн часов в сутки (19-е место)</td><td>Оценка Claude</td></tr>
+    </tbody></table></div>
+  </details>
+</section>
+
+<section class="lang" id="pl" aria-labelledby="h-pl">
+  <p class="kicker">24 · pl</p>
+  <h2 id="h-pl"><span lang="pl">Polski</span><small>Польский</small></h2>
+  <dl class="nums">
+    <div><dt>Носители</dt><dd>Около 42,6 млн</dd></div>
+    <div><dt>Веб</dt><dd>1,8% (10-е место)</dd></div>
+    <div><dt>Время в сети</dt><dd>Около 210 млн часов (справочная цифра, вне рейтинга)</dd></div>
+  </dl>
+  <p class="region"><b>Где</b>Польша. Большие польские общины есть в Великобритании, Германии, США (Чикаго), Ирландии и Канаде. Говорящие есть также в Литве и на западе Украины.</p>
+  <div class="persona">
+    <figure><img src="../../language-intro/img/pl.webp" width="800" height="1000" loading="lazy" decoding="async" alt="Вымышленная персона. Marta Kowalczyk, 30 лет, живёт в Кракове. UX-исследователь в софтверной компании."></figure>
+    <div class="ptext"><h3>Персона</h3><p>Marta Kowalczyk, 30 лет, живёт в Кракове. UX-исследователь в софтверной компании. В 10 утра в воскресенье она открывает iPhone в кафе. Каждый год на Анджейки она гадает с друзьями на воске. Когда история приходит к цвету через балтийский янтарь или краковские Суконные ряды, она выкладывает его в сторис Instagram. Следующей весной она собирается в Киото.</p></div>
+  </div>
+  <details><summary>Цифры и примечания</summary>
+    <div class="scroll"><table class="facts"><thead><tr><th scope="col">Показатель</th><th scope="col">Значение</th><th scope="col">Примечание</th></tr></thead><tbody>
+      <tr><th scope="row">Всего говорящих (родной + второй язык)</th><td>Около 42,6 млн</td><td>Ethnologue, 27-е издание (данные 2021 года), по странице Википедии «Polish language». В открытом списке Ethnologue 2026 (50 млн и более) его нет</td></tr>
+      <tr><th scope="row">Доля веб-контента</th><td>1,8% (10-е место)</td><td>W3Techs, октябрь 2026 года</td></tr>
+      <tr><th scope="row">Пользователи интернета по языку</th><td>Вне первой десятки</td><td>Internet World Stats, март 2020 года</td></tr>
+      <tr><th scope="row">Время в сети</th><td>Около 210 млн часов в сутки (справочная цифра, вне рейтинга)</td><td>Справочная цифра вне рейтинга в оценке Claude</td></tr>
+    </tbody></table></div>
+  </details>
+</section>
+
+<section class="lang" id="uk" aria-labelledby="h-uk">
+  <p class="kicker">25 · uk</p>
+  <h2 id="h-uk"><span lang="uk">Українська</span><small>Украинский</small></h2>
+  <dl class="nums">
+    <div><dt>Носители</dt><dd>Около 39 млн</dd></div>
+    <div><dt>Веб</dt><dd>0,6% (18-е место)</dd></div>
+    <div><dt>Время в сети</dt><dd>Оценки нет</dd></div>
+  </dl>
+  <p class="region"><b>Где</b>Государственный язык Украины. Из-за войны, идущей с 2022 года, многие нашли убежище в европейских странах, таких как Польша, Германия и Чехия. В Канаде и США тоже есть давние украинские общины. Многие говорят и по-русски.</p>
+  <div class="persona">
+    <figure><img src="../../language-intro/img/uk.webp" width="800" height="1000" loading="lazy" decoding="async" alt="Вымышленная персона. Олена Коваленко, 37 лет, живёт во Львове. Учительница начальной школы."></figure>
+    <div class="ptext"><h3>Персона</h3><p><span lang="uk">Олена Коваленко</span>, 37 лет, живёт во Львове. Учительница начальной школы. В 9 вечера, уложив ребёнка спать, она тянет одну карту на телефоне с Android. Больше, чем читать значение карты, она ценит время, когда читает историю, бережно написанную по-украински. Когда история приходит к цвету через петриковскую цветочную роспись или карпатскую шерсть, она отправляет его младшей сестре в Польшу в Telegram.</p></div>
+  </div>
+  <details><summary>Цифры и примечания</summary>
+    <div class="scroll"><table class="facts"><thead><tr><th scope="col">Показатель</th><th scope="col">Значение</th><th scope="col">Примечание</th></tr></thead><tbody>
+      <tr><th scope="row">Всего говорящих (родной + второй язык)</th><td>Около 39 млн</td><td>Ethnologue (2023). Страница Википедии «Ukrainian language» (Ethnologue, 28-е издание) даёт ту же цифру</td></tr>
+      <tr><th scope="row">Доля веб-контента</th><td>0,6% (18-е место)</td><td>W3Techs, октябрь 2026 года</td></tr>
+      <tr><th scope="row">Пользователи интернета по языку</th><td>Вне первой десятки</td><td>Internet World Stats, март 2020 года</td></tr>
+      <tr><th scope="row">Время в сети</th><td>Оценки нет</td><td>Украинского нет ни в таблице оценки Claude, ни в её справочных цифрах вне рейтинга</td></tr>
+    </tbody></table></div>
+  </details>
+</section>
+
+<section class="lang" id="nl" aria-labelledby="h-nl">
+  <p class="kicker">26 · nl</p>
+  <h2 id="h-nl"><span lang="nl">Nederlands</span><small>Нидерландский</small></h2>
+  <dl class="nums">
+    <div><dt>Носители</dt><dd>Около 30 млн</dd></div>
+    <div><dt>Веб</dt><dd>2,1% (9-е место)</dd></div>
+    <div><dt>Время в сети</dt><dd>Около 130 млн часов (справочная цифра, вне рейтинга)</dd></div>
+  </dl>
+  <p class="region"><b>Где</b>Нидерланды и север Бельгии (Фландрия). Это также официальный язык в Суринаме и на Арубе и Кюрасао в Карибском море. Африкаанс в ЮАР ответвился от нидерландского.</p>
+  <div class="persona">
+    <figure><img src="../../language-intro/img/nl.webp" width="800" height="1000" loading="lazy" decoding="async" alt="Вымышленная персона. Sanne de Vries, 36 лет, живёт в Утрехте. Занимается климатической политикой в городской администрации."></figure>
+    <div class="ptext"><h3>Персона</h3><p>Sanne de Vries, 36 лет, живёт в Утрехте. Занимается климатической политикой в городской администрации. В 12:30, за своим столом, она открыла ноутбук и пришла на этот сайт, когда искала название цвета. В гадания она не верит, но обожает истории о происхождении названий цветов. Когда история приходит к цвету через дельфтский синий или пигменты голландских художников XVII века, она рассказывает о нём коллегам. Иногда перед тем как поехать домой на велосипеде, она тянет ещё одну карту.</p></div>
+  </div>
+  <details><summary>Цифры и примечания</summary>
+    <div class="scroll"><table class="facts"><thead><tr><th scope="col">Показатель</th><th scope="col">Значение</th><th scope="col">Примечание</th></tr></thead><tbody>
+      <tr><th scope="row">Всего говорящих (родной + второй язык)</th><td>Около 30 млн</td><td>2021. Страница Википедии «Dutch language» (со ссылкой на Eurobarometer и другие источники) даёт ту же цифру</td></tr>
+      <tr><th scope="row">Доля веб-контента</th><td>2,1% (9-е место)</td><td>W3Techs, октябрь 2026 года. Включая фламандский</td></tr>
+      <tr><th scope="row">Пользователи интернета по языку</th><td>Вне первой десятки</td><td>Internet World Stats, март 2020 года</td></tr>
+      <tr><th scope="row">Время в сети</th><td>Около 130 млн часов в сутки (справочная цифра, вне рейтинга)</td><td>Справочная цифра вне рейтинга в оценке Claude</td></tr>
+    </tbody></table></div>
+  </details>
+</section>
+
+<section class="lang" id="ang" aria-labelledby="h-ang">
+  <p class="kicker">27 · ang</p>
+  <h2 id="h-ang"><span lang="ang">Englisc</span><small>Древнеанглийский</small></h2>
+  <p class="note">Язык для игры и истории. Это английский примерно 450–1100 годов, и сегодня ни для кого он не родной. В полях с цифрами — прочерк.</p>
+  <dl class="nums">
+    <div><dt>Носители</dt><dd>—</dd></div>
+    <div><dt>Веб</dt><dd>—</dd></div>
+    <div><dt>Время в сети</dt><dd>—</dd></div>
+  </dl>
+  <p class="region"><b>Кому это может понравиться</b>Студенты и исследователи средневековой английской литературы и истории английского языка, поклонники <cite>Беовульфа</cite> и произведений Дж. Р. Р. Толкина, люди, которым интересны руны и скандинавская мифология. За пределами англоязычного мира он доходит и до студентов-англистов в Германии, Скандинавии и Японии.</p>
+  <div class="persona">
+    <figure><img src="../../language-intro/img/ang.webp" width="800" height="1000" loading="lazy" decoding="async" alt="Вымышленная персона. Hannah Brooks, 24 года, живёт в Лидсе, Великобритания. Изучает древнеанглийский в аспирантуре."></figure>
+    <div class="ptext"><h3>Персона</h3><p>Hannah Brooks, 24 года, живёт в Лидсе, Великобритания. Изучает древнеанглийский в аспирантуре. В 5 вечера она открыла ноутбук в университетской библиотеке и пришла на этот сайт, когда искала спряжения глаголов. Положив рядом перевод на современный английский, она с удовольствием разбирает названия карт и цветов. Понравившиеся строки она отправляет однокурсникам по семинару.</p></div>
+  </div>
+  <details><summary>Цифры и примечания</summary>
+    <div class="scroll"><table class="facts"><thead><tr><th scope="col">Показатель</th><th scope="col">Значение</th></tr></thead><tbody>
+      <tr><th scope="row">Всего говорящих (родной + второй язык)</th><td>—</td></tr>
+      <tr><th scope="row">Доля веб-контента</th><td>—</td></tr>
+      <tr><th scope="row">Пользователи интернета по языку</th><td>—</td></tr>
+      <tr><th scope="row">Время в сети</th><td>—</td></tr>
+    </tbody></table></div>
+  </details>
+</section>
+
+<section class="lang" id="soro" aria-labelledby="h-soro">
+  <p class="kicker">28 · soro</p>
+  <h2 id="h-soro"><span lang="ja">御座候</span><small>Соробун (классический японский эпистолярный стиль)</small></h2>
+  <p class="note">Язык для игры и истории. Это стиль писем и официальных документов примерно 1600–1868 годов, где в конце предложений ставится <span lang="ja">候</span> (<i>соро</i>). Сегодня ни для кого он не родной. В полях с цифрами — прочерк.</p>
+  <dl class="nums">
+    <div><dt>Носители</dt><dd>—</dd></div>
+    <div><dt>Веб</dt><dd>—</dd></div>
+    <div><dt>Время в сети</dt><dd>—</dd></div>
+  </dl>
+  <p class="region"><b>Кому это может понравиться</b>Те, кто учится читать старинные документы и скоропись, любители исторических романов и исторических сериалов NHK, студенты, увлечённые историей. Он доходит и до иностранцев, глубоко изучивших японский, и до исследователей истории Японии.</p>
+  <div class="persona">
+    <figure><img src="../../language-intro/img/soro.webp" width="800" height="1000" loading="lazy" decoding="async" alt="Вымышленная персона. 工藤 誠一 (Сэйити Кудо), 58 лет, живёт в Канадзаве. Работает в мэрии, а по выходным ходит на курс по старинным документам."></figure>
+    <div class="ptext"><h3>Персона</h3><p><span lang="ja">工藤 誠一</span> (Сэйити Кудо), 58 лет, живёт в Канадзаве. Работает в мэрии, а по выходным ходит на курс по старинным документам. В 3 часа дня в воскресенье он открывает планшет в гостиной. О сайте он услышал от однокурсников. Названия карт и цветов, написанные соробуном, он одно за другим читает вслух. Когда история приходит к цвету через крашение Кага или старый призамковый город, он записывает название цвета в тетрадь для курса.</p></div>
+  </div>
+  <details><summary>Цифры и примечания</summary>
+    <div class="scroll"><table class="facts"><thead><tr><th scope="col">Показатель</th><th scope="col">Значение</th></tr></thead><tbody>
+      <tr><th scope="row">Всего говорящих (родной + второй язык)</th><td>—</td></tr>
+      <tr><th scope="row">Доля веб-контента</th><td>—</td></tr>
+      <tr><th scope="row">Пользователи интернета по языку</th><td>—</td></tr>
+      <tr><th scope="row">Время в сети</th><td>—</td></tr>
+    </tbody></table></div>
+  </details>
+</section>
+
+</div>
+
+</body>
+</html>

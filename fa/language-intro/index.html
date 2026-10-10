@@ -1,0 +1,800 @@
+<!doctype html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="با 28 زبان Colors for the Fool آشنا شوید: هر زبان چند گوینده دارد، و در کنارش شخصیتی خیالی و تصویرش.">
+<link rel="icon" href="../../favicon.png" type="image/png">
+<title>دربارهٔ زبان‌ها</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&family=Noto+Naskh+Arabic:wght@500;600&family=Shippori+Mincho:wght@400;500;700&display=swap">
+<style>
+/* Layout: same paper column as language-scale.html; one card per language (numbers, persona + image, details). */
+:root {
+  --bg: #efe6d6;
+  --bg-glow: #fbf6ec;
+  --paper: #f7f1e4;
+  --ink: #2a2118;
+  --muted: #6d5c48;
+  --gold: #a6843d;
+  --gold-soft: #e4d2a4;
+  --line: rgba(166,132,61,.45);
+  --other: #d3c6ae;
+  --grid: rgba(109,92,72,.18);
+  --font-display: Cinzel, "Palatino Linotype", Palatino, serif;
+  --font-body: "Noto Naskh Arabic", "Vazirmatn", Tahoma, serif;
+}
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) {
+  --bg: #1b1610; --bg-glow: #2a2219; --paper: #241e17; --ink: #efe4cf; --muted: #b6a387;
+  --gold: #d2ac5c; --gold-soft: #5a4826; --line: rgba(210,172,92,.4); --other: #4b4134; --grid: rgba(239,228,207,.12);
+  color-scheme: dark; } }
+:root[data-theme="dark"] {
+  --bg: #1b1610; --bg-glow: #2a2219; --paper: #241e17; --ink: #efe4cf; --muted: #b6a387;
+  --gold: #d2ac5c; --gold-soft: #5a4826; --line: rgba(210,172,92,.4); --other: #4b4134; --grid: rgba(239,228,207,.12);
+  color-scheme: dark; }
+
+* { box-sizing: border-box; }
+body {
+  margin: 0; color: var(--ink); background: var(--bg);
+  background-image: radial-gradient(1100px 640px at 50% -8%, var(--bg-glow), var(--bg) 70%);
+  font-family: var(--font-body); font-weight: 500; line-height: 1.85;
+  padding-inline: 16px; padding-block: 0 64px;
+}
+.wrap { width: min(100%, 44rem); margin: 0 auto; }
+a { color: var(--gold); }
+code { font-size: .88em; overflow-wrap: anywhere; }
+.brand { font-family: var(--font-display); font-size: .74rem; letter-spacing: .24em; text-transform: uppercase; padding-block: 1.4rem .2rem; margin: 0; }
+.brand a { color: var(--ink); text-decoration: none; }
+header.hero { text-align: center; padding-block: 2.6rem 1.6rem; }
+.eyebrow { font-family: var(--font-display); letter-spacing: .3em; font-size: .8rem; color: var(--gold); margin: 0; text-transform: uppercase; }
+h1 { font-size: clamp(2rem, 7vw, 2.9rem); letter-spacing: .12em; margin: .3rem 0 .6rem; font-weight: 600; text-wrap: balance; }
+.lede { color: var(--muted); max-width: 34rem; margin: 0 auto; text-wrap: pretty; }
+.ornament { display: flex; align-items: center; gap: .8rem; justify-content: center; color: var(--gold); margin: 1.6rem 0 0; }
+.ornament::before, .ornament::after { content: ""; height: 1px; width: 4.5rem; background: var(--line); }
+
+.topbar { display: flex; justify-content: space-between; align-items: baseline; gap: 1rem; padding-block: 1.4rem .2rem; }
+.topbar .brand { padding-block: 0; }
+.switch { font-size: .82rem; }
+.switch a, .switch span { margin-left: .7rem; }
+.switch span { color: var(--muted); }
+
+.about { font-size: .86rem; color: var(--muted); margin: 0 0 1rem; }
+.about p { margin: .5rem 0; }
+.langs { display: flex; flex-wrap: wrap; gap: .4rem; justify-content: center; margin: 1.2rem 0 0; padding: 0; list-style: none; }
+.langs li { border: 1px solid var(--line); font-size: .85rem; background: var(--paper); }
+.langs li a { display: block; padding: .1rem .7rem; color: var(--ink); text-decoration: none; }
+.langs li a:hover, .langs li a:focus-visible { color: var(--gold); }
+.langs li:nth-last-child(-n+2) { border-style: dashed; }
+.langs li:nth-last-child(-n+2) a { color: var(--muted); }
+
+section.chart, section.lang { margin-top: 3.4rem; scroll-margin-top: 1rem; }
+.chart h2, .lang h2 { font-size: 1.3rem; letter-spacing: .08em; margin: 0; font-weight: 600; text-wrap: balance; }
+.lang h2 small { display: block; font-size: .8rem; letter-spacing: .04em; color: var(--muted); font-weight: 500; }
+.kicker { font-family: var(--font-display); color: var(--gold); letter-spacing: .2em; font-size: .78rem; margin: 0 0 .15rem; }
+p.note { color: var(--muted); font-size: .88rem; margin: .4rem 0 1rem; max-width: 40rem; }
+.chart ul { font-size: .88rem; color: var(--muted); padding-left: 1.1rem; }
+
+.scroll { overflow-x: auto; -webkit-overflow-scrolling: touch; border: 1px solid var(--line); background: var(--paper); }
+table { border-collapse: collapse; font-size: .8rem; line-height: 1.55; }
+table.overview { min-width: 42rem; width: 100%; }
+th, td { padding: .45rem .6rem; border-bottom: 1px solid var(--grid); text-align: left; vertical-align: top; }
+thead th { font-weight: 700; border-bottom: 1px solid var(--line); background: var(--bg-glow); }
+tbody th { font-weight: 700; white-space: nowrap; }
+tbody th a { color: var(--ink); text-decoration: none; }
+tbody tr:last-child th, tbody tr:last-child td { border-bottom: 0; }
+table.overview td { font-variant-numeric: tabular-nums; }
+
+.lang { border-top: 1px solid var(--line); padding-top: 1.6rem; }
+.nums { display: flex; flex-wrap: wrap; gap: 1px; background: var(--line); border: 1px solid var(--line); margin: 1rem 0; }
+.nums div { flex: 1 1 7.6rem; background: var(--paper); padding: .55rem .7rem .6rem; min-width: 0; }
+.nums dt { font-family: var(--font-body); font-size: .72rem; color: var(--muted); letter-spacing: .06em; }
+.nums dd { margin: 0; font-size: .9rem; line-height: 1.45; font-variant-numeric: tabular-nums; overflow-wrap: anywhere; }
+.region { font-size: .9rem; margin: 0 0 1rem; }
+.region b { color: var(--gold); font-weight: 700; margin-right: .6rem; }
+
+.persona { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 15rem); gap: 1.2rem; align-items: start; margin: 1.2rem 0 .8rem; }
+.persona figure { grid-column: 2; grid-row: 1; margin: 0; }
+.persona .ptext { grid-column: 1; grid-row: 1; }
+.persona img { display: block; width: 100%; height: auto; border: 1px solid var(--line); background: var(--paper); }
+.persona h3 { font-size: 1rem; letter-spacing: .08em; margin: 0 0 .3rem; font-weight: 600; }
+.persona p { margin: 0; font-size: .94rem; text-wrap: pretty; }
+@media (max-width: 36rem) {
+  .persona { grid-template-columns: minmax(0, 1fr); }
+  .persona figure, .persona .ptext { grid-column: 1; grid-row: auto; }
+  .persona figure { max-width: 22rem; }
+}
+
+details { border-top: 1px dashed var(--line); padding: .35rem 0; font-size: .88rem; }
+details:last-of-type { border-bottom: 1px dashed var(--line); }
+summary { cursor: pointer; color: var(--gold); letter-spacing: .06em; }
+details[open] summary { margin-bottom: .5rem; }
+details p { margin: .2rem 0 .8rem; color: var(--ink); }
+details h4 { font-size: .86rem; margin: .6rem 0 0; color: var(--muted); font-weight: 700; }
+details pre { white-space: pre-wrap; overflow-wrap: anywhere; font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: .78rem; line-height: 1.6; background: var(--paper); border: 1px solid var(--line); padding: .7rem .8rem; margin: 0 0 .6rem; }
+table.facts { width: 100%; min-width: 34rem; }
+table.facts tbody th { white-space: normal; min-width: 8rem; }
+
+footer { margin-top: 4rem; border-top: 1px solid var(--line); padding-top: 1.2rem; font-size: .8rem; color: var(--muted); }
+footer ul { padding-left: 1.1rem; margin: .4rem 0 1rem; }
+footer ul ul { margin: .2rem 0 .3rem; }
+footer li { margin: .15rem 0; overflow-wrap: anywhere; }
+
+/* Per-language adjustments (generated by render.py). */
+/* Right-to-left: mirror the few physical-direction rules above. */
+[dir="rtl"] .switch a, [dir="rtl"] .switch span { margin-left: 0; margin-right: .7rem; }
+[dir="rtl"] .region b { margin-right: 0; margin-left: .6rem; }
+[dir="rtl"] th, [dir="rtl"] td { text-align: right; }
+[dir="rtl"] .chart ul, [dir="rtl"] footer ul { padding-left: 0; padding-right: 1.1rem; }
+[dir="rtl"] .kicker { direction: ltr; text-align: right; }
+/* Arabic script is joined: letter-spacing would break the letters apart. */
+[dir="rtl"] h1, [dir="rtl"] h2, [dir="rtl"] h3, [dir="rtl"] small, [dir="rtl"] summary,
+[dir="rtl"] .nums dt, [dir="rtl"] .eyebrow { letter-spacing: 0; }
+</style>
+</head>
+<body>
+
+<div class="wrap">
+  <div class="topbar"><p class="brand"><a href="../">Colors for the Fool</a></p><nav class="switch" aria-label="صفحه‌های مرتبط"><span>دربارهٔ زبان‌ها</span></nav></div>
+
+  <header class="hero">
+    <p class="eyebrow">Languages &amp; Readers</p>
+    <h1>دربارهٔ زبان‌ها</h1>
+    <p class="lede">28 زبان Colors for the Fool را از دو راه معرفی می‌کنیم: شمار کسانی که به آن سخن می‌گویند، و آدمی که شاید سراغ این فال بیاید (تا 17 مهر 1405).</p>
+    <div class="ornament">✦</div>
+  </header>
+
+  <nav aria-label="زبان‌ها">
+    <ul class="langs"><li><a href="#ja"><span lang="ja">日本語</span></a></li><li><a href="#en"><span lang="en">English</span></a></li><li><a href="#zh-hans"><span lang="zh-Hans">简体中文</span></a></li><li><a href="#zh"><span lang="zh-Hant">繁體中文</span></a></li><li><a href="#hi"><span lang="hi">हिन्दी</span></a></li><li><a href="#es"><span lang="es">Español</span></a></li><li><a href="#ar"><span lang="ar" dir="rtl">العربية</span></a></li><li><a href="#fr"><span lang="fr">Français</span></a></li><li><a href="#bn"><span lang="bn">বাংলা</span></a></li><li><a href="#pt"><span lang="pt">Português</span></a></li><li><a href="#id"><span lang="id">Bahasa Indonesia</span></a></li><li><a href="#ms"><span lang="ms">Bahasa Melayu</span></a></li><li><a href="#ur"><span lang="ur" dir="rtl">اردو</span></a></li><li><a href="#ru"><span lang="ru">Русский</span></a></li><li><a href="#de"><span lang="de">Deutsch</span></a></li><li><a href="#vi"><span lang="vi">Tiếng Việt</span></a></li><li><a href="#sw"><span lang="sw">Kiswahili</span></a></li><li><a href="#tr"><span lang="tr">Türkçe</span></a></li><li><a href="#tl"><span lang="fil">Filipino</span></a></li><li><a href="#fa"><span lang="fa" dir="rtl">فارسی</span></a></li><li><a href="#ko"><span lang="ko">한국어</span></a></li><li><a href="#th"><span lang="th">ไทย</span></a></li><li><a href="#it"><span lang="it">Italiano</span></a></li><li><a href="#pl"><span lang="pl">Polski</span></a></li><li><a href="#uk"><span lang="uk">Українська</span></a></li><li><a href="#nl"><span lang="nl">Nederlands</span></a></li><li><a href="#ang"><span lang="ang">Englisc</span></a></li><li><a href="#soro"><span lang="ja">御座候</span></a></li></ul>
+  </nav>
+
+<section class="lang" id="ja" aria-labelledby="h-ja">
+  <p class="kicker">01 · ja</p>
+  <h2 id="h-ja"><span lang="ja">日本語</span><small>ژاپنی</small></h2>
+  <dl class="nums">
+    <div><dt>گویشوران</dt><dd>126 میلیون</dd></div>
+    <div><dt>وب</dt><dd>4.9% (رتبهٔ 4)</dd></div>
+    <div><dt>زمان آنلاین</dt><dd>390 میلیون ساعت</dd></div>
+  </dl>
+  <p class="region"><b>کجا</b>ژاپن. بیرون از ژاپن، ژاپنی‌تبارهای برزیل و ایالات متحده (هاوایی، کالیفرنیا) و ژاپنی‌های مقیم خارج آن را می‌خوانند. بسیاری در سراسر جهان هم ژاپنی یاد می‌گیرند.</p>
+  <div class="persona">
+    <figure><img src="../../language-intro/img/ja.webp" width="800" height="1000" loading="lazy" decoding="async" alt="شخصیتی خیالی. 森下 由佳 (Yuka Morishita)‏، 34 ساله، ساکن فوکوئوکا. در یک بیمارستان عمومی کارمند امور پزشکی است."></figure>
+    <div class="ptext"><h3>شخصیت</h3><p><span lang="ja">森下 由佳</span> (Yuka Morishita)‏، 34 ساله، ساکن فوکوئوکا. در یک بیمارستان عمومی کارمند امور پزشکی است. ساعت 7:40 صبح، روی صندلی مترو iPhone‌اش را باز می‌کند و از یک Reel در Instagram به اینجا می‌رسد. فال را زیاد جدی نمی‌گیرد، اما آن‌قدر دوستش دارد که وقتی درست درنمی‌آید بخندد. یک کارت می‌کشد و اگر وارونه بیاید، تصمیم می‌گیرد «امروز روزی است که به خودم فشار نیاورم.» وقتی داستان از جاها و هنرهای آشنا، مثل بافت هاکاتا یا رنگرزی نیلی چیکوگو، می‌گذرد و به رنگش می‌رسد، ذوق می‌کند. رنگی را که دوست دارد سرنخی برای رنگ دستمال یا لاک ناخن آن روزش می‌کند. گاهی در LINE برای همکاری می‌نویسد: «ظاهراً امروز من نیلی‌ام.»</p></div>
+  </div>
+  <details><summary>اعداد و یادداشت‌ها</summary>
+    <div class="scroll"><table class="facts"><thead><tr><th scope="col">مورد</th><th scope="col">مقدار</th><th scope="col">یادداشت</th></tr></thead><tbody>
+      <tr><th scope="row">کل گویشوران (زبان مادری + زبان دوم)</th><td>126 میلیون</td><td>Ethnologue، ویرایش 2026</td></tr>
+      <tr><th scope="row">سهم از محتوای وب</th><td>4.9% (رتبهٔ 4)</td><td>W3Techs، اکتبر 2026</td></tr>
+      <tr><th scope="row">کاربران اینترنت بر اساس زبان</th><td>2.6% (رتبهٔ 8)</td><td>Internet World Stats، مارس 2020</td></tr>
+      <tr><th scope="row">زمان آنلاین</th><td>حدود 100 میلیون کاربر اینترنت، به‌طور میانگین 3.9 ساعت در روز، در مجموع 390 میلیون ساعت در روز (رتبهٔ 18)</td><td>برآورد Claude</td></tr>
+    </tbody></table></div>
+  </details>
+</section>
+
+<section class="lang" id="en" aria-labelledby="h-en">
+  <p class="kicker">02 · en</p>
+  <h2 id="h-en"><span lang="en">English</span><small>انگلیسی</small></h2>
+  <dl class="nums">
+    <div><dt>گویشوران</dt><dd>1.493 میلیارد (رتبهٔ 1)</dd></div>
+    <div><dt>وب</dt><dd>49.5% (رتبهٔ 1)</dd></div>
+    <div><dt>زمان آنلاین</dt><dd>5.78 میلیارد ساعت</dd></div>
+  </dl>
+  <p class="region"><b>کجا</b>در ایالات متحده، بریتانیا، کانادا، استرالیا، نیوزیلند و ایرلند زبان مادری است. در هند، فیلیپین، نیجریه، سنگاپور، کنیا و جاهای دیگر زبان رسمی یا زبان آموزش است. در سراسر جهان کسانی که انگلیسی زبان دومشان است صفحه‌های انگلیسی را می‌خوانند.</p>
+  <div class="persona">
+    <figure><img src="../../language-intro/img/en.webp" width="800" height="1000" loading="lazy" decoding="async" alt="شخصیتی خیالی. Maya Reynolds‏، 29 ساله، ساکن منچستر در بریتانیا. دستیار آموزشی در یک دبستان است."></figure>
+    <div class="ptext"><h3>شخصیت</h3><p>Maya Reynolds‏، 29 ساله، ساکن منچستر در بریتانیا. دستیار آموزشی در یک دبستان است. ساعت 10 شب، در رختخواب گوشی Android‌اش را باز می‌کند. اغلب ویدیوهای تاروت را در TikTok تماشا می‌کند و سادگیِ کشیدن یک کارت را دوست دارد. معنای کارت را می‌خواند و عاشق لحظه‌ای است که نام رنگ در پایان داستان پیدا می‌شود. وقتی داستان رنگ به جاهای بریتانیایی، مثل خار اسکاتلندی یا پشم یورکشایر، گره می‌خورد، لینک را برای دوستانش می‌فرستد. عوض کردن سبک کارت‌ها و مقایسهٔ آرت نوو با شیشهٔ رنگی هم برایش لذت‌بخش است.</p></div>
+  </div>
+  <details><summary>اعداد و یادداشت‌ها</summary>
+    <div class="scroll"><table class="facts"><thead><tr><th scope="col">مورد</th><th scope="col">مقدار</th><th scope="col">یادداشت</th></tr></thead><tbody>
+      <tr><th scope="row">کل گویشوران (زبان مادری + زبان دوم)</th><td>1.493 میلیارد (رتبهٔ 1)</td><td>Ethnologue، ویرایش 2026</td></tr>
+      <tr><th scope="row">سهم از محتوای وب</th><td>49.5% (رتبهٔ 1)</td><td>W3Techs، اکتبر 2026</td></tr>
+      <tr><th scope="row">کاربران اینترنت بر اساس زبان</th><td>25.9% (رتبهٔ 1)</td><td>Internet World Stats، مارس 2020</td></tr>
+      <tr><th scope="row">زمان آنلاین</th><td>حدود 850 میلیون کاربر اینترنت، به‌طور میانگین 6.8 ساعت در روز، در مجموع 5.78 میلیارد ساعت در روز (رتبهٔ 2)</td><td>برآورد Claude. فقط کسانی شمرده شده‌اند که بیشتر به انگلیسی می‌خوانند؛ طبق یک یادداشت، اگر خوانندگانِ زبان دوم هم حساب شوند، رتبهٔ 1 را خواهد داشت</td></tr>
+    </tbody></table></div>
+  </details>
+</section>
+
+<section class="lang" id="zh-hans" aria-labelledby="h-zh-hans">
+  <p class="kicker">03 · zh-hans</p>
+  <h2 id="h-zh-hans"><span lang="zh-Hans">简体中文</span><small>چینی ساده‌شده</small></h2>
+  <dl class="nums">
+    <div><dt>گویشوران</dt><dd>1.183 میلیارد (ماندارین)</dd></div>
+    <div><dt>وب</dt><dd>1.3% (رتبهٔ 12، کل زبان چینی)</dd></div>
+    <div><dt>زمان آنلاین</dt><dd>6.20 میلیارد ساعت (ساده‌شده + سنتی)</dd></div>
+  </dl>
+  <p class="region"><b>کجا</b>سرزمین اصلی چین، که خط مدرسه و دولت همین است. در جامعه‌های چینی سنگاپور و مالزی هم حروف ساده‌شده معیار است. در آمریکای شمالی، استرالیا، اروپا و جنوب شرق آسیا جامعه‌های چینی بزرگی هست، و دانشجویان خارج از کشور هم بسیارند.</p>
+  <div class="persona">
+    <figure><img src="../../language-intro/img/zh-hans.webp" width="800" height="1000" loading="lazy" decoding="async" alt="شخصیتی خیالی. 林悦 (Lin Yue)‏، 26 ساله، ساکن چنگدو. طراح رابط کاربری (UI) در یک شرکت بازی‌سازی است."></figure>
+    <div class="ptext"><h3>شخصیت</h3><p><span lang="zh-Hans">林悦</span> (Lin Yue)‏، 26 ساله، ساکن چنگدو. طراح رابط کاربری (UI) در یک شرکت بازی‌سازی است. ساعت 12:30 ظهر، در وقت ناهار، داشت با گوشی Huawei‌اش در Xiaohongshu دربارهٔ سفر ماه آینده به کیوتو جست‌وجو می‌کرد که از یادداشت‌های یک مسافر به این سایت رسید. کارش او را به نام‌ها و پالت‌های رنگ حساس کرده است. یک کارت می‌کشد و وقتی داستان از سلادون دوران سونگ یا زربفت شو (زربفت سیچوان) می‌گذرد و به رنگش می‌رسد، از صفحه عکس می‌گیرد و در WeChat برای همکارانش می‌فرستد. دیدن کارت‌ها به سبک نقاشی با مرکب را دوست دارد.</p></div>
+  </div>
+  <details><summary>اعداد و یادداشت‌ها</summary>
+    <div class="scroll"><table class="facts"><thead><tr><th scope="col">مورد</th><th scope="col">مقدار</th><th scope="col">یادداشت</th></tr></thead><tbody>
+      <tr><th scope="row">کل گویشوران (زبان مادری + زبان دوم)</th><td>1.183 میلیارد (ماندارین)</td><td>Ethnologue، ویرایش 2026. چینی سنتی و ساده‌شده فقط یک بار، به‌عنوان ماندارین، شمرده شده‌اند</td></tr>
+      <tr><th scope="row">سهم از محتوای وب</th><td>1.3% (رتبهٔ 12، کل زبان چینی)</td><td>W3Techs چینی ساده‌شده و سنتی را از هم جدا نمی‌کند</td></tr>
+      <tr><th scope="row">کاربران اینترنت بر اساس زبان</th><td>19.4% (رتبهٔ 2، کل زبان چینی)</td><td>Internet World Stats، مارس 2020</td></tr>
+      <tr><th scope="row">زمان آنلاین</th><td>حدود 1.17 میلیارد کاربر اینترنت، به‌طور میانگین 5.3 ساعت در روز، در مجموع 6.20 میلیارد ساعت در روز (رتبهٔ 1، ساده‌شده + سنتی)</td><td>برآورد Claude. سرزمین اصلی چین با 1.11 میلیارد نفر، به‌علاوهٔ تایوان، هنگ‌کنگ و چینی‌های خارج از کشور</td></tr>
+    </tbody></table></div>
+  </details>
+</section>
+
+<section class="lang" id="zh" aria-labelledby="h-zh">
+  <p class="kicker">04 · zh</p>
+  <h2 id="h-zh"><span lang="zh-Hant">繁體中文</span><small>چینی سنتی</small></h2>
+  <dl class="nums">
+    <div><dt>گویشوران</dt><dd>همراه با چینی ساده‌شده به‌عنوان ماندارین شمرده شده (1.183 میلیارد)</dd></div>
+    <div><dt>وب</dt><dd>1.3% (رتبهٔ 12، کل زبان چینی)</dd></div>
+    <div><dt>زمان آنلاین</dt><dd>همراه با چینی ساده‌شده در مجموع 6.20 میلیارد ساعت در روز (رتبهٔ 1)</dd></div>
+  </dl>
+  <p class="region"><b>کجا</b>خطی که در تایوان، هنگ‌کنگ و ماکائو به کار می‌رود. در جامعه‌های چینیِ قدیمی آمریکای شمالی و استرالیا هم بسیاری حروف سنتی را به کار می‌برند. در تایوان چینی معیار (هوایو) صحبت می‌شود؛ در هنگ‌کنگ و ماکائو زبان گفتار کانتونی است و نوشتن با معیار نوشتاری حروف سنتی.</p>
+  <div class="persona">
+    <figure><img src="../../language-intro/img/zh.webp" width="800" height="1000" loading="lazy" decoding="async" alt="شخصیتی خیالی. 陳怡君 (Chen Yi-chun)‏، 31 ساله، ساکن تایچونگ. تحویلدار بانک است."></figure>
+    <div class="ptext"><h3>شخصیت</h3><p><span lang="zh-Hant">陳怡君</span> (Chen Yi-chun)‏، 31 ساله، ساکن تایچونگ. تحویلدار بانک است. ساعت 11 شب، پیش از خواب، با iPhone‌اش سفر ماه آینده به کانازاوا را برنامه‌ریزی می‌کند. این سایت را از لینکی باز کرد که دوستی در LINE برایش فرستاده بود. با همان حالی یک کارت می‌کشد که در معبد برگهٔ بخت برمی‌دارند. وقتی داستان از هنرهای ژاپنی مثل رنگرزی کاگا یوزن یا ورق طلا می‌گذرد و به رنگش می‌رسد، یک جای دیدنی دیگر به سفرش اضافه می‌شود. صفحهٔ نتیجه را در LINE برای همان دوست پس می‌فرستد.</p></div>
+  </div>
+  <details><summary>اعداد و یادداشت‌ها</summary>
+    <div class="scroll"><table class="facts"><thead><tr><th scope="col">مورد</th><th scope="col">مقدار</th><th scope="col">یادداشت</th></tr></thead><tbody>
+      <tr><th scope="row">کل گویشوران (زبان مادری + زبان دوم)</th><td>همراه با چینی ساده‌شده به‌عنوان ماندارین شمرده شده (1.183 میلیارد)</td><td>چینی سنتی و ساده‌شده فقط یک بار، به‌عنوان ماندارین، شمرده شده‌اند. دربارهٔ شمار خوانندگان فقط چینی سنتی داده‌ای نیست</td></tr>
+      <tr><th scope="row">سهم از محتوای وب</th><td>1.3% (رتبهٔ 12، کل زبان چینی)</td><td>W3Techs چینی ساده‌شده و سنتی را از هم جدا نمی‌کند</td></tr>
+      <tr><th scope="row">کاربران اینترنت بر اساس زبان</th><td>19.4% (رتبهٔ 2، کل زبان چینی)</td><td>Internet World Stats، مارس 2020</td></tr>
+      <tr><th scope="row">زمان آنلاین</th><td>همراه با چینی ساده‌شده در مجموع 6.20 میلیارد ساعت در روز (رتبهٔ 1)</td><td>برآورد Claude. برآورد جداگانه‌ای برای چینی سنتی نیست</td></tr>
+    </tbody></table></div>
+  </details>
+</section>
+
+<section class="lang" id="hi" aria-labelledby="h-hi">
+  <p class="kicker">05 · hi</p>
+  <h2 id="h-hi"><span lang="hi">हिन्दी</span><small>هندی</small></h2>
+  <dl class="nums">
+    <div><dt>گویشوران</dt><dd>611 میلیون (رتبهٔ 3)</dd></div>
+    <div><dt>وب</dt><dd>کمتر از 0.1% (رتبهٔ 38)</dd></div>
+    <div><dt>زمان آنلاین</dt><dd>1.74 میلیارد ساعت</dd></div>
+  </dl>
+  <p class="region"><b>کجا</b>شمال و مرکز هند (اوتار پرادش، بیهار، راجستان، مادهیا پرادش، دهلی و جاهای دیگر). در نپال و فیجی هم گویشورانی دارد. جامعه‌های بزرگ هندی در کشورهای حاشیهٔ خلیج فارس، بریتانیا، ایالات متحده و کانادا زندگی می‌کنند.</p>
+  <div class="persona">
+    <figure><img src="../../language-intro/img/hi.webp" width="800" height="1000" loading="lazy" decoding="async" alt="شخصیتی خیالی. Neha Verma‏، 24 ساله، ساکن جیپور. کارآموز دورهٔ عملی حسابداری رسمی است."></figure>
+    <div class="ptext"><h3>شخصیت</h3><p>Neha Verma‏، 24 ساله، ساکن جیپور. کارآموز دورهٔ عملی حسابداری رسمی است. ساعت 8 صبح، پیش از سوار شدن به مترو، با گوشی Redmi‌اش یک کارت می‌کشد؛ انگار ادامهٔ همان راشی‌فَل است که مادرش همیشه نگاه می‌کند. انگلیسی هم می‌خواند، اما حس می‌کند داستان رنگ‌ها به هندی بیشتر در دلش می‌ماند. وقتی داستان از ساختمان‌های «شهر صورتی» جیپور یا رنگرزی گره‌ای راجستان می‌گذرد و به رنگش می‌رسد، دوپاتایی به همان رنگ انتخاب می‌کند. نتیجه‌هایی را که دوست دارد در WhatsApp برای خواهر بزرگش می‌فرستد.</p></div>
+  </div>
+  <details><summary>اعداد و یادداشت‌ها</summary>
+    <div class="scroll"><table class="facts"><thead><tr><th scope="col">مورد</th><th scope="col">مقدار</th><th scope="col">یادداشت</th></tr></thead><tbody>
+      <tr><th scope="row">کل گویشوران (زبان مادری + زبان دوم)</th><td>611 میلیون (رتبهٔ 3)</td><td>Ethnologue، ویرایش 2026</td></tr>
+      <tr><th scope="row">سهم از محتوای وب</th><td>کمتر از 0.1% (رتبهٔ 38)</td><td>W3Techs، اکتبر 2026. در مقایسه با شمار گویشوران، صفحه‌های وب بسیار کم است</td></tr>
+      <tr><th scope="row">کاربران اینترنت بر اساس زبان</th><td>خارج از 10 رتبهٔ نخست</td><td>Internet World Stats، مارس 2020</td></tr>
+      <tr><th scope="row">زمان آنلاین</th><td>حدود 290 میلیون کاربر اینترنت، به‌طور میانگین 6.0 ساعت در روز، در مجموع 1.74 میلیارد ساعت در روز (رتبهٔ 6)</td><td>برآورد Claude. فرض شده که حدود 35% کاربران هند کاربر هندی‌زبان باشند. این لرزان‌ترین فرض است</td></tr>
+    </tbody></table></div>
+  </details>
+</section>
+
+<section class="lang" id="es" aria-labelledby="h-es">
+  <p class="kicker">06 · es</p>
+  <h2 id="h-es"><span lang="es">Español</span><small>اسپانیایی</small></h2>
+  <dl class="nums">
+    <div><dt>گویشوران</dt><dd>561 میلیون (رتبهٔ 4)</dd></div>
+    <div><dt>وب</dt><dd>6.0% (رتبهٔ 2)</dd></div>
+    <div><dt>زمان آنلاین</dt><dd>2.96 میلیارد ساعت</dd></div>
+  </dl>
+  <p class="region"><b>کجا</b>اسپانیا و بسیاری از کشورهای آمریکای لاتین، از جمله مکزیک، کلمبیا، آرژانتین، پرو، شیلی و ونزوئلا. در ایالات متحده هم بسیاری در خانه اسپانیایی حرف می‌زنند (شمارشان اینجا بررسی نشده است). زبان رسمی گینهٔ استوایی هم هست.</p>
+  <div class="persona">
+    <figure><img src="../../language-intro/img/es.webp" width="800" height="1000" loading="lazy" decoding="async" alt="شخصیتی خیالی. Valeria Ortiz‏، 32 ساله، ساکن گوادالاخارا در مکزیک. بهداشت‌کار دندان است."></figure>
+    <div class="ptext"><h3>شخصیت</h3><p>Valeria Ortiz‏، 32 ساله، ساکن گوادالاخارا در مکزیک. بهداشت‌کار دندان است. ساعت 9:30 شب، بعد از کار روی کاناپه، گوشی Android‌اش را باز می‌کند؛ از یک داستان تاروت که در TikTok دیده بود به این سایت آمده است. خواندن معنای کارت را دوست دارد، اما بخش محبوبش انتظار برای نام رنگ در پایان است. وقتی داستان از قرمزدانهٔ مکزیکی (رنگ قرمزی که از حشره‌ای ساکن کاکتوس گرفته می‌شود) می‌گذرد و به سرخ لاکی می‌رسد، فوراً در WhatsApp برای خواهر کوچکش می‌فرستد. می‌خواهد آخر سال هم با این سایت رنگ لباس زیرش را انتخاب کند.</p></div>
+  </div>
+  <details><summary>اعداد و یادداشت‌ها</summary>
+    <div class="scroll"><table class="facts"><thead><tr><th scope="col">مورد</th><th scope="col">مقدار</th><th scope="col">یادداشت</th></tr></thead><tbody>
+      <tr><th scope="row">کل گویشوران (زبان مادری + زبان دوم)</th><td>561 میلیون (رتبهٔ 4)</td><td>Ethnologue، ویرایش 2026</td></tr>
+      <tr><th scope="row">سهم از محتوای وب</th><td>6.0% (رتبهٔ 2)</td><td>W3Techs، اکتبر 2026</td></tr>
+      <tr><th scope="row">کاربران اینترنت بر اساس زبان</th><td>7.9% (رتبهٔ 3)</td><td>Internet World Stats، مارس 2020</td></tr>
+      <tr><th scope="row">زمان آنلاین</th><td>حدود 390 میلیون کاربر اینترنت، به‌طور میانگین 7.6 ساعت در روز، در مجموع 2.96 میلیارد ساعت در روز (رتبهٔ 3)</td><td>برآورد Claude. مکزیک، اسپانیا، کلمبیا، آرژانتین و دیگران، به‌علاوهٔ اسپانیایی‌زبانان ایالات متحده</td></tr>
+    </tbody></table></div>
+  </details>
+</section>
+
+<section class="lang" id="ar" aria-labelledby="h-ar">
+  <p class="kicker">07 · ar</p>
+  <h2 id="h-ar"><span lang="ar" dir="rtl">العربية</span><small>عربی (عربی معیار نوین)</small></h2>
+  <dl class="nums">
+    <div><dt>گویشوران</dt><dd>335 میلیون (رتبهٔ 5، عربی معیار نوین)</dd></div>
+    <div><dt>وب</dt><dd>0.6% (رتبهٔ 19)</dd></div>
+    <div><dt>زمان آنلاین</dt><dd>2.31 میلیارد ساعت</dd></div>
+  </dl>
+  <p class="region"><b>کجا</b>زبان رسمی حدود 22 کشور در خاورمیانه و شمال آفریقا، از جمله مصر، عربستان سعودی، عراق، الجزایر، مراکش، سودان، سوریه، اردن و امارات. در اروپا (فرانسه، آلمان و جاهای دیگر) و آمریکای شمالی هم عرب‌زبانان بسیاری زندگی می‌کنند. سایت راست‌به‌چپ است.</p>
+  <div class="persona">
+    <figure><img src="../../language-intro/img/ar.webp" width="800" height="1000" loading="lazy" decoding="async" alt="شخصیتی خیالی. نور حداد، 28 ساله، ساکن امان در اردن. در یک دفتر طراحی معماری کار می‌کند."></figure>
+    <div class="ptext"><h3>شخصیت</h3><p>نور حداد، 28 ساله، ساکن امان در اردن. در یک دفتر طراحی معماری کار می‌کند. ساعت 8 شب، در بالکن خانه iPhone‌اش را باز می‌کند. به فال باور ندارد؛ نقش کارت و داستان را مثل «یک خوانش کوتاه» دوست دارد. وقتی داستان از آبیِ کاشی‌های معماری اسلامی یا سرخابیِ صخره‌های پترا می‌گذرد و به رنگش می‌رسد، آن را برای رنگ‌بندی‌های کارش یادداشت می‌کند. گاهی صفحهٔ نتیجه را به گروه WhatsApp همکاران معمارش می‌فرستد.</p></div>
+  </div>
+  <details><summary>اعداد و یادداشت‌ها</summary>
+    <div class="scroll"><table class="facts"><thead><tr><th scope="col">مورد</th><th scope="col">مقدار</th><th scope="col">یادداشت</th></tr></thead><tbody>
+      <tr><th scope="row">کل گویشوران (زبان مادری + زبان دوم)</th><td>335 میلیون (رتبهٔ 5، عربی معیار نوین)</td><td>Ethnologue، ویرایش 2026</td></tr>
+      <tr><th scope="row">سهم از محتوای وب</th><td>0.6% (رتبهٔ 19)</td><td>W3Techs، اکتبر 2026</td></tr>
+      <tr><th scope="row">کاربران اینترنت بر اساس زبان</th><td>5.2% (رتبهٔ 4)</td><td>Internet World Stats، مارس 2020</td></tr>
+      <tr><th scope="row">زمان آنلاین</th><td>حدود 330 میلیون کاربر اینترنت، به‌طور میانگین 7.0 ساعت در روز، در مجموع 2.31 میلیارد ساعت در روز (رتبهٔ 4)</td><td>برآورد Claude. مصر، عربستان سعودی، عراق، الجزایر، مراکش و دیگران</td></tr>
+    </tbody></table></div>
+  </details>
+</section>
+
+<section class="lang" id="fr" aria-labelledby="h-fr">
+  <p class="kicker">08 · fr</p>
+  <h2 id="h-fr"><span lang="fr">Français</span><small>فرانسوی</small></h2>
+  <dl class="nums">
+    <div><dt>گویشوران</dt><dd>334 میلیون (رتبهٔ 6)</dd></div>
+    <div><dt>وب</dt><dd>4.5% (رتبهٔ 5)</dd></div>
+    <div><dt>زمان آنلاین</dt><dd>750 میلیون ساعت</dd></div>
+  </dl>
+  <p class="region"><b>کجا</b>فرانسه، جنوب بلژیک، غرب سوئیس، کبک در کانادا و لوکزامبورگ. در غرب و مرکز آفریقا (ساحل عاج، سنگال، جمهوری دموکراتیک کنگو، کامرون و جاهای دیگر) زبان مدرسه و دولت است. در مراکش، الجزایر و تونس در شمال آفریقا هم بسیار به کار می‌رود.</p>
+  <div class="persona">
+    <figure><img src="../../language-intro/img/fr.webp" width="800" height="1000" loading="lazy" decoding="async" alt="شخصیتی خیالی. Hélène Garnier‏، 41 ساله، ساکن لیون. کارگاه صحافی و نگهداری کاغذ دارد."></figure>
+    <div class="ptext"><h3>شخصیت</h3><p>Hélène Garnier‏، 41 ساله، ساکن لیون. کارگاه صحافی و نگهداری کاغذ دارد. ساعت 10 صبح یکشنبه، روی میز کارگاه تبلتش را باز می‌کند. تاروت مارسی خانهٔ مادربزرگش را به یاد دارد و نام‌های آرکانای اعظم برایش آشناست. وقتی داستان از رنگرزی ابریشم لیون یا یک رنگ‌فروش پاریسی می‌گذرد و به رنگش می‌رسد، از آن برای انتخاب رنگ آستر جلد صحافی بعدی‌اش بهره می‌گیرد. سبک آرت نوو را انتخاب می‌کند.</p></div>
+  </div>
+  <details><summary>اعداد و یادداشت‌ها</summary>
+    <div class="scroll"><table class="facts"><thead><tr><th scope="col">مورد</th><th scope="col">مقدار</th><th scope="col">یادداشت</th></tr></thead><tbody>
+      <tr><th scope="row">کل گویشوران (زبان مادری + زبان دوم)</th><td>334 میلیون (رتبهٔ 6)</td><td>Ethnologue، ویرایش 2026</td></tr>
+      <tr><th scope="row">سهم از محتوای وب</th><td>4.5% (رتبهٔ 5)</td><td>W3Techs، اکتبر 2026</td></tr>
+      <tr><th scope="row">کاربران اینترنت بر اساس زبان</th><td>3.3% (رتبهٔ 7)</td><td>Internet World Stats، مارس 2020</td></tr>
+      <tr><th scope="row">زمان آنلاین</th><td>حدود 125 میلیون کاربر اینترنت، به‌طور میانگین 6.0 ساعت در روز، در مجموع 750 میلیون ساعت در روز (رتبهٔ 9)</td><td>برآورد Claude. فرانسه، بلژیک و کبک، به‌علاوهٔ آفریقای فرانسوی‌زبان</td></tr>
+    </tbody></table></div>
+  </details>
+</section>
+
+<section class="lang" id="bn" aria-labelledby="h-bn">
+  <p class="kicker">09 · bn</p>
+  <h2 id="h-bn"><span lang="bn">বাংলা</span><small>بنگالی</small></h2>
+  <dl class="nums">
+    <div><dt>گویشوران</dt><dd>274 میلیون (رتبهٔ 7)</dd></div>
+    <div><dt>وب</dt><dd>کمتر از 0.1% (رتبهٔ 39)</dd></div>
+    <div><dt>زمان آنلاین</dt><dd>610 میلیون ساعت</dd></div>
+  </dl>
+  <p class="region"><b>کجا</b>بنگلادش (زبان ملی) و ایالت‌های بنگال غربی، تریپورا و بخشی از آسام در هند. بسیاری از بنگلادشی‌ها در بریتانیا (شرق لندن)، کشورهای حاشیهٔ خلیج فارس، ایالات متحده و مالزی زندگی می‌کنند.</p>
+  <div class="persona">
+    <figure><img src="../../language-intro/img/bn.webp" width="800" height="1000" loading="lazy" decoding="async" alt="شخصیتی خیالی. Farhana Akter‏، 23 ساله، ساکن داکا. در دانشگاه ادبیات انگلیسی می‌خواند."></figure>
+    <div class="ptext"><h3>شخصیت</h3><p>Farhana Akter‏، 23 ساله، ساکن داکا. در دانشگاه ادبیات انگلیسی می‌خواند. ساعت 10 شب، در فاصلهٔ درس خواندن، داشت با گوشی Samsung‌اش Facebook را نگاه می‌کرد که از صفحهٔ نتیجه‌ای که دوستی به اشتراک گذاشته بود به اینجا آمد. آن را نه به‌عنوان فال، بلکه همچون داستانی کوتاه که می‌تواند به بنگالی بخواند دوست دارد. وقتی داستان از ململ داکا یا بافت جامدانی می‌گذرد و به رنگ عاجی می‌رسد، نام رنگ را در دفتر شعرش می‌نویسد.</p></div>
+  </div>
+  <details><summary>اعداد و یادداشت‌ها</summary>
+    <div class="scroll"><table class="facts"><thead><tr><th scope="col">مورد</th><th scope="col">مقدار</th><th scope="col">یادداشت</th></tr></thead><tbody>
+      <tr><th scope="row">کل گویشوران (زبان مادری + زبان دوم)</th><td>274 میلیون (رتبهٔ 7)</td><td>Ethnologue، ویرایش 2026</td></tr>
+      <tr><th scope="row">سهم از محتوای وب</th><td>کمتر از 0.1% (رتبهٔ 39)</td><td>W3Techs، اکتبر 2026</td></tr>
+      <tr><th scope="row">کاربران اینترنت بر اساس زبان</th><td>خارج از 10 رتبهٔ نخست</td><td>Internet World Stats، مارس 2020</td></tr>
+      <tr><th scope="row">زمان آنلاین</th><td>حدود 110 میلیون کاربر اینترنت، به‌طور میانگین 5.5 ساعت در روز، در مجموع 610 میلیون ساعت در روز (رتبهٔ 10)</td><td>برآورد Claude. بنگلادش به‌علاوهٔ بنگال غربی</td></tr>
+    </tbody></table></div>
+  </details>
+</section>
+
+<section class="lang" id="pt" aria-labelledby="h-pt">
+  <p class="kicker">10 · pt</p>
+  <h2 id="h-pt"><span lang="pt">Português</span><small>پرتغالی (برزیل)</small></h2>
+  <dl class="nums">
+    <div><dt>گویشوران</dt><dd>269 میلیون (رتبهٔ 8)</dd></div>
+    <div><dt>وب</dt><dd>4.1% (رتبهٔ 6)</dd></div>
+    <div><dt>زمان آنلاین</dt><dd>1.89 میلیارد ساعت</dd></div>
+  </dl>
+  <p class="region"><b>کجا</b>برزیل (سایت از pt-BR استفاده می‌کند) و پرتغال. در کشورهای آفریقایی مانند آنگولا، موزامبیک و کیپ ورد هم زبان رسمی است. بسیاری از برزیلی‌های ژاپنی‌تبار در ژاپن زندگی می‌کنند. در ایالات متحده، پرتغال و ژاپن جامعه‌های برزیلی هست.</p>
+  <div class="persona">
+    <figure><img src="../../language-intro/img/pt.webp" width="800" height="1000" loading="lazy" decoding="async" alt="شخصیتی خیالی. Juliana Costa‏، 30 ساله، ساکن رسیفی. پرستار بیمارستان است و شیفت شب هم کار می‌کند."></figure>
+    <div class="ptext"><h3>شخصیت</h3><p>Juliana Costa‏، 30 ساله، ساکن رسیفی. پرستار بیمارستان است و شیفت شب هم کار می‌کند. ساعت 6:30 صبح، در اتوبوس برگشت به خانه پس از شیفت شب، گوشی Samsung‌اش را باز می‌کند و یک کارت می‌کشد. بیشتر از معنای کارت، منتظر رنگی است که در پایان داستان می‌آید. وقتی داستان از پائو-برازیل (درختی با رنگ قرمز که برزیل نامش را از آن گرفت) می‌گذرد و به رنگش می‌رسد، آن را به گروه WhatsApp همکارانش می‌فرستد. قصد دارد برای انتخاب رنگ لباس شب سال نو هم اینجا کارت بکشد.</p></div>
+  </div>
+  <details><summary>اعداد و یادداشت‌ها</summary>
+    <div class="scroll"><table class="facts"><thead><tr><th scope="col">مورد</th><th scope="col">مقدار</th><th scope="col">یادداشت</th></tr></thead><tbody>
+      <tr><th scope="row">کل گویشوران (زبان مادری + زبان دوم)</th><td>269 میلیون (رتبهٔ 8)</td><td>Ethnologue، ویرایش 2026</td></tr>
+      <tr><th scope="row">سهم از محتوای وب</th><td>4.1% (رتبهٔ 6)</td><td>W3Techs، اکتبر 2026</td></tr>
+      <tr><th scope="row">کاربران اینترنت بر اساس زبان</th><td>3.7% (رتبهٔ 6)</td><td>Internet World Stats، مارس 2020</td></tr>
+      <tr><th scope="row">زمان آنلاین</th><td>حدود 210 میلیون کاربر اینترنت، به‌طور میانگین 9.0 ساعت در روز، در مجموع 1.89 میلیارد ساعت در روز (رتبهٔ 5)</td><td>برآورد Claude. بیشترش برزیل. زمان آنلاین از طولانی‌ترین‌ها در جهان است</td></tr>
+    </tbody></table></div>
+  </details>
+</section>
+
+<section class="lang" id="id" aria-labelledby="h-id">
+  <p class="kicker">11 · id</p>
+  <h2 id="h-id"><span lang="id">Bahasa Indonesia</span><small>اندونزیایی</small></h2>
+  <dl class="nums">
+    <div><dt>گویشوران</dt><dd>255 میلیون (رتبهٔ 9)</dd></div>
+    <div><dt>وب</dt><dd>1.2% (رتبهٔ 13)</dd></div>
+    <div><dt>زمان آنلاین</dt><dd>1.55 میلیارد ساعت</dd></div>
+  </dl>
+  <p class="region"><b>کجا</b>زبان ملی اندونزی، که بیش از 200 میلیون نفر در مدرسه و کار به کار می‌برند. در تیمور شرقی زبان کاری است. با مالایی مالزی، برونئی و سنگاپور تا حد زیادی دوسویه فهمیدنی است. شمار اندونزیایی‌هایی که به‌عنوان کارآموز فنی یا در برنامهٔ کارگر ماهر ویژه در ژاپن کار می‌کنند رو به افزایش است.</p>
+  <div class="persona">
+    <figure><img src="../../language-intro/img/id.webp" width="800" height="1000" loading="lazy" decoding="async" alt="شخصیتی خیالی. Dimas Pratama‏، 25 ساله، ساکن باندونگ. طراح گرافیک تازه‌کار در یک استارتاپ است."></figure>
+    <div class="ptext"><h3>شخصیت</h3><p>Dimas Pratama‏، 25 ساله، ساکن باندونگ. طراح گرافیک تازه‌کار در یک استارتاپ است. ساعت 9 صبح، در یک فضای کار اشتراکی گوشی Android‌اش را باز می‌کند. از آن نه برای فال، بلکه چون ابزاری برای یافتن ایدهٔ رنگ‌بندی استفاده می‌کند. معنای کارت را سرسری نگاه می‌کند و داستان رنگ را با دقت می‌خواند. وقتی داستان از نیلیِ باتیک جاوه یا صنایع بامبوی سوندا می‌گذرد و به رنگش می‌رسد، آن را رنگ پایهٔ پیش‌نویس‌های پوستر آن روز می‌کند. در Instagram Stories فقط نام رنگ را به اشتراک می‌گذارد.</p></div>
+  </div>
+  <details><summary>اعداد و یادداشت‌ها</summary>
+    <div class="scroll"><table class="facts"><thead><tr><th scope="col">مورد</th><th scope="col">مقدار</th><th scope="col">یادداشت</th></tr></thead><tbody>
+      <tr><th scope="row">کل گویشوران (زبان مادری + زبان دوم)</th><td>255 میلیون (رتبهٔ 9)</td><td>Ethnologue، ویرایش 2026</td></tr>
+      <tr><th scope="row">سهم از محتوای وب</th><td>1.2% (رتبهٔ 13)</td><td>W3Techs، اکتبر 2026</td></tr>
+      <tr><th scope="row">کاربران اینترنت بر اساس زبان</th><td>4.3% (رتبهٔ 5)</td><td>Internet World Stats، مارس 2020. با مالایی در یک ردیف است؛ عدد مربوط به اندونزیایی است</td></tr>
+      <tr><th scope="row">زمان آنلاین</th><td>حدود 210 میلیون کاربر اینترنت، به‌طور میانگین 7.4 ساعت در روز، در مجموع 1.55 میلیارد ساعت در روز (رتبهٔ 7)</td><td>برآورد Claude</td></tr>
+    </tbody></table></div>
+  </details>
+</section>
+
+<section class="lang" id="ms" aria-labelledby="h-ms">
+  <p class="kicker">12 · ms</p>
+  <h2 id="h-ms"><span lang="ms">Bahasa Melayu</span><small>مالایی</small></h2>
+  <dl class="nums">
+    <div><dt>گویشوران</dt><dd>نامعلوم</dd></div>
+    <div><dt>وب</dt><dd>داده‌ای نیست</dd></div>
+    <div><dt>زمان آنلاین</dt><dd>حدود 160 میلیون ساعت (رقم مرجع، خارج از رتبه‌بندی)</dd></div>
+  </dl>
+  <p class="region"><b>کجا</b>مالزی، برونئی و سنگاپور (زبان ملی). در جنوب تایلند هم مالایی‌زبانانی هستند. در مالزی، مالایی‌ها در زندگی روزمره به آن سخن می‌گویند و مالزیایی‌های چینی‌تبار و هندی‌تبار هم در مدرسه یادش می‌گیرند.</p>
+  <div class="persona">
+    <figure><img src="../../language-intro/img/ms.webp" width="800" height="1000" loading="lazy" decoding="async" alt="شخصیتی خیالی. Nur Aisyah binti Rahman‏، 27 ساله، ساکن شاه علم. داروساز بیمارستان است."></figure>
+    <div class="ptext"><h3>شخصیت</h3><p>Nur Aisyah binti Rahman‏، 27 ساله، ساکن شاه علم. داروساز بیمارستان است. ساعت 1 بعدازظهر، در وقت ناهار، با گوشی Android‌اش در TikTok نکته‌هایی برای سفر مارس سال آینده به اوساکا تماشا می‌کند. به فال باور ندارد، اما نقش کارت‌ها و داستان رنگ‌ها را مثل «چیزی زیبا برای خواندن» دوست دارد. وقتی داستان از نخ طلایی سونگکت مالایی یا بندر مالاکا می‌گذرد و به رنگش می‌رسد، از آن برای رنگ تودونگ (روسری) سفرش الهام می‌گیرد. در گروه خانوادگی WhatsApp فقط نام رنگ را می‌فرستد.</p></div>
+  </div>
+  <details><summary>اعداد و یادداشت‌ها</summary>
+    <div class="scroll"><table class="facts"><thead><tr><th scope="col">مورد</th><th scope="col">مقدار</th><th scope="col">یادداشت</th></tr></thead><tbody>
+      <tr><th scope="row">کل گویشوران (زبان مادری + زبان دوم)</th><td>نامعلوم</td><td>مالایی را اغلب همراه با اندونزیایی به‌عنوان یک کلان‌زبان می‌شمارند، برای همین عدد جداگانه‌ای ندارد. صفحهٔ Wikipedia با عنوان «Malay language» (به نقل از Ethnologue، ویرایش 28، 2025) برای مالایی به‌عنوان کلان‌زبان حدود 90 میلیون گویشور بومی (2020–2023) و حدود 180 میلیون گویشور زبان دوم (2020) ذکر می‌کند. این شمارش گونه‌های محلی مالایی در اندونزی را هم در بر دارد و فقط شمار مالایی معیار نیست</td></tr>
+      <tr><th scope="row">سهم از محتوای وب</th><td>داده‌ای نیست</td><td>در میان 40 زبان نخست W3Techs نیست</td></tr>
+      <tr><th scope="row">کاربران اینترنت بر اساس زبان</th><td>در همان ردیف اندونزیایی</td><td>در Internet World Stats، عدد ردیف اندونزیایی/مالایی فقط همان 4.3% اندونزیایی است</td></tr>
+      <tr><th scope="row">زمان آنلاین</th><td>حدود 160 میلیون ساعت در روز (رقم مرجع، خارج از رتبه‌بندی)</td><td>رقم مرجعِ خارج از رتبه‌بندی در برآورد Claude. حدود 60% کاربران مالزی به‌علاوهٔ برونئی</td></tr>
+    </tbody></table></div>
+  </details>
+</section>
+
+<section class="lang" id="ur" aria-labelledby="h-ur">
+  <p class="kicker">13 · ur</p>
+  <h2 id="h-ur"><span lang="ur" dir="rtl">اردو</span><small>اردو</small></h2>
+  <dl class="nums">
+    <div><dt>گویشوران</dt><dd>246 میلیون (رتبهٔ 10)</dd></div>
+    <div><dt>وب</dt><dd>داده‌ای نیست</dd></div>
+    <div><dt>زمان آنلاین</dt><dd>520 میلیون ساعت</dd></div>
+  </dl>
+  <p class="region"><b>کجا</b>پاکستان (زبان ملی) و شمال هند (اوتار پرادش، حیدرآباد در تلنگانا، دهلی و جاهای دیگر). بسیاری از پاکستانی‌تبارها در بریتانیا، کشورهای حاشیهٔ خلیج فارس، ایالات متحده و کانادا زندگی می‌کنند. زبان گفتاری به هندی نزدیک است؛ خط (خط عربی به شیوهٔ نستعلیق) فرق دارد. سایت راست‌به‌چپ است.</p>
+  <div class="persona">
+    <figure><img src="../../language-intro/img/ur.webp" width="800" height="1000" loading="lazy" decoding="async" alt="شخصیتی خیالی. حمزه قریشی، 30 ساله، ساکن لاهور. مهندس نرم‌افزار در یک شرکت فین‌تک است."></figure>
+    <div class="ptext"><h3>شخصیت</h3><p>حمزه قریشی، 30 ساله، ساکن لاهور. مهندس نرم‌افزار در یک شرکت فین‌تک است. ساعت 12:30 بامداد، پس از کار، با یک فنجان چای گوشی Android‌اش را باز می‌کند. از فال فاصله می‌گیرد، اما صفحه‌هایی را دوست دارد که متن اردو در آن‌ها زیبا چیده شده باشد، و برای خواندن داستان‌ها می‌آید. وقتی داستان از لاجوردیِ نگارگری‌های گورکانی یا کاشی‌های دیوار قلعهٔ لاهور می‌گذرد و به رنگش می‌رسد، در WhatsApp لینک را برای دوستی شاعر می‌فرستد.</p></div>
+  </div>
+  <details><summary>اعداد و یادداشت‌ها</summary>
+    <div class="scroll"><table class="facts"><thead><tr><th scope="col">مورد</th><th scope="col">مقدار</th><th scope="col">یادداشت</th></tr></thead><tbody>
+      <tr><th scope="row">کل گویشوران (زبان مادری + زبان دوم)</th><td>246 میلیون (رتبهٔ 10)</td><td>Ethnologue، ویرایش 2026</td></tr>
+      <tr><th scope="row">سهم از محتوای وب</th><td>داده‌ای نیست</td><td>در میان 40 زبان نخست W3Techs نیست</td></tr>
+      <tr><th scope="row">کاربران اینترنت بر اساس زبان</th><td>خارج از 10 رتبهٔ نخست</td><td>Internet World Stats، مارس 2020</td></tr>
+      <tr><th scope="row">زمان آنلاین</th><td>حدود 95 میلیون کاربر اینترنت، به‌طور میانگین 5.5 ساعت در روز، در مجموع 520 میلیون ساعت در روز (رتبهٔ 13)</td><td>برآورد Claude. حدود 75% پاکستان به‌علاوهٔ بخشی از هند</td></tr>
+    </tbody></table></div>
+  </details>
+</section>
+
+<section class="lang" id="ru" aria-labelledby="h-ru">
+  <p class="kicker">14 · ru</p>
+  <h2 id="h-ru"><span lang="ru">Русский</span><small>روسی</small></h2>
+  <dl class="nums">
+    <div><dt>گویشوران</dt><dd>210 میلیون (رتبهٔ 11)</dd></div>
+    <div><dt>وب</dt><dd>3.4% (رتبهٔ 7)</dd></div>
+    <div><dt>زمان آنلاین</dt><dd>1.16 میلیارد ساعت</dd></div>
+  </dl>
+  <p class="region"><b>کجا</b>زبان رسمی روسیه، بلاروس، قزاقستان و قرقیزستان. در دیگر کشورهای شوروی سابق (آسیای میانه، قفقاز، کشورهای بالتیک) هم بسیاری روسی به کار می‌برند. در اسرائیل، آلمان و ایالات متحده هم جامعه‌های روسی‌زبان هست.</p>
+  <div class="persona">
+    <figure><img src="../../language-intro/img/ru.webp" width="800" height="1000" loading="lazy" decoding="async" alt="شخصیتی خیالی. Анна Соколова (Anna Sokolova)‏، 35 ساله، ساکن نووسیبیرسک. تکنسین تجزیهٔ شیمیایی در یک مؤسسهٔ پژوهشی است."></figure>
+    <div class="ptext"><h3>شخصیت</h3><p><span lang="ru">Анна Соколова</span> (Anna Sokolova)‏، 35 ساله، ساکن نووسیبیرسک. تکنسین تجزیهٔ شیمیایی در یک مؤسسهٔ پژوهشی است. ساعت 10 شب، در آشپزخانه با چای، گوشی Android‌اش را باز می‌کند. این سایت را از یک کانال Telegram که رنگ و هنر معرفی می‌کند شناخت. به خاطر کارش، کشیدن کارت و دنبال کردن داستان از راه کانی‌ها و رنگدانه‌ها تا رسیدن به رنگ را به‌ویژه دوست دارد. روزهایی که سبز مالاکیت می‌آید، عکس آن سنگ را به دخترش نشان می‌دهد.</p></div>
+  </div>
+  <details><summary>اعداد و یادداشت‌ها</summary>
+    <div class="scroll"><table class="facts"><thead><tr><th scope="col">مورد</th><th scope="col">مقدار</th><th scope="col">یادداشت</th></tr></thead><tbody>
+      <tr><th scope="row">کل گویشوران (زبان مادری + زبان دوم)</th><td>210 میلیون (رتبهٔ 11)</td><td>Ethnologue، ویرایش 2026</td></tr>
+      <tr><th scope="row">سهم از محتوای وب</th><td>3.4% (رتبهٔ 7)</td><td>W3Techs، اکتبر 2026</td></tr>
+      <tr><th scope="row">کاربران اینترنت بر اساس زبان</th><td>2.5% (رتبهٔ 9)</td><td>Internet World Stats، مارس 2020</td></tr>
+      <tr><th scope="row">زمان آنلاین</th><td>حدود 155 میلیون کاربر اینترنت، به‌طور میانگین 7.5 ساعت در روز، در مجموع 1.16 میلیارد ساعت در روز (رتبهٔ 8)</td><td>برآورد Claude. روسیه به‌علاوهٔ بلاروس، قزاقستان و بخش‌هایی از آسیای میانه</td></tr>
+    </tbody></table></div>
+  </details>
+</section>
+
+<section class="lang" id="de" aria-labelledby="h-de">
+  <p class="kicker">15 · de</p>
+  <h2 id="h-de"><span lang="de">Deutsch</span><small>آلمانی</small></h2>
+  <dl class="nums">
+    <div><dt>گویشوران</dt><dd>133 میلیون (رتبهٔ 12)</dd></div>
+    <div><dt>وب</dt><dd>5.9% (رتبهٔ 3)</dd></div>
+    <div><dt>زمان آنلاین</dt><dd>480 میلیون ساعت</dd></div>
+  </dl>
+  <p class="region"><b>کجا</b>آلمان، اتریش، سوئیس (شمال و مرکز)، لیختن‌اشتاین، لوکزامبورگ، تیرول جنوبی در ایتالیا و شرق بلژیک.</p>
+  <div class="persona">
+    <figure><img src="../../language-intro/img/de.webp" width="800" height="1000" loading="lazy" decoding="async" alt="شخصیتی خیالی. Jonas Weber‏، 38 ساله، ساکن لایپزیگ. مهندس صدای یک تئاتر است."></figure>
+    <div class="ptext"><h3>شخصیت</h3><p>Jonas Weber‏، 38 ساله، ساکن لایپزیگ. مهندس صدای یک تئاتر است. ساعت 1 بعدازظهرِ یک روز کاری، در وقت استراحت، آن را در Firefox لپ‌تاپش باز می‌کند. از مسدودکنندهٔ تبلیغات استفاده می‌کند و بنرهای رضایت را رد می‌کند. به فال باور ندارد، اما مقایسهٔ سبک‌های کارت (عکاسی سوررئالیستی، گرافیک بروتالیستی) را دوست دارد. وقتی داستان از آبی پروسی که اوایل سدهٔ هجدهم در برلین زاده شد می‌گذرد و به رنگش می‌رسد، خوشحال می‌شود و برای همکارانش تعریف می‌کند.</p></div>
+  </div>
+  <details><summary>اعداد و یادداشت‌ها</summary>
+    <div class="scroll"><table class="facts"><thead><tr><th scope="col">مورد</th><th scope="col">مقدار</th><th scope="col">یادداشت</th></tr></thead><tbody>
+      <tr><th scope="row">کل گویشوران (زبان مادری + زبان دوم)</th><td>133 میلیون (رتبهٔ 12)</td><td>Ethnologue، ویرایش 2026</td></tr>
+      <tr><th scope="row">سهم از محتوای وب</th><td>5.9% (رتبهٔ 3)</td><td>W3Techs، اکتبر 2026</td></tr>
+      <tr><th scope="row">کاربران اینترنت بر اساس زبان</th><td>2.0% (رتبهٔ 10)</td><td>Internet World Stats، مارس 2020</td></tr>
+      <tr><th scope="row">زمان آنلاین</th><td>حدود 93 میلیون کاربر اینترنت، به‌طور میانگین 5.2 ساعت در روز، در مجموع 480 میلیون ساعت در روز (رتبهٔ 17)</td><td>برآورد Claude. آلمان، اتریش، سوئیس</td></tr>
+    </tbody></table></div>
+  </details>
+</section>
+
+<section class="lang" id="vi" aria-labelledby="h-vi">
+  <p class="kicker">16 · vi</p>
+  <h2 id="h-vi"><span lang="vi">Tiếng Việt</span><small>ویتنامی</small></h2>
+  <dl class="nums">
+    <div><dt>گویشوران</dt><dd>97 میلیون (رتبهٔ 17)</dd></div>
+    <div><dt>وب</dt><dd>0.9% (رتبهٔ 16)</dd></div>
+    <div><dt>زمان آنلاین</dt><dd>500 میلیون ساعت</dd></div>
+  </dl>
+  <p class="region"><b>کجا</b>ویتنام. در ایالات متحده (کالیفرنیا، تگزاس)، استرالیا، فرانسه و کانادا جامعه‌های بزرگ ویتنامی هست. بسیاری از ویتنامی‌ها هم به‌عنوان کارآموز فنی یا دانشجو در ژاپن زندگی می‌کنند.</p>
+  <div class="persona">
+    <figure><img src="../../language-intro/img/vi.webp" width="800" height="1000" loading="lazy" decoding="async" alt="شخصیتی خیالی. Trần Văn Minh‏، 24 ساله، ساکن شهر تویوتا در استان آیچی. کارآموز فنی در یک کارخانهٔ قطعات خودرو است."></figure>
+    <div class="ptext"><h3>شخصیت</h3><p>Trần Văn Minh‏، 24 ساله، ساکن شهر تویوتا در استان آیچی. کارآموز فنی در یک کارخانهٔ قطعات خودرو است. ساعت 5 عصر، پیش از رفتن به شیفت شب، در اتاق خوابگاهش گوشی Android‌اش را باز می‌کند. نتیجه‌هایی از این سایت در یک گروه Facebook از دوستان ساکن ژاپن دست‌به‌دست شده بود. یک کارت می‌کشد و آن را با رنگ‌های <i lang="vi">mệnh</i> خود که مادرش از آن‌ها می‌گوید مقایسه می‌کند. وقتی داستان از ابریشم فانوس‌های هوی‌آن یا لاک‌کاری زادگاهش می‌گذرد و به رنگش می‌رسد، آن را در Zalo برای خانواده‌اش می‌فرستد.</p></div>
+  </div>
+  <details><summary>اعداد و یادداشت‌ها</summary>
+    <div class="scroll"><table class="facts"><thead><tr><th scope="col">مورد</th><th scope="col">مقدار</th><th scope="col">یادداشت</th></tr></thead><tbody>
+      <tr><th scope="row">کل گویشوران (زبان مادری + زبان دوم)</th><td>97 میلیون (رتبهٔ 17)</td><td>Ethnologue، ویرایش 2026</td></tr>
+      <tr><th scope="row">سهم از محتوای وب</th><td>0.9% (رتبهٔ 16)</td><td>W3Techs، اکتبر 2026</td></tr>
+      <tr><th scope="row">کاربران اینترنت بر اساس زبان</th><td>خارج از 10 رتبهٔ نخست</td><td>Internet World Stats، مارس 2020</td></tr>
+      <tr><th scope="row">زمان آنلاین</th><td>حدود 79 میلیون کاربر اینترنت، به‌طور میانگین 6.3 ساعت در روز، در مجموع 500 میلیون ساعت در روز (رتبهٔ 15)</td><td>برآورد Claude</td></tr>
+    </tbody></table></div>
+  </details>
+</section>
+
+<section class="lang" id="sw" aria-labelledby="h-sw">
+  <p class="kicker">17 · sw</p>
+  <h2 id="h-sw"><span lang="sw">Kiswahili</span><small>سواحیلی</small></h2>
+  <dl class="nums">
+    <div><dt>گویشوران</dt><dd>95 میلیون (رتبهٔ 19)</dd></div>
+    <div><dt>وب</dt><dd>داده‌ای نیست</dd></div>
+    <div><dt>زمان آنلاین</dt><dd>برآوردی نیست</dd></div>
+  </dl>
+  <p class="region"><b>کجا</b>تانزانیا و کنیا. در تانزانیا زبان ملی است؛ دبستان به سواحیلی درس داده می‌شود و از دورهٔ متوسطه انگلیسی جایش را می‌گیرد. در کنیا یکی از زبان‌های رسمی است؛ پایه‌های نخست به زبان مادری یا سواحیلی درس داده می‌شود، سپس به انگلیسی، و سواحیلی درسی اجباری است. در اوگاندا، رواندا، بوروندی، شرق جمهوری دموکراتیک کنگو و کومور هم بسیار به کار می‌رود. یکی از زبان‌های کاری اتحادیهٔ آفریقاست.</p>
+  <div class="persona">
+    <figure><img src="../../language-intro/img/sw.webp" width="800" height="1000" loading="lazy" decoding="async" alt="شخصیتی خیالی. Amina Juma‏، 28 ساله، ساکن دارالسلام. آموزگار دبستان است."></figure>
+    <div class="ptext"><h3>شخصیت</h3><p>Amina Juma‏، 28 ساله، ساکن دارالسلام. آموزگار دبستان است. ساعت 3:30 بعدازظهر، پس از پایان کلاس‌ها، در اتاق معلمان گوشی Android‌اش را باز می‌کند. یکی از نتیجه‌های این سایت در گروه WhatsApp همکارانش دست‌به‌دست می‌شد. با نگاه به رنگ‌های پارچهٔ کانگا یک کارت می‌کشد. وقتی داستان از نیلیِ کانگا یا آسمان غروبِ اقیانوس هند می‌گذرد و به رنگش می‌رسد، آن را در WhatsApp برای مادرش می‌فرستد.</p></div>
+  </div>
+  <details><summary>اعداد و یادداشت‌ها</summary>
+    <div class="scroll"><table class="facts"><thead><tr><th scope="col">مورد</th><th scope="col">مقدار</th><th scope="col">یادداشت</th></tr></thead><tbody>
+      <tr><th scope="row">کل گویشوران (زبان مادری + زبان دوم)</th><td>95 میلیون (رتبهٔ 19)</td><td>Ethnologue، ویرایش 2026</td></tr>
+      <tr><th scope="row">سهم از محتوای وب</th><td>داده‌ای نیست</td><td>در میان 40 زبان نخست W3Techs نیست</td></tr>
+      <tr><th scope="row">کاربران اینترنت بر اساس زبان</th><td>خارج از 10 رتبهٔ نخست</td><td>Internet World Stats، مارس 2020</td></tr>
+      <tr><th scope="row">زمان آنلاین</th><td>برآوردی نیست</td><td>برآورد Claude ردیفی برای سواحیلی ندارد. کنیا و تانزانیا روی‌هم در انگلیسی یا سواحیلی گنجانده شده‌اند و زمانِ سواحیلی به‌تنهایی جدا نشده است</td></tr>
+    </tbody></table></div>
+  </details>
+</section>
+
+<section class="lang" id="tr" aria-labelledby="h-tr">
+  <p class="kicker">18 · tr</p>
+  <h2 id="h-tr"><span lang="tr">Türkçe</span><small>ترکی</small></h2>
+  <dl class="nums">
+    <div><dt>گویشوران</dt><dd>94 میلیون (رتبهٔ 20، هم‌رتبه با هوسا)</dd></div>
+    <div><dt>وب</dt><dd>1.6% (رتبهٔ 11)</dd></div>
+    <div><dt>زمان آنلاین</dt><dd>560 میلیون ساعت</dd></div>
+  </dl>
+  <p class="region"><b>کجا</b>ترکیه و قبرس شمالی. آلمان جامعهٔ بزرگ ترک‌تبار دارد و در هلند، اتریش و فرانسه هم بسیاری زندگی می‌کنند. در بلغارستان و شمال یونان هم گویشورانی دارد.</p>
+  <div class="persona">
+    <figure><img src="../../language-intro/img/tr.webp" width="800" height="1000" loading="lazy" decoding="async" alt="شخصیتی خیالی. Elif Yıldız‏، 33 ساله، ساکن ازمیر. معلم شیمی دبیرستان است."></figure>
+    <div class="ptext"><h3>شخصیت</h3><p>Elif Yıldız‏، 33 ساله، ساکن ازمیر. معلم شیمی دبیرستان است. ساعت 4:30 بعدازظهر، پس از کلاس‌ها، در کافه‌ای با دوستانش فال قهوه گرفت و سپس این سایت را در iPhone‌اش باز کرد. با دوستانش معنای کارت را با هم می‌خوانند. وقتی داستان از فیروزه یا آبیِ کاشی‌های ایزنیک می‌گذرد و به رنگش می‌رسد، همه ذوق‌زده می‌شوند و او آن را در Instagram Stories می‌گذارد.</p></div>
+  </div>
+  <details><summary>اعداد و یادداشت‌ها</summary>
+    <div class="scroll"><table class="facts"><thead><tr><th scope="col">مورد</th><th scope="col">مقدار</th><th scope="col">یادداشت</th></tr></thead><tbody>
+      <tr><th scope="row">کل گویشوران (زبان مادری + زبان دوم)</th><td>94 میلیون (رتبهٔ 20، هم‌رتبه با هوسا)</td><td>Ethnologue، ویرایش 2026</td></tr>
+      <tr><th scope="row">سهم از محتوای وب</th><td>1.6% (رتبهٔ 11)</td><td>W3Techs، اکتبر 2026</td></tr>
+      <tr><th scope="row">کاربران اینترنت بر اساس زبان</th><td>خارج از 10 رتبهٔ نخست</td><td>Internet World Stats، مارس 2020</td></tr>
+      <tr><th scope="row">زمان آنلاین</th><td>حدود 80 میلیون کاربر اینترنت، به‌طور میانگین 7.0 ساعت در روز، در مجموع 560 میلیون ساعت در روز (رتبهٔ 11)</td><td>برآورد Claude</td></tr>
+    </tbody></table></div>
+  </details>
+</section>
+
+<section class="lang" id="tl" aria-labelledby="h-tl">
+  <p class="kicker">19 · tl</p>
+  <h2 id="h-tl"><span lang="fil">Filipino</span><small>فیلیپینی</small></h2>
+  <dl class="nums">
+    <div><dt>گویشوران</dt><dd>87 میلیون</dd></div>
+    <div><dt>وب</dt><dd>کمتر از 0.1% (رتبهٔ 40، تاگالوگ)</dd></div>
+    <div><dt>زمان آنلاین</dt><dd>530 میلیون ساعت</dd></div>
+  </dl>
+  <p class="region"><b>کجا</b>زبان ملی فیلیپین و در کنار انگلیسی زبان رسمی. فیلیپینی‌هایی که در سراسر جهان کار می‌کنند آن را به کار می‌برند، از جمله در ایالات متحده (کالیفرنیا، هاوایی)، کشورهای حاشیهٔ خلیج فارس، هنگ‌کنگ، سنگاپور، کانادا و ژاپن.</p>
+  <div class="persona">
+    <figure><img src="../../language-intro/img/tl.webp" width="800" height="1000" loading="lazy" decoding="async" alt="شخصیتی خیالی. Joanna “Jo” Dela Cruz‏، 28 ساله، ساکن کزون سیتی. در شیفت شب یک مرکز تماس برای مشتریان آمریکایی کار می‌کند."></figure>
+    <div class="ptext"><h3>شخصیت</h3><p>Joanna “Jo” Dela Cruz‏، 28 ساله، ساکن کزون سیتی. در شیفت شب یک مرکز تماس برای مشتریان آمریکایی کار می‌کند. در استراحت ساعت 4 صبح، با گوشی Android‌اش یک کارت می‌کشد. کارش به انگلیسی است، برای همین در استراحت دلش می‌خواهد به فیلیپینی بخواند. وقتی داستان از غروب خلیج مانیل یا پینیا (پارچه‌ای از الیاف آناناس) می‌گذرد و به رنگش می‌رسد، آن را در Facebook می‌گذارد و برای دخترخاله‌ای که در خاورمیانه کار می‌کند می‌فرستد.</p></div>
+  </div>
+  <details><summary>اعداد و یادداشت‌ها</summary>
+    <div class="scroll"><table class="facts"><thead><tr><th scope="col">مورد</th><th scope="col">مقدار</th><th scope="col">یادداشت</th></tr></thead><tbody>
+      <tr><th scope="row">کل گویشوران (زبان مادری + زبان دوم)</th><td>87 میلیون</td><td>Ethnologue، ویرایش 2026 (به‌عنوان تاگالوگ شمرده شده)</td></tr>
+      <tr><th scope="row">سهم از محتوای وب</th><td>کمتر از 0.1% (رتبهٔ 40، تاگالوگ)</td><td>W3Techs، اکتبر 2026</td></tr>
+      <tr><th scope="row">کاربران اینترنت بر اساس زبان</th><td>خارج از 10 رتبهٔ نخست</td><td>Internet World Stats، مارس 2020</td></tr>
+      <tr><th scope="row">زمان آنلاین</th><td>حدود 60 میلیون کاربر اینترنت، به‌طور میانگین 8.9 ساعت در روز، در مجموع 530 میلیون ساعت در روز (رتبهٔ 12)</td><td>برآورد Claude. حدود 60% کاربران فیلیپین فرض شده؛ بقیه در انگلیسی شمرده شده‌اند</td></tr>
+    </tbody></table></div>
+  </details>
+</section>
+
+<section class="lang" id="fa" aria-labelledby="h-fa">
+  <p class="kicker">20 · fa</p>
+  <h2 id="h-fa"><span lang="fa" dir="rtl">فارسی</span></h2>
+  <dl class="nums">
+    <div><dt>گویشوران</dt><dd>82 میلیون (فارسی ایران)</dd></div>
+    <div><dt>وب</dt><dd>1.0% (رتبهٔ 14)</dd></div>
+    <div><dt>زمان آنلاین</dt><dd>490 میلیون ساعت</dd></div>
+  </dl>
+  <p class="region"><b>کجا</b>زبان رسمی ایران. در افغانستان (دری) و تاجیکستان (تاجیکی) گونه‌های بسیار نزدیکی از آن به کار می‌رود. در ایالات متحده (لس‌آنجلس)، کانادا، آلمان، بریتانیا و ترکیه جامعه‌های بزرگ ایرانی هست. سایت راست‌به‌چپ است.</p>
+  <div class="persona">
+    <figure><img src="../../language-intro/img/fa.webp" width="800" height="1000" loading="lazy" decoding="async" alt="شخصیتی خیالی. پریسا حسینی، 31 ساله، ساکن اصفهان. کاشی‌های بناهای تاریخی را مرمت می‌کند."></figure>
+    <div class="ptext"><h3>شخصیت</h3><p>پریسا حسینی، 31 ساله، ساکن اصفهان. کاشی‌های بناهای تاریخی را مرمت می‌کند. ساعت 11 شب، پس از تمام کردن کار، گوشی Android‌اش را باز می‌کند. شب یلدا خانواده‌اش با هم دیوان حافظ را باز می‌کنند، برای همین فالی که با یک کارت گرفته می‌شود برایش آشناست. وقتی داستان از فیروزهٔ نیشابور یا آبیِ کاشی‌های مسجدهای اصفهان می‌گذرد و به رنگش می‌رسد، چنان به آن خیره می‌شود که انگار دست از کار کشیده است. لینک را در Telegram برای خواهر بزرگش که خارج از کشور زندگی می‌کند می‌فرستد.</p></div>
+  </div>
+  <details><summary>اعداد و یادداشت‌ها</summary>
+    <div class="scroll"><table class="facts"><thead><tr><th scope="col">مورد</th><th scope="col">مقدار</th><th scope="col">یادداشت</th></tr></thead><tbody>
+      <tr><th scope="row">کل گویشوران (زبان مادری + زبان دوم)</th><td>82 میلیون (فارسی ایران)</td><td>Ethnologue، ویرایش 2026. دری (افغانستان) و تاجیکی را در بر نمی‌گیرد</td></tr>
+      <tr><th scope="row">سهم از محتوای وب</th><td>1.0% (رتبهٔ 14)</td><td>W3Techs، اکتبر 2026</td></tr>
+      <tr><th scope="row">کاربران اینترنت بر اساس زبان</th><td>خارج از 10 رتبهٔ نخست</td><td>Internet World Stats، مارس 2020</td></tr>
+      <tr><th scope="row">زمان آنلاین</th><td>حدود 82 میلیون کاربر اینترنت، به‌طور میانگین 6.0 ساعت در روز، در مجموع 490 میلیون ساعت در روز (رتبهٔ 16)</td><td>برآورد Claude. ایران به‌علاوهٔ افغانستان (دری) را در بر می‌گیرد</td></tr>
+    </tbody></table></div>
+  </details>
+</section>
+
+<section class="lang" id="ko" aria-labelledby="h-ko">
+  <p class="kicker">21 · ko</p>
+  <h2 id="h-ko"><span lang="ko">한국어</span><small>کره‌ای</small></h2>
+  <dl class="nums">
+    <div><dt>گویشوران</dt><dd>82 میلیون</dd></div>
+    <div><dt>وب</dt><dd>0.9% (رتبهٔ 17)</dd></div>
+    <div><dt>زمان آنلاین</dt><dd>270 میلیون ساعت</dd></div>
+  </dl>
+  <p class="region"><b>کجا</b>کرهٔ جنوبی و کرهٔ شمالی. در استان خودمختار کره‌ای یانبیان در چین، ایالات متحده (لس‌آنجلس، نیویورک)، ژاپن و آسیای میانه هم جامعه‌هایی با ریشه در شبه‌جزیرهٔ کره هست.</p>
+  <div class="persona">
+    <figure><img src="../../language-intro/img/ko.webp" width="800" height="1000" loading="lazy" decoding="async" alt="شخصیتی خیالی. 김서연 (Kim Seo-yeon)‏، 29 ساله، ساکن ناحیهٔ مپو-گو در سئول. رنگ‌کار وبتون است."></figure>
+    <div class="ptext"><h3>شخصیت</h3><p><span lang="ko">김서연</span> (Kim Seo-yeon)‏، 29 ساله، ساکن ناحیهٔ مپو-گو در سئول. رنگ‌کار وبتون است. ساعت 8:20 صبح، در مترو iPhone‌اش را باز می‌کند. ماهی یک بار با دوستانش به کافه تاروت می‌رود. این سایت را وقتی در NAVER دنبال نکته‌هایی برای سفر ماه آینده به فوکوئوکا می‌گشت پیدا کرد. وقتی داستان از <i lang="ko-Latn">obangsaek</i> کره (پنج رنگ سنتی) یا رنگرزی ژاپنی می‌گذرد و به رنگش می‌رسد، آن رنگ را در بخشی از پالت رنگ آن روز می‌گنجاند. نتیجه‌ها را در KakaoTalk برای دوستانش می‌فرستد.</p></div>
+  </div>
+  <details><summary>اعداد و یادداشت‌ها</summary>
+    <div class="scroll"><table class="facts"><thead><tr><th scope="col">مورد</th><th scope="col">مقدار</th><th scope="col">یادداشت</th></tr></thead><tbody>
+      <tr><th scope="row">کل گویشوران (زبان مادری + زبان دوم)</th><td>82 میلیون</td><td>Ethnologue، ویرایش 2026</td></tr>
+      <tr><th scope="row">سهم از محتوای وب</th><td>0.9% (رتبهٔ 17)</td><td>W3Techs، اکتبر 2026</td></tr>
+      <tr><th scope="row">کاربران اینترنت بر اساس زبان</th><td>خارج از 10 رتبهٔ نخست</td><td>Internet World Stats، مارس 2020</td></tr>
+      <tr><th scope="row">زمان آنلاین</th><td>حدود 50 میلیون کاربر اینترنت، به‌طور میانگین 5.3 ساعت در روز، در مجموع 270 میلیون ساعت در روز (رتبهٔ 20)</td><td>برآورد Claude</td></tr>
+    </tbody></table></div>
+  </details>
+</section>
+
+<section class="lang" id="th" aria-labelledby="h-th">
+  <p class="kicker">22 · th</p>
+  <h2 id="h-th"><span lang="th">ไทย</span><small>تایلندی</small></h2>
+  <dl class="nums">
+    <div><dt>گویشوران</dt><dd>71 میلیون</dd></div>
+    <div><dt>وب</dt><dd>0.3% (رتبهٔ 28)</dd></div>
+    <div><dt>زمان آنلاین</dt><dd>510 میلیون ساعت</dd></div>
+  </dl>
+  <p class="region"><b>کجا</b>زبان ملی تایلند. بسیاری در لائوس می‌توانند تایلندی بخوانند. تایلندی‌ها در ایالات متحده (لس‌آنجلس)، استرالیا و اروپا هم زندگی می‌کنند.</p>
+  <div class="persona">
+    <figure><img src="../../language-intro/img/th.webp" width="800" height="1000" loading="lazy" decoding="async" alt="شخصیتی خیالی. Napassorn “Pim” Srisuk‏، 27 ساله، ساکن بانکوک. در بخش بازاریابی یک برند لوازم آرایشی کار می‌کند."></figure>
+    <div class="ptext"><h3>شخصیت</h3><p>Napassorn “Pim” Srisuk‏، 27 ساله، ساکن بانکوک. در بخش بازاریابی یک برند لوازم آرایشی کار می‌کند. ساعت 7 صبح، پیش از آنکه تصمیم بگیرد چه بپوشد، با iPhone‌اش یک کارت می‌کشد. مقایسهٔ رنگِ روز هفته با رنگ این سایت لذت صبحگاهی اوست. برای ژانویهٔ آینده سفری به هوکایدو در نظر دارد. وقتی داستان از ابریشم تایلندی یا سپیدی برف هوکایدو می‌گذرد و به رنگش می‌رسد، آن رنگ را در رژلب یا شالش می‌آورد. آن را در LINE برای همکارانش می‌فرستد.</p></div>
+  </div>
+  <details><summary>اعداد و یادداشت‌ها</summary>
+    <div class="scroll"><table class="facts"><thead><tr><th scope="col">مورد</th><th scope="col">مقدار</th><th scope="col">یادداشت</th></tr></thead><tbody>
+      <tr><th scope="row">کل گویشوران (زبان مادری + زبان دوم)</th><td>71 میلیون</td><td>Ethnologue، ویرایش 2026</td></tr>
+      <tr><th scope="row">سهم از محتوای وب</th><td>0.3% (رتبهٔ 28)</td><td>W3Techs، اکتبر 2026</td></tr>
+      <tr><th scope="row">کاربران اینترنت بر اساس زبان</th><td>خارج از 10 رتبهٔ نخست</td><td>Internet World Stats، مارس 2020</td></tr>
+      <tr><th scope="row">زمان آنلاین</th><td>حدود 65 میلیون کاربر اینترنت، به‌طور میانگین 7.8 ساعت در روز، در مجموع 510 میلیون ساعت در روز (رتبهٔ 14)</td><td>برآورد Claude</td></tr>
+    </tbody></table></div>
+  </details>
+</section>
+
+<section class="lang" id="it" aria-labelledby="h-it">
+  <p class="kicker">23 · it</p>
+  <h2 id="h-it"><span lang="it">Italiano</span><small>ایتالیایی</small></h2>
+  <dl class="nums">
+    <div><dt>گویشوران</dt><dd>66 میلیون</dd></div>
+    <div><dt>وب</dt><dd>2.8% (رتبهٔ 8)</dd></div>
+    <div><dt>زمان آنلاین</dt><dd>290 میلیون ساعت</dd></div>
+  </dl>
+  <p class="region"><b>کجا</b>ایتالیا، سان‌مارینو، جنوب سوئیس (تیچینو) و واتیکان. بسیاری از ایتالیایی‌تبارها در آرژانتین، برزیل، ایالات متحده، آلمان و جاهای دیگر زندگی می‌کنند.</p>
+  <div class="persona">
+    <figure><img src="../../language-intro/img/it.webp" width="800" height="1000" loading="lazy" decoding="async" alt="شخصیتی خیالی. Giulia Bernardi‏، 45 ساله، ساکن بولونیا. داروساز داروخانهٔ محله است."></figure>
+    <div class="ptext"><h3>شخصیت</h3><p>Giulia Bernardi‏، 45 ساله، ساکن بولونیا. داروساز داروخانهٔ محله است. ساعت 9:30 شب، بعد از شام روی کاناپه، گوشی Android‌اش را باز می‌کند. در کودکی با پدرش تاروکینو بازی می‌کرد، برای همین تصویرهای آرکانای اعظم برایش نوستالژیک است. وقتی داستان از آجر سرخ رواق‌های بولونیا یا رنگدانه‌های نقاشان رنسانس می‌گذرد و به رنگش می‌رسد، آن را در WhatsApp برای پدرش می‌فرستد. سبک «تاروت کلاسیک» را انتخاب می‌کند.</p></div>
+  </div>
+  <details><summary>اعداد و یادداشت‌ها</summary>
+    <div class="scroll"><table class="facts"><thead><tr><th scope="col">مورد</th><th scope="col">مقدار</th><th scope="col">یادداشت</th></tr></thead><tbody>
+      <tr><th scope="row">کل گویشوران (زبان مادری + زبان دوم)</th><td>66 میلیون</td><td>Ethnologue، ویرایش 2026</td></tr>
+      <tr><th scope="row">سهم از محتوای وب</th><td>2.8% (رتبهٔ 8)</td><td>W3Techs، اکتبر 2026</td></tr>
+      <tr><th scope="row">کاربران اینترنت بر اساس زبان</th><td>خارج از 10 رتبهٔ نخست</td><td>Internet World Stats، مارس 2020</td></tr>
+      <tr><th scope="row">زمان آنلاین</th><td>حدود 51 میلیون کاربر اینترنت، به‌طور میانگین 5.7 ساعت در روز، در مجموع 290 میلیون ساعت در روز (رتبهٔ 19)</td><td>برآورد Claude</td></tr>
+    </tbody></table></div>
+  </details>
+</section>
+
+<section class="lang" id="pl" aria-labelledby="h-pl">
+  <p class="kicker">24 · pl</p>
+  <h2 id="h-pl"><span lang="pl">Polski</span><small>لهستانی</small></h2>
+  <dl class="nums">
+    <div><dt>گویشوران</dt><dd>حدود 42.6 میلیون</dd></div>
+    <div><dt>وب</dt><dd>1.8% (رتبهٔ 10)</dd></div>
+    <div><dt>زمان آنلاین</dt><dd>حدود 210 میلیون ساعت (رقم مرجع، خارج از رتبه‌بندی)</dd></div>
+  </dl>
+  <p class="region"><b>کجا</b>لهستان. در بریتانیا، آلمان، ایالات متحده (شیکاگو)، ایرلند و کانادا جامعه‌های بزرگ لهستانی هست. در لیتوانی و غرب اوکراین هم گویشورانی دارد.</p>
+  <div class="persona">
+    <figure><img src="../../language-intro/img/pl.webp" width="800" height="1000" loading="lazy" decoding="async" alt="شخصیتی خیالی. Marta Kowalczyk‏، 30 ساله، ساکن کراکوف. پژوهشگر تجربهٔ کاربری (UX) در یک شرکت نرم‌افزاری است."></figure>
+    <div class="ptext"><h3>شخصیت</h3><p>Marta Kowalczyk‏، 30 ساله، ساکن کراکوف. پژوهشگر تجربهٔ کاربری (UX) در یک شرکت نرم‌افزاری است. ساعت 10 صبح یکشنبه، در کافه‌ای iPhone‌اش را باز می‌کند. هر سال در شب آندژیکی با دوستانش با موم آب‌شده فال می‌گیرد. وقتی داستان از کهربای بالتیک یا تالار پارچهٔ کراکوف می‌گذرد و به رنگش می‌رسد، آن را در Instagram Stories می‌گذارد. برای بهار آینده سفری به کیوتو در نظر دارد.</p></div>
+  </div>
+  <details><summary>اعداد و یادداشت‌ها</summary>
+    <div class="scroll"><table class="facts"><thead><tr><th scope="col">مورد</th><th scope="col">مقدار</th><th scope="col">یادداشت</th></tr></thead><tbody>
+      <tr><th scope="row">کل گویشوران (زبان مادری + زبان دوم)</th><td>حدود 42.6 میلیون</td><td>Ethnologue، ویرایش 27 (ارقام 2021)، به نقل صفحهٔ Wikipedia با عنوان «Polish language». در فهرست عمومی Ethnologue 2026 (50 میلیون نفر و بیشتر) نیست</td></tr>
+      <tr><th scope="row">سهم از محتوای وب</th><td>1.8% (رتبهٔ 10)</td><td>W3Techs، اکتبر 2026</td></tr>
+      <tr><th scope="row">کاربران اینترنت بر اساس زبان</th><td>خارج از 10 رتبهٔ نخست</td><td>Internet World Stats، مارس 2020</td></tr>
+      <tr><th scope="row">زمان آنلاین</th><td>حدود 210 میلیون ساعت در روز (رقم مرجع، خارج از رتبه‌بندی)</td><td>رقم مرجعِ خارج از رتبه‌بندی در برآورد Claude</td></tr>
+    </tbody></table></div>
+  </details>
+</section>
+
+<section class="lang" id="uk" aria-labelledby="h-uk">
+  <p class="kicker">25 · uk</p>
+  <h2 id="h-uk"><span lang="uk">Українська</span><small>اوکراینی</small></h2>
+  <dl class="nums">
+    <div><dt>گویشوران</dt><dd>حدود 39 میلیون</dd></div>
+    <div><dt>وب</dt><dd>0.6% (رتبهٔ 18)</dd></div>
+    <div><dt>زمان آنلاین</dt><dd>برآوردی نیست</dd></div>
+  </dl>
+  <p class="region"><b>کجا</b>زبان ملی اوکراین. به سبب جنگی که از 2022 ادامه دارد، بسیاری به کشورهای اروپایی مانند لهستان، آلمان و جمهوری چک پناه برده‌اند. در کانادا و ایالات متحده هم جامعه‌های قدیمی اوکراینی هست. بسیاری روسی هم صحبت می‌کنند.</p>
+  <div class="persona">
+    <figure><img src="../../language-intro/img/uk.webp" width="800" height="1000" loading="lazy" decoding="async" alt="شخصیتی خیالی. Олена Коваленко (Olena Kovalenko)‏، 37 ساله، ساکن لویو. آموزگار دبستان است."></figure>
+    <div class="ptext"><h3>شخصیت</h3><p><span lang="uk">Олена Коваленко</span> (Olena Kovalenko)‏، 37 ساله، ساکن لویو. آموزگار دبستان است. ساعت 9 شب، پس از خواباندن فرزندش، با گوشی Android‌اش یک کارت می‌کشد. بیشتر از خواندن معنای کارت، زمانی را که صرف خواندن داستانی می‌کند که با دقت به اوکراینی نوشته شده عزیز می‌دارد. وقتی داستان از گل‌نگاری پتریکیفکا یا پشم کارپات می‌گذرد و به رنگش می‌رسد، آن را در Telegram برای خواهر کوچکش در لهستان می‌فرستد.</p></div>
+  </div>
+  <details><summary>اعداد و یادداشت‌ها</summary>
+    <div class="scroll"><table class="facts"><thead><tr><th scope="col">مورد</th><th scope="col">مقدار</th><th scope="col">یادداشت</th></tr></thead><tbody>
+      <tr><th scope="row">کل گویشوران (زبان مادری + زبان دوم)</th><td>حدود 39 میلیون</td><td>Ethnologue (2023). صفحهٔ Wikipedia با عنوان «Ukrainian language» (Ethnologue، ویرایش 28) هم همین را می‌گوید</td></tr>
+      <tr><th scope="row">سهم از محتوای وب</th><td>0.6% (رتبهٔ 18)</td><td>W3Techs، اکتبر 2026</td></tr>
+      <tr><th scope="row">کاربران اینترنت بر اساس زبان</th><td>خارج از 10 رتبهٔ نخست</td><td>Internet World Stats، مارس 2020</td></tr>
+      <tr><th scope="row">زمان آنلاین</th><td>برآوردی نیست</td><td>اوکراینی نه در جدول برآورد Claude هست و نه در ارقام مرجعِ خارج از رتبه‌بندی آن</td></tr>
+    </tbody></table></div>
+  </details>
+</section>
+
+<section class="lang" id="nl" aria-labelledby="h-nl">
+  <p class="kicker">26 · nl</p>
+  <h2 id="h-nl"><span lang="nl">Nederlands</span><small>هلندی</small></h2>
+  <dl class="nums">
+    <div><dt>گویشوران</dt><dd>حدود 30 میلیون</dd></div>
+    <div><dt>وب</dt><dd>2.1% (رتبهٔ 9)</dd></div>
+    <div><dt>زمان آنلاین</dt><dd>حدود 130 میلیون ساعت (رقم مرجع، خارج از رتبه‌بندی)</dd></div>
+  </dl>
+  <p class="region"><b>کجا</b>هلند و شمال بلژیک (فلاندر). در سورینام و در آروبا و کوراسائو در کارائیب هم زبان رسمی است. آفریکانس در آفریقای جنوبی از هلندی جدا شده است.</p>
+  <div class="persona">
+    <figure><img src="../../language-intro/img/nl.webp" width="800" height="1000" loading="lazy" decoding="async" alt="شخصیتی خیالی. Sanne de Vries‏، 36 ساله، ساکن اوترخت. در شهرداری روی سیاست اقلیمی کار می‌کند."></figure>
+    <div class="ptext"><h3>شخصیت</h3><p>Sanne de Vries‏، 36 ساله، ساکن اوترخت. در شهرداری روی سیاست اقلیمی کار می‌کند. ساعت 12:30 ظهر، پشت میزش لپ‌تاپ را باز کرد و در حال جست‌وجوی نام یک رنگ به این سایت رسید. به فال باور ندارد، اما داستان‌های ریشهٔ نام رنگ‌ها را بسیار دوست دارد. وقتی داستان از آبی دلفت یا رنگدانه‌های نقاشان هلندی سدهٔ هفدهم می‌گذرد و به رنگش می‌رسد، برای همکارانش تعریف می‌کند. گاهی پیش از آنکه با دوچرخه به خانه برگردد، یک کارت دیگر هم می‌کشد.</p></div>
+  </div>
+  <details><summary>اعداد و یادداشت‌ها</summary>
+    <div class="scroll"><table class="facts"><thead><tr><th scope="col">مورد</th><th scope="col">مقدار</th><th scope="col">یادداشت</th></tr></thead><tbody>
+      <tr><th scope="row">کل گویشوران (زبان مادری + زبان دوم)</th><td>حدود 30 میلیون</td><td>2021. صفحهٔ Wikipedia با عنوان «Dutch language» (به نقل از Eurobarometer و منابع دیگر) هم همین را می‌گوید</td></tr>
+      <tr><th scope="row">سهم از محتوای وب</th><td>2.1% (رتبهٔ 9)</td><td>W3Techs، اکتبر 2026. فلاندری را هم در بر می‌گیرد</td></tr>
+      <tr><th scope="row">کاربران اینترنت بر اساس زبان</th><td>خارج از 10 رتبهٔ نخست</td><td>Internet World Stats، مارس 2020</td></tr>
+      <tr><th scope="row">زمان آنلاین</th><td>حدود 130 میلیون ساعت در روز (رقم مرجع، خارج از رتبه‌بندی)</td><td>رقم مرجعِ خارج از رتبه‌بندی در برآورد Claude</td></tr>
+    </tbody></table></div>
+  </details>
+</section>
+
+<section class="lang" id="ang" aria-labelledby="h-ang">
+  <p class="kicker">27 · ang</p>
+  <h2 id="h-ang"><span lang="ang">Englisc</span><small>انگلیسی باستان</small></h2>
+  <p class="note">زبانی برای بازی و تاریخ. انگلیسیِ حدود سال‌های 450 تا 1100 است و امروز کسی آن را به‌عنوان زبان مادری صحبت نمی‌کند. خانه‌های عددی موضوعیت ندارند.</p>
+  <dl class="nums">
+    <div><dt>گویشوران</dt><dd>ندارد</dd></div>
+    <div><dt>وب</dt><dd>ندارد</dd></div>
+    <div><dt>زمان آنلاین</dt><dd>ندارد</dd></div>
+  </dl>
+  <p class="region"><b>چه کسانی ممکن است از آن لذت ببرند</b>دانشجویان و پژوهشگران ادبیات انگلیسی سده‌های میانه و تاریخ زبان انگلیسی، دوستداران <cite>Beowulf</cite> و آثار جی. آر. آر. تالکین، و علاقه‌مندان به خط رونی و اسطوره‌های نوردیک. بیرون از جهان انگلیسی‌زبان، به دانشجویان ادبیات انگلیسی در آلمان، کشورهای شمال اروپا و ژاپن هم می‌رسد.</p>
+  <div class="persona">
+    <figure><img src="../../language-intro/img/ang.webp" width="800" height="1000" loading="lazy" decoding="async" alt="شخصیتی خیالی. Hannah Brooks‏، 24 ساله، ساکن لیدز در بریتانیا. در تحصیلات تکمیلی انگلیسی باستان می‌خواند."></figure>
+    <div class="ptext"><h3>شخصیت</h3><p>Hannah Brooks‏، 24 ساله، ساکن لیدز در بریتانیا. در تحصیلات تکمیلی انگلیسی باستان می‌خواند. ساعت 5 عصر، در کتابخانهٔ دانشگاه لپ‌تاپش را باز کرد و در حال جست‌وجوی صرف افعال به این سایت رسید. با ترجمهٔ انگلیسی امروزی در کنارش، از رمزگشایی نام کارت‌ها و رنگ‌ها لذت می‌برد. جمله‌هایی را که دوست دارد برای همکلاسی‌های سمینارش می‌فرستد.</p></div>
+  </div>
+  <details><summary>اعداد و یادداشت‌ها</summary>
+    <div class="scroll"><table class="facts"><thead><tr><th scope="col">مورد</th><th scope="col">مقدار</th></tr></thead><tbody>
+      <tr><th scope="row">کل گویشوران (زبان مادری + زبان دوم)</th><td>ندارد</td></tr>
+      <tr><th scope="row">سهم از محتوای وب</th><td>ندارد</td></tr>
+      <tr><th scope="row">کاربران اینترنت بر اساس زبان</th><td>ندارد</td></tr>
+      <tr><th scope="row">زمان آنلاین</th><td>ندارد</td></tr>
+    </tbody></table></div>
+  </details>
+</section>
+
+<section class="lang" id="soro" aria-labelledby="h-soro">
+  <p class="kicker">28 · soro</p>
+  <h2 id="h-soro"><span lang="ja">御座候</span><small>سوروبون (سبک نامه‌نگاری کلاسیک ژاپنی)</small></h2>
+  <p class="note">زبانی برای بازی و تاریخ. شیوهٔ نگارش نامه‌ها و اسناد رسمی در حدود سال‌های 1600 تا 1868 است که در آن <span lang="ja">候</span> (<i>sōrō</i>) در پایان جمله‌ها می‌آید. امروز کسی آن را به‌عنوان زبان مادری صحبت نمی‌کند. خانه‌های عددی موضوعیت ندارند.</p>
+  <dl class="nums">
+    <div><dt>گویشوران</dt><dd>ندارد</dd></div>
+    <div><dt>وب</dt><dd>ندارد</dd></div>
+    <div><dt>زمان آنلاین</dt><dd>ندارد</dd></div>
+  </dl>
+  <p class="region"><b>چه کسانی ممکن است از آن لذت ببرند</b>کسانی که خواندن اسناد کهن و خط شکسته را یاد می‌گیرند، دوستداران رمان‌های تاریخی و سریال‌های تاریخی NHK، و دانشجویان دوستدار تاریخ. به خارجی‌هایی که ژاپنی را عمیق آموخته‌اند و پژوهشگران تاریخ ژاپن هم می‌رسد.</p>
+  <div class="persona">
+    <figure><img src="../../language-intro/img/soro.webp" width="800" height="1000" loading="lazy" decoding="async" alt="شخصیتی خیالی. 工藤 誠一 (Seiichi Kudo)‏، 58 ساله، ساکن کانازاوا. کارمند شهرداری است و آخر هفته‌ها در دوره‌ای برای خواندن اسناد کهن شرکت می‌کند."></figure>
+    <div class="ptext"><h3>شخصیت</h3><p><span lang="ja">工藤 誠一</span> (Seiichi Kudo)‏، 58 ساله، ساکن کانازاوا. کارمند شهرداری است و آخر هفته‌ها در دوره‌ای برای خواندن اسناد کهن شرکت می‌کند. ساعت 3 بعدازظهر یکشنبه، در اتاق نشیمن تبلتش را باز می‌کند. دربارهٔ سایت از هم‌دوره‌ای‌هایش شنیده است. نام کارت‌ها و رنگ‌هایی را که به سوروبون نوشته شده، یکی‌یکی بلند می‌خواند. وقتی داستان از رنگرزی کاگا یا شهر قلعه‌ای قدیم می‌گذرد و به رنگش می‌رسد، نام رنگ را در دفتر دوره‌اش یادداشت می‌کند.</p></div>
+  </div>
+  <details><summary>اعداد و یادداشت‌ها</summary>
+    <div class="scroll"><table class="facts"><thead><tr><th scope="col">مورد</th><th scope="col">مقدار</th></tr></thead><tbody>
+      <tr><th scope="row">کل گویشوران (زبان مادری + زبان دوم)</th><td>ندارد</td></tr>
+      <tr><th scope="row">سهم از محتوای وب</th><td>ندارد</td></tr>
+      <tr><th scope="row">کاربران اینترنت بر اساس زبان</th><td>ندارد</td></tr>
+      <tr><th scope="row">زمان آنلاین</th><td>ندارد</td></tr>
+    </tbody></table></div>
+  </details>
+</section>
+
+</div>
+
+</body>
+</html>

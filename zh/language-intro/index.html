@@ -1,0 +1,789 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Colors for the Fool 支援的28種語言介紹：每種語言有多少人在說，並配上一位虛構人物和她或他的畫像。">
+<link rel="icon" href="../../favicon.png" type="image/png">
+<title>語言介紹</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&family=Noto+Serif+TC:wght@500;600&family=Shippori+Mincho:wght@400;500;700&display=swap">
+<style>
+/* Layout: same paper column as language-scale.html; one card per language (numbers, persona + image, details). */
+:root {
+  --bg: #efe6d6;
+  --bg-glow: #fbf6ec;
+  --paper: #f7f1e4;
+  --ink: #2a2118;
+  --muted: #6d5c48;
+  --gold: #a6843d;
+  --gold-soft: #e4d2a4;
+  --line: rgba(166,132,61,.45);
+  --other: #d3c6ae;
+  --grid: rgba(109,92,72,.18);
+  --font-display: Cinzel, "Palatino Linotype", Palatino, serif;
+  --font-body: "Noto Serif TC", "Shippori Mincho", "Hiragino Mincho ProN", "Yu Mincho", serif;
+}
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) {
+  --bg: #1b1610; --bg-glow: #2a2219; --paper: #241e17; --ink: #efe4cf; --muted: #b6a387;
+  --gold: #d2ac5c; --gold-soft: #5a4826; --line: rgba(210,172,92,.4); --other: #4b4134; --grid: rgba(239,228,207,.12);
+  color-scheme: dark; } }
+:root[data-theme="dark"] {
+  --bg: #1b1610; --bg-glow: #2a2219; --paper: #241e17; --ink: #efe4cf; --muted: #b6a387;
+  --gold: #d2ac5c; --gold-soft: #5a4826; --line: rgba(210,172,92,.4); --other: #4b4134; --grid: rgba(239,228,207,.12);
+  color-scheme: dark; }
+
+* { box-sizing: border-box; }
+body {
+  margin: 0; color: var(--ink); background: var(--bg);
+  background-image: radial-gradient(1100px 640px at 50% -8%, var(--bg-glow), var(--bg) 70%);
+  font-family: var(--font-body); font-weight: 500; line-height: 1.85;
+  padding-inline: 16px; padding-block: 0 64px;
+}
+.wrap { width: min(100%, 44rem); margin: 0 auto; }
+a { color: var(--gold); }
+code { font-size: .88em; overflow-wrap: anywhere; }
+.brand { font-family: var(--font-display); font-size: .74rem; letter-spacing: .24em; text-transform: uppercase; padding-block: 1.4rem .2rem; margin: 0; }
+.brand a { color: var(--ink); text-decoration: none; }
+header.hero { text-align: center; padding-block: 2.6rem 1.6rem; }
+.eyebrow { font-family: var(--font-display); letter-spacing: .3em; font-size: .8rem; color: var(--gold); margin: 0; text-transform: uppercase; }
+h1 { font-size: clamp(2rem, 7vw, 2.9rem); letter-spacing: .12em; margin: .3rem 0 .6rem; font-weight: 600; text-wrap: balance; }
+.lede { color: var(--muted); max-width: 34rem; margin: 0 auto; text-wrap: pretty; }
+.ornament { display: flex; align-items: center; gap: .8rem; justify-content: center; color: var(--gold); margin: 1.6rem 0 0; }
+.ornament::before, .ornament::after { content: ""; height: 1px; width: 4.5rem; background: var(--line); }
+
+.topbar { display: flex; justify-content: space-between; align-items: baseline; gap: 1rem; padding-block: 1.4rem .2rem; }
+.topbar .brand { padding-block: 0; }
+.switch { font-size: .82rem; }
+.switch a, .switch span { margin-left: .7rem; }
+.switch span { color: var(--muted); }
+
+.about { font-size: .86rem; color: var(--muted); margin: 0 0 1rem; }
+.about p { margin: .5rem 0; }
+.langs { display: flex; flex-wrap: wrap; gap: .4rem; justify-content: center; margin: 1.2rem 0 0; padding: 0; list-style: none; }
+.langs li { border: 1px solid var(--line); font-size: .85rem; background: var(--paper); }
+.langs li a { display: block; padding: .1rem .7rem; color: var(--ink); text-decoration: none; }
+.langs li a:hover, .langs li a:focus-visible { color: var(--gold); }
+.langs li:nth-last-child(-n+2) { border-style: dashed; }
+.langs li:nth-last-child(-n+2) a { color: var(--muted); }
+
+section.chart, section.lang { margin-top: 3.4rem; scroll-margin-top: 1rem; }
+.chart h2, .lang h2 { font-size: 1.3rem; letter-spacing: .08em; margin: 0; font-weight: 600; text-wrap: balance; }
+.lang h2 small { display: block; font-size: .8rem; letter-spacing: .04em; color: var(--muted); font-weight: 500; }
+.kicker { font-family: var(--font-display); color: var(--gold); letter-spacing: .2em; font-size: .78rem; margin: 0 0 .15rem; }
+p.note { color: var(--muted); font-size: .88rem; margin: .4rem 0 1rem; max-width: 40rem; }
+.chart ul { font-size: .88rem; color: var(--muted); padding-left: 1.1rem; }
+
+.scroll { overflow-x: auto; -webkit-overflow-scrolling: touch; border: 1px solid var(--line); background: var(--paper); }
+table { border-collapse: collapse; font-size: .8rem; line-height: 1.55; }
+table.overview { min-width: 42rem; width: 100%; }
+th, td { padding: .45rem .6rem; border-bottom: 1px solid var(--grid); text-align: left; vertical-align: top; }
+thead th { font-weight: 700; border-bottom: 1px solid var(--line); background: var(--bg-glow); }
+tbody th { font-weight: 700; white-space: nowrap; }
+tbody th a { color: var(--ink); text-decoration: none; }
+tbody tr:last-child th, tbody tr:last-child td { border-bottom: 0; }
+table.overview td { font-variant-numeric: tabular-nums; }
+
+.lang { border-top: 1px solid var(--line); padding-top: 1.6rem; }
+.nums { display: flex; flex-wrap: wrap; gap: 1px; background: var(--line); border: 1px solid var(--line); margin: 1rem 0; }
+.nums div { flex: 1 1 7.6rem; background: var(--paper); padding: .55rem .7rem .6rem; min-width: 0; }
+.nums dt { font-family: var(--font-body); font-size: .72rem; color: var(--muted); letter-spacing: .06em; }
+.nums dd { margin: 0; font-size: .9rem; line-height: 1.45; font-variant-numeric: tabular-nums; overflow-wrap: anywhere; }
+.region { font-size: .9rem; margin: 0 0 1rem; }
+.region b { color: var(--gold); font-weight: 700; margin-right: .6rem; }
+
+.persona { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 15rem); gap: 1.2rem; align-items: start; margin: 1.2rem 0 .8rem; }
+.persona figure { grid-column: 2; grid-row: 1; margin: 0; }
+.persona .ptext { grid-column: 1; grid-row: 1; }
+.persona img { display: block; width: 100%; height: auto; border: 1px solid var(--line); background: var(--paper); }
+.persona h3 { font-size: 1rem; letter-spacing: .08em; margin: 0 0 .3rem; font-weight: 600; }
+.persona p { margin: 0; font-size: .94rem; text-wrap: pretty; }
+@media (max-width: 36rem) {
+  .persona { grid-template-columns: minmax(0, 1fr); }
+  .persona figure, .persona .ptext { grid-column: 1; grid-row: auto; }
+  .persona figure { max-width: 22rem; }
+}
+
+details { border-top: 1px dashed var(--line); padding: .35rem 0; font-size: .88rem; }
+details:last-of-type { border-bottom: 1px dashed var(--line); }
+summary { cursor: pointer; color: var(--gold); letter-spacing: .06em; }
+details[open] summary { margin-bottom: .5rem; }
+details p { margin: .2rem 0 .8rem; color: var(--ink); }
+details h4 { font-size: .86rem; margin: .6rem 0 0; color: var(--muted); font-weight: 700; }
+details pre { white-space: pre-wrap; overflow-wrap: anywhere; font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: .78rem; line-height: 1.6; background: var(--paper); border: 1px solid var(--line); padding: .7rem .8rem; margin: 0 0 .6rem; }
+table.facts { width: 100%; min-width: 34rem; }
+table.facts tbody th { white-space: normal; min-width: 8rem; }
+
+footer { margin-top: 4rem; border-top: 1px solid var(--line); padding-top: 1.2rem; font-size: .8rem; color: var(--muted); }
+footer ul { padding-left: 1.1rem; margin: .4rem 0 1rem; }
+footer ul ul { margin: .2rem 0 .3rem; }
+footer li { margin: .15rem 0; overflow-wrap: anywhere; }
+</style>
+</head>
+<body>
+
+<div class="wrap">
+  <div class="topbar"><p class="brand"><a href="../">Colors for the Fool</a></p><nav class="switch" aria-label="相關頁面"><span>語言介紹</span></nav></div>
+
+  <header class="hero">
+    <p class="eyebrow">Languages &amp; Readers</p>
+    <h1>語言介紹</h1>
+    <p class="lede">透過說這種語言的人數，以及可能會來這裡占卜的人的模樣，介紹 Colors for the Fool 支援的28種語言（截至2026年10月9日）。</p>
+    <div class="ornament">✦</div>
+  </header>
+
+  <nav aria-label="語言列表">
+    <ul class="langs"><li><a href="#ja"><span lang="ja">日本語</span></a></li><li><a href="#en"><span lang="en">English</span></a></li><li><a href="#zh-hans"><span lang="zh-Hans">简体中文</span></a></li><li><a href="#zh"><span lang="zh-Hant">繁體中文</span></a></li><li><a href="#hi"><span lang="hi">हिन्दी</span></a></li><li><a href="#es"><span lang="es">Español</span></a></li><li><a href="#ar"><span lang="ar" dir="rtl">العربية</span></a></li><li><a href="#fr"><span lang="fr">Français</span></a></li><li><a href="#bn"><span lang="bn">বাংলা</span></a></li><li><a href="#pt"><span lang="pt">Português</span></a></li><li><a href="#id"><span lang="id">Bahasa Indonesia</span></a></li><li><a href="#ms"><span lang="ms">Bahasa Melayu</span></a></li><li><a href="#ur"><span lang="ur" dir="rtl">اردو</span></a></li><li><a href="#ru"><span lang="ru">Русский</span></a></li><li><a href="#de"><span lang="de">Deutsch</span></a></li><li><a href="#vi"><span lang="vi">Tiếng Việt</span></a></li><li><a href="#sw"><span lang="sw">Kiswahili</span></a></li><li><a href="#tr"><span lang="tr">Türkçe</span></a></li><li><a href="#tl"><span lang="fil">Filipino</span></a></li><li><a href="#fa"><span lang="fa" dir="rtl">فارسی</span></a></li><li><a href="#ko"><span lang="ko">한국어</span></a></li><li><a href="#th"><span lang="th">ไทย</span></a></li><li><a href="#it"><span lang="it">Italiano</span></a></li><li><a href="#pl"><span lang="pl">Polski</span></a></li><li><a href="#uk"><span lang="uk">Українська</span></a></li><li><a href="#nl"><span lang="nl">Nederlands</span></a></li><li><a href="#ang"><span lang="ang">Englisc</span></a></li><li><a href="#soro"><span lang="ja">御座候</span></a></li></ul>
+  </nav>
+
+<section class="lang" id="ja" aria-labelledby="h-ja">
+  <p class="kicker">01 · ja</p>
+  <h2 id="h-ja"><span lang="ja">日本語</span><small>日語</small></h2>
+  <dl class="nums">
+    <div><dt>使用人數</dt><dd>1.26億人</dd></div>
+    <div><dt>網頁</dt><dd>4.9%（第4名）</dd></div>
+    <div><dt>上網時間</dt><dd>3.9億小時</dd></div>
+  </dl>
+  <p class="region"><b>地區</b>日本。在日本以外，巴西和美國（夏威夷、加州）的日裔以及旅居海外的日本人也會閱讀。世界各地還有很多學習日語的人。</p>
+  <div class="persona">
+    <figure><img src="../../language-intro/img/ja.webp" width="800" height="1000" loading="lazy" decoding="async" alt="虛構人物。森下 由佳，34歲，住在福岡，是綜合醫院的醫務行政人員。"></figure>
+    <div class="ptext"><h3>人物</h3><p><span lang="ja">森下 由佳</span>，34歲，住在福岡，在一家綜合醫院擔任醫務行政。早上7點40分，她在地鐵座位上打開 iPhone，從 Instagram 的 Reels 點進來。她不會把占卜太當真，但喜歡到「不準也能笑一笑」的程度。抽一張牌，如果是逆位，她就認定「今天是不勉強自己的日子」。當故事經過博多織、筑後藍染這些熟悉的地方和手藝，最後落到一種顏色上時，她會很開心。喜歡的顏色，她會拿來參考當天手帕或美甲的顏色。有時她會用 LINE 給同事發一句：「今天的我，好像是靛藍。」</p></div>
+  </div>
+  <details><summary>數字與註釋</summary>
+    <div class="scroll"><table class="facts"><thead><tr><th scope="col">項目</th><th scope="col">數值</th><th scope="col">註釋</th></tr></thead><tbody>
+      <tr><th scope="row">總使用人數（母語＋第二語言）</th><td>1.26億人</td><td>Ethnologue 2026年版</td></tr>
+      <tr><th scope="row">網頁內容佔比</th><td>4.9%（第4名）</td><td>W3Techs，2026年10月</td></tr>
+      <tr><th scope="row">各語言網路使用者佔比</th><td>2.6%（第8名）</td><td>Internet World Stats，2020年3月</td></tr>
+      <tr><th scope="row">上網時間</th><td>推估網路人口1.0億人，每人每天平均3.9小時，總計每天3.9億小時（第18名）</td><td>Claude 推估。人均時間屬世界最短之列</td></tr>
+    </tbody></table></div>
+  </details>
+</section>
+
+<section class="lang" id="en" aria-labelledby="h-en">
+  <p class="kicker">02 · en</p>
+  <h2 id="h-en"><span lang="en">English</span><small>英語</small></h2>
+  <dl class="nums">
+    <div><dt>使用人數</dt><dd>14.93億人（第1名）</dd></div>
+    <div><dt>網頁</dt><dd>49.5%（第1名）</dd></div>
+    <div><dt>上網時間</dt><dd>57.8億小時</dd></div>
+  </dl>
+  <p class="region"><b>地區</b>在美國、英國、加拿大、澳洲、紐西蘭和愛爾蘭作為母語使用。在印度、菲律賓、奈及利亞、新加坡、肯亞等地，它是官方語言或教學語言。世界各地以英語為第二語言的人，也會閱讀英語網頁。</p>
+  <div class="persona">
+    <figure><img src="../../language-intro/img/en.webp" width="800" height="1000" loading="lazy" decoding="async" alt="虛構人物。Maya Reynolds，29歲，住在英國曼徹斯特，是小學助教。"></figure>
+    <div class="ptext"><h3>人物</h3><p>Maya Reynolds，29歲，住在英國曼徹斯特，是一名小學助教。晚上10點，她躺在床上打開 Android 手機。她常在 TikTok 上看塔羅影片，喜歡單張抽牌的輕鬆。她會讀牌義，最喜歡故事結尾出現顏色名字的那一刻。如果顏色的故事連著英國的某個地方，比如蘇格蘭的薊或約克郡的羊毛，她就把連結發給朋友。她也喜歡切換卡牌風格，對比新藝術風格和彩色玻璃。</p></div>
+  </div>
+  <details><summary>數字與註釋</summary>
+    <div class="scroll"><table class="facts"><thead><tr><th scope="col">項目</th><th scope="col">數值</th><th scope="col">註釋</th></tr></thead><tbody>
+      <tr><th scope="row">總使用人數（母語＋第二語言）</th><td>14.93億人（第1名）</td><td>Ethnologue 2026年版</td></tr>
+      <tr><th scope="row">網頁內容佔比</th><td>49.5%（第1名）</td><td>W3Techs，2026年10月</td></tr>
+      <tr><th scope="row">各語言網路使用者佔比</th><td>25.9%（第1名）</td><td>Internet World Stats，2020年3月</td></tr>
+      <tr><th scope="row">上網時間</th><td>推估網路人口8.5億人，每人每天平均6.8小時，總計每天57.8億小時（第2名）</td><td>Claude 推估。只計入主要閱讀英語的人；原注稱，若算上以第二語言閱讀的人，則排第1名</td></tr>
+    </tbody></table></div>
+  </details>
+</section>
+
+<section class="lang" id="zh-hans" aria-labelledby="h-zh-hans">
+  <p class="kicker">03 · zh-hans</p>
+  <h2 id="h-zh-hans"><span lang="zh-Hans">简体中文</span><small>簡體中文</small></h2>
+  <dl class="nums">
+    <div><dt>使用人數</dt><dd>11.83億人（華語）</dd></div>
+    <div><dt>網頁</dt><dd>1.3%（第12名，中文整體）</dd></div>
+    <div><dt>上網時間</dt><dd>62.0億小時（簡繁合計）</dd></div>
+  </dl>
+  <p class="region"><b>地區</b>中國大陸，是學校和政府使用的文字。新加坡和馬來西亞的華人社會也以簡體字為標準。北美、澳洲、歐洲和東南亞都有龐大的華人社群，留學生也很多。</p>
+  <div class="persona">
+    <figure><img src="../../language-intro/img/zh-hans.webp" width="800" height="1000" loading="lazy" decoding="async" alt="虛構人物。林悦，26歲，住在成都，是遊戲公司的 UI 設計師。"></figure>
+    <div class="ptext"><h3>人物</h3><p><span lang="zh-Hans">林悦</span>，26歲，住在成都，是一家遊戲公司的 UI 設計師。中午12點半午休時，她用華為手機在小紅書上查下個月的京都旅行，在一篇遊記裡發現了這個網站。因為工作的關係，她對顏色名稱和配色很敏感。抽一張牌，當故事經過宋代青瓷或蜀錦（四川的織錦）落到一種顏色上時，她會截圖儲存，用微信發給同事。她喜歡用水墨風格來看牌。</p></div>
+  </div>
+  <details><summary>數字與註釋</summary>
+    <div class="scroll"><table class="facts"><thead><tr><th scope="col">項目</th><th scope="col">數值</th><th scope="col">註釋</th></tr></thead><tbody>
+      <tr><th scope="row">總使用人數（母語＋第二語言）</th><td>11.83億人（華語）</td><td>Ethnologue 2026年版。繁體中文和簡體中文只作為華語計算一次</td></tr>
+      <tr><th scope="row">網頁內容佔比</th><td>1.3%（第12名，中文整體）</td><td>W3Techs 不區分簡體中文和繁體中文</td></tr>
+      <tr><th scope="row">各語言網路使用者佔比</th><td>19.4%（第2名，中文整體）</td><td>Internet World Stats，2020年3月</td></tr>
+      <tr><th scope="row">上網時間</th><td>推估網路人口11.7億人，每人每天平均5.3小時，總計每天62.0億小時（第1名，簡繁合計）</td><td>Claude 推估。中國大陸11.1億人，加上台灣、香港和海外華人</td></tr>
+    </tbody></table></div>
+  </details>
+</section>
+
+<section class="lang" id="zh" aria-labelledby="h-zh">
+  <p class="kicker">04 · zh</p>
+  <h2 id="h-zh"><span lang="zh-Hant">繁體中文</span></h2>
+  <dl class="nums">
+    <div><dt>使用人數</dt><dd>與簡體中文一起作為華語計算（11.83億人）</dd></div>
+    <div><dt>網頁</dt><dd>1.3%（第12名，中文整體）</dd></div>
+    <div><dt>上網時間</dt><dd>與簡體中文合計，每天62.0億小時（第1名）</dd></div>
+  </dl>
+  <p class="region"><b>地區</b>台灣、香港和澳門使用的文字。北美和澳洲歷史悠久的華人社會中，也有很多人使用繁體字。台灣說的是標準中文（華語）；香港和澳門的口語是粵語，書寫時則使用繁體中文的書面語。</p>
+  <div class="persona">
+    <figure><img src="../../language-intro/img/zh.webp" width="800" height="1000" loading="lazy" decoding="async" alt="虛構人物。陳怡君，31歲，住在台中，是銀行櫃員。"></figure>
+    <div class="ptext"><h3>人物</h3><p>陳怡君，31歲，住在台中，是一名銀行櫃員。晚上11點睡前，她在 iPhone 上計劃下個月的金澤之旅。朋友用 LINE 發來一個連結，她就這樣打開了這個網站。她抽一張牌的心情，和在廟裡求籤差不多。當故事經過加賀友禪、金箔這類日本工藝落到一種顏色上時，她的旅程就多了一個要去的地方。她再把結果頁面用 LINE 回傳給朋友。</p></div>
+  </div>
+  <details><summary>數字與註釋</summary>
+    <div class="scroll"><table class="facts"><thead><tr><th scope="col">項目</th><th scope="col">數值</th><th scope="col">註釋</th></tr></thead><tbody>
+      <tr><th scope="row">總使用人數（母語＋第二語言）</th><td>與簡體中文一起作為華語計算（11.83億人）</td><td>繁體中文和簡體中文只作為華語計算一次。沒有只讀繁體中文的人數資料</td></tr>
+      <tr><th scope="row">網頁內容佔比</th><td>1.3%（第12名，中文整體）</td><td>W3Techs 不區分簡體中文和繁體中文</td></tr>
+      <tr><th scope="row">各語言網路使用者佔比</th><td>19.4%（第2名，中文整體）</td><td>Internet World Stats，2020年3月</td></tr>
+      <tr><th scope="row">上網時間</th><td>與簡體中文合計，每天62.0億小時（第1名）</td><td>Claude 推估。沒有單獨針對繁體中文的推估</td></tr>
+    </tbody></table></div>
+  </details>
+</section>
+
+<section class="lang" id="hi" aria-labelledby="h-hi">
+  <p class="kicker">05 · hi</p>
+  <h2 id="h-hi"><span lang="hi">हिन्दी</span><small>印地語</small></h2>
+  <dl class="nums">
+    <div><dt>使用人數</dt><dd>6.11億人（第3名）</dd></div>
+    <div><dt>網頁</dt><dd>不足0.1%（第38名）</dd></div>
+    <div><dt>上網時間</dt><dd>17.4億小時</dd></div>
+  </dl>
+  <p class="region"><b>地區</b>印度北部和中部（北方邦、比哈爾邦、拉賈斯坦邦、中央邦、德里等）。尼泊爾和斐濟也有人說印地語。波斯灣國家、英國、美國和加拿大都有龐大的印度人社群。</p>
+  <div class="persona">
+    <figure><img src="../../language-intro/img/hi.webp" width="800" height="1000" loading="lazy" decoding="async" alt="虛構人物。Neha Verma，24歲，住在齋浦爾，是特許會計師見習生。"></figure>
+    <div class="ptext"><h3>人物</h3><p>Neha Verma，24歲，住在齋浦爾，是一名特許會計師見習生。早上8點，搭地鐵之前，她用紅米手機抽一張牌，就像是媽媽每天必看的 rashifal（每日星座運勢）的延續。她也看得懂英語，但覺得用印地語讀，顏色的故事更能留在心裡。當故事經過齋浦爾「粉紅之城」的建築或拉賈斯坦的紮染落到一種顏色上時，她會挑一條那個顏色的 dupatta（披巾）。喜歡的結果，她會用 WhatsApp 發給姐姐。</p></div>
+  </div>
+  <details><summary>數字與註釋</summary>
+    <div class="scroll"><table class="facts"><thead><tr><th scope="col">項目</th><th scope="col">數值</th><th scope="col">註釋</th></tr></thead><tbody>
+      <tr><th scope="row">總使用人數（母語＋第二語言）</th><td>6.11億人（第3名）</td><td>Ethnologue 2026年版</td></tr>
+      <tr><th scope="row">網頁內容佔比</th><td>不足0.1%（第38名）</td><td>W3Techs，2026年10月。與使用人數相比，網頁非常少</td></tr>
+      <tr><th scope="row">各語言網路使用者佔比</th><td>未進前10名</td><td>Internet World Stats，2020年3月</td></tr>
+      <tr><th scope="row">上網時間</th><td>推估網路人口2.9億人，每人每天平均6.0小時，總計每天17.4億小時（第6名）</td><td>Claude 推估。假設印度網路使用者中約35%使用印地語。這是最不確定的一項假設</td></tr>
+    </tbody></table></div>
+  </details>
+</section>
+
+<section class="lang" id="es" aria-labelledby="h-es">
+  <p class="kicker">06 · es</p>
+  <h2 id="h-es"><span lang="es">Español</span><small>西班牙語</small></h2>
+  <dl class="nums">
+    <div><dt>使用人數</dt><dd>5.61億人（第4名）</dd></div>
+    <div><dt>網頁</dt><dd>6.0%（第2名）</dd></div>
+    <div><dt>上網時間</dt><dd>29.6億小時</dd></div>
+  </dl>
+  <p class="region"><b>地區</b>西班牙，以及墨西哥、哥倫比亞、阿根廷、秘魯、智利、委內瑞拉等許多拉丁美洲國家。美國也有很多人在家說西班牙語（具體人數此處未核實）。它也是赤道幾內亞的官方語言。</p>
+  <div class="persona">
+    <figure><img src="../../language-intro/img/es.webp" width="800" height="1000" loading="lazy" decoding="async" alt="虛構人物。Valeria Ortiz，32歲，住在墨西哥瓜達拉哈拉，是牙科衛生師。"></figure>
+    <div class="ptext"><h3>人物</h3><p>Valeria Ortiz，32歲，住在墨西哥瓜達拉哈拉，是一名牙科衛生師。晚上9點半，下班後窩在沙發上，她打開 Android 手機；她是在 TikTok 上看到一個塔羅故事後來到這個網站的。她喜歡讀牌義，但最喜歡的是等待最後出現的顏色名字。當故事經過墨西哥的胭脂蟲（一種寄生在仙人掌上的昆蟲，可以從中取得紅色）落到深紅色上時，她立刻用 WhatsApp 發給妹妹。到了年底，她打算用這個網站來挑內衣的顏色。</p></div>
+  </div>
+  <details><summary>數字與註釋</summary>
+    <div class="scroll"><table class="facts"><thead><tr><th scope="col">項目</th><th scope="col">數值</th><th scope="col">註釋</th></tr></thead><tbody>
+      <tr><th scope="row">總使用人數（母語＋第二語言）</th><td>5.61億人（第4名）</td><td>Ethnologue 2026年版</td></tr>
+      <tr><th scope="row">網頁內容佔比</th><td>6.0%（第2名）</td><td>W3Techs，2026年10月</td></tr>
+      <tr><th scope="row">各語言網路使用者佔比</th><td>7.9%（第3名）</td><td>Internet World Stats，2020年3月</td></tr>
+      <tr><th scope="row">上網時間</th><td>推估網路人口3.9億人，每人每天平均7.6小時，總計每天29.6億小時（第3名）</td><td>Claude 推估。墨西哥、西班牙、哥倫比亞、阿根廷等，加上美國以西班牙語為主的人</td></tr>
+    </tbody></table></div>
+  </details>
+</section>
+
+<section class="lang" id="ar" aria-labelledby="h-ar">
+  <p class="kicker">07 · ar</p>
+  <h2 id="h-ar"><span lang="ar" dir="rtl">العربية</span><small>阿拉伯語（現代標準阿拉伯語）</small></h2>
+  <dl class="nums">
+    <div><dt>使用人數</dt><dd>3.35億人（第5名，現代標準阿拉伯語）</dd></div>
+    <div><dt>網頁</dt><dd>0.6%（第19名）</dd></div>
+    <div><dt>上網時間</dt><dd>23.1億小時</dd></div>
+  </dl>
+  <p class="region"><b>地區</b>中東和北非約22個國家的官方語言，包括埃及、沙烏地阿拉伯、伊拉克、阿爾及利亞、摩洛哥、蘇丹、敘利亞、約旦和阿聯酋。歐洲（法國、德國等）和北美也生活著很多說阿拉伯語的人。網站採用從右到左的排版。</p>
+  <div class="persona">
+    <figure><img src="../../language-intro/img/ar.webp" width="800" height="1000" loading="lazy" decoding="async" alt="虛構人物。Nour Haddad，28歲，住在約旦安曼，在一家建築設計事務所工作。"></figure>
+    <div class="ptext"><h3>人物</h3><p>Nour Haddad，28歲，住在約旦安曼，在一家建築設計事務所工作。晚上8點，她在自家陽台上打開 iPhone。她不信占卜，而是把卡牌的畫和故事當作「一篇短短的讀物」來享受。當故事經過伊斯蘭建築磁磚的藍或佩特拉岩石的玫瑰色落到一種顏色上時，她會記下來，作為工作中配色的參考。有時她會把結果頁面發到建築師同行的 WhatsApp 群組裡。</p></div>
+  </div>
+  <details><summary>數字與註釋</summary>
+    <div class="scroll"><table class="facts"><thead><tr><th scope="col">項目</th><th scope="col">數值</th><th scope="col">註釋</th></tr></thead><tbody>
+      <tr><th scope="row">總使用人數（母語＋第二語言）</th><td>3.35億人（第5名，現代標準阿拉伯語）</td><td>Ethnologue 2026年版</td></tr>
+      <tr><th scope="row">網頁內容佔比</th><td>0.6%（第19名）</td><td>W3Techs，2026年10月</td></tr>
+      <tr><th scope="row">各語言網路使用者佔比</th><td>5.2%（第4名）</td><td>Internet World Stats，2020年3月</td></tr>
+      <tr><th scope="row">上網時間</th><td>推估網路人口3.3億人，每人每天平均7.0小時，總計每天23.1億小時（第4名）</td><td>Claude 推估。埃及、沙烏地阿拉伯、伊拉克、阿爾及利亞、摩洛哥等</td></tr>
+    </tbody></table></div>
+  </details>
+</section>
+
+<section class="lang" id="fr" aria-labelledby="h-fr">
+  <p class="kicker">08 · fr</p>
+  <h2 id="h-fr"><span lang="fr">Français</span><small>法語</small></h2>
+  <dl class="nums">
+    <div><dt>使用人數</dt><dd>3.34億人（第6名）</dd></div>
+    <div><dt>網頁</dt><dd>4.5%（第5名）</dd></div>
+    <div><dt>上網時間</dt><dd>7.5億小時</dd></div>
+  </dl>
+  <p class="region"><b>地區</b>法國、比利時南部、瑞士西部、加拿大魁北克和盧森堡。在西非和中非（象牙海岸、塞內加爾、剛果民主共和國、喀麥隆等），它是學校和政府使用的語言。在北非的摩洛哥、阿爾及利亞和突尼西亞也被廣泛使用。</p>
+  <div class="persona">
+    <figure><img src="../../language-intro/img/fr.webp" width="800" height="1000" loading="lazy" decoding="async" alt="虛構人物。Hélène Garnier，41歲，住在里昂，經營一家書籍裝幀與紙張修復工作室。"></figure>
+    <div class="ptext"><h3>人物</h3><p>Hélène Garnier，41歲，住在里昂，經營一家書籍裝幀與紙張修復工作室。週日上午10點，她在工作室的工作台上打開平板電腦。她還記得祖母家裡的馬賽塔羅牌，大阿爾克那的名字讓她感到親切。當故事經過里昂的絲綢染色或巴黎的顏料商落到一種顏色上時，她會用它來挑選下一本書的環襯顏色。她選的是新藝術風格。</p></div>
+  </div>
+  <details><summary>數字與註釋</summary>
+    <div class="scroll"><table class="facts"><thead><tr><th scope="col">項目</th><th scope="col">數值</th><th scope="col">註釋</th></tr></thead><tbody>
+      <tr><th scope="row">總使用人數（母語＋第二語言）</th><td>3.34億人（第6名）</td><td>Ethnologue 2026年版</td></tr>
+      <tr><th scope="row">網頁內容佔比</th><td>4.5%（第5名）</td><td>W3Techs，2026年10月</td></tr>
+      <tr><th scope="row">各語言網路使用者佔比</th><td>3.3%（第7名）</td><td>Internet World Stats，2020年3月</td></tr>
+      <tr><th scope="row">上網時間</th><td>推估網路人口1.25億人，每人每天平均6.0小時，總計每天7.5億小時（第9名）</td><td>Claude 推估。法國、比利時、魁北克，加上非洲法語區</td></tr>
+    </tbody></table></div>
+  </details>
+</section>
+
+<section class="lang" id="bn" aria-labelledby="h-bn">
+  <p class="kicker">09 · bn</p>
+  <h2 id="h-bn"><span lang="bn">বাংলা</span><small>孟加拉語</small></h2>
+  <dl class="nums">
+    <div><dt>使用人數</dt><dd>2.74億人（第7名）</dd></div>
+    <div><dt>網頁</dt><dd>不足0.1%（第39名）</dd></div>
+    <div><dt>上網時間</dt><dd>6.1億小時</dd></div>
+  </dl>
+  <p class="region"><b>地區</b>孟加拉國（國語），以及印度的西孟加拉邦、特里普拉邦和阿薩姆邦部分地區。很多孟加拉國人生活在英國（倫敦東區）、波斯灣國家、美國和馬來西亞。</p>
+  <div class="persona">
+    <figure><img src="../../language-intro/img/bn.webp" width="800" height="1000" loading="lazy" decoding="async" alt="虛構人物。Farhana Akter，23歲，住在達卡，在大學讀英國文學。"></figure>
+    <div class="ptext"><h3>人物</h3><p>Farhana Akter，23歲，住在達卡，在大學讀英國文學。晚上10點，讀書的空檔，她用三星手機滑 Facebook，從朋友分享的結果頁面點了進來。對她來說，這不是占卜，而是一篇能用孟加拉語讀的小故事。當故事經過達卡細紗布（muslin）或賈姆達尼織物落到象牙白上時，她會把顏色的名字抄進自己的詩歌筆記本。</p></div>
+  </div>
+  <details><summary>數字與註釋</summary>
+    <div class="scroll"><table class="facts"><thead><tr><th scope="col">項目</th><th scope="col">數值</th><th scope="col">註釋</th></tr></thead><tbody>
+      <tr><th scope="row">總使用人數（母語＋第二語言）</th><td>2.74億人（第7名）</td><td>Ethnologue 2026年版</td></tr>
+      <tr><th scope="row">網頁內容佔比</th><td>不足0.1%（第39名）</td><td>W3Techs，2026年10月</td></tr>
+      <tr><th scope="row">各語言網路使用者佔比</th><td>未進前10名</td><td>Internet World Stats，2020年3月</td></tr>
+      <tr><th scope="row">上網時間</th><td>推估網路人口1.1億人，每人每天平均5.5小時，總計每天6.1億小時（第10名）</td><td>Claude 推估。孟加拉國加上西孟加拉邦</td></tr>
+    </tbody></table></div>
+  </details>
+</section>
+
+<section class="lang" id="pt" aria-labelledby="h-pt">
+  <p class="kicker">10 · pt</p>
+  <h2 id="h-pt"><span lang="pt">Português</span><small>葡萄牙語（巴西）</small></h2>
+  <dl class="nums">
+    <div><dt>使用人數</dt><dd>2.69億人（第8名）</dd></div>
+    <div><dt>網頁</dt><dd>4.1%（第6名）</dd></div>
+    <div><dt>上網時間</dt><dd>18.9億小時</dd></div>
+  </dl>
+  <p class="region"><b>地區</b>巴西（網站使用 pt-BR）和葡萄牙。它也是安哥拉、莫三比克、維德角等非洲國家的官方語言。很多日裔巴西人生活在日本。美國、葡萄牙和日本都有巴西人社群。</p>
+  <div class="persona">
+    <figure><img src="../../language-intro/img/pt.webp" width="800" height="1000" loading="lazy" decoding="async" alt="虛構人物。Juliana Costa，30歲，住在累西腓，是一名也上夜班的醫院護士。"></figure>
+    <div class="ptext"><h3>人物</h3><p>Juliana Costa，30歲，住在累西腓，是一名也上夜班的醫院護士。早上6點半，下了夜班搭公車回家的路上，她打開三星手機抽一張牌。比起牌義，她更期待故事結尾的顏色。當故事經過巴西木（pau-brasil，一種紅色染料樹，巴西的國名就來自它）落到一種顏色上時，她會發到同事的 WhatsApp 群組裡。她還打算來這裡抽牌，挑跨年夜穿的衣服顏色。</p></div>
+  </div>
+  <details><summary>數字與註釋</summary>
+    <div class="scroll"><table class="facts"><thead><tr><th scope="col">項目</th><th scope="col">數值</th><th scope="col">註釋</th></tr></thead><tbody>
+      <tr><th scope="row">總使用人數（母語＋第二語言）</th><td>2.69億人（第8名）</td><td>Ethnologue 2026年版</td></tr>
+      <tr><th scope="row">網頁內容佔比</th><td>4.1%（第6名）</td><td>W3Techs，2026年10月</td></tr>
+      <tr><th scope="row">各語言網路使用者佔比</th><td>3.7%（第6名）</td><td>Internet World Stats，2020年3月</td></tr>
+      <tr><th scope="row">上網時間</th><td>推估網路人口2.1億人，每人每天平均9.0小時，總計每天18.9億小時（第5名）</td><td>Claude 推估。以巴西為主。上網時間屬世界最長之列</td></tr>
+    </tbody></table></div>
+  </details>
+</section>
+
+<section class="lang" id="id" aria-labelledby="h-id">
+  <p class="kicker">11 · id</p>
+  <h2 id="h-id"><span lang="id">Bahasa Indonesia</span><small>印尼語</small></h2>
+  <dl class="nums">
+    <div><dt>使用人數</dt><dd>2.55億人（第9名）</dd></div>
+    <div><dt>網頁</dt><dd>1.2%（第13名）</dd></div>
+    <div><dt>上網時間</dt><dd>15.5億小時</dd></div>
+  </dl>
+  <p class="region"><b>地區</b>印尼的國語，超過2億人在學校和工作中使用。在東帝汶是工作語言。它與馬來西亞、汶萊和新加坡的馬來語大體可以互通。以技能實習或特定技能身份在日本工作的印尼人越來越多。</p>
+  <div class="persona">
+    <figure><img src="../../language-intro/img/id.webp" width="800" height="1000" loading="lazy" decoding="async" alt="虛構人物。Dimas Pratama，25歲，住在萬隆，是一家新創公司的初級平面設計師。"></figure>
+    <div class="ptext"><h3>人物</h3><p>Dimas Pratama，25歲，住在萬隆，是一家新創公司的初級平面設計師。早上9點，他在共享辦公空間打開 Android 手機。他不是拿它來占卜，而是當作尋找配色靈感的工具。牌義他隨便看看，顏色的故事則讀得很仔細。當故事經過爪哇蠟染的靛藍或巽他的竹編落到一種顏色上時，他就把它定為當天海報草稿的主色調。他只在 Instagram 限時動態裡分享顏色的名字。</p></div>
+  </div>
+  <details><summary>數字與註釋</summary>
+    <div class="scroll"><table class="facts"><thead><tr><th scope="col">項目</th><th scope="col">數值</th><th scope="col">註釋</th></tr></thead><tbody>
+      <tr><th scope="row">總使用人數（母語＋第二語言）</th><td>2.55億人（第9名）</td><td>Ethnologue 2026年版</td></tr>
+      <tr><th scope="row">網頁內容佔比</th><td>1.2%（第13名）</td><td>W3Techs，2026年10月</td></tr>
+      <tr><th scope="row">各語言網路使用者佔比</th><td>4.3%（第5名）</td><td>Internet World Stats，2020年3月。與馬來語同列一行，數字為印尼語的資料</td></tr>
+      <tr><th scope="row">上網時間</th><td>推估網路人口2.1億人，每人每天平均7.4小時，總計每天15.5億小時（第7名）</td><td>Claude 推估</td></tr>
+    </tbody></table></div>
+  </details>
+</section>
+
+<section class="lang" id="ms" aria-labelledby="h-ms">
+  <p class="kicker">12 · ms</p>
+  <h2 id="h-ms"><span lang="ms">Bahasa Melayu</span><small>馬來語</small></h2>
+  <dl class="nums">
+    <div><dt>使用人數</dt><dd>不明</dd></div>
+    <div><dt>網頁</dt><dd>無資料</dd></div>
+    <div><dt>上網時間</dt><dd>約1.6億小時（排名外參考值）</dd></div>
+  </dl>
+  <p class="region"><b>地區</b>馬來西亞、汶萊和新加坡（國語）。泰國南部也有說馬來語的人。在馬來西亞，馬來人在日常生活中使用，華人和印度裔也在學校學習。</p>
+  <div class="persona">
+    <figure><img src="../../language-intro/img/ms.webp" width="800" height="1000" loading="lazy" decoding="async" alt="虛構人物。Nur Aisyah binti Rahman，27歲，住在莎阿南，是醫院藥劑師。"></figure>
+    <div class="ptext"><h3>人物</h3><p>Nur Aisyah binti Rahman，27歲，住在莎阿南，是一名醫院藥劑師。下午1點午休時，她在 Android 手機上滑 TikTok，看明年3月大阪旅行的攻略。她不信占卜，但喜歡把卡牌的畫和顏色的故事當作「好看的讀物」。當故事經過馬來宋谷錦（songket）的金線或馬六甲港口的往事落到一種顏色上時，她會拿來參考旅行時頭巾（tudung）的顏色。她只把顏色的名字發到家人的 WhatsApp 群組裡。</p></div>
+  </div>
+  <details><summary>數字與註釋</summary>
+    <div class="scroll"><table class="facts"><thead><tr><th scope="col">項目</th><th scope="col">數值</th><th scope="col">註釋</th></tr></thead><tbody>
+      <tr><th scope="row">總使用人數（母語＋第二語言）</th><td>不明</td><td>馬來語常與印尼語一起作為宏語言統計，因此沒有單獨的數字。維基百科「Malay language」頁面（引用 Ethnologue 第28版，2025年）稱，作為宏語言的馬來語約有9000萬母語使用者（2020–2023年）和約1.8億第二語言使用者（2020年）。這一統計包括印尼各地的馬來語，並非只是標準馬來語的人數</td></tr>
+      <tr><th scope="row">網頁內容佔比</th><td>無資料</td><td>未進入 W3Techs 前40名</td></tr>
+      <tr><th scope="row">各語言網路使用者佔比</th><td>與印尼語同列一行</td><td>在 Internet World Stats 中，印尼語/馬來語一行的數字只是印尼語的4.3%</td></tr>
+      <tr><th scope="row">上網時間</th><td>約每天1.6億小時（排名外參考值）</td><td>Claude 推估中的排名外參考值。馬來西亞約六成使用者加上汶萊</td></tr>
+    </tbody></table></div>
+  </details>
+</section>
+
+<section class="lang" id="ur" aria-labelledby="h-ur">
+  <p class="kicker">13 · ur</p>
+  <h2 id="h-ur"><span lang="ur" dir="rtl">اردو</span><small>烏爾都語</small></h2>
+  <dl class="nums">
+    <div><dt>使用人數</dt><dd>2.46億人（第10名）</dd></div>
+    <div><dt>網頁</dt><dd>無資料</dd></div>
+    <div><dt>上網時間</dt><dd>5.2億小時</dd></div>
+  </dl>
+  <p class="region"><b>地區</b>巴基斯坦（國語）和印度北部（北方邦、特倫甘納邦的海得拉巴、德里等）。很多巴基斯坦裔生活在英國、波斯灣國家、美國和加拿大。口語與印地語相近，但文字不同（納斯塔利克體的阿拉伯字母）。網站採用從右到左的排版。</p>
+  <div class="persona">
+    <figure><img src="../../language-intro/img/ur.webp" width="800" height="1000" loading="lazy" decoding="async" alt="虛構人物。Hamza Qureshi，30歲，住在拉合爾，是金融科技公司的軟體工程師。"></figure>
+    <div class="ptext"><h3>人物</h3><p>Hamza Qureshi，30歲，住在拉合爾，是一家金融科技公司的軟體工程師。夜裡12點半，下班後，他端著一杯奶茶（chai）打開 Android 手機。他和占卜保持著距離，但喜歡烏爾都語排得漂亮的網頁，是來讀故事的。當故事經過蒙兀兒細密畫的群青或拉合爾古堡牆上的磁磚落到一種顏色上時，他會用 WhatsApp 把連結發給一位寫詩的朋友。</p></div>
+  </div>
+  <details><summary>數字與註釋</summary>
+    <div class="scroll"><table class="facts"><thead><tr><th scope="col">項目</th><th scope="col">數值</th><th scope="col">註釋</th></tr></thead><tbody>
+      <tr><th scope="row">總使用人數（母語＋第二語言）</th><td>2.46億人（第10名）</td><td>Ethnologue 2026年版</td></tr>
+      <tr><th scope="row">網頁內容佔比</th><td>無資料</td><td>未進入 W3Techs 前40名</td></tr>
+      <tr><th scope="row">各語言網路使用者佔比</th><td>未進前10名</td><td>Internet World Stats，2020年3月</td></tr>
+      <tr><th scope="row">上網時間</th><td>推估網路人口9500萬人，每人每天平均5.5小時，總計每天5.2億小時（第13名）</td><td>Claude 推估。巴基斯坦的約75%，加上印度的一部分</td></tr>
+    </tbody></table></div>
+  </details>
+</section>
+
+<section class="lang" id="ru" aria-labelledby="h-ru">
+  <p class="kicker">14 · ru</p>
+  <h2 id="h-ru"><span lang="ru">Русский</span><small>俄語</small></h2>
+  <dl class="nums">
+    <div><dt>使用人數</dt><dd>2.1億人（第11名）</dd></div>
+    <div><dt>網頁</dt><dd>3.4%（第7名）</dd></div>
+    <div><dt>上網時間</dt><dd>11.6億小時</dd></div>
+  </dl>
+  <p class="region"><b>地區</b>俄羅斯、白俄羅斯、哈薩克和吉爾吉斯的官方語言。其他前蘇聯國家（中亞、高加索、波羅的海國家）也有很多人使用俄語。以色列、德國和美國也有俄語社群。</p>
+  <div class="persona">
+    <figure><img src="../../language-intro/img/ru.webp" width="800" height="1000" loading="lazy" decoding="async" alt="虛構人物。Анна Соколова（Anna Sokolova），35歲，住在新西伯利亞，是研究機構的化學分析技術員。"></figure>
+    <div class="ptext"><h3>人物</h3><p><span lang="ru">Анна Соколова</span>（Anna Sokolova），35歲，住在新西伯利亞，是研究機構的化學分析技術員。晚上10點，她在廚房裡一邊喝茶一邊打開 Android 手機。她是透過一個介紹色彩與藝術的 Telegram 頻道知道這個網站的。出於工作的緣故，她特別喜歡抽一張牌，跟著故事經過礦物和顏料一路走到顏色。抽到孔雀石綠的日子，她會給女兒看那塊石頭的照片。</p></div>
+  </div>
+  <details><summary>數字與註釋</summary>
+    <div class="scroll"><table class="facts"><thead><tr><th scope="col">項目</th><th scope="col">數值</th><th scope="col">註釋</th></tr></thead><tbody>
+      <tr><th scope="row">總使用人數（母語＋第二語言）</th><td>2.1億人（第11名）</td><td>Ethnologue 2026年版</td></tr>
+      <tr><th scope="row">網頁內容佔比</th><td>3.4%（第7名）</td><td>W3Techs，2026年10月</td></tr>
+      <tr><th scope="row">各語言網路使用者佔比</th><td>2.5%（第9名）</td><td>Internet World Stats，2020年3月</td></tr>
+      <tr><th scope="row">上網時間</th><td>推估網路人口1.55億人，每人每天平均7.5小時，總計每天11.6億小時（第8名）</td><td>Claude 推估。俄羅斯加上白俄羅斯、哈薩克和中亞部分地區</td></tr>
+    </tbody></table></div>
+  </details>
+</section>
+
+<section class="lang" id="de" aria-labelledby="h-de">
+  <p class="kicker">15 · de</p>
+  <h2 id="h-de"><span lang="de">Deutsch</span><small>德語</small></h2>
+  <dl class="nums">
+    <div><dt>使用人數</dt><dd>1.33億人（第12名）</dd></div>
+    <div><dt>網頁</dt><dd>5.9%（第3名）</dd></div>
+    <div><dt>上網時間</dt><dd>4.8億小時</dd></div>
+  </dl>
+  <p class="region"><b>地區</b>德國、奧地利、瑞士（北部和中部）、列支敦斯登、盧森堡、義大利的南提洛和比利時東部。</p>
+  <div class="persona">
+    <figure><img src="../../language-intro/img/de.webp" width="800" height="1000" loading="lazy" decoding="async" alt="虛構人物。Jonas Weber，38歲，住在萊比錫，是劇院的音響工程師。"></figure>
+    <div class="ptext"><h3>人物</h3><p>Jonas Weber，38歲，住在萊比錫，是一家劇院的音響工程師。工作日下午1點休息時，他在筆記型電腦上用 Firefox 打開網站。他裝了廣告阻擋外掛，Cookie 同意視窗也一律拒絕。他不信占卜，但喜歡比較卡牌的風格（超現實主義攝影、粗獷主義平面設計）。當故事經過18世紀初誕生於柏林的普魯士藍落到一種顏色上時，他會很高興，還會講給同事聽。</p></div>
+  </div>
+  <details><summary>數字與註釋</summary>
+    <div class="scroll"><table class="facts"><thead><tr><th scope="col">項目</th><th scope="col">數值</th><th scope="col">註釋</th></tr></thead><tbody>
+      <tr><th scope="row">總使用人數（母語＋第二語言）</th><td>1.33億人（第12名）</td><td>Ethnologue 2026年版</td></tr>
+      <tr><th scope="row">網頁內容佔比</th><td>5.9%（第3名）</td><td>W3Techs，2026年10月</td></tr>
+      <tr><th scope="row">各語言網路使用者佔比</th><td>2.0%（第10名）</td><td>Internet World Stats，2020年3月</td></tr>
+      <tr><th scope="row">上網時間</th><td>推估網路人口9300萬人，每人每天平均5.2小時，總計每天4.8億小時（第17名）</td><td>Claude 推估。德國、奧地利、瑞士</td></tr>
+    </tbody></table></div>
+  </details>
+</section>
+
+<section class="lang" id="vi" aria-labelledby="h-vi">
+  <p class="kicker">16 · vi</p>
+  <h2 id="h-vi"><span lang="vi">Tiếng Việt</span><small>越南語</small></h2>
+  <dl class="nums">
+    <div><dt>使用人數</dt><dd>9700萬人（第17名）</dd></div>
+    <div><dt>網頁</dt><dd>0.9%（第16名）</dd></div>
+    <div><dt>上網時間</dt><dd>5.0億小時</dd></div>
+  </dl>
+  <p class="region"><b>地區</b>越南。美國（加州、德州）、澳洲、法國和加拿大都有龐大的越南裔社群。也有很多越南人以技能實習生或留學生的身份生活在日本。</p>
+  <div class="persona">
+    <figure><img src="../../language-intro/img/vi.webp" width="800" height="1000" loading="lazy" decoding="async" alt="虛構人物。Trần Văn Minh，24歲，住在愛知縣豐田市，是汽車零件工廠的技能實習生。"></figure>
+    <div class="ptext"><h3>人物</h3><p>Trần Văn Minh，24歲，住在愛知縣豐田市，是汽車零件工廠的技能實習生。傍晚5點，上夜班之前，他在宿舍房間裡打開 Android 手機。在日本生活的朋友們的 Facebook 社團裡，有人分享過這個網站的結果。他一邊對照母親常說的本命（<i lang="vi">mệnh</i>）之色，一邊抽一張牌。當故事經過會安燈籠的絲綢或家鄉的漆器落到一種顏色上時，他會用 Zalo 發給家人。</p></div>
+  </div>
+  <details><summary>數字與註釋</summary>
+    <div class="scroll"><table class="facts"><thead><tr><th scope="col">項目</th><th scope="col">數值</th><th scope="col">註釋</th></tr></thead><tbody>
+      <tr><th scope="row">總使用人數（母語＋第二語言）</th><td>9700萬人（第17名）</td><td>Ethnologue 2026年版</td></tr>
+      <tr><th scope="row">網頁內容佔比</th><td>0.9%（第16名）</td><td>W3Techs，2026年10月</td></tr>
+      <tr><th scope="row">各語言網路使用者佔比</th><td>未進前10名</td><td>Internet World Stats，2020年3月</td></tr>
+      <tr><th scope="row">上網時間</th><td>推估網路人口7900萬人，每人每天平均6.3小時，總計每天5.0億小時（第15名）</td><td>Claude 推估</td></tr>
+    </tbody></table></div>
+  </details>
+</section>
+
+<section class="lang" id="sw" aria-labelledby="h-sw">
+  <p class="kicker">17 · sw</p>
+  <h2 id="h-sw"><span lang="sw">Kiswahili</span><small>斯瓦希里語</small></h2>
+  <dl class="nums">
+    <div><dt>使用人數</dt><dd>9500萬人（第19名）</dd></div>
+    <div><dt>網頁</dt><dd>無資料</dd></div>
+    <div><dt>上網時間</dt><dd>無推估</dd></div>
+  </dl>
+  <p class="region"><b>地區</b>坦尚尼亞和肯亞。在坦尚尼亞，它是國語；小學用斯瓦希里語授課，從中學起改用英語。在肯亞，它是官方語言之一；低年級用母語或斯瓦希里語授課，之後改用英語，斯瓦希里語則是必修科目。烏干達、盧安達、蒲隆地、剛果民主共和國東部和葛摩也廣泛使用。它還是非洲聯盟的工作語言之一。</p>
+  <div class="persona">
+    <figure><img src="../../language-intro/img/sw.webp" width="800" height="1000" loading="lazy" decoding="async" alt="虛構人物。Amina Juma，28歲，住在三蘭港，是小學教師。"></figure>
+    <div class="ptext"><h3>人物</h3><p>Amina Juma，28歲，住在三蘭港，是一名小學教師。下午3點半，下課後，她在教師辦公室打開 Android 手機。同事的 WhatsApp 群組裡傳過這個網站的結果。她一邊對照康加布（kanga）的顏色，一邊抽一張牌。當故事經過康加布的靛藍或印度洋上的晚霞落到一種顏色上時，她會用 WhatsApp 發給母親。</p></div>
+  </div>
+  <details><summary>數字與註釋</summary>
+    <div class="scroll"><table class="facts"><thead><tr><th scope="col">項目</th><th scope="col">數值</th><th scope="col">註釋</th></tr></thead><tbody>
+      <tr><th scope="row">總使用人數（母語＋第二語言）</th><td>9500萬人（第19名）</td><td>Ethnologue 2026年版</td></tr>
+      <tr><th scope="row">網頁內容佔比</th><td>無資料</td><td>未進入 W3Techs 前40名</td></tr>
+      <tr><th scope="row">各語言網路使用者佔比</th><td>未進前10名</td><td>Internet World Stats，2020年3月</td></tr>
+      <tr><th scope="row">上網時間</th><td>無推估</td><td>Claude 推估中沒有斯瓦希里語這一行。肯亞和坦尚尼亞被歸入英語或斯瓦希里語的整體中，沒有單獨算出斯瓦希里語的時間</td></tr>
+    </tbody></table></div>
+  </details>
+</section>
+
+<section class="lang" id="tr" aria-labelledby="h-tr">
+  <p class="kicker">18 · tr</p>
+  <h2 id="h-tr"><span lang="tr">Türkçe</span><small>土耳其語</small></h2>
+  <dl class="nums">
+    <div><dt>使用人數</dt><dd>9400萬人（第20名，與豪薩語並列）</dd></div>
+    <div><dt>網頁</dt><dd>1.6%（第11名）</dd></div>
+    <div><dt>上網時間</dt><dd>5.6億小時</dd></div>
+  </dl>
+  <p class="region"><b>地區</b>土耳其和北塞普勒斯。德國有龐大的土耳其人社群，荷蘭、奧地利和法國也有很多。保加利亞和希臘北部也有人說土耳其語。</p>
+  <div class="persona">
+    <figure><img src="../../language-intro/img/tr.webp" width="800" height="1000" loading="lazy" decoding="async" alt="虛構人物。Elif Yıldız，33歲，住在伊茲密爾，是高中化學老師。"></figure>
+    <div class="ptext"><h3>人物</h3><p>Elif Yıldız，33歲，住在伊茲密爾，是一名高中化學老師。下午4點半，下課後，她和朋友在咖啡館用咖啡渣占卜，之後用 iPhone 打開了這個網站。她和朋友們一起讀牌義。當故事經過綠松石或伊茲尼克磁磚的藍落到一種顏色上時，大家都興奮起來，她就把它發到 Instagram 限時動態上。</p></div>
+  </div>
+  <details><summary>數字與註釋</summary>
+    <div class="scroll"><table class="facts"><thead><tr><th scope="col">項目</th><th scope="col">數值</th><th scope="col">註釋</th></tr></thead><tbody>
+      <tr><th scope="row">總使用人數（母語＋第二語言）</th><td>9400萬人（第20名，與豪薩語並列）</td><td>Ethnologue 2026年版</td></tr>
+      <tr><th scope="row">網頁內容佔比</th><td>1.6%（第11名）</td><td>W3Techs，2026年10月</td></tr>
+      <tr><th scope="row">各語言網路使用者佔比</th><td>未進前10名</td><td>Internet World Stats，2020年3月</td></tr>
+      <tr><th scope="row">上網時間</th><td>推估網路人口8000萬人，每人每天平均7.0小時，總計每天5.6億小時（第11名）</td><td>Claude 推估</td></tr>
+    </tbody></table></div>
+  </details>
+</section>
+
+<section class="lang" id="tl" aria-labelledby="h-tl">
+  <p class="kicker">19 · tl</p>
+  <h2 id="h-tl"><span lang="fil">Filipino</span><small>菲律賓語</small></h2>
+  <dl class="nums">
+    <div><dt>使用人數</dt><dd>8700萬人</dd></div>
+    <div><dt>網頁</dt><dd>不足0.1%（第40名，他加祿語）</dd></div>
+    <div><dt>上網時間</dt><dd>5.3億小時</dd></div>
+  </dl>
+  <p class="region"><b>地區</b>菲律賓的國語，與英語同為官方語言。在世界各地工作的菲律賓人都在使用，包括美國（加州、夏威夷）、波斯灣國家、香港、新加坡、加拿大和日本。</p>
+  <div class="persona">
+    <figure><img src="../../language-intro/img/tl.webp" width="800" height="1000" loading="lazy" decoding="async" alt="虛構人物。Joanna “Jo” Dela Cruz，28歲，住在奎松市，在面向美國的呼叫中心上夜班。"></figure>
+    <div class="ptext"><h3>人物</h3><p>Joanna “Jo” Dela Cruz，28歲，住在奎松市，在一家面向美國的呼叫中心上夜班。凌晨4點休息時，她用 Android 手機抽一張牌。工作時說的是英語，所以休息時她想讀菲律賓語。當故事經過馬尼拉灣的夕陽或鳳梨纖維布（piña，用鳳梨葉纖維織成的布）落到一種顏色上時，她會發到 Facebook，也會發給在中東工作的表親。</p></div>
+  </div>
+  <details><summary>數字與註釋</summary>
+    <div class="scroll"><table class="facts"><thead><tr><th scope="col">項目</th><th scope="col">數值</th><th scope="col">註釋</th></tr></thead><tbody>
+      <tr><th scope="row">總使用人數（母語＋第二語言）</th><td>8700萬人</td><td>Ethnologue 2026年版（按他加祿語計算）</td></tr>
+      <tr><th scope="row">網頁內容佔比</th><td>不足0.1%（第40名，他加祿語）</td><td>W3Techs，2026年10月</td></tr>
+      <tr><th scope="row">各語言網路使用者佔比</th><td>未進前10名</td><td>Internet World Stats，2020年3月</td></tr>
+      <tr><th scope="row">上網時間</th><td>推估網路人口6000萬人，每人每天平均8.9小時，總計每天5.3億小時（第12名）</td><td>Claude 推估。假設菲律賓約60%的網路使用者使用菲律賓語，其餘計入英語</td></tr>
+    </tbody></table></div>
+  </details>
+</section>
+
+<section class="lang" id="fa" aria-labelledby="h-fa">
+  <p class="kicker">20 · fa</p>
+  <h2 id="h-fa"><span lang="fa" dir="rtl">فارسی</span><small>波斯語</small></h2>
+  <dl class="nums">
+    <div><dt>使用人數</dt><dd>8200萬人（伊朗波斯語）</dd></div>
+    <div><dt>網頁</dt><dd>1.0%（第14名）</dd></div>
+    <div><dt>上網時間</dt><dd>4.9億小時</dd></div>
+  </dl>
+  <p class="region"><b>地區</b>伊朗的官方語言。阿富汗（達利語）和塔吉克（塔吉克語）使用與之非常相近的語言。美國（洛杉磯）、加拿大、德國、英國和土耳其都有龐大的伊朗人社群。網站採用從右到左的排版。</p>
+  <div class="persona">
+    <figure><img src="../../language-intro/img/fa.webp" width="800" height="1000" loading="lazy" decoding="async" alt="虛構人物。Parisa Hosseini，31歲，住在伊斯法罕，從事歷史建築磁磚的修復工作。"></figure>
+    <div class="ptext"><h3>人物</h3><p>Parisa Hosseini，31歲，住在伊斯法罕，從事歷史建築磁磚的修復工作。晚上11點，工作結束後，她打開 Android 手機。每到雅爾達之夜，她的家人會一起翻開哈菲茲詩集，所以用一張牌來占卜，讓她覺得很熟悉。當故事經過內沙布爾的綠松石或伊斯法罕清真寺磁磚的藍落到一種顏色上時，她會像停下了手邊的工作一樣，久久凝視。她用 Telegram 把連結發給在國外的姐姐。</p></div>
+  </div>
+  <details><summary>數字與註釋</summary>
+    <div class="scroll"><table class="facts"><thead><tr><th scope="col">項目</th><th scope="col">數值</th><th scope="col">註釋</th></tr></thead><tbody>
+      <tr><th scope="row">總使用人數（母語＋第二語言）</th><td>8200萬人（伊朗波斯語）</td><td>Ethnologue 2026年版。不包括達利語（阿富汗）和塔吉克語</td></tr>
+      <tr><th scope="row">網頁內容佔比</th><td>1.0%（第14名）</td><td>W3Techs，2026年10月</td></tr>
+      <tr><th scope="row">各語言網路使用者佔比</th><td>未進前10名</td><td>Internet World Stats，2020年3月</td></tr>
+      <tr><th scope="row">上網時間</th><td>推估網路人口8200萬人，每人每天平均6.0小時，總計每天4.9億小時（第16名）</td><td>Claude 推估。包括伊朗和阿富汗（達利語）</td></tr>
+    </tbody></table></div>
+  </details>
+</section>
+
+<section class="lang" id="ko" aria-labelledby="h-ko">
+  <p class="kicker">21 · ko</p>
+  <h2 id="h-ko"><span lang="ko">한국어</span><small>韓語</small></h2>
+  <dl class="nums">
+    <div><dt>使用人數</dt><dd>8200萬人</dd></div>
+    <div><dt>網頁</dt><dd>0.9%（第17名）</dd></div>
+    <div><dt>上網時間</dt><dd>2.7億小時</dd></div>
+  </dl>
+  <p class="region"><b>地區</b>韓國和朝鮮。中國的延邊朝鮮族自治州、美國（洛杉磯、紐約）、日本和中亞，也有根在朝鮮半島的人們的社群。</p>
+  <div class="persona">
+    <figure><img src="../../language-intro/img/ko.webp" width="800" height="1000" loading="lazy" decoding="async" alt="虛構人物。김서연（Kim Seo-yeon），29歲，住在首爾麻浦區，是網漫的上色師。"></figure>
+    <div class="ptext"><h3>人物</h3><p><span lang="ko">김서연</span>（Kim Seo-yeon），29歲，住在首爾麻浦區，是一名網漫的上色師。早上8點20分，她在地鐵上打開 iPhone。她每個月會和朋友去一次塔羅咖啡館。她在 NAVER 上搜尋下個月福岡旅行的攻略時，發現了這個網站。當故事經過韓國的<i lang="ko-Latn">obangsaek</i>（五方色，傳統的五種顏色）或日本的染織落到一種顏色上時，她會把那個顏色放進當天工作的配色裡。她用 KakaoTalk 把結果發給朋友。</p></div>
+  </div>
+  <details><summary>數字與註釋</summary>
+    <div class="scroll"><table class="facts"><thead><tr><th scope="col">項目</th><th scope="col">數值</th><th scope="col">註釋</th></tr></thead><tbody>
+      <tr><th scope="row">總使用人數（母語＋第二語言）</th><td>8200萬人</td><td>Ethnologue 2026年版</td></tr>
+      <tr><th scope="row">網頁內容佔比</th><td>0.9%（第17名）</td><td>W3Techs，2026年10月</td></tr>
+      <tr><th scope="row">各語言網路使用者佔比</th><td>未進前10名</td><td>Internet World Stats，2020年3月</td></tr>
+      <tr><th scope="row">上網時間</th><td>推估網路人口5000萬人，每人每天平均5.3小時，總計每天2.7億小時（第20名）</td><td>Claude 推估</td></tr>
+    </tbody></table></div>
+  </details>
+</section>
+
+<section class="lang" id="th" aria-labelledby="h-th">
+  <p class="kicker">22 · th</p>
+  <h2 id="h-th"><span lang="th">ไทย</span><small>泰語</small></h2>
+  <dl class="nums">
+    <div><dt>使用人數</dt><dd>7100萬人</dd></div>
+    <div><dt>網頁</dt><dd>0.3%（第28名）</dd></div>
+    <div><dt>上網時間</dt><dd>5.1億小時</dd></div>
+  </dl>
+  <p class="region"><b>地區</b>泰國的國語。寮國的很多人能讀泰語。美國（洛杉磯）、澳洲和歐洲也生活著泰國人。</p>
+  <div class="persona">
+    <figure><img src="../../language-intro/img/th.webp" width="800" height="1000" loading="lazy" decoding="async" alt="虛構人物。Napassorn “Pim” Srisuk，27歲，住在曼谷，在化妝品品牌做行銷。"></figure>
+    <div class="ptext"><h3>人物</h3><p>Napassorn “Pim” Srisuk，27歲，住在曼谷，在一個化妝品品牌做行銷。早上7點，決定穿什麼之前，她用 iPhone 抽一張牌。把當天星期幾對應的顏色和這個網站的顏色對照一下，是她每天早上的樂趣。她正在計劃明年1月去北海道旅行。當故事經過泰絲或北海道白雪落到一種顏色上時，她會把這個顏色用在口紅或圍巾上。她用 LINE 發給同事。</p></div>
+  </div>
+  <details><summary>數字與註釋</summary>
+    <div class="scroll"><table class="facts"><thead><tr><th scope="col">項目</th><th scope="col">數值</th><th scope="col">註釋</th></tr></thead><tbody>
+      <tr><th scope="row">總使用人數（母語＋第二語言）</th><td>7100萬人</td><td>Ethnologue 2026年版</td></tr>
+      <tr><th scope="row">網頁內容佔比</th><td>0.3%（第28名）</td><td>W3Techs，2026年10月</td></tr>
+      <tr><th scope="row">各語言網路使用者佔比</th><td>未進前10名</td><td>Internet World Stats，2020年3月</td></tr>
+      <tr><th scope="row">上網時間</th><td>推估網路人口6500萬人，每人每天平均7.8小時，總計每天5.1億小時（第14名）</td><td>Claude 推估</td></tr>
+    </tbody></table></div>
+  </details>
+</section>
+
+<section class="lang" id="it" aria-labelledby="h-it">
+  <p class="kicker">23 · it</p>
+  <h2 id="h-it"><span lang="it">Italiano</span><small>義大利語</small></h2>
+  <dl class="nums">
+    <div><dt>使用人數</dt><dd>6600萬人</dd></div>
+    <div><dt>網頁</dt><dd>2.8%（第8名）</dd></div>
+    <div><dt>上網時間</dt><dd>2.9億小時</dd></div>
+  </dl>
+  <p class="region"><b>地區</b>義大利、聖馬利諾、瑞士南部（提契諾）和梵蒂岡。很多義大利裔生活在阿根廷、巴西、美國、德國等地。</p>
+  <div class="persona">
+    <figure><img src="../../language-intro/img/it.webp" width="800" height="1000" loading="lazy" decoding="async" alt="虛構人物。Giulia Bernardi，45歲，住在波隆那，是社區藥局的藥劑師。"></figure>
+    <div class="ptext"><h3>人物</h3><p>Giulia Bernardi，45歲，住在波隆那，是一家社區藥局的藥劑師。晚上9點半，吃完晚飯坐在沙發上，她打開 Android 手機。小時候她和父親玩過 tarocchino 紙牌，所以大阿爾克那的圖案讓她懷念。當故事經過波隆那拱廊的紅磚或文藝復興畫家的顏料落到一種顏色上時，她會用 WhatsApp 發給父親。她選的是「經典塔羅」風格。</p></div>
+  </div>
+  <details><summary>數字與註釋</summary>
+    <div class="scroll"><table class="facts"><thead><tr><th scope="col">項目</th><th scope="col">數值</th><th scope="col">註釋</th></tr></thead><tbody>
+      <tr><th scope="row">總使用人數（母語＋第二語言）</th><td>6600萬人</td><td>Ethnologue 2026年版</td></tr>
+      <tr><th scope="row">網頁內容佔比</th><td>2.8%（第8名）</td><td>W3Techs，2026年10月</td></tr>
+      <tr><th scope="row">各語言網路使用者佔比</th><td>未進前10名</td><td>Internet World Stats，2020年3月</td></tr>
+      <tr><th scope="row">上網時間</th><td>推估網路人口5100萬人，每人每天平均5.7小時，總計每天2.9億小時（第19名）</td><td>Claude 推估</td></tr>
+    </tbody></table></div>
+  </details>
+</section>
+
+<section class="lang" id="pl" aria-labelledby="h-pl">
+  <p class="kicker">24 · pl</p>
+  <h2 id="h-pl"><span lang="pl">Polski</span><small>波蘭語</small></h2>
+  <dl class="nums">
+    <div><dt>使用人數</dt><dd>約4260萬人</dd></div>
+    <div><dt>網頁</dt><dd>1.8%（第10名）</dd></div>
+    <div><dt>上網時間</dt><dd>約2.1億小時（排名外參考值）</dd></div>
+  </dl>
+  <p class="region"><b>地區</b>波蘭。英國、德國、美國（芝加哥）、愛爾蘭和加拿大都有龐大的波蘭人社群。立陶宛和烏克蘭西部也有人說波蘭語。</p>
+  <div class="persona">
+    <figure><img src="../../language-intro/img/pl.webp" width="800" height="1000" loading="lazy" decoding="async" alt="虛構人物。Marta Kowalczyk，30歲，住在克拉科夫，是軟體公司的使用者體驗研究員。"></figure>
+    <div class="ptext"><h3>人物</h3><p>Marta Kowalczyk，30歲，住在克拉科夫，是一家軟體公司的使用者體驗研究員。週日上午10點，她在咖啡館打開 iPhone。每年的聖安德烈節前夜（Andrzejki），她都會和朋友一起用蠟占卜。當故事經過波羅的海琥珀或克拉科夫的紡織會館落到一種顏色上時，她會發到 Instagram 限時動態上。她正在計劃明年春天去京都旅行。</p></div>
+  </div>
+  <details><summary>數字與註釋</summary>
+    <div class="scroll"><table class="facts"><thead><tr><th scope="col">項目</th><th scope="col">數值</th><th scope="col">註釋</th></tr></thead><tbody>
+      <tr><th scope="row">總使用人數（母語＋第二語言）</th><td>約4260萬人</td><td>Ethnologue 第27版（2021年資料），引自維基百科「Polish language」頁面。未列入 Ethnologue 2026 的公開榜單（5000萬人以上）</td></tr>
+      <tr><th scope="row">網頁內容佔比</th><td>1.8%（第10名）</td><td>W3Techs，2026年10月</td></tr>
+      <tr><th scope="row">各語言網路使用者佔比</th><td>未進前10名</td><td>Internet World Stats，2020年3月</td></tr>
+      <tr><th scope="row">上網時間</th><td>約每天2.1億小時（排名外參考值）</td><td>Claude 推估中的排名外參考值</td></tr>
+    </tbody></table></div>
+  </details>
+</section>
+
+<section class="lang" id="uk" aria-labelledby="h-uk">
+  <p class="kicker">25 · uk</p>
+  <h2 id="h-uk"><span lang="uk">Українська</span><small>烏克蘭語</small></h2>
+  <dl class="nums">
+    <div><dt>使用人數</dt><dd>約3900萬人</dd></div>
+    <div><dt>網頁</dt><dd>0.6%（第18名）</dd></div>
+    <div><dt>上網時間</dt><dd>無推估</dd></div>
+  </dl>
+  <p class="region"><b>地區</b>烏克蘭的國語。由於2022年以來的戰爭，很多人到波蘭、德國、捷克等歐洲國家避難。加拿大和美國也有歷史悠久的烏克蘭人社群。很多人也會說俄語。</p>
+  <div class="persona">
+    <figure><img src="../../language-intro/img/uk.webp" width="800" height="1000" loading="lazy" decoding="async" alt="虛構人物。Олена Коваленко（Olena Kovalenko），37歲，住在利沃夫，是小學教師。"></figure>
+    <div class="ptext"><h3>人物</h3><p><span lang="uk">Олена Коваленко</span>（Olena Kovalenko），37歲，住在利沃夫，是一名小學教師。晚上9點，哄孩子睡下後，她用 Android 手機抽一張牌。比起讀牌義，她更珍惜讀一篇用烏克蘭語細心寫成的故事的時光。當故事經過彼得里基夫卡花卉畫或喀爾巴阡山的羊毛落到一種顏色上時，她會用 Telegram 發給在波蘭的妹妹。</p></div>
+  </div>
+  <details><summary>數字與註釋</summary>
+    <div class="scroll"><table class="facts"><thead><tr><th scope="col">項目</th><th scope="col">數值</th><th scope="col">註釋</th></tr></thead><tbody>
+      <tr><th scope="row">總使用人數（母語＋第二語言）</th><td>約3900萬人</td><td>Ethnologue（2023年）。維基百科「Ukrainian language」頁面（Ethnologue 第28版）給出的數字相同</td></tr>
+      <tr><th scope="row">網頁內容佔比</th><td>0.6%（第18名）</td><td>W3Techs，2026年10月</td></tr>
+      <tr><th scope="row">各語言網路使用者佔比</th><td>未進前10名</td><td>Internet World Stats，2020年3月</td></tr>
+      <tr><th scope="row">上網時間</th><td>無推估</td><td>Claude 推估的表格和排名外參考值中都沒有烏克蘭語</td></tr>
+    </tbody></table></div>
+  </details>
+</section>
+
+<section class="lang" id="nl" aria-labelledby="h-nl">
+  <p class="kicker">26 · nl</p>
+  <h2 id="h-nl"><span lang="nl">Nederlands</span><small>荷蘭語</small></h2>
+  <dl class="nums">
+    <div><dt>使用人數</dt><dd>約3000萬人</dd></div>
+    <div><dt>網頁</dt><dd>2.1%（第9名）</dd></div>
+    <div><dt>上網時間</dt><dd>約1.3億小時（排名外參考值）</dd></div>
+  </dl>
+  <p class="region"><b>地區</b>荷蘭和比利時北部（弗拉芒）。在蘇利南以及加勒比海的阿魯巴和古拉索也是官方語言。南非的南非語是從荷蘭語分化出來的。</p>
+  <div class="persona">
+    <figure><img src="../../language-intro/img/nl.webp" width="800" height="1000" loading="lazy" decoding="async" alt="虛構人物。Sanne de Vries，36歲，住在烏特勒支，在市政府負責氣候政策。"></figure>
+    <div class="ptext"><h3>人物</h3><p>Sanne de Vries，36歲，住在烏特勒支，在市政府負責氣候政策。中午12點半，她在辦公桌前打開筆記型電腦，查一個顏色名稱時來到了這個網站。她不信占卜，但很喜歡顏色名稱由來的故事。當故事經過代爾夫特藍或17世紀荷蘭畫家用的顏料落到一種顏色上時，她會講給同事聽。有時騎車回家前，她會再抽一張。</p></div>
+  </div>
+  <details><summary>數字與註釋</summary>
+    <div class="scroll"><table class="facts"><thead><tr><th scope="col">項目</th><th scope="col">數值</th><th scope="col">註釋</th></tr></thead><tbody>
+      <tr><th scope="row">總使用人數（母語＋第二語言）</th><td>約3000萬人</td><td>2021年。維基百科「Dutch language」頁面（引用 Eurobarometer 等）給出的數字相同</td></tr>
+      <tr><th scope="row">網頁內容佔比</th><td>2.1%（第9名）</td><td>W3Techs，2026年10月。包括弗拉芒語</td></tr>
+      <tr><th scope="row">各語言網路使用者佔比</th><td>未進前10名</td><td>Internet World Stats，2020年3月</td></tr>
+      <tr><th scope="row">上網時間</th><td>約每天1.3億小時（排名外參考值）</td><td>Claude 推估中的排名外參考值</td></tr>
+    </tbody></table></div>
+  </details>
+</section>
+
+<section class="lang" id="ang" aria-labelledby="h-ang">
+  <p class="kicker">27 · ang</p>
+  <h2 id="h-ang"><span lang="ang">Englisc</span><small>古英語</small></h2>
+  <p class="note">這是一種為了遊戲和歷史而收錄的語言。它是大約450年至1100年間的英語，如今已沒有以它為母語的人。數字欄均不適用。</p>
+  <dl class="nums">
+    <div><dt>使用人數</dt><dd>不適用</dd></div>
+    <div><dt>網頁</dt><dd>不適用</dd></div>
+    <div><dt>上網時間</dt><dd>不適用</dd></div>
+  </dl>
+  <p class="region"><b>可能會喜歡的人</b>學習和研究中世紀英國文學與英語史的學生和學者，喜歡<cite>《貝武夫》</cite>和 J. R. R. 托爾金作品的人，以及對盧恩字母和北歐神話感興趣的人。除了英語世界，它也能觸及德國、北歐和日本學習英國文學的學生。</p>
+  <div class="persona">
+    <figure><img src="../../language-intro/img/ang.webp" width="800" height="1000" loading="lazy" decoding="async" alt="虛構人物。Hannah Brooks，24歲，住在英國里茲，在研究所學習古英語。"></figure>
+    <div class="ptext"><h3>人物</h3><p>Hannah Brooks，24歲，住在英國里茲，在研究所學習古英語。傍晚5點，她在大學圖書館打開筆記型電腦，查動詞變位時來到了這個網站。她在手邊放著現代英語譯文，享受一點點讀懂牌名和顏色名的樂趣。喜歡的句子，她會發給專題討論課的同學。</p></div>
+  </div>
+  <details><summary>數字與註釋</summary>
+    <div class="scroll"><table class="facts"><thead><tr><th scope="col">項目</th><th scope="col">數值</th></tr></thead><tbody>
+      <tr><th scope="row">總使用人數（母語＋第二語言）</th><td>不適用</td></tr>
+      <tr><th scope="row">網頁內容佔比</th><td>不適用</td></tr>
+      <tr><th scope="row">各語言網路使用者佔比</th><td>不適用</td></tr>
+      <tr><th scope="row">上網時間</th><td>不適用</td></tr>
+    </tbody></table></div>
+  </details>
+</section>
+
+<section class="lang" id="soro" aria-labelledby="h-soro">
+  <p class="kicker">28 · soro</p>
+  <h2 id="h-soro"><span lang="ja">御座候</span><small>候文（日本近世書信文體）</small></h2>
+  <p class="note">這是一種為了遊戲和歷史而收錄的語言。它是大約1600年至1868年間書信和公文的寫法，在句末加上<span lang="ja">候</span>（<i>sōrō</i>）。如今已沒有以它為母語的人。數字欄均不適用。</p>
+  <dl class="nums">
+    <div><dt>使用人數</dt><dd>不適用</dd></div>
+    <div><dt>網頁</dt><dd>不適用</dd></div>
+    <div><dt>上網時間</dt><dd>不適用</dd></div>
+  </dl>
+  <p class="region"><b>可能會喜歡的人</b>學習古文書和草書的人，喜歡歷史小說和 NHK 大河劇的人，以及熱愛歷史的學生。它也能觸及深入學過日語的外國人和日本史研究者。</p>
+  <div class="persona">
+    <figure><img src="../../language-intro/img/soro.webp" width="800" height="1000" loading="lazy" decoding="async" alt="虛構人物。工藤 誠一，58歲，住在金澤，在市政府工作，週末去上古文書講座。"></figure>
+    <div class="ptext"><h3>人物</h3><p><span lang="ja">工藤 誠一</span>，58歲，住在金澤，在市政府工作，週末去上古文書講座。週日下午3點，他在客廳打開平板電腦。他是聽講座的同學說起才來的。他把用候文寫的牌名和顏色名一個一個念出聲來。當故事經過加賀的染織或古老的城下町落到一種顏色上時，他會把顏色的名字記在講座筆記本上。</p></div>
+  </div>
+  <details><summary>數字與註釋</summary>
+    <div class="scroll"><table class="facts"><thead><tr><th scope="col">項目</th><th scope="col">數值</th></tr></thead><tbody>
+      <tr><th scope="row">總使用人數（母語＋第二語言）</th><td>不適用</td></tr>
+      <tr><th scope="row">網頁內容佔比</th><td>不適用</td></tr>
+      <tr><th scope="row">各語言網路使用者佔比</th><td>不適用</td></tr>
+      <tr><th scope="row">上網時間</th><td>不適用</td></tr>
+    </tbody></table></div>
+  </details>
+</section>
+
+</div>
+
+</body>
+</html>

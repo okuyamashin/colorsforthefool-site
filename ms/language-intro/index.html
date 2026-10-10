@@ -1,0 +1,789 @@
+<!doctype html>
+<html lang="ms">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Mengenali 28 bahasa Colors for the Fool: berapa ramai penuturnya, berserta satu persona rekaan dan potretnya.">
+<link rel="icon" href="../../favicon.png" type="image/png">
+<title>Tentang Bahasa-Bahasa</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&family=Shippori+Mincho:wght@400;500;700&display=swap">
+<style>
+/* Layout: same paper column as language-scale.html; one card per language (numbers, persona + image, details). */
+:root {
+  --bg: #efe6d6;
+  --bg-glow: #fbf6ec;
+  --paper: #f7f1e4;
+  --ink: #2a2118;
+  --muted: #6d5c48;
+  --gold: #a6843d;
+  --gold-soft: #e4d2a4;
+  --line: rgba(166,132,61,.45);
+  --other: #d3c6ae;
+  --grid: rgba(109,92,72,.18);
+  --font-display: Cinzel, "Palatino Linotype", Palatino, serif;
+  --font-body: "Shippori Mincho", "Hiragino Mincho ProN", "Yu Mincho", serif;
+}
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) {
+  --bg: #1b1610; --bg-glow: #2a2219; --paper: #241e17; --ink: #efe4cf; --muted: #b6a387;
+  --gold: #d2ac5c; --gold-soft: #5a4826; --line: rgba(210,172,92,.4); --other: #4b4134; --grid: rgba(239,228,207,.12);
+  color-scheme: dark; } }
+:root[data-theme="dark"] {
+  --bg: #1b1610; --bg-glow: #2a2219; --paper: #241e17; --ink: #efe4cf; --muted: #b6a387;
+  --gold: #d2ac5c; --gold-soft: #5a4826; --line: rgba(210,172,92,.4); --other: #4b4134; --grid: rgba(239,228,207,.12);
+  color-scheme: dark; }
+
+* { box-sizing: border-box; }
+body {
+  margin: 0; color: var(--ink); background: var(--bg);
+  background-image: radial-gradient(1100px 640px at 50% -8%, var(--bg-glow), var(--bg) 70%);
+  font-family: var(--font-body); font-weight: 500; line-height: 1.85;
+  padding-inline: 16px; padding-block: 0 64px;
+}
+.wrap { width: min(100%, 44rem); margin: 0 auto; }
+a { color: var(--gold); }
+code { font-size: .88em; overflow-wrap: anywhere; }
+.brand { font-family: var(--font-display); font-size: .74rem; letter-spacing: .24em; text-transform: uppercase; padding-block: 1.4rem .2rem; margin: 0; }
+.brand a { color: var(--ink); text-decoration: none; }
+header.hero { text-align: center; padding-block: 2.6rem 1.6rem; }
+.eyebrow { font-family: var(--font-display); letter-spacing: .3em; font-size: .8rem; color: var(--gold); margin: 0; text-transform: uppercase; }
+h1 { font-size: clamp(2rem, 7vw, 2.9rem); letter-spacing: .12em; margin: .3rem 0 .6rem; font-weight: 600; text-wrap: balance; }
+.lede { color: var(--muted); max-width: 34rem; margin: 0 auto; text-wrap: pretty; }
+.ornament { display: flex; align-items: center; gap: .8rem; justify-content: center; color: var(--gold); margin: 1.6rem 0 0; }
+.ornament::before, .ornament::after { content: ""; height: 1px; width: 4.5rem; background: var(--line); }
+
+.topbar { display: flex; justify-content: space-between; align-items: baseline; gap: 1rem; padding-block: 1.4rem .2rem; }
+.topbar .brand { padding-block: 0; }
+.switch { font-size: .82rem; }
+.switch a, .switch span { margin-left: .7rem; }
+.switch span { color: var(--muted); }
+
+.about { font-size: .86rem; color: var(--muted); margin: 0 0 1rem; }
+.about p { margin: .5rem 0; }
+.langs { display: flex; flex-wrap: wrap; gap: .4rem; justify-content: center; margin: 1.2rem 0 0; padding: 0; list-style: none; }
+.langs li { border: 1px solid var(--line); font-size: .85rem; background: var(--paper); }
+.langs li a { display: block; padding: .1rem .7rem; color: var(--ink); text-decoration: none; }
+.langs li a:hover, .langs li a:focus-visible { color: var(--gold); }
+.langs li:nth-last-child(-n+2) { border-style: dashed; }
+.langs li:nth-last-child(-n+2) a { color: var(--muted); }
+
+section.chart, section.lang { margin-top: 3.4rem; scroll-margin-top: 1rem; }
+.chart h2, .lang h2 { font-size: 1.3rem; letter-spacing: .08em; margin: 0; font-weight: 600; text-wrap: balance; }
+.lang h2 small { display: block; font-size: .8rem; letter-spacing: .04em; color: var(--muted); font-weight: 500; }
+.kicker { font-family: var(--font-display); color: var(--gold); letter-spacing: .2em; font-size: .78rem; margin: 0 0 .15rem; }
+p.note { color: var(--muted); font-size: .88rem; margin: .4rem 0 1rem; max-width: 40rem; }
+.chart ul { font-size: .88rem; color: var(--muted); padding-left: 1.1rem; }
+
+.scroll { overflow-x: auto; -webkit-overflow-scrolling: touch; border: 1px solid var(--line); background: var(--paper); }
+table { border-collapse: collapse; font-size: .8rem; line-height: 1.55; }
+table.overview { min-width: 42rem; width: 100%; }
+th, td { padding: .45rem .6rem; border-bottom: 1px solid var(--grid); text-align: left; vertical-align: top; }
+thead th { font-weight: 700; border-bottom: 1px solid var(--line); background: var(--bg-glow); }
+tbody th { font-weight: 700; white-space: nowrap; }
+tbody th a { color: var(--ink); text-decoration: none; }
+tbody tr:last-child th, tbody tr:last-child td { border-bottom: 0; }
+table.overview td { font-variant-numeric: tabular-nums; }
+
+.lang { border-top: 1px solid var(--line); padding-top: 1.6rem; }
+.nums { display: flex; flex-wrap: wrap; gap: 1px; background: var(--line); border: 1px solid var(--line); margin: 1rem 0; }
+.nums div { flex: 1 1 7.6rem; background: var(--paper); padding: .55rem .7rem .6rem; min-width: 0; }
+.nums dt { font-family: var(--font-body); font-size: .72rem; color: var(--muted); letter-spacing: .06em; }
+.nums dd { margin: 0; font-size: .9rem; line-height: 1.45; font-variant-numeric: tabular-nums; overflow-wrap: anywhere; }
+.region { font-size: .9rem; margin: 0 0 1rem; }
+.region b { color: var(--gold); font-weight: 700; margin-right: .6rem; }
+
+.persona { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 15rem); gap: 1.2rem; align-items: start; margin: 1.2rem 0 .8rem; }
+.persona figure { grid-column: 2; grid-row: 1; margin: 0; }
+.persona .ptext { grid-column: 1; grid-row: 1; }
+.persona img { display: block; width: 100%; height: auto; border: 1px solid var(--line); background: var(--paper); }
+.persona h3 { font-size: 1rem; letter-spacing: .08em; margin: 0 0 .3rem; font-weight: 600; }
+.persona p { margin: 0; font-size: .94rem; text-wrap: pretty; }
+@media (max-width: 36rem) {
+  .persona { grid-template-columns: minmax(0, 1fr); }
+  .persona figure, .persona .ptext { grid-column: 1; grid-row: auto; }
+  .persona figure { max-width: 22rem; }
+}
+
+details { border-top: 1px dashed var(--line); padding: .35rem 0; font-size: .88rem; }
+details:last-of-type { border-bottom: 1px dashed var(--line); }
+summary { cursor: pointer; color: var(--gold); letter-spacing: .06em; }
+details[open] summary { margin-bottom: .5rem; }
+details p { margin: .2rem 0 .8rem; color: var(--ink); }
+details h4 { font-size: .86rem; margin: .6rem 0 0; color: var(--muted); font-weight: 700; }
+details pre { white-space: pre-wrap; overflow-wrap: anywhere; font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: .78rem; line-height: 1.6; background: var(--paper); border: 1px solid var(--line); padding: .7rem .8rem; margin: 0 0 .6rem; }
+table.facts { width: 100%; min-width: 34rem; }
+table.facts tbody th { white-space: normal; min-width: 8rem; }
+
+footer { margin-top: 4rem; border-top: 1px solid var(--line); padding-top: 1.2rem; font-size: .8rem; color: var(--muted); }
+footer ul { padding-left: 1.1rem; margin: .4rem 0 1rem; }
+footer ul ul { margin: .2rem 0 .3rem; }
+footer li { margin: .15rem 0; overflow-wrap: anywhere; }
+</style>
+</head>
+<body>
+
+<div class="wrap">
+  <div class="topbar"><p class="brand"><a href="../">Colors for the Fool</a></p><nav class="switch" aria-label="Halaman berkaitan"><span>Tentang Bahasa-Bahasa</span></nav></div>
+
+  <header class="hero">
+    <p class="eyebrow">Languages &amp; Readers</p>
+    <h1>Tentang Bahasa-Bahasa</h1>
+    <p class="lede">28 bahasa Colors for the Fool, diperkenalkan melalui bilangan penuturnya dan gambaran orang yang mungkin datang ke tilikan ini (setakat 9 Oktober 2026).</p>
+    <div class="ornament">✦</div>
+  </header>
+
+  <nav aria-label="Senarai bahasa">
+    <ul class="langs"><li><a href="#ja"><span lang="ja">日本語</span></a></li><li><a href="#en"><span lang="en">English</span></a></li><li><a href="#zh-hans"><span lang="zh-Hans">简体中文</span></a></li><li><a href="#zh"><span lang="zh-Hant">繁體中文</span></a></li><li><a href="#hi"><span lang="hi">हिन्दी</span></a></li><li><a href="#es"><span lang="es">Español</span></a></li><li><a href="#ar"><span lang="ar" dir="rtl">العربية</span></a></li><li><a href="#fr"><span lang="fr">Français</span></a></li><li><a href="#bn"><span lang="bn">বাংলা</span></a></li><li><a href="#pt"><span lang="pt">Português</span></a></li><li><a href="#id"><span lang="id">Bahasa Indonesia</span></a></li><li><a href="#ms"><span lang="ms">Bahasa Melayu</span></a></li><li><a href="#ur"><span lang="ur" dir="rtl">اردو</span></a></li><li><a href="#ru"><span lang="ru">Русский</span></a></li><li><a href="#de"><span lang="de">Deutsch</span></a></li><li><a href="#vi"><span lang="vi">Tiếng Việt</span></a></li><li><a href="#sw"><span lang="sw">Kiswahili</span></a></li><li><a href="#tr"><span lang="tr">Türkçe</span></a></li><li><a href="#tl"><span lang="fil">Filipino</span></a></li><li><a href="#fa"><span lang="fa" dir="rtl">فارسی</span></a></li><li><a href="#ko"><span lang="ko">한국어</span></a></li><li><a href="#th"><span lang="th">ไทย</span></a></li><li><a href="#it"><span lang="it">Italiano</span></a></li><li><a href="#pl"><span lang="pl">Polski</span></a></li><li><a href="#uk"><span lang="uk">Українська</span></a></li><li><a href="#nl"><span lang="nl">Nederlands</span></a></li><li><a href="#ang"><span lang="ang">Englisc</span></a></li><li><a href="#soro"><span lang="ja">御座候</span></a></li></ul>
+  </nav>
+
+<section class="lang" id="ja" aria-labelledby="h-ja">
+  <p class="kicker">01 · ja</p>
+  <h2 id="h-ja"><span lang="ja">日本語</span><small>Bahasa Jepun</small></h2>
+  <dl class="nums">
+    <div><dt>Penutur</dt><dd>126 juta</dd></div>
+    <div><dt>Web</dt><dd>4.9% (kedudukan ke-4)</dd></div>
+    <div><dt>Masa dalam talian</dt><dd>390 juta jam</dd></div>
+  </dl>
+  <p class="region"><b>Kawasan</b>Jepun. Di luar Jepun, bahasa ini dibaca oleh orang keturunan Jepun di Brazil dan Amerika Syarikat (Hawaii, California) serta rakyat Jepun yang tinggal di luar negara. Ramai juga orang di seluruh dunia yang belajar bahasa Jepun.</p>
+  <div class="persona">
+    <figure><img src="../../language-intro/img/ja.webp" width="800" height="1000" loading="lazy" decoding="async" alt="Persona rekaan. 森下 由佳 (Yuka Morishita), 34 tahun, tinggal di Fukuoka. Dia kerani perubatan di sebuah hospital besar."></figure>
+    <div class="ptext"><h3>Persona</h3><p><span lang="ja">森下 由佳</span> (Yuka Morishita), 34 tahun, tinggal di Fukuoka. Dia kerani perubatan di sebuah hospital besar. Pukul 7.40 pagi, di tempat duduk kereta api bawah tanah, dia membuka iPhone dan sampai ke sini daripada satu Reel Instagram. Dia tidak terlalu mempercayai tilikan, tetapi cukup menyukainya sehingga boleh ketawa apabila tilikan itu tersasar. Dia menarik sekeping kad, dan jika keluar terbalik, dia memutuskan “hari ini hari untuk tidak memaksa diri.” Dia gembira apabila cerita itu sampai kepada warnanya melalui tempat dan kraf yang dekat di hati, seperti tenunan Hakata atau celupan nila Chikugo. Warna yang disukainya menjadi petunjuk untuk sapu tangan atau warna kuku hari itu. Kadang-kadang dia menghantar mesej LINE kepada rakan sekerja: “Hari ini katanya saya nila.”</p></div>
+  </div>
+  <details><summary>Angka &amp; catatan</summary>
+    <div class="scroll"><table class="facts"><thead><tr><th scope="col">Perkara</th><th scope="col">Nilai</th><th scope="col">Catatan</th></tr></thead><tbody>
+      <tr><th scope="row">Jumlah penutur (bahasa pertama + kedua)</th><td>126 juta</td><td>Ethnologue, edisi 2026</td></tr>
+      <tr><th scope="row">Bahagian kandungan web</th><td>4.9% (kedudukan ke-4)</td><td>W3Techs, Oktober 2026</td></tr>
+      <tr><th scope="row">Pengguna Internet mengikut bahasa</th><td>2.6% (kedudukan ke-8)</td><td>Internet World Stats, Mac 2020</td></tr>
+      <tr><th scope="row">Masa dalam talian</th><td>Anggaran 100 juta pengguna Internet, purata 3.9 jam sehari, jumlah 390 juta jam/hari (kedudukan ke-18)</td><td>Anggaran Claude. Masa bagi setiap orang antara yang paling singkat di dunia</td></tr>
+    </tbody></table></div>
+  </details>
+</section>
+
+<section class="lang" id="en" aria-labelledby="h-en">
+  <p class="kicker">02 · en</p>
+  <h2 id="h-en"><span lang="en">English</span><small>Bahasa Inggeris</small></h2>
+  <dl class="nums">
+    <div><dt>Penutur</dt><dd>1.493 bilion (kedudukan pertama)</dd></div>
+    <div><dt>Web</dt><dd>49.5% (kedudukan pertama)</dd></div>
+    <div><dt>Masa dalam talian</dt><dd>5.78 bilion jam</dd></div>
+  </dl>
+  <p class="region"><b>Kawasan</b>Dituturkan sebagai bahasa pertama di Amerika Syarikat, United Kingdom, Kanada, Australia, New Zealand dan Ireland. Di India, Filipina, Nigeria, Singapura, Kenya dan tempat lain, bahasa ini ialah bahasa rasmi atau bahasa pendidikan. Penutur bahasa kedua di seluruh dunia membaca halaman dalam bahasa Inggeris.</p>
+  <div class="persona">
+    <figure><img src="../../language-intro/img/en.webp" width="800" height="1000" loading="lazy" decoding="async" alt="Persona rekaan. Maya Reynolds, 29 tahun, tinggal di Manchester, UK. Dia pembantu guru di sebuah sekolah rendah."></figure>
+    <div class="ptext"><h3>Persona</h3><p>Maya Reynolds, 29 tahun, tinggal di Manchester, UK. Dia pembantu guru di sebuah sekolah rendah. Pukul 10 malam, dia membuka telefon Android di atas katil. Dia kerap menonton video tarot di TikTok dan suka akan mudahnya menarik sekeping kad. Dia membaca makna kad dan paling suka saat nama warna muncul di hujung cerita. Apabila cerita warna itu berkait dengan tempat di Britain, seperti thistle Scotland atau bulu biri-biri Yorkshire, dia menghantar pautannya kepada kawan-kawan. Dia juga seronok menukar gaya kad untuk membandingkan Art Nouveau dengan kaca berwarna.</p></div>
+  </div>
+  <details><summary>Angka &amp; catatan</summary>
+    <div class="scroll"><table class="facts"><thead><tr><th scope="col">Perkara</th><th scope="col">Nilai</th><th scope="col">Catatan</th></tr></thead><tbody>
+      <tr><th scope="row">Jumlah penutur (bahasa pertama + kedua)</th><td>1.493 bilion (kedudukan pertama)</td><td>Ethnologue, edisi 2026</td></tr>
+      <tr><th scope="row">Bahagian kandungan web</th><td>49.5% (kedudukan pertama)</td><td>W3Techs, Oktober 2026</td></tr>
+      <tr><th scope="row">Pengguna Internet mengikut bahasa</th><td>25.9% (kedudukan pertama)</td><td>Internet World Stats, Mac 2020</td></tr>
+      <tr><th scope="row">Masa dalam talian</th><td>Anggaran 850 juta pengguna Internet, purata 6.8 jam sehari, jumlah 5.78 bilion jam/hari (kedudukan ke-2)</td><td>Anggaran Claude. Hanya mengira orang yang kebanyakannya membaca dalam bahasa Inggeris; ada catatan bahawa ia akan berada di kedudukan pertama jika pembaca bahasa kedua turut dikira</td></tr>
+    </tbody></table></div>
+  </details>
+</section>
+
+<section class="lang" id="zh-hans" aria-labelledby="h-zh-hans">
+  <p class="kicker">03 · zh-hans</p>
+  <h2 id="h-zh-hans"><span lang="zh-Hans">简体中文</span><small>Bahasa Cina Ringkas</small></h2>
+  <dl class="nums">
+    <div><dt>Penutur</dt><dd>1.183 bilion (Mandarin)</dd></div>
+    <div><dt>Web</dt><dd>1.3% (kedudukan ke-12, semua bahasa Cina)</dd></div>
+    <div><dt>Masa dalam talian</dt><dd>6.20 bilion jam (Ringkas + Tradisional)</dd></div>
+  </dl>
+  <p class="region"><b>Kawasan</b>Tanah besar China, tempat tulisan ini digunakan di sekolah dan dalam pentadbiran. Tulisan Ringkas juga menjadi piawai dalam masyarakat Cina di Singapura dan Malaysia. Terdapat masyarakat Cina yang besar di Amerika Utara, Australia, Eropah dan Asia Tenggara, serta ramai pelajar yang belajar di luar negara.</p>
+  <div class="persona">
+    <figure><img src="../../language-intro/img/zh-hans.webp" width="800" height="1000" loading="lazy" decoding="async" alt="Persona rekaan. 林悦 (Lin Yue), 26 tahun, tinggal di Chengdu. Dia pereka UI di sebuah syarikat permainan video."></figure>
+    <div class="ptext"><h3>Persona</h3><p><span lang="zh-Hans">林悦</span> (Lin Yue), 26 tahun, tinggal di Chengdu. Dia pereka UI di sebuah syarikat permainan video. Pukul 12.30 tengah hari, waktu rehat makan, dia sedang mencari maklumat percutian ke Kyoto bulan depan di Xiaohongshu dengan telefon Huawei apabila dia terjumpa laman ini melalui catatan seorang pelancong. Kerana kerjanya, dia peka terhadap nama warna dan palet. Dia menarik sekeping kad, dan apabila cerita itu sampai kepada warnanya melalui seladon Dinasti Song atau broked Shu (broked Sichuan), dia menyimpan tangkapan skrin dan menghantarnya kepada rakan sekerja melalui WeChat. Dia suka melihat kad dalam gaya lukisan dakwat.</p></div>
+  </div>
+  <details><summary>Angka &amp; catatan</summary>
+    <div class="scroll"><table class="facts"><thead><tr><th scope="col">Perkara</th><th scope="col">Nilai</th><th scope="col">Catatan</th></tr></thead><tbody>
+      <tr><th scope="row">Jumlah penutur (bahasa pertama + kedua)</th><td>1.183 bilion (Mandarin)</td><td>Ethnologue, edisi 2026. Bahasa Cina Tradisional dan Ringkas hanya dikira sekali, sebagai Mandarin</td></tr>
+      <tr><th scope="row">Bahagian kandungan web</th><td>1.3% (kedudukan ke-12, semua bahasa Cina)</td><td>W3Techs tidak memisahkan bahasa Cina Ringkas dan Tradisional</td></tr>
+      <tr><th scope="row">Pengguna Internet mengikut bahasa</th><td>19.4% (kedudukan ke-2, semua bahasa Cina)</td><td>Internet World Stats, Mac 2020</td></tr>
+      <tr><th scope="row">Masa dalam talian</th><td>Anggaran 1.17 bilion pengguna Internet, purata 5.3 jam sehari, jumlah 6.20 bilion jam/hari (kedudukan pertama, Ringkas + Tradisional)</td><td>Anggaran Claude. 1.11 bilion di tanah besar China, ditambah Taiwan, Hong Kong dan masyarakat Cina di luar negara</td></tr>
+    </tbody></table></div>
+  </details>
+</section>
+
+<section class="lang" id="zh" aria-labelledby="h-zh">
+  <p class="kicker">04 · zh</p>
+  <h2 id="h-zh"><span lang="zh-Hant">繁體中文</span><small>Bahasa Cina Tradisional</small></h2>
+  <dl class="nums">
+    <div><dt>Penutur</dt><dd>Dikira bersama bahasa Cina Ringkas sebagai Mandarin (1.183 bilion)</dd></div>
+    <div><dt>Web</dt><dd>1.3% (kedudukan ke-12, semua bahasa Cina)</dd></div>
+    <div><dt>Masa dalam talian</dt><dd>Jumlah 6.20 bilion jam/hari, digabungkan dengan bahasa Cina Ringkas (kedudukan pertama)</dd></div>
+  </dl>
+  <p class="region"><b>Kawasan</b>Tulisan yang digunakan di Taiwan, Hong Kong dan Macau. Ramai orang dalam masyarakat Cina yang sudah lama bertapak di Amerika Utara dan Australia juga menggunakan tulisan Tradisional. Taiwan menuturkan Mandarin baku (Huayu); di Hong Kong dan Macau, bahasa lisannya Kantonis, manakala penulisan menggunakan ragam tulis baku dalam tulisan Tradisional.</p>
+  <div class="persona">
+    <figure><img src="../../language-intro/img/zh.webp" width="800" height="1000" loading="lazy" decoding="async" alt="Persona rekaan. 陳怡君 (Chen Yi-chun), 31 tahun, tinggal di Taichung. Dia juruwang bank."></figure>
+    <div class="ptext"><h3>Persona</h3><p><span lang="zh-Hant">陳怡君</span> (Chen Yi-chun), 31 tahun, tinggal di Taichung. Dia juruwang bank. Pukul 11 malam, sebelum tidur, dia merancang percutian ke Kanazawa bulan depan di iPhone. Dia membuka laman ini daripada pautan yang dihantar oleh kawannya melalui LINE. Dia menarik sekeping kad dengan perasaan yang lebih kurang sama seperti mencabut kertas tilik di tokong. Apabila cerita itu sampai kepada warnanya melalui kraf Jepun seperti celupan Kaga yuzen atau kerajang emas, percutiannya bertambah satu lagi tempat untuk dilawati. Dia menghantar semula halaman keputusan itu kepada kawannya melalui LINE.</p></div>
+  </div>
+  <details><summary>Angka &amp; catatan</summary>
+    <div class="scroll"><table class="facts"><thead><tr><th scope="col">Perkara</th><th scope="col">Nilai</th><th scope="col">Catatan</th></tr></thead><tbody>
+      <tr><th scope="row">Jumlah penutur (bahasa pertama + kedua)</th><td>Dikira bersama bahasa Cina Ringkas sebagai Mandarin (1.183 bilion)</td><td>Bahasa Cina Tradisional dan Ringkas hanya dikira sekali, sebagai Mandarin. Tiada data bagi pembaca bahasa Cina Tradisional sahaja</td></tr>
+      <tr><th scope="row">Bahagian kandungan web</th><td>1.3% (kedudukan ke-12, semua bahasa Cina)</td><td>W3Techs tidak memisahkan bahasa Cina Ringkas dan Tradisional</td></tr>
+      <tr><th scope="row">Pengguna Internet mengikut bahasa</th><td>19.4% (kedudukan ke-2, semua bahasa Cina)</td><td>Internet World Stats, Mac 2020</td></tr>
+      <tr><th scope="row">Masa dalam talian</th><td>Jumlah 6.20 bilion jam/hari, digabungkan dengan bahasa Cina Ringkas (kedudukan pertama)</td><td>Anggaran Claude. Tiada anggaran berasingan bagi bahasa Cina Tradisional</td></tr>
+    </tbody></table></div>
+  </details>
+</section>
+
+<section class="lang" id="hi" aria-labelledby="h-hi">
+  <p class="kicker">05 · hi</p>
+  <h2 id="h-hi"><span lang="hi">हिन्दी</span><small>Bahasa Hindi</small></h2>
+  <dl class="nums">
+    <div><dt>Penutur</dt><dd>611 juta (kedudukan ke-3)</dd></div>
+    <div><dt>Web</dt><dd>Kurang daripada 0.1% (kedudukan ke-38)</dd></div>
+    <div><dt>Masa dalam talian</dt><dd>1.74 bilion jam</dd></div>
+  </dl>
+  <p class="region"><b>Kawasan</b>India utara dan tengah (Uttar Pradesh, Bihar, Rajasthan, Madhya Pradesh, Delhi dan lain-lain). Terdapat juga penutur di Nepal dan Fiji. Masyarakat India yang besar tinggal di negara-negara Teluk, United Kingdom, Amerika Syarikat dan Kanada.</p>
+  <div class="persona">
+    <figure><img src="../../language-intro/img/hi.webp" width="800" height="1000" loading="lazy" decoding="async" alt="Persona rekaan. Neha Verma, 24 tahun, tinggal di Jaipur. Dia pelatih artikel akauntan bertauliah."></figure>
+    <div class="ptext"><h3>Persona</h3><p>Neha Verma, 24 tahun, tinggal di Jaipur. Dia pelatih artikel akauntan bertauliah. Pukul 8 pagi, sebelum menaiki metro, dia menarik sekeping kad di telefon Redmi, seperti sambungan kepada rashifal (ramalan bintang harian) yang sentiasa dibaca oleh ibunya. Dia boleh membaca bahasa Inggeris juga, tetapi merasakan cerita warna lebih melekat di hati apabila dibaca dalam bahasa Hindi. Apabila cerita itu sampai kepada warnanya melalui bangunan “Kota Merah Jambu” Jaipur atau kain ikat celup Rajasthan, dia memilih dupatta (selendang) dalam warna itu. Keputusan yang disukainya dihantar kepada kakaknya melalui WhatsApp.</p></div>
+  </div>
+  <details><summary>Angka &amp; catatan</summary>
+    <div class="scroll"><table class="facts"><thead><tr><th scope="col">Perkara</th><th scope="col">Nilai</th><th scope="col">Catatan</th></tr></thead><tbody>
+      <tr><th scope="row">Jumlah penutur (bahasa pertama + kedua)</th><td>611 juta (kedudukan ke-3)</td><td>Ethnologue, edisi 2026</td></tr>
+      <tr><th scope="row">Bahagian kandungan web</th><td>Kurang daripada 0.1% (kedudukan ke-38)</td><td>W3Techs, Oktober 2026. Halaman web sangat sedikit berbanding bilangan penutur</td></tr>
+      <tr><th scope="row">Pengguna Internet mengikut bahasa</th><td>Di luar 10 teratas</td><td>Internet World Stats, Mac 2020</td></tr>
+      <tr><th scope="row">Masa dalam talian</th><td>Anggaran 290 juta pengguna Internet, purata 6.0 jam sehari, jumlah 1.74 bilion jam/hari (kedudukan ke-6)</td><td>Anggaran Claude. Mengandaikan kira-kira 35% pengguna di India ialah pengguna bahasa Hindi. Ini andaian yang paling goyah</td></tr>
+    </tbody></table></div>
+  </details>
+</section>
+
+<section class="lang" id="es" aria-labelledby="h-es">
+  <p class="kicker">06 · es</p>
+  <h2 id="h-es"><span lang="es">Español</span><small>Bahasa Sepanyol</small></h2>
+  <dl class="nums">
+    <div><dt>Penutur</dt><dd>561 juta (kedudukan ke-4)</dd></div>
+    <div><dt>Web</dt><dd>6.0% (kedudukan ke-2)</dd></div>
+    <div><dt>Masa dalam talian</dt><dd>2.96 bilion jam</dd></div>
+  </dl>
+  <p class="region"><b>Kawasan</b>Sepanyol dan banyak negara di Amerika Latin, termasuk Mexico, Colombia, Argentina, Peru, Chile dan Venezuela. Ramai orang di Amerika Syarikat juga bertutur dalam bahasa Sepanyol di rumah (bilangannya tidak disahkan di sini). Bahasa ini juga bahasa rasmi Guinea Khatulistiwa.</p>
+  <div class="persona">
+    <figure><img src="../../language-intro/img/es.webp" width="800" height="1000" loading="lazy" decoding="async" alt="Persona rekaan. Valeria Ortiz, 32 tahun, tinggal di Guadalajara, Mexico. Dia juruterapi pergigian."></figure>
+    <div class="ptext"><h3>Persona</h3><p>Valeria Ortiz, 32 tahun, tinggal di Guadalajara, Mexico. Dia juruterapi pergigian. Pukul 9.30 malam, di sofa selepas kerja, dia membuka telefon Android; dia datang ke laman ini selepas melihat satu cerita tarot di TikTok. Dia seronok membaca makna kad, tetapi bahagian kegemarannya ialah menanti nama warna di hujung cerita. Apabila cerita itu sampai kepada merah tua melalui koknil Mexico (merah yang diambil daripada serangga yang hidup di atas kaktus), dia terus menghantarnya kepada adik perempuannya melalui WhatsApp. Pada hujung tahun nanti, dia bercadang menggunakan laman ini untuk memilih warna pakaian dalamnya.</p></div>
+  </div>
+  <details><summary>Angka &amp; catatan</summary>
+    <div class="scroll"><table class="facts"><thead><tr><th scope="col">Perkara</th><th scope="col">Nilai</th><th scope="col">Catatan</th></tr></thead><tbody>
+      <tr><th scope="row">Jumlah penutur (bahasa pertama + kedua)</th><td>561 juta (kedudukan ke-4)</td><td>Ethnologue, edisi 2026</td></tr>
+      <tr><th scope="row">Bahagian kandungan web</th><td>6.0% (kedudukan ke-2)</td><td>W3Techs, Oktober 2026</td></tr>
+      <tr><th scope="row">Pengguna Internet mengikut bahasa</th><td>7.9% (kedudukan ke-3)</td><td>Internet World Stats, Mac 2020</td></tr>
+      <tr><th scope="row">Masa dalam talian</th><td>Anggaran 390 juta pengguna Internet, purata 7.6 jam sehari, jumlah 2.96 bilion jam/hari (kedudukan ke-3)</td><td>Anggaran Claude. Mexico, Sepanyol, Colombia, Argentina dan lain-lain, ditambah orang di Amerika Syarikat yang kebanyakannya berbahasa Sepanyol</td></tr>
+    </tbody></table></div>
+  </details>
+</section>
+
+<section class="lang" id="ar" aria-labelledby="h-ar">
+  <p class="kicker">07 · ar</p>
+  <h2 id="h-ar"><span lang="ar" dir="rtl">العربية</span><small>Bahasa Arab (Arab Standard Moden)</small></h2>
+  <dl class="nums">
+    <div><dt>Penutur</dt><dd>335 juta (kedudukan ke-5, Arab Standard Moden)</dd></div>
+    <div><dt>Web</dt><dd>0.6% (kedudukan ke-19)</dd></div>
+    <div><dt>Masa dalam talian</dt><dd>2.31 bilion jam</dd></div>
+  </dl>
+  <p class="region"><b>Kawasan</b>Bahasa rasmi kira-kira 22 negara di Asia Barat dan Afrika Utara, termasuk Mesir, Arab Saudi, Iraq, Algeria, Maghribi, Sudan, Syria, Jordan dan UAE. Ramai penutur bahasa Arab juga tinggal di Eropah (Perancis, Jerman dan lain-lain) dan Amerika Utara. Susun atur laman ini dari kanan ke kiri.</p>
+  <div class="persona">
+    <figure><img src="../../language-intro/img/ar.webp" width="800" height="1000" loading="lazy" decoding="async" alt="Persona rekaan. Nour Haddad, 28 tahun, tinggal di Amman, Jordan. Dia bekerja di sebuah firma reka bentuk seni bina."></figure>
+    <div class="ptext"><h3>Persona</h3><p>Nour Haddad, 28 tahun, tinggal di Amman, Jordan. Dia bekerja di sebuah firma reka bentuk seni bina. Pukul 8 malam, dia membuka iPhone di balkoni rumahnya. Dia tidak percaya kepada tilikan; dia menikmati lukisan kad dan ceritanya sebagai “bacaan ringkas.” Apabila cerita itu sampai kepada warnanya melalui biru jubin seni bina Islam atau merah mawar batu Petra, dia mencatatnya sebagai rujukan skema warna untuk kerja. Kadang-kadang dia menghantar halaman keputusan ke kumpulan WhatsApp rakan-rakan arkitek.</p></div>
+  </div>
+  <details><summary>Angka &amp; catatan</summary>
+    <div class="scroll"><table class="facts"><thead><tr><th scope="col">Perkara</th><th scope="col">Nilai</th><th scope="col">Catatan</th></tr></thead><tbody>
+      <tr><th scope="row">Jumlah penutur (bahasa pertama + kedua)</th><td>335 juta (kedudukan ke-5, Arab Standard Moden)</td><td>Ethnologue, edisi 2026</td></tr>
+      <tr><th scope="row">Bahagian kandungan web</th><td>0.6% (kedudukan ke-19)</td><td>W3Techs, Oktober 2026</td></tr>
+      <tr><th scope="row">Pengguna Internet mengikut bahasa</th><td>5.2% (kedudukan ke-4)</td><td>Internet World Stats, Mac 2020</td></tr>
+      <tr><th scope="row">Masa dalam talian</th><td>Anggaran 330 juta pengguna Internet, purata 7.0 jam sehari, jumlah 2.31 bilion jam/hari (kedudukan ke-4)</td><td>Anggaran Claude. Mesir, Arab Saudi, Iraq, Algeria, Maghribi dan lain-lain</td></tr>
+    </tbody></table></div>
+  </details>
+</section>
+
+<section class="lang" id="fr" aria-labelledby="h-fr">
+  <p class="kicker">08 · fr</p>
+  <h2 id="h-fr"><span lang="fr">Français</span><small>Bahasa Perancis</small></h2>
+  <dl class="nums">
+    <div><dt>Penutur</dt><dd>334 juta (kedudukan ke-6)</dd></div>
+    <div><dt>Web</dt><dd>4.5% (kedudukan ke-5)</dd></div>
+    <div><dt>Masa dalam talian</dt><dd>750 juta jam</dd></div>
+  </dl>
+  <p class="region"><b>Kawasan</b>Perancis, selatan Belgium, barat Switzerland, Quebec di Kanada dan Luxembourg. Di Afrika Barat dan Tengah (Côte d’Ivoire, Senegal, Republik Demokratik Congo, Cameroon dan lain-lain), bahasa ini ialah bahasa sekolah dan pentadbiran. Bahasa ini juga digunakan secara meluas di Maghribi, Algeria dan Tunisia di Afrika Utara.</p>
+  <div class="persona">
+    <figure><img src="../../language-intro/img/fr.webp" width="800" height="1000" loading="lazy" decoding="async" alt="Persona rekaan. Hélène Garnier, 41 tahun, tinggal di Lyon. Dia mengusahakan studio penjilidan buku dan pemuliharaan kertas."></figure>
+    <div class="ptext"><h3>Persona</h3><p>Hélène Garnier, 41 tahun, tinggal di Lyon. Dia mengusahakan studio penjilidan buku dan pemuliharaan kertas. Pukul 10 pagi hari Ahad, dia membuka tablet di meja kerja studionya. Dia masih ingat dek Marseille di rumah neneknya, jadi nama-nama Arkana Major terasa biasa baginya. Apabila cerita itu sampai kepada warnanya melalui pencelupan sutera Lyon atau peniaga pigmen di Paris, dia menggunakannya untuk memilih warna kertas pelapik bagi jilidan seterusnya. Dia memilih gaya Art Nouveau.</p></div>
+  </div>
+  <details><summary>Angka &amp; catatan</summary>
+    <div class="scroll"><table class="facts"><thead><tr><th scope="col">Perkara</th><th scope="col">Nilai</th><th scope="col">Catatan</th></tr></thead><tbody>
+      <tr><th scope="row">Jumlah penutur (bahasa pertama + kedua)</th><td>334 juta (kedudukan ke-6)</td><td>Ethnologue, edisi 2026</td></tr>
+      <tr><th scope="row">Bahagian kandungan web</th><td>4.5% (kedudukan ke-5)</td><td>W3Techs, Oktober 2026</td></tr>
+      <tr><th scope="row">Pengguna Internet mengikut bahasa</th><td>3.3% (kedudukan ke-7)</td><td>Internet World Stats, Mac 2020</td></tr>
+      <tr><th scope="row">Masa dalam talian</th><td>Anggaran 125 juta pengguna Internet, purata 6.0 jam sehari, jumlah 750 juta jam/hari (kedudukan ke-9)</td><td>Anggaran Claude. Perancis, Belgium dan Quebec, ditambah Afrika berbahasa Perancis</td></tr>
+    </tbody></table></div>
+  </details>
+</section>
+
+<section class="lang" id="bn" aria-labelledby="h-bn">
+  <p class="kicker">09 · bn</p>
+  <h2 id="h-bn"><span lang="bn">বাংলা</span><small>Bahasa Bengali</small></h2>
+  <dl class="nums">
+    <div><dt>Penutur</dt><dd>274 juta (kedudukan ke-7)</dd></div>
+    <div><dt>Web</dt><dd>Kurang daripada 0.1% (kedudukan ke-39)</dd></div>
+    <div><dt>Masa dalam talian</dt><dd>610 juta jam</dd></div>
+  </dl>
+  <p class="region"><b>Kawasan</b>Bangladesh (bahasa kebangsaan) dan negeri-negeri India iaitu Benggala Barat, Tripura serta sebahagian Assam. Ramai orang dari Bangladesh tinggal di United Kingdom (London Timur), negara-negara Teluk, Amerika Syarikat dan Malaysia.</p>
+  <div class="persona">
+    <figure><img src="../../language-intro/img/bn.webp" width="800" height="1000" loading="lazy" decoding="async" alt="Persona rekaan. Farhana Akter, 23 tahun, tinggal di Dhaka. Dia menuntut dalam bidang kesusasteraan Inggeris di universiti."></figure>
+    <div class="ptext"><h3>Persona</h3><p>Farhana Akter, 23 tahun, tinggal di Dhaka. Dia menuntut dalam bidang kesusasteraan Inggeris di universiti. Pukul 10 malam, ketika berehat daripada mengulang kaji, dia melayari Facebook di telefon Samsung dan sampai ke sini daripada halaman keputusan yang dikongsi oleh kawannya. Dia menikmatinya bukan sebagai tilikan, tetapi sebagai cerita pendek yang boleh dibaca dalam bahasa Bengali. Apabila cerita itu sampai kepada warna gading melalui muslin Dhaka atau tenunan Jamdani, dia menyalin nama warna itu ke dalam buku nota puisinya.</p></div>
+  </div>
+  <details><summary>Angka &amp; catatan</summary>
+    <div class="scroll"><table class="facts"><thead><tr><th scope="col">Perkara</th><th scope="col">Nilai</th><th scope="col">Catatan</th></tr></thead><tbody>
+      <tr><th scope="row">Jumlah penutur (bahasa pertama + kedua)</th><td>274 juta (kedudukan ke-7)</td><td>Ethnologue, edisi 2026</td></tr>
+      <tr><th scope="row">Bahagian kandungan web</th><td>Kurang daripada 0.1% (kedudukan ke-39)</td><td>W3Techs, Oktober 2026</td></tr>
+      <tr><th scope="row">Pengguna Internet mengikut bahasa</th><td>Di luar 10 teratas</td><td>Internet World Stats, Mac 2020</td></tr>
+      <tr><th scope="row">Masa dalam talian</th><td>Anggaran 110 juta pengguna Internet, purata 5.5 jam sehari, jumlah 610 juta jam/hari (kedudukan ke-10)</td><td>Anggaran Claude. Bangladesh ditambah Benggala Barat</td></tr>
+    </tbody></table></div>
+  </details>
+</section>
+
+<section class="lang" id="pt" aria-labelledby="h-pt">
+  <p class="kicker">10 · pt</p>
+  <h2 id="h-pt"><span lang="pt">Português</span><small>Bahasa Portugis (Brazil)</small></h2>
+  <dl class="nums">
+    <div><dt>Penutur</dt><dd>269 juta (kedudukan ke-8)</dd></div>
+    <div><dt>Web</dt><dd>4.1% (kedudukan ke-6)</dd></div>
+    <div><dt>Masa dalam talian</dt><dd>1.89 bilion jam</dd></div>
+  </dl>
+  <p class="region"><b>Kawasan</b>Brazil (laman ini menggunakan pt-BR) dan Portugal. Bahasa ini juga bahasa rasmi di negara-negara Afrika seperti Angola, Mozambique dan Cape Verde. Ramai rakyat Brazil keturunan Jepun tinggal di Jepun. Terdapat masyarakat Brazil di Amerika Syarikat, Portugal dan Jepun.</p>
+  <div class="persona">
+    <figure><img src="../../language-intro/img/pt.webp" width="800" height="1000" loading="lazy" decoding="async" alt="Persona rekaan. Juliana Costa, 30 tahun, tinggal di Recife. Dia jururawat hospital yang juga bertugas syif malam."></figure>
+    <div class="ptext"><h3>Persona</h3><p>Juliana Costa, 30 tahun, tinggal di Recife. Dia jururawat hospital yang juga bertugas syif malam. Pukul 6.30 pagi, di dalam bas pulang selepas syif malam, dia membuka telefon Samsung dan menarik sekeping kad. Dia lebih menanti warna di hujung cerita daripada makna kad. Apabila cerita itu sampai kepada warnanya melalui pau-brasil (pokok pewarna merah yang memberikan nama kepada Brazil), dia menghantarnya ke kumpulan WhatsApp rakan sekerja. Dia juga bercadang menarik kad di sini untuk memilih warna pakaian pada malam Tahun Baharu.</p></div>
+  </div>
+  <details><summary>Angka &amp; catatan</summary>
+    <div class="scroll"><table class="facts"><thead><tr><th scope="col">Perkara</th><th scope="col">Nilai</th><th scope="col">Catatan</th></tr></thead><tbody>
+      <tr><th scope="row">Jumlah penutur (bahasa pertama + kedua)</th><td>269 juta (kedudukan ke-8)</td><td>Ethnologue, edisi 2026</td></tr>
+      <tr><th scope="row">Bahagian kandungan web</th><td>4.1% (kedudukan ke-6)</td><td>W3Techs, Oktober 2026</td></tr>
+      <tr><th scope="row">Pengguna Internet mengikut bahasa</th><td>3.7% (kedudukan ke-6)</td><td>Internet World Stats, Mac 2020</td></tr>
+      <tr><th scope="row">Masa dalam talian</th><td>Anggaran 210 juta pengguna Internet, purata 9.0 jam sehari, jumlah 1.89 bilion jam/hari (kedudukan ke-5)</td><td>Anggaran Claude. Kebanyakannya Brazil. Masa dalam talian antara yang paling panjang di dunia</td></tr>
+    </tbody></table></div>
+  </details>
+</section>
+
+<section class="lang" id="id" aria-labelledby="h-id">
+  <p class="kicker">11 · id</p>
+  <h2 id="h-id"><span lang="id">Bahasa Indonesia</span><small>Bahasa Indonesia</small></h2>
+  <dl class="nums">
+    <div><dt>Penutur</dt><dd>255 juta (kedudukan ke-9)</dd></div>
+    <div><dt>Web</dt><dd>1.2% (kedudukan ke-13)</dd></div>
+    <div><dt>Masa dalam talian</dt><dd>1.55 bilion jam</dd></div>
+  </dl>
+  <p class="region"><b>Kawasan</b>Bahasa kebangsaan Indonesia, digunakan di sekolah dan tempat kerja oleh lebih 200 juta orang. Di Timor-Leste, bahasa ini ialah bahasa kerja. Secara umumnya, bahasa ini saling difahami dengan bahasa Melayu di Malaysia, Brunei dan Singapura. Semakin ramai orang Indonesia bekerja di Jepun sebagai pelatih teknikal atau di bawah program Pekerja Berkemahiran Khusus.</p>
+  <div class="persona">
+    <figure><img src="../../language-intro/img/id.webp" width="800" height="1000" loading="lazy" decoding="async" alt="Persona rekaan. Dimas Pratama, 25 tahun, tinggal di Bandung. Dia pereka grafik junior di sebuah syarikat pemula."></figure>
+    <div class="ptext"><h3>Persona</h3><p>Dimas Pratama, 25 tahun, tinggal di Bandung. Dia pereka grafik junior di sebuah syarikat pemula. Pukul 9 pagi, dia membuka telefon Android di sebuah ruang kerja bersama. Dia menggunakan laman ini bukan untuk tilikan, tetapi sebagai alat mencari idea skema warna. Makna kad dibacanya sepintas lalu, manakala cerita warna dibacanya dengan teliti. Apabila cerita itu sampai kepada warnanya melalui nila batik Jawa atau kraf buluh Sunda, dia menjadikannya warna asas draf poster hari itu. Di Instagram Stories, dia hanya berkongsi nama warnanya.</p></div>
+  </div>
+  <details><summary>Angka &amp; catatan</summary>
+    <div class="scroll"><table class="facts"><thead><tr><th scope="col">Perkara</th><th scope="col">Nilai</th><th scope="col">Catatan</th></tr></thead><tbody>
+      <tr><th scope="row">Jumlah penutur (bahasa pertama + kedua)</th><td>255 juta (kedudukan ke-9)</td><td>Ethnologue, edisi 2026</td></tr>
+      <tr><th scope="row">Bahagian kandungan web</th><td>1.2% (kedudukan ke-13)</td><td>W3Techs, Oktober 2026</td></tr>
+      <tr><th scope="row">Pengguna Internet mengikut bahasa</th><td>4.3% (kedudukan ke-5)</td><td>Internet World Stats, Mac 2020. Berkongsi satu baris dengan bahasa Melayu; angkanya bagi bahasa Indonesia</td></tr>
+      <tr><th scope="row">Masa dalam talian</th><td>Anggaran 210 juta pengguna Internet, purata 7.4 jam sehari, jumlah 1.55 bilion jam/hari (kedudukan ke-7)</td><td>Anggaran Claude</td></tr>
+    </tbody></table></div>
+  </details>
+</section>
+
+<section class="lang" id="ms" aria-labelledby="h-ms">
+  <p class="kicker">12 · ms</p>
+  <h2 id="h-ms"><span lang="ms">Bahasa Melayu</span></h2>
+  <dl class="nums">
+    <div><dt>Penutur</dt><dd>tidak diketahui</dd></div>
+    <div><dt>Web</dt><dd>tiada data</dd></div>
+    <div><dt>Masa dalam talian</dt><dd>Kira-kira 160 juta jam (angka rujukan, di luar kedudukan)</dd></div>
+  </dl>
+  <p class="region"><b>Kawasan</b>Malaysia, Brunei dan Singapura (bahasa kebangsaan). Terdapat juga penutur bahasa Melayu di selatan Thailand. Di Malaysia, orang Melayu menggunakannya dalam kehidupan seharian, dan rakyat Malaysia berketurunan Cina dan India juga mempelajarinya di sekolah.</p>
+  <div class="persona">
+    <figure><img src="../../language-intro/img/ms.webp" width="800" height="1000" loading="lazy" decoding="async" alt="Persona rekaan. Nur Aisyah binti Rahman, 27 tahun, tinggal di Shah Alam. Dia ahli farmasi hospital."></figure>
+    <div class="ptext"><h3>Persona</h3><p>Nur Aisyah binti Rahman, 27 tahun, tinggal di Shah Alam. Dia ahli farmasi hospital. Pukul 1 tengah hari, waktu rehat makan, dia menonton TikTok di telefon Android untuk mencari tip percutian ke Osaka pada bulan Mac tahun depan. Dia tidak percaya kepada tilikan, tetapi menyukai lukisan kad dan cerita warna sebagai “bacaan yang indah.” Apabila cerita itu sampai kepada warnanya melalui benang emas songket Melayu atau pelabuhan Melaka, dia menjadikannya rujukan warna tudung untuk percutian itu. Ke kumpulan WhatsApp keluarga, dia hanya menghantar nama warnanya.</p></div>
+  </div>
+  <details><summary>Angka &amp; catatan</summary>
+    <div class="scroll"><table class="facts"><thead><tr><th scope="col">Perkara</th><th scope="col">Nilai</th><th scope="col">Catatan</th></tr></thead><tbody>
+      <tr><th scope="row">Jumlah penutur (bahasa pertama + kedua)</th><td>tidak diketahui</td><td>Bahasa Melayu sering dikira bersama bahasa Indonesia sebagai makrobahasa, jadi tiada angka berasingan. Halaman Wikipedia “Malay language” (memetik Ethnologue edisi ke-28, 2025) menyatakan bahasa Melayu sebagai makrobahasa mempunyai kira-kira 90 juta penutur bahasa pertama (2020–2023) dan kira-kira 180 juta penutur bahasa kedua (2020). Kiraan ini merangkumi ragam Melayu tempatan di Indonesia dan bukan kiraan bahasa Melayu baku sahaja</td></tr>
+      <tr><th scope="row">Bahagian kandungan web</th><td>tiada data</td><td>Tidak tersenarai dalam 40 teratas W3Techs</td></tr>
+      <tr><th scope="row">Pengguna Internet mengikut bahasa</th><td>Satu baris dengan bahasa Indonesia</td><td>Dalam Internet World Stats, angka bagi baris Indonesia/Melayu hanyalah 4.3% bahasa Indonesia</td></tr>
+      <tr><th scope="row">Masa dalam talian</th><td>Kira-kira 160 juta jam/hari (angka rujukan, di luar kedudukan)</td><td>Angka rujukan di luar kedudukan dalam anggaran Claude. Kira-kira 60% pengguna di Malaysia ditambah Brunei</td></tr>
+    </tbody></table></div>
+  </details>
+</section>
+
+<section class="lang" id="ur" aria-labelledby="h-ur">
+  <p class="kicker">13 · ur</p>
+  <h2 id="h-ur"><span lang="ur" dir="rtl">اردو</span><small>Bahasa Urdu</small></h2>
+  <dl class="nums">
+    <div><dt>Penutur</dt><dd>246 juta (kedudukan ke-10)</dd></div>
+    <div><dt>Web</dt><dd>tiada data</dd></div>
+    <div><dt>Masa dalam talian</dt><dd>520 juta jam</dd></div>
+  </dl>
+  <p class="region"><b>Kawasan</b>Pakistan (bahasa kebangsaan) dan India utara (Uttar Pradesh, Hyderabad di Telangana, Delhi dan lain-lain). Ramai orang berketurunan Pakistan tinggal di United Kingdom, negara-negara Teluk, Amerika Syarikat dan Kanada. Bahasa lisannya dekat dengan bahasa Hindi, tetapi tulisannya (tulisan Arab gaya Nastaliq) berbeza. Susun atur laman ini dari kanan ke kiri.</p>
+  <div class="persona">
+    <figure><img src="../../language-intro/img/ur.webp" width="800" height="1000" loading="lazy" decoding="async" alt="Persona rekaan. Hamza Qureshi, 30 tahun, tinggal di Lahore. Dia jurutera perisian di sebuah syarikat fintech."></figure>
+    <div class="ptext"><h3>Persona</h3><p>Hamza Qureshi, 30 tahun, tinggal di Lahore. Dia jurutera perisian di sebuah syarikat fintech. Pukul 12.30 tengah malam, selepas kerja, dia membuka telefon Android sambil menghirup secawan chai. Dia menjauhkan diri daripada tilikan, tetapi menyukai halaman yang menyusun teks Urdu dengan cantik, dan datang untuk membaca ceritanya. Apabila cerita itu sampai kepada warnanya melalui biru ultramarin lukisan miniatur Mughal atau jubin di dinding Kubu Lahore, dia menghantar pautannya kepada seorang kawan penyair melalui WhatsApp.</p></div>
+  </div>
+  <details><summary>Angka &amp; catatan</summary>
+    <div class="scroll"><table class="facts"><thead><tr><th scope="col">Perkara</th><th scope="col">Nilai</th><th scope="col">Catatan</th></tr></thead><tbody>
+      <tr><th scope="row">Jumlah penutur (bahasa pertama + kedua)</th><td>246 juta (kedudukan ke-10)</td><td>Ethnologue, edisi 2026</td></tr>
+      <tr><th scope="row">Bahagian kandungan web</th><td>tiada data</td><td>Tidak tersenarai dalam 40 teratas W3Techs</td></tr>
+      <tr><th scope="row">Pengguna Internet mengikut bahasa</th><td>Di luar 10 teratas</td><td>Internet World Stats, Mac 2020</td></tr>
+      <tr><th scope="row">Masa dalam talian</th><td>Anggaran 95 juta pengguna Internet, purata 5.5 jam sehari, jumlah 520 juta jam/hari (kedudukan ke-13)</td><td>Anggaran Claude. Kira-kira 75% Pakistan ditambah sebahagian India</td></tr>
+    </tbody></table></div>
+  </details>
+</section>
+
+<section class="lang" id="ru" aria-labelledby="h-ru">
+  <p class="kicker">14 · ru</p>
+  <h2 id="h-ru"><span lang="ru">Русский</span><small>Bahasa Rusia</small></h2>
+  <dl class="nums">
+    <div><dt>Penutur</dt><dd>210 juta (kedudukan ke-11)</dd></div>
+    <div><dt>Web</dt><dd>3.4% (kedudukan ke-7)</dd></div>
+    <div><dt>Masa dalam talian</dt><dd>1.16 bilion jam</dd></div>
+  </dl>
+  <p class="region"><b>Kawasan</b>Bahasa rasmi Rusia, Belarus, Kazakhstan dan Kyrgyzstan. Ramai orang di negara-negara bekas Kesatuan Soviet yang lain (Asia Tengah, Caucasus, negara-negara Baltik) juga menggunakan bahasa Rusia. Terdapat juga masyarakat berbahasa Rusia di Israel, Jerman dan Amerika Syarikat.</p>
+  <div class="persona">
+    <figure><img src="../../language-intro/img/ru.webp" width="800" height="1000" loading="lazy" decoding="async" alt="Persona rekaan. Анна Соколова (Anna Sokolova), 35 tahun, tinggal di Novosibirsk. Dia juruteknik analisis kimia di sebuah institut penyelidikan."></figure>
+    <div class="ptext"><h3>Persona</h3><p><span lang="ru">Анна Соколова</span> (Anna Sokolova), 35 tahun, tinggal di Novosibirsk. Dia juruteknik analisis kimia di sebuah institut penyelidikan. Pukul 10 malam, dia membuka telefon Android di dapur sambil minum teh. Dia mengetahui tentang laman ini daripada saluran Telegram yang memperkenalkan warna dan seni. Disebabkan kerjanya, dia sangat seronok menarik sekeping kad lalu mengikuti cerita itu sampai kepada warnanya melalui mineral dan pigmen. Pada hari hijau malakit keluar, dia menunjukkan gambar batu itu kepada anak perempuannya.</p></div>
+  </div>
+  <details><summary>Angka &amp; catatan</summary>
+    <div class="scroll"><table class="facts"><thead><tr><th scope="col">Perkara</th><th scope="col">Nilai</th><th scope="col">Catatan</th></tr></thead><tbody>
+      <tr><th scope="row">Jumlah penutur (bahasa pertama + kedua)</th><td>210 juta (kedudukan ke-11)</td><td>Ethnologue, edisi 2026</td></tr>
+      <tr><th scope="row">Bahagian kandungan web</th><td>3.4% (kedudukan ke-7)</td><td>W3Techs, Oktober 2026</td></tr>
+      <tr><th scope="row">Pengguna Internet mengikut bahasa</th><td>2.5% (kedudukan ke-9)</td><td>Internet World Stats, Mac 2020</td></tr>
+      <tr><th scope="row">Masa dalam talian</th><td>Anggaran 155 juta pengguna Internet, purata 7.5 jam sehari, jumlah 1.16 bilion jam/hari (kedudukan ke-8)</td><td>Anggaran Claude. Rusia ditambah Belarus, Kazakhstan dan sebahagian Asia Tengah</td></tr>
+    </tbody></table></div>
+  </details>
+</section>
+
+<section class="lang" id="de" aria-labelledby="h-de">
+  <p class="kicker">15 · de</p>
+  <h2 id="h-de"><span lang="de">Deutsch</span><small>Bahasa Jerman</small></h2>
+  <dl class="nums">
+    <div><dt>Penutur</dt><dd>133 juta (kedudukan ke-12)</dd></div>
+    <div><dt>Web</dt><dd>5.9% (kedudukan ke-3)</dd></div>
+    <div><dt>Masa dalam talian</dt><dd>480 juta jam</dd></div>
+  </dl>
+  <p class="region"><b>Kawasan</b>Jerman, Austria, Switzerland (utara dan tengah), Liechtenstein, Luxembourg, Tyrol Selatan di Itali dan timur Belgium.</p>
+  <div class="persona">
+    <figure><img src="../../language-intro/img/de.webp" width="800" height="1000" loading="lazy" decoding="async" alt="Persona rekaan. Jonas Weber, 38 tahun, tinggal di Leipzig. Dia jurutera bunyi di sebuah teater."></figure>
+    <div class="ptext"><h3>Persona</h3><p>Jonas Weber, 38 tahun, tinggal di Leipzig. Dia jurutera bunyi di sebuah teater. Pukul 1 tengah hari pada hari bekerja, waktu rehat, dia membukanya dalam Firefox di komputer riba. Dia menggunakan penyekat iklan dan menolak sepanduk persetujuan. Dia tidak percaya kepada tilikan, tetapi suka membandingkan gaya kad (fotografi surealis, grafik brutalis). Apabila cerita itu sampai kepada warnanya melalui biru Prusia, yang lahir di Berlin pada awal abad ke-18, dia gembira dan menceritakannya kepada rakan sekerja.</p></div>
+  </div>
+  <details><summary>Angka &amp; catatan</summary>
+    <div class="scroll"><table class="facts"><thead><tr><th scope="col">Perkara</th><th scope="col">Nilai</th><th scope="col">Catatan</th></tr></thead><tbody>
+      <tr><th scope="row">Jumlah penutur (bahasa pertama + kedua)</th><td>133 juta (kedudukan ke-12)</td><td>Ethnologue, edisi 2026</td></tr>
+      <tr><th scope="row">Bahagian kandungan web</th><td>5.9% (kedudukan ke-3)</td><td>W3Techs, Oktober 2026</td></tr>
+      <tr><th scope="row">Pengguna Internet mengikut bahasa</th><td>2.0% (kedudukan ke-10)</td><td>Internet World Stats, Mac 2020</td></tr>
+      <tr><th scope="row">Masa dalam talian</th><td>Anggaran 93 juta pengguna Internet, purata 5.2 jam sehari, jumlah 480 juta jam/hari (kedudukan ke-17)</td><td>Anggaran Claude. Jerman, Austria, Switzerland</td></tr>
+    </tbody></table></div>
+  </details>
+</section>
+
+<section class="lang" id="vi" aria-labelledby="h-vi">
+  <p class="kicker">16 · vi</p>
+  <h2 id="h-vi"><span lang="vi">Tiếng Việt</span><small>Bahasa Vietnam</small></h2>
+  <dl class="nums">
+    <div><dt>Penutur</dt><dd>97 juta (kedudukan ke-17)</dd></div>
+    <div><dt>Web</dt><dd>0.9% (kedudukan ke-16)</dd></div>
+    <div><dt>Masa dalam talian</dt><dd>500 juta jam</dd></div>
+  </dl>
+  <p class="region"><b>Kawasan</b>Vietnam. Terdapat masyarakat Vietnam yang besar di Amerika Syarikat (California, Texas), Australia, Perancis dan Kanada. Ramai orang Vietnam juga tinggal di Jepun sebagai pelatih teknikal atau pelajar.</p>
+  <div class="persona">
+    <figure><img src="../../language-intro/img/vi.webp" width="800" height="1000" loading="lazy" decoding="async" alt="Persona rekaan. Trần Văn Minh, 24 tahun, tinggal di bandar Toyota, Wilayah Aichi. Dia pelatih teknikal di sebuah kilang alat ganti kereta."></figure>
+    <div class="ptext"><h3>Persona</h3><p>Trần Văn Minh, 24 tahun, tinggal di bandar Toyota, Wilayah Aichi. Dia pelatih teknikal di sebuah kilang alat ganti kereta. Pukul 5 petang, sebelum keluar untuk syif malam, dia membuka telefon Android di bilik asrama. Keputusan daripada laman ini pernah dikongsi dalam kumpulan Facebook kawan-kawan yang tinggal di Jepun. Dia menarik sekeping kad sambil membandingkannya dengan warna <i lang="vi">mệnh</i> (unsur kelahiran) yang sering disebut oleh ibunya. Apabila cerita itu sampai kepada warnanya melalui sutera tanglung Hội An atau lakuer kampung halamannya, dia menghantarnya kepada keluarga melalui Zalo.</p></div>
+  </div>
+  <details><summary>Angka &amp; catatan</summary>
+    <div class="scroll"><table class="facts"><thead><tr><th scope="col">Perkara</th><th scope="col">Nilai</th><th scope="col">Catatan</th></tr></thead><tbody>
+      <tr><th scope="row">Jumlah penutur (bahasa pertama + kedua)</th><td>97 juta (kedudukan ke-17)</td><td>Ethnologue, edisi 2026</td></tr>
+      <tr><th scope="row">Bahagian kandungan web</th><td>0.9% (kedudukan ke-16)</td><td>W3Techs, Oktober 2026</td></tr>
+      <tr><th scope="row">Pengguna Internet mengikut bahasa</th><td>Di luar 10 teratas</td><td>Internet World Stats, Mac 2020</td></tr>
+      <tr><th scope="row">Masa dalam talian</th><td>Anggaran 79 juta pengguna Internet, purata 6.3 jam sehari, jumlah 500 juta jam/hari (kedudukan ke-15)</td><td>Anggaran Claude</td></tr>
+    </tbody></table></div>
+  </details>
+</section>
+
+<section class="lang" id="sw" aria-labelledby="h-sw">
+  <p class="kicker">17 · sw</p>
+  <h2 id="h-sw"><span lang="sw">Kiswahili</span><small>Bahasa Swahili</small></h2>
+  <dl class="nums">
+    <div><dt>Penutur</dt><dd>95 juta (kedudukan ke-19)</dd></div>
+    <div><dt>Web</dt><dd>tiada data</dd></div>
+    <div><dt>Masa dalam talian</dt><dd>Tiada anggaran</dd></div>
+  </dl>
+  <p class="region"><b>Kawasan</b>Tanzania dan Kenya. Di Tanzania, bahasa ini bahasa kebangsaan; sekolah rendah diajar dalam bahasa Swahili, dan bahasa Inggeris mengambil alih mulai sekolah menengah. Di Kenya, bahasa ini salah satu bahasa rasmi; kelas-kelas awal diajar dalam bahasa ibunda atau Swahili, kemudian dalam bahasa Inggeris, dengan bahasa Swahili sebagai mata pelajaran wajib. Bahasa ini juga digunakan secara meluas di Uganda, Rwanda, Burundi, timur Republik Demokratik Congo dan Comoros. Bahasa ini juga salah satu bahasa kerja Kesatuan Afrika.</p>
+  <div class="persona">
+    <figure><img src="../../language-intro/img/sw.webp" width="800" height="1000" loading="lazy" decoding="async" alt="Persona rekaan. Amina Juma, 28 tahun, tinggal di Dar es Salaam. Dia guru sekolah rendah."></figure>
+    <div class="ptext"><h3>Persona</h3><p>Amina Juma, 28 tahun, tinggal di Dar es Salaam. Dia guru sekolah rendah. Pukul 3.30 petang, selepas waktu mengajar, dia membuka telefon Android di bilik guru. Satu keputusan daripada laman ini pernah tersebar dalam kumpulan WhatsApp rakan sekerjanya. Dia menarik sekeping kad sambil membandingkannya dengan warna kain kanga. Apabila cerita itu sampai kepada warnanya melalui nila kanga atau langit senja di atas Lautan Hindi, dia menghantarnya kepada ibunya melalui WhatsApp.</p></div>
+  </div>
+  <details><summary>Angka &amp; catatan</summary>
+    <div class="scroll"><table class="facts"><thead><tr><th scope="col">Perkara</th><th scope="col">Nilai</th><th scope="col">Catatan</th></tr></thead><tbody>
+      <tr><th scope="row">Jumlah penutur (bahasa pertama + kedua)</th><td>95 juta (kedudukan ke-19)</td><td>Ethnologue, edisi 2026</td></tr>
+      <tr><th scope="row">Bahagian kandungan web</th><td>tiada data</td><td>Tidak tersenarai dalam 40 teratas W3Techs</td></tr>
+      <tr><th scope="row">Pengguna Internet mengikut bahasa</th><td>Di luar 10 teratas</td><td>Internet World Stats, Mac 2020</td></tr>
+      <tr><th scope="row">Masa dalam talian</th><td>Tiada anggaran</td><td>Anggaran Claude tiada baris untuk bahasa Swahili. Kenya dan Tanzania dimasukkan ke dalam bahasa Inggeris atau Swahili secara keseluruhan, dan masa bagi bahasa Swahili sahaja tidak diasingkan</td></tr>
+    </tbody></table></div>
+  </details>
+</section>
+
+<section class="lang" id="tr" aria-labelledby="h-tr">
+  <p class="kicker">18 · tr</p>
+  <h2 id="h-tr"><span lang="tr">Türkçe</span><small>Bahasa Turki</small></h2>
+  <dl class="nums">
+    <div><dt>Penutur</dt><dd>94 juta (kedudukan ke-20, seri dengan bahasa Hausa)</dd></div>
+    <div><dt>Web</dt><dd>1.6% (kedudukan ke-11)</dd></div>
+    <div><dt>Masa dalam talian</dt><dd>560 juta jam</dd></div>
+  </dl>
+  <p class="region"><b>Kawasan</b>Turkiye dan Cyprus Utara. Jerman mempunyai masyarakat Turki yang besar, dan ramai juga yang tinggal di Belanda, Austria dan Perancis. Terdapat juga penutur di Bulgaria dan utara Greece.</p>
+  <div class="persona">
+    <figure><img src="../../language-intro/img/tr.webp" width="800" height="1000" loading="lazy" decoding="async" alt="Persona rekaan. Elif Yıldız, 33 tahun, tinggal di İzmir. Dia guru kimia sekolah menengah atas."></figure>
+    <div class="ptext"><h3>Persona</h3><p>Elif Yıldız, 33 tahun, tinggal di İzmir. Dia guru kimia sekolah menengah atas. Pukul 4.30 petang, selepas waktu mengajar, dia dan kawan-kawannya menilik ampas kopi di sebuah kafe, kemudian dia membuka laman ini di iPhone. Dia dan kawan-kawannya membaca makna kad bersama-sama. Apabila cerita itu sampai kepada warnanya melalui firus atau biru jubin İznik, semua orang teruja, dan dia menyiarkannya di Instagram Stories.</p></div>
+  </div>
+  <details><summary>Angka &amp; catatan</summary>
+    <div class="scroll"><table class="facts"><thead><tr><th scope="col">Perkara</th><th scope="col">Nilai</th><th scope="col">Catatan</th></tr></thead><tbody>
+      <tr><th scope="row">Jumlah penutur (bahasa pertama + kedua)</th><td>94 juta (kedudukan ke-20, seri dengan bahasa Hausa)</td><td>Ethnologue, edisi 2026</td></tr>
+      <tr><th scope="row">Bahagian kandungan web</th><td>1.6% (kedudukan ke-11)</td><td>W3Techs, Oktober 2026</td></tr>
+      <tr><th scope="row">Pengguna Internet mengikut bahasa</th><td>Di luar 10 teratas</td><td>Internet World Stats, Mac 2020</td></tr>
+      <tr><th scope="row">Masa dalam talian</th><td>Anggaran 80 juta pengguna Internet, purata 7.0 jam sehari, jumlah 560 juta jam/hari (kedudukan ke-11)</td><td>Anggaran Claude</td></tr>
+    </tbody></table></div>
+  </details>
+</section>
+
+<section class="lang" id="tl" aria-labelledby="h-tl">
+  <p class="kicker">19 · tl</p>
+  <h2 id="h-tl"><span lang="fil">Filipino</span></h2>
+  <dl class="nums">
+    <div><dt>Penutur</dt><dd>87 juta</dd></div>
+    <div><dt>Web</dt><dd>Kurang daripada 0.1% (kedudukan ke-40, Tagalog)</dd></div>
+    <div><dt>Masa dalam talian</dt><dd>530 juta jam</dd></div>
+  </dl>
+  <p class="region"><b>Kawasan</b>Bahasa kebangsaan Filipina dan bahasa rasmi bersama bahasa Inggeris. Bahasa ini digunakan oleh rakyat Filipina yang bekerja di seluruh dunia, termasuk Amerika Syarikat (California, Hawaii), negara-negara Teluk, Hong Kong, Singapura, Kanada dan Jepun.</p>
+  <div class="persona">
+    <figure><img src="../../language-intro/img/tl.webp" width="800" height="1000" loading="lazy" decoding="async" alt="Persona rekaan. Joanna “Jo” Dela Cruz, 28 tahun, tinggal di Quezon City. Dia bekerja syif malam di pusat panggilan yang melayani pelanggan Amerika Syarikat."></figure>
+    <div class="ptext"><h3>Persona</h3><p>Joanna “Jo” Dela Cruz, 28 tahun, tinggal di Quezon City. Dia bekerja syif malam di pusat panggilan yang melayani pelanggan Amerika Syarikat. Ketika rehat pukul 4 pagi, dia menarik sekeping kad di telefon Android. Kerjanya dalam bahasa Inggeris, jadi semasa rehat dia mahu membaca dalam bahasa Filipino. Apabila cerita itu sampai kepada warnanya melalui matahari terbenam di Teluk Manila atau piña (kain daripada serat nanas), dia menyiarkannya di Facebook dan menghantarnya kepada sepupunya yang bekerja di Asia Barat.</p></div>
+  </div>
+  <details><summary>Angka &amp; catatan</summary>
+    <div class="scroll"><table class="facts"><thead><tr><th scope="col">Perkara</th><th scope="col">Nilai</th><th scope="col">Catatan</th></tr></thead><tbody>
+      <tr><th scope="row">Jumlah penutur (bahasa pertama + kedua)</th><td>87 juta</td><td>Ethnologue, edisi 2026 (dikira sebagai Tagalog)</td></tr>
+      <tr><th scope="row">Bahagian kandungan web</th><td>Kurang daripada 0.1% (kedudukan ke-40, Tagalog)</td><td>W3Techs, Oktober 2026</td></tr>
+      <tr><th scope="row">Pengguna Internet mengikut bahasa</th><td>Di luar 10 teratas</td><td>Internet World Stats, Mac 2020</td></tr>
+      <tr><th scope="row">Masa dalam talian</th><td>Anggaran 60 juta pengguna Internet, purata 8.9 jam sehari, jumlah 530 juta jam/hari (kedudukan ke-12)</td><td>Anggaran Claude. Mengandaikan kira-kira 60% pengguna di Filipina; selebihnya dikira di bawah bahasa Inggeris</td></tr>
+    </tbody></table></div>
+  </details>
+</section>
+
+<section class="lang" id="fa" aria-labelledby="h-fa">
+  <p class="kicker">20 · fa</p>
+  <h2 id="h-fa"><span lang="fa" dir="rtl">فارسی</span><small>Bahasa Parsi</small></h2>
+  <dl class="nums">
+    <div><dt>Penutur</dt><dd>82 juta (Parsi Iran)</dd></div>
+    <div><dt>Web</dt><dd>1.0% (kedudukan ke-14)</dd></div>
+    <div><dt>Masa dalam talian</dt><dd>490 juta jam</dd></div>
+  </dl>
+  <p class="region"><b>Kawasan</b>Bahasa rasmi Iran. Bentuk yang sangat hampir digunakan di Afghanistan (Dari) dan Tajikistan (Tajik). Terdapat masyarakat Iran yang besar di Amerika Syarikat (Los Angeles), Kanada, Jerman, United Kingdom dan Turkiye. Susun atur laman ini dari kanan ke kiri.</p>
+  <div class="persona">
+    <figure><img src="../../language-intro/img/fa.webp" width="800" height="1000" loading="lazy" decoding="async" alt="Persona rekaan. Parisa Hosseini, 31 tahun, tinggal di Isfahan. Dia membaik pulih jubin pada bangunan bersejarah."></figure>
+    <div class="ptext"><h3>Persona</h3><p>Parisa Hosseini, 31 tahun, tinggal di Isfahan. Dia membaik pulih jubin pada bangunan bersejarah. Pukul 11 malam, selepas selesai kerja, dia membuka telefon Android. Pada malam Yalda, keluarganya membuka kitab puisi Hafez bersama-sama, jadi tilikan daripada sekeping kad terasa biasa baginya. Apabila cerita itu sampai kepada warnanya melalui firus Nishapur atau biru jubin masjid Isfahan, dia merenungnya seolah-olah berhenti seketika daripada kerjanya. Dia menghantar pautannya kepada kakaknya di luar negara melalui Telegram.</p></div>
+  </div>
+  <details><summary>Angka &amp; catatan</summary>
+    <div class="scroll"><table class="facts"><thead><tr><th scope="col">Perkara</th><th scope="col">Nilai</th><th scope="col">Catatan</th></tr></thead><tbody>
+      <tr><th scope="row">Jumlah penutur (bahasa pertama + kedua)</th><td>82 juta (Parsi Iran)</td><td>Ethnologue, edisi 2026. Tidak termasuk Dari (Afghanistan) atau Tajik</td></tr>
+      <tr><th scope="row">Bahagian kandungan web</th><td>1.0% (kedudukan ke-14)</td><td>W3Techs, Oktober 2026</td></tr>
+      <tr><th scope="row">Pengguna Internet mengikut bahasa</th><td>Di luar 10 teratas</td><td>Internet World Stats, Mac 2020</td></tr>
+      <tr><th scope="row">Masa dalam talian</th><td>Anggaran 82 juta pengguna Internet, purata 6.0 jam sehari, jumlah 490 juta jam/hari (kedudukan ke-16)</td><td>Anggaran Claude. Merangkumi Iran ditambah Afghanistan (Dari)</td></tr>
+    </tbody></table></div>
+  </details>
+</section>
+
+<section class="lang" id="ko" aria-labelledby="h-ko">
+  <p class="kicker">21 · ko</p>
+  <h2 id="h-ko"><span lang="ko">한국어</span><small>Bahasa Korea</small></h2>
+  <dl class="nums">
+    <div><dt>Penutur</dt><dd>82 juta</dd></div>
+    <div><dt>Web</dt><dd>0.9% (kedudukan ke-17)</dd></div>
+    <div><dt>Masa dalam talian</dt><dd>270 juta jam</dd></div>
+  </dl>
+  <p class="region"><b>Kawasan</b>Korea Selatan dan Korea Utara. Terdapat juga masyarakat yang berakar umbi di Semenanjung Korea di Wilayah Autonomi Korea Yanbian di China, Amerika Syarikat (Los Angeles, New York), Jepun dan Asia Tengah.</p>
+  <div class="persona">
+    <figure><img src="../../language-intro/img/ko.webp" width="800" height="1000" loading="lazy" decoding="async" alt="Persona rekaan. 김서연 (Kim Seo-yeon), 29 tahun, tinggal di Mapo-gu, Seoul. Dia pewarna (colorist) webtoon."></figure>
+    <div class="ptext"><h3>Persona</h3><p><span lang="ko">김서연</span> (Kim Seo-yeon), 29 tahun, tinggal di Mapo-gu, Seoul. Dia pewarna (colorist) webtoon. Pukul 8.20 pagi, dia membuka iPhone di dalam kereta api bawah tanah. Sebulan sekali dia ke kafe tarot bersama kawan-kawan. Dia terjumpa laman ini semasa mencari tip percutian ke Fukuoka bulan depan di NAVER. Apabila cerita itu sampai kepada warnanya melalui <i lang="ko-Latn">obangsaek</i> (lima warna tradisional) Korea atau celupan Jepun, dia memasukkan warna itu ke satu bahagian palet kerjanya hari itu. Dia menghantar keputusannya kepada kawan-kawan melalui KakaoTalk.</p></div>
+  </div>
+  <details><summary>Angka &amp; catatan</summary>
+    <div class="scroll"><table class="facts"><thead><tr><th scope="col">Perkara</th><th scope="col">Nilai</th><th scope="col">Catatan</th></tr></thead><tbody>
+      <tr><th scope="row">Jumlah penutur (bahasa pertama + kedua)</th><td>82 juta</td><td>Ethnologue, edisi 2026</td></tr>
+      <tr><th scope="row">Bahagian kandungan web</th><td>0.9% (kedudukan ke-17)</td><td>W3Techs, Oktober 2026</td></tr>
+      <tr><th scope="row">Pengguna Internet mengikut bahasa</th><td>Di luar 10 teratas</td><td>Internet World Stats, Mac 2020</td></tr>
+      <tr><th scope="row">Masa dalam talian</th><td>Anggaran 50 juta pengguna Internet, purata 5.3 jam sehari, jumlah 270 juta jam/hari (kedudukan ke-20)</td><td>Anggaran Claude</td></tr>
+    </tbody></table></div>
+  </details>
+</section>
+
+<section class="lang" id="th" aria-labelledby="h-th">
+  <p class="kicker">22 · th</p>
+  <h2 id="h-th"><span lang="th">ไทย</span><small>Bahasa Thai</small></h2>
+  <dl class="nums">
+    <div><dt>Penutur</dt><dd>71 juta</dd></div>
+    <div><dt>Web</dt><dd>0.3% (kedudukan ke-28)</dd></div>
+    <div><dt>Masa dalam talian</dt><dd>510 juta jam</dd></div>
+  </dl>
+  <p class="region"><b>Kawasan</b>Bahasa kebangsaan Thailand. Ramai orang di Laos boleh membaca bahasa Thai. Orang dari Thailand juga tinggal di Amerika Syarikat (Los Angeles), Australia dan Eropah.</p>
+  <div class="persona">
+    <figure><img src="../../language-intro/img/th.webp" width="800" height="1000" loading="lazy" decoding="async" alt="Persona rekaan. Napassorn “Pim” Srisuk, 27 tahun, tinggal di Bangkok. Dia bekerja dalam bahagian pemasaran sebuah jenama kosmetik."></figure>
+    <div class="ptext"><h3>Persona</h3><p>Napassorn “Pim” Srisuk, 27 tahun, tinggal di Bangkok. Dia bekerja dalam bahagian pemasaran sebuah jenama kosmetik. Pukul 7 pagi, sebelum memilih pakaian, dia menarik sekeping kad di iPhone. Membandingkan warna hari dalam minggu dengan warna daripada laman ini ialah keseronokannya setiap pagi. Dia sedang merancang percutian ke Hokkaido pada bulan Januari tahun depan. Apabila cerita itu sampai kepada warnanya melalui sutera Thai atau putihnya salji Hokkaido, dia menggunakan warna itu pada gincu atau selendangnya. Dia menghantarnya kepada rakan sekerja melalui LINE.</p></div>
+  </div>
+  <details><summary>Angka &amp; catatan</summary>
+    <div class="scroll"><table class="facts"><thead><tr><th scope="col">Perkara</th><th scope="col">Nilai</th><th scope="col">Catatan</th></tr></thead><tbody>
+      <tr><th scope="row">Jumlah penutur (bahasa pertama + kedua)</th><td>71 juta</td><td>Ethnologue, edisi 2026</td></tr>
+      <tr><th scope="row">Bahagian kandungan web</th><td>0.3% (kedudukan ke-28)</td><td>W3Techs, Oktober 2026</td></tr>
+      <tr><th scope="row">Pengguna Internet mengikut bahasa</th><td>Di luar 10 teratas</td><td>Internet World Stats, Mac 2020</td></tr>
+      <tr><th scope="row">Masa dalam talian</th><td>Anggaran 65 juta pengguna Internet, purata 7.8 jam sehari, jumlah 510 juta jam/hari (kedudukan ke-14)</td><td>Anggaran Claude</td></tr>
+    </tbody></table></div>
+  </details>
+</section>
+
+<section class="lang" id="it" aria-labelledby="h-it">
+  <p class="kicker">23 · it</p>
+  <h2 id="h-it"><span lang="it">Italiano</span><small>Bahasa Itali</small></h2>
+  <dl class="nums">
+    <div><dt>Penutur</dt><dd>66 juta</dd></div>
+    <div><dt>Web</dt><dd>2.8% (kedudukan ke-8)</dd></div>
+    <div><dt>Masa dalam talian</dt><dd>290 juta jam</dd></div>
+  </dl>
+  <p class="region"><b>Kawasan</b>Itali, San Marino, selatan Switzerland (Ticino) dan Kota Vatican. Ramai orang berketurunan Itali tinggal di Argentina, Brazil, Amerika Syarikat, Jerman dan tempat lain.</p>
+  <div class="persona">
+    <figure><img src="../../language-intro/img/it.webp" width="800" height="1000" loading="lazy" decoding="async" alt="Persona rekaan. Giulia Bernardi, 45 tahun, tinggal di Bologna. Dia ahli farmasi di sebuah farmasi kejiranan."></figure>
+    <div class="ptext"><h3>Persona</h3><p>Giulia Bernardi, 45 tahun, tinggal di Bologna. Dia ahli farmasi di sebuah farmasi kejiranan. Pukul 9.30 malam, di sofa selepas makan malam, dia membuka telefon Android. Semasa kecil dia bermain tarocchino bersama bapanya, jadi gambar-gambar Arkana Major membangkitkan nostalgia. Apabila cerita itu sampai kepada warnanya melalui bata merah serambi beratap Bologna atau pigmen pelukis Renaissance, dia menghantarnya kepada bapanya melalui WhatsApp. Dia memilih gaya “Tarot Klasik”.</p></div>
+  </div>
+  <details><summary>Angka &amp; catatan</summary>
+    <div class="scroll"><table class="facts"><thead><tr><th scope="col">Perkara</th><th scope="col">Nilai</th><th scope="col">Catatan</th></tr></thead><tbody>
+      <tr><th scope="row">Jumlah penutur (bahasa pertama + kedua)</th><td>66 juta</td><td>Ethnologue, edisi 2026</td></tr>
+      <tr><th scope="row">Bahagian kandungan web</th><td>2.8% (kedudukan ke-8)</td><td>W3Techs, Oktober 2026</td></tr>
+      <tr><th scope="row">Pengguna Internet mengikut bahasa</th><td>Di luar 10 teratas</td><td>Internet World Stats, Mac 2020</td></tr>
+      <tr><th scope="row">Masa dalam talian</th><td>Anggaran 51 juta pengguna Internet, purata 5.7 jam sehari, jumlah 290 juta jam/hari (kedudukan ke-19)</td><td>Anggaran Claude</td></tr>
+    </tbody></table></div>
+  </details>
+</section>
+
+<section class="lang" id="pl" aria-labelledby="h-pl">
+  <p class="kicker">24 · pl</p>
+  <h2 id="h-pl"><span lang="pl">Polski</span><small>Bahasa Poland</small></h2>
+  <dl class="nums">
+    <div><dt>Penutur</dt><dd>Kira-kira 42.6 juta</dd></div>
+    <div><dt>Web</dt><dd>1.8% (kedudukan ke-10)</dd></div>
+    <div><dt>Masa dalam talian</dt><dd>Kira-kira 210 juta jam (angka rujukan, di luar kedudukan)</dd></div>
+  </dl>
+  <p class="region"><b>Kawasan</b>Poland. Terdapat masyarakat Poland yang besar di United Kingdom, Jerman, Amerika Syarikat (Chicago), Ireland dan Kanada. Terdapat juga penutur di Lithuania dan barat Ukraine.</p>
+  <div class="persona">
+    <figure><img src="../../language-intro/img/pl.webp" width="800" height="1000" loading="lazy" decoding="async" alt="Persona rekaan. Marta Kowalczyk, 30 tahun, tinggal di Kraków. Dia penyelidik UX di sebuah syarikat perisian."></figure>
+    <div class="ptext"><h3>Persona</h3><p>Marta Kowalczyk, 30 tahun, tinggal di Kraków. Dia penyelidik UX di sebuah syarikat perisian. Pukul 10 pagi hari Ahad, dia membuka iPhone di sebuah kafe. Setiap tahun pada Andrzejki, dia menilik dengan lilin bersama kawan-kawan. Apabila cerita itu sampai kepada warnanya melalui ambar Baltik atau Dewan Kain Kraków, dia menyiarkannya di Instagram Stories. Dia sedang merancang percutian ke Kyoto pada musim bunga tahun depan.</p></div>
+  </div>
+  <details><summary>Angka &amp; catatan</summary>
+    <div class="scroll"><table class="facts"><thead><tr><th scope="col">Perkara</th><th scope="col">Nilai</th><th scope="col">Catatan</th></tr></thead><tbody>
+      <tr><th scope="row">Jumlah penutur (bahasa pertama + kedua)</th><td>Kira-kira 42.6 juta</td><td>Ethnologue edisi ke-27 (angka 2021), seperti yang dipetik di halaman Wikipedia “Polish language”. Tidak tersenarai dalam senarai awam Ethnologue 2026 (50 juta ke atas)</td></tr>
+      <tr><th scope="row">Bahagian kandungan web</th><td>1.8% (kedudukan ke-10)</td><td>W3Techs, Oktober 2026</td></tr>
+      <tr><th scope="row">Pengguna Internet mengikut bahasa</th><td>Di luar 10 teratas</td><td>Internet World Stats, Mac 2020</td></tr>
+      <tr><th scope="row">Masa dalam talian</th><td>Kira-kira 210 juta jam/hari (angka rujukan, di luar kedudukan)</td><td>Angka rujukan di luar kedudukan dalam anggaran Claude</td></tr>
+    </tbody></table></div>
+  </details>
+</section>
+
+<section class="lang" id="uk" aria-labelledby="h-uk">
+  <p class="kicker">25 · uk</p>
+  <h2 id="h-uk"><span lang="uk">Українська</span><small>Bahasa Ukraine</small></h2>
+  <dl class="nums">
+    <div><dt>Penutur</dt><dd>Kira-kira 39 juta</dd></div>
+    <div><dt>Web</dt><dd>0.6% (kedudukan ke-18)</dd></div>
+    <div><dt>Masa dalam talian</dt><dd>Tiada anggaran</dd></div>
+  </dl>
+  <p class="region"><b>Kawasan</b>Bahasa kebangsaan Ukraine. Akibat perang sejak 2022, ramai orang berlindung di negara-negara Eropah seperti Poland, Jerman dan Republik Czech. Kanada dan Amerika Syarikat juga mempunyai masyarakat Ukraine yang sudah lama bertapak. Ramai orang juga bertutur dalam bahasa Rusia.</p>
+  <div class="persona">
+    <figure><img src="../../language-intro/img/uk.webp" width="800" height="1000" loading="lazy" decoding="async" alt="Persona rekaan. Олена Коваленко (Olena Kovalenko), 37 tahun, tinggal di Lviv. Dia guru sekolah rendah."></figure>
+    <div class="ptext"><h3>Persona</h3><p><span lang="uk">Олена Коваленко</span> (Olena Kovalenko), 37 tahun, tinggal di Lviv. Dia guru sekolah rendah. Pukul 9 malam, selepas menidurkan anaknya, dia menarik sekeping kad di telefon Android. Lebih daripada membaca makna kad, dia menghargai masa membaca cerita yang ditulis dengan teliti dalam bahasa Ukraine. Apabila cerita itu sampai kepada warnanya melalui lukisan bunga Petrykivka atau bulu biri-biri Carpathia, dia menghantarnya kepada adik perempuannya di Poland melalui Telegram.</p></div>
+  </div>
+  <details><summary>Angka &amp; catatan</summary>
+    <div class="scroll"><table class="facts"><thead><tr><th scope="col">Perkara</th><th scope="col">Nilai</th><th scope="col">Catatan</th></tr></thead><tbody>
+      <tr><th scope="row">Jumlah penutur (bahasa pertama + kedua)</th><td>Kira-kira 39 juta</td><td>Ethnologue (2023). Halaman Wikipedia “Ukrainian language” (Ethnologue edisi ke-28) memberikan angka yang sama</td></tr>
+      <tr><th scope="row">Bahagian kandungan web</th><td>0.6% (kedudukan ke-18)</td><td>W3Techs, Oktober 2026</td></tr>
+      <tr><th scope="row">Pengguna Internet mengikut bahasa</th><td>Di luar 10 teratas</td><td>Internet World Stats, Mac 2020</td></tr>
+      <tr><th scope="row">Masa dalam talian</th><td>Tiada anggaran</td><td>Bahasa Ukraine tiada dalam jadual anggaran Claude mahupun dalam angka rujukannya di luar kedudukan</td></tr>
+    </tbody></table></div>
+  </details>
+</section>
+
+<section class="lang" id="nl" aria-labelledby="h-nl">
+  <p class="kicker">26 · nl</p>
+  <h2 id="h-nl"><span lang="nl">Nederlands</span><small>Bahasa Belanda</small></h2>
+  <dl class="nums">
+    <div><dt>Penutur</dt><dd>Kira-kira 30 juta</dd></div>
+    <div><dt>Web</dt><dd>2.1% (kedudukan ke-9)</dd></div>
+    <div><dt>Masa dalam talian</dt><dd>Kira-kira 130 juta jam (angka rujukan, di luar kedudukan)</dd></div>
+  </dl>
+  <p class="region"><b>Kawasan</b>Belanda dan utara Belgium (Flanders). Bahasa ini juga bahasa rasmi di Suriname serta di Aruba dan Curaçao di Caribbean. Bahasa Afrikaans di Afrika Selatan bercabang daripada bahasa Belanda.</p>
+  <div class="persona">
+    <figure><img src="../../language-intro/img/nl.webp" width="800" height="1000" loading="lazy" decoding="async" alt="Persona rekaan. Sanne de Vries, 36 tahun, tinggal di Utrecht. Dia menguruskan dasar iklim di dewan bandaraya."></figure>
+    <div class="ptext"><h3>Persona</h3><p>Sanne de Vries, 36 tahun, tinggal di Utrecht. Dia menguruskan dasar iklim di dewan bandaraya. Pukul 12.30 tengah hari, di mejanya, dia membuka komputer riba dan sampai ke laman ini semasa mencari satu nama warna. Dia tidak percaya kepada tilikan, tetapi sangat suka cerita tentang asal usul nama warna. Apabila cerita itu sampai kepada warnanya melalui biru Delft atau pigmen yang digunakan pelukis Belanda abad ke-17, dia menceritakannya kepada rakan sekerja. Kadang-kadang dia menarik sekeping kad lagi sebelum berbasikal pulang.</p></div>
+  </div>
+  <details><summary>Angka &amp; catatan</summary>
+    <div class="scroll"><table class="facts"><thead><tr><th scope="col">Perkara</th><th scope="col">Nilai</th><th scope="col">Catatan</th></tr></thead><tbody>
+      <tr><th scope="row">Jumlah penutur (bahasa pertama + kedua)</th><td>Kira-kira 30 juta</td><td>2021. Halaman Wikipedia “Dutch language” (memetik Eurobarometer dan lain-lain) memberikan angka yang sama</td></tr>
+      <tr><th scope="row">Bahagian kandungan web</th><td>2.1% (kedudukan ke-9)</td><td>W3Techs, Oktober 2026. Termasuk bahasa Flemish</td></tr>
+      <tr><th scope="row">Pengguna Internet mengikut bahasa</th><td>Di luar 10 teratas</td><td>Internet World Stats, Mac 2020</td></tr>
+      <tr><th scope="row">Masa dalam talian</th><td>Kira-kira 130 juta jam/hari (angka rujukan, di luar kedudukan)</td><td>Angka rujukan di luar kedudukan dalam anggaran Claude</td></tr>
+    </tbody></table></div>
+  </details>
+</section>
+
+<section class="lang" id="ang" aria-labelledby="h-ang">
+  <p class="kicker">27 · ang</p>
+  <h2 id="h-ang"><span lang="ang">Englisc</span><small>Bahasa Inggeris Lama</small></h2>
+  <p class="note">Bahasa untuk bermain dan menjejak sejarah. Ini bahasa Inggeris dari kira-kira tahun 450 hingga 1100, dan kini tiada sesiapa yang menuturkannya sebagai bahasa pertama. Ruangan angka tidak berkenaan.</p>
+  <dl class="nums">
+    <div><dt>Penutur</dt><dd>tidak berkenaan</dd></div>
+    <div><dt>Web</dt><dd>tidak berkenaan</dd></div>
+    <div><dt>Masa dalam talian</dt><dd>tidak berkenaan</dd></div>
+  </dl>
+  <p class="region"><b>Siapa yang mungkin menyukainya</b>Pelajar dan sarjana kesusasteraan Inggeris zaman pertengahan dan sejarah bahasa Inggeris, peminat <cite>Beowulf</cite> dan karya J. R. R. Tolkien, serta orang yang berminat dengan tulisan rune dan mitologi Nordik. Di luar dunia berbahasa Inggeris, bahasa ini juga sampai kepada pelajar kesusasteraan Inggeris di Jerman, negara-negara Nordik dan Jepun.</p>
+  <div class="persona">
+    <figure><img src="../../language-intro/img/ang.webp" width="800" height="1000" loading="lazy" decoding="async" alt="Persona rekaan. Hannah Brooks, 24 tahun, tinggal di Leeds, UK. Dia mempelajari bahasa Inggeris Lama di peringkat pascasiswazah."></figure>
+    <div class="ptext"><h3>Persona</h3><p>Hannah Brooks, 24 tahun, tinggal di Leeds, UK. Dia mempelajari bahasa Inggeris Lama di peringkat pascasiswazah. Pukul 5 petang, dia membuka komputer riba di perpustakaan universiti dan sampai ke laman ini semasa mencari konjugasi kata kerja. Dengan terjemahan bahasa Inggeris moden di sisinya, dia seronok merungkai nama kad dan nama warna. Ayat yang disukainya dihantar kepada rakan-rakan seminarnya.</p></div>
+  </div>
+  <details><summary>Angka &amp; catatan</summary>
+    <div class="scroll"><table class="facts"><thead><tr><th scope="col">Perkara</th><th scope="col">Nilai</th></tr></thead><tbody>
+      <tr><th scope="row">Jumlah penutur (bahasa pertama + kedua)</th><td>tidak berkenaan</td></tr>
+      <tr><th scope="row">Bahagian kandungan web</th><td>tidak berkenaan</td></tr>
+      <tr><th scope="row">Pengguna Internet mengikut bahasa</th><td>tidak berkenaan</td></tr>
+      <tr><th scope="row">Masa dalam talian</th><td>tidak berkenaan</td></tr>
+    </tbody></table></div>
+  </details>
+</section>
+
+<section class="lang" id="soro" aria-labelledby="h-soro">
+  <p class="kicker">28 · soro</p>
+  <h2 id="h-soro"><span lang="ja">御座候</span><small>Sōrōbun (gaya surat klasik Jepun)</small></h2>
+  <p class="note">Bahasa untuk bermain dan menjejak sejarah. Ini gaya penulisan surat dan dokumen rasmi dari kira-kira tahun 1600 hingga 1868, dengan <span lang="ja">候</span> (<i>sōrō</i>) di hujung ayat. Kini tiada sesiapa yang menuturkannya sebagai bahasa pertama. Ruangan angka tidak berkenaan.</p>
+  <dl class="nums">
+    <div><dt>Penutur</dt><dd>tidak berkenaan</dd></div>
+    <div><dt>Web</dt><dd>tidak berkenaan</dd></div>
+    <div><dt>Masa dalam talian</dt><dd>tidak berkenaan</dd></div>
+  </dl>
+  <p class="region"><b>Siapa yang mungkin menyukainya</b>Orang yang belajar membaca dokumen lama dan tulisan kursif, peminat novel sejarah dan drama sejarah NHK, serta pelajar yang meminati sejarah. Bahasa ini juga sampai kepada orang asing yang telah mendalami bahasa Jepun dan sarjana sejarah Jepun.</p>
+  <div class="persona">
+    <figure><img src="../../language-intro/img/soro.webp" width="800" height="1000" loading="lazy" decoding="async" alt="Persona rekaan. 工藤 誠一 (Seiichi Kudo), 58 tahun, tinggal di Kanazawa. Dia bekerja di dewan bandaraya dan menghadiri kursus dokumen lama pada hujung minggu."></figure>
+    <div class="ptext"><h3>Persona</h3><p><span lang="ja">工藤 誠一</span> (Seiichi Kudo), 58 tahun, tinggal di Kanazawa. Dia bekerja di dewan bandaraya dan menghadiri kursus dokumen lama pada hujung minggu. Pukul 3 petang hari Ahad, dia membuka tablet di ruang tamu. Dia mendengar tentang laman ini daripada rakan-rakan kursus. Dia membaca dengan kuat, satu demi satu, nama kad dan nama warna yang ditulis dalam sōrōbun. Apabila cerita itu sampai kepada warnanya melalui celupan Kaga atau bandar lama di kaki istana, dia mencatat nama warna itu dalam buku nota kursusnya.</p></div>
+  </div>
+  <details><summary>Angka &amp; catatan</summary>
+    <div class="scroll"><table class="facts"><thead><tr><th scope="col">Perkara</th><th scope="col">Nilai</th></tr></thead><tbody>
+      <tr><th scope="row">Jumlah penutur (bahasa pertama + kedua)</th><td>tidak berkenaan</td></tr>
+      <tr><th scope="row">Bahagian kandungan web</th><td>tidak berkenaan</td></tr>
+      <tr><th scope="row">Pengguna Internet mengikut bahasa</th><td>tidak berkenaan</td></tr>
+      <tr><th scope="row">Masa dalam talian</th><td>tidak berkenaan</td></tr>
+    </tbody></table></div>
+  </details>
+</section>
+
+</div>
+
+</body>
+</html>

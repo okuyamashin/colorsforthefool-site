@@ -1,0 +1,789 @@
+<!doctype html>
+<html lang="ang">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Gemēt þā 28 gereord Colors for the Fool: hū fela manna ǣlc sprecaþ, and be him ān geþōht persōna and hire onlīcnes.">
+<link rel="icon" href="../../favicon.png" type="image/png">
+<title>Be þǣm Gereordum</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Shippori+Mincho:wght@400;500;700&display=swap">
+<style>
+/* Layout: same paper column as language-scale.html; one card per language (numbers, persona + image, details). */
+:root {
+  --bg: #efe6d6;
+  --bg-glow: #fbf6ec;
+  --paper: #f7f1e4;
+  --ink: #2a2118;
+  --muted: #6d5c48;
+  --gold: #a6843d;
+  --gold-soft: #e4d2a4;
+  --line: rgba(166,132,61,.45);
+  --other: #d3c6ae;
+  --grid: rgba(109,92,72,.18);
+  --font-display: Cinzel, "Palatino Linotype", Palatino, serif;
+  --font-body: "EB Garamond", "Noto Serif", serif;
+}
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) {
+  --bg: #1b1610; --bg-glow: #2a2219; --paper: #241e17; --ink: #efe4cf; --muted: #b6a387;
+  --gold: #d2ac5c; --gold-soft: #5a4826; --line: rgba(210,172,92,.4); --other: #4b4134; --grid: rgba(239,228,207,.12);
+  color-scheme: dark; } }
+:root[data-theme="dark"] {
+  --bg: #1b1610; --bg-glow: #2a2219; --paper: #241e17; --ink: #efe4cf; --muted: #b6a387;
+  --gold: #d2ac5c; --gold-soft: #5a4826; --line: rgba(210,172,92,.4); --other: #4b4134; --grid: rgba(239,228,207,.12);
+  color-scheme: dark; }
+
+* { box-sizing: border-box; }
+body {
+  margin: 0; color: var(--ink); background: var(--bg);
+  background-image: radial-gradient(1100px 640px at 50% -8%, var(--bg-glow), var(--bg) 70%);
+  font-family: var(--font-body); font-weight: 500; line-height: 1.85;
+  padding-inline: 16px; padding-block: 0 64px;
+}
+.wrap { width: min(100%, 44rem); margin: 0 auto; }
+a { color: var(--gold); }
+code { font-size: .88em; overflow-wrap: anywhere; }
+.brand { font-family: var(--font-display); font-size: .74rem; letter-spacing: .24em; text-transform: uppercase; padding-block: 1.4rem .2rem; margin: 0; }
+.brand a { color: var(--ink); text-decoration: none; }
+header.hero { text-align: center; padding-block: 2.6rem 1.6rem; }
+.eyebrow { font-family: var(--font-display); letter-spacing: .3em; font-size: .8rem; color: var(--gold); margin: 0; text-transform: uppercase; }
+h1 { font-size: clamp(2rem, 7vw, 2.9rem); letter-spacing: .12em; margin: .3rem 0 .6rem; font-weight: 600; text-wrap: balance; }
+.lede { color: var(--muted); max-width: 34rem; margin: 0 auto; text-wrap: pretty; }
+.ornament { display: flex; align-items: center; gap: .8rem; justify-content: center; color: var(--gold); margin: 1.6rem 0 0; }
+.ornament::before, .ornament::after { content: ""; height: 1px; width: 4.5rem; background: var(--line); }
+
+.topbar { display: flex; justify-content: space-between; align-items: baseline; gap: 1rem; padding-block: 1.4rem .2rem; }
+.topbar .brand { padding-block: 0; }
+.switch { font-size: .82rem; }
+.switch a, .switch span { margin-left: .7rem; }
+.switch span { color: var(--muted); }
+
+.about { font-size: .86rem; color: var(--muted); margin: 0 0 1rem; }
+.about p { margin: .5rem 0; }
+.langs { display: flex; flex-wrap: wrap; gap: .4rem; justify-content: center; margin: 1.2rem 0 0; padding: 0; list-style: none; }
+.langs li { border: 1px solid var(--line); font-size: .85rem; background: var(--paper); }
+.langs li a { display: block; padding: .1rem .7rem; color: var(--ink); text-decoration: none; }
+.langs li a:hover, .langs li a:focus-visible { color: var(--gold); }
+.langs li:nth-last-child(-n+2) { border-style: dashed; }
+.langs li:nth-last-child(-n+2) a { color: var(--muted); }
+
+section.chart, section.lang { margin-top: 3.4rem; scroll-margin-top: 1rem; }
+.chart h2, .lang h2 { font-size: 1.3rem; letter-spacing: .08em; margin: 0; font-weight: 600; text-wrap: balance; }
+.lang h2 small { display: block; font-size: .8rem; letter-spacing: .04em; color: var(--muted); font-weight: 500; }
+.kicker { font-family: var(--font-display); color: var(--gold); letter-spacing: .2em; font-size: .78rem; margin: 0 0 .15rem; }
+p.note { color: var(--muted); font-size: .88rem; margin: .4rem 0 1rem; max-width: 40rem; }
+.chart ul { font-size: .88rem; color: var(--muted); padding-left: 1.1rem; }
+
+.scroll { overflow-x: auto; -webkit-overflow-scrolling: touch; border: 1px solid var(--line); background: var(--paper); }
+table { border-collapse: collapse; font-size: .8rem; line-height: 1.55; }
+table.overview { min-width: 42rem; width: 100%; }
+th, td { padding: .45rem .6rem; border-bottom: 1px solid var(--grid); text-align: left; vertical-align: top; }
+thead th { font-weight: 700; border-bottom: 1px solid var(--line); background: var(--bg-glow); }
+tbody th { font-weight: 700; white-space: nowrap; }
+tbody th a { color: var(--ink); text-decoration: none; }
+tbody tr:last-child th, tbody tr:last-child td { border-bottom: 0; }
+table.overview td { font-variant-numeric: tabular-nums; }
+
+.lang { border-top: 1px solid var(--line); padding-top: 1.6rem; }
+.nums { display: flex; flex-wrap: wrap; gap: 1px; background: var(--line); border: 1px solid var(--line); margin: 1rem 0; }
+.nums div { flex: 1 1 7.6rem; background: var(--paper); padding: .55rem .7rem .6rem; min-width: 0; }
+.nums dt { font-family: var(--font-body); font-size: .72rem; color: var(--muted); letter-spacing: .06em; }
+.nums dd { margin: 0; font-size: .9rem; line-height: 1.45; font-variant-numeric: tabular-nums; overflow-wrap: anywhere; }
+.region { font-size: .9rem; margin: 0 0 1rem; }
+.region b { color: var(--gold); font-weight: 700; margin-right: .6rem; }
+
+.persona { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 15rem); gap: 1.2rem; align-items: start; margin: 1.2rem 0 .8rem; }
+.persona figure { grid-column: 2; grid-row: 1; margin: 0; }
+.persona .ptext { grid-column: 1; grid-row: 1; }
+.persona img { display: block; width: 100%; height: auto; border: 1px solid var(--line); background: var(--paper); }
+.persona h3 { font-size: 1rem; letter-spacing: .08em; margin: 0 0 .3rem; font-weight: 600; }
+.persona p { margin: 0; font-size: .94rem; text-wrap: pretty; }
+@media (max-width: 36rem) {
+  .persona { grid-template-columns: minmax(0, 1fr); }
+  .persona figure, .persona .ptext { grid-column: 1; grid-row: auto; }
+  .persona figure { max-width: 22rem; }
+}
+
+details { border-top: 1px dashed var(--line); padding: .35rem 0; font-size: .88rem; }
+details:last-of-type { border-bottom: 1px dashed var(--line); }
+summary { cursor: pointer; color: var(--gold); letter-spacing: .06em; }
+details[open] summary { margin-bottom: .5rem; }
+details p { margin: .2rem 0 .8rem; color: var(--ink); }
+details h4 { font-size: .86rem; margin: .6rem 0 0; color: var(--muted); font-weight: 700; }
+details pre { white-space: pre-wrap; overflow-wrap: anywhere; font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: .78rem; line-height: 1.6; background: var(--paper); border: 1px solid var(--line); padding: .7rem .8rem; margin: 0 0 .6rem; }
+table.facts { width: 100%; min-width: 34rem; }
+table.facts tbody th { white-space: normal; min-width: 8rem; }
+
+footer { margin-top: 4rem; border-top: 1px solid var(--line); padding-top: 1.2rem; font-size: .8rem; color: var(--muted); }
+footer ul { padding-left: 1.1rem; margin: .4rem 0 1rem; }
+footer ul ul { margin: .2rem 0 .3rem; }
+footer li { margin: .15rem 0; overflow-wrap: anywhere; }
+</style>
+</head>
+<body>
+
+<div class="wrap">
+  <div class="topbar"><p class="brand"><a href="../">Colors for the Fool</a></p><nav class="switch" aria-label="Gesibbe lēaf"><span>Be þǣm Gereordum</span></nav></div>
+
+  <header class="hero">
+    <p class="eyebrow">Languages &amp; Readers</p>
+    <h1>Be þǣm Gereordum</h1>
+    <p class="lede">Þā 28 gereord Colors for the Fool, gecȳdd þurh þæt hū fela manna hīe sprecaþ, and hwelc mann tō þisse rǣdinge cuman mihte (swā on þǣm 9. dæge Winterfylleþes, 2026).</p>
+    <div class="ornament">✦</div>
+  </header>
+
+  <nav aria-label="Gereord">
+    <ul class="langs"><li><a href="#ja"><span lang="ja">日本語</span></a></li><li><a href="#en"><span lang="en">English</span></a></li><li><a href="#zh-hans"><span lang="zh-Hans">简体中文</span></a></li><li><a href="#zh"><span lang="zh-Hant">繁體中文</span></a></li><li><a href="#hi"><span lang="hi">हिन्दी</span></a></li><li><a href="#es"><span lang="es">Español</span></a></li><li><a href="#ar"><span lang="ar" dir="rtl">العربية</span></a></li><li><a href="#fr"><span lang="fr">Français</span></a></li><li><a href="#bn"><span lang="bn">বাংলা</span></a></li><li><a href="#pt"><span lang="pt">Português</span></a></li><li><a href="#id"><span lang="id">Bahasa Indonesia</span></a></li><li><a href="#ms"><span lang="ms">Bahasa Melayu</span></a></li><li><a href="#ur"><span lang="ur" dir="rtl">اردو</span></a></li><li><a href="#ru"><span lang="ru">Русский</span></a></li><li><a href="#de"><span lang="de">Deutsch</span></a></li><li><a href="#vi"><span lang="vi">Tiếng Việt</span></a></li><li><a href="#sw"><span lang="sw">Kiswahili</span></a></li><li><a href="#tr"><span lang="tr">Türkçe</span></a></li><li><a href="#tl"><span lang="fil">Filipino</span></a></li><li><a href="#fa"><span lang="fa" dir="rtl">فارسی</span></a></li><li><a href="#ko"><span lang="ko">한국어</span></a></li><li><a href="#th"><span lang="th">ไทย</span></a></li><li><a href="#it"><span lang="it">Italiano</span></a></li><li><a href="#pl"><span lang="pl">Polski</span></a></li><li><a href="#uk"><span lang="uk">Українська</span></a></li><li><a href="#nl"><span lang="nl">Nederlands</span></a></li><li><a href="#ang"><span lang="ang">Englisc</span></a></li><li><a href="#soro"><span lang="ja">御座候</span></a></li></ul>
+  </nav>
+
+<section class="lang" id="ja" aria-labelledby="h-ja">
+  <p class="kicker">01 · ja</p>
+  <h2 id="h-ja"><span lang="ja">日本語</span><small>Iapanisc</small></h2>
+  <dl class="nums">
+    <div><dt>Sprecendas</dt><dd>126,000,000</dd></div>
+    <div><dt>Web</dt><dd>4.9% (4. stede)</dd></div>
+    <div><dt>Tīd on nette</dt><dd>390,000,000 tīda</dd></div>
+  </dl>
+  <p class="region"><b>Hwǣr</b>Iapan. Būtan Iapane hit rǣdaþ þā þe of Iapaniscum cynne sind on Brasile and on þǣm Geānlǣhtum Rīcum (Hawaii, California), and Iapanisce menn þe on ellþēodum eardiaþ. Fela manna geond ealne middangeard leornaþ ēac Iapanisc.</p>
+  <div class="persona">
+    <figure><img src="../../language-intro/img/ja.webp" width="800" height="1000" loading="lazy" decoding="async" alt="Ān geþōht persōna. 森下 由佳 (Yuka Morishita), 34 wintra, eardaþ on Fukuoka. Hēo is gewritere on micelre lǣcehūse."></figure>
+    <div class="ptext"><h3>Persōna</h3><p><span lang="ja">森下 由佳</span> (Yuka Morishita), 34 wintra, eardaþ on Fukuoka. Hēo is gewritere on micelre lǣcehūse. Æt 7:40 on morgen hēo ontȳnþ hire iPhone on setle þæs eorþwægnes, and cymþ hider of Instagram Reel. Hēo ne gelīefþ wīglunge tō swīþe, ac lufaþ hīe genōg þæt hēo hlihþ þonne hēo misfēhþ. Hēo tīehþ āne cartan, and gif hēo onwend cymþ, hēo cwiþ: “Tōdæg is dæg þæt ic mē ne swence.” Hēo blissaþ þonne sēo racu tō hire blēo cymþ þurh cūþe stōwa and cræftas, swā swā Hakata-webb oþþe Chikugo-wād. Þæt blēo þe hēo lufaþ brȳcþ hēo swā tācn for þæs dæges swātclāþe oþþe nægla blēo. Hwīlum hēo sendeþ hire gefēran on LINE: “Tōdæg ic eom, swā hit þyncþ, wādblēo.”</p></div>
+  </div>
+  <details><summary>Rīm and glēsinga</summary>
+    <div class="scroll"><table class="facts"><thead><tr><th scope="col">Þing</th><th scope="col">Rīm</th><th scope="col">Glēsing</th></tr></thead><tbody>
+      <tr><th scope="row">Ealle sprecendas (ǣrest + ōþer gereord)</th><td>126,000,000</td><td>Ethnologue, ūtgifu 2026</td></tr>
+      <tr><th scope="row">Dǣl þæs webbes</th><td>4.9% (4. stede)</td><td>W3Techs, Winterfylleþ 2026</td></tr>
+      <tr><th scope="row">Nettbrūcendas be gereorde</th><td>2.6% (8. stede)</td><td>Internet World Stats, Hrēþmōnaþ 2020</td></tr>
+      <tr><th scope="row">Tīd on nette</th><td>Be wēne 100,000,000 nettbrūcenda, on gemete 3.9 tīda on dæge, ealles 390,000,000 tīda on dæge (18. stede)</td><td>Claudes āmetung. Sēo tīd ǣlces mannes is betwux þǣm scyrtestum on middangearde</td></tr>
+    </tbody></table></div>
+  </details>
+</section>
+
+<section class="lang" id="en" aria-labelledby="h-en">
+  <p class="kicker">02 · en</p>
+  <h2 id="h-en"><span lang="en">English</span><small>Nīwe Englisc</small></h2>
+  <dl class="nums">
+    <div><dt>Sprecendas</dt><dd>1,493,000,000 (1. stede)</dd></div>
+    <div><dt>Web</dt><dd>49.5% (1. stede)</dd></div>
+    <div><dt>Tīd on nette</dt><dd>5,780,000,000 tīda</dd></div>
+  </dl>
+  <p class="region"><b>Hwǣr</b>Hit is ǣrest gereord on þǣm Geānlǣhtum Rīcum, on Brytene, Canadan, Australian, Nīwan Sǣlande, and Īralande. On Indean, þǣm Filipiniscum īglandum, Nigerian, Singapore, Cenian, and elles hwǣr, hit is folces gereord oþþe lāre gereord. Þā þe hit swā ōþer gereord sprecaþ rǣdaþ Englisc lēaf geond ealne middangeard.</p>
+  <div class="persona">
+    <figure><img src="../../language-intro/img/en.webp" width="800" height="1000" loading="lazy" decoding="async" alt="Ān geþōht persōna. Maya Reynolds, 29 wintra, eardaþ on Manchester on Brytene. Hēo is lārēowes fultum on cildra scōle."></figure>
+    <div class="ptext"><h3>Persōna</h3><p>Maya Reynolds, 29 wintra, eardaþ on Manchester on Brytene. Hēo is lārēowes fultum on cildra scōle. Æt 10 on niht hēo ontȳnþ hire Android-fōn on bedde. Oft hēo scēawaþ tārotes sceawunga on TikTok, and hire līcaþ hū ēaþe hit is āne cartan tō tēonne. Hēo rǣdþ þæt andgiet þǣre cartan, and lufaþ þā tīde þǣr þæs blēos nama ætīewþ æt þǣre race ende. Þonne þæs blēos racu belimpþ tō Bryttiscum stōwum, swā swā þǣm Scottiscan þistle oþþe Eoforwīcscīres wulle, hēo sendeþ þone hlinc hire frēondum. Ēac hēo blissaþ þæt hēo wendeþ þā wīsan þāra carta, and metaþ Art Nouveau wiþ fāgum glæse.</p></div>
+  </div>
+  <details><summary>Rīm and glēsinga</summary>
+    <div class="scroll"><table class="facts"><thead><tr><th scope="col">Þing</th><th scope="col">Rīm</th><th scope="col">Glēsing</th></tr></thead><tbody>
+      <tr><th scope="row">Ealle sprecendas (ǣrest + ōþer gereord)</th><td>1,493,000,000 (1. stede)</td><td>Ethnologue, ūtgifu 2026</td></tr>
+      <tr><th scope="row">Dǣl þæs webbes</th><td>49.5% (1. stede)</td><td>W3Techs, Winterfylleþ 2026</td></tr>
+      <tr><th scope="row">Nettbrūcendas be gereorde</th><td>25.9% (1. stede)</td><td>Internet World Stats, Hrēþmōnaþ 2020</td></tr>
+      <tr><th scope="row">Tīd on nette</th><td>Be wēne 850,000,000 nettbrūcenda, on gemete 6.8 tīda on dæge, ealles 5,780,000,000 tīda on dæge (2. stede)</td><td>Claudes āmetung. Hēo tellþ ānlīce þā þe mǣst on Englisc rǣdaþ; ān glēsing sægþ þæt hit wǣre on 1. stede gif þā þe hit swā ōþer gereord rǣdaþ wǣron getealde</td></tr>
+    </tbody></table></div>
+  </details>
+</section>
+
+<section class="lang" id="zh-hans" aria-labelledby="h-zh-hans">
+  <p class="kicker">03 · zh-hans</p>
+  <h2 id="h-zh-hans"><span lang="zh-Hans">简体中文</span><small>Cīnisc (ānfealde stafas)</small></h2>
+  <dl class="nums">
+    <div><dt>Sprecendas</dt><dd>1,183,000,000 (Mandarin)</dd></div>
+    <div><dt>Web</dt><dd>1.3% (12. stede, eall Cīnisc)</dd></div>
+    <div><dt>Tīd on nette</dt><dd>6,200,000,000 tīda (ānfealde + ealde stafas)</dd></div>
+  </dl>
+  <p class="region"><b>Hwǣr</b>Þæt Cīnisce fæstland, þǣr hit is sēo stæfwīse scōla and rīces. Þā ānfealdan stafas sind ēac riht on þǣm Cīniscum folcum Singapores and Malæsian. Micel Cīnisc folc eardaþ on Norþ-Americe, Australian, Europe, and Sūþ-ēast Asian, and fela leorningcnihta leornaþ on ellþēodum.</p>
+  <div class="persona">
+    <figure><img src="../../language-intro/img/zh-hans.webp" width="800" height="1000" loading="lazy" decoding="async" alt="Ān geþōht persōna. 林悦 (Lin Yue), 26 wintra, eardaþ on Chengdu. Hēo is UI-tīhtend æt plegcræftes hūse."></figure>
+    <div class="ptext"><h3>Persōna</h3><p><span lang="zh-Hans">林悦</span> (Lin Yue), 26 wintra, eardaþ on Chengdu. Hēo is UI-tīhtend æt plegcræftes hūse. Æt 12:30, on hire undernmetes reste, hēo sōhte on Xiaohongshu mid hire Huawei-fōne be hire fōre tō Kyoto on þǣm æfterran mōnþe, þā fand hēo þisne webstede on sumes wegfarendes gewritum. For hire weorce hēo is scearp on blēoa naman and gemengum. Hēo tīehþ āne cartan, and þonne sēo racu tō hire blēo cymþ þurh Song-cynnes celadon oþþe Shu-godweb (þæt godweb Sichuanes), hēo healdeþ þone scīrm and sendeþ hine hire gefērum on WeChat. Hire līcaþ þā cartan on blæces wīsan tō scēawienne.</p></div>
+  </div>
+  <details><summary>Rīm and glēsinga</summary>
+    <div class="scroll"><table class="facts"><thead><tr><th scope="col">Þing</th><th scope="col">Rīm</th><th scope="col">Glēsing</th></tr></thead><tbody>
+      <tr><th scope="row">Ealle sprecendas (ǣrest + ōþer gereord)</th><td>1,183,000,000 (Mandarin)</td><td>Ethnologue, ūtgifu 2026. Þā ealdan and þā ānfealdan Cīniscan stafas sind ǣne getealde, swā Mandarin</td></tr>
+      <tr><th scope="row">Dǣl þæs webbes</th><td>1.3% (12. stede, eall Cīnisc)</td><td>W3Techs ne tōdǣlþ þā ānfealdan Cīniscan stafas and þā ealdan</td></tr>
+      <tr><th scope="row">Nettbrūcendas be gereorde</th><td>19.4% (2. stede, eall Cīnisc)</td><td>Internet World Stats, Hrēþmōnaþ 2020</td></tr>
+      <tr><th scope="row">Tīd on nette</th><td>Be wēne 1,170,000,000 nettbrūcenda, on gemete 5.3 tīda on dæge, ealles 6,200,000,000 tīda on dæge (1. stede, ānfealde + ealde stafas)</td><td>Claudes āmetung. Þæs fæstlandes 1,110,000,000, and Taiwan, Hong Kong, and Cīnisce menn on ellþēodum</td></tr>
+    </tbody></table></div>
+  </details>
+</section>
+
+<section class="lang" id="zh" aria-labelledby="h-zh">
+  <p class="kicker">04 · zh</p>
+  <h2 id="h-zh"><span lang="zh-Hant">繁體中文</span><small>Cīnisc (ealde stafas)</small></h2>
+  <dl class="nums">
+    <div><dt>Sprecendas</dt><dd>Geteald mid þǣm ānfealdum stafum swā Mandarin (1,183,000,000)</dd></div>
+    <div><dt>Web</dt><dd>1.3% (12. stede, eall Cīnisc)</dd></div>
+    <div><dt>Tīd on nette</dt><dd>Ealles 6,200,000,000 tīda on dæge mid þǣm ānfealdum stafum (1. stede)</dd></div>
+  </dl>
+  <p class="region"><b>Hwǣr</b>Sēo stæfwīse þe man brȳcþ on Taiwane, Hong Kong, and Macau. Fela manna on þǣm ealdum Cīniscum folcum Norþ-Americe and Australian brūcaþ ēac þāra ealdra stafa. On Taiwane man sprecþ þæt gemǣne Cīnisc (Huayu); on Hong Kong and Macau þæt sprǣce gereord is Cantonisc, and man wrīt on þǣre ealdan gewritenan wīsan.</p>
+  <div class="persona">
+    <figure><img src="../../language-intro/img/zh.webp" width="800" height="1000" loading="lazy" decoding="async" alt="Ān geþōht persōna. 陳怡君 (Chen Yi-chun), 31 wintra, eardaþ on Taichung. Hēo is feohhordes þegn."></figure>
+    <div class="ptext"><h3>Persōna</h3><p><span lang="zh-Hant">陳怡君</span> (Chen Yi-chun), 31 wintra, eardaþ on Taichung. Hēo is feohhordes þegn. Æt 11 on niht, ǣr hēo slǣpe, hēo gearwaþ on hire iPhone hire fōre tō Kanazawa on þǣm æfterran mōnþe. Hēo ontȳnde þisne webstede of hlince þe hire frēond hire on LINE sende. Hēo tīehþ āne cartan on þǣm ilcan mōde swā man tīehþ wyrdgewrit on temple. Þonne sēo racu tō hire blēo cymþ þurh Iapanisce cræftas, swā swā Kaga yuzen-dēagunge oþþe goldlēaf, hire fōr hæfþ āne stōwe mā. Hēo sendeþ þæt andswarlēaf eft hire frēonde on LINE.</p></div>
+  </div>
+  <details><summary>Rīm and glēsinga</summary>
+    <div class="scroll"><table class="facts"><thead><tr><th scope="col">Þing</th><th scope="col">Rīm</th><th scope="col">Glēsing</th></tr></thead><tbody>
+      <tr><th scope="row">Ealle sprecendas (ǣrest + ōþer gereord)</th><td>Geteald mid þǣm ānfealdum stafum swā Mandarin (1,183,000,000)</td><td>Þā ealdan and þā ānfealdan Cīniscan stafas sind ǣne getealde, swā Mandarin. Nān gewrit be þǣm þe ānlīce þā ealdan stafas rǣdaþ</td></tr>
+      <tr><th scope="row">Dǣl þæs webbes</th><td>1.3% (12. stede, eall Cīnisc)</td><td>W3Techs ne tōdǣlþ þā ānfealdan Cīniscan stafas and þā ealdan</td></tr>
+      <tr><th scope="row">Nettbrūcendas be gereorde</th><td>19.4% (2. stede, eall Cīnisc)</td><td>Internet World Stats, Hrēþmōnaþ 2020</td></tr>
+      <tr><th scope="row">Tīd on nette</th><td>Ealles 6,200,000,000 tīda on dæge mid þǣm ānfealdum stafum (1. stede)</td><td>Claudes āmetung. Nān synderlic āmetung for þǣm ealdum stafum</td></tr>
+    </tbody></table></div>
+  </details>
+</section>
+
+<section class="lang" id="hi" aria-labelledby="h-hi">
+  <p class="kicker">05 · hi</p>
+  <h2 id="h-hi"><span lang="hi">हिन्दी</span><small>Hindisc</small></h2>
+  <dl class="nums">
+    <div><dt>Sprecendas</dt><dd>611,000,000 (3. stede)</dd></div>
+    <div><dt>Web</dt><dd>Lǣs þonne 0.1% (38. stede)</dd></div>
+    <div><dt>Tīd on nette</dt><dd>1,740,000,000 tīda</dd></div>
+  </dl>
+  <p class="region"><b>Hwǣr</b>Norþ- and middel-Indea (Uttar Pradesh, Bihar, Rajasthan, Madhya Pradesh, Delhi, and mā). Ēac sind sprecendas on Nepale and on Fiji. Micel Indisc folc eardaþ on þǣm landum ymb þone Persiscan Sǣ, on Brytene, on þǣm Geānlǣhtum Rīcum, and on Canadan.</p>
+  <div class="persona">
+    <figure><img src="../../language-intro/img/hi.webp" width="800" height="1000" loading="lazy" decoding="async" alt="Ān geþōht persōna. Neha Verma, 24 wintra, eardaþ on Jaipur. Hēo leornaþ tō bēonne gerēfa ofer feohgerīmu."></figure>
+    <div class="ptext"><h3>Persōna</h3><p>Neha Verma, 24 wintra, eardaþ on Jaipur. Hēo leornaþ tō bēonne gerēfa ofer feohgerīmu. Æt 8 on morgen, ǣr hēo on þone eorþwægn gā, hēo tīehþ āne cartan on hire Redmi-fōne, swā swā æftergenga þæs rashifales þe hire mōdor ǣfre scēawaþ. Hēo cann ēac Englisc rǣdan, ac hēo fēlþ þæt þāra blēoa racu bilīfþ betere on hire heortan on Hindisce. Þonne sēo racu tō hire blēo cymþ þurh þā getimbru þǣre “Rēadan Byrig” Jaipures oþþe Rajasthanisce bendēagunge, hēo cīest dupattan þæs blēos. Þā andswara þe hire līciaþ sendeþ hēo hire yldran sweostor on WhatsApp.</p></div>
+  </div>
+  <details><summary>Rīm and glēsinga</summary>
+    <div class="scroll"><table class="facts"><thead><tr><th scope="col">Þing</th><th scope="col">Rīm</th><th scope="col">Glēsing</th></tr></thead><tbody>
+      <tr><th scope="row">Ealle sprecendas (ǣrest + ōþer gereord)</th><td>611,000,000 (3. stede)</td><td>Ethnologue, ūtgifu 2026</td></tr>
+      <tr><th scope="row">Dǣl þæs webbes</th><td>Lǣs þonne 0.1% (38. stede)</td><td>W3Techs, Winterfylleþ 2026. Swīþe fēa weblēaf be þǣre menige þāra sprecendra</td></tr>
+      <tr><th scope="row">Nettbrūcendas be gereorde</th><td>Nis on þǣm fyrstum 10</td><td>Internet World Stats, Hrēþmōnaþ 2020</td></tr>
+      <tr><th scope="row">Tīd on nette</th><td>Be wēne 290,000,000 nettbrūcenda, on gemete 6.0 tīda on dæge, ealles 1,740,000,000 tīda on dæge (6. stede)</td><td>Claudes āmetung. Man wēnþ þæt ymbe 35% Indea nettbrūcenda Hindisc brūcen. Þis is sēo unfæstoste wēn</td></tr>
+    </tbody></table></div>
+  </details>
+</section>
+
+<section class="lang" id="es" aria-labelledby="h-es">
+  <p class="kicker">06 · es</p>
+  <h2 id="h-es"><span lang="es">Español</span><small>Ispānisc</small></h2>
+  <dl class="nums">
+    <div><dt>Sprecendas</dt><dd>561,000,000 (4. stede)</dd></div>
+    <div><dt>Web</dt><dd>6.0% (2. stede)</dd></div>
+    <div><dt>Tīd on nette</dt><dd>2,960,000,000 tīda</dd></div>
+  </dl>
+  <p class="region"><b>Hwǣr</b>Ispania and fela landa on Latīniscre Americe, swā swā Mexico, Colombia, Argentina, Peru, Chile, and Venezuela. Fela manna on þǣm Geānlǣhtum Rīcum sprecaþ ēac Ispānisc æt hām (þæt rīm nis hēr gesōþod). Hit is ēac folces gereord on Equatorial Guinea.</p>
+  <div class="persona">
+    <figure><img src="../../language-intro/img/es.webp" width="800" height="1000" loading="lazy" decoding="async" alt="Ān geþōht persōna. Valeria Ortiz, 32 wintra, eardaþ on Guadalajara on Mexico. Hēo is tōþa clǣnsere."></figure>
+    <div class="ptext"><h3>Persōna</h3><p>Valeria Ortiz, 32 wintra, eardaþ on Guadalajara on Mexico. Hēo is tōþa clǣnsere. Æt 9:30 on niht, on setle æfter weorce, hēo ontȳnþ hire Android-fōn; hēo cōm tō þissum webstede of tārotes spelle þe hēo on TikTok geseah. Hire līcaþ þæt andgiet þǣre cartan tō rǣdenne, ac lēofost is hire þæt hēo bīdaþ þæs blēos naman æt þǣm ende. Þonne sēo racu tō weolocrēadum cymþ þurh Mexicanisce cochineal (rēad þe man of wyrme nimþ þe on cactum lifaþ), hēo hit sōna sendeþ hire gingran sweostor on WhatsApp. Æt þæs gēares ende hēo þencþ þisne webstede tō brūcenne þæt hēo cēose þæt blēo hire underhrægles.</p></div>
+  </div>
+  <details><summary>Rīm and glēsinga</summary>
+    <div class="scroll"><table class="facts"><thead><tr><th scope="col">Þing</th><th scope="col">Rīm</th><th scope="col">Glēsing</th></tr></thead><tbody>
+      <tr><th scope="row">Ealle sprecendas (ǣrest + ōþer gereord)</th><td>561,000,000 (4. stede)</td><td>Ethnologue, ūtgifu 2026</td></tr>
+      <tr><th scope="row">Dǣl þæs webbes</th><td>6.0% (2. stede)</td><td>W3Techs, Winterfylleþ 2026</td></tr>
+      <tr><th scope="row">Nettbrūcendas be gereorde</th><td>7.9% (3. stede)</td><td>Internet World Stats, Hrēþmōnaþ 2020</td></tr>
+      <tr><th scope="row">Tīd on nette</th><td>Be wēne 390,000,000 nettbrūcenda, on gemete 7.6 tīda on dæge, ealles 2,960,000,000 tīda on dæge (3. stede)</td><td>Claudes āmetung. Mexico, Ispania, Colombia, Argentina, and ōþru, and þā on þǣm Geānlǣhtum Rīcum þe mǣst Ispānisc sprecaþ</td></tr>
+    </tbody></table></div>
+  </details>
+</section>
+
+<section class="lang" id="ar" aria-labelledby="h-ar">
+  <p class="kicker">07 · ar</p>
+  <h2 id="h-ar"><span lang="ar" dir="rtl">العربية</span><small>Arabisc (nīwe gemǣne Arabisc)</small></h2>
+  <dl class="nums">
+    <div><dt>Sprecendas</dt><dd>335,000,000 (5. stede, nīwe gemǣne Arabisc)</dd></div>
+    <div><dt>Web</dt><dd>0.6% (19. stede)</dd></div>
+    <div><dt>Tīd on nette</dt><dd>2,310,000,000 tīda</dd></div>
+  </dl>
+  <p class="region"><b>Hwǣr</b>Folces gereord ymbe 22 landa on Middel-ēastdǣle and Norþ-Africe, swā swā Ægypte, Saudi Arabia, Iraq, Algeria, Morocco, Sudan, Syria, Iordan, and UAE. Fela Arabiscra sprecendra eardiaþ ēac on Europe (Francland, Germānia, and elles hwǣr) and on Norþ-Americe. Se webstede is gesett fram þǣre swīþran tō þǣre winstran.</p>
+  <div class="persona">
+    <figure><img src="../../language-intro/img/ar.webp" width="800" height="1000" loading="lazy" decoding="async" alt="Ān geþōht persōna. Nour Haddad, 28 wintra, eardaþ on Amman on Iordane. Hēo wyrcþ æt hūses getimbres smiþþan."></figure>
+    <div class="ptext"><h3>Persōna</h3><p>Nour Haddad, 28 wintra, eardaþ on Amman on Iordane. Hēo wyrcþ æt hūses getimbres smiþþan. Æt 8 on ǣfen hēo ontȳnþ hire iPhone on hire hūses ūtfleringe. Hēo ne gelīefþ wīglunge; hēo blissaþ on þǣre cartan mētinge and on þǣre race swā on “scortre rǣdinge”. Þonne sēo racu tō hire blēo cymþ þurh þā hǣwe Islamiscra getimbra tigelena oþþe þone rōsan stān Petran, hēo āwrīt hit swā bysene for blēogemengum on hire weorce. Hwīlum hēo sendeþ þæt andswarlēaf tō WhatsApp-gefērscipe hire efengetimbrendra.</p></div>
+  </div>
+  <details><summary>Rīm and glēsinga</summary>
+    <div class="scroll"><table class="facts"><thead><tr><th scope="col">Þing</th><th scope="col">Rīm</th><th scope="col">Glēsing</th></tr></thead><tbody>
+      <tr><th scope="row">Ealle sprecendas (ǣrest + ōþer gereord)</th><td>335,000,000 (5. stede, nīwe gemǣne Arabisc)</td><td>Ethnologue, ūtgifu 2026</td></tr>
+      <tr><th scope="row">Dǣl þæs webbes</th><td>0.6% (19. stede)</td><td>W3Techs, Winterfylleþ 2026</td></tr>
+      <tr><th scope="row">Nettbrūcendas be gereorde</th><td>5.2% (4. stede)</td><td>Internet World Stats, Hrēþmōnaþ 2020</td></tr>
+      <tr><th scope="row">Tīd on nette</th><td>Be wēne 330,000,000 nettbrūcenda, on gemete 7.0 tīda on dæge, ealles 2,310,000,000 tīda on dæge (4. stede)</td><td>Claudes āmetung. Ægypte, Saudi Arabia, Iraq, Algeria, Morocco, and ōþru</td></tr>
+    </tbody></table></div>
+  </details>
+</section>
+
+<section class="lang" id="fr" aria-labelledby="h-fr">
+  <p class="kicker">08 · fr</p>
+  <h2 id="h-fr"><span lang="fr">Français</span><small>Frencisc</small></h2>
+  <dl class="nums">
+    <div><dt>Sprecendas</dt><dd>334,000,000 (6. stede)</dd></div>
+    <div><dt>Web</dt><dd>4.5% (5. stede)</dd></div>
+    <div><dt>Tīd on nette</dt><dd>750,000,000 tīda</dd></div>
+  </dl>
+  <p class="region"><b>Hwǣr</b>Francland, sūþ-Belgia, west-Switzerland, Quebec on Canadan, and Luxembourg. On West- and Middel-Africe (Côte d’Ivoire, Senegal, Congo, Cameroon, and elles hwǣr) hit is scōla and rīces gereord. Hit is ēac wīde gebrocen on Morocco, Algerian, and Tunisian on Norþ-Africe.</p>
+  <div class="persona">
+    <figure><img src="../../language-intro/img/fr.webp" width="800" height="1000" loading="lazy" decoding="async" alt="Ān geþōht persōna. Hélène Garnier, 41 wintra, eardaþ on Lyon. Hēo healdeþ smiþþan þǣr man bēc bindeþ and bōcfell bēteþ."></figure>
+    <div class="ptext"><h3>Persōna</h3><p>Hélène Garnier, 41 wintra, eardaþ on Lyon. Hēo healdeþ smiþþan þǣr man bēc bindeþ and bōcfell bēteþ. Æt 10 on Sunnandæges morgen hēo ontȳnþ hire wexbred on þǣm weorcbēode. Hēo gemon þone Marseille-hēap on hire ealdmōdor hūse, and þāra hēafodcarta naman hire sind cūþe. Þonne sēo racu tō hire blēo cymþ þurh Lyones seolces dēagunge oþþe Parises blēomangere, hēo cīest þǣrmid þæt blēo þæs inlēafes for hire æfterran bōcbindinge. Hēo cīest þā wīsan Art Nouveau.</p></div>
+  </div>
+  <details><summary>Rīm and glēsinga</summary>
+    <div class="scroll"><table class="facts"><thead><tr><th scope="col">Þing</th><th scope="col">Rīm</th><th scope="col">Glēsing</th></tr></thead><tbody>
+      <tr><th scope="row">Ealle sprecendas (ǣrest + ōþer gereord)</th><td>334,000,000 (6. stede)</td><td>Ethnologue, ūtgifu 2026</td></tr>
+      <tr><th scope="row">Dǣl þæs webbes</th><td>4.5% (5. stede)</td><td>W3Techs, Winterfylleþ 2026</td></tr>
+      <tr><th scope="row">Nettbrūcendas be gereorde</th><td>3.3% (7. stede)</td><td>Internet World Stats, Hrēþmōnaþ 2020</td></tr>
+      <tr><th scope="row">Tīd on nette</th><td>Be wēne 125,000,000 nettbrūcenda, on gemete 6.0 tīda on dæge, ealles 750,000,000 tīda on dæge (9. stede)</td><td>Claudes āmetung. Francland, Belgia, and Quebec, and sēo Frencisce Africa</td></tr>
+    </tbody></table></div>
+  </details>
+</section>
+
+<section class="lang" id="bn" aria-labelledby="h-bn">
+  <p class="kicker">09 · bn</p>
+  <h2 id="h-bn"><span lang="bn">বাংলা</span><small>Bengalisc</small></h2>
+  <dl class="nums">
+    <div><dt>Sprecendas</dt><dd>274,000,000 (7. stede)</dd></div>
+    <div><dt>Web</dt><dd>Lǣs þonne 0.1% (39. stede)</dd></div>
+    <div><dt>Tīd on nette</dt><dd>610,000,000 tīda</dd></div>
+  </dl>
+  <p class="region"><b>Hwǣr</b>Bangladesh (þēode gereord) and þā Indiscan landscipas West Bengal, Tripura, and dǣl Assames. Fela manna of Bangladesh eardiaþ on Brytene (Ēast-Lundene), on þǣm landum ymb þone Persiscan Sǣ, on þǣm Geānlǣhtum Rīcum, and on Malæsian.</p>
+  <div class="persona">
+    <figure><img src="../../language-intro/img/bn.webp" width="800" height="1000" loading="lazy" decoding="async" alt="Ān geþōht persōna. Farhana Akter, 23 wintra, eardaþ on Dhaka. Hēo leornaþ Englisce bōccræftas on hēahscōle."></figure>
+    <div class="ptext"><h3>Persōna</h3><p>Farhana Akter, 23 wintra, eardaþ on Dhaka. Hēo leornaþ Englisce bōccræftas on hēahscōle. Æt 10 on niht, on reste fram hire lāre, hēo scēawode Facebook on hire Samsung-fōne, and cōm of andswarlēafe þe hire frēond dǣlde. Hēo blissaþ on him nā swā on wīglunge, ac swā on scortum spelle þe hēo on Bengalisc rǣdan mæg. Þonne sēo racu tō ylpenbǣnenum blēo cymþ þurh Dhakan muslin oþþe Jamdani-webb, hēo āwrīt þæs blēos naman on hire lēoþbēc.</p></div>
+  </div>
+  <details><summary>Rīm and glēsinga</summary>
+    <div class="scroll"><table class="facts"><thead><tr><th scope="col">Þing</th><th scope="col">Rīm</th><th scope="col">Glēsing</th></tr></thead><tbody>
+      <tr><th scope="row">Ealle sprecendas (ǣrest + ōþer gereord)</th><td>274,000,000 (7. stede)</td><td>Ethnologue, ūtgifu 2026</td></tr>
+      <tr><th scope="row">Dǣl þæs webbes</th><td>Lǣs þonne 0.1% (39. stede)</td><td>W3Techs, Winterfylleþ 2026</td></tr>
+      <tr><th scope="row">Nettbrūcendas be gereorde</th><td>Nis on þǣm fyrstum 10</td><td>Internet World Stats, Hrēþmōnaþ 2020</td></tr>
+      <tr><th scope="row">Tīd on nette</th><td>Be wēne 110,000,000 nettbrūcenda, on gemete 5.5 tīda on dæge, ealles 610,000,000 tīda on dæge (10. stede)</td><td>Claudes āmetung. Bangladesh and West Bengal</td></tr>
+    </tbody></table></div>
+  </details>
+</section>
+
+<section class="lang" id="pt" aria-labelledby="h-pt">
+  <p class="kicker">10 · pt</p>
+  <h2 id="h-pt"><span lang="pt">Português</span><small>Portugalisc (Brasil)</small></h2>
+  <dl class="nums">
+    <div><dt>Sprecendas</dt><dd>269,000,000 (8. stede)</dd></div>
+    <div><dt>Web</dt><dd>4.1% (6. stede)</dd></div>
+    <div><dt>Tīd on nette</dt><dd>1,890,000,000 tīda</dd></div>
+  </dl>
+  <p class="region"><b>Hwǣr</b>Brasil (se webstede brȳcþ pt-BR) and Portugal. Hit is ēac folces gereord on Africaniscum landum swā swā Angola, Mozambique, and Cape Verde. Fela Brasiliscra manna of Iapaniscum cynne eardiaþ on Iapane. Brasilisc folc is on þǣm Geānlǣhtum Rīcum, on Portugale, and on Iapane.</p>
+  <div class="persona">
+    <figure><img src="../../language-intro/img/pt.webp" width="800" height="1000" loading="lazy" decoding="async" alt="Ān geþōht persōna. Juliana Costa, 30 wintra, eardaþ on Recife. Hēo is lǣcehūses þēn, and wyrcþ ēac on nihtum."></figure>
+    <div class="ptext"><h3>Persōna</h3><p>Juliana Costa, 30 wintra, eardaþ on Recife. Hēo is lǣcehūses þēn, and wyrcþ ēac on nihtum. Æt 6:30 on morgen, on þǣm wægne hām æfter nihtweorce, hēo ontȳnþ hire Samsung-fōn and tīehþ āne cartan. Hēo bīdeþ māre þæs blēos æt þǣre race ende þonne þæs cartan andgietes. Þonne sēo racu tō hire blēo cymþ þurh pau-brasil (þone rēadan dēagtrēow þe Brasile his naman geaf), hēo hit sendeþ tō WhatsApp-gefērscipe hire gefērena. Ēac hēo þencþ hēr tō tēonne þæt hēo cēose þæt blēo hire hrægles on Gēares ǣfen.</p></div>
+  </div>
+  <details><summary>Rīm and glēsinga</summary>
+    <div class="scroll"><table class="facts"><thead><tr><th scope="col">Þing</th><th scope="col">Rīm</th><th scope="col">Glēsing</th></tr></thead><tbody>
+      <tr><th scope="row">Ealle sprecendas (ǣrest + ōþer gereord)</th><td>269,000,000 (8. stede)</td><td>Ethnologue, ūtgifu 2026</td></tr>
+      <tr><th scope="row">Dǣl þæs webbes</th><td>4.1% (6. stede)</td><td>W3Techs, Winterfylleþ 2026</td></tr>
+      <tr><th scope="row">Nettbrūcendas be gereorde</th><td>3.7% (6. stede)</td><td>Internet World Stats, Hrēþmōnaþ 2020</td></tr>
+      <tr><th scope="row">Tīd on nette</th><td>Be wēne 210,000,000 nettbrūcenda, on gemete 9.0 tīda on dæge, ealles 1,890,000,000 tīda on dæge (5. stede)</td><td>Claudes āmetung. Mǣst Brasil. Sēo tīd on nette is betwux þǣm lengestum on middangearde</td></tr>
+    </tbody></table></div>
+  </details>
+</section>
+
+<section class="lang" id="id" aria-labelledby="h-id">
+  <p class="kicker">11 · id</p>
+  <h2 id="h-id"><span lang="id">Bahasa Indonesia</span><small>Indonēsisc</small></h2>
+  <dl class="nums">
+    <div><dt>Sprecendas</dt><dd>255,000,000 (9. stede)</dd></div>
+    <div><dt>Web</dt><dd>1.2% (13. stede)</dd></div>
+    <div><dt>Tīd on nette</dt><dd>1,550,000,000 tīda</dd></div>
+  </dl>
+  <p class="region"><b>Hwǣr</b>Þēode gereord Indonēsian, þe mā þonne 200,000,000 manna on scōle and on weorce brūcaþ. On Timor-Leste hit is weorces gereord. Hit is mǣst gemǣnelīce understandenlic mid þǣm Malæiscan Malæsian, Brunei, and Singapores. Ǣ mā Indonēsiscra manna wyrcaþ on Iapane swā cræftes leorningcnihtas oþþe under þǣre ‘Specified Skilled Worker’ endebyrdnesse.</p>
+  <div class="persona">
+    <figure><img src="../../language-intro/img/id.webp" width="800" height="1000" loading="lazy" decoding="async" alt="Ān geþōht persōna. Dimas Pratama, 25 wintra, eardaþ on Bandung. Hē is geong mētere æt nīwum cēapscipe."></figure>
+    <div class="ptext"><h3>Persōna</h3><p>Dimas Pratama, 25 wintra, eardaþ on Bandung. Hē is geong mētere æt nīwum cēapscipe. Æt 9 on morgen hē ontȳnþ his Android-fōn on gemǣnum weorcstede. Hē brȳcþ his nā tō wīglunge, ac swā tōles tō sēcenne blēogemenga geþancas. Þæt andgiet þǣre cartan hē rǣdþ lēohtlīce, and þæs blēos racu georne. Þonne sēo racu tō his blēo cymþ þurh þone wād Iauiscre batik oþþe Sundisc hrēodgeweorc, hē dēþ hit tō grundblēo þāra bodungmētinga þæs dæges. On his Instagram Stories hē dǣlþ ānlīce þæs blēos naman.</p></div>
+  </div>
+  <details><summary>Rīm and glēsinga</summary>
+    <div class="scroll"><table class="facts"><thead><tr><th scope="col">Þing</th><th scope="col">Rīm</th><th scope="col">Glēsing</th></tr></thead><tbody>
+      <tr><th scope="row">Ealle sprecendas (ǣrest + ōþer gereord)</th><td>255,000,000 (9. stede)</td><td>Ethnologue, ūtgifu 2026</td></tr>
+      <tr><th scope="row">Dǣl þæs webbes</th><td>1.2% (13. stede)</td><td>W3Techs, Winterfylleþ 2026</td></tr>
+      <tr><th scope="row">Nettbrūcendas be gereorde</th><td>4.3% (5. stede)</td><td>Internet World Stats, Hrēþmōnaþ 2020. Hit dǣlþ āne rǣwe mid Malæiscum; þæt rīm is Indonēsisces</td></tr>
+      <tr><th scope="row">Tīd on nette</th><td>Be wēne 210,000,000 nettbrūcenda, on gemete 7.4 tīda on dæge, ealles 1,550,000,000 tīda on dæge (7. stede)</td><td>Claudes āmetung</td></tr>
+    </tbody></table></div>
+  </details>
+</section>
+
+<section class="lang" id="ms" aria-labelledby="h-ms">
+  <p class="kicker">12 · ms</p>
+  <h2 id="h-ms"><span lang="ms">Bahasa Melayu</span><small>Malæisc</small></h2>
+  <dl class="nums">
+    <div><dt>Sprecendas</dt><dd>uncūþ</dd></div>
+    <div><dt>Web</dt><dd>nān gewrit</dd></div>
+    <div><dt>Tīd on nette</dt><dd>Ymbe 160,000,000 tīda (bysenrīm, būtan endebyrdnesse)</dd></div>
+  </dl>
+  <p class="region"><b>Hwǣr</b>Malæsia, Brunei, and Singapore (þēode gereord). Ēac sind Malæisce sprecendas on sūþ-Thailande. On Malæsian þā Malæiscan hit brūcaþ ǣlce dæge, and Cīnisce and Indisce Malæsiscan hit ēac on scōle leornaþ.</p>
+  <div class="persona">
+    <figure><img src="../../language-intro/img/ms.webp" width="800" height="1000" loading="lazy" decoding="async" alt="Ān geþōht persōna. Nur Aisyah binti Rahman, 27 wintra, eardaþ on Shah Alam. Hēo is lǣcehūses wyrtgemengestre."></figure>
+    <div class="ptext"><h3>Persōna</h3><p>Nur Aisyah binti Rahman, 27 wintra, eardaþ on Shah Alam. Hēo is lǣcehūses wyrtgemengestre. Æt 1 ofer midne dæg, on hire undernmetes reste, hēo scēawaþ on TikTok mid hire Android-fōne rǣdas for fōre tō Osaka on Hlȳda þæs æfterran gēares. Hēo ne gelīefþ wīglunge, ac hēo lufaþ þāra carta mētinga and þāra blēoa racu swā “sum fæger þing tō rǣdenne”. Þonne sēo racu tō hire blēo cymþ þurh þone goldþrǣd Malæiscre songket oþþe þǣre hȳþe Malaccan, hēo nimþ hit tō bysene for þǣm blēo hire tudunges (hēafodclāþes) for þǣre fōre. Hēo sendeþ ānlīce þæs blēos naman tō hire hīredes WhatsApp-gefērscipe.</p></div>
+  </div>
+  <details><summary>Rīm and glēsinga</summary>
+    <div class="scroll"><table class="facts"><thead><tr><th scope="col">Þing</th><th scope="col">Rīm</th><th scope="col">Glēsing</th></tr></thead><tbody>
+      <tr><th scope="row">Ealle sprecendas (ǣrest + ōþer gereord)</th><td>uncūþ</td><td>Man tellþ oft Malæisc mid Indonēsiscum swā ān micel gereord, and forþī nis nān synderlic rīm. Þæt Wikipedia-lēaf “Malay language” (þe Ethnologue nemneþ, 28. ūtgifu, 2025) sægþ þæt Malæisc swā micel gereord hæfþ ymbe 90,000,000 ǣrestra sprecendra (2020–2023) and ymbe 180,000,000 ōþres gereordes sprecendra (2020). Þis rīm hæfþ ēac þā landlican Malæiscan sprǣca on Indonēsian, and nis rīm ānes þæs gemǣnan Malæisces</td></tr>
+      <tr><th scope="row">Dǣl þæs webbes</th><td>nān gewrit</td><td>Nis on W3Techs fyrstum 40</td></tr>
+      <tr><th scope="row">Nettbrūcendas be gereorde</th><td>Sēo ilce rǣw swā Indonēsisc</td><td>On Internet World Stats þǣre Indonēsiscan/Malæiscan rǣwe rīm is ānlīce Indonēsisces 4.3%</td></tr>
+      <tr><th scope="row">Tīd on nette</th><td>Ymbe 160,000,000 tīda on dæge (bysenrīm, būtan endebyrdnesse)</td><td>Bysenrīm būtan þǣre endebyrdnesse on Claudes āmetunge. Ymbe 60% Malæsian nettbrūcenda, and Brunei</td></tr>
+    </tbody></table></div>
+  </details>
+</section>
+
+<section class="lang" id="ur" aria-labelledby="h-ur">
+  <p class="kicker">13 · ur</p>
+  <h2 id="h-ur"><span lang="ur" dir="rtl">اردو</span><small>Urdu</small></h2>
+  <dl class="nums">
+    <div><dt>Sprecendas</dt><dd>246,000,000 (10. stede)</dd></div>
+    <div><dt>Web</dt><dd>nān gewrit</dd></div>
+    <div><dt>Tīd on nette</dt><dd>520,000,000 tīda</dd></div>
+  </dl>
+  <p class="region"><b>Hwǣr</b>Pakistan (þēode gereord) and norþ-Indea (Uttar Pradesh, Hyderabad on Telangana, Delhi, and elles hwǣr). Fela manna of Pakistaniscum cynne eardiaþ on Brytene, on þǣm landum ymb þone Persiscan Sǣ, on þǣm Geānlǣhtum Rīcum, and on Canadan. Þæt sprǣce gereord is gehende Hindiscum; sēo stæfwīse (Arabisce stafas on Nastaliq-wīsan) is ōþer. Se webstede is gesett fram þǣre swīþran tō þǣre winstran.</p>
+  <div class="persona">
+    <figure><img src="../../language-intro/img/ur.webp" width="800" height="1000" loading="lazy" decoding="async" alt="Ān geþōht persōna. Hamza Qureshi, 30 wintra, eardaþ on Lahore. Hē is wyrhta wīdgecwedra (software) æt feohcræftes hūse."></figure>
+    <div class="ptext"><h3>Persōna</h3><p>Hamza Qureshi, 30 wintra, eardaþ on Lahore. Hē is wyrhta wīdgecwedra (software) æt feohcræftes hūse. Æt 12:30 on niht, æfter weorce, hē ontȳnþ his Android-fōn ofer bollan chai. Hē hilt hine feorr fram wīglunge, ac him līcaþ lēaf þǣr Urdu-gewrit is fægere gesett, and hē cymþ þā race tō rǣdenne. Þonne sēo racu tō his blēo cymþ þurh þone sǣhǣwen Mughalisces lȳtelmētinges oþþe þā tigelan on þǣm weallum þæs Lahore-fæstenes, hē sendeþ þone hlinc his frēonde þǣm scope on WhatsApp.</p></div>
+  </div>
+  <details><summary>Rīm and glēsinga</summary>
+    <div class="scroll"><table class="facts"><thead><tr><th scope="col">Þing</th><th scope="col">Rīm</th><th scope="col">Glēsing</th></tr></thead><tbody>
+      <tr><th scope="row">Ealle sprecendas (ǣrest + ōþer gereord)</th><td>246,000,000 (10. stede)</td><td>Ethnologue, ūtgifu 2026</td></tr>
+      <tr><th scope="row">Dǣl þæs webbes</th><td>nān gewrit</td><td>Nis on W3Techs fyrstum 40</td></tr>
+      <tr><th scope="row">Nettbrūcendas be gereorde</th><td>Nis on þǣm fyrstum 10</td><td>Internet World Stats, Hrēþmōnaþ 2020</td></tr>
+      <tr><th scope="row">Tīd on nette</th><td>Be wēne 95,000,000 nettbrūcenda, on gemete 5.5 tīda on dæge, ealles 520,000,000 tīda on dæge (13. stede)</td><td>Claudes āmetung. Ymbe 75% Pakistanes, and dǣl Indea</td></tr>
+    </tbody></table></div>
+  </details>
+</section>
+
+<section class="lang" id="ru" aria-labelledby="h-ru">
+  <p class="kicker">14 · ru</p>
+  <h2 id="h-ru"><span lang="ru">Русский</span><small>Rūsisc</small></h2>
+  <dl class="nums">
+    <div><dt>Sprecendas</dt><dd>210,000,000 (11. stede)</dd></div>
+    <div><dt>Web</dt><dd>3.4% (7. stede)</dd></div>
+    <div><dt>Tīd on nette</dt><dd>1,160,000,000 tīda</dd></div>
+  </dl>
+  <p class="region"><b>Hwǣr</b>Folces gereord on Russlande, Belarus, Kazakhstane, and Kyrgyzstane. Fela manna on ōþrum landum þe ǣr Soviet wǣron (Middel-Asia, Caucasus, þā Baltiscan land) brūcaþ ēac Rūsisces. Rūsisc-sprecende folc is ēac on Israhēle, on Germānian, and on þǣm Geānlǣhtum Rīcum.</p>
+  <div class="persona">
+    <figure><img src="../../language-intro/img/ru.webp" width="800" height="1000" loading="lazy" decoding="async" alt="Ān geþōht persōna. Анна Соколова (Anna Sokolova), 35 wintra, eardaþ on Novosibirsk. Hēo is cræftiga þe gecynd tōlīesþ on smēagunghūse."></figure>
+    <div class="ptext"><h3>Persōna</h3><p><span lang="ru">Анна Соколова</span> (Anna Sokolova), 35 wintra, eardaþ on Novosibirsk. Hēo is cræftiga þe gecynd tōlīesþ on smēagunghūse. Æt 10 on niht hēo ontȳnþ hire Android-fōn on þǣre cycene mid tēan. Hēo geāxode þisne webstede of Telegram-strēame þe blēo and cræft cȳþ. For hire weorce hēo swīþost blissaþ þæt hēo cartan tīehþ and fylgþ þǣre race tō hire blēo þurh stānas and dēagas. On þǣm dagum þe malachites grēne ætīewþ, hēo ēowaþ hire dohtor onlīcnesse þæs stānes.</p></div>
+  </div>
+  <details><summary>Rīm and glēsinga</summary>
+    <div class="scroll"><table class="facts"><thead><tr><th scope="col">Þing</th><th scope="col">Rīm</th><th scope="col">Glēsing</th></tr></thead><tbody>
+      <tr><th scope="row">Ealle sprecendas (ǣrest + ōþer gereord)</th><td>210,000,000 (11. stede)</td><td>Ethnologue, ūtgifu 2026</td></tr>
+      <tr><th scope="row">Dǣl þæs webbes</th><td>3.4% (7. stede)</td><td>W3Techs, Winterfylleþ 2026</td></tr>
+      <tr><th scope="row">Nettbrūcendas be gereorde</th><td>2.5% (9. stede)</td><td>Internet World Stats, Hrēþmōnaþ 2020</td></tr>
+      <tr><th scope="row">Tīd on nette</th><td>Be wēne 155,000,000 nettbrūcenda, on gemete 7.5 tīda on dæge, ealles 1,160,000,000 tīda on dæge (8. stede)</td><td>Claudes āmetung. Russland, and Belarus, Kazakhstan, and dǣl Middel-Asian</td></tr>
+    </tbody></table></div>
+  </details>
+</section>
+
+<section class="lang" id="de" aria-labelledby="h-de">
+  <p class="kicker">15 · de</p>
+  <h2 id="h-de"><span lang="de">Deutsch</span><small>Þēodisc</small></h2>
+  <dl class="nums">
+    <div><dt>Sprecendas</dt><dd>133,000,000 (12. stede)</dd></div>
+    <div><dt>Web</dt><dd>5.9% (3. stede)</dd></div>
+    <div><dt>Tīd on nette</dt><dd>480,000,000 tīda</dd></div>
+  </dl>
+  <p class="region"><b>Hwǣr</b>Germānia, Austria, Switzerland (norþ and middel), Liechtenstein, Luxembourg, Sūþ-Tirol on Ītalian, and ēast-Belgia.</p>
+  <div class="persona">
+    <figure><img src="../../language-intro/img/de.webp" width="800" height="1000" loading="lazy" decoding="async" alt="Ān geþōht persōna. Jonas Weber, 38 wintra, eardaþ on Leipzig. Hē is swēges cræftiga on plegahūse."></figure>
+    <div class="ptext"><h3>Persōna</h3><p>Jonas Weber, 38 wintra, eardaþ on Leipzig. Hē is swēges cræftiga on plegahūse. Æt 1 ofer midne dæg on weorcdæge, on his reste, hē hit ontȳnþ on Firefox on his cnēobrede. Hē brȳcþ ceapbodunga forwyrnes, and wiþsæcþ þǣm geþafunga segnum. Hē ne gelīefþ wīglunge, ac him līcaþ þāra carta wīsan tō metenne (Surrealisc lēohtmǣl, Brutalisc mētung). Þonne sēo racu tō his blēo cymþ þurh Prussisc hǣwen, þe on Berline on fruman þæs 18. hundgēares ācenned wæs, hē is blīþe and secgþ hit his gefērum.</p></div>
+  </div>
+  <details><summary>Rīm and glēsinga</summary>
+    <div class="scroll"><table class="facts"><thead><tr><th scope="col">Þing</th><th scope="col">Rīm</th><th scope="col">Glēsing</th></tr></thead><tbody>
+      <tr><th scope="row">Ealle sprecendas (ǣrest + ōþer gereord)</th><td>133,000,000 (12. stede)</td><td>Ethnologue, ūtgifu 2026</td></tr>
+      <tr><th scope="row">Dǣl þæs webbes</th><td>5.9% (3. stede)</td><td>W3Techs, Winterfylleþ 2026</td></tr>
+      <tr><th scope="row">Nettbrūcendas be gereorde</th><td>2.0% (10. stede)</td><td>Internet World Stats, Hrēþmōnaþ 2020</td></tr>
+      <tr><th scope="row">Tīd on nette</th><td>Be wēne 93,000,000 nettbrūcenda, on gemete 5.2 tīda on dæge, ealles 480,000,000 tīda on dæge (17. stede)</td><td>Claudes āmetung. Germānia, Austria, Switzerland</td></tr>
+    </tbody></table></div>
+  </details>
+</section>
+
+<section class="lang" id="vi" aria-labelledby="h-vi">
+  <p class="kicker">16 · vi</p>
+  <h2 id="h-vi"><span lang="vi">Tiếng Việt</span><small>Wietnamisc</small></h2>
+  <dl class="nums">
+    <div><dt>Sprecendas</dt><dd>97,000,000 (17. stede)</dd></div>
+    <div><dt>Web</dt><dd>0.9% (16. stede)</dd></div>
+    <div><dt>Tīd on nette</dt><dd>500,000,000 tīda</dd></div>
+  </dl>
+  <p class="region"><b>Hwǣr</b>Vietnam. Micel Wietnamisc folc is on þǣm Geānlǣhtum Rīcum (California, Texas), on Australian, on Franclande, and on Canadan. Fela Wietnamiscra manna eardiaþ ēac on Iapane swā cræftes leorningcnihtas oþþe scōlēras.</p>
+  <div class="persona">
+    <figure><img src="../../language-intro/img/vi.webp" width="800" height="1000" loading="lazy" decoding="async" alt="Ān geþōht persōna. Trần Văn Minh, 24 wintra, eardaþ on Toyota on Aichi. Hē is cræftes leorningcniht on smiþþan þǣr man wægna dǣlas wyrcþ."></figure>
+    <div class="ptext"><h3>Persōna</h3><p>Trần Văn Minh, 24 wintra, eardaþ on Toyota on Aichi. Hē is cræftes leorningcniht on smiþþan þǣr man wægna dǣlas wyrcþ. Æt 5 on ǣfen, ǣr hē tō nihtweorce fare, hē ontȳnþ his Android-fōn on his būre on þǣm slǣphūse. Andswara of þissum webstede wǣron gedǣlde on Facebook-gefērscipe his frēonda þe on Iapane eardiaþ. Hē tīehþ āne cartan, and metaþ hīe wiþ þā blēo his <i lang="vi">mệnh</i> þe his mōdor nemneþ. Þonne sēo racu tō his blēo cymþ þurh þæt seoloc Hội An-lēohtfata oþþe þone lacu his ēþles, hē hit sendeþ his hīrede on Zalo.</p></div>
+  </div>
+  <details><summary>Rīm and glēsinga</summary>
+    <div class="scroll"><table class="facts"><thead><tr><th scope="col">Þing</th><th scope="col">Rīm</th><th scope="col">Glēsing</th></tr></thead><tbody>
+      <tr><th scope="row">Ealle sprecendas (ǣrest + ōþer gereord)</th><td>97,000,000 (17. stede)</td><td>Ethnologue, ūtgifu 2026</td></tr>
+      <tr><th scope="row">Dǣl þæs webbes</th><td>0.9% (16. stede)</td><td>W3Techs, Winterfylleþ 2026</td></tr>
+      <tr><th scope="row">Nettbrūcendas be gereorde</th><td>Nis on þǣm fyrstum 10</td><td>Internet World Stats, Hrēþmōnaþ 2020</td></tr>
+      <tr><th scope="row">Tīd on nette</th><td>Be wēne 79,000,000 nettbrūcenda, on gemete 6.3 tīda on dæge, ealles 500,000,000 tīda on dæge (15. stede)</td><td>Claudes āmetung</td></tr>
+    </tbody></table></div>
+  </details>
+</section>
+
+<section class="lang" id="sw" aria-labelledby="h-sw">
+  <p class="kicker">17 · sw</p>
+  <h2 id="h-sw"><span lang="sw">Kiswahili</span><small>Swahili</small></h2>
+  <dl class="nums">
+    <div><dt>Sprecendas</dt><dd>95,000,000 (19. stede)</dd></div>
+    <div><dt>Web</dt><dd>nān gewrit</dd></div>
+    <div><dt>Tīd on nette</dt><dd>Nān āmetung</dd></div>
+  </dl>
+  <p class="region"><b>Hwǣr</b>Tanzania and Cenia. On Tanzanian hit is þēode gereord; cildra scōl is on Swahili, and fram þǣre middelscōle Englisc. On Cenian hit is ān þāra folces gereorda; þā ǣrestan gēar man lǣrþ on mōdorsprǣce oþþe on Swahili, siþþan on Englisc, and Swahili is nīedlic lār. Hit is ēac wīde gebrocen on Ugandan, Rwandan, Burundi, ēast-Congo, and þǣm Comorum. Hit is ān þāra weorcgereorda þǣre Africaniscan Geānunge.</p>
+  <div class="persona">
+    <figure><img src="../../language-intro/img/sw.webp" width="800" height="1000" loading="lazy" decoding="async" alt="Ān geþōht persōna. Amina Juma, 28 wintra, eardaþ on Dar es Salaam. Hēo is lārēow on cildra scōle."></figure>
+    <div class="ptext"><h3>Persōna</h3><p>Amina Juma, 28 wintra, eardaþ on Dar es Salaam. Hēo is lārēow on cildra scōle. Æt 3:30 ofer midne dæg, æfter lāre, hēo ontȳnþ hire Android-fōn on lārēowa būre. Andswaru of þissum webstede fērde geond WhatsApp-gefērscipe hire gefērena. Hēo tīehþ āne cartan, and metaþ hīe wiþ þā blēo kanga-clāþes. Þonne sēo racu tō hire blēo cymþ þurh kangan wād oþþe þone ǣfenlican heofon ofer þǣm Indiscan Gārsecge, hēo hit sendeþ hire mēder on WhatsApp.</p></div>
+  </div>
+  <details><summary>Rīm and glēsinga</summary>
+    <div class="scroll"><table class="facts"><thead><tr><th scope="col">Þing</th><th scope="col">Rīm</th><th scope="col">Glēsing</th></tr></thead><tbody>
+      <tr><th scope="row">Ealle sprecendas (ǣrest + ōþer gereord)</th><td>95,000,000 (19. stede)</td><td>Ethnologue, ūtgifu 2026</td></tr>
+      <tr><th scope="row">Dǣl þæs webbes</th><td>nān gewrit</td><td>Nis on W3Techs fyrstum 40</td></tr>
+      <tr><th scope="row">Nettbrūcendas be gereorde</th><td>Nis on þǣm fyrstum 10</td><td>Internet World Stats, Hrēþmōnaþ 2020</td></tr>
+      <tr><th scope="row">Tīd on nette</th><td>Nān āmetung</td><td>Claudes āmetung næfþ nāne rǣwe for Swahili. Cenia and Tanzania sind gefealdene on Englisc oþþe on Swahili ealles, and sēo tīd ānes Swahilis nis tōdǣled</td></tr>
+    </tbody></table></div>
+  </details>
+</section>
+
+<section class="lang" id="tr" aria-labelledby="h-tr">
+  <p class="kicker">18 · tr</p>
+  <h2 id="h-tr"><span lang="tr">Türkçe</span><small>Turcisc</small></h2>
+  <dl class="nums">
+    <div><dt>Sprecendas</dt><dd>94,000,000 (20. stede, gelīce Hausan)</dd></div>
+    <div><dt>Web</dt><dd>1.6% (11. stede)</dd></div>
+    <div><dt>Tīd on nette</dt><dd>560,000,000 tīda</dd></div>
+  </dl>
+  <p class="region"><b>Hwǣr</b>Turcland and Norþ-Cyprus. Germānia hæfþ micel Turcisc folc, and fela eardiaþ ēac on Nēoþerlandum, on Austrian, and on Franclande. Sprecendas sind ēac on Bulgarian and on norþ-Crēcalande.</p>
+  <div class="persona">
+    <figure><img src="../../language-intro/img/tr.webp" width="800" height="1000" loading="lazy" decoding="async" alt="Ān geþōht persōna. Elif Yıldız, 33 wintra, eardaþ on İzmir. Hēo is lārēow gecyndcræftes on hēarran scōle."></figure>
+    <div class="ptext"><h3>Persōna</h3><p>Elif Yıldız, 33 wintra, eardaþ on İzmir. Hēo is lārēow gecyndcræftes on hēarran scōle. Æt 4:30 ofer midne dæg, æfter lāre, hēo lēt hire cāwan grūt rǣdan mid frēondum on drincærne, and siþþan ontȳnde þisne webstede on hire iPhone. Hēo and hire frēond rǣdaþ þǣre cartan andgiet ætgædere. Þonne sēo racu tō hire blēo cymþ þurh turcwīsne stān oþþe þā hǣwe İznik-tigelena, ealle bēoþ onǣlede, and hēo hit āsett on hire Instagram Stories.</p></div>
+  </div>
+  <details><summary>Rīm and glēsinga</summary>
+    <div class="scroll"><table class="facts"><thead><tr><th scope="col">Þing</th><th scope="col">Rīm</th><th scope="col">Glēsing</th></tr></thead><tbody>
+      <tr><th scope="row">Ealle sprecendas (ǣrest + ōþer gereord)</th><td>94,000,000 (20. stede, gelīce Hausan)</td><td>Ethnologue, ūtgifu 2026</td></tr>
+      <tr><th scope="row">Dǣl þæs webbes</th><td>1.6% (11. stede)</td><td>W3Techs, Winterfylleþ 2026</td></tr>
+      <tr><th scope="row">Nettbrūcendas be gereorde</th><td>Nis on þǣm fyrstum 10</td><td>Internet World Stats, Hrēþmōnaþ 2020</td></tr>
+      <tr><th scope="row">Tīd on nette</th><td>Be wēne 80,000,000 nettbrūcenda, on gemete 7.0 tīda on dæge, ealles 560,000,000 tīda on dæge (11. stede)</td><td>Claudes āmetung</td></tr>
+    </tbody></table></div>
+  </details>
+</section>
+
+<section class="lang" id="tl" aria-labelledby="h-tl">
+  <p class="kicker">19 · tl</p>
+  <h2 id="h-tl"><span lang="fil">Filipino</span><small>Filipinisc</small></h2>
+  <dl class="nums">
+    <div><dt>Sprecendas</dt><dd>87,000,000</dd></div>
+    <div><dt>Web</dt><dd>Lǣs þonne 0.1% (40. stede, Tagalog)</dd></div>
+    <div><dt>Tīd on nette</dt><dd>530,000,000 tīda</dd></div>
+  </dl>
+  <p class="region"><b>Hwǣr</b>Þēode gereord þāra Filipiniscra īglanda, and folces gereord be Engliscum. Filipinisce menn þe geond ealne middangeard wyrcaþ hit brūcaþ, on þǣm Geānlǣhtum Rīcum (California, Hawaii), on þǣm landum ymb þone Persiscan Sǣ, on Hong Kong, on Singapore, on Canadan, and on Iapane.</p>
+  <div class="persona">
+    <figure><img src="../../language-intro/img/tl.webp" width="800" height="1000" loading="lazy" decoding="async" alt="Ān geþōht persōna. Joanna “Jo” Dela Cruz, 28 wintra, eardaþ on Quezon City. Hēo wyrcþ on nihtum on clipungærne þe þǣm Geānlǣhtum Rīcum þēowaþ."></figure>
+    <div class="ptext"><h3>Persōna</h3><p>Joanna “Jo” Dela Cruz, 28 wintra, eardaþ on Quezon City. Hēo wyrcþ on nihtum on clipungærne þe þǣm Geānlǣhtum Rīcum þēowaþ. On hire reste æt 4 on ūhtan hēo tīehþ āne cartan on hire Android-fōne. Hire weorc is on Engliscum, forþī on reste hēo wile on Filipiniscum rǣdan. Þonne sēo racu tō hire blēo cymþ þurh þā sunnan setlgang ofer Manila-flōde oþþe piña (clāþ of þǣre pinæpples þrǣdum), hēo hit āsett on Facebook and sendeþ hit hire swyrian þe on Middel-ēastdǣle wyrcþ.</p></div>
+  </div>
+  <details><summary>Rīm and glēsinga</summary>
+    <div class="scroll"><table class="facts"><thead><tr><th scope="col">Þing</th><th scope="col">Rīm</th><th scope="col">Glēsing</th></tr></thead><tbody>
+      <tr><th scope="row">Ealle sprecendas (ǣrest + ōþer gereord)</th><td>87,000,000</td><td>Ethnologue, ūtgifu 2026 (geteald swā Tagalog)</td></tr>
+      <tr><th scope="row">Dǣl þæs webbes</th><td>Lǣs þonne 0.1% (40. stede, Tagalog)</td><td>W3Techs, Winterfylleþ 2026</td></tr>
+      <tr><th scope="row">Nettbrūcendas be gereorde</th><td>Nis on þǣm fyrstum 10</td><td>Internet World Stats, Hrēþmōnaþ 2020</td></tr>
+      <tr><th scope="row">Tīd on nette</th><td>Be wēne 60,000,000 nettbrūcenda, on gemete 8.9 tīda on dæge, ealles 530,000,000 tīda on dæge (12. stede)</td><td>Claudes āmetung. Man wēnþ ymbe 60% þāra nettbrūcenda on þǣm Filipiniscum īglandum; þā ōþre sind getealde under Engliscum</td></tr>
+    </tbody></table></div>
+  </details>
+</section>
+
+<section class="lang" id="fa" aria-labelledby="h-fa">
+  <p class="kicker">20 · fa</p>
+  <h2 id="h-fa"><span lang="fa" dir="rtl">فارسی</span><small>Persisc</small></h2>
+  <dl class="nums">
+    <div><dt>Sprecendas</dt><dd>82,000,000 (Īranisc Persisc)</dd></div>
+    <div><dt>Web</dt><dd>1.0% (14. stede)</dd></div>
+    <div><dt>Tīd on nette</dt><dd>490,000,000 tīda</dd></div>
+  </dl>
+  <p class="region"><b>Hwǣr</b>Folces gereord Īranes. Gehende wīsan man brȳcþ on Afghanistane (Dari) and on Tajikistane (Tajik). Micel Īranisc folc is on þǣm Geānlǣhtum Rīcum (Los Angeles), on Canadan, on Germānian, on Brytene, and on Turclande. Se webstede is gesett fram þǣre swīþran tō þǣre winstran.</p>
+  <div class="persona">
+    <figure><img src="../../language-intro/img/fa.webp" width="800" height="1000" loading="lazy" decoding="async" alt="Ān geþōht persōna. Parisa Hosseini, 31 wintra, eardaþ on Isfahan. Hēo bēteþ tigelan on ealdum getimbrum."></figure>
+    <div class="ptext"><h3>Persōna</h3><p>Parisa Hosseini, 31 wintra, eardaþ on Isfahan. Hēo bēteþ tigelan on ealdum getimbrum. Æt 11 on niht, æfter hire weorce, hēo ontȳnþ hire Android-fōn. On Yalda-niht hire hīred ontȳnþ Hafez ætgædere, forþī is hire cūþ sēo rǣding of ānre cartan. Þonne sēo racu tō hire blēo cymþ þurh Nishapur-turcwīsne stān oþþe þā hǣwe þāra tigelena on Isfahanes mosceum, hēo stareþ on hit swā swā hēo hire weorc forlēte. Hēo sendeþ þone hlinc hire yldran sweostor on ellþēodum on Telegram.</p></div>
+  </div>
+  <details><summary>Rīm and glēsinga</summary>
+    <div class="scroll"><table class="facts"><thead><tr><th scope="col">Þing</th><th scope="col">Rīm</th><th scope="col">Glēsing</th></tr></thead><tbody>
+      <tr><th scope="row">Ealle sprecendas (ǣrest + ōþer gereord)</th><td>82,000,000 (Īranisc Persisc)</td><td>Ethnologue, ūtgifu 2026. Næfþ Dari (Afghanistan) ne Tajik</td></tr>
+      <tr><th scope="row">Dǣl þæs webbes</th><td>1.0% (14. stede)</td><td>W3Techs, Winterfylleþ 2026</td></tr>
+      <tr><th scope="row">Nettbrūcendas be gereorde</th><td>Nis on þǣm fyrstum 10</td><td>Internet World Stats, Hrēþmōnaþ 2020</td></tr>
+      <tr><th scope="row">Tīd on nette</th><td>Be wēne 82,000,000 nettbrūcenda, on gemete 6.0 tīda on dæge, ealles 490,000,000 tīda on dæge (16. stede)</td><td>Claudes āmetung. Hæfþ Īran and Afghanistan (Dari)</td></tr>
+    </tbody></table></div>
+  </details>
+</section>
+
+<section class="lang" id="ko" aria-labelledby="h-ko">
+  <p class="kicker">21 · ko</p>
+  <h2 id="h-ko"><span lang="ko">한국어</span><small>Cōreisc</small></h2>
+  <dl class="nums">
+    <div><dt>Sprecendas</dt><dd>82,000,000</dd></div>
+    <div><dt>Web</dt><dd>0.9% (17. stede)</dd></div>
+    <div><dt>Tīd on nette</dt><dd>270,000,000 tīda</dd></div>
+  </dl>
+  <p class="region"><b>Hwǣr</b>Sūþ-Cōrea and Norþ-Cōrea. Folc þe hiera wyrtruman on þǣm Cōreiscan Healfīglande habbaþ is ēac on Yanbian on Cīnum, on þǣm Geānlǣhtum Rīcum (Los Angeles, New York), on Iapane, and on Middel-Asian.</p>
+  <div class="persona">
+    <figure><img src="../../language-intro/img/ko.webp" width="800" height="1000" loading="lazy" decoding="async" alt="Ān geþōht persōna. 김서연 (Kim Seo-yeon), 29 wintra, eardaþ on Mapo-gu on Seoul. Hēo is blēowyrhta for webtoonum."></figure>
+    <div class="ptext"><h3>Persōna</h3><p><span lang="ko">김서연</span> (Kim Seo-yeon), 29 wintra, eardaþ on Mapo-gu on Seoul. Hēo is blēowyrhta for webtoonum. Æt 8:20 on morgen hēo ontȳnþ hire iPhone on þǣm eorþwægne. Ǣne on mōnþe hēo gǣþ mid frēondum tō tārotes drincærne. Hēo fand þisne webstede þā hēo on NAVER sōhte rǣdas for fōre tō Fukuoka on þǣm æfterran mōnþe. Þonne sēo racu tō hire blēo cymþ þurh Cōreisce <i lang="ko-Latn">obangsaek</i> (fīf ealde blēo) oþþe Iapanisce dēagunge, hēo dēþ þæt blēo on ānne dǣl hire dæges blēogemenges. Hēo sendeþ andswara hire frēondum on KakaoTalk.</p></div>
+  </div>
+  <details><summary>Rīm and glēsinga</summary>
+    <div class="scroll"><table class="facts"><thead><tr><th scope="col">Þing</th><th scope="col">Rīm</th><th scope="col">Glēsing</th></tr></thead><tbody>
+      <tr><th scope="row">Ealle sprecendas (ǣrest + ōþer gereord)</th><td>82,000,000</td><td>Ethnologue, ūtgifu 2026</td></tr>
+      <tr><th scope="row">Dǣl þæs webbes</th><td>0.9% (17. stede)</td><td>W3Techs, Winterfylleþ 2026</td></tr>
+      <tr><th scope="row">Nettbrūcendas be gereorde</th><td>Nis on þǣm fyrstum 10</td><td>Internet World Stats, Hrēþmōnaþ 2020</td></tr>
+      <tr><th scope="row">Tīd on nette</th><td>Be wēne 50,000,000 nettbrūcenda, on gemete 5.3 tīda on dæge, ealles 270,000,000 tīda on dæge (20. stede)</td><td>Claudes āmetung</td></tr>
+    </tbody></table></div>
+  </details>
+</section>
+
+<section class="lang" id="th" aria-labelledby="h-th">
+  <p class="kicker">22 · th</p>
+  <h2 id="h-th"><span lang="th">ไทย</span><small>Taisc</small></h2>
+  <dl class="nums">
+    <div><dt>Sprecendas</dt><dd>71,000,000</dd></div>
+    <div><dt>Web</dt><dd>0.3% (28. stede)</dd></div>
+    <div><dt>Tīd on nette</dt><dd>510,000,000 tīda</dd></div>
+  </dl>
+  <p class="region"><b>Hwǣr</b>Þēode gereord Thailandes. Fela manna on Laos magon Taisc rǣdan. Menn of Thailande eardiaþ ēac on þǣm Geānlǣhtum Rīcum (Los Angeles), on Australian, and on Europe.</p>
+  <div class="persona">
+    <figure><img src="../../language-intro/img/th.webp" width="800" height="1000" loading="lazy" decoding="async" alt="Ān geþōht persōna. Napassorn “Pim” Srisuk, 27 wintra, eardaþ on Bangkok. Hēo wyrcþ on cēapes bodunge for wlitesealfa mearce."></figure>
+    <div class="ptext"><h3>Persōna</h3><p>Napassorn “Pim” Srisuk, 27 wintra, eardaþ on Bangkok. Hēo wyrcþ on cēapes bodunge for wlitesealfa mearce. Æt 7 on morgen, ǣr hēo dēme hwæt hēo werige, hēo tīehþ āne cartan on hire iPhone. Hire morgenlic blis is þæt hēo metaþ þæs wucdæges blēo wiþ þissum webstedes blēo. Hēo gearwaþ fōre tō Hokkaido on Æfteran Gēola þæs æfterran gēares. Þonne sēo racu tō hire blēo cymþ þurh Taisc seoloc oþþe þā hwītnesse Hokkaidos snāwes, hēo dēþ þæt blēo on hire weolorēad oþþe hire swēorclāþ. Hēo hit sendeþ hire gefērum on LINE.</p></div>
+  </div>
+  <details><summary>Rīm and glēsinga</summary>
+    <div class="scroll"><table class="facts"><thead><tr><th scope="col">Þing</th><th scope="col">Rīm</th><th scope="col">Glēsing</th></tr></thead><tbody>
+      <tr><th scope="row">Ealle sprecendas (ǣrest + ōþer gereord)</th><td>71,000,000</td><td>Ethnologue, ūtgifu 2026</td></tr>
+      <tr><th scope="row">Dǣl þæs webbes</th><td>0.3% (28. stede)</td><td>W3Techs, Winterfylleþ 2026</td></tr>
+      <tr><th scope="row">Nettbrūcendas be gereorde</th><td>Nis on þǣm fyrstum 10</td><td>Internet World Stats, Hrēþmōnaþ 2020</td></tr>
+      <tr><th scope="row">Tīd on nette</th><td>Be wēne 65,000,000 nettbrūcenda, on gemete 7.8 tīda on dæge, ealles 510,000,000 tīda on dæge (14. stede)</td><td>Claudes āmetung</td></tr>
+    </tbody></table></div>
+  </details>
+</section>
+
+<section class="lang" id="it" aria-labelledby="h-it">
+  <p class="kicker">23 · it</p>
+  <h2 id="h-it"><span lang="it">Italiano</span><small>Ītalisc</small></h2>
+  <dl class="nums">
+    <div><dt>Sprecendas</dt><dd>66,000,000</dd></div>
+    <div><dt>Web</dt><dd>2.8% (8. stede)</dd></div>
+    <div><dt>Tīd on nette</dt><dd>290,000,000 tīda</dd></div>
+  </dl>
+  <p class="region"><b>Hwǣr</b>Ītalia, San Marino, sūþ-Switzerland (Ticino), and Vatican. Fela manna of Ītaliscum cynne eardiaþ on Argentinan, on Brasile, on þǣm Geānlǣhtum Rīcum, on Germānian, and elles hwǣr.</p>
+  <div class="persona">
+    <figure><img src="../../language-intro/img/it.webp" width="800" height="1000" loading="lazy" decoding="async" alt="Ān geþōht persōna. Giulia Bernardi, 45 wintra, eardaþ on Bologna. Hēo is lǣcewyrta mangestre on hire tūnes wyrtbūre."></figure>
+    <div class="ptext"><h3>Persōna</h3><p>Giulia Bernardi, 45 wintra, eardaþ on Bologna. Hēo is lǣcewyrta mangestre on hire tūnes wyrtbūre. Æt 9:30 on niht, on setle æfter ǣfengereorde, hēo ontȳnþ hire Android-fōn. Þā hēo cild wæs, hēo plegode tarocchino mid hire fæder, and forþī þāra hēafodcarta mētinga hire sind lēofe gemyndu. Þonne sēo racu tō hire blēo cymþ þurh þā rēadan tigelan Bolognan portica oþþe þā dēagas þāra mētera þǣre Renaissance, hēo hit sendeþ hire fæder on WhatsApp. Hēo cīest þā wīsan “Classic Tarot”.</p></div>
+  </div>
+  <details><summary>Rīm and glēsinga</summary>
+    <div class="scroll"><table class="facts"><thead><tr><th scope="col">Þing</th><th scope="col">Rīm</th><th scope="col">Glēsing</th></tr></thead><tbody>
+      <tr><th scope="row">Ealle sprecendas (ǣrest + ōþer gereord)</th><td>66,000,000</td><td>Ethnologue, ūtgifu 2026</td></tr>
+      <tr><th scope="row">Dǣl þæs webbes</th><td>2.8% (8. stede)</td><td>W3Techs, Winterfylleþ 2026</td></tr>
+      <tr><th scope="row">Nettbrūcendas be gereorde</th><td>Nis on þǣm fyrstum 10</td><td>Internet World Stats, Hrēþmōnaþ 2020</td></tr>
+      <tr><th scope="row">Tīd on nette</th><td>Be wēne 51,000,000 nettbrūcenda, on gemete 5.7 tīda on dæge, ealles 290,000,000 tīda on dæge (19. stede)</td><td>Claudes āmetung</td></tr>
+    </tbody></table></div>
+  </details>
+</section>
+
+<section class="lang" id="pl" aria-labelledby="h-pl">
+  <p class="kicker">24 · pl</p>
+  <h2 id="h-pl"><span lang="pl">Polski</span><small>Polisc</small></h2>
+  <dl class="nums">
+    <div><dt>Sprecendas</dt><dd>Ymbe 42,600,000</dd></div>
+    <div><dt>Web</dt><dd>1.8% (10. stede)</dd></div>
+    <div><dt>Tīd on nette</dt><dd>Ymbe 210,000,000 tīda (bysenrīm, būtan endebyrdnesse)</dd></div>
+  </dl>
+  <p class="region"><b>Hwǣr</b>Poland. Micel Polisc folc is on Brytene, on Germānian, on þǣm Geānlǣhtum Rīcum (Chicago), on Īralande, and on Canadan. Sprecendas sind ēac on Lithuanian and on west-Ucrainan.</p>
+  <div class="persona">
+    <figure><img src="../../language-intro/img/pl.webp" width="800" height="1000" loading="lazy" decoding="async" alt="Ān geþōht persōna. Marta Kowalczyk, 30 wintra, eardaþ on Kraków. Hēo is UX-smēagend æt software-hūse."></figure>
+    <div class="ptext"><h3>Persōna</h3><p>Marta Kowalczyk, 30 wintra, eardaþ on Kraków. Hēo is UX-smēagend æt software-hūse. Æt 10 on Sunnandæges morgen hēo ontȳnþ hire iPhone on drincærne. Ǣlce gēare on Andrzejki hēo dēþ weaxwīglunge mid frēondum. Þonne sēo racu tō hire blēo cymþ þurh Baltiscne glǣr oþþe Krakówes Clāþhealle, hēo hit āsett on hire Instagram Stories. Hēo gearwaþ fōre tō Kyoto on þǣm æfterran lencten.</p></div>
+  </div>
+  <details><summary>Rīm and glēsinga</summary>
+    <div class="scroll"><table class="facts"><thead><tr><th scope="col">Þing</th><th scope="col">Rīm</th><th scope="col">Glēsing</th></tr></thead><tbody>
+      <tr><th scope="row">Ealle sprecendas (ǣrest + ōþer gereord)</th><td>Ymbe 42,600,000</td><td>Ethnologue, 27. ūtgifu (rīm of 2021), swā þæt Wikipedia-lēaf “Polish language” hit nemneþ. Nis on Ethnologues openum getæle 2026 (50,000,000 and mā)</td></tr>
+      <tr><th scope="row">Dǣl þæs webbes</th><td>1.8% (10. stede)</td><td>W3Techs, Winterfylleþ 2026</td></tr>
+      <tr><th scope="row">Nettbrūcendas be gereorde</th><td>Nis on þǣm fyrstum 10</td><td>Internet World Stats, Hrēþmōnaþ 2020</td></tr>
+      <tr><th scope="row">Tīd on nette</th><td>Ymbe 210,000,000 tīda on dæge (bysenrīm, būtan endebyrdnesse)</td><td>Bysenrīm būtan þǣre endebyrdnesse on Claudes āmetunge</td></tr>
+    </tbody></table></div>
+  </details>
+</section>
+
+<section class="lang" id="uk" aria-labelledby="h-uk">
+  <p class="kicker">25 · uk</p>
+  <h2 id="h-uk"><span lang="uk">Українська</span><small>Ucrainisc</small></h2>
+  <dl class="nums">
+    <div><dt>Sprecendas</dt><dd>Ymbe 39,000,000</dd></div>
+    <div><dt>Web</dt><dd>0.6% (18. stede)</dd></div>
+    <div><dt>Tīd on nette</dt><dd>Nān āmetung</dd></div>
+  </dl>
+  <p class="region"><b>Hwǣr</b>Þēode gereord Ucrainan. For þǣm gewinne siþþan 2022 fela manna flugon tō Europiscum landum swā swā Polande, Germānian, and Czechia. Canada and þā Geānlǣhtan Rīcu habbaþ ēac eald Ucrainisc folc. Fela manna sprecaþ ēac Rūsisc.</p>
+  <div class="persona">
+    <figure><img src="../../language-intro/img/uk.webp" width="800" height="1000" loading="lazy" decoding="async" alt="Ān geþōht persōna. Олена Коваленко (Olena Kovalenko), 37 wintra, eardaþ on Lviv. Hēo is lārēow on cildra scōle."></figure>
+    <div class="ptext"><h3>Persōna</h3><p><span lang="uk">Олена Коваленко</span> (Olena Kovalenko), 37 wintra, eardaþ on Lviv. Hēo is lārēow on cildra scōle. Æt 9 on niht, siþþan hēo hire cild tō slǣpe gelegde, hēo tīehþ āne cartan on hire Android-fōne. Māre þonne þæs cartan andgiet hēo lufaþ þā tīde þe hēo rǣdþ race þe carfullīce on Ucrainiscum gewriten is. Þonne sēo racu tō hire blēo cymþ þurh Petrykivka-blōstmmētinge oþþe Carpatisce wulle, hēo hit sendeþ hire gingran sweostor on Polande on Telegram.</p></div>
+  </div>
+  <details><summary>Rīm and glēsinga</summary>
+    <div class="scroll"><table class="facts"><thead><tr><th scope="col">Þing</th><th scope="col">Rīm</th><th scope="col">Glēsing</th></tr></thead><tbody>
+      <tr><th scope="row">Ealle sprecendas (ǣrest + ōþer gereord)</th><td>Ymbe 39,000,000</td><td>Ethnologue (2023). Þæt Wikipedia-lēaf “Ukrainian language” (Ethnologue, 28. ūtgifu) sægþ þæt ilce</td></tr>
+      <tr><th scope="row">Dǣl þæs webbes</th><td>0.6% (18. stede)</td><td>W3Techs, Winterfylleþ 2026</td></tr>
+      <tr><th scope="row">Nettbrūcendas be gereorde</th><td>Nis on þǣm fyrstum 10</td><td>Internet World Stats, Hrēþmōnaþ 2020</td></tr>
+      <tr><th scope="row">Tīd on nette</th><td>Nān āmetung</td><td>Ucrainisc nis on Claudes āmetunge getæle ne on hire bysenrīmum būtan endebyrdnesse</td></tr>
+    </tbody></table></div>
+  </details>
+</section>
+
+<section class="lang" id="nl" aria-labelledby="h-nl">
+  <p class="kicker">26 · nl</p>
+  <h2 id="h-nl"><span lang="nl">Nederlands</span><small>Nēoþerlendisc</small></h2>
+  <dl class="nums">
+    <div><dt>Sprecendas</dt><dd>Ymbe 30,000,000</dd></div>
+    <div><dt>Web</dt><dd>2.1% (9. stede)</dd></div>
+    <div><dt>Tīd on nette</dt><dd>Ymbe 130,000,000 tīda (bysenrīm, būtan endebyrdnesse)</dd></div>
+  </dl>
+  <p class="region"><b>Hwǣr</b>Nēoþerland and norþ-Belgia (Flandra). Hit is ēac folces gereord on Suriname, and on Aruba and Curaçao on þǣm Caribiscan Sǣ. Afrikaans on Sūþ-Africe tōcinode of Nēoþerlendiscum.</p>
+  <div class="persona">
+    <figure><img src="../../language-intro/img/nl.webp" width="800" height="1000" loading="lazy" decoding="async" alt="Ān geþōht persōna. Sanne de Vries, 36 wintra, eardaþ on Utrecht. Hēo wyrcþ on weders rǣde æt þǣre burge healle."></figure>
+    <div class="ptext"><h3>Persōna</h3><p>Sanne de Vries, 36 wintra, eardaþ on Utrecht. Hēo wyrcþ on weders rǣde æt þǣre burge healle. Æt 12:30, æt hire bēode, hēo ontȳnde hire cnēobred and cōm tō þissum webstede þā hēo blēos naman sōhte. Hēo ne gelīefþ wīglunge, ac hēo lufaþ spell be þǣm frymþum blēoa nama. Þonne sēo racu tō hire blēo cymþ þurh Delft-hǣwen oþþe þā dēagas þe Nēoþerlendisce mēteras on þǣm 17. hundgēare brūcon, hēo hit secgþ hire gefērum. Hwīlum hēo tīehþ āne cartan mā ǣr hēo hām rīde on hire twīhwēole.</p></div>
+  </div>
+  <details><summary>Rīm and glēsinga</summary>
+    <div class="scroll"><table class="facts"><thead><tr><th scope="col">Þing</th><th scope="col">Rīm</th><th scope="col">Glēsing</th></tr></thead><tbody>
+      <tr><th scope="row">Ealle sprecendas (ǣrest + ōþer gereord)</th><td>Ymbe 30,000,000</td><td>2021. Þæt Wikipedia-lēaf “Dutch language” (þe Eurobarometer and ōþru nemneþ) sægþ þæt ilce</td></tr>
+      <tr><th scope="row">Dǣl þæs webbes</th><td>2.1% (9. stede)</td><td>W3Techs, Winterfylleþ 2026. Hæfþ ēac Flæmisc</td></tr>
+      <tr><th scope="row">Nettbrūcendas be gereorde</th><td>Nis on þǣm fyrstum 10</td><td>Internet World Stats, Hrēþmōnaþ 2020</td></tr>
+      <tr><th scope="row">Tīd on nette</th><td>Ymbe 130,000,000 tīda on dæge (bysenrīm, būtan endebyrdnesse)</td><td>Bysenrīm būtan þǣre endebyrdnesse on Claudes āmetunge</td></tr>
+    </tbody></table></div>
+  </details>
+</section>
+
+<section class="lang" id="ang" aria-labelledby="h-ang">
+  <p class="kicker">27 · ang</p>
+  <h2 id="h-ang"><span lang="ang">Englisc</span></h2>
+  <p class="note">Gereord for plegan and for stǣre. Hit is Englisc fram ymbe 450 oþ 1100, and nān mann nū ne sprecþ hit swā ǣrest gereord. Þā rīm sind īdel.</p>
+  <dl class="nums">
+    <div><dt>Sprecendas</dt><dd>—</dd></div>
+    <div><dt>Web</dt><dd>—</dd></div>
+    <div><dt>Tīd on nette</dt><dd>—</dd></div>
+  </dl>
+  <p class="region"><b>Hwā hit lufian mihte</b>Leorningcnihtas and wītan þe Middelgēares Englisce bōccræftas and Engliscre sprǣce stǣr leornaþ, þā þe <cite>Bēowulf</cite> and J. R. R. Tolkienes weorc lufiaþ, and þā þe rūnum and Norþmanna ealdspellum gīemaþ. Būtan Engliscre woruld hit becymþ ēac tō leorningcnihtum Engliscra bōccræfta on Germānian, on Norþlandum, and on Iapane.</p>
+  <div class="persona">
+    <figure><img src="../../language-intro/img/ang.webp" width="800" height="1000" loading="lazy" decoding="async" alt="Ān geþōht persōna. Hannah Brooks, 24 wintra, eardaþ on Leeds on Brytene. Hēo leornaþ Ealdenglisc on hēarre lāre."></figure>
+    <div class="ptext"><h3>Persōna</h3><p>Hannah Brooks, 24 wintra, eardaþ on Leeds on Brytene. Hēo leornaþ Ealdenglisc on hēarre lāre. Æt 5 on ǣfen hēo ontȳnde hire cnēobred on þǣre hēahscōle bōchūse, and cōm tō þissum webstede þā hēo worda gebīgednessa sōhte. Mid Nīwengliscre āwendednesse be hire, hēo blissaþ þæt hēo āræcþ þāra carta and blēoa naman. Þā lēoþ þe hire līciaþ sendeþ hēo hire gefērum on hire leornungflocce.</p></div>
+  </div>
+  <details><summary>Rīm and glēsinga</summary>
+    <div class="scroll"><table class="facts"><thead><tr><th scope="col">Þing</th><th scope="col">Rīm</th></tr></thead><tbody>
+      <tr><th scope="row">Ealle sprecendas (ǣrest + ōþer gereord)</th><td>—</td></tr>
+      <tr><th scope="row">Dǣl þæs webbes</th><td>—</td></tr>
+      <tr><th scope="row">Nettbrūcendas be gereorde</th><td>—</td></tr>
+      <tr><th scope="row">Tīd on nette</th><td>—</td></tr>
+    </tbody></table></div>
+  </details>
+</section>
+
+<section class="lang" id="soro" aria-labelledby="h-soro">
+  <p class="kicker">28 · soro</p>
+  <h2 id="h-soro"><span lang="ja">御座候</span><small>Sōrōbun (Ealdiapanisc ǣrendgewrites wīse)</small></h2>
+  <p class="note">Gereord for plegan and for stǣre. Hit is sēo wīse ǣrendgewrita and folclicra gewrita fram ymbe 1600 oþ 1868, mid <span lang="ja">候</span> (<i>sōrō</i>) æt ende ǣlces cwides. Nān mann nū ne sprecþ hit swā ǣrest gereord. Þā rīm sind īdel.</p>
+  <dl class="nums">
+    <div><dt>Sprecendas</dt><dd>—</dd></div>
+    <div><dt>Web</dt><dd>—</dd></div>
+    <div><dt>Tīd on nette</dt><dd>—</dd></div>
+  </dl>
+  <p class="region"><b>Hwā hit lufian mihte</b>Þā þe leornaþ ealde gewritu and hrædwrit tō rǣdenne, þā þe stǣrlice spell and NHK-es stǣrlice plegan lufiaþ, and leorningcnihtas þe stǣr lufiaþ. Hit becymþ ēac tō ellþēodigum þe Iapanisc dēope leornodon, and tō Iapanisces stǣres wītum.</p>
+  <div class="persona">
+    <figure><img src="../../language-intro/img/soro.webp" width="800" height="1000" loading="lazy" decoding="async" alt="Ān geþōht persōna. 工藤 誠一 (Seiichi Kudo), 58 wintra, eardaþ on Kanazawa. Hē wyrcþ æt þǣre burge healle, and on wucan ende gǣþ tō lāre be ealdum gewritum."></figure>
+    <div class="ptext"><h3>Persōna</h3><p><span lang="ja">工藤 誠一</span> (Seiichi Kudo), 58 wintra, eardaþ on Kanazawa. Hē wyrcþ æt þǣre burge healle, and on wucan ende gǣþ tō lāre be ealdum gewritum. Æt 3 ofer midne dæg on Sunnandæg hē ontȳnþ his wexbred on his heallan. Hē gehȳrde be þissum webstede fram his efenleorningum. Þāra carta and blēoa naman, on sōrōbun gewritene, hē rǣdþ hlūde, ǣlcne æfter ōþrum. Þonne sēo racu tō his blēo cymþ þurh Kaga-dēagunge oþþe þone ealdan burhtūn under þǣm fæstene, hē āwrīt þæs blēos naman on his lārbēc.</p></div>
+  </div>
+  <details><summary>Rīm and glēsinga</summary>
+    <div class="scroll"><table class="facts"><thead><tr><th scope="col">Þing</th><th scope="col">Rīm</th></tr></thead><tbody>
+      <tr><th scope="row">Ealle sprecendas (ǣrest + ōþer gereord)</th><td>—</td></tr>
+      <tr><th scope="row">Dǣl þæs webbes</th><td>—</td></tr>
+      <tr><th scope="row">Nettbrūcendas be gereorde</th><td>—</td></tr>
+      <tr><th scope="row">Tīd on nette</th><td>—</td></tr>
+    </tbody></table></div>
+  </details>
+</section>
+
+</div>
+
+</body>
+</html>

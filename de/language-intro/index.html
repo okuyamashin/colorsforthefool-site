@@ -1,0 +1,789 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Die 28 Sprachen von Colors for the Fool: wie viele Menschen sie jeweils sprechen – dazu eine fiktive Persona und ihr Porträt.">
+<link rel="icon" href="../../favicon.png" type="image/png">
+<title>Die Sprachen im Porträt</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&family=Noto+Serif:wght@400;500;600&family=Shippori+Mincho:wght@400;500;700&display=swap">
+<style>
+/* Layout: same paper column as language-scale.html; one card per language (numbers, persona + image, details). */
+:root {
+  --bg: #efe6d6;
+  --bg-glow: #fbf6ec;
+  --paper: #f7f1e4;
+  --ink: #2a2118;
+  --muted: #6d5c48;
+  --gold: #a6843d;
+  --gold-soft: #e4d2a4;
+  --line: rgba(166,132,61,.45);
+  --other: #d3c6ae;
+  --grid: rgba(109,92,72,.18);
+  --font-display: Cinzel, "Palatino Linotype", Palatino, serif;
+  --font-body: "Noto Serif", "Shippori Mincho", serif;
+}
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) {
+  --bg: #1b1610; --bg-glow: #2a2219; --paper: #241e17; --ink: #efe4cf; --muted: #b6a387;
+  --gold: #d2ac5c; --gold-soft: #5a4826; --line: rgba(210,172,92,.4); --other: #4b4134; --grid: rgba(239,228,207,.12);
+  color-scheme: dark; } }
+:root[data-theme="dark"] {
+  --bg: #1b1610; --bg-glow: #2a2219; --paper: #241e17; --ink: #efe4cf; --muted: #b6a387;
+  --gold: #d2ac5c; --gold-soft: #5a4826; --line: rgba(210,172,92,.4); --other: #4b4134; --grid: rgba(239,228,207,.12);
+  color-scheme: dark; }
+
+* { box-sizing: border-box; }
+body {
+  margin: 0; color: var(--ink); background: var(--bg);
+  background-image: radial-gradient(1100px 640px at 50% -8%, var(--bg-glow), var(--bg) 70%);
+  font-family: var(--font-body); font-weight: 500; line-height: 1.85;
+  padding-inline: 16px; padding-block: 0 64px;
+}
+.wrap { width: min(100%, 44rem); margin: 0 auto; }
+a { color: var(--gold); }
+code { font-size: .88em; overflow-wrap: anywhere; }
+.brand { font-family: var(--font-display); font-size: .74rem; letter-spacing: .24em; text-transform: uppercase; padding-block: 1.4rem .2rem; margin: 0; }
+.brand a { color: var(--ink); text-decoration: none; }
+header.hero { text-align: center; padding-block: 2.6rem 1.6rem; }
+.eyebrow { font-family: var(--font-display); letter-spacing: .3em; font-size: .8rem; color: var(--gold); margin: 0; text-transform: uppercase; }
+h1 { font-size: clamp(2rem, 7vw, 2.9rem); letter-spacing: .12em; margin: .3rem 0 .6rem; font-weight: 600; text-wrap: balance; }
+.lede { color: var(--muted); max-width: 34rem; margin: 0 auto; text-wrap: pretty; }
+.ornament { display: flex; align-items: center; gap: .8rem; justify-content: center; color: var(--gold); margin: 1.6rem 0 0; }
+.ornament::before, .ornament::after { content: ""; height: 1px; width: 4.5rem; background: var(--line); }
+
+.topbar { display: flex; justify-content: space-between; align-items: baseline; gap: 1rem; padding-block: 1.4rem .2rem; }
+.topbar .brand { padding-block: 0; }
+.switch { font-size: .82rem; }
+.switch a, .switch span { margin-left: .7rem; }
+.switch span { color: var(--muted); }
+
+.about { font-size: .86rem; color: var(--muted); margin: 0 0 1rem; }
+.about p { margin: .5rem 0; }
+.langs { display: flex; flex-wrap: wrap; gap: .4rem; justify-content: center; margin: 1.2rem 0 0; padding: 0; list-style: none; }
+.langs li { border: 1px solid var(--line); font-size: .85rem; background: var(--paper); }
+.langs li a { display: block; padding: .1rem .7rem; color: var(--ink); text-decoration: none; }
+.langs li a:hover, .langs li a:focus-visible { color: var(--gold); }
+.langs li:nth-last-child(-n+2) { border-style: dashed; }
+.langs li:nth-last-child(-n+2) a { color: var(--muted); }
+
+section.chart, section.lang { margin-top: 3.4rem; scroll-margin-top: 1rem; }
+.chart h2, .lang h2 { font-size: 1.3rem; letter-spacing: .08em; margin: 0; font-weight: 600; text-wrap: balance; }
+.lang h2 small { display: block; font-size: .8rem; letter-spacing: .04em; color: var(--muted); font-weight: 500; }
+.kicker { font-family: var(--font-display); color: var(--gold); letter-spacing: .2em; font-size: .78rem; margin: 0 0 .15rem; }
+p.note { color: var(--muted); font-size: .88rem; margin: .4rem 0 1rem; max-width: 40rem; }
+.chart ul { font-size: .88rem; color: var(--muted); padding-left: 1.1rem; }
+
+.scroll { overflow-x: auto; -webkit-overflow-scrolling: touch; border: 1px solid var(--line); background: var(--paper); }
+table { border-collapse: collapse; font-size: .8rem; line-height: 1.55; }
+table.overview { min-width: 42rem; width: 100%; }
+th, td { padding: .45rem .6rem; border-bottom: 1px solid var(--grid); text-align: left; vertical-align: top; }
+thead th { font-weight: 700; border-bottom: 1px solid var(--line); background: var(--bg-glow); }
+tbody th { font-weight: 700; white-space: nowrap; }
+tbody th a { color: var(--ink); text-decoration: none; }
+tbody tr:last-child th, tbody tr:last-child td { border-bottom: 0; }
+table.overview td { font-variant-numeric: tabular-nums; }
+
+.lang { border-top: 1px solid var(--line); padding-top: 1.6rem; }
+.nums { display: flex; flex-wrap: wrap; gap: 1px; background: var(--line); border: 1px solid var(--line); margin: 1rem 0; }
+.nums div { flex: 1 1 7.6rem; background: var(--paper); padding: .55rem .7rem .6rem; min-width: 0; }
+.nums dt { font-family: var(--font-body); font-size: .72rem; color: var(--muted); letter-spacing: .06em; }
+.nums dd { margin: 0; font-size: .9rem; line-height: 1.45; font-variant-numeric: tabular-nums; overflow-wrap: anywhere; }
+.region { font-size: .9rem; margin: 0 0 1rem; }
+.region b { color: var(--gold); font-weight: 700; margin-right: .6rem; }
+
+.persona { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 15rem); gap: 1.2rem; align-items: start; margin: 1.2rem 0 .8rem; }
+.persona figure { grid-column: 2; grid-row: 1; margin: 0; }
+.persona .ptext { grid-column: 1; grid-row: 1; }
+.persona img { display: block; width: 100%; height: auto; border: 1px solid var(--line); background: var(--paper); }
+.persona h3 { font-size: 1rem; letter-spacing: .08em; margin: 0 0 .3rem; font-weight: 600; }
+.persona p { margin: 0; font-size: .94rem; text-wrap: pretty; }
+@media (max-width: 36rem) {
+  .persona { grid-template-columns: minmax(0, 1fr); }
+  .persona figure, .persona .ptext { grid-column: 1; grid-row: auto; }
+  .persona figure { max-width: 22rem; }
+}
+
+details { border-top: 1px dashed var(--line); padding: .35rem 0; font-size: .88rem; }
+details:last-of-type { border-bottom: 1px dashed var(--line); }
+summary { cursor: pointer; color: var(--gold); letter-spacing: .06em; }
+details[open] summary { margin-bottom: .5rem; }
+details p { margin: .2rem 0 .8rem; color: var(--ink); }
+details h4 { font-size: .86rem; margin: .6rem 0 0; color: var(--muted); font-weight: 700; }
+details pre { white-space: pre-wrap; overflow-wrap: anywhere; font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: .78rem; line-height: 1.6; background: var(--paper); border: 1px solid var(--line); padding: .7rem .8rem; margin: 0 0 .6rem; }
+table.facts { width: 100%; min-width: 34rem; }
+table.facts tbody th { white-space: normal; min-width: 8rem; }
+
+footer { margin-top: 4rem; border-top: 1px solid var(--line); padding-top: 1.2rem; font-size: .8rem; color: var(--muted); }
+footer ul { padding-left: 1.1rem; margin: .4rem 0 1rem; }
+footer ul ul { margin: .2rem 0 .3rem; }
+footer li { margin: .15rem 0; overflow-wrap: anywhere; }
+</style>
+</head>
+<body>
+
+<div class="wrap">
+  <div class="topbar"><p class="brand"><a href="../">Colors for the Fool</a></p><nav class="switch" aria-label="Verwandte Seiten"><span>Die Sprachen im Porträt</span></nav></div>
+
+  <header class="hero">
+    <p class="eyebrow">Languages &amp; Readers</p>
+    <h1>Die Sprachen im Porträt</h1>
+    <p class="lede">Die 28 Sprachen von Colors for the Fool, vorgestellt über die Zahl der Menschen, die sie sprechen, und über die Menschen, die hier vielleicht eine Karte ziehen (Stand: 9. Oktober 2026).</p>
+    <div class="ornament">✦</div>
+  </header>
+
+  <nav aria-label="Sprachen">
+    <ul class="langs"><li><a href="#ja"><span lang="ja">日本語</span></a></li><li><a href="#en"><span lang="en">English</span></a></li><li><a href="#zh-hans"><span lang="zh-Hans">简体中文</span></a></li><li><a href="#zh"><span lang="zh-Hant">繁體中文</span></a></li><li><a href="#hi"><span lang="hi">हिन्दी</span></a></li><li><a href="#es"><span lang="es">Español</span></a></li><li><a href="#ar"><span lang="ar" dir="rtl">العربية</span></a></li><li><a href="#fr"><span lang="fr">Français</span></a></li><li><a href="#bn"><span lang="bn">বাংলা</span></a></li><li><a href="#pt"><span lang="pt">Português</span></a></li><li><a href="#id"><span lang="id">Bahasa Indonesia</span></a></li><li><a href="#ms"><span lang="ms">Bahasa Melayu</span></a></li><li><a href="#ur"><span lang="ur" dir="rtl">اردو</span></a></li><li><a href="#ru"><span lang="ru">Русский</span></a></li><li><a href="#de"><span lang="de">Deutsch</span></a></li><li><a href="#vi"><span lang="vi">Tiếng Việt</span></a></li><li><a href="#sw"><span lang="sw">Kiswahili</span></a></li><li><a href="#tr"><span lang="tr">Türkçe</span></a></li><li><a href="#tl"><span lang="fil">Filipino</span></a></li><li><a href="#fa"><span lang="fa" dir="rtl">فارسی</span></a></li><li><a href="#ko"><span lang="ko">한국어</span></a></li><li><a href="#th"><span lang="th">ไทย</span></a></li><li><a href="#it"><span lang="it">Italiano</span></a></li><li><a href="#pl"><span lang="pl">Polski</span></a></li><li><a href="#uk"><span lang="uk">Українська</span></a></li><li><a href="#nl"><span lang="nl">Nederlands</span></a></li><li><a href="#ang"><span lang="ang">Englisc</span></a></li><li><a href="#soro"><span lang="ja">御座候</span></a></li></ul>
+  </nav>
+
+<section class="lang" id="ja" aria-labelledby="h-ja">
+  <p class="kicker">01 · ja</p>
+  <h2 id="h-ja"><span lang="ja">日本語</span><small>Japanisch</small></h2>
+  <dl class="nums">
+    <div><dt>Sprecher</dt><dd>126 Millionen</dd></div>
+    <div><dt>Web</dt><dd>4,9 % (Platz 4)</dd></div>
+    <div><dt>Zeit online</dt><dd>390 Millionen Stunden</dd></div>
+  </dl>
+  <p class="region"><b>Wo</b>Japan. Außerhalb Japans lesen es Nachfahren japanischer Einwanderer in Brasilien und den USA (Hawaii, Kalifornien) sowie im Ausland lebende Japanerinnen und Japaner. Außerdem lernen viele Menschen weltweit Japanisch.</p>
+  <div class="persona">
+    <figure><img src="../../language-intro/img/ja.webp" width="800" height="1000" loading="lazy" decoding="async" alt="Fiktive Persona. 森下 由佳 (Yuka Morishita), 34, lebt in Fukuoka. Sie arbeitet in der Patientenverwaltung eines Allgemeinkrankenhauses."></figure>
+    <div class="ptext"><h3>Persona</h3><p><span lang="ja">森下 由佳</span> (Yuka Morishita), 34, lebt in Fukuoka. Sie arbeitet in der Patientenverwaltung eines Allgemeinkrankenhauses. Um 7:40 Uhr morgens öffnet sie auf ihrem Sitzplatz in der U-Bahn ihr iPhone und kommt über ein Instagram-Reel hierher. Sie nimmt Wahrsagerei nicht allzu ernst, mag sie aber genug, um zu lachen, wenn sie danebenliegt. Sie zieht eine einzige Karte, und wenn sie umgekehrt liegt, beschließt sie: „Heute ist ein Tag, an dem ich mich nicht überfordere.“ Sie freut sich, wenn die Geschichte über vertraute Orte und Handwerke wie die Hakata-Weberei oder das Chikugo-Indigofärben zu ihrer Farbe findet. Eine Farbe, die ihr gefällt, nimmt sie als Anregung für das Taschentuch oder den Nagellack des Tages. Manchmal schreibt sie einer Kollegin auf LINE: „Heute bin ich wohl Indigo.“</p></div>
+  </div>
+  <details><summary>Zahlen &amp; Anmerkungen</summary>
+    <div class="scroll"><table class="facts"><thead><tr><th scope="col">Angabe</th><th scope="col">Wert</th><th scope="col">Anmerkung</th></tr></thead><tbody>
+      <tr><th scope="row">Sprecher insgesamt (Erst- und Zweitsprache)</th><td>126 Millionen</td><td>Ethnologue, Ausgabe 2026</td></tr>
+      <tr><th scope="row">Anteil an Webinhalten</th><td>4,9 % (Platz 4)</td><td>W3Techs, Oktober 2026</td></tr>
+      <tr><th scope="row">Internetnutzer nach Sprache</th><td>2,6 % (Platz 8)</td><td>Internet World Stats, März 2020</td></tr>
+      <tr><th scope="row">Zeit online</th><td>Schätzung: 100 Millionen Internetnutzer, im Schnitt 3,9 Stunden pro Tag, insgesamt 390 Millionen Stunden pro Tag (Platz 18)</td><td>Claude-Schätzung. Die Zeit pro Person gehört zu den kürzesten der Welt</td></tr>
+    </tbody></table></div>
+  </details>
+</section>
+
+<section class="lang" id="en" aria-labelledby="h-en">
+  <p class="kicker">02 · en</p>
+  <h2 id="h-en"><span lang="en">English</span><small>Englisch</small></h2>
+  <dl class="nums">
+    <div><dt>Sprecher</dt><dd>1,493 Milliarden (Platz 1)</dd></div>
+    <div><dt>Web</dt><dd>49,5 % (Platz 1)</dd></div>
+    <div><dt>Zeit online</dt><dd>5,78 Milliarden Stunden</dd></div>
+  </dl>
+  <p class="region"><b>Wo</b>Erstsprache in den USA, im Vereinigten Königreich, in Kanada, Australien, Neuseeland und Irland. In Indien, auf den Philippinen, in Nigeria, Singapur, Kenia und anderswo ist es Amtssprache oder Unterrichtssprache. Menschen, die Englisch als Zweitsprache sprechen, lesen auf der ganzen Welt englische Seiten.</p>
+  <div class="persona">
+    <figure><img src="../../language-intro/img/en.webp" width="800" height="1000" loading="lazy" decoding="async" alt="Fiktive Persona. Maya Reynolds, 29, lebt in Manchester, Großbritannien. Sie ist Unterrichtsassistentin an einer Grundschule."></figure>
+    <div class="ptext"><h3>Persona</h3><p>Maya Reynolds, 29, lebt in Manchester, Großbritannien. Sie ist Unterrichtsassistentin an einer Grundschule. Um 22 Uhr öffnet sie im Bett ihr Android-Handy. Sie schaut oft Tarot-Videos auf TikTok und mag, wie einfach das Ziehen einer einzigen Karte ist. Sie liest die Bedeutung der Karte und liebt den Moment, in dem am Ende der Geschichte der Name einer Farbe erscheint. Wenn die Geschichte der Farbe an britische Orte anknüpft, etwa an die schottische Distel oder die Wolle aus Yorkshire, schickt sie den Link an Freundinnen. Außerdem wechselt sie gern den Kartenstil, um Jugendstil und Buntglas zu vergleichen.</p></div>
+  </div>
+  <details><summary>Zahlen &amp; Anmerkungen</summary>
+    <div class="scroll"><table class="facts"><thead><tr><th scope="col">Angabe</th><th scope="col">Wert</th><th scope="col">Anmerkung</th></tr></thead><tbody>
+      <tr><th scope="row">Sprecher insgesamt (Erst- und Zweitsprache)</th><td>1,493 Milliarden (Platz 1)</td><td>Ethnologue, Ausgabe 2026</td></tr>
+      <tr><th scope="row">Anteil an Webinhalten</th><td>49,5 % (Platz 1)</td><td>W3Techs, Oktober 2026</td></tr>
+      <tr><th scope="row">Internetnutzer nach Sprache</th><td>25,9 % (Platz 1)</td><td>Internet World Stats, März 2020</td></tr>
+      <tr><th scope="row">Zeit online</th><td>Schätzung: 850 Millionen Internetnutzer, im Schnitt 6,8 Stunden pro Tag, insgesamt 5,78 Milliarden Stunden pro Tag (Platz 2)</td><td>Claude-Schätzung. Zählt nur Menschen, die überwiegend Englisch lesen; laut einer Anmerkung läge es auf Platz 1, wenn man Leser mit Englisch als Zweitsprache mitzählte</td></tr>
+    </tbody></table></div>
+  </details>
+</section>
+
+<section class="lang" id="zh-hans" aria-labelledby="h-zh-hans">
+  <p class="kicker">03 · zh-hans</p>
+  <h2 id="h-zh-hans"><span lang="zh-Hans">简体中文</span><small>Vereinfachtes Chinesisch</small></h2>
+  <dl class="nums">
+    <div><dt>Sprecher</dt><dd>1,183 Milliarden (Mandarin)</dd></div>
+    <div><dt>Web</dt><dd>1,3 % (Platz 12, Chinesisch gesamt)</dd></div>
+    <div><dt>Zeit online</dt><dd>6,20 Milliarden Stunden (vereinfacht + traditionell)</dd></div>
+  </dl>
+  <p class="region"><b>Wo</b>Festlandchina, wo es die Schrift von Schule und Verwaltung ist. Auch in den chinesischen Gemeinschaften Singapurs und Malaysias sind vereinfachte Schriftzeichen Standard. Große chinesische Gemeinschaften gibt es in Nordamerika, Australien, Europa und Südostasien, dazu viele Studierende im Ausland.</p>
+  <div class="persona">
+    <figure><img src="../../language-intro/img/zh-hans.webp" width="800" height="1000" loading="lazy" decoding="async" alt="Fiktive Persona. 林悦 (Lin Yue), 26, lebt in Chengdu. Sie ist UI-Designerin bei einer Spielefirma."></figure>
+    <div class="ptext"><h3>Persona</h3><p><span lang="zh-Hans">林悦</span> (Lin Yue), 26, lebt in Chengdu. Sie ist UI-Designerin bei einer Spielefirma. Um 12:30 Uhr in der Mittagspause recherchierte sie auf ihrem Huawei-Handy bei Xiaohongshu für ihre Kyoto-Reise im nächsten Monat, als sie über die Notizen einer Reisenden auf diese Seite stieß. Durch ihren Beruf hat sie ein feines Gespür für Farbnamen und Farbpaletten. Sie zieht eine einzige Karte, und wenn die Geschichte über Seladon aus der Song-Dynastie oder Shu-Brokat (den Brokat aus Sichuan) zu ihrer Farbe findet, speichert sie den Bildschirm und schickt ihn ihren Kollegen auf WeChat. Sie sieht sich die Karten gern im Tuschmalerei-Stil an.</p></div>
+  </div>
+  <details><summary>Zahlen &amp; Anmerkungen</summary>
+    <div class="scroll"><table class="facts"><thead><tr><th scope="col">Angabe</th><th scope="col">Wert</th><th scope="col">Anmerkung</th></tr></thead><tbody>
+      <tr><th scope="row">Sprecher insgesamt (Erst- und Zweitsprache)</th><td>1,183 Milliarden (Mandarin)</td><td>Ethnologue, Ausgabe 2026. Traditionelles und vereinfachtes Chinesisch werden nur einmal gezählt, als Mandarin</td></tr>
+      <tr><th scope="row">Anteil an Webinhalten</th><td>1,3 % (Platz 12, Chinesisch gesamt)</td><td>W3Techs trennt nicht zwischen vereinfachtem und traditionellem Chinesisch</td></tr>
+      <tr><th scope="row">Internetnutzer nach Sprache</th><td>19,4 % (Platz 2, Chinesisch gesamt)</td><td>Internet World Stats, März 2020</td></tr>
+      <tr><th scope="row">Zeit online</th><td>Schätzung: 1,17 Milliarden Internetnutzer, im Schnitt 5,3 Stunden pro Tag, insgesamt 6,20 Milliarden Stunden pro Tag (Platz 1, vereinfacht + traditionell)</td><td>Claude-Schätzung. Die 1,11 Milliarden in Festlandchina plus Taiwan, Hongkong und Auslandschinesen</td></tr>
+    </tbody></table></div>
+  </details>
+</section>
+
+<section class="lang" id="zh" aria-labelledby="h-zh">
+  <p class="kicker">04 · zh</p>
+  <h2 id="h-zh"><span lang="zh-Hant">繁體中文</span><small>Traditionelles Chinesisch</small></h2>
+  <dl class="nums">
+    <div><dt>Sprecher</dt><dd>Mit vereinfachtem Chinesisch als Mandarin gezählt (1,183 Milliarden)</dd></div>
+    <div><dt>Web</dt><dd>1,3 % (Platz 12, Chinesisch gesamt)</dd></div>
+    <div><dt>Zeit online</dt><dd>Insgesamt 6,20 Milliarden Stunden pro Tag, zusammen mit vereinfachtem Chinesisch (Platz 1)</dd></div>
+  </dl>
+  <p class="region"><b>Wo</b>Die Schrift Taiwans, Hongkongs und Macaus. Auch in den alteingesessenen chinesischen Gemeinschaften Nordamerikas und Australiens schreiben viele mit traditionellen Zeichen. In Taiwan spricht man Standardchinesisch (Huayu); in Hongkong und Macau ist die gesprochene Sprache Kantonesisch, geschrieben wird nach der traditionellen Schriftnorm.</p>
+  <div class="persona">
+    <figure><img src="../../language-intro/img/zh.webp" width="800" height="1000" loading="lazy" decoding="async" alt="Fiktive Persona. 陳怡君 (Chen Yi-chun), 31, lebt in Taichung. Sie arbeitet am Bankschalter."></figure>
+    <div class="ptext"><h3>Persona</h3><p><span lang="zh-Hant">陳怡君</span> (Chen Yi-chun), 31, lebt in Taichung. Sie arbeitet am Bankschalter. Um 23 Uhr, vor dem Schlafengehen, plant sie auf ihrem iPhone ihre Reise nach Kanazawa im nächsten Monat. Diese Seite hat sie über einen Link geöffnet, den ihr eine Freundin auf LINE geschickt hat. Sie zieht eine einzige Karte, ungefähr so, wie man in einem Tempel ein Orakelzettelchen zieht. Wenn die Geschichte über japanisches Handwerk wie Kaga-Yuzen-Färberei oder Blattgold zu ihrer Farbe findet, bekommt ihre Reise ein weiteres Ziel. Die Ergebnisseite schickt sie ihrer Freundin auf LINE zurück.</p></div>
+  </div>
+  <details><summary>Zahlen &amp; Anmerkungen</summary>
+    <div class="scroll"><table class="facts"><thead><tr><th scope="col">Angabe</th><th scope="col">Wert</th><th scope="col">Anmerkung</th></tr></thead><tbody>
+      <tr><th scope="row">Sprecher insgesamt (Erst- und Zweitsprache)</th><td>Mit vereinfachtem Chinesisch als Mandarin gezählt (1,183 Milliarden)</td><td>Traditionelles und vereinfachtes Chinesisch werden nur einmal gezählt, als Mandarin. Keine Daten zu Lesern, die nur traditionelles Chinesisch lesen</td></tr>
+      <tr><th scope="row">Anteil an Webinhalten</th><td>1,3 % (Platz 12, Chinesisch gesamt)</td><td>W3Techs trennt nicht zwischen vereinfachtem und traditionellem Chinesisch</td></tr>
+      <tr><th scope="row">Internetnutzer nach Sprache</th><td>19,4 % (Platz 2, Chinesisch gesamt)</td><td>Internet World Stats, März 2020</td></tr>
+      <tr><th scope="row">Zeit online</th><td>Insgesamt 6,20 Milliarden Stunden pro Tag, zusammen mit vereinfachtem Chinesisch (Platz 1)</td><td>Claude-Schätzung. Keine eigene Schätzung für traditionelles Chinesisch</td></tr>
+    </tbody></table></div>
+  </details>
+</section>
+
+<section class="lang" id="hi" aria-labelledby="h-hi">
+  <p class="kicker">05 · hi</p>
+  <h2 id="h-hi"><span lang="hi">हिन्दी</span><small>Hindi</small></h2>
+  <dl class="nums">
+    <div><dt>Sprecher</dt><dd>611 Millionen (Platz 3)</dd></div>
+    <div><dt>Web</dt><dd>Unter 0,1 % (Platz 38)</dd></div>
+    <div><dt>Zeit online</dt><dd>1,74 Milliarden Stunden</dd></div>
+  </dl>
+  <p class="region"><b>Wo</b>Nord- und Zentralindien (Uttar Pradesh, Bihar, Rajasthan, Madhya Pradesh, Delhi und weitere). Sprecher gibt es auch in Nepal und auf Fidschi. Große indische Gemeinschaften leben in den Golfstaaten, im Vereinigten Königreich, in den USA und in Kanada.</p>
+  <div class="persona">
+    <figure><img src="../../language-intro/img/hi.webp" width="800" height="1000" loading="lazy" decoding="async" alt="Fiktive Persona. Neha Verma, 24, lebt in Jaipur. Sie ist Trainee auf dem Weg zur Wirtschaftsprüferin (Chartered Accountant)."></figure>
+    <div class="ptext"><h3>Persona</h3><p>Neha Verma, 24, lebt in Jaipur. Sie ist Trainee auf dem Weg zur Wirtschaftsprüferin (Chartered Accountant). Um 8 Uhr morgens, bevor sie in die Metro steigt, zieht sie auf ihrem Redmi-Handy eine einzige Karte – wie eine Fortsetzung des Rashifal, das ihre Mutter immer liest. Sie kann auch Englisch lesen, findet aber, dass ihr die Farbgeschichten auf Hindi besser im Gedächtnis bleiben. Wenn die Geschichte über die Gebäude der „Pink City“ Jaipur oder die Abbindefärberei Rajasthans zu ihrer Farbe findet, wählt sie eine Dupatta in diesem Farbton. Ergebnisse, die ihr gefallen, schickt sie ihrer älteren Schwester auf WhatsApp.</p></div>
+  </div>
+  <details><summary>Zahlen &amp; Anmerkungen</summary>
+    <div class="scroll"><table class="facts"><thead><tr><th scope="col">Angabe</th><th scope="col">Wert</th><th scope="col">Anmerkung</th></tr></thead><tbody>
+      <tr><th scope="row">Sprecher insgesamt (Erst- und Zweitsprache)</th><td>611 Millionen (Platz 3)</td><td>Ethnologue, Ausgabe 2026</td></tr>
+      <tr><th scope="row">Anteil an Webinhalten</th><td>Unter 0,1 % (Platz 38)</td><td>W3Techs, Oktober 2026. Sehr wenige Webseiten im Verhältnis zur Zahl der Sprecher</td></tr>
+      <tr><th scope="row">Internetnutzer nach Sprache</th><td>Nicht unter den Top 10</td><td>Internet World Stats, März 2020</td></tr>
+      <tr><th scope="row">Zeit online</th><td>Schätzung: 290 Millionen Internetnutzer, im Schnitt 6,0 Stunden pro Tag, insgesamt 1,74 Milliarden Stunden pro Tag (Platz 6)</td><td>Claude-Schätzung. Geht davon aus, dass etwa 35 % der Internetnutzer in Indien Hindi nutzen. Das ist die unsicherste Annahme</td></tr>
+    </tbody></table></div>
+  </details>
+</section>
+
+<section class="lang" id="es" aria-labelledby="h-es">
+  <p class="kicker">06 · es</p>
+  <h2 id="h-es"><span lang="es">Español</span><small>Spanisch</small></h2>
+  <dl class="nums">
+    <div><dt>Sprecher</dt><dd>561 Millionen (Platz 4)</dd></div>
+    <div><dt>Web</dt><dd>6,0 % (Platz 2)</dd></div>
+    <div><dt>Zeit online</dt><dd>2,96 Milliarden Stunden</dd></div>
+  </dl>
+  <p class="region"><b>Wo</b>Spanien und viele Länder Lateinamerikas, darunter Mexiko, Kolumbien, Argentinien, Peru, Chile und Venezuela. Auch in den USA sprechen viele Menschen zu Hause Spanisch (die Zahl wurde hier nicht überprüft). Außerdem ist es Amtssprache in Äquatorialguinea.</p>
+  <div class="persona">
+    <figure><img src="../../language-intro/img/es.webp" width="800" height="1000" loading="lazy" decoding="async" alt="Fiktive Persona. Valeria Ortiz, 32, lebt in Guadalajara, Mexiko. Sie ist Dentalhygienikerin."></figure>
+    <div class="ptext"><h3>Persona</h3><p>Valeria Ortiz, 32, lebt in Guadalajara, Mexiko. Sie ist Dentalhygienikerin. Um 21:30 Uhr öffnet sie nach der Arbeit auf dem Sofa ihr Android-Handy; auf diese Seite kam sie über eine Tarot-Geschichte, die sie auf TikTok gesehen hat. Sie liest gern die Bedeutung der Karte, am liebsten aber wartet sie auf den Namen der Farbe am Ende. Wenn die Geschichte über die mexikanische Cochenille (ein Rot, das aus einer auf Kakteen lebenden Laus gewonnen wird) beim Karmesinrot ankommt, schickt sie sie sofort ihrer jüngeren Schwester auf WhatsApp. Zum Jahresende will sie mit dieser Seite die Farbe ihrer Unterwäsche aussuchen.</p></div>
+  </div>
+  <details><summary>Zahlen &amp; Anmerkungen</summary>
+    <div class="scroll"><table class="facts"><thead><tr><th scope="col">Angabe</th><th scope="col">Wert</th><th scope="col">Anmerkung</th></tr></thead><tbody>
+      <tr><th scope="row">Sprecher insgesamt (Erst- und Zweitsprache)</th><td>561 Millionen (Platz 4)</td><td>Ethnologue, Ausgabe 2026</td></tr>
+      <tr><th scope="row">Anteil an Webinhalten</th><td>6,0 % (Platz 2)</td><td>W3Techs, Oktober 2026</td></tr>
+      <tr><th scope="row">Internetnutzer nach Sprache</th><td>7,9 % (Platz 3)</td><td>Internet World Stats, März 2020</td></tr>
+      <tr><th scope="row">Zeit online</th><td>Schätzung: 390 Millionen Internetnutzer, im Schnitt 7,6 Stunden pro Tag, insgesamt 2,96 Milliarden Stunden pro Tag (Platz 3)</td><td>Claude-Schätzung. Mexiko, Spanien, Kolumbien, Argentinien und weitere, dazu Menschen in den USA, die überwiegend Spanisch sprechen</td></tr>
+    </tbody></table></div>
+  </details>
+</section>
+
+<section class="lang" id="ar" aria-labelledby="h-ar">
+  <p class="kicker">07 · ar</p>
+  <h2 id="h-ar"><span lang="ar" dir="rtl">العربية</span><small>Arabisch (modernes Hocharabisch)</small></h2>
+  <dl class="nums">
+    <div><dt>Sprecher</dt><dd>335 Millionen (Platz 5, modernes Hocharabisch)</dd></div>
+    <div><dt>Web</dt><dd>0,6 % (Platz 19)</dd></div>
+    <div><dt>Zeit online</dt><dd>2,31 Milliarden Stunden</dd></div>
+  </dl>
+  <p class="region"><b>Wo</b>Amtssprache in rund 22 Ländern des Nahen Ostens und Nordafrikas, darunter Ägypten, Saudi-Arabien, Irak, Algerien, Marokko, Sudan, Syrien, Jordanien und die Vereinigten Arabischen Emirate. Viele Arabischsprachige leben auch in Europa (Frankreich, Deutschland und anderswo) und in Nordamerika. Die Seite läuft von rechts nach links.</p>
+  <div class="persona">
+    <figure><img src="../../language-intro/img/ar.webp" width="800" height="1000" loading="lazy" decoding="async" alt="Fiktive Persona. Nour Haddad, 28, lebt in Amman, Jordanien. Sie arbeitet in einem Architekturbüro."></figure>
+    <div class="ptext"><h3>Persona</h3><p>Nour Haddad, 28, lebt in Amman, Jordanien. Sie arbeitet in einem Architekturbüro. Um 20 Uhr öffnet sie auf dem Balkon ihrer Wohnung ihr iPhone. An Wahrsagerei glaubt sie nicht; sie genießt die Kartenkunst und die Geschichte als „kurze Lektüre“. Wenn die Geschichte über das Blau islamischer Architekturfliesen oder das Rosa der Felsen von Petra zu ihrer Farbe findet, notiert sie sich das als Anregung für Farbkonzepte bei der Arbeit. Manchmal schickt sie die Ergebnisseite in eine WhatsApp-Gruppe befreundeter Architekten.</p></div>
+  </div>
+  <details><summary>Zahlen &amp; Anmerkungen</summary>
+    <div class="scroll"><table class="facts"><thead><tr><th scope="col">Angabe</th><th scope="col">Wert</th><th scope="col">Anmerkung</th></tr></thead><tbody>
+      <tr><th scope="row">Sprecher insgesamt (Erst- und Zweitsprache)</th><td>335 Millionen (Platz 5, modernes Hocharabisch)</td><td>Ethnologue, Ausgabe 2026</td></tr>
+      <tr><th scope="row">Anteil an Webinhalten</th><td>0,6 % (Platz 19)</td><td>W3Techs, Oktober 2026</td></tr>
+      <tr><th scope="row">Internetnutzer nach Sprache</th><td>5,2 % (Platz 4)</td><td>Internet World Stats, März 2020</td></tr>
+      <tr><th scope="row">Zeit online</th><td>Schätzung: 330 Millionen Internetnutzer, im Schnitt 7,0 Stunden pro Tag, insgesamt 2,31 Milliarden Stunden pro Tag (Platz 4)</td><td>Claude-Schätzung. Ägypten, Saudi-Arabien, Irak, Algerien, Marokko und weitere</td></tr>
+    </tbody></table></div>
+  </details>
+</section>
+
+<section class="lang" id="fr" aria-labelledby="h-fr">
+  <p class="kicker">08 · fr</p>
+  <h2 id="h-fr"><span lang="fr">Français</span><small>Französisch</small></h2>
+  <dl class="nums">
+    <div><dt>Sprecher</dt><dd>334 Millionen (Platz 6)</dd></div>
+    <div><dt>Web</dt><dd>4,5 % (Platz 5)</dd></div>
+    <div><dt>Zeit online</dt><dd>750 Millionen Stunden</dd></div>
+  </dl>
+  <p class="region"><b>Wo</b>Frankreich, das südliche Belgien, die Westschweiz, Québec in Kanada und Luxemburg. In West- und Zentralafrika (Côte d’Ivoire, Senegal, Demokratische Republik Kongo, Kamerun und weitere) ist es die Sprache von Schule und Verwaltung. Auch in Marokko, Algerien und Tunesien in Nordafrika ist es weit verbreitet.</p>
+  <div class="persona">
+    <figure><img src="../../language-intro/img/fr.webp" width="800" height="1000" loading="lazy" decoding="async" alt="Fiktive Persona. Hélène Garnier, 41, lebt in Lyon. Sie führt eine Werkstatt für Buchbinderei und Papierrestaurierung."></figure>
+    <div class="ptext"><h3>Persona</h3><p>Hélène Garnier, 41, lebt in Lyon. Sie führt eine Werkstatt für Buchbinderei und Papierrestaurierung. Sonntags um 10 Uhr öffnet sie an der Werkbank ihr Tablet. Sie erinnert sich an das Marseiller Tarot im Haus ihrer Großmutter, und die Namen der Großen Arkana sind ihr vertraut. Wenn die Geschichte über die Seidenfärberei Lyons oder einen Pariser Farbenhändler zu ihrer Farbe findet, wählt sie damit die Farbe des Vorsatzpapiers für ihren nächsten Einband. Sie wählt den Jugendstil.</p></div>
+  </div>
+  <details><summary>Zahlen &amp; Anmerkungen</summary>
+    <div class="scroll"><table class="facts"><thead><tr><th scope="col">Angabe</th><th scope="col">Wert</th><th scope="col">Anmerkung</th></tr></thead><tbody>
+      <tr><th scope="row">Sprecher insgesamt (Erst- und Zweitsprache)</th><td>334 Millionen (Platz 6)</td><td>Ethnologue, Ausgabe 2026</td></tr>
+      <tr><th scope="row">Anteil an Webinhalten</th><td>4,5 % (Platz 5)</td><td>W3Techs, Oktober 2026</td></tr>
+      <tr><th scope="row">Internetnutzer nach Sprache</th><td>3,3 % (Platz 7)</td><td>Internet World Stats, März 2020</td></tr>
+      <tr><th scope="row">Zeit online</th><td>Schätzung: 125 Millionen Internetnutzer, im Schnitt 6,0 Stunden pro Tag, insgesamt 750 Millionen Stunden pro Tag (Platz 9)</td><td>Claude-Schätzung. Frankreich, Belgien und Québec plus das frankophone Afrika</td></tr>
+    </tbody></table></div>
+  </details>
+</section>
+
+<section class="lang" id="bn" aria-labelledby="h-bn">
+  <p class="kicker">09 · bn</p>
+  <h2 id="h-bn"><span lang="bn">বাংলা</span><small>Bengalisch</small></h2>
+  <dl class="nums">
+    <div><dt>Sprecher</dt><dd>274 Millionen (Platz 7)</dd></div>
+    <div><dt>Web</dt><dd>Unter 0,1 % (Platz 39)</dd></div>
+    <div><dt>Zeit online</dt><dd>610 Millionen Stunden</dd></div>
+  </dl>
+  <p class="region"><b>Wo</b>Bangladesch (Nationalsprache) sowie die indischen Bundesstaaten Westbengalen, Tripura und Teile von Assam. Viele Menschen aus Bangladesch leben im Vereinigten Königreich (East London), in den Golfstaaten, in den USA und in Malaysia.</p>
+  <div class="persona">
+    <figure><img src="../../language-intro/img/bn.webp" width="800" height="1000" loading="lazy" decoding="async" alt="Fiktive Persona. Farhana Akter, 23, lebt in Dhaka. Sie studiert englische Literatur."></figure>
+    <div class="ptext"><h3>Persona</h3><p>Farhana Akter, 23, lebt in Dhaka. Sie studiert englische Literatur. Um 22 Uhr, in einer Lernpause, schaute sie auf ihrem Samsung-Handy Facebook und kam über eine Ergebnisseite, die eine Freundin geteilt hatte. Sie sieht darin keine Wahrsagerei, sondern eine kurze Geschichte, die sie auf Bengalisch lesen kann. Wenn die Geschichte über Dhaka-Musselin oder Jamdani-Weberei beim Elfenbein ankommt, schreibt sie den Farbnamen in ihr Gedichtheft.</p></div>
+  </div>
+  <details><summary>Zahlen &amp; Anmerkungen</summary>
+    <div class="scroll"><table class="facts"><thead><tr><th scope="col">Angabe</th><th scope="col">Wert</th><th scope="col">Anmerkung</th></tr></thead><tbody>
+      <tr><th scope="row">Sprecher insgesamt (Erst- und Zweitsprache)</th><td>274 Millionen (Platz 7)</td><td>Ethnologue, Ausgabe 2026</td></tr>
+      <tr><th scope="row">Anteil an Webinhalten</th><td>Unter 0,1 % (Platz 39)</td><td>W3Techs, Oktober 2026</td></tr>
+      <tr><th scope="row">Internetnutzer nach Sprache</th><td>Nicht unter den Top 10</td><td>Internet World Stats, März 2020</td></tr>
+      <tr><th scope="row">Zeit online</th><td>Schätzung: 110 Millionen Internetnutzer, im Schnitt 5,5 Stunden pro Tag, insgesamt 610 Millionen Stunden pro Tag (Platz 10)</td><td>Claude-Schätzung. Bangladesch plus Westbengalen</td></tr>
+    </tbody></table></div>
+  </details>
+</section>
+
+<section class="lang" id="pt" aria-labelledby="h-pt">
+  <p class="kicker">10 · pt</p>
+  <h2 id="h-pt"><span lang="pt">Português</span><small>Portugiesisch (Brasilien)</small></h2>
+  <dl class="nums">
+    <div><dt>Sprecher</dt><dd>269 Millionen (Platz 8)</dd></div>
+    <div><dt>Web</dt><dd>4,1 % (Platz 6)</dd></div>
+    <div><dt>Zeit online</dt><dd>1,89 Milliarden Stunden</dd></div>
+  </dl>
+  <p class="region"><b>Wo</b>Brasilien (die Seite verwendet pt-BR) und Portugal. Auch in afrikanischen Ländern wie Angola, Mosambik und Kap Verde ist es Amtssprache. Viele Brasilianer japanischer Abstammung leben in Japan. Brasilianische Gemeinschaften gibt es in den USA, in Portugal und in Japan.</p>
+  <div class="persona">
+    <figure><img src="../../language-intro/img/pt.webp" width="800" height="1000" loading="lazy" decoding="async" alt="Fiktive Persona. Juliana Costa, 30, lebt in Recife. Sie ist Krankenpflegerin im Krankenhaus und arbeitet auch Nachtschichten."></figure>
+    <div class="ptext"><h3>Persona</h3><p>Juliana Costa, 30, lebt in Recife. Sie ist Krankenpflegerin im Krankenhaus und arbeitet auch Nachtschichten. Um 6:30 Uhr morgens, im Bus nach der Nachtschicht, öffnet sie ihr Samsung-Handy und zieht eine einzige Karte. Mehr als auf die Bedeutung der Karte freut sie sich auf die Farbe am Ende der Geschichte. Wenn die Geschichte über das Brasilholz (den roten Färbebaum, nach dem Brasilien benannt ist) zu ihrer Farbe findet, schickt sie sie in die WhatsApp-Gruppe ihrer Kolleginnen. Auch die Farbe ihres Outfits für Silvester will sie hier ziehen.</p></div>
+  </div>
+  <details><summary>Zahlen &amp; Anmerkungen</summary>
+    <div class="scroll"><table class="facts"><thead><tr><th scope="col">Angabe</th><th scope="col">Wert</th><th scope="col">Anmerkung</th></tr></thead><tbody>
+      <tr><th scope="row">Sprecher insgesamt (Erst- und Zweitsprache)</th><td>269 Millionen (Platz 8)</td><td>Ethnologue, Ausgabe 2026</td></tr>
+      <tr><th scope="row">Anteil an Webinhalten</th><td>4,1 % (Platz 6)</td><td>W3Techs, Oktober 2026</td></tr>
+      <tr><th scope="row">Internetnutzer nach Sprache</th><td>3,7 % (Platz 6)</td><td>Internet World Stats, März 2020</td></tr>
+      <tr><th scope="row">Zeit online</th><td>Schätzung: 210 Millionen Internetnutzer, im Schnitt 9,0 Stunden pro Tag, insgesamt 1,89 Milliarden Stunden pro Tag (Platz 5)</td><td>Claude-Schätzung. Überwiegend Brasilien. Die Zeit online gehört zu den längsten der Welt</td></tr>
+    </tbody></table></div>
+  </details>
+</section>
+
+<section class="lang" id="id" aria-labelledby="h-id">
+  <p class="kicker">11 · id</p>
+  <h2 id="h-id"><span lang="id">Bahasa Indonesia</span><small>Indonesisch</small></h2>
+  <dl class="nums">
+    <div><dt>Sprecher</dt><dd>255 Millionen (Platz 9)</dd></div>
+    <div><dt>Web</dt><dd>1,2 % (Platz 13)</dd></div>
+    <div><dt>Zeit online</dt><dd>1,55 Milliarden Stunden</dd></div>
+  </dl>
+  <p class="region"><b>Wo</b>Die Nationalsprache Indonesiens, die mehr als 200 Millionen Menschen in Schule und Beruf verwenden. In Osttimor ist es Arbeitssprache. Mit dem Malaiischen in Malaysia, Brunei und Singapur ist es weitgehend gegenseitig verständlich. Immer mehr Indonesier arbeiten in Japan als technische Praktikanten oder im Programm für „Fachkräfte mit besonderen Fähigkeiten“.</p>
+  <div class="persona">
+    <figure><img src="../../language-intro/img/id.webp" width="800" height="1000" loading="lazy" decoding="async" alt="Fiktive Persona. Dimas Pratama, 25, lebt in Bandung. Er ist Junior-Grafikdesigner bei einem Start-up."></figure>
+    <div class="ptext"><h3>Persona</h3><p>Dimas Pratama, 25, lebt in Bandung. Er ist Junior-Grafikdesigner bei einem Start-up. Um 9 Uhr morgens öffnet er in einem Coworking-Space sein Android-Handy. Er nutzt die Seite nicht zum Wahrsagen, sondern als Werkzeug, um Ideen für Farbkombinationen zu finden. Die Bedeutung der Karte überfliegt er, die Farbgeschichte liest er aufmerksam. Wenn die Geschichte über javanisches Batik-Indigo oder sundanesisches Bambushandwerk zu ihrer Farbe findet, macht er sie zur Grundfarbe seiner Plakatentwürfe des Tages. In seiner Instagram-Story teilt er nur den Namen der Farbe.</p></div>
+  </div>
+  <details><summary>Zahlen &amp; Anmerkungen</summary>
+    <div class="scroll"><table class="facts"><thead><tr><th scope="col">Angabe</th><th scope="col">Wert</th><th scope="col">Anmerkung</th></tr></thead><tbody>
+      <tr><th scope="row">Sprecher insgesamt (Erst- und Zweitsprache)</th><td>255 Millionen (Platz 9)</td><td>Ethnologue, Ausgabe 2026</td></tr>
+      <tr><th scope="row">Anteil an Webinhalten</th><td>1,2 % (Platz 13)</td><td>W3Techs, Oktober 2026</td></tr>
+      <tr><th scope="row">Internetnutzer nach Sprache</th><td>4,3 % (Platz 5)</td><td>Internet World Stats, März 2020. Teilt sich eine Zeile mit Malaiisch; der Wert gilt für Indonesisch</td></tr>
+      <tr><th scope="row">Zeit online</th><td>Schätzung: 210 Millionen Internetnutzer, im Schnitt 7,4 Stunden pro Tag, insgesamt 1,55 Milliarden Stunden pro Tag (Platz 7)</td><td>Claude-Schätzung</td></tr>
+    </tbody></table></div>
+  </details>
+</section>
+
+<section class="lang" id="ms" aria-labelledby="h-ms">
+  <p class="kicker">12 · ms</p>
+  <h2 id="h-ms"><span lang="ms">Bahasa Melayu</span><small>Malaiisch</small></h2>
+  <dl class="nums">
+    <div><dt>Sprecher</dt><dd>unbekannt</dd></div>
+    <div><dt>Web</dt><dd>keine Daten</dd></div>
+    <div><dt>Zeit online</dt><dd>Etwa 160 Millionen Stunden (Referenzwert, außerhalb der Rangliste)</dd></div>
+  </dl>
+  <p class="region"><b>Wo</b>Malaysia, Brunei und Singapur (Nationalsprache). Auch im Süden Thailands gibt es Malaiischsprachige. In Malaysia sprechen es die Malaien im Alltag, und auch Malaysier chinesischer und indischer Herkunft lernen es in der Schule.</p>
+  <div class="persona">
+    <figure><img src="../../language-intro/img/ms.webp" width="800" height="1000" loading="lazy" decoding="async" alt="Fiktive Persona. Nur Aisyah binti Rahman, 27, lebt in Shah Alam. Sie ist Krankenhausapothekerin."></figure>
+    <div class="ptext"><h3>Persona</h3><p>Nur Aisyah binti Rahman, 27, lebt in Shah Alam. Sie ist Krankenhausapothekerin. Um 13 Uhr in der Mittagspause schaut sie auf ihrem Android-Handy TikTok, um Tipps für eine Reise nach Osaka im kommenden März zu finden. An Wahrsagerei glaubt sie nicht, aber sie liebt die Kartenkunst und die Farbgeschichten als „etwas Schönes zum Lesen“. Wenn die Geschichte über den Goldfaden des malaiischen Songket oder den Hafen von Malakka zu ihrer Farbe findet, nimmt sie das als Anregung für die Farbe ihres Tudung (Kopftuchs) für die Reise. In die WhatsApp-Gruppe der Familie schickt sie nur den Namen der Farbe.</p></div>
+  </div>
+  <details><summary>Zahlen &amp; Anmerkungen</summary>
+    <div class="scroll"><table class="facts"><thead><tr><th scope="col">Angabe</th><th scope="col">Wert</th><th scope="col">Anmerkung</th></tr></thead><tbody>
+      <tr><th scope="row">Sprecher insgesamt (Erst- und Zweitsprache)</th><td>unbekannt</td><td>Malaiisch wird oft zusammen mit Indonesisch als Makrosprache gezählt, daher gibt es keine eigene Zahl. Die Wikipedia-Seite „Malay language“ (mit Verweis auf Ethnologue, 28. Ausgabe, 2025) nennt für Malaiisch als Makrosprache etwa 90 Millionen Erstsprachler (2020–2023) und etwa 180 Millionen Zweitsprachler (2020). Diese Zählung schließt lokale malaiische Varietäten in Indonesien ein und erfasst nicht nur das Standardmalaiische</td></tr>
+      <tr><th scope="row">Anteil an Webinhalten</th><td>keine Daten</td><td>Nicht unter den Top 40 von W3Techs</td></tr>
+      <tr><th scope="row">Internetnutzer nach Sprache</th><td>Gleiche Zeile wie Indonesisch</td><td>Bei Internet World Stats ist der Wert der Zeile Indonesisch/Malaiisch nur der indonesische Anteil von 4,3 %</td></tr>
+      <tr><th scope="row">Zeit online</th><td>Etwa 160 Millionen Stunden pro Tag (Referenzwert, außerhalb der Rangliste)</td><td>Referenzwert außerhalb der Rangliste in der Claude-Schätzung. Etwa 60 % der Internetnutzer Malaysias plus Brunei</td></tr>
+    </tbody></table></div>
+  </details>
+</section>
+
+<section class="lang" id="ur" aria-labelledby="h-ur">
+  <p class="kicker">13 · ur</p>
+  <h2 id="h-ur"><span lang="ur" dir="rtl">اردو</span><small>Urdu</small></h2>
+  <dl class="nums">
+    <div><dt>Sprecher</dt><dd>246 Millionen (Platz 10)</dd></div>
+    <div><dt>Web</dt><dd>keine Daten</dd></div>
+    <div><dt>Zeit online</dt><dd>520 Millionen Stunden</dd></div>
+  </dl>
+  <p class="region"><b>Wo</b>Pakistan (Nationalsprache) und Nordindien (Uttar Pradesh, Hyderabad in Telangana, Delhi und anderswo). Viele Menschen pakistanischer Herkunft leben im Vereinigten Königreich, in den Golfstaaten, in den USA und in Kanada. Die gesprochene Sprache ähnelt dem Hindi; die Schrift (arabische Schrift im Nastaliq-Stil) ist eine andere. Die Seite läuft von rechts nach links.</p>
+  <div class="persona">
+    <figure><img src="../../language-intro/img/ur.webp" width="800" height="1000" loading="lazy" decoding="async" alt="Fiktive Persona. Hamza Qureshi, 30, lebt in Lahore. Er ist Softwareentwickler bei einem Fintech-Unternehmen."></figure>
+    <div class="ptext"><h3>Persona</h3><p>Hamza Qureshi, 30, lebt in Lahore. Er ist Softwareentwickler bei einem Fintech-Unternehmen. Um halb eins nachts, nach der Arbeit, öffnet er bei einer Tasse Chai sein Android-Handy. Von Wahrsagerei hält er Abstand, aber er mag Seiten, auf denen Urdu schön gesetzt ist, und kommt, um die Geschichten zu lesen. Wenn die Geschichte über das Ultramarin der Mogul-Miniaturen oder die Fliesen an den Mauern des Lahore Fort zu ihrer Farbe findet, schickt er den Link einem befreundeten Dichter auf WhatsApp.</p></div>
+  </div>
+  <details><summary>Zahlen &amp; Anmerkungen</summary>
+    <div class="scroll"><table class="facts"><thead><tr><th scope="col">Angabe</th><th scope="col">Wert</th><th scope="col">Anmerkung</th></tr></thead><tbody>
+      <tr><th scope="row">Sprecher insgesamt (Erst- und Zweitsprache)</th><td>246 Millionen (Platz 10)</td><td>Ethnologue, Ausgabe 2026</td></tr>
+      <tr><th scope="row">Anteil an Webinhalten</th><td>keine Daten</td><td>Nicht unter den Top 40 von W3Techs</td></tr>
+      <tr><th scope="row">Internetnutzer nach Sprache</th><td>Nicht unter den Top 10</td><td>Internet World Stats, März 2020</td></tr>
+      <tr><th scope="row">Zeit online</th><td>Schätzung: 95 Millionen Internetnutzer, im Schnitt 5,5 Stunden pro Tag, insgesamt 520 Millionen Stunden pro Tag (Platz 13)</td><td>Claude-Schätzung. Etwa 75 % Pakistans plus ein Teil Indiens</td></tr>
+    </tbody></table></div>
+  </details>
+</section>
+
+<section class="lang" id="ru" aria-labelledby="h-ru">
+  <p class="kicker">14 · ru</p>
+  <h2 id="h-ru"><span lang="ru">Русский</span><small>Russisch</small></h2>
+  <dl class="nums">
+    <div><dt>Sprecher</dt><dd>210 Millionen (Platz 11)</dd></div>
+    <div><dt>Web</dt><dd>3,4 % (Platz 7)</dd></div>
+    <div><dt>Zeit online</dt><dd>1,16 Milliarden Stunden</dd></div>
+  </dl>
+  <p class="region"><b>Wo</b>Amtssprache in Russland, Belarus, Kasachstan und Kirgisistan. Auch in anderen ehemaligen Sowjetstaaten (Zentralasien, Kaukasus, Baltikum) verwenden viele Menschen Russisch. Russischsprachige Gemeinschaften gibt es außerdem in Israel, Deutschland und den USA.</p>
+  <div class="persona">
+    <figure><img src="../../language-intro/img/ru.webp" width="800" height="1000" loading="lazy" decoding="async" alt="Fiktive Persona. Анна Соколова (Anna Sokolova), 35, lebt in Nowosibirsk. Sie ist chemisch-technische Assistentin an einem Forschungsinstitut."></figure>
+    <div class="ptext"><h3>Persona</h3><p><span lang="ru">Анна Соколова</span> (Anna Sokolova), 35, lebt in Nowosibirsk. Sie ist chemisch-technische Assistentin an einem Forschungsinstitut. Um 22 Uhr öffnet sie bei einer Tasse Tee in der Küche ihr Android-Handy. Von dieser Seite hat sie über einen Telegram-Kanal erfahren, der Farbe und Kunst vorstellt. Ihres Berufs wegen zieht sie besonders gern eine Karte und folgt der Geschichte über Minerale und Pigmente bis zu ihrer Farbe. An Tagen, an denen Malachitgrün kommt, zeigt sie ihrer Tochter ein Foto des Steins.</p></div>
+  </div>
+  <details><summary>Zahlen &amp; Anmerkungen</summary>
+    <div class="scroll"><table class="facts"><thead><tr><th scope="col">Angabe</th><th scope="col">Wert</th><th scope="col">Anmerkung</th></tr></thead><tbody>
+      <tr><th scope="row">Sprecher insgesamt (Erst- und Zweitsprache)</th><td>210 Millionen (Platz 11)</td><td>Ethnologue, Ausgabe 2026</td></tr>
+      <tr><th scope="row">Anteil an Webinhalten</th><td>3,4 % (Platz 7)</td><td>W3Techs, Oktober 2026</td></tr>
+      <tr><th scope="row">Internetnutzer nach Sprache</th><td>2,5 % (Platz 9)</td><td>Internet World Stats, März 2020</td></tr>
+      <tr><th scope="row">Zeit online</th><td>Schätzung: 155 Millionen Internetnutzer, im Schnitt 7,5 Stunden pro Tag, insgesamt 1,16 Milliarden Stunden pro Tag (Platz 8)</td><td>Claude-Schätzung. Russland plus Belarus, Kasachstan und Teile Zentralasiens</td></tr>
+    </tbody></table></div>
+  </details>
+</section>
+
+<section class="lang" id="de" aria-labelledby="h-de">
+  <p class="kicker">15 · de</p>
+  <h2 id="h-de"><span lang="de">Deutsch</span></h2>
+  <dl class="nums">
+    <div><dt>Sprecher</dt><dd>133 Millionen (Platz 12)</dd></div>
+    <div><dt>Web</dt><dd>5,9 % (Platz 3)</dd></div>
+    <div><dt>Zeit online</dt><dd>480 Millionen Stunden</dd></div>
+  </dl>
+  <p class="region"><b>Wo</b>Deutschland, Österreich, die Schweiz (Norden und Mitte), Liechtenstein, Luxemburg, Südtirol in Italien und Ostbelgien.</p>
+  <div class="persona">
+    <figure><img src="../../language-intro/img/de.webp" width="800" height="1000" loading="lazy" decoding="async" alt="Fiktive Persona. Jonas Weber, 38, lebt in Leipzig. Er ist Tontechniker an einem Theater."></figure>
+    <div class="ptext"><h3>Persona</h3><p>Jonas Weber, 38, lebt in Leipzig. Er ist Tontechniker an einem Theater. Werktags um 13 Uhr öffnet er die Seite in der Pause in Firefox auf seinem Laptop. Er nutzt einen Werbeblocker und lehnt Cookie-Banner ab. An Wahrsagerei glaubt er nicht, aber er vergleicht gern die Kartenstile (surrealistische Fotografie, brutalistische Grafik). Wenn die Geschichte über das Preußischblau, das Anfang des 18. Jahrhunderts in Berlin entstand, zu ihrer Farbe findet, freut er sich und erzählt seinen Kollegen davon.</p></div>
+  </div>
+  <details><summary>Zahlen &amp; Anmerkungen</summary>
+    <div class="scroll"><table class="facts"><thead><tr><th scope="col">Angabe</th><th scope="col">Wert</th><th scope="col">Anmerkung</th></tr></thead><tbody>
+      <tr><th scope="row">Sprecher insgesamt (Erst- und Zweitsprache)</th><td>133 Millionen (Platz 12)</td><td>Ethnologue, Ausgabe 2026</td></tr>
+      <tr><th scope="row">Anteil an Webinhalten</th><td>5,9 % (Platz 3)</td><td>W3Techs, Oktober 2026</td></tr>
+      <tr><th scope="row">Internetnutzer nach Sprache</th><td>2,0 % (Platz 10)</td><td>Internet World Stats, März 2020</td></tr>
+      <tr><th scope="row">Zeit online</th><td>Schätzung: 93 Millionen Internetnutzer, im Schnitt 5,2 Stunden pro Tag, insgesamt 480 Millionen Stunden pro Tag (Platz 17)</td><td>Claude-Schätzung. Deutschland, Österreich, Schweiz</td></tr>
+    </tbody></table></div>
+  </details>
+</section>
+
+<section class="lang" id="vi" aria-labelledby="h-vi">
+  <p class="kicker">16 · vi</p>
+  <h2 id="h-vi"><span lang="vi">Tiếng Việt</span><small>Vietnamesisch</small></h2>
+  <dl class="nums">
+    <div><dt>Sprecher</dt><dd>97 Millionen (Platz 17)</dd></div>
+    <div><dt>Web</dt><dd>0,9 % (Platz 16)</dd></div>
+    <div><dt>Zeit online</dt><dd>500 Millionen Stunden</dd></div>
+  </dl>
+  <p class="region"><b>Wo</b>Vietnam. Große vietnamesische Gemeinschaften gibt es in den USA (Kalifornien, Texas), in Australien, Frankreich und Kanada. Viele Vietnamesen leben außerdem als technische Praktikanten oder Studierende in Japan.</p>
+  <div class="persona">
+    <figure><img src="../../language-intro/img/vi.webp" width="800" height="1000" loading="lazy" decoding="async" alt="Fiktive Persona. Trần Văn Minh, 24, lebt in Toyota in der Präfektur Aichi. Er ist technischer Praktikant in einem Autoteilewerk."></figure>
+    <div class="ptext"><h3>Persona</h3><p>Trần Văn Minh, 24, lebt in Toyota in der Präfektur Aichi. Er ist technischer Praktikant in einem Autoteilewerk. Um 17 Uhr, bevor er zur Nachtschicht aufbricht, öffnet er in seinem Wohnheimzimmer sein Android-Handy. In einer Facebook-Gruppe von Freunden, die in Japan leben, waren Ergebnisse dieser Seite geteilt worden. Er zieht eine einzige Karte und vergleicht sie mit den Farben seines <i lang="vi">mệnh</i>, von dem seine Mutter erzählt. Wenn die Geschichte über die Seide der Laternen von Hội An oder den Lack seiner Heimat zu ihrer Farbe findet, schickt er sie seiner Familie auf Zalo.</p></div>
+  </div>
+  <details><summary>Zahlen &amp; Anmerkungen</summary>
+    <div class="scroll"><table class="facts"><thead><tr><th scope="col">Angabe</th><th scope="col">Wert</th><th scope="col">Anmerkung</th></tr></thead><tbody>
+      <tr><th scope="row">Sprecher insgesamt (Erst- und Zweitsprache)</th><td>97 Millionen (Platz 17)</td><td>Ethnologue, Ausgabe 2026</td></tr>
+      <tr><th scope="row">Anteil an Webinhalten</th><td>0,9 % (Platz 16)</td><td>W3Techs, Oktober 2026</td></tr>
+      <tr><th scope="row">Internetnutzer nach Sprache</th><td>Nicht unter den Top 10</td><td>Internet World Stats, März 2020</td></tr>
+      <tr><th scope="row">Zeit online</th><td>Schätzung: 79 Millionen Internetnutzer, im Schnitt 6,3 Stunden pro Tag, insgesamt 500 Millionen Stunden pro Tag (Platz 15)</td><td>Claude-Schätzung</td></tr>
+    </tbody></table></div>
+  </details>
+</section>
+
+<section class="lang" id="sw" aria-labelledby="h-sw">
+  <p class="kicker">17 · sw</p>
+  <h2 id="h-sw"><span lang="sw">Kiswahili</span><small>Swahili</small></h2>
+  <dl class="nums">
+    <div><dt>Sprecher</dt><dd>95 Millionen (Platz 19)</dd></div>
+    <div><dt>Web</dt><dd>keine Daten</dd></div>
+    <div><dt>Zeit online</dt><dd>Keine Schätzung</dd></div>
+  </dl>
+  <p class="region"><b>Wo</b>Tansania und Kenia. In Tansania ist es die Nationalsprache; in der Grundschule wird auf Swahili unterrichtet, ab der Sekundarstufe übernimmt Englisch. In Kenia ist es eine der Amtssprachen; in den ersten Klassen wird in der Muttersprache oder auf Swahili unterrichtet, danach auf Englisch, Swahili bleibt Pflichtfach. Weit verbreitet ist es auch in Uganda, Ruanda, Burundi, im Osten der Demokratischen Republik Kongo und auf den Komoren. Es ist eine der Arbeitssprachen der Afrikanischen Union.</p>
+  <div class="persona">
+    <figure><img src="../../language-intro/img/sw.webp" width="800" height="1000" loading="lazy" decoding="async" alt="Fiktive Persona. Amina Juma, 28, lebt in Daressalam. Sie ist Grundschullehrerin."></figure>
+    <div class="ptext"><h3>Persona</h3><p>Amina Juma, 28, lebt in Daressalam. Sie ist Grundschullehrerin. Um 15:30 Uhr, nach dem Unterricht, öffnet sie im Lehrerzimmer ihr Android-Handy. In der WhatsApp-Gruppe ihrer Kollegen war ein Ergebnis dieser Seite herumgegangen. Sie zieht eine einzige Karte und vergleicht sie mit den Farben der Kanga-Tücher. Wenn die Geschichte über Kanga-Indigo oder den Abendhimmel über dem Indischen Ozean zu ihrer Farbe findet, schickt sie sie ihrer Mutter auf WhatsApp.</p></div>
+  </div>
+  <details><summary>Zahlen &amp; Anmerkungen</summary>
+    <div class="scroll"><table class="facts"><thead><tr><th scope="col">Angabe</th><th scope="col">Wert</th><th scope="col">Anmerkung</th></tr></thead><tbody>
+      <tr><th scope="row">Sprecher insgesamt (Erst- und Zweitsprache)</th><td>95 Millionen (Platz 19)</td><td>Ethnologue, Ausgabe 2026</td></tr>
+      <tr><th scope="row">Anteil an Webinhalten</th><td>keine Daten</td><td>Nicht unter den Top 40 von W3Techs</td></tr>
+      <tr><th scope="row">Internetnutzer nach Sprache</th><td>Nicht unter den Top 10</td><td>Internet World Stats, März 2020</td></tr>
+      <tr><th scope="row">Zeit online</th><td>Keine Schätzung</td><td>Die Claude-Schätzung hat keine Zeile für Swahili. Kenia und Tansania sind insgesamt unter Englisch oder Swahili eingeordnet, die Zeit für Swahili allein wird nicht getrennt ausgewiesen</td></tr>
+    </tbody></table></div>
+  </details>
+</section>
+
+<section class="lang" id="tr" aria-labelledby="h-tr">
+  <p class="kicker">18 · tr</p>
+  <h2 id="h-tr"><span lang="tr">Türkçe</span><small>Türkisch</small></h2>
+  <dl class="nums">
+    <div><dt>Sprecher</dt><dd>94 Millionen (Platz 20, gleichauf mit Hausa)</dd></div>
+    <div><dt>Web</dt><dd>1,6 % (Platz 11)</dd></div>
+    <div><dt>Zeit online</dt><dd>560 Millionen Stunden</dd></div>
+  </dl>
+  <p class="region"><b>Wo</b>Die Türkei und Nordzypern. Deutschland hat eine große türkische Gemeinschaft, viele leben auch in den Niederlanden, in Österreich und in Frankreich. Sprecher gibt es außerdem in Bulgarien und im Norden Griechenlands.</p>
+  <div class="persona">
+    <figure><img src="../../language-intro/img/tr.webp" width="800" height="1000" loading="lazy" decoding="async" alt="Fiktive Persona. Elif Yıldız, 33, lebt in İzmir. Sie ist Chemielehrerin an einem Gymnasium."></figure>
+    <div class="ptext"><h3>Persona</h3><p>Elif Yıldız, 33, lebt in İzmir. Sie ist Chemielehrerin an einem Gymnasium. Um 16:30 Uhr, nach dem Unterricht, hat sie sich mit Freundinnen in einem Café aus dem Kaffeesatz lesen lassen und danach diese Seite auf ihrem iPhone geöffnet. Gemeinsam lesen sie die Bedeutung der Karte. Wenn die Geschichte über Türkis oder das Blau der İznik-Fliesen zu ihrer Farbe findet, sind alle begeistert, und sie postet es in ihrer Instagram-Story.</p></div>
+  </div>
+  <details><summary>Zahlen &amp; Anmerkungen</summary>
+    <div class="scroll"><table class="facts"><thead><tr><th scope="col">Angabe</th><th scope="col">Wert</th><th scope="col">Anmerkung</th></tr></thead><tbody>
+      <tr><th scope="row">Sprecher insgesamt (Erst- und Zweitsprache)</th><td>94 Millionen (Platz 20, gleichauf mit Hausa)</td><td>Ethnologue, Ausgabe 2026</td></tr>
+      <tr><th scope="row">Anteil an Webinhalten</th><td>1,6 % (Platz 11)</td><td>W3Techs, Oktober 2026</td></tr>
+      <tr><th scope="row">Internetnutzer nach Sprache</th><td>Nicht unter den Top 10</td><td>Internet World Stats, März 2020</td></tr>
+      <tr><th scope="row">Zeit online</th><td>Schätzung: 80 Millionen Internetnutzer, im Schnitt 7,0 Stunden pro Tag, insgesamt 560 Millionen Stunden pro Tag (Platz 11)</td><td>Claude-Schätzung</td></tr>
+    </tbody></table></div>
+  </details>
+</section>
+
+<section class="lang" id="tl" aria-labelledby="h-tl">
+  <p class="kicker">19 · tl</p>
+  <h2 id="h-tl"><span lang="fil">Filipino</span></h2>
+  <dl class="nums">
+    <div><dt>Sprecher</dt><dd>87 Millionen</dd></div>
+    <div><dt>Web</dt><dd>Unter 0,1 % (Platz 40, Tagalog)</dd></div>
+    <div><dt>Zeit online</dt><dd>530 Millionen Stunden</dd></div>
+  </dl>
+  <p class="region"><b>Wo</b>Die Nationalsprache der Philippinen und neben Englisch Amtssprache. Sie wird von Filipinos verwendet, die überall auf der Welt arbeiten, etwa in den USA (Kalifornien, Hawaii), in den Golfstaaten, in Hongkong, Singapur, Kanada und Japan.</p>
+  <div class="persona">
+    <figure><img src="../../language-intro/img/tl.webp" width="800" height="1000" loading="lazy" decoding="async" alt="Fiktive Persona. Joanna „Jo“ Dela Cruz, 28, lebt in Quezon City. Sie arbeitet nachts in einem Callcenter für Kunden in den USA."></figure>
+    <div class="ptext"><h3>Persona</h3><p>Joanna „Jo“ Dela Cruz, 28, lebt in Quezon City. Sie arbeitet nachts in einem Callcenter für Kunden in den USA. In ihrer Pause um 4 Uhr morgens zieht sie auf ihrem Android-Handy eine einzige Karte. Bei der Arbeit spricht sie Englisch, deshalb möchte sie in den Pausen auf Filipino lesen. Wenn die Geschichte über den Sonnenuntergang an der Bucht von Manila oder Piña (Stoff aus Ananasfasern) zu ihrer Farbe findet, postet sie es auf Facebook und schickt es einer Cousine, die im Nahen Osten arbeitet.</p></div>
+  </div>
+  <details><summary>Zahlen &amp; Anmerkungen</summary>
+    <div class="scroll"><table class="facts"><thead><tr><th scope="col">Angabe</th><th scope="col">Wert</th><th scope="col">Anmerkung</th></tr></thead><tbody>
+      <tr><th scope="row">Sprecher insgesamt (Erst- und Zweitsprache)</th><td>87 Millionen</td><td>Ethnologue, Ausgabe 2026 (als Tagalog gezählt)</td></tr>
+      <tr><th scope="row">Anteil an Webinhalten</th><td>Unter 0,1 % (Platz 40, Tagalog)</td><td>W3Techs, Oktober 2026</td></tr>
+      <tr><th scope="row">Internetnutzer nach Sprache</th><td>Nicht unter den Top 10</td><td>Internet World Stats, März 2020</td></tr>
+      <tr><th scope="row">Zeit online</th><td>Schätzung: 60 Millionen Internetnutzer, im Schnitt 8,9 Stunden pro Tag, insgesamt 530 Millionen Stunden pro Tag (Platz 12)</td><td>Claude-Schätzung. Geht von etwa 60 % der Internetnutzer auf den Philippinen aus; der Rest wird unter Englisch gezählt</td></tr>
+    </tbody></table></div>
+  </details>
+</section>
+
+<section class="lang" id="fa" aria-labelledby="h-fa">
+  <p class="kicker">20 · fa</p>
+  <h2 id="h-fa"><span lang="fa" dir="rtl">فارسی</span><small>Persisch</small></h2>
+  <dl class="nums">
+    <div><dt>Sprecher</dt><dd>82 Millionen (iranisches Persisch)</dd></div>
+    <div><dt>Web</dt><dd>1,0 % (Platz 14)</dd></div>
+    <div><dt>Zeit online</dt><dd>490 Millionen Stunden</dd></div>
+  </dl>
+  <p class="region"><b>Wo</b>Die Amtssprache Irans. Eng verwandte Formen werden in Afghanistan (Dari) und Tadschikistan (Tadschikisch) gesprochen. Große iranische Gemeinschaften gibt es in den USA (Los Angeles), in Kanada, Deutschland, im Vereinigten Königreich und in der Türkei. Die Seite läuft von rechts nach links.</p>
+  <div class="persona">
+    <figure><img src="../../language-intro/img/fa.webp" width="800" height="1000" loading="lazy" decoding="async" alt="Fiktive Persona. Parisa Hosseini, 31, lebt in Isfahan. Sie restauriert Fliesen an historischen Bauwerken."></figure>
+    <div class="ptext"><h3>Persona</h3><p>Parisa Hosseini, 31, lebt in Isfahan. Sie restauriert Fliesen an historischen Bauwerken. Um 23 Uhr, nach getaner Arbeit, öffnet sie ihr Android-Handy. In der Yalda-Nacht schlägt ihre Familie gemeinsam Hafis auf, deshalb kommt ihr eine Deutung mit einer einzigen Karte vertraut vor. Wenn die Geschichte über Türkis aus Nischapur oder das Blau der Moscheefliesen von Isfahan zu ihrer Farbe findet, betrachtet sie sie, als hätte sie die Arbeit kurz ruhen lassen. Den Link schickt sie ihrer älteren Schwester im Ausland auf Telegram.</p></div>
+  </div>
+  <details><summary>Zahlen &amp; Anmerkungen</summary>
+    <div class="scroll"><table class="facts"><thead><tr><th scope="col">Angabe</th><th scope="col">Wert</th><th scope="col">Anmerkung</th></tr></thead><tbody>
+      <tr><th scope="row">Sprecher insgesamt (Erst- und Zweitsprache)</th><td>82 Millionen (iranisches Persisch)</td><td>Ethnologue, Ausgabe 2026. Ohne Dari (Afghanistan) und Tadschikisch</td></tr>
+      <tr><th scope="row">Anteil an Webinhalten</th><td>1,0 % (Platz 14)</td><td>W3Techs, Oktober 2026</td></tr>
+      <tr><th scope="row">Internetnutzer nach Sprache</th><td>Nicht unter den Top 10</td><td>Internet World Stats, März 2020</td></tr>
+      <tr><th scope="row">Zeit online</th><td>Schätzung: 82 Millionen Internetnutzer, im Schnitt 6,0 Stunden pro Tag, insgesamt 490 Millionen Stunden pro Tag (Platz 16)</td><td>Claude-Schätzung. Iran plus Afghanistan (Dari)</td></tr>
+    </tbody></table></div>
+  </details>
+</section>
+
+<section class="lang" id="ko" aria-labelledby="h-ko">
+  <p class="kicker">21 · ko</p>
+  <h2 id="h-ko"><span lang="ko">한국어</span><small>Koreanisch</small></h2>
+  <dl class="nums">
+    <div><dt>Sprecher</dt><dd>82 Millionen</dd></div>
+    <div><dt>Web</dt><dd>0,9 % (Platz 17)</dd></div>
+    <div><dt>Zeit online</dt><dd>270 Millionen Stunden</dd></div>
+  </dl>
+  <p class="region"><b>Wo</b>Südkorea und Nordkorea. Gemeinschaften mit Wurzeln auf der koreanischen Halbinsel gibt es außerdem im Autonomen Bezirk Yanbian der Koreaner in China, in den USA (Los Angeles, New York), in Japan und in Zentralasien.</p>
+  <div class="persona">
+    <figure><img src="../../language-intro/img/ko.webp" width="800" height="1000" loading="lazy" decoding="async" alt="Fiktive Persona. 김서연 (Kim Seo-yeon), 29, lebt in Mapo-gu, Seoul. Sie ist Koloristin für Webtoons."></figure>
+    <div class="ptext"><h3>Persona</h3><p><span lang="ko">김서연</span> (Kim Seo-yeon), 29, lebt in Mapo-gu, Seoul. Sie ist Koloristin für Webtoons. Um 8:20 Uhr morgens öffnet sie in der U-Bahn ihr iPhone. Einmal im Monat geht sie mit Freundinnen in ein Tarot-Café. Diese Seite hat sie gefunden, als sie bei NAVER nach Tipps für ihre Fukuoka-Reise im nächsten Monat suchte. Wenn die Geschichte über das koreanische <i lang="ko-Latn">Obangsaek</i> (die fünf traditionellen Farben) oder japanische Färbekunst zu ihrer Farbe findet, baut sie diese Farbe an einer Stelle in die Farbpalette des Tages ein. Die Ergebnisse schickt sie Freundinnen auf KakaoTalk.</p></div>
+  </div>
+  <details><summary>Zahlen &amp; Anmerkungen</summary>
+    <div class="scroll"><table class="facts"><thead><tr><th scope="col">Angabe</th><th scope="col">Wert</th><th scope="col">Anmerkung</th></tr></thead><tbody>
+      <tr><th scope="row">Sprecher insgesamt (Erst- und Zweitsprache)</th><td>82 Millionen</td><td>Ethnologue, Ausgabe 2026</td></tr>
+      <tr><th scope="row">Anteil an Webinhalten</th><td>0,9 % (Platz 17)</td><td>W3Techs, Oktober 2026</td></tr>
+      <tr><th scope="row">Internetnutzer nach Sprache</th><td>Nicht unter den Top 10</td><td>Internet World Stats, März 2020</td></tr>
+      <tr><th scope="row">Zeit online</th><td>Schätzung: 50 Millionen Internetnutzer, im Schnitt 5,3 Stunden pro Tag, insgesamt 270 Millionen Stunden pro Tag (Platz 20)</td><td>Claude-Schätzung</td></tr>
+    </tbody></table></div>
+  </details>
+</section>
+
+<section class="lang" id="th" aria-labelledby="h-th">
+  <p class="kicker">22 · th</p>
+  <h2 id="h-th"><span lang="th">ไทย</span><small>Thailändisch</small></h2>
+  <dl class="nums">
+    <div><dt>Sprecher</dt><dd>71 Millionen</dd></div>
+    <div><dt>Web</dt><dd>0,3 % (Platz 28)</dd></div>
+    <div><dt>Zeit online</dt><dd>510 Millionen Stunden</dd></div>
+  </dl>
+  <p class="region"><b>Wo</b>Die Nationalsprache Thailands. Viele Menschen in Laos können Thai lesen. Menschen aus Thailand leben auch in den USA (Los Angeles), in Australien und in Europa.</p>
+  <div class="persona">
+    <figure><img src="../../language-intro/img/th.webp" width="800" height="1000" loading="lazy" decoding="async" alt="Fiktive Persona. Napassorn „Pim“ Srisuk, 27, lebt in Bangkok. Sie arbeitet im Marketing einer Kosmetikmarke."></figure>
+    <div class="ptext"><h3>Persona</h3><p>Napassorn „Pim“ Srisuk, 27, lebt in Bangkok. Sie arbeitet im Marketing einer Kosmetikmarke. Um 7 Uhr morgens, bevor sie entscheidet, was sie anzieht, zieht sie auf ihrem iPhone eine einzige Karte. Die Farbe des Wochentags mit der Farbe dieser Seite zu vergleichen, ist ihr kleines Vergnügen am Morgen. Sie plant für den kommenden Januar eine Reise nach Hokkaido. Wenn die Geschichte über Thai-Seide oder das Weiß des Schnees auf Hokkaido zu ihrer Farbe findet, greift sie die Farbe beim Lippenstift oder Schal auf. Sie schickt es ihren Kolleginnen auf LINE.</p></div>
+  </div>
+  <details><summary>Zahlen &amp; Anmerkungen</summary>
+    <div class="scroll"><table class="facts"><thead><tr><th scope="col">Angabe</th><th scope="col">Wert</th><th scope="col">Anmerkung</th></tr></thead><tbody>
+      <tr><th scope="row">Sprecher insgesamt (Erst- und Zweitsprache)</th><td>71 Millionen</td><td>Ethnologue, Ausgabe 2026</td></tr>
+      <tr><th scope="row">Anteil an Webinhalten</th><td>0,3 % (Platz 28)</td><td>W3Techs, Oktober 2026</td></tr>
+      <tr><th scope="row">Internetnutzer nach Sprache</th><td>Nicht unter den Top 10</td><td>Internet World Stats, März 2020</td></tr>
+      <tr><th scope="row">Zeit online</th><td>Schätzung: 65 Millionen Internetnutzer, im Schnitt 7,8 Stunden pro Tag, insgesamt 510 Millionen Stunden pro Tag (Platz 14)</td><td>Claude-Schätzung</td></tr>
+    </tbody></table></div>
+  </details>
+</section>
+
+<section class="lang" id="it" aria-labelledby="h-it">
+  <p class="kicker">23 · it</p>
+  <h2 id="h-it"><span lang="it">Italiano</span><small>Italienisch</small></h2>
+  <dl class="nums">
+    <div><dt>Sprecher</dt><dd>66 Millionen</dd></div>
+    <div><dt>Web</dt><dd>2,8 % (Platz 8)</dd></div>
+    <div><dt>Zeit online</dt><dd>290 Millionen Stunden</dd></div>
+  </dl>
+  <p class="region"><b>Wo</b>Italien, San Marino, die Südschweiz (Tessin) und die Vatikanstadt. Viele Menschen italienischer Herkunft leben in Argentinien, Brasilien, den USA, Deutschland und anderswo.</p>
+  <div class="persona">
+    <figure><img src="../../language-intro/img/it.webp" width="800" height="1000" loading="lazy" decoding="async" alt="Fiktive Persona. Giulia Bernardi, 45, lebt in Bologna. Sie ist Apothekerin in einer Apotheke im Viertel."></figure>
+    <div class="ptext"><h3>Persona</h3><p>Giulia Bernardi, 45, lebt in Bologna. Sie ist Apothekerin in einer Apotheke im Viertel. Um 21:30 Uhr öffnet sie nach dem Abendessen auf dem Sofa ihr Android-Handy. Als Kind hat sie mit ihrem Vater Tarocchino gespielt, deshalb wecken die Bilder der Großen Arkana nostalgische Gefühle. Wenn die Geschichte über die roten Ziegel der Bologneser Arkaden oder die Pigmente der Renaissancemaler zu ihrer Farbe findet, schickt sie sie ihrem Vater auf WhatsApp. Sie wählt den Stil „Klassisches Tarot“.</p></div>
+  </div>
+  <details><summary>Zahlen &amp; Anmerkungen</summary>
+    <div class="scroll"><table class="facts"><thead><tr><th scope="col">Angabe</th><th scope="col">Wert</th><th scope="col">Anmerkung</th></tr></thead><tbody>
+      <tr><th scope="row">Sprecher insgesamt (Erst- und Zweitsprache)</th><td>66 Millionen</td><td>Ethnologue, Ausgabe 2026</td></tr>
+      <tr><th scope="row">Anteil an Webinhalten</th><td>2,8 % (Platz 8)</td><td>W3Techs, Oktober 2026</td></tr>
+      <tr><th scope="row">Internetnutzer nach Sprache</th><td>Nicht unter den Top 10</td><td>Internet World Stats, März 2020</td></tr>
+      <tr><th scope="row">Zeit online</th><td>Schätzung: 51 Millionen Internetnutzer, im Schnitt 5,7 Stunden pro Tag, insgesamt 290 Millionen Stunden pro Tag (Platz 19)</td><td>Claude-Schätzung</td></tr>
+    </tbody></table></div>
+  </details>
+</section>
+
+<section class="lang" id="pl" aria-labelledby="h-pl">
+  <p class="kicker">24 · pl</p>
+  <h2 id="h-pl"><span lang="pl">Polski</span><small>Polnisch</small></h2>
+  <dl class="nums">
+    <div><dt>Sprecher</dt><dd>Etwa 42,6 Millionen</dd></div>
+    <div><dt>Web</dt><dd>1,8 % (Platz 10)</dd></div>
+    <div><dt>Zeit online</dt><dd>Etwa 210 Millionen Stunden (Referenzwert, außerhalb der Rangliste)</dd></div>
+  </dl>
+  <p class="region"><b>Wo</b>Polen. Große polnische Gemeinschaften gibt es im Vereinigten Königreich, in Deutschland, den USA (Chicago), Irland und Kanada. Sprecher gibt es außerdem in Litauen und in der Westukraine.</p>
+  <div class="persona">
+    <figure><img src="../../language-intro/img/pl.webp" width="800" height="1000" loading="lazy" decoding="async" alt="Fiktive Persona. Marta Kowalczyk, 30, lebt in Krakau. Sie ist UX-Researcherin bei einem Softwareunternehmen."></figure>
+    <div class="ptext"><h3>Persona</h3><p>Marta Kowalczyk, 30, lebt in Krakau. Sie ist UX-Researcherin bei einem Softwareunternehmen. Sonntags um 10 Uhr öffnet sie in einem Café ihr iPhone. Jedes Jahr zu Andrzejki gießt sie mit Freundinnen Wachs, um die Zukunft zu deuten. Wenn die Geschichte über Bernstein von der Ostsee oder die Krakauer Tuchhallen zu ihrer Farbe findet, postet sie es in ihrer Instagram-Story. Sie plant für das nächste Frühjahr eine Reise nach Kyoto.</p></div>
+  </div>
+  <details><summary>Zahlen &amp; Anmerkungen</summary>
+    <div class="scroll"><table class="facts"><thead><tr><th scope="col">Angabe</th><th scope="col">Wert</th><th scope="col">Anmerkung</th></tr></thead><tbody>
+      <tr><th scope="row">Sprecher insgesamt (Erst- und Zweitsprache)</th><td>Etwa 42,6 Millionen</td><td>Ethnologue, 27. Ausgabe (Zahlen von 2021), zitiert auf der Wikipedia-Seite „Polish language“. Nicht in der öffentlichen Liste von Ethnologue 2026 (ab 50 Millionen)</td></tr>
+      <tr><th scope="row">Anteil an Webinhalten</th><td>1,8 % (Platz 10)</td><td>W3Techs, Oktober 2026</td></tr>
+      <tr><th scope="row">Internetnutzer nach Sprache</th><td>Nicht unter den Top 10</td><td>Internet World Stats, März 2020</td></tr>
+      <tr><th scope="row">Zeit online</th><td>Etwa 210 Millionen Stunden pro Tag (Referenzwert, außerhalb der Rangliste)</td><td>Referenzwert außerhalb der Rangliste in der Claude-Schätzung</td></tr>
+    </tbody></table></div>
+  </details>
+</section>
+
+<section class="lang" id="uk" aria-labelledby="h-uk">
+  <p class="kicker">25 · uk</p>
+  <h2 id="h-uk"><span lang="uk">Українська</span><small>Ukrainisch</small></h2>
+  <dl class="nums">
+    <div><dt>Sprecher</dt><dd>Etwa 39 Millionen</dd></div>
+    <div><dt>Web</dt><dd>0,6 % (Platz 18)</dd></div>
+    <div><dt>Zeit online</dt><dd>Keine Schätzung</dd></div>
+  </dl>
+  <p class="region"><b>Wo</b>Die Nationalsprache der Ukraine. Wegen des Krieges seit 2022 haben viele Menschen Zuflucht in europäischen Ländern wie Polen, Deutschland und Tschechien gefunden. Auch Kanada und die USA haben alteingesessene ukrainische Gemeinschaften. Viele Menschen sprechen außerdem Russisch.</p>
+  <div class="persona">
+    <figure><img src="../../language-intro/img/uk.webp" width="800" height="1000" loading="lazy" decoding="async" alt="Fiktive Persona. Олена Коваленко (Olena Kovalenko), 37, lebt in Lwiw. Sie ist Grundschullehrerin."></figure>
+    <div class="ptext"><h3>Persona</h3><p><span lang="uk">Олена Коваленко</span> (Olena Kovalenko), 37, lebt in Lwiw. Sie ist Grundschullehrerin. Um 21 Uhr, nachdem sie ihr Kind ins Bett gebracht hat, zieht sie auf ihrem Android-Handy eine einzige Karte. Mehr als die Bedeutung der Karte schätzt sie die Zeit, in der sie eine sorgfältig auf Ukrainisch geschriebene Geschichte liest. Wenn die Geschichte über die Blumenmalerei aus Petrykiwka oder Wolle aus den Karpaten zu ihrer Farbe findet, schickt sie sie ihrer jüngeren Schwester in Polen auf Telegram.</p></div>
+  </div>
+  <details><summary>Zahlen &amp; Anmerkungen</summary>
+    <div class="scroll"><table class="facts"><thead><tr><th scope="col">Angabe</th><th scope="col">Wert</th><th scope="col">Anmerkung</th></tr></thead><tbody>
+      <tr><th scope="row">Sprecher insgesamt (Erst- und Zweitsprache)</th><td>Etwa 39 Millionen</td><td>Ethnologue (2023). Die Wikipedia-Seite „Ukrainian language“ (Ethnologue, 28. Ausgabe) nennt dieselbe Zahl</td></tr>
+      <tr><th scope="row">Anteil an Webinhalten</th><td>0,6 % (Platz 18)</td><td>W3Techs, Oktober 2026</td></tr>
+      <tr><th scope="row">Internetnutzer nach Sprache</th><td>Nicht unter den Top 10</td><td>Internet World Stats, März 2020</td></tr>
+      <tr><th scope="row">Zeit online</th><td>Keine Schätzung</td><td>Ukrainisch steht weder in der Tabelle der Claude-Schätzung noch unter ihren Referenzwerten außerhalb der Rangliste</td></tr>
+    </tbody></table></div>
+  </details>
+</section>
+
+<section class="lang" id="nl" aria-labelledby="h-nl">
+  <p class="kicker">26 · nl</p>
+  <h2 id="h-nl"><span lang="nl">Nederlands</span><small>Niederländisch</small></h2>
+  <dl class="nums">
+    <div><dt>Sprecher</dt><dd>Etwa 30 Millionen</dd></div>
+    <div><dt>Web</dt><dd>2,1 % (Platz 9)</dd></div>
+    <div><dt>Zeit online</dt><dd>Etwa 130 Millionen Stunden (Referenzwert, außerhalb der Rangliste)</dd></div>
+  </dl>
+  <p class="region"><b>Wo</b>Die Niederlande und das nördliche Belgien (Flandern). Amtssprache ist es außerdem in Suriname sowie auf Aruba und Curaçao in der Karibik. Das Afrikaans in Südafrika hat sich aus dem Niederländischen entwickelt.</p>
+  <div class="persona">
+    <figure><img src="../../language-intro/img/nl.webp" width="800" height="1000" loading="lazy" decoding="async" alt="Fiktive Persona. Sanne de Vries, 36, lebt in Utrecht. Sie arbeitet im Rathaus an der Klimapolitik der Stadt."></figure>
+    <div class="ptext"><h3>Persona</h3><p>Sanne de Vries, 36, lebt in Utrecht. Sie arbeitet im Rathaus an der Klimapolitik der Stadt. Um 12:30 Uhr hat sie an ihrem Schreibtisch den Laptop geöffnet und ist bei der Suche nach einem Farbnamen auf diese Seite gestoßen. An Wahrsagerei glaubt sie nicht, aber sie liebt Geschichten darüber, woher Farbnamen kommen. Wenn die Geschichte über Delfter Blau oder die Pigmente niederländischer Maler des 17. Jahrhunderts zu ihrer Farbe findet, erzählt sie ihren Kollegen davon. Manchmal zieht sie noch eine Karte, bevor sie mit dem Rad nach Hause fährt.</p></div>
+  </div>
+  <details><summary>Zahlen &amp; Anmerkungen</summary>
+    <div class="scroll"><table class="facts"><thead><tr><th scope="col">Angabe</th><th scope="col">Wert</th><th scope="col">Anmerkung</th></tr></thead><tbody>
+      <tr><th scope="row">Sprecher insgesamt (Erst- und Zweitsprache)</th><td>Etwa 30 Millionen</td><td>2021. Die Wikipedia-Seite „Dutch language“ (mit Verweis auf das Eurobarometer und weitere Quellen) nennt dieselbe Zahl</td></tr>
+      <tr><th scope="row">Anteil an Webinhalten</th><td>2,1 % (Platz 9)</td><td>W3Techs, Oktober 2026. Einschließlich Flämisch</td></tr>
+      <tr><th scope="row">Internetnutzer nach Sprache</th><td>Nicht unter den Top 10</td><td>Internet World Stats, März 2020</td></tr>
+      <tr><th scope="row">Zeit online</th><td>Etwa 130 Millionen Stunden pro Tag (Referenzwert, außerhalb der Rangliste)</td><td>Referenzwert außerhalb der Rangliste in der Claude-Schätzung</td></tr>
+    </tbody></table></div>
+  </details>
+</section>
+
+<section class="lang" id="ang" aria-labelledby="h-ang">
+  <p class="kicker">27 · ang</p>
+  <h2 id="h-ang"><span lang="ang">Englisc</span><small>Altenglisch</small></h2>
+  <p class="note">Eine Sprache zum Spielen und für die Geschichte. Es ist das Englisch von etwa 450 bis 1100, und heute spricht es niemand mehr als Muttersprache. Die Zahlenfelder entfallen.</p>
+  <dl class="nums">
+    <div><dt>Sprecher</dt><dd>entfällt</dd></div>
+    <div><dt>Web</dt><dd>entfällt</dd></div>
+    <div><dt>Zeit online</dt><dd>entfällt</dd></div>
+  </dl>
+  <p class="region"><b>Wem es gefallen könnte</b>Studierende und Forschende der mittelalterlichen englischen Literatur und der englischen Sprachgeschichte, Fans von <cite>Beowulf</cite> und den Werken von J. R. R. Tolkien sowie Menschen, die sich für Runen und nordische Mythologie interessieren. Über die englischsprachige Welt hinaus erreicht es auch Studierende der Anglistik in Deutschland, Skandinavien und Japan.</p>
+  <div class="persona">
+    <figure><img src="../../language-intro/img/ang.webp" width="800" height="1000" loading="lazy" decoding="async" alt="Fiktive Persona. Hannah Brooks, 24, lebt in Leeds, Großbritannien. Sie studiert Altenglisch im Masterstudium."></figure>
+    <div class="ptext"><h3>Persona</h3><p>Hannah Brooks, 24, lebt in Leeds, Großbritannien. Sie studiert Altenglisch im Masterstudium. Um 17 Uhr hat sie in der Universitätsbibliothek ihren Laptop geöffnet und ist beim Nachschlagen von Verbkonjugationen auf diese Seite gestoßen. Mit einer neuenglischen Übersetzung daneben entschlüsselt sie mit Vergnügen die Namen der Karten und Farben. Sätze, die ihr gefallen, schickt sie an ihre Seminarkommilitonen.</p></div>
+  </div>
+  <details><summary>Zahlen &amp; Anmerkungen</summary>
+    <div class="scroll"><table class="facts"><thead><tr><th scope="col">Angabe</th><th scope="col">Wert</th></tr></thead><tbody>
+      <tr><th scope="row">Sprecher insgesamt (Erst- und Zweitsprache)</th><td>entfällt</td></tr>
+      <tr><th scope="row">Anteil an Webinhalten</th><td>entfällt</td></tr>
+      <tr><th scope="row">Internetnutzer nach Sprache</th><td>entfällt</td></tr>
+      <tr><th scope="row">Zeit online</th><td>entfällt</td></tr>
+    </tbody></table></div>
+  </details>
+</section>
+
+<section class="lang" id="soro" aria-labelledby="h-soro">
+  <p class="kicker">28 · soro</p>
+  <h2 id="h-soro"><span lang="ja">御座候</span><small>Sōrōbun (klassischer japanischer Briefstil)</small></h2>
+  <p class="note">Eine Sprache zum Spielen und für die Geschichte. Es ist der Stil von Briefen und amtlichen Schriftstücken aus der Zeit von etwa 1600 bis 1868, mit <span lang="ja">候</span> (<i>sōrō</i>) am Satzende. Heute spricht ihn niemand mehr als Muttersprache. Die Zahlenfelder entfallen.</p>
+  <dl class="nums">
+    <div><dt>Sprecher</dt><dd>entfällt</dd></div>
+    <div><dt>Web</dt><dd>entfällt</dd></div>
+    <div><dt>Zeit online</dt><dd>entfällt</dd></div>
+  </dl>
+  <p class="region"><b>Wem es gefallen könnte</b>Menschen, die lernen, alte Dokumente und Kursivschrift zu lesen, Fans historischer Romane und der historischen Dramen von NHK sowie geschichtsbegeisterte Studierende. Es erreicht auch Menschen im Ausland, die sich intensiv mit Japanisch beschäftigt haben, und Forschende zur japanischen Geschichte.</p>
+  <div class="persona">
+    <figure><img src="../../language-intro/img/soro.webp" width="800" height="1000" loading="lazy" decoding="async" alt="Fiktive Persona. 工藤 誠一 (Seiichi Kudo), 58, lebt in Kanazawa. Er arbeitet im Rathaus und besucht am Wochenende einen Kurs über alte Dokumente."></figure>
+    <div class="ptext"><h3>Persona</h3><p><span lang="ja">工藤 誠一</span> (Seiichi Kudo), 58, lebt in Kanazawa. Er arbeitet im Rathaus und besucht am Wochenende einen Kurs über alte Dokumente. Sonntags um 15 Uhr öffnet er im Wohnzimmer sein Tablet. Von der Seite hat er durch Teilnehmer seines Kurses erfahren. Er liest die in Sōrōbun geschriebenen Namen der Karten und Farben einen nach dem anderen laut vor. Wenn die Geschichte über die Kaga-Färberei oder die alte Burgstadt zu ihrer Farbe findet, notiert er den Farbnamen in seinem Kursheft.</p></div>
+  </div>
+  <details><summary>Zahlen &amp; Anmerkungen</summary>
+    <div class="scroll"><table class="facts"><thead><tr><th scope="col">Angabe</th><th scope="col">Wert</th></tr></thead><tbody>
+      <tr><th scope="row">Sprecher insgesamt (Erst- und Zweitsprache)</th><td>entfällt</td></tr>
+      <tr><th scope="row">Anteil an Webinhalten</th><td>entfällt</td></tr>
+      <tr><th scope="row">Internetnutzer nach Sprache</th><td>entfällt</td></tr>
+      <tr><th scope="row">Zeit online</th><td>entfällt</td></tr>
+    </tbody></table></div>
+  </details>
+</section>
+
+</div>
+
+</body>
+</html>

@@ -1,0 +1,798 @@
+<!doctype html>
+<html lang="sw">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Zifahamu lugha 28 za Colors for the Fool: idadi ya watu wanaozungumza kila lugha, pamoja na mhusika wa kubuni na picha yake.">
+<link rel="icon" href="../../favicon.png" type="image/png">
+<title>Kuhusu Lugha</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&family=Noto+Serif:wght@400;500;600&display=swap">
+<style>
+/* Layout: same paper column as language-scale.html; one card per language (numbers, persona + image, details). */
+:root {
+  --bg: #efe6d6;
+  --bg-glow: #fbf6ec;
+  --paper: #f7f1e4;
+  --ink: #2a2118;
+  --muted: #6d5c48;
+  --gold: #a6843d;
+  --gold-soft: #e4d2a4;
+  --line: rgba(166,132,61,.45);
+  --other: #d3c6ae;
+  --grid: rgba(109,92,72,.18);
+  --font-display: Cinzel, "Palatino Linotype", Palatino, serif;
+  --font-body: "Noto Serif", "Times New Roman", Times, serif;
+}
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) {
+  --bg: #1b1610; --bg-glow: #2a2219; --paper: #241e17; --ink: #efe4cf; --muted: #b6a387;
+  --gold: #d2ac5c; --gold-soft: #5a4826; --line: rgba(210,172,92,.4); --other: #4b4134; --grid: rgba(239,228,207,.12);
+  color-scheme: dark; } }
+:root[data-theme="dark"] {
+  --bg: #1b1610; --bg-glow: #2a2219; --paper: #241e17; --ink: #efe4cf; --muted: #b6a387;
+  --gold: #d2ac5c; --gold-soft: #5a4826; --line: rgba(210,172,92,.4); --other: #4b4134; --grid: rgba(239,228,207,.12);
+  color-scheme: dark; }
+
+* { box-sizing: border-box; }
+body {
+  margin: 0; color: var(--ink); background: var(--bg);
+  background-image: radial-gradient(1100px 640px at 50% -8%, var(--bg-glow), var(--bg) 70%);
+  font-family: var(--font-body); font-weight: 500; line-height: 1.85;
+  padding-inline: 16px; padding-block: 0 64px;
+}
+.wrap { width: min(100%, 44rem); margin: 0 auto; }
+a { color: var(--gold); }
+code { font-size: .88em; overflow-wrap: anywhere; }
+.brand { font-family: var(--font-display); font-size: .74rem; letter-spacing: .24em; text-transform: uppercase; padding-block: 1.4rem .2rem; margin: 0; }
+.brand a { color: var(--ink); text-decoration: none; }
+header.hero { text-align: center; padding-block: 2.6rem 1.6rem; }
+.eyebrow { font-family: var(--font-display); letter-spacing: .3em; font-size: .8rem; color: var(--gold); margin: 0; text-transform: uppercase; }
+h1 { font-size: clamp(2rem, 7vw, 2.9rem); letter-spacing: .12em; margin: .3rem 0 .6rem; font-weight: 600; text-wrap: balance; }
+.lede { color: var(--muted); max-width: 34rem; margin: 0 auto; text-wrap: pretty; }
+.ornament { display: flex; align-items: center; gap: .8rem; justify-content: center; color: var(--gold); margin: 1.6rem 0 0; }
+.ornament::before, .ornament::after { content: ""; height: 1px; width: 4.5rem; background: var(--line); }
+
+.topbar { display: flex; justify-content: space-between; align-items: baseline; gap: 1rem; padding-block: 1.4rem .2rem; }
+.topbar .brand { padding-block: 0; }
+.switch { font-size: .82rem; }
+.switch a, .switch span { margin-left: .7rem; }
+.switch span { color: var(--muted); }
+
+.about { font-size: .86rem; color: var(--muted); margin: 0 0 1rem; }
+.about p { margin: .5rem 0; }
+.langs { display: flex; flex-wrap: wrap; gap: .4rem; justify-content: center; margin: 1.2rem 0 0; padding: 0; list-style: none; }
+.langs li { border: 1px solid var(--line); font-size: .85rem; background: var(--paper); }
+.langs li a { display: block; padding: .1rem .7rem; color: var(--ink); text-decoration: none; }
+.langs li a:hover, .langs li a:focus-visible { color: var(--gold); }
+.langs li:nth-last-child(-n+2) { border-style: dashed; }
+.langs li:nth-last-child(-n+2) a { color: var(--muted); }
+
+section.chart, section.lang { margin-top: 3.4rem; scroll-margin-top: 1rem; }
+.chart h2, .lang h2 { font-size: 1.3rem; letter-spacing: .08em; margin: 0; font-weight: 600; text-wrap: balance; }
+.lang h2 small { display: block; font-size: .8rem; letter-spacing: .04em; color: var(--muted); font-weight: 500; }
+.kicker { font-family: var(--font-display); color: var(--gold); letter-spacing: .2em; font-size: .78rem; margin: 0 0 .15rem; }
+p.note { color: var(--muted); font-size: .88rem; margin: .4rem 0 1rem; max-width: 40rem; }
+.chart ul { font-size: .88rem; color: var(--muted); padding-left: 1.1rem; }
+
+.scroll { overflow-x: auto; -webkit-overflow-scrolling: touch; border: 1px solid var(--line); background: var(--paper); }
+table { border-collapse: collapse; font-size: .8rem; line-height: 1.55; }
+table.overview { min-width: 42rem; width: 100%; }
+th, td { padding: .45rem .6rem; border-bottom: 1px solid var(--grid); text-align: left; vertical-align: top; }
+thead th { font-weight: 700; border-bottom: 1px solid var(--line); background: var(--bg-glow); }
+tbody th { font-weight: 700; white-space: nowrap; }
+tbody th a { color: var(--ink); text-decoration: none; }
+tbody tr:last-child th, tbody tr:last-child td { border-bottom: 0; }
+table.overview td { font-variant-numeric: tabular-nums; }
+
+.lang { border-top: 1px solid var(--line); padding-top: 1.6rem; }
+.nums { display: flex; flex-wrap: wrap; gap: 1px; background: var(--line); border: 1px solid var(--line); margin: 1rem 0; }
+.nums div { flex: 1 1 7.6rem; background: var(--paper); padding: .55rem .7rem .6rem; min-width: 0; }
+.nums dt { font-family: var(--font-body); font-size: .72rem; color: var(--muted); letter-spacing: .06em; }
+.nums dd { margin: 0; font-size: .9rem; line-height: 1.45; font-variant-numeric: tabular-nums; overflow-wrap: anywhere; }
+.region { font-size: .9rem; margin: 0 0 1rem; }
+.region b { color: var(--gold); font-weight: 700; margin-right: .6rem; }
+
+.persona { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 15rem); gap: 1.2rem; align-items: start; margin: 1.2rem 0 .8rem; }
+.persona figure { grid-column: 2; grid-row: 1; margin: 0; }
+.persona .ptext { grid-column: 1; grid-row: 1; }
+.persona img { display: block; width: 100%; height: auto; border: 1px solid var(--line); background: var(--paper); }
+.persona h3 { font-size: 1rem; letter-spacing: .08em; margin: 0 0 .3rem; font-weight: 600; }
+.persona p { margin: 0; font-size: .94rem; text-wrap: pretty; }
+@media (max-width: 36rem) {
+  .persona { grid-template-columns: minmax(0, 1fr); }
+  .persona figure, .persona .ptext { grid-column: 1; grid-row: auto; }
+  .persona figure { max-width: 22rem; }
+}
+
+details { border-top: 1px dashed var(--line); padding: .35rem 0; font-size: .88rem; }
+details:last-of-type { border-bottom: 1px dashed var(--line); }
+summary { cursor: pointer; color: var(--gold); letter-spacing: .06em; }
+details[open] summary { margin-bottom: .5rem; }
+details p { margin: .2rem 0 .8rem; color: var(--ink); }
+details h4 { font-size: .86rem; margin: .6rem 0 0; color: var(--muted); font-weight: 700; }
+details pre { white-space: pre-wrap; overflow-wrap: anywhere; font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: .78rem; line-height: 1.6; background: var(--paper); border: 1px solid var(--line); padding: .7rem .8rem; margin: 0 0 .6rem; }
+table.facts { width: 100%; min-width: 34rem; }
+table.facts tbody th { white-space: normal; min-width: 8rem; }
+
+footer { margin-top: 4rem; border-top: 1px solid var(--line); padding-top: 1.2rem; font-size: .8rem; color: var(--muted); }
+footer ul { padding-left: 1.1rem; margin: .4rem 0 1rem; }
+footer ul ul { margin: .2rem 0 .3rem; }
+footer li { margin: .15rem 0; overflow-wrap: anywhere; }
+
+/* Per-language adjustments (generated by render.py). */
+html[lang="sw"] body * {
+  letter-spacing: 0 !important;
+  text-indent: 0 !important;
+}
+html[lang="sw"] .brand {
+  letter-spacing: 0.22em !important;
+}
+</style>
+</head>
+<body>
+
+<div class="wrap">
+  <div class="topbar"><p class="brand"><a href="../">Colors for the Fool</a></p><nav class="switch" aria-label="Kurasa zinazohusiana"><span>Kuhusu Lugha</span></nav></div>
+
+  <header class="hero">
+    <p class="eyebrow">Languages &amp; Readers</p>
+    <h1>Kuhusu Lugha</h1>
+    <p class="lede">Lugha 28 za Colors for the Fool, zikitambulishwa kupitia idadi ya watu wanaozizungumza na aina ya mtu ambaye huenda akaja kwenye usomaji huu (hadi tarehe 9 Oktoba 2026).</p>
+    <div class="ornament">✦</div>
+  </header>
+
+  <nav aria-label="Lugha">
+    <ul class="langs"><li><a href="#ja"><span lang="ja">日本語</span></a></li><li><a href="#en"><span lang="en">English</span></a></li><li><a href="#zh-hans"><span lang="zh-Hans">简体中文</span></a></li><li><a href="#zh"><span lang="zh-Hant">繁體中文</span></a></li><li><a href="#hi"><span lang="hi">हिन्दी</span></a></li><li><a href="#es"><span lang="es">Español</span></a></li><li><a href="#ar"><span lang="ar" dir="rtl">العربية</span></a></li><li><a href="#fr"><span lang="fr">Français</span></a></li><li><a href="#bn"><span lang="bn">বাংলা</span></a></li><li><a href="#pt"><span lang="pt">Português</span></a></li><li><a href="#id"><span lang="id">Bahasa Indonesia</span></a></li><li><a href="#ms"><span lang="ms">Bahasa Melayu</span></a></li><li><a href="#ur"><span lang="ur" dir="rtl">اردو</span></a></li><li><a href="#ru"><span lang="ru">Русский</span></a></li><li><a href="#de"><span lang="de">Deutsch</span></a></li><li><a href="#vi"><span lang="vi">Tiếng Việt</span></a></li><li><a href="#sw"><span lang="sw">Kiswahili</span></a></li><li><a href="#tr"><span lang="tr">Türkçe</span></a></li><li><a href="#tl"><span lang="fil">Filipino</span></a></li><li><a href="#fa"><span lang="fa" dir="rtl">فارسی</span></a></li><li><a href="#ko"><span lang="ko">한국어</span></a></li><li><a href="#th"><span lang="th">ไทย</span></a></li><li><a href="#it"><span lang="it">Italiano</span></a></li><li><a href="#pl"><span lang="pl">Polski</span></a></li><li><a href="#uk"><span lang="uk">Українська</span></a></li><li><a href="#nl"><span lang="nl">Nederlands</span></a></li><li><a href="#ang"><span lang="ang">Englisc</span></a></li><li><a href="#soro"><span lang="ja">御座候</span></a></li></ul>
+  </nav>
+
+<section class="lang" id="ja" aria-labelledby="h-ja">
+  <p class="kicker">01 · ja</p>
+  <h2 id="h-ja"><span lang="ja">日本語</span><small>Kijapani</small></h2>
+  <dl class="nums">
+    <div><dt>Wazungumzaji</dt><dd>milioni 126</dd></div>
+    <div><dt>Wavuti</dt><dd>4.9% (nafasi ya 4)</dd></div>
+    <div><dt>Muda mtandaoni</dt><dd>saa milioni 390</dd></div>
+  </dl>
+  <p class="region"><b>Wapi</b>Japani. Nje ya Japani, inasomwa na watu wenye asili ya Kijapani nchini Brazili na Marekani (Hawaii, California) na Wajapani wanaoishi ughaibuni. Watu wengi duniani pia hujifunza Kijapani.</p>
+  <div class="persona">
+    <figure><img src="../../language-intro/img/ja.webp" width="800" height="1000" loading="lazy" decoding="async" alt="Mhusika wa kubuni. 森下 由佳 (Yuka Morishita), miaka 34, anaishi Fukuoka. Ni karani wa kumbukumbu za matibabu katika hospitali kuu."></figure>
+    <div class="ptext"><h3>Mhusika</h3><p><span lang="ja">森下 由佳</span> (Yuka Morishita), miaka 34, anaishi Fukuoka. Ni karani wa kumbukumbu za matibabu katika hospitali kuu. Saa 1:40 asubuhi, akiwa ameketi kwenye treni ya chini ya ardhi, anafungua iPhone yake na kufika hapa kutoka kwenye Reel ya Instagram. Hauchukulii utabiri kwa uzito sana, lakini anaupenda kiasi cha kucheka unapokosea. Anachagua kadi moja, na ikitoka imepinduka anaamua kwamba “leo ni siku ya kutojilazimisha.” Hufurahi sana hadithi inapofikia rangi yake kupitia mahali na sanaa za mikono anazozijua, kama ufumaji wa Hakata au upakaji rangi ya nili wa Chikugo. Rangi anayoipenda huwa kidokezo cha rangi ya leso yake au ya rangi ya kucha siku hiyo. Wakati mwingine humtumia mfanyakazi mwenzake ujumbe kwenye LINE: “Inaonekana leo mimi ni nili.”</p></div>
+  </div>
+  <details><summary>Takwimu na maelezo</summary>
+    <div class="scroll"><table class="facts"><thead><tr><th scope="col">Kipengele</th><th scope="col">Thamani</th><th scope="col">Maelezo</th></tr></thead><tbody>
+      <tr><th scope="row">Jumla ya wazungumzaji (lugha ya kwanza + lugha ya pili)</th><td>milioni 126</td><td>Ethnologue, toleo la 2026</td></tr>
+      <tr><th scope="row">Sehemu ya maudhui ya wavuti</th><td>4.9% (nafasi ya 4)</td><td>W3Techs, Oktoba 2026</td></tr>
+      <tr><th scope="row">Watumiaji wa intaneti kwa lugha</th><td>2.6% (nafasi ya 8)</td><td>Internet World Stats, Machi 2020</td></tr>
+      <tr><th scope="row">Muda mtandaoni</th><td>Takriban watumiaji milioni 100 wa intaneti, wastani wa saa 3.9 kwa siku, jumla ya saa milioni 390 kwa siku (nafasi ya 18)</td><td>Makadirio ya Claude</td></tr>
+    </tbody></table></div>
+  </details>
+</section>
+
+<section class="lang" id="en" aria-labelledby="h-en">
+  <p class="kicker">02 · en</p>
+  <h2 id="h-en"><span lang="en">English</span><small>Kiingereza</small></h2>
+  <dl class="nums">
+    <div><dt>Wazungumzaji</dt><dd>bilioni 1.493 (nafasi ya 1)</dd></div>
+    <div><dt>Wavuti</dt><dd>49.5% (nafasi ya 1)</dd></div>
+    <div><dt>Muda mtandaoni</dt><dd>saa bilioni 5.78</dd></div>
+  </dl>
+  <p class="region"><b>Wapi</b>Huzungumzwa kama lugha ya kwanza nchini Marekani, Uingereza, Kanada, Australia, New Zealand na Ayalandi. Nchini India, Ufilipino, Nigeria, Singapore, Kenya na kwingineko ni lugha rasmi au lugha ya elimu. Watu wanaoijua kama lugha ya pili kote duniani husoma kurasa za Kiingereza.</p>
+  <div class="persona">
+    <figure><img src="../../language-intro/img/en.webp" width="800" height="1000" loading="lazy" decoding="async" alt="Mhusika wa kubuni. Maya Reynolds, miaka 29, anaishi Manchester, Uingereza. Ni msaidizi wa mwalimu katika shule ya msingi."></figure>
+    <div class="ptext"><h3>Mhusika</h3><p>Maya Reynolds, miaka 29, anaishi Manchester, Uingereza. Ni msaidizi wa mwalimu katika shule ya msingi. Saa 4 usiku, akiwa kitandani, anafungua simu yake ya Android. Mara nyingi hutazama video za tarot kwenye TikTok na anapenda urahisi wa kuchagua kadi moja. Husoma maana ya kadi na hupenda sana wakati jina la rangi linapotokea mwishoni mwa hadithi. Hadithi ya rangi inapounganika na mahali pa Uingereza, kama mbigili wa Scotland au sufu ya Yorkshire, huwatumia marafiki zake kiungo. Pia hufurahia kubadilisha mtindo wa kadi ili kulinganisha Art Nouveau na vioo vya rangi.</p></div>
+  </div>
+  <details><summary>Takwimu na maelezo</summary>
+    <div class="scroll"><table class="facts"><thead><tr><th scope="col">Kipengele</th><th scope="col">Thamani</th><th scope="col">Maelezo</th></tr></thead><tbody>
+      <tr><th scope="row">Jumla ya wazungumzaji (lugha ya kwanza + lugha ya pili)</th><td>bilioni 1.493 (nafasi ya 1)</td><td>Ethnologue, toleo la 2026</td></tr>
+      <tr><th scope="row">Sehemu ya maudhui ya wavuti</th><td>49.5% (nafasi ya 1)</td><td>W3Techs, Oktoba 2026</td></tr>
+      <tr><th scope="row">Watumiaji wa intaneti kwa lugha</th><td>25.9% (nafasi ya 1)</td><td>Internet World Stats, Machi 2020</td></tr>
+      <tr><th scope="row">Muda mtandaoni</th><td>Takriban watumiaji milioni 850 wa intaneti, wastani wa saa 6.8 kwa siku, jumla ya saa bilioni 5.78 kwa siku (nafasi ya 2)</td><td>Makadirio ya Claude. Yanahesabu tu watu wanaosoma hasa kwa Kiingereza; maelezo yanasema ingekuwa nafasi ya 1 kama wasomaji wa lugha ya pili wangejumuishwa</td></tr>
+    </tbody></table></div>
+  </details>
+</section>
+
+<section class="lang" id="zh-hans" aria-labelledby="h-zh-hans">
+  <p class="kicker">03 · zh-hans</p>
+  <h2 id="h-zh-hans"><span lang="zh-Hans">简体中文</span><small>Kichina Kilichorahisishwa</small></h2>
+  <dl class="nums">
+    <div><dt>Wazungumzaji</dt><dd>bilioni 1.183 (Kimandarini)</dd></div>
+    <div><dt>Wavuti</dt><dd>1.3% (nafasi ya 12, Kichina chote)</dd></div>
+    <div><dt>Muda mtandaoni</dt><dd>saa bilioni 6.20 (Kilichorahisishwa + cha Jadi)</dd></div>
+  </dl>
+  <p class="region"><b>Wapi</b>China Bara, ambako ndiyo hati ya shule na serikali. Herufi zilizorahisishwa pia ndizo kiwango katika jamii za Wachina za Singapore na Malaysia. Kuna jamii kubwa za Wachina Amerika Kaskazini, Australia, Ulaya na Kusini-Mashariki mwa Asia, na wanafunzi wengi wanaosoma ng’ambo.</p>
+  <div class="persona">
+    <figure><img src="../../language-intro/img/zh-hans.webp" width="800" height="1000" loading="lazy" decoding="async" alt="Mhusika wa kubuni. 林悦 (Lin Yue), miaka 26, anaishi Chengdu. Ni mbunifu wa UI katika kampuni ya michezo ya video."></figure>
+    <div class="ptext"><h3>Mhusika</h3><p><span lang="zh-Hans">林悦</span> (Lin Yue), miaka 26, anaishi Chengdu. Ni mbunifu wa UI katika kampuni ya michezo ya video. Saa 6:30 mchana, wakati wa mapumziko ya chakula cha mchana, alikuwa akitafuta habari za safari yake ya mwezi ujao kwenda Kyoto kwenye Xiaohongshu kwa simu yake ya Huawei, akaipata tovuti hii kupitia maelezo ya msafiri mmoja. Kazi yake humfanya kuwa makini na majina ya rangi na michanganyiko ya rangi. Huchagua kadi moja, na hadithi inapofikia rangi yake kupitia vyombo vya seladoni vya enzi ya Song au hariri ya mapambo ya Shu (ya Sichuan), huhifadhi picha ya skrini na kuwatumia wafanyakazi wenzake kwenye WeChat. Anapenda kuziona kadi kwa mtindo wa uchoraji wa wino.</p></div>
+  </div>
+  <details><summary>Takwimu na maelezo</summary>
+    <div class="scroll"><table class="facts"><thead><tr><th scope="col">Kipengele</th><th scope="col">Thamani</th><th scope="col">Maelezo</th></tr></thead><tbody>
+      <tr><th scope="row">Jumla ya wazungumzaji (lugha ya kwanza + lugha ya pili)</th><td>bilioni 1.183 (Kimandarini)</td><td>Ethnologue, toleo la 2026. Kichina cha Jadi na Kilichorahisishwa vinahesabiwa mara moja tu, kama Kimandarini</td></tr>
+      <tr><th scope="row">Sehemu ya maudhui ya wavuti</th><td>1.3% (nafasi ya 12, Kichina chote)</td><td>W3Techs haitenganishi Kichina Kilichorahisishwa na cha Jadi</td></tr>
+      <tr><th scope="row">Watumiaji wa intaneti kwa lugha</th><td>19.4% (nafasi ya 2, Kichina chote)</td><td>Internet World Stats, Machi 2020</td></tr>
+      <tr><th scope="row">Muda mtandaoni</th><td>Takriban watumiaji bilioni 1.17 wa intaneti, wastani wa saa 5.3 kwa siku, jumla ya saa bilioni 6.20 kwa siku (nafasi ya 1, Kilichorahisishwa + cha Jadi)</td><td>Makadirio ya Claude. Bilioni 1.11 wa China Bara pamoja na Taiwan, Hong Kong na Wachina wa ughaibuni</td></tr>
+    </tbody></table></div>
+  </details>
+</section>
+
+<section class="lang" id="zh" aria-labelledby="h-zh">
+  <p class="kicker">04 · zh</p>
+  <h2 id="h-zh"><span lang="zh-Hant">繁體中文</span><small>Kichina cha Jadi</small></h2>
+  <dl class="nums">
+    <div><dt>Wazungumzaji</dt><dd>Imehesabiwa pamoja na Kichina Kilichorahisishwa kama Kimandarini (bilioni 1.183)</dd></div>
+    <div><dt>Wavuti</dt><dd>1.3% (nafasi ya 12, Kichina chote)</dd></div>
+    <div><dt>Muda mtandaoni</dt><dd>Jumla pamoja na Kichina Kilichorahisishwa: saa bilioni 6.20 kwa siku (nafasi ya 1)</dd></div>
+  </dl>
+  <p class="region"><b>Wapi</b>Hati inayotumika Taiwan, Hong Kong na Macau. Watu wengi katika jamii za zamani za Wachina za Amerika Kaskazini na Australia pia hutumia herufi za jadi. Taiwan huzungumza Kichina Sanifu (Huayu); Hong Kong na Macau lugha ya mazungumzo ni Kikantoni, na maandishi hufuata kiwango cha maandishi cha herufi za jadi.</p>
+  <div class="persona">
+    <figure><img src="../../language-intro/img/zh.webp" width="800" height="1000" loading="lazy" decoding="async" alt="Mhusika wa kubuni. 陳怡君 (Chen Yi-chun), miaka 31, anaishi Taichung. Ni karani wa dirishani benkini."></figure>
+    <div class="ptext"><h3>Mhusika</h3><p><span lang="zh-Hant">陳怡君</span> (Chen Yi-chun), miaka 31, anaishi Taichung. Ni karani wa dirishani benkini. Saa 5 usiku, kabla ya kulala, anapanga kwenye iPhone yake safari ya mwezi ujao kwenda Kanazawa. Aliifungua tovuti hii kupitia kiungo alichotumiwa na rafiki kwenye LINE. Huchagua kadi moja kwa moyo uleule wa kuchukua karatasi ya bahati hekaluni. Hadithi inapofikia rangi yake kupitia sanaa za Kijapani kama upakaji rangi wa Kaga yuzen au karatasi za dhahabu, safari yake inaongezewa mahali pengine pa kutembelea. Humrudishia rafiki yake ukurasa wa matokeo kwenye LINE.</p></div>
+  </div>
+  <details><summary>Takwimu na maelezo</summary>
+    <div class="scroll"><table class="facts"><thead><tr><th scope="col">Kipengele</th><th scope="col">Thamani</th><th scope="col">Maelezo</th></tr></thead><tbody>
+      <tr><th scope="row">Jumla ya wazungumzaji (lugha ya kwanza + lugha ya pili)</th><td>Imehesabiwa pamoja na Kichina Kilichorahisishwa kama Kimandarini (bilioni 1.183)</td><td>Kichina cha Jadi na Kilichorahisishwa vinahesabiwa mara moja tu, kama Kimandarini. Hakuna data ya wasomaji wa Kichina cha Jadi pekee</td></tr>
+      <tr><th scope="row">Sehemu ya maudhui ya wavuti</th><td>1.3% (nafasi ya 12, Kichina chote)</td><td>W3Techs haitenganishi Kichina Kilichorahisishwa na cha Jadi</td></tr>
+      <tr><th scope="row">Watumiaji wa intaneti kwa lugha</th><td>19.4% (nafasi ya 2, Kichina chote)</td><td>Internet World Stats, Machi 2020</td></tr>
+      <tr><th scope="row">Muda mtandaoni</th><td>Jumla pamoja na Kichina Kilichorahisishwa: saa bilioni 6.20 kwa siku (nafasi ya 1)</td><td>Makadirio ya Claude. Hakuna makadirio ya Kichina cha Jadi peke yake</td></tr>
+    </tbody></table></div>
+  </details>
+</section>
+
+<section class="lang" id="hi" aria-labelledby="h-hi">
+  <p class="kicker">05 · hi</p>
+  <h2 id="h-hi"><span lang="hi">हिन्दी</span><small>Kihindi</small></h2>
+  <dl class="nums">
+    <div><dt>Wazungumzaji</dt><dd>milioni 611 (nafasi ya 3)</dd></div>
+    <div><dt>Wavuti</dt><dd>Chini ya 0.1% (nafasi ya 38)</dd></div>
+    <div><dt>Muda mtandaoni</dt><dd>saa bilioni 1.74</dd></div>
+  </dl>
+  <p class="region"><b>Wapi</b>Kaskazini na katikati mwa India (Uttar Pradesh, Bihar, Rajasthan, Madhya Pradesh, Delhi na kwingineko). Kuna wazungumzaji pia Nepal na Fiji. Jamii kubwa za Wahindi huishi katika nchi za Ghuba, Uingereza, Marekani na Kanada.</p>
+  <div class="persona">
+    <figure><img src="../../language-intro/img/hi.webp" width="800" height="1000" loading="lazy" decoding="async" alt="Mhusika wa kubuni. Neha Verma, miaka 24, anaishi Jaipur. Ni mwanagenzi wa mafunzo kazini katika uhasibu wa kitaalamu."></figure>
+    <div class="ptext"><h3>Mhusika</h3><p>Neha Verma, miaka 24, anaishi Jaipur. Ni mwanagenzi wa mafunzo kazini katika uhasibu wa kitaalamu. Saa 2 asubuhi, kabla ya kupanda treni ya metro, huchagua kadi moja kwenye simu yake ya Redmi, kana kwamba ni mwendelezo wa rashifal ambayo mama yake huitazama kila siku. Anaweza kusoma Kiingereza pia, lakini anahisi hadithi za rangi hukaa moyoni zaidi kwa Kihindi. Hadithi inapofikia rangi yake kupitia majengo ya “Jiji la Waridi” la Jaipur au rangi za kufunga-na-kutia za Rajasthan, huchagua dupatta ya rangi hiyo. Matokeo anayoyapenda humtumia dada yake mkubwa kwenye WhatsApp.</p></div>
+  </div>
+  <details><summary>Takwimu na maelezo</summary>
+    <div class="scroll"><table class="facts"><thead><tr><th scope="col">Kipengele</th><th scope="col">Thamani</th><th scope="col">Maelezo</th></tr></thead><tbody>
+      <tr><th scope="row">Jumla ya wazungumzaji (lugha ya kwanza + lugha ya pili)</th><td>milioni 611 (nafasi ya 3)</td><td>Ethnologue, toleo la 2026</td></tr>
+      <tr><th scope="row">Sehemu ya maudhui ya wavuti</th><td>Chini ya 0.1% (nafasi ya 38)</td><td>W3Techs, Oktoba 2026. Kurasa za wavuti ni chache sana ukilinganisha na idadi ya wazungumzaji</td></tr>
+      <tr><th scope="row">Watumiaji wa intaneti kwa lugha</th><td>Haimo kwenye 10 bora</td><td>Internet World Stats, Machi 2020</td></tr>
+      <tr><th scope="row">Muda mtandaoni</th><td>Takriban watumiaji milioni 290 wa intaneti, wastani wa saa 6.0 kwa siku, jumla ya saa bilioni 1.74 kwa siku (nafasi ya 6)</td><td>Makadirio ya Claude. Inachukuliwa kuwa takriban 35% ya watumiaji wa India ni watumiaji wa Kihindi. Hii ndiyo dhana isiyo imara zaidi</td></tr>
+    </tbody></table></div>
+  </details>
+</section>
+
+<section class="lang" id="es" aria-labelledby="h-es">
+  <p class="kicker">06 · es</p>
+  <h2 id="h-es"><span lang="es">Español</span><small>Kihispania</small></h2>
+  <dl class="nums">
+    <div><dt>Wazungumzaji</dt><dd>milioni 561 (nafasi ya 4)</dd></div>
+    <div><dt>Wavuti</dt><dd>6.0% (nafasi ya 2)</dd></div>
+    <div><dt>Muda mtandaoni</dt><dd>saa bilioni 2.96</dd></div>
+  </dl>
+  <p class="region"><b>Wapi</b>Hispania na nchi nyingi za Amerika ya Kusini, zikiwemo Mexico, Kolombia, Argentina, Peru, Chile na Venezuela. Watu wengi nchini Marekani pia huzungumza Kihispania nyumbani (idadi haijathibitishwa hapa). Pia ni lugha rasmi ya Guinea ya Ikweta.</p>
+  <div class="persona">
+    <figure><img src="../../language-intro/img/es.webp" width="800" height="1000" loading="lazy" decoding="async" alt="Mhusika wa kubuni. Valeria Ortiz, miaka 32, anaishi Guadalajara, Mexico. Ni mtaalamu wa usafi wa meno."></figure>
+    <div class="ptext"><h3>Mhusika</h3><p>Valeria Ortiz, miaka 32, anaishi Guadalajara, Mexico. Ni mtaalamu wa usafi wa meno. Saa 3:30 usiku, kwenye kochi baada ya kazi, anafungua simu yake ya Android; amefika kwenye tovuti hii kutoka kwenye hadithi ya tarot aliyoiona TikTok. Hufurahia kusoma maana ya kadi, lakini sehemu anayoipenda zaidi ni kusubiri jina la rangi mwishoni. Hadithi inapofikia rangi nyekundu iliyokolea kupitia koshinili ya Mexico (rangi nyekundu inayotokana na mdudu anayeishi kwenye mpungate), humtumia mdogo wake wa kike mara moja kwenye WhatsApp. Mwishoni mwa mwaka anapanga kutumia tovuti hii kuchagua rangi ya nguo zake za ndani.</p></div>
+  </div>
+  <details><summary>Takwimu na maelezo</summary>
+    <div class="scroll"><table class="facts"><thead><tr><th scope="col">Kipengele</th><th scope="col">Thamani</th><th scope="col">Maelezo</th></tr></thead><tbody>
+      <tr><th scope="row">Jumla ya wazungumzaji (lugha ya kwanza + lugha ya pili)</th><td>milioni 561 (nafasi ya 4)</td><td>Ethnologue, toleo la 2026</td></tr>
+      <tr><th scope="row">Sehemu ya maudhui ya wavuti</th><td>6.0% (nafasi ya 2)</td><td>W3Techs, Oktoba 2026</td></tr>
+      <tr><th scope="row">Watumiaji wa intaneti kwa lugha</th><td>7.9% (nafasi ya 3)</td><td>Internet World Stats, Machi 2020</td></tr>
+      <tr><th scope="row">Muda mtandaoni</th><td>Takriban watumiaji milioni 390 wa intaneti, wastani wa saa 7.6 kwa siku, jumla ya saa bilioni 2.96 kwa siku (nafasi ya 3)</td><td>Makadirio ya Claude. Mexico, Hispania, Kolombia, Argentina na nyinginezo, pamoja na watu wa Marekani wanaotumia Kihispania zaidi</td></tr>
+    </tbody></table></div>
+  </details>
+</section>
+
+<section class="lang" id="ar" aria-labelledby="h-ar">
+  <p class="kicker">07 · ar</p>
+  <h2 id="h-ar"><span lang="ar" dir="rtl">العربية</span><small>Kiarabu (Kiarabu Sanifu cha Kisasa)</small></h2>
+  <dl class="nums">
+    <div><dt>Wazungumzaji</dt><dd>milioni 335 (nafasi ya 5, Kiarabu Sanifu cha Kisasa)</dd></div>
+    <div><dt>Wavuti</dt><dd>0.6% (nafasi ya 19)</dd></div>
+    <div><dt>Muda mtandaoni</dt><dd>saa bilioni 2.31</dd></div>
+  </dl>
+  <p class="region"><b>Wapi</b>Lugha rasmi ya takriban nchi 22 za Mashariki ya Kati na Afrika Kaskazini, zikiwemo Misri, Saudi Arabia, Iraki, Algeria, Moroko, Sudan, Syria, Yordani na Falme za Kiarabu. Wazungumzaji wengi wa Kiarabu pia huishi Ulaya (Ufaransa, Ujerumani na kwingineko) na Amerika Kaskazini. Tovuti imepangwa kutoka kulia kwenda kushoto.</p>
+  <div class="persona">
+    <figure><img src="../../language-intro/img/ar.webp" width="800" height="1000" loading="lazy" decoding="async" alt="Mhusika wa kubuni. Nour Haddad, miaka 28, anaishi Amman, Yordani. Anafanya kazi katika kampuni ya usanifu majengo."></figure>
+    <div class="ptext"><h3>Mhusika</h3><p>Nour Haddad, miaka 28, anaishi Amman, Yordani. Anafanya kazi katika kampuni ya usanifu majengo. Saa 2 usiku anafungua iPhone yake kwenye roshani ya nyumbani. Haamini utabiri; hufurahia michoro ya kadi na hadithi kama “usomaji mfupi.” Hadithi inapofikia rangi yake kupitia buluu ya vigae vya usanifu wa Kiislamu au rangi ya waridi ya miamba ya Petra, huiandika kama rejea ya michanganyiko ya rangi kazini. Wakati mwingine hutuma ukurasa wa matokeo kwenye kikundi cha WhatsApp cha wasanifu wenzake.</p></div>
+  </div>
+  <details><summary>Takwimu na maelezo</summary>
+    <div class="scroll"><table class="facts"><thead><tr><th scope="col">Kipengele</th><th scope="col">Thamani</th><th scope="col">Maelezo</th></tr></thead><tbody>
+      <tr><th scope="row">Jumla ya wazungumzaji (lugha ya kwanza + lugha ya pili)</th><td>milioni 335 (nafasi ya 5, Kiarabu Sanifu cha Kisasa)</td><td>Ethnologue, toleo la 2026</td></tr>
+      <tr><th scope="row">Sehemu ya maudhui ya wavuti</th><td>0.6% (nafasi ya 19)</td><td>W3Techs, Oktoba 2026</td></tr>
+      <tr><th scope="row">Watumiaji wa intaneti kwa lugha</th><td>5.2% (nafasi ya 4)</td><td>Internet World Stats, Machi 2020</td></tr>
+      <tr><th scope="row">Muda mtandaoni</th><td>Takriban watumiaji milioni 330 wa intaneti, wastani wa saa 7.0 kwa siku, jumla ya saa bilioni 2.31 kwa siku (nafasi ya 4)</td><td>Makadirio ya Claude. Misri, Saudi Arabia, Iraki, Algeria, Moroko na nyinginezo</td></tr>
+    </tbody></table></div>
+  </details>
+</section>
+
+<section class="lang" id="fr" aria-labelledby="h-fr">
+  <p class="kicker">08 · fr</p>
+  <h2 id="h-fr"><span lang="fr">Français</span><small>Kifaransa</small></h2>
+  <dl class="nums">
+    <div><dt>Wazungumzaji</dt><dd>milioni 334 (nafasi ya 6)</dd></div>
+    <div><dt>Wavuti</dt><dd>4.5% (nafasi ya 5)</dd></div>
+    <div><dt>Muda mtandaoni</dt><dd>saa milioni 750</dd></div>
+  </dl>
+  <p class="region"><b>Wapi</b>Ufaransa, kusini mwa Ubelgiji, magharibi mwa Uswisi, Quebec nchini Kanada, na Luxembourg. Afrika Magharibi na Kati (Côte d’Ivoire, Senegal, Jamhuri ya Kidemokrasia ya Kongo, Kameruni na kwingineko) ni lugha ya shule na serikali. Pia hutumika sana Moroko, Algeria na Tunisia, Afrika Kaskazini.</p>
+  <div class="persona">
+    <figure><img src="../../language-intro/img/fr.webp" width="800" height="1000" loading="lazy" decoding="async" alt="Mhusika wa kubuni. Hélène Garnier, miaka 41, anaishi Lyon. Anaendesha karakana ya kujalidi vitabu na kuhifadhi karatasi."></figure>
+    <div class="ptext"><h3>Mhusika</h3><p>Hélène Garnier, miaka 41, anaishi Lyon. Anaendesha karakana ya kujalidi vitabu na kuhifadhi karatasi. Saa 4 asubuhi Jumapili, anafungua kishikwambi chake kwenye meza ya kazi karakanani. Anakumbuka kadi za Marseille nyumbani kwa bibi yake, na majina ya Arcana Kuu yanamfahamika. Hadithi inapofikia rangi yake kupitia upakaji rangi wa hariri wa Lyon au mfanyabiashara wa rangi wa Paris, huitumia kuchagua rangi ya karatasi za ndani za jalada lake linalofuata. Huchagua mtindo wa Art Nouveau.</p></div>
+  </div>
+  <details><summary>Takwimu na maelezo</summary>
+    <div class="scroll"><table class="facts"><thead><tr><th scope="col">Kipengele</th><th scope="col">Thamani</th><th scope="col">Maelezo</th></tr></thead><tbody>
+      <tr><th scope="row">Jumla ya wazungumzaji (lugha ya kwanza + lugha ya pili)</th><td>milioni 334 (nafasi ya 6)</td><td>Ethnologue, toleo la 2026</td></tr>
+      <tr><th scope="row">Sehemu ya maudhui ya wavuti</th><td>4.5% (nafasi ya 5)</td><td>W3Techs, Oktoba 2026</td></tr>
+      <tr><th scope="row">Watumiaji wa intaneti kwa lugha</th><td>3.3% (nafasi ya 7)</td><td>Internet World Stats, Machi 2020</td></tr>
+      <tr><th scope="row">Muda mtandaoni</th><td>Takriban watumiaji milioni 125 wa intaneti, wastani wa saa 6.0 kwa siku, jumla ya saa milioni 750 kwa siku (nafasi ya 9)</td><td>Makadirio ya Claude. Ufaransa, Ubelgiji na Quebec pamoja na Afrika inayozungumza Kifaransa</td></tr>
+    </tbody></table></div>
+  </details>
+</section>
+
+<section class="lang" id="bn" aria-labelledby="h-bn">
+  <p class="kicker">09 · bn</p>
+  <h2 id="h-bn"><span lang="bn">বাংলা</span><small>Kibengali</small></h2>
+  <dl class="nums">
+    <div><dt>Wazungumzaji</dt><dd>milioni 274 (nafasi ya 7)</dd></div>
+    <div><dt>Wavuti</dt><dd>Chini ya 0.1% (nafasi ya 39)</dd></div>
+    <div><dt>Muda mtandaoni</dt><dd>saa milioni 610</dd></div>
+  </dl>
+  <p class="region"><b>Wapi</b>Bangladesh (lugha ya taifa) na majimbo ya India ya West Bengal, Tripura na sehemu za Assam. Watu wengi kutoka Bangladesh huishi Uingereza (Mashariki mwa London), nchi za Ghuba, Marekani na Malaysia.</p>
+  <div class="persona">
+    <figure><img src="../../language-intro/img/bn.webp" width="800" height="1000" loading="lazy" decoding="async" alt="Mhusika wa kubuni. Farhana Akter, miaka 23, anaishi Dhaka. Anasoma fasihi ya Kiingereza chuo kikuu."></figure>
+    <div class="ptext"><h3>Mhusika</h3><p>Farhana Akter, miaka 23, anaishi Dhaka. Anasoma fasihi ya Kiingereza chuo kikuu. Saa 4 usiku, akipumzika kidogo kutoka kwenye masomo, alikuwa akitazama Facebook kwenye simu yake ya Samsung akafika hapa kutoka ukurasa wa matokeo ambao rafiki aliushiriki. Haifurahii kama utabiri, bali kama hadithi fupi anayoweza kuisoma kwa Kibengali. Hadithi inapofikia rangi ya pembe kupitia muslin ya Dhaka au ufumaji wa Jamdani, huandika jina la rangi hiyo kwenye daftari lake la mashairi.</p></div>
+  </div>
+  <details><summary>Takwimu na maelezo</summary>
+    <div class="scroll"><table class="facts"><thead><tr><th scope="col">Kipengele</th><th scope="col">Thamani</th><th scope="col">Maelezo</th></tr></thead><tbody>
+      <tr><th scope="row">Jumla ya wazungumzaji (lugha ya kwanza + lugha ya pili)</th><td>milioni 274 (nafasi ya 7)</td><td>Ethnologue, toleo la 2026</td></tr>
+      <tr><th scope="row">Sehemu ya maudhui ya wavuti</th><td>Chini ya 0.1% (nafasi ya 39)</td><td>W3Techs, Oktoba 2026</td></tr>
+      <tr><th scope="row">Watumiaji wa intaneti kwa lugha</th><td>Haimo kwenye 10 bora</td><td>Internet World Stats, Machi 2020</td></tr>
+      <tr><th scope="row">Muda mtandaoni</th><td>Takriban watumiaji milioni 110 wa intaneti, wastani wa saa 5.5 kwa siku, jumla ya saa milioni 610 kwa siku (nafasi ya 10)</td><td>Makadirio ya Claude. Bangladesh pamoja na West Bengal</td></tr>
+    </tbody></table></div>
+  </details>
+</section>
+
+<section class="lang" id="pt" aria-labelledby="h-pt">
+  <p class="kicker">10 · pt</p>
+  <h2 id="h-pt"><span lang="pt">Português</span><small>Kireno (Brazili)</small></h2>
+  <dl class="nums">
+    <div><dt>Wazungumzaji</dt><dd>milioni 269 (nafasi ya 8)</dd></div>
+    <div><dt>Wavuti</dt><dd>4.1% (nafasi ya 6)</dd></div>
+    <div><dt>Muda mtandaoni</dt><dd>saa bilioni 1.89</dd></div>
+  </dl>
+  <p class="region"><b>Wapi</b>Brazili (tovuti inatumia pt-BR) na Ureno. Pia ni lugha rasmi katika nchi za Afrika kama Angola, Msumbiji na Cape Verde. Wabrazili wengi wenye asili ya Kijapani huishi Japani. Kuna jamii za Wabrazili Marekani, Ureno na Japani.</p>
+  <div class="persona">
+    <figure><img src="../../language-intro/img/pt.webp" width="800" height="1000" loading="lazy" decoding="async" alt="Mhusika wa kubuni. Juliana Costa, miaka 30, anaishi Recife. Ni muuguzi wa hospitali ambaye pia hufanya zamu za usiku."></figure>
+    <div class="ptext"><h3>Mhusika</h3><p>Juliana Costa, miaka 30, anaishi Recife. Ni muuguzi wa hospitali ambaye pia hufanya zamu za usiku. Saa 12:30 asubuhi, kwenye basi akirudi nyumbani baada ya zamu ya usiku, anafungua simu yake ya Samsung na kuchagua kadi moja. Anasubiri rangi inayokuja mwishoni mwa hadithi kuliko maana ya kadi. Hadithi inapofikia rangi yake kupitia pau-brasil (mti wa rangi nyekundu uliolipa Brazili jina lake), huituma kwenye kikundi cha WhatsApp cha wafanyakazi wenzake. Anapanga kuchagua kadi hapa pia ili kuamua rangi ya vazi lake la usiku wa Mwaka Mpya.</p></div>
+  </div>
+  <details><summary>Takwimu na maelezo</summary>
+    <div class="scroll"><table class="facts"><thead><tr><th scope="col">Kipengele</th><th scope="col">Thamani</th><th scope="col">Maelezo</th></tr></thead><tbody>
+      <tr><th scope="row">Jumla ya wazungumzaji (lugha ya kwanza + lugha ya pili)</th><td>milioni 269 (nafasi ya 8)</td><td>Ethnologue, toleo la 2026</td></tr>
+      <tr><th scope="row">Sehemu ya maudhui ya wavuti</th><td>4.1% (nafasi ya 6)</td><td>W3Techs, Oktoba 2026</td></tr>
+      <tr><th scope="row">Watumiaji wa intaneti kwa lugha</th><td>3.7% (nafasi ya 6)</td><td>Internet World Stats, Machi 2020</td></tr>
+      <tr><th scope="row">Muda mtandaoni</th><td>Takriban watumiaji milioni 210 wa intaneti, wastani wa saa 9.0 kwa siku, jumla ya saa bilioni 1.89 kwa siku (nafasi ya 5)</td><td>Makadirio ya Claude. Zaidi ni Brazili. Muda mtandaoni ni miongoni mwa mirefu zaidi duniani</td></tr>
+    </tbody></table></div>
+  </details>
+</section>
+
+<section class="lang" id="id" aria-labelledby="h-id">
+  <p class="kicker">11 · id</p>
+  <h2 id="h-id"><span lang="id">Bahasa Indonesia</span><small>Kiindonesia</small></h2>
+  <dl class="nums">
+    <div><dt>Wazungumzaji</dt><dd>milioni 255 (nafasi ya 9)</dd></div>
+    <div><dt>Wavuti</dt><dd>1.2% (nafasi ya 13)</dd></div>
+    <div><dt>Muda mtandaoni</dt><dd>saa bilioni 1.55</dd></div>
+  </dl>
+  <p class="region"><b>Wapi</b>Lugha ya taifa ya Indonesia, inayotumiwa shuleni na kazini na zaidi ya watu milioni 200. Timor-Leste ni lugha ya kazi. Kwa kiasi kikubwa inaeleweka kwa pande zote na Kimalei cha Malaysia, Brunei na Singapore. Idadi ya Waindonesia wanaofanya kazi Japani kama wanafunzi wa mafunzo ya ufundi au chini ya mpango wa Wafanyakazi wenye Ujuzi Maalum inaongezeka.</p>
+  <div class="persona">
+    <figure><img src="../../language-intro/img/id.webp" width="800" height="1000" loading="lazy" decoding="async" alt="Mhusika wa kubuni. Dimas Pratama, miaka 25, anaishi Bandung. Ni mbunifu chipukizi wa michoro katika kampuni changa."></figure>
+    <div class="ptext"><h3>Mhusika</h3><p>Dimas Pratama, miaka 25, anaishi Bandung. Ni mbunifu chipukizi wa michoro katika kampuni changa. Saa 3 asubuhi anafungua simu yake ya Android katika eneo la kazi la pamoja. Haitumii kwa utabiri, bali kama chombo cha kutafuta mawazo ya michanganyiko ya rangi. Hupitia maana ya kadi haraka na kusoma hadithi ya rangi kwa makini. Hadithi inapofikia rangi yake kupitia nili ya batiki ya Java au kazi za mianzi za Sunda, huifanya kuwa rangi ya msingi ya rasimu za mabango ya siku hiyo. Kwenye Instagram Stories hushiriki jina la rangi pekee.</p></div>
+  </div>
+  <details><summary>Takwimu na maelezo</summary>
+    <div class="scroll"><table class="facts"><thead><tr><th scope="col">Kipengele</th><th scope="col">Thamani</th><th scope="col">Maelezo</th></tr></thead><tbody>
+      <tr><th scope="row">Jumla ya wazungumzaji (lugha ya kwanza + lugha ya pili)</th><td>milioni 255 (nafasi ya 9)</td><td>Ethnologue, toleo la 2026</td></tr>
+      <tr><th scope="row">Sehemu ya maudhui ya wavuti</th><td>1.2% (nafasi ya 13)</td><td>W3Techs, Oktoba 2026</td></tr>
+      <tr><th scope="row">Watumiaji wa intaneti kwa lugha</th><td>4.3% (nafasi ya 5)</td><td>Internet World Stats, Machi 2020. Inashiriki mstari mmoja na Kimalei; takwimu ni ya Kiindonesia</td></tr>
+      <tr><th scope="row">Muda mtandaoni</th><td>Takriban watumiaji milioni 210 wa intaneti, wastani wa saa 7.4 kwa siku, jumla ya saa bilioni 1.55 kwa siku (nafasi ya 7)</td><td>Makadirio ya Claude</td></tr>
+    </tbody></table></div>
+  </details>
+</section>
+
+<section class="lang" id="ms" aria-labelledby="h-ms">
+  <p class="kicker">12 · ms</p>
+  <h2 id="h-ms"><span lang="ms">Bahasa Melayu</span><small>Kimalei</small></h2>
+  <dl class="nums">
+    <div><dt>Wazungumzaji</dt><dd>haijulikani</dd></div>
+    <div><dt>Wavuti</dt><dd>hakuna data</dd></div>
+    <div><dt>Muda mtandaoni</dt><dd>Takriban saa milioni 160 (takwimu ya marejeo, nje ya orodha ya nafasi)</dd></div>
+  </dl>
+  <p class="region"><b>Wapi</b>Malaysia, Brunei na Singapore (lugha ya taifa). Pia kuna wazungumzaji wa Kimalei kusini mwa Thailand. Nchini Malaysia, Wamalei huitumia katika maisha ya kila siku, na Wamalaysia wenye asili ya Kichina na Kihindi pia hujifunza shuleni.</p>
+  <div class="persona">
+    <figure><img src="../../language-intro/img/ms.webp" width="800" height="1000" loading="lazy" decoding="async" alt="Mhusika wa kubuni. Nur Aisyah binti Rahman, miaka 27, anaishi Shah Alam. Ni mfamasia wa hospitali."></figure>
+    <div class="ptext"><h3>Mhusika</h3><p>Nur Aisyah binti Rahman, miaka 27, anaishi Shah Alam. Ni mfamasia wa hospitali. Saa 7 mchana, wakati wa mapumziko ya chakula cha mchana, anatazama TikTok kwenye simu yake ya Android kutafuta vidokezo vya safari ya Osaka mwezi Machi mwakani. Haamini utabiri, lakini anapenda sana michoro ya kadi na hadithi za rangi kama “kitu kizuri cha kusoma.” Hadithi inapofikia rangi yake kupitia nyuzi za dhahabu za songket ya Kimalei au bandari ya Malacca, huitumia kama rejea ya rangi ya tudung (mtandio wa kichwa) wa safari. Hutuma jina la rangi pekee kwenye kikundi cha WhatsApp cha familia.</p></div>
+  </div>
+  <details><summary>Takwimu na maelezo</summary>
+    <div class="scroll"><table class="facts"><thead><tr><th scope="col">Kipengele</th><th scope="col">Thamani</th><th scope="col">Maelezo</th></tr></thead><tbody>
+      <tr><th scope="row">Jumla ya wazungumzaji (lugha ya kwanza + lugha ya pili)</th><td>haijulikani</td><td>Kimalei mara nyingi huhesabiwa pamoja na Kiindonesia kama lugha-kuu moja, kwa hiyo hakuna takwimu tofauti. Ukurasa wa Wikipedia “Malay language” (ukinukuu Ethnologue, toleo la 28, 2025) unaonyesha Kimalei kama lugha-kuu kuwa na takriban wazungumzaji milioni 90 wa lugha ya kwanza (2020–2023) na takriban milioni 180 wa lugha ya pili (2020). Hesabu hii inajumuisha aina za kienyeji za Kimalei nchini Indonesia, si hesabu ya Kimalei Sanifu pekee</td></tr>
+      <tr><th scope="row">Sehemu ya maudhui ya wavuti</th><td>hakuna data</td><td>Haimo kwenye lugha 40 za juu za W3Techs</td></tr>
+      <tr><th scope="row">Watumiaji wa intaneti kwa lugha</th><td>Mstari mmoja na Kiindonesia</td><td>Katika Internet World Stats, takwimu ya mstari wa Kiindonesia/Kimalei ni 4.3% ya Kiindonesia pekee</td></tr>
+      <tr><th scope="row">Muda mtandaoni</th><td>Takriban saa milioni 160 kwa siku (takwimu ya marejeo, nje ya orodha ya nafasi)</td><td>Takwimu ya marejeo nje ya orodha ya nafasi katika makadirio ya Claude. Takriban 60% ya watumiaji wa Malaysia pamoja na Brunei</td></tr>
+    </tbody></table></div>
+  </details>
+</section>
+
+<section class="lang" id="ur" aria-labelledby="h-ur">
+  <p class="kicker">13 · ur</p>
+  <h2 id="h-ur"><span lang="ur" dir="rtl">اردو</span><small>Kiurdu</small></h2>
+  <dl class="nums">
+    <div><dt>Wazungumzaji</dt><dd>milioni 246 (nafasi ya 10)</dd></div>
+    <div><dt>Wavuti</dt><dd>hakuna data</dd></div>
+    <div><dt>Muda mtandaoni</dt><dd>saa milioni 520</dd></div>
+  </dl>
+  <p class="region"><b>Wapi</b>Pakistan (lugha ya taifa) na kaskazini mwa India (Uttar Pradesh, Hyderabad huko Telangana, Delhi na kwingineko). Watu wengi wenye asili ya Pakistan huishi Uingereza, nchi za Ghuba, Marekani na Kanada. Lugha ya mazungumzo iko karibu na Kihindi; hati yake (herufi za Kiarabu kwa mtindo wa Nastaliq) ni tofauti. Tovuti imepangwa kutoka kulia kwenda kushoto.</p>
+  <div class="persona">
+    <figure><img src="../../language-intro/img/ur.webp" width="800" height="1000" loading="lazy" decoding="async" alt="Mhusika wa kubuni. Hamza Qureshi, miaka 30, anaishi Lahore. Ni mhandisi wa programu katika kampuni ya teknolojia ya fedha."></figure>
+    <div class="ptext"><h3>Mhusika</h3><p>Hamza Qureshi, miaka 30, anaishi Lahore. Ni mhandisi wa programu katika kampuni ya teknolojia ya fedha. Saa 6:30 usiku, baada ya kazi, anafungua simu yake ya Android huku akinywa chai. Hujiweka mbali na utabiri, lakini anapenda kurasa ambazo maandishi ya Kiurdu yamepangwa kwa uzuri, na huja kusoma hadithi. Hadithi inapofikia rangi yake kupitia buluu ya ultramarine ya michoro midogo ya Kimughal au vigae vya kuta za Ngome ya Lahore, humtumia rafiki yake mshairi kiungo kwenye WhatsApp.</p></div>
+  </div>
+  <details><summary>Takwimu na maelezo</summary>
+    <div class="scroll"><table class="facts"><thead><tr><th scope="col">Kipengele</th><th scope="col">Thamani</th><th scope="col">Maelezo</th></tr></thead><tbody>
+      <tr><th scope="row">Jumla ya wazungumzaji (lugha ya kwanza + lugha ya pili)</th><td>milioni 246 (nafasi ya 10)</td><td>Ethnologue, toleo la 2026</td></tr>
+      <tr><th scope="row">Sehemu ya maudhui ya wavuti</th><td>hakuna data</td><td>Haimo kwenye lugha 40 za juu za W3Techs</td></tr>
+      <tr><th scope="row">Watumiaji wa intaneti kwa lugha</th><td>Haimo kwenye 10 bora</td><td>Internet World Stats, Machi 2020</td></tr>
+      <tr><th scope="row">Muda mtandaoni</th><td>Takriban watumiaji milioni 95 wa intaneti, wastani wa saa 5.5 kwa siku, jumla ya saa milioni 520 kwa siku (nafasi ya 13)</td><td>Makadirio ya Claude. Takriban 75% ya Pakistan pamoja na sehemu ya India</td></tr>
+    </tbody></table></div>
+  </details>
+</section>
+
+<section class="lang" id="ru" aria-labelledby="h-ru">
+  <p class="kicker">14 · ru</p>
+  <h2 id="h-ru"><span lang="ru">Русский</span><small>Kirusi</small></h2>
+  <dl class="nums">
+    <div><dt>Wazungumzaji</dt><dd>milioni 210 (nafasi ya 11)</dd></div>
+    <div><dt>Wavuti</dt><dd>3.4% (nafasi ya 7)</dd></div>
+    <div><dt>Muda mtandaoni</dt><dd>saa bilioni 1.16</dd></div>
+  </dl>
+  <p class="region"><b>Wapi</b>Lugha rasmi ya Urusi, Belarus, Kazakhstan na Kyrgyzstan. Watu wengi katika nchi nyingine zilizokuwa za Kisovieti (Asia ya Kati, Caucasus, nchi za Baltiki) pia hutumia Kirusi. Kuna jamii zinazozungumza Kirusi pia Israeli, Ujerumani na Marekani.</p>
+  <div class="persona">
+    <figure><img src="../../language-intro/img/ru.webp" width="800" height="1000" loading="lazy" decoding="async" alt="Mhusika wa kubuni. Анна Соколова (Anna Sokolova), miaka 35, anaishi Novosibirsk. Ni fundi wa uchambuzi wa kemikali katika taasisi ya utafiti."></figure>
+    <div class="ptext"><h3>Mhusika</h3><p><span lang="ru">Анна Соколова</span> (Anna Sokolova), miaka 35, anaishi Novosibirsk. Ni fundi wa uchambuzi wa kemikali katika taasisi ya utafiti. Saa 4 usiku anafungua simu yake ya Android jikoni huku akinywa chai. Aliijua tovuti hii kupitia chaneli ya Telegram inayotambulisha rangi na sanaa. Kwa sababu ya kazi yake, hufurahia hasa kuchagua kadi na kufuatilia hadithi hadi rangi yake kupitia madini na rangi asilia. Siku ambazo kijani cha malakiti kinatokea, humwonyesha binti yake picha ya jiwe hilo.</p></div>
+  </div>
+  <details><summary>Takwimu na maelezo</summary>
+    <div class="scroll"><table class="facts"><thead><tr><th scope="col">Kipengele</th><th scope="col">Thamani</th><th scope="col">Maelezo</th></tr></thead><tbody>
+      <tr><th scope="row">Jumla ya wazungumzaji (lugha ya kwanza + lugha ya pili)</th><td>milioni 210 (nafasi ya 11)</td><td>Ethnologue, toleo la 2026</td></tr>
+      <tr><th scope="row">Sehemu ya maudhui ya wavuti</th><td>3.4% (nafasi ya 7)</td><td>W3Techs, Oktoba 2026</td></tr>
+      <tr><th scope="row">Watumiaji wa intaneti kwa lugha</th><td>2.5% (nafasi ya 9)</td><td>Internet World Stats, Machi 2020</td></tr>
+      <tr><th scope="row">Muda mtandaoni</th><td>Takriban watumiaji milioni 155 wa intaneti, wastani wa saa 7.5 kwa siku, jumla ya saa bilioni 1.16 kwa siku (nafasi ya 8)</td><td>Makadirio ya Claude. Urusi pamoja na Belarus, Kazakhstan na sehemu za Asia ya Kati</td></tr>
+    </tbody></table></div>
+  </details>
+</section>
+
+<section class="lang" id="de" aria-labelledby="h-de">
+  <p class="kicker">15 · de</p>
+  <h2 id="h-de"><span lang="de">Deutsch</span><small>Kijerumani</small></h2>
+  <dl class="nums">
+    <div><dt>Wazungumzaji</dt><dd>milioni 133 (nafasi ya 12)</dd></div>
+    <div><dt>Wavuti</dt><dd>5.9% (nafasi ya 3)</dd></div>
+    <div><dt>Muda mtandaoni</dt><dd>saa milioni 480</dd></div>
+  </dl>
+  <p class="region"><b>Wapi</b>Ujerumani, Austria, Uswisi (kaskazini na kati), Liechtenstein, Luxembourg, Tirol Kusini nchini Italia na mashariki mwa Ubelgiji.</p>
+  <div class="persona">
+    <figure><img src="../../language-intro/img/de.webp" width="800" height="1000" loading="lazy" decoding="async" alt="Mhusika wa kubuni. Jonas Weber, miaka 38, anaishi Leipzig. Ni mhandisi wa sauti katika ukumbi wa michezo ya kuigiza."></figure>
+    <div class="ptext"><h3>Mhusika</h3><p>Jonas Weber, miaka 38, anaishi Leipzig. Ni mhandisi wa sauti katika ukumbi wa michezo ya kuigiza. Saa 7 mchana siku ya kazi, wakati wa mapumziko, anaifungua kwenye Firefox ya kompyuta yake mpakato. Hutumia kizuia matangazo na hukataa madirisha ya kuomba ridhaa. Haamini utabiri, lakini anapenda kulinganisha mitindo ya kadi (upigaji picha wa kisurrealisti, michoro ya kibrutalisti). Hadithi inapofikia rangi yake kupitia buluu ya Prussia, iliyozaliwa Berlin mwanzoni mwa karne ya 18, hufurahi na kuwasimulia wafanyakazi wenzake.</p></div>
+  </div>
+  <details><summary>Takwimu na maelezo</summary>
+    <div class="scroll"><table class="facts"><thead><tr><th scope="col">Kipengele</th><th scope="col">Thamani</th><th scope="col">Maelezo</th></tr></thead><tbody>
+      <tr><th scope="row">Jumla ya wazungumzaji (lugha ya kwanza + lugha ya pili)</th><td>milioni 133 (nafasi ya 12)</td><td>Ethnologue, toleo la 2026</td></tr>
+      <tr><th scope="row">Sehemu ya maudhui ya wavuti</th><td>5.9% (nafasi ya 3)</td><td>W3Techs, Oktoba 2026</td></tr>
+      <tr><th scope="row">Watumiaji wa intaneti kwa lugha</th><td>2.0% (nafasi ya 10)</td><td>Internet World Stats, Machi 2020</td></tr>
+      <tr><th scope="row">Muda mtandaoni</th><td>Takriban watumiaji milioni 93 wa intaneti, wastani wa saa 5.2 kwa siku, jumla ya saa milioni 480 kwa siku (nafasi ya 17)</td><td>Makadirio ya Claude. Ujerumani, Austria, Uswisi</td></tr>
+    </tbody></table></div>
+  </details>
+</section>
+
+<section class="lang" id="vi" aria-labelledby="h-vi">
+  <p class="kicker">16 · vi</p>
+  <h2 id="h-vi"><span lang="vi">Tiếng Việt</span><small>Kivietinamu</small></h2>
+  <dl class="nums">
+    <div><dt>Wazungumzaji</dt><dd>milioni 97 (nafasi ya 17)</dd></div>
+    <div><dt>Wavuti</dt><dd>0.9% (nafasi ya 16)</dd></div>
+    <div><dt>Muda mtandaoni</dt><dd>saa milioni 500</dd></div>
+  </dl>
+  <p class="region"><b>Wapi</b>Vietnam. Kuna jamii kubwa za Wavietnamu Marekani (California, Texas), Australia, Ufaransa na Kanada. Wavietnamu wengi pia huishi Japani kama wanafunzi wa mafunzo ya ufundi au wanafunzi.</p>
+  <div class="persona">
+    <figure><img src="../../language-intro/img/vi.webp" width="800" height="1000" loading="lazy" decoding="async" alt="Mhusika wa kubuni. Trần Văn Minh, miaka 24, anaishi Toyota, mkoa wa Aichi. Ni mwanafunzi wa mafunzo ya ufundi katika kiwanda cha vipuri vya magari."></figure>
+    <div class="ptext"><h3>Mhusika</h3><p>Trần Văn Minh, miaka 24, anaishi Toyota, mkoa wa Aichi. Ni mwanafunzi wa mafunzo ya ufundi katika kiwanda cha vipuri vya magari. Saa 11 jioni, kabla ya kwenda kwenye zamu ya usiku, anafungua simu yake ya Android katika chumba chake bwenini. Matokeo kutoka tovuti hii yalikuwa yameshirikiwa katika kikundi cha Facebook cha marafiki wanaoishi Japani. Huchagua kadi moja, akiilinganisha na rangi za <i lang="vi">mệnh</i> yake ambazo mama yake huzizungumzia. Hadithi inapofikia rangi yake kupitia hariri ya taa za Hội An au rangi ya laki ya kijijini kwao, huwatumia familia yake kwenye Zalo.</p></div>
+  </div>
+  <details><summary>Takwimu na maelezo</summary>
+    <div class="scroll"><table class="facts"><thead><tr><th scope="col">Kipengele</th><th scope="col">Thamani</th><th scope="col">Maelezo</th></tr></thead><tbody>
+      <tr><th scope="row">Jumla ya wazungumzaji (lugha ya kwanza + lugha ya pili)</th><td>milioni 97 (nafasi ya 17)</td><td>Ethnologue, toleo la 2026</td></tr>
+      <tr><th scope="row">Sehemu ya maudhui ya wavuti</th><td>0.9% (nafasi ya 16)</td><td>W3Techs, Oktoba 2026</td></tr>
+      <tr><th scope="row">Watumiaji wa intaneti kwa lugha</th><td>Haimo kwenye 10 bora</td><td>Internet World Stats, Machi 2020</td></tr>
+      <tr><th scope="row">Muda mtandaoni</th><td>Takriban watumiaji milioni 79 wa intaneti, wastani wa saa 6.3 kwa siku, jumla ya saa milioni 500 kwa siku (nafasi ya 15)</td><td>Makadirio ya Claude</td></tr>
+    </tbody></table></div>
+  </details>
+</section>
+
+<section class="lang" id="sw" aria-labelledby="h-sw">
+  <p class="kicker">17 · sw</p>
+  <h2 id="h-sw"><span lang="sw">Kiswahili</span></h2>
+  <dl class="nums">
+    <div><dt>Wazungumzaji</dt><dd>milioni 95 (nafasi ya 19)</dd></div>
+    <div><dt>Wavuti</dt><dd>hakuna data</dd></div>
+    <div><dt>Muda mtandaoni</dt><dd>Hakuna makadirio</dd></div>
+  </dl>
+  <p class="region"><b>Wapi</b>Tanzania na Kenya. Nchini Tanzania ni lugha ya taifa; shule ya msingi hufundishwa kwa Kiswahili, na Kiingereza huchukua nafasi kuanzia sekondari. Nchini Kenya ni mojawapo ya lugha rasmi; madarasa ya chini hufundishwa kwa lugha ya mama au Kiswahili, kisha kwa Kiingereza, na Kiswahili ni somo la lazima. Pia hutumika sana Uganda, Rwanda, Burundi, mashariki mwa Jamhuri ya Kidemokrasia ya Kongo na Komoro. Ni mojawapo ya lugha za kazi za Umoja wa Afrika.</p>
+  <div class="persona">
+    <figure><img src="../../language-intro/img/sw.webp" width="800" height="1000" loading="lazy" decoding="async" alt="Mhusika wa kubuni. Amina Juma, miaka 28, anaishi Dar es Salaam. Ni mwalimu wa shule ya msingi."></figure>
+    <div class="ptext"><h3>Mhusika</h3><p>Amina Juma, miaka 28, anaishi Dar es Salaam. Ni mwalimu wa shule ya msingi. Saa 9:30 alasiri, baada ya vipindi kwisha, anafungua simu yake ya Android katika chumba cha walimu. Matokeo moja kutoka tovuti hii yalikuwa yakizunguka kwenye kikundi cha WhatsApp cha walimu wenzake. Huchagua kadi moja, akiilinganisha na rangi za kanga. Hadithi inapofikia rangi yake kupitia nili ya kanga au anga la jioni juu ya Bahari ya Hindi, humtumia mama yake kwenye WhatsApp.</p></div>
+  </div>
+  <details><summary>Takwimu na maelezo</summary>
+    <div class="scroll"><table class="facts"><thead><tr><th scope="col">Kipengele</th><th scope="col">Thamani</th><th scope="col">Maelezo</th></tr></thead><tbody>
+      <tr><th scope="row">Jumla ya wazungumzaji (lugha ya kwanza + lugha ya pili)</th><td>milioni 95 (nafasi ya 19)</td><td>Ethnologue, toleo la 2026</td></tr>
+      <tr><th scope="row">Sehemu ya maudhui ya wavuti</th><td>hakuna data</td><td>Haimo kwenye lugha 40 za juu za W3Techs</td></tr>
+      <tr><th scope="row">Watumiaji wa intaneti kwa lugha</th><td>Haimo kwenye 10 bora</td><td>Internet World Stats, Machi 2020</td></tr>
+      <tr><th scope="row">Muda mtandaoni</th><td>Hakuna makadirio</td><td>Makadirio ya Claude hayana mstari wa Kiswahili. Kenya na Tanzania zimejumuishwa kwa ujumla katika Kiingereza au Kiswahili, na muda wa Kiswahili pekee haujatenganishwa</td></tr>
+    </tbody></table></div>
+  </details>
+</section>
+
+<section class="lang" id="tr" aria-labelledby="h-tr">
+  <p class="kicker">18 · tr</p>
+  <h2 id="h-tr"><span lang="tr">Türkçe</span><small>Kituruki</small></h2>
+  <dl class="nums">
+    <div><dt>Wazungumzaji</dt><dd>milioni 94 (nafasi ya 20, sawa na Kihausa)</dd></div>
+    <div><dt>Wavuti</dt><dd>1.6% (nafasi ya 11)</dd></div>
+    <div><dt>Muda mtandaoni</dt><dd>saa milioni 560</dd></div>
+  </dl>
+  <p class="region"><b>Wapi</b>Uturuki na Kupro ya Kaskazini. Ujerumani kuna jamii kubwa ya Waturuki, na wengi pia huishi Uholanzi, Austria na Ufaransa. Kuna wazungumzaji pia Bulgaria na kaskazini mwa Ugiriki.</p>
+  <div class="persona">
+    <figure><img src="../../language-intro/img/tr.webp" width="800" height="1000" loading="lazy" decoding="async" alt="Mhusika wa kubuni. Elif Yıldız, miaka 33, anaishi İzmir. Ni mwalimu wa kemia wa shule ya sekondari ya juu."></figure>
+    <div class="ptext"><h3>Mhusika</h3><p>Elif Yıldız, miaka 33, anaishi İzmir. Ni mwalimu wa kemia wa shule ya sekondari ya juu. Saa 10:30 jioni, baada ya vipindi, alisomewa bahati kwa machicha ya kahawa pamoja na marafiki zake katika mkahawa, kisha akaifungua tovuti hii kwenye iPhone yake. Yeye na marafiki zake husoma maana ya kadi pamoja. Hadithi inapofikia rangi yake kupitia feruzi au buluu ya vigae vya İznik, kila mtu anachangamka, naye huiweka kwenye Instagram Stories zake.</p></div>
+  </div>
+  <details><summary>Takwimu na maelezo</summary>
+    <div class="scroll"><table class="facts"><thead><tr><th scope="col">Kipengele</th><th scope="col">Thamani</th><th scope="col">Maelezo</th></tr></thead><tbody>
+      <tr><th scope="row">Jumla ya wazungumzaji (lugha ya kwanza + lugha ya pili)</th><td>milioni 94 (nafasi ya 20, sawa na Kihausa)</td><td>Ethnologue, toleo la 2026</td></tr>
+      <tr><th scope="row">Sehemu ya maudhui ya wavuti</th><td>1.6% (nafasi ya 11)</td><td>W3Techs, Oktoba 2026</td></tr>
+      <tr><th scope="row">Watumiaji wa intaneti kwa lugha</th><td>Haimo kwenye 10 bora</td><td>Internet World Stats, Machi 2020</td></tr>
+      <tr><th scope="row">Muda mtandaoni</th><td>Takriban watumiaji milioni 80 wa intaneti, wastani wa saa 7.0 kwa siku, jumla ya saa milioni 560 kwa siku (nafasi ya 11)</td><td>Makadirio ya Claude</td></tr>
+    </tbody></table></div>
+  </details>
+</section>
+
+<section class="lang" id="tl" aria-labelledby="h-tl">
+  <p class="kicker">19 · tl</p>
+  <h2 id="h-tl"><span lang="fil">Filipino</span><small>Kifilipino</small></h2>
+  <dl class="nums">
+    <div><dt>Wazungumzaji</dt><dd>milioni 87</dd></div>
+    <div><dt>Wavuti</dt><dd>Chini ya 0.1% (nafasi ya 40, Kitagalogi)</dd></div>
+    <div><dt>Muda mtandaoni</dt><dd>saa milioni 530</dd></div>
+  </dl>
+  <p class="region"><b>Wapi</b>Lugha ya taifa ya Ufilipino na lugha rasmi pamoja na Kiingereza. Hutumiwa na Wafilipino wanaofanya kazi kote duniani, zikiwemo Marekani (California, Hawaii), nchi za Ghuba, Hong Kong, Singapore, Kanada na Japani.</p>
+  <div class="persona">
+    <figure><img src="../../language-intro/img/tl.webp" width="800" height="1000" loading="lazy" decoding="async" alt="Mhusika wa kubuni. Joanna “Jo” Dela Cruz, miaka 28, anaishi Quezon City. Anafanya zamu za usiku katika kituo cha simu kinachohudumia Marekani."></figure>
+    <div class="ptext"><h3>Mhusika</h3><p>Joanna “Jo” Dela Cruz, miaka 28, anaishi Quezon City. Anafanya zamu za usiku katika kituo cha simu kinachohudumia Marekani. Katika mapumziko ya saa 10 alfajiri, huchagua kadi moja kwenye simu yake ya Android. Kazi yake ni kwa Kiingereza, kwa hiyo wakati wa mapumziko hutaka kusoma kwa Kifilipino. Hadithi inapofikia rangi yake kupitia machweo ya Ghuba ya Manila au piña (kitambaa cha nyuzi za nanasi), huiweka kwenye Facebook na kumtumia binamu yake anayefanya kazi Mashariki ya Kati.</p></div>
+  </div>
+  <details><summary>Takwimu na maelezo</summary>
+    <div class="scroll"><table class="facts"><thead><tr><th scope="col">Kipengele</th><th scope="col">Thamani</th><th scope="col">Maelezo</th></tr></thead><tbody>
+      <tr><th scope="row">Jumla ya wazungumzaji (lugha ya kwanza + lugha ya pili)</th><td>milioni 87</td><td>Ethnologue, toleo la 2026 (imehesabiwa kama Kitagalogi)</td></tr>
+      <tr><th scope="row">Sehemu ya maudhui ya wavuti</th><td>Chini ya 0.1% (nafasi ya 40, Kitagalogi)</td><td>W3Techs, Oktoba 2026</td></tr>
+      <tr><th scope="row">Watumiaji wa intaneti kwa lugha</th><td>Haimo kwenye 10 bora</td><td>Internet World Stats, Machi 2020</td></tr>
+      <tr><th scope="row">Muda mtandaoni</th><td>Takriban watumiaji milioni 60 wa intaneti, wastani wa saa 8.9 kwa siku, jumla ya saa milioni 530 kwa siku (nafasi ya 12)</td><td>Makadirio ya Claude. Inachukuliwa kuwa takriban 60% ya watumiaji nchini Ufilipino; waliobaki wamehesabiwa kwenye Kiingereza</td></tr>
+    </tbody></table></div>
+  </details>
+</section>
+
+<section class="lang" id="fa" aria-labelledby="h-fa">
+  <p class="kicker">20 · fa</p>
+  <h2 id="h-fa"><span lang="fa" dir="rtl">فارسی</span><small>Kiajemi</small></h2>
+  <dl class="nums">
+    <div><dt>Wazungumzaji</dt><dd>milioni 82 (Kiajemi cha Iran)</dd></div>
+    <div><dt>Wavuti</dt><dd>1.0% (nafasi ya 14)</dd></div>
+    <div><dt>Muda mtandaoni</dt><dd>saa milioni 490</dd></div>
+  </dl>
+  <p class="region"><b>Wapi</b>Lugha rasmi ya Iran. Aina zilizo karibu sana hutumika Afghanistan (Kidari) na Tajikistan (Kitajiki). Kuna jamii kubwa za Wairani Marekani (Los Angeles), Kanada, Ujerumani, Uingereza na Uturuki. Tovuti imepangwa kutoka kulia kwenda kushoto.</p>
+  <div class="persona">
+    <figure><img src="../../language-intro/img/fa.webp" width="800" height="1000" loading="lazy" decoding="async" alt="Mhusika wa kubuni. Parisa Hosseini, miaka 31, anaishi Isfahan. Hukarabati vigae vya majengo ya kihistoria."></figure>
+    <div class="ptext"><h3>Mhusika</h3><p>Parisa Hosseini, miaka 31, anaishi Isfahan. Hukarabati vigae vya majengo ya kihistoria. Saa 5 usiku, baada ya kumaliza kazi, anafungua simu yake ya Android. Usiku wa Yalda familia yake hufungua diwani ya Hafez pamoja, kwa hiyo usomaji wa kadi moja unamfahamika. Hadithi inapofikia rangi yake kupitia feruzi ya Nishapur au buluu ya vigae vya misikiti ya Isfahan, huikodolea macho kana kwamba ameacha kazi. Humtumia dada yake mkubwa anayeishi ng’ambo kiungo kwenye Telegram.</p></div>
+  </div>
+  <details><summary>Takwimu na maelezo</summary>
+    <div class="scroll"><table class="facts"><thead><tr><th scope="col">Kipengele</th><th scope="col">Thamani</th><th scope="col">Maelezo</th></tr></thead><tbody>
+      <tr><th scope="row">Jumla ya wazungumzaji (lugha ya kwanza + lugha ya pili)</th><td>milioni 82 (Kiajemi cha Iran)</td><td>Ethnologue, toleo la 2026. Haijumuishi Kidari (Afghanistan) wala Kitajiki</td></tr>
+      <tr><th scope="row">Sehemu ya maudhui ya wavuti</th><td>1.0% (nafasi ya 14)</td><td>W3Techs, Oktoba 2026</td></tr>
+      <tr><th scope="row">Watumiaji wa intaneti kwa lugha</th><td>Haimo kwenye 10 bora</td><td>Internet World Stats, Machi 2020</td></tr>
+      <tr><th scope="row">Muda mtandaoni</th><td>Takriban watumiaji milioni 82 wa intaneti, wastani wa saa 6.0 kwa siku, jumla ya saa milioni 490 kwa siku (nafasi ya 16)</td><td>Makadirio ya Claude. Inajumuisha Iran pamoja na Afghanistan (Kidari)</td></tr>
+    </tbody></table></div>
+  </details>
+</section>
+
+<section class="lang" id="ko" aria-labelledby="h-ko">
+  <p class="kicker">21 · ko</p>
+  <h2 id="h-ko"><span lang="ko">한국어</span><small>Kikorea</small></h2>
+  <dl class="nums">
+    <div><dt>Wazungumzaji</dt><dd>milioni 82</dd></div>
+    <div><dt>Wavuti</dt><dd>0.9% (nafasi ya 17)</dd></div>
+    <div><dt>Muda mtandaoni</dt><dd>saa milioni 270</dd></div>
+  </dl>
+  <p class="region"><b>Wapi</b>Korea Kusini na Korea Kaskazini. Pia kuna jamii zenye mizizi katika Rasi ya Korea katika Mkoa Unaojitawala wa Wakorea wa Yanbian nchini China, Marekani (Los Angeles, New York), Japani na Asia ya Kati.</p>
+  <div class="persona">
+    <figure><img src="../../language-intro/img/ko.webp" width="800" height="1000" loading="lazy" decoding="async" alt="Mhusika wa kubuni. 김서연 (Kim Seo-yeon), miaka 29, anaishi Mapo-gu, Seoul. Ni mtia-rangi wa katuni za webtoon."></figure>
+    <div class="ptext"><h3>Mhusika</h3><p><span lang="ko">김서연</span> (Kim Seo-yeon), miaka 29, anaishi Mapo-gu, Seoul. Ni mtia-rangi wa katuni za webtoon. Saa 2:20 asubuhi anafungua iPhone yake kwenye treni ya chini ya ardhi. Mara moja kwa mwezi huenda kwenye mkahawa wa tarot pamoja na marafiki. Aliipata tovuti hii alipokuwa akitafuta kwenye NAVER vidokezo vya safari yake ya mwezi ujao kwenda Fukuoka. Hadithi inapofikia rangi yake kupitia <i lang="ko-Latn">obangsaek</i> ya Korea (rangi tano za jadi) au upakaji rangi wa Kijapani, huiingiza rangi hiyo katika sehemu ya mchanganyiko wake wa rangi wa siku. Huwatumia marafiki matokeo kwenye KakaoTalk.</p></div>
+  </div>
+  <details><summary>Takwimu na maelezo</summary>
+    <div class="scroll"><table class="facts"><thead><tr><th scope="col">Kipengele</th><th scope="col">Thamani</th><th scope="col">Maelezo</th></tr></thead><tbody>
+      <tr><th scope="row">Jumla ya wazungumzaji (lugha ya kwanza + lugha ya pili)</th><td>milioni 82</td><td>Ethnologue, toleo la 2026</td></tr>
+      <tr><th scope="row">Sehemu ya maudhui ya wavuti</th><td>0.9% (nafasi ya 17)</td><td>W3Techs, Oktoba 2026</td></tr>
+      <tr><th scope="row">Watumiaji wa intaneti kwa lugha</th><td>Haimo kwenye 10 bora</td><td>Internet World Stats, Machi 2020</td></tr>
+      <tr><th scope="row">Muda mtandaoni</th><td>Takriban watumiaji milioni 50 wa intaneti, wastani wa saa 5.3 kwa siku, jumla ya saa milioni 270 kwa siku (nafasi ya 20)</td><td>Makadirio ya Claude</td></tr>
+    </tbody></table></div>
+  </details>
+</section>
+
+<section class="lang" id="th" aria-labelledby="h-th">
+  <p class="kicker">22 · th</p>
+  <h2 id="h-th"><span lang="th">ไทย</span><small>Kithai</small></h2>
+  <dl class="nums">
+    <div><dt>Wazungumzaji</dt><dd>milioni 71</dd></div>
+    <div><dt>Wavuti</dt><dd>0.3% (nafasi ya 28)</dd></div>
+    <div><dt>Muda mtandaoni</dt><dd>saa milioni 510</dd></div>
+  </dl>
+  <p class="region"><b>Wapi</b>Lugha ya taifa ya Thailand. Watu wengi nchini Laos wanaweza kusoma Kithai. Watu kutoka Thailand pia huishi Marekani (Los Angeles), Australia na Ulaya.</p>
+  <div class="persona">
+    <figure><img src="../../language-intro/img/th.webp" width="800" height="1000" loading="lazy" decoding="async" alt="Mhusika wa kubuni. Napassorn “Pim” Srisuk, miaka 27, anaishi Bangkok. Anafanya kazi ya masoko katika chapa ya vipodozi."></figure>
+    <div class="ptext"><h3>Mhusika</h3><p>Napassorn “Pim” Srisuk, miaka 27, anaishi Bangkok. Anafanya kazi ya masoko katika chapa ya vipodozi. Saa 1 asubuhi, kabla ya kuamua atavaa nini, huchagua kadi moja kwenye iPhone yake. Kulinganisha rangi ya siku ya wiki na rangi ya tovuti hii ndiyo raha yake ya kila asubuhi. Anapanga safari ya kwenda Hokkaido Januari ijayo. Hadithi inapofikia rangi yake kupitia hariri ya Kithai au weupe wa theluji ya Hokkaido, huiingiza rangi hiyo kwenye rangi ya midomo au skafu yake. Huwatumia wafanyakazi wenzake kwenye LINE.</p></div>
+  </div>
+  <details><summary>Takwimu na maelezo</summary>
+    <div class="scroll"><table class="facts"><thead><tr><th scope="col">Kipengele</th><th scope="col">Thamani</th><th scope="col">Maelezo</th></tr></thead><tbody>
+      <tr><th scope="row">Jumla ya wazungumzaji (lugha ya kwanza + lugha ya pili)</th><td>milioni 71</td><td>Ethnologue, toleo la 2026</td></tr>
+      <tr><th scope="row">Sehemu ya maudhui ya wavuti</th><td>0.3% (nafasi ya 28)</td><td>W3Techs, Oktoba 2026</td></tr>
+      <tr><th scope="row">Watumiaji wa intaneti kwa lugha</th><td>Haimo kwenye 10 bora</td><td>Internet World Stats, Machi 2020</td></tr>
+      <tr><th scope="row">Muda mtandaoni</th><td>Takriban watumiaji milioni 65 wa intaneti, wastani wa saa 7.8 kwa siku, jumla ya saa milioni 510 kwa siku (nafasi ya 14)</td><td>Makadirio ya Claude</td></tr>
+    </tbody></table></div>
+  </details>
+</section>
+
+<section class="lang" id="it" aria-labelledby="h-it">
+  <p class="kicker">23 · it</p>
+  <h2 id="h-it"><span lang="it">Italiano</span><small>Kiitaliano</small></h2>
+  <dl class="nums">
+    <div><dt>Wazungumzaji</dt><dd>milioni 66</dd></div>
+    <div><dt>Wavuti</dt><dd>2.8% (nafasi ya 8)</dd></div>
+    <div><dt>Muda mtandaoni</dt><dd>saa milioni 290</dd></div>
+  </dl>
+  <p class="region"><b>Wapi</b>Italia, San Marino, kusini mwa Uswisi (Ticino) na Mji wa Vatikani. Watu wengi wenye asili ya Kiitaliano huishi Argentina, Brazili, Marekani, Ujerumani na kwingineko.</p>
+  <div class="persona">
+    <figure><img src="../../language-intro/img/it.webp" width="800" height="1000" loading="lazy" decoding="async" alt="Mhusika wa kubuni. Giulia Bernardi, miaka 45, anaishi Bologna. Ni mfamasia katika duka la dawa la mtaani."></figure>
+    <div class="ptext"><h3>Mhusika</h3><p>Giulia Bernardi, miaka 45, anaishi Bologna. Ni mfamasia katika duka la dawa la mtaani. Saa 3:30 usiku, kwenye kochi baada ya chakula cha jioni, anafungua simu yake ya Android. Alipokuwa mtoto alicheza tarocchino na baba yake, kwa hiyo picha za Arcana Kuu humkumbusha enzi hizo. Hadithi inapofikia rangi yake kupitia matofali mekundu ya vibaraza vya Bologna au rangi za wachoraji wa enzi ya Renaissance, humtumia baba yake kwenye WhatsApp. Huchagua mtindo wa “Tarot ya Kale.”</p></div>
+  </div>
+  <details><summary>Takwimu na maelezo</summary>
+    <div class="scroll"><table class="facts"><thead><tr><th scope="col">Kipengele</th><th scope="col">Thamani</th><th scope="col">Maelezo</th></tr></thead><tbody>
+      <tr><th scope="row">Jumla ya wazungumzaji (lugha ya kwanza + lugha ya pili)</th><td>milioni 66</td><td>Ethnologue, toleo la 2026</td></tr>
+      <tr><th scope="row">Sehemu ya maudhui ya wavuti</th><td>2.8% (nafasi ya 8)</td><td>W3Techs, Oktoba 2026</td></tr>
+      <tr><th scope="row">Watumiaji wa intaneti kwa lugha</th><td>Haimo kwenye 10 bora</td><td>Internet World Stats, Machi 2020</td></tr>
+      <tr><th scope="row">Muda mtandaoni</th><td>Takriban watumiaji milioni 51 wa intaneti, wastani wa saa 5.7 kwa siku, jumla ya saa milioni 290 kwa siku (nafasi ya 19)</td><td>Makadirio ya Claude</td></tr>
+    </tbody></table></div>
+  </details>
+</section>
+
+<section class="lang" id="pl" aria-labelledby="h-pl">
+  <p class="kicker">24 · pl</p>
+  <h2 id="h-pl"><span lang="pl">Polski</span><small>Kipolandi</small></h2>
+  <dl class="nums">
+    <div><dt>Wazungumzaji</dt><dd>Takriban milioni 42.6</dd></div>
+    <div><dt>Wavuti</dt><dd>1.8% (nafasi ya 10)</dd></div>
+    <div><dt>Muda mtandaoni</dt><dd>Takriban saa milioni 210 (takwimu ya marejeo, nje ya orodha ya nafasi)</dd></div>
+  </dl>
+  <p class="region"><b>Wapi</b>Polandi. Kuna jamii kubwa za Wapolandi Uingereza, Ujerumani, Marekani (Chicago), Ayalandi na Kanada. Pia kuna wazungumzaji Lithuania na magharibi mwa Ukraine.</p>
+  <div class="persona">
+    <figure><img src="../../language-intro/img/pl.webp" width="800" height="1000" loading="lazy" decoding="async" alt="Mhusika wa kubuni. Marta Kowalczyk, miaka 30, anaishi Kraków. Ni mtafiti wa UX katika kampuni ya programu."></figure>
+    <div class="ptext"><h3>Mhusika</h3><p>Marta Kowalczyk, miaka 30, anaishi Kraków. Ni mtafiti wa UX katika kampuni ya programu. Saa 4 asubuhi Jumapili anafungua iPhone yake katika mkahawa. Kila mwaka usiku wa Andrzejki hutabiri kwa nta iliyoyeyushwa pamoja na marafiki. Hadithi inapofikia rangi yake kupitia kaharabu ya Baltiki au Ukumbi wa Nguo wa Kraków, huiweka kwenye Instagram Stories zake. Anapanga safari ya Kyoto majira ya kuchipua yajayo.</p></div>
+  </div>
+  <details><summary>Takwimu na maelezo</summary>
+    <div class="scroll"><table class="facts"><thead><tr><th scope="col">Kipengele</th><th scope="col">Thamani</th><th scope="col">Maelezo</th></tr></thead><tbody>
+      <tr><th scope="row">Jumla ya wazungumzaji (lugha ya kwanza + lugha ya pili)</th><td>Takriban milioni 42.6</td><td>Ethnologue, toleo la 27 (takwimu za 2021), kama ilivyonukuliwa kwenye ukurasa wa Wikipedia “Polish language.” Haimo kwenye orodha ya wazi ya Ethnologue 2026 (milioni 50 au zaidi)</td></tr>
+      <tr><th scope="row">Sehemu ya maudhui ya wavuti</th><td>1.8% (nafasi ya 10)</td><td>W3Techs, Oktoba 2026</td></tr>
+      <tr><th scope="row">Watumiaji wa intaneti kwa lugha</th><td>Haimo kwenye 10 bora</td><td>Internet World Stats, Machi 2020</td></tr>
+      <tr><th scope="row">Muda mtandaoni</th><td>Takriban saa milioni 210 kwa siku (takwimu ya marejeo, nje ya orodha ya nafasi)</td><td>Takwimu ya marejeo nje ya orodha ya nafasi katika makadirio ya Claude</td></tr>
+    </tbody></table></div>
+  </details>
+</section>
+
+<section class="lang" id="uk" aria-labelledby="h-uk">
+  <p class="kicker">25 · uk</p>
+  <h2 id="h-uk"><span lang="uk">Українська</span><small>Kiukreni</small></h2>
+  <dl class="nums">
+    <div><dt>Wazungumzaji</dt><dd>Takriban milioni 39</dd></div>
+    <div><dt>Wavuti</dt><dd>0.6% (nafasi ya 18)</dd></div>
+    <div><dt>Muda mtandaoni</dt><dd>Hakuna makadirio</dd></div>
+  </dl>
+  <p class="region"><b>Wapi</b>Lugha ya taifa ya Ukraine. Kwa sababu ya vita tangu 2022, watu wengi wamekimbilia nchi za Ulaya kama Polandi, Ujerumani na Jamhuri ya Czech. Kanada na Marekani pia zina jamii za zamani za Waukreni. Watu wengi pia huzungumza Kirusi.</p>
+  <div class="persona">
+    <figure><img src="../../language-intro/img/uk.webp" width="800" height="1000" loading="lazy" decoding="async" alt="Mhusika wa kubuni. Олена Коваленко (Olena Kovalenko), miaka 37, anaishi Lviv. Ni mwalimu wa shule ya msingi."></figure>
+    <div class="ptext"><h3>Mhusika</h3><p><span lang="uk">Олена Коваленко</span> (Olena Kovalenko), miaka 37, anaishi Lviv. Ni mwalimu wa shule ya msingi. Saa 3 usiku, baada ya kumlaza mtoto wake, huchagua kadi moja kwenye simu yake ya Android. Zaidi ya kusoma maana ya kadi, huthamini muda wa kusoma hadithi iliyoandikwa kwa uangalifu kwa Kiukreni. Hadithi inapofikia rangi yake kupitia uchoraji wa maua wa Petrykivka au sufu ya Carpathia, humtumia mdogo wake wa kike aliyeko Polandi kwenye Telegram.</p></div>
+  </div>
+  <details><summary>Takwimu na maelezo</summary>
+    <div class="scroll"><table class="facts"><thead><tr><th scope="col">Kipengele</th><th scope="col">Thamani</th><th scope="col">Maelezo</th></tr></thead><tbody>
+      <tr><th scope="row">Jumla ya wazungumzaji (lugha ya kwanza + lugha ya pili)</th><td>Takriban milioni 39</td><td>Ethnologue (2023). Ukurasa wa Wikipedia “Ukrainian language” (Ethnologue, toleo la 28) unatoa idadi hiyo hiyo</td></tr>
+      <tr><th scope="row">Sehemu ya maudhui ya wavuti</th><td>0.6% (nafasi ya 18)</td><td>W3Techs, Oktoba 2026</td></tr>
+      <tr><th scope="row">Watumiaji wa intaneti kwa lugha</th><td>Haimo kwenye 10 bora</td><td>Internet World Stats, Machi 2020</td></tr>
+      <tr><th scope="row">Muda mtandaoni</th><td>Hakuna makadirio</td><td>Kiukreni hakimo kwenye jedwali la makadirio ya Claude wala kwenye takwimu zake za marejeo nje ya orodha ya nafasi</td></tr>
+    </tbody></table></div>
+  </details>
+</section>
+
+<section class="lang" id="nl" aria-labelledby="h-nl">
+  <p class="kicker">26 · nl</p>
+  <h2 id="h-nl"><span lang="nl">Nederlands</span><small>Kiholanzi</small></h2>
+  <dl class="nums">
+    <div><dt>Wazungumzaji</dt><dd>Takriban milioni 30</dd></div>
+    <div><dt>Wavuti</dt><dd>2.1% (nafasi ya 9)</dd></div>
+    <div><dt>Muda mtandaoni</dt><dd>Takriban saa milioni 130 (takwimu ya marejeo, nje ya orodha ya nafasi)</dd></div>
+  </dl>
+  <p class="region"><b>Wapi</b>Uholanzi na kaskazini mwa Ubelgiji (Flanders). Pia ni lugha rasmi Suriname na Aruba na Curaçao katika Karibiani. Kiafrikana cha Afrika Kusini kilitokana na Kiholanzi.</p>
+  <div class="persona">
+    <figure><img src="../../language-intro/img/nl.webp" width="800" height="1000" loading="lazy" decoding="async" alt="Mhusika wa kubuni. Sanne de Vries, miaka 36, anaishi Utrecht. Anashughulikia sera za tabianchi katika ofisi ya halmashauri ya jiji."></figure>
+    <div class="ptext"><h3>Mhusika</h3><p>Sanne de Vries, miaka 36, anaishi Utrecht. Anashughulikia sera za tabianchi katika ofisi ya halmashauri ya jiji. Saa 6:30 mchana, mezani pake, alifungua kompyuta yake mpakato na kufika kwenye tovuti hii alipokuwa akitafuta jina la rangi. Haamini utabiri, lakini anapenda sana hadithi za asili ya majina ya rangi. Hadithi inapofikia rangi yake kupitia buluu ya Delft au rangi walizotumia wachoraji wa Kiholanzi wa karne ya 17, huwasimulia wafanyakazi wenzake. Wakati mwingine huchagua kadi moja zaidi kabla ya kurudi nyumbani kwa baiskeli.</p></div>
+  </div>
+  <details><summary>Takwimu na maelezo</summary>
+    <div class="scroll"><table class="facts"><thead><tr><th scope="col">Kipengele</th><th scope="col">Thamani</th><th scope="col">Maelezo</th></tr></thead><tbody>
+      <tr><th scope="row">Jumla ya wazungumzaji (lugha ya kwanza + lugha ya pili)</th><td>Takriban milioni 30</td><td>2021. Ukurasa wa Wikipedia “Dutch language” (ukinukuu Eurobarometer na vyanzo vingine) unatoa idadi hiyo hiyo</td></tr>
+      <tr><th scope="row">Sehemu ya maudhui ya wavuti</th><td>2.1% (nafasi ya 9)</td><td>W3Techs, Oktoba 2026. Inajumuisha Kiflemi</td></tr>
+      <tr><th scope="row">Watumiaji wa intaneti kwa lugha</th><td>Haimo kwenye 10 bora</td><td>Internet World Stats, Machi 2020</td></tr>
+      <tr><th scope="row">Muda mtandaoni</th><td>Takriban saa milioni 130 kwa siku (takwimu ya marejeo, nje ya orodha ya nafasi)</td><td>Takwimu ya marejeo nje ya orodha ya nafasi katika makadirio ya Claude</td></tr>
+    </tbody></table></div>
+  </details>
+</section>
+
+<section class="lang" id="ang" aria-labelledby="h-ang">
+  <p class="kicker">27 · ang</p>
+  <h2 id="h-ang"><span lang="ang">Englisc</span><small>Kiingereza cha Kale</small></h2>
+  <p class="note">Lugha ya burudani na historia. Ni Kiingereza cha takriban mwaka 450 hadi 1100, na leo hakuna anayekizungumza kama lugha ya kwanza. Sehemu za takwimu hazihusiki.</p>
+  <dl class="nums">
+    <div><dt>Wazungumzaji</dt><dd>haihusiki</dd></div>
+    <div><dt>Wavuti</dt><dd>haihusiki</dd></div>
+    <div><dt>Muda mtandaoni</dt><dd>haihusiki</dd></div>
+  </dl>
+  <p class="region"><b>Nani anaweza kuifurahia</b>Wanafunzi na watafiti wa fasihi ya Kiingereza ya enzi za kati na historia ya Kiingereza, wapenzi wa <cite>Beowulf</cite> na kazi za J. R. R. Tolkien, na watu wanaovutiwa na herufi za runi na hekaya za Kinorse. Nje ya ulimwengu unaozungumza Kiingereza, inawafikia pia wanafunzi wa fasihi ya Kiingereza nchini Ujerumani, nchi za Nordiki na Japani.</p>
+  <div class="persona">
+    <figure><img src="../../language-intro/img/ang.webp" width="800" height="1000" loading="lazy" decoding="async" alt="Mhusika wa kubuni. Hannah Brooks, miaka 24, anaishi Leeds, Uingereza. Anasoma Kiingereza cha Kale katika masomo ya uzamili."></figure>
+    <div class="ptext"><h3>Mhusika</h3><p>Hannah Brooks, miaka 24, anaishi Leeds, Uingereza. Anasoma Kiingereza cha Kale katika masomo ya uzamili. Saa 11 jioni alifungua kompyuta yake mpakato katika maktaba ya chuo kikuu na kufika kwenye tovuti hii alipokuwa akitafuta minyambuliko ya vitenzi. Akiwa na tafsiri ya Kiingereza cha kisasa kando yake, hufurahia kufumbua majina ya kadi na rangi. Hutuma mistari anayoipenda kwa wenzake wa semina.</p></div>
+  </div>
+  <details><summary>Takwimu na maelezo</summary>
+    <div class="scroll"><table class="facts"><thead><tr><th scope="col">Kipengele</th><th scope="col">Thamani</th></tr></thead><tbody>
+      <tr><th scope="row">Jumla ya wazungumzaji (lugha ya kwanza + lugha ya pili)</th><td>haihusiki</td></tr>
+      <tr><th scope="row">Sehemu ya maudhui ya wavuti</th><td>haihusiki</td></tr>
+      <tr><th scope="row">Watumiaji wa intaneti kwa lugha</th><td>haihusiki</td></tr>
+      <tr><th scope="row">Muda mtandaoni</th><td>haihusiki</td></tr>
+    </tbody></table></div>
+  </details>
+</section>
+
+<section class="lang" id="soro" aria-labelledby="h-soro">
+  <p class="kicker">28 · soro</p>
+  <h2 id="h-soro"><span lang="ja">御座候</span><small>Sōrōbun (mtindo wa kale wa barua za Kijapani)</small></h2>
+  <p class="note">Lugha ya burudani na historia. Ni mtindo wa barua na nyaraka rasmi wa takriban mwaka 1600 hadi 1868, ambapo <span lang="ja">候</span> (<i>sōrō</i>) huwekwa mwishoni mwa sentensi. Leo hakuna anayeuzungumza kama lugha ya kwanza. Sehemu za takwimu hazihusiki.</p>
+  <dl class="nums">
+    <div><dt>Wazungumzaji</dt><dd>haihusiki</dd></div>
+    <div><dt>Wavuti</dt><dd>haihusiki</dd></div>
+    <div><dt>Muda mtandaoni</dt><dd>haihusiki</dd></div>
+  </dl>
+  <p class="region"><b>Nani anaweza kuifurahia</b>Watu wanaojifunza kusoma nyaraka za kale na mwandiko wa mkono uliounganishwa, wapenzi wa riwaya za kihistoria na tamthilia za kihistoria za NHK, na wanafunzi wanaopenda historia. Inawafikia pia wageni waliojifunza Kijapani kwa kina na watafiti wa historia ya Japani.</p>
+  <div class="persona">
+    <figure><img src="../../language-intro/img/soro.webp" width="800" height="1000" loading="lazy" decoding="async" alt="Mhusika wa kubuni. 工藤 誠一 (Seiichi Kudo), miaka 58, anaishi Kanazawa. Anafanya kazi katika ofisi ya halmashauri ya jiji na huhudhuria kozi ya nyaraka za kale wikendi."></figure>
+    <div class="ptext"><h3>Mhusika</h3><p><span lang="ja">工藤 誠一</span> (Seiichi Kudo), miaka 58, anaishi Kanazawa. Anafanya kazi katika ofisi ya halmashauri ya jiji na huhudhuria kozi ya nyaraka za kale wikendi. Saa 9 alasiri Jumapili anafungua kishikwambi chake sebuleni. Alisikia kuhusu tovuti hii kutoka kwa wenzake wa kozi. Husoma kwa sauti, moja baada ya jingine, majina ya kadi na rangi yaliyoandikwa kwa sōrōbun. Hadithi inapofikia rangi yake kupitia upakaji rangi wa Kaga au mji wa zamani wa ngome, huandika jina la rangi hiyo kwenye daftari lake la kozi.</p></div>
+  </div>
+  <details><summary>Takwimu na maelezo</summary>
+    <div class="scroll"><table class="facts"><thead><tr><th scope="col">Kipengele</th><th scope="col">Thamani</th></tr></thead><tbody>
+      <tr><th scope="row">Jumla ya wazungumzaji (lugha ya kwanza + lugha ya pili)</th><td>haihusiki</td></tr>
+      <tr><th scope="row">Sehemu ya maudhui ya wavuti</th><td>haihusiki</td></tr>
+      <tr><th scope="row">Watumiaji wa intaneti kwa lugha</th><td>haihusiki</td></tr>
+      <tr><th scope="row">Muda mtandaoni</th><td>haihusiki</td></tr>
+    </tbody></table></div>
+  </details>
+</section>
+
+</div>
+
+</body>
+</html>

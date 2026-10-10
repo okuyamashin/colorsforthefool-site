@@ -1,0 +1,798 @@
+<!doctype html>
+<html lang="tl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Kilalanin ang 28 wika ng Colors for the Fool: kung ilang tao ang nagsasalita ng bawat isa, kasama ang isang kathang-isip na persona at ang kanyang larawan.">
+<link rel="icon" href="../../favicon.png" type="image/png">
+<title>Tungkol sa mga Wika</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&family=Noto+Serif:wght@400;500;600&display=swap">
+<style>
+/* Layout: same paper column as language-scale.html; one card per language (numbers, persona + image, details). */
+:root {
+  --bg: #efe6d6;
+  --bg-glow: #fbf6ec;
+  --paper: #f7f1e4;
+  --ink: #2a2118;
+  --muted: #6d5c48;
+  --gold: #a6843d;
+  --gold-soft: #e4d2a4;
+  --line: rgba(166,132,61,.45);
+  --other: #d3c6ae;
+  --grid: rgba(109,92,72,.18);
+  --font-display: Cinzel, "Palatino Linotype", Palatino, serif;
+  --font-body: "Noto Serif", "Times New Roman", Times, serif;
+}
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) {
+  --bg: #1b1610; --bg-glow: #2a2219; --paper: #241e17; --ink: #efe4cf; --muted: #b6a387;
+  --gold: #d2ac5c; --gold-soft: #5a4826; --line: rgba(210,172,92,.4); --other: #4b4134; --grid: rgba(239,228,207,.12);
+  color-scheme: dark; } }
+:root[data-theme="dark"] {
+  --bg: #1b1610; --bg-glow: #2a2219; --paper: #241e17; --ink: #efe4cf; --muted: #b6a387;
+  --gold: #d2ac5c; --gold-soft: #5a4826; --line: rgba(210,172,92,.4); --other: #4b4134; --grid: rgba(239,228,207,.12);
+  color-scheme: dark; }
+
+* { box-sizing: border-box; }
+body {
+  margin: 0; color: var(--ink); background: var(--bg);
+  background-image: radial-gradient(1100px 640px at 50% -8%, var(--bg-glow), var(--bg) 70%);
+  font-family: var(--font-body); font-weight: 500; line-height: 1.85;
+  padding-inline: 16px; padding-block: 0 64px;
+}
+.wrap { width: min(100%, 44rem); margin: 0 auto; }
+a { color: var(--gold); }
+code { font-size: .88em; overflow-wrap: anywhere; }
+.brand { font-family: var(--font-display); font-size: .74rem; letter-spacing: .24em; text-transform: uppercase; padding-block: 1.4rem .2rem; margin: 0; }
+.brand a { color: var(--ink); text-decoration: none; }
+header.hero { text-align: center; padding-block: 2.6rem 1.6rem; }
+.eyebrow { font-family: var(--font-display); letter-spacing: .3em; font-size: .8rem; color: var(--gold); margin: 0; text-transform: uppercase; }
+h1 { font-size: clamp(2rem, 7vw, 2.9rem); letter-spacing: .12em; margin: .3rem 0 .6rem; font-weight: 600; text-wrap: balance; }
+.lede { color: var(--muted); max-width: 34rem; margin: 0 auto; text-wrap: pretty; }
+.ornament { display: flex; align-items: center; gap: .8rem; justify-content: center; color: var(--gold); margin: 1.6rem 0 0; }
+.ornament::before, .ornament::after { content: ""; height: 1px; width: 4.5rem; background: var(--line); }
+
+.topbar { display: flex; justify-content: space-between; align-items: baseline; gap: 1rem; padding-block: 1.4rem .2rem; }
+.topbar .brand { padding-block: 0; }
+.switch { font-size: .82rem; }
+.switch a, .switch span { margin-left: .7rem; }
+.switch span { color: var(--muted); }
+
+.about { font-size: .86rem; color: var(--muted); margin: 0 0 1rem; }
+.about p { margin: .5rem 0; }
+.langs { display: flex; flex-wrap: wrap; gap: .4rem; justify-content: center; margin: 1.2rem 0 0; padding: 0; list-style: none; }
+.langs li { border: 1px solid var(--line); font-size: .85rem; background: var(--paper); }
+.langs li a { display: block; padding: .1rem .7rem; color: var(--ink); text-decoration: none; }
+.langs li a:hover, .langs li a:focus-visible { color: var(--gold); }
+.langs li:nth-last-child(-n+2) { border-style: dashed; }
+.langs li:nth-last-child(-n+2) a { color: var(--muted); }
+
+section.chart, section.lang { margin-top: 3.4rem; scroll-margin-top: 1rem; }
+.chart h2, .lang h2 { font-size: 1.3rem; letter-spacing: .08em; margin: 0; font-weight: 600; text-wrap: balance; }
+.lang h2 small { display: block; font-size: .8rem; letter-spacing: .04em; color: var(--muted); font-weight: 500; }
+.kicker { font-family: var(--font-display); color: var(--gold); letter-spacing: .2em; font-size: .78rem; margin: 0 0 .15rem; }
+p.note { color: var(--muted); font-size: .88rem; margin: .4rem 0 1rem; max-width: 40rem; }
+.chart ul { font-size: .88rem; color: var(--muted); padding-left: 1.1rem; }
+
+.scroll { overflow-x: auto; -webkit-overflow-scrolling: touch; border: 1px solid var(--line); background: var(--paper); }
+table { border-collapse: collapse; font-size: .8rem; line-height: 1.55; }
+table.overview { min-width: 42rem; width: 100%; }
+th, td { padding: .45rem .6rem; border-bottom: 1px solid var(--grid); text-align: left; vertical-align: top; }
+thead th { font-weight: 700; border-bottom: 1px solid var(--line); background: var(--bg-glow); }
+tbody th { font-weight: 700; white-space: nowrap; }
+tbody th a { color: var(--ink); text-decoration: none; }
+tbody tr:last-child th, tbody tr:last-child td { border-bottom: 0; }
+table.overview td { font-variant-numeric: tabular-nums; }
+
+.lang { border-top: 1px solid var(--line); padding-top: 1.6rem; }
+.nums { display: flex; flex-wrap: wrap; gap: 1px; background: var(--line); border: 1px solid var(--line); margin: 1rem 0; }
+.nums div { flex: 1 1 7.6rem; background: var(--paper); padding: .55rem .7rem .6rem; min-width: 0; }
+.nums dt { font-family: var(--font-body); font-size: .72rem; color: var(--muted); letter-spacing: .06em; }
+.nums dd { margin: 0; font-size: .9rem; line-height: 1.45; font-variant-numeric: tabular-nums; overflow-wrap: anywhere; }
+.region { font-size: .9rem; margin: 0 0 1rem; }
+.region b { color: var(--gold); font-weight: 700; margin-right: .6rem; }
+
+.persona { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 15rem); gap: 1.2rem; align-items: start; margin: 1.2rem 0 .8rem; }
+.persona figure { grid-column: 2; grid-row: 1; margin: 0; }
+.persona .ptext { grid-column: 1; grid-row: 1; }
+.persona img { display: block; width: 100%; height: auto; border: 1px solid var(--line); background: var(--paper); }
+.persona h3 { font-size: 1rem; letter-spacing: .08em; margin: 0 0 .3rem; font-weight: 600; }
+.persona p { margin: 0; font-size: .94rem; text-wrap: pretty; }
+@media (max-width: 36rem) {
+  .persona { grid-template-columns: minmax(0, 1fr); }
+  .persona figure, .persona .ptext { grid-column: 1; grid-row: auto; }
+  .persona figure { max-width: 22rem; }
+}
+
+details { border-top: 1px dashed var(--line); padding: .35rem 0; font-size: .88rem; }
+details:last-of-type { border-bottom: 1px dashed var(--line); }
+summary { cursor: pointer; color: var(--gold); letter-spacing: .06em; }
+details[open] summary { margin-bottom: .5rem; }
+details p { margin: .2rem 0 .8rem; color: var(--ink); }
+details h4 { font-size: .86rem; margin: .6rem 0 0; color: var(--muted); font-weight: 700; }
+details pre { white-space: pre-wrap; overflow-wrap: anywhere; font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: .78rem; line-height: 1.6; background: var(--paper); border: 1px solid var(--line); padding: .7rem .8rem; margin: 0 0 .6rem; }
+table.facts { width: 100%; min-width: 34rem; }
+table.facts tbody th { white-space: normal; min-width: 8rem; }
+
+footer { margin-top: 4rem; border-top: 1px solid var(--line); padding-top: 1.2rem; font-size: .8rem; color: var(--muted); }
+footer ul { padding-left: 1.1rem; margin: .4rem 0 1rem; }
+footer ul ul { margin: .2rem 0 .3rem; }
+footer li { margin: .15rem 0; overflow-wrap: anywhere; }
+
+/* Per-language adjustments (generated by render.py). */
+html[lang="tl"] body * {
+  letter-spacing: 0 !important;
+  text-indent: 0 !important;
+}
+html[lang="tl"] .brand {
+  letter-spacing: 0.22em !important;
+}
+</style>
+</head>
+<body>
+
+<div class="wrap">
+  <div class="topbar"><p class="brand"><a href="../">Colors for the Fool</a></p><nav class="switch" aria-label="Mga kaugnay na pahina"><span>Tungkol sa mga Wika</span></nav></div>
+
+  <header class="hero">
+    <p class="eyebrow">Languages &amp; Readers</p>
+    <h1>Tungkol sa mga Wika</h1>
+    <p class="lede">Ang 28 wika ng Colors for the Fool, ipinakikilala sa pamamagitan ng dami ng nagsasalita ng mga ito at ng uri ng taong maaaring dumalaw sa pagbasang ito (noong Oktubre 9, 2026).</p>
+    <div class="ornament">✦</div>
+  </header>
+
+  <nav aria-label="Mga wika">
+    <ul class="langs"><li><a href="#ja"><span lang="ja">日本語</span></a></li><li><a href="#en"><span lang="en">English</span></a></li><li><a href="#zh-hans"><span lang="zh-Hans">简体中文</span></a></li><li><a href="#zh"><span lang="zh-Hant">繁體中文</span></a></li><li><a href="#hi"><span lang="hi">हिन्दी</span></a></li><li><a href="#es"><span lang="es">Español</span></a></li><li><a href="#ar"><span lang="ar" dir="rtl">العربية</span></a></li><li><a href="#fr"><span lang="fr">Français</span></a></li><li><a href="#bn"><span lang="bn">বাংলা</span></a></li><li><a href="#pt"><span lang="pt">Português</span></a></li><li><a href="#id"><span lang="id">Bahasa Indonesia</span></a></li><li><a href="#ms"><span lang="ms">Bahasa Melayu</span></a></li><li><a href="#ur"><span lang="ur" dir="rtl">اردو</span></a></li><li><a href="#ru"><span lang="ru">Русский</span></a></li><li><a href="#de"><span lang="de">Deutsch</span></a></li><li><a href="#vi"><span lang="vi">Tiếng Việt</span></a></li><li><a href="#sw"><span lang="sw">Kiswahili</span></a></li><li><a href="#tr"><span lang="tr">Türkçe</span></a></li><li><a href="#tl"><span lang="fil">Filipino</span></a></li><li><a href="#fa"><span lang="fa" dir="rtl">فارسی</span></a></li><li><a href="#ko"><span lang="ko">한국어</span></a></li><li><a href="#th"><span lang="th">ไทย</span></a></li><li><a href="#it"><span lang="it">Italiano</span></a></li><li><a href="#pl"><span lang="pl">Polski</span></a></li><li><a href="#uk"><span lang="uk">Українська</span></a></li><li><a href="#nl"><span lang="nl">Nederlands</span></a></li><li><a href="#ang"><span lang="ang">Englisc</span></a></li><li><a href="#soro"><span lang="ja">御座候</span></a></li></ul>
+  </nav>
+
+<section class="lang" id="ja" aria-labelledby="h-ja">
+  <p class="kicker">01 · ja</p>
+  <h2 id="h-ja"><span lang="ja">日本語</span><small>Hapones</small></h2>
+  <dl class="nums">
+    <div><dt>Nagsasalita</dt><dd>126 milyon</dd></div>
+    <div><dt>Web</dt><dd>4.9% (ika-4)</dd></div>
+    <div><dt>Oras online</dt><dd>390 milyong oras</dd></div>
+  </dl>
+  <p class="region"><b>Saan</b>Japan. Sa labas ng Japan, binabasa ito ng mga may lahing Hapones sa Brazil at sa Estados Unidos (Hawaii, California) at ng mga Hapones na nakatira sa ibang bansa. Marami ring tao sa buong mundo ang nag-aaral ng Hapones.</p>
+  <div class="persona">
+    <figure><img src="../../language-intro/img/ja.webp" width="800" height="1000" loading="lazy" decoding="async" alt="Isang kathang-isip na persona. 森下 由佳 (Yuka Morishita), 34, nakatira sa Fukuoka. Medical clerk siya sa isang general hospital."></figure>
+    <div class="ptext"><h3>Persona</h3><p><span lang="ja">森下 由佳</span> (Yuka Morishita), 34, nakatira sa Fukuoka. Medical clerk siya sa isang general hospital. Alas-7:40 ng umaga, binubuksan niya ang kanyang iPhone habang nakaupo sa subway, at dumarating siya rito mula sa isang Instagram Reel. Hindi niya masyadong sineseryoso ang hula, pero gusto niya ito nang sapat para matawa kapag hindi tumama. Bumubunot siya ng isang baraha, at kapag baligtad ito, nagpapasya siyang “ngayon ay araw para hindi pilitin ang sarili.” Natutuwa siya kapag dumarating ang kuwento sa kulay nito sa pamamagitan ng mga kilalang lugar at gawang-kamay, gaya ng habing Hakata o pagtitina ng indigo sa Chikugo. Ginagamit niya ang kulay na gusto niya bilang pahiwatig sa kulay ng panyo o kuko niya sa araw na iyon. Minsan, nagpapadala siya ng mensahe sa LINE sa isang katrabaho: “Indigo raw ako ngayon.”</p></div>
+  </div>
+  <details><summary>Mga bilang at tala</summary>
+    <div class="scroll"><table class="facts"><thead><tr><th scope="col">Aytem</th><th scope="col">Halaga</th><th scope="col">Tala</th></tr></thead><tbody>
+      <tr><th scope="row">Kabuuang nagsasalita (unang + ikalawang wika)</th><td>126 milyon</td><td>Ethnologue, edisyong 2026</td></tr>
+      <tr><th scope="row">Bahagi sa nilalaman ng web</th><td>4.9% (ika-4)</td><td>W3Techs, Oktubre 2026</td></tr>
+      <tr><th scope="row">Gumagamit ng internet ayon sa wika</th><td>2.6% (ika-8)</td><td>Internet World Stats, Marso 2020</td></tr>
+      <tr><th scope="row">Oras online</th><td>Tinatayang 100 milyong gumagamit ng internet, karaniwang 3.9 oras bawat araw, kabuuang 390 milyong oras bawat araw (ika-18)</td><td>Tantiya ni Claude. Ang oras bawat tao ay kabilang sa pinakamaikli sa mundo</td></tr>
+    </tbody></table></div>
+  </details>
+</section>
+
+<section class="lang" id="en" aria-labelledby="h-en">
+  <p class="kicker">02 · en</p>
+  <h2 id="h-en"><span lang="en">English</span><small>Ingles</small></h2>
+  <dl class="nums">
+    <div><dt>Nagsasalita</dt><dd>1.493 bilyon (una)</dd></div>
+    <div><dt>Web</dt><dd>49.5% (una)</dd></div>
+    <div><dt>Oras online</dt><dd>5.78 bilyong oras</dd></div>
+  </dl>
+  <p class="region"><b>Saan</b>Sinasalita bilang unang wika sa Estados Unidos, United Kingdom, Canada, Australia, New Zealand, at Ireland. Sa India, Pilipinas, Nigeria, Singapore, Kenya, at iba pa, ito ay opisyal na wika o wika ng edukasyon. Binabasa ng mga nagsasalita nito bilang ikalawang wika sa buong mundo ang mga pahinang Ingles.</p>
+  <div class="persona">
+    <figure><img src="../../language-intro/img/en.webp" width="800" height="1000" loading="lazy" decoding="async" alt="Isang kathang-isip na persona. Maya Reynolds, 29, nakatira sa Manchester, UK. Teaching assistant siya sa isang primary school."></figure>
+    <div class="ptext"><h3>Persona</h3><p>Maya Reynolds, 29, nakatira sa Manchester, UK. Teaching assistant siya sa isang primary school. Alas-10 ng gabi, binubuksan niya ang kanyang Android phone habang nasa kama. Madalas siyang manood ng mga tarot video sa TikTok at gusto niya kung gaano kadali ang pagbunot ng isang baraha. Binabasa niya ang kahulugan ng baraha at gustong-gusto niya ang sandaling lumilitaw ang pangalan ng kulay sa dulo ng kuwento. Kapag ang kuwento ng kulay ay konektado sa mga lugar sa Britain, gaya ng thistle ng Scotland o lana ng Yorkshire, ipinapadala niya ang link sa mga kaibigan. Nag-eenjoy din siyang palitan ang istilo ng baraha para ikumpara ang Art Nouveau at stained glass.</p></div>
+  </div>
+  <details><summary>Mga bilang at tala</summary>
+    <div class="scroll"><table class="facts"><thead><tr><th scope="col">Aytem</th><th scope="col">Halaga</th><th scope="col">Tala</th></tr></thead><tbody>
+      <tr><th scope="row">Kabuuang nagsasalita (unang + ikalawang wika)</th><td>1.493 bilyon (una)</td><td>Ethnologue, edisyong 2026</td></tr>
+      <tr><th scope="row">Bahagi sa nilalaman ng web</th><td>49.5% (una)</td><td>W3Techs, Oktubre 2026</td></tr>
+      <tr><th scope="row">Gumagamit ng internet ayon sa wika</th><td>25.9% (una)</td><td>Internet World Stats, Marso 2020</td></tr>
+      <tr><th scope="row">Oras online</th><td>Tinatayang 850 milyong gumagamit ng internet, karaniwang 6.8 oras bawat araw, kabuuang 5.78 bilyong oras bawat araw (ika-2)</td><td>Tantiya ni Claude. Binibilang lamang ang mga pangunahing nagbabasa sa Ingles; ayon sa isang tala, magiging una ito kung isasama ang mga nagbabasa nito bilang ikalawang wika</td></tr>
+    </tbody></table></div>
+  </details>
+</section>
+
+<section class="lang" id="zh-hans" aria-labelledby="h-zh-hans">
+  <p class="kicker">03 · zh-hans</p>
+  <h2 id="h-zh-hans"><span lang="zh-Hans">简体中文</span><small>Pinasimpleng Tsino</small></h2>
+  <dl class="nums">
+    <div><dt>Nagsasalita</dt><dd>1.183 bilyon (Mandarin)</dd></div>
+    <div><dt>Web</dt><dd>1.3% (ika-12, lahat ng Tsino)</dd></div>
+    <div><dt>Oras online</dt><dd>6.20 bilyong oras (Pinasimple + Tradisyonal)</dd></div>
+  </dl>
+  <p class="region"><b>Saan</b>Mainland China, kung saan ito ang sulat ng mga paaralan at ng pamahalaan. Pamantayan din ang pinasimpleng mga titik sa mga komunidad na Tsino ng Singapore at Malaysia. May malalaking komunidad na Tsino sa North America, Australia, Europe, at Southeast Asia, at marami ring estudyanteng nag-aaral sa ibang bansa.</p>
+  <div class="persona">
+    <figure><img src="../../language-intro/img/zh-hans.webp" width="800" height="1000" loading="lazy" decoding="async" alt="Isang kathang-isip na persona. 林悦 (Lin Yue), 26, nakatira sa Chengdu. UI designer siya sa isang game company."></figure>
+    <div class="ptext"><h3>Persona</h3><p><span lang="zh-Hans">林悦</span> (Lin Yue), 26, nakatira sa Chengdu. UI designer siya sa isang game company. Alas-12:30, sa lunch break niya, nagsasaliksik siya sa Xiaohongshu gamit ang kanyang Huawei phone tungkol sa biyahe niya sa Kyoto sa susunod na buwan, nang matagpuan niya ang site na ito sa mga tala ng isang manlalakbay. Dahil sa trabaho niya, sensitibo siya sa mga pangalan ng kulay at sa mga palette. Bumubunot siya ng isang baraha, at kapag dumarating ang kuwento sa kulay nito sa pamamagitan ng celadon ng dinastiyang Song o Shu brocade (ang brocade ng Sichuan), sine-save niya ang screen at ipinapadala sa mga katrabaho sa WeChat. Gusto niyang tingnan ang mga baraha sa istilong ink-wash.</p></div>
+  </div>
+  <details><summary>Mga bilang at tala</summary>
+    <div class="scroll"><table class="facts"><thead><tr><th scope="col">Aytem</th><th scope="col">Halaga</th><th scope="col">Tala</th></tr></thead><tbody>
+      <tr><th scope="row">Kabuuang nagsasalita (unang + ikalawang wika)</th><td>1.183 bilyon (Mandarin)</td><td>Ethnologue, edisyong 2026. Minsan lang binibilang ang Tradisyonal at Pinasimpleng Tsino, bilang Mandarin</td></tr>
+      <tr><th scope="row">Bahagi sa nilalaman ng web</th><td>1.3% (ika-12, lahat ng Tsino)</td><td>Hindi pinaghihiwalay ng W3Techs ang Pinasimpleng Tsino at Tradisyonal na Tsino</td></tr>
+      <tr><th scope="row">Gumagamit ng internet ayon sa wika</th><td>19.4% (ika-2, lahat ng Tsino)</td><td>Internet World Stats, Marso 2020</td></tr>
+      <tr><th scope="row">Oras online</th><td>Tinatayang 1.17 bilyong gumagamit ng internet, karaniwang 5.3 oras bawat araw, kabuuang 6.20 bilyong oras bawat araw (una, Pinasimple + Tradisyonal)</td><td>Tantiya ni Claude. 1.11 bilyon sa mainland China, dagdag ang Taiwan, Hong Kong, at mga Tsinong nasa ibang bansa</td></tr>
+    </tbody></table></div>
+  </details>
+</section>
+
+<section class="lang" id="zh" aria-labelledby="h-zh">
+  <p class="kicker">04 · zh</p>
+  <h2 id="h-zh"><span lang="zh-Hant">繁體中文</span><small>Tradisyonal na Tsino</small></h2>
+  <dl class="nums">
+    <div><dt>Nagsasalita</dt><dd>Binilang kasama ng Pinasimpleng Tsino bilang Mandarin (1.183 bilyon)</dd></div>
+    <div><dt>Web</dt><dd>1.3% (ika-12, lahat ng Tsino)</dd></div>
+    <div><dt>Oras online</dt><dd>Kabuuang 6.20 bilyong oras bawat araw, kasama ang Pinasimpleng Tsino (una)</dd></div>
+  </dl>
+  <p class="region"><b>Saan</b>Ang sulat na ginagamit sa Taiwan, Hong Kong, at Macau. Marami rin sa matatagal nang komunidad na Tsino sa North America at Australia ang gumagamit ng Tradisyonal na mga titik. Standard Chinese (Huayu) ang sinasalita sa Taiwan; sa Hong Kong at Macau, Cantonese ang sinasalitang wika, at sa pagsulat ay ginagamit ang Tradisyonal na nakasulat na pamantayan.</p>
+  <div class="persona">
+    <figure><img src="../../language-intro/img/zh.webp" width="800" height="1000" loading="lazy" decoding="async" alt="Isang kathang-isip na persona. 陳怡君 (Chen Yi-chun), 31, nakatira sa Taichung. Bank teller siya."></figure>
+    <div class="ptext"><h3>Persona</h3><p><span lang="zh-Hant">陳怡君</span> (Chen Yi-chun), 31, nakatira sa Taichung. Bank teller siya. Alas-11 ng gabi, bago matulog, pinaplano niya sa kanyang iPhone ang biyahe sa Kanazawa sa susunod na buwan. Binuksan niya ang site na ito mula sa link na ipinadala ng isang kaibigan sa LINE. Bumubunot siya ng isang baraha na halos kapareho ng pakiramdam ng pagbunot ng papel ng kapalaran sa templo. Kapag dumarating ang kuwento sa kulay nito sa pamamagitan ng mga gawang-kamay ng Japan gaya ng Kaga yuzen na pagtitina o gold leaf, nadaragdagan ng isa pang lugar ang kanyang biyahe. Ibinabalik niya sa kaibigan sa LINE ang pahina ng resulta.</p></div>
+  </div>
+  <details><summary>Mga bilang at tala</summary>
+    <div class="scroll"><table class="facts"><thead><tr><th scope="col">Aytem</th><th scope="col">Halaga</th><th scope="col">Tala</th></tr></thead><tbody>
+      <tr><th scope="row">Kabuuang nagsasalita (unang + ikalawang wika)</th><td>Binilang kasama ng Pinasimpleng Tsino bilang Mandarin (1.183 bilyon)</td><td>Minsan lang binibilang ang Tradisyonal at Pinasimpleng Tsino, bilang Mandarin. Walang datos tungkol sa mga nagbabasa ng Tradisyonal na Tsino lamang</td></tr>
+      <tr><th scope="row">Bahagi sa nilalaman ng web</th><td>1.3% (ika-12, lahat ng Tsino)</td><td>Hindi pinaghihiwalay ng W3Techs ang Pinasimpleng Tsino at Tradisyonal na Tsino</td></tr>
+      <tr><th scope="row">Gumagamit ng internet ayon sa wika</th><td>19.4% (ika-2, lahat ng Tsino)</td><td>Internet World Stats, Marso 2020</td></tr>
+      <tr><th scope="row">Oras online</th><td>Kabuuang 6.20 bilyong oras bawat araw, kasama ang Pinasimpleng Tsino (una)</td><td>Tantiya ni Claude. Walang hiwalay na tantiya para sa Tradisyonal na Tsino</td></tr>
+    </tbody></table></div>
+  </details>
+</section>
+
+<section class="lang" id="hi" aria-labelledby="h-hi">
+  <p class="kicker">05 · hi</p>
+  <h2 id="h-hi"><span lang="hi">हिन्दी</span><small>Hindi</small></h2>
+  <dl class="nums">
+    <div><dt>Nagsasalita</dt><dd>611 milyon (ika-3)</dd></div>
+    <div><dt>Web</dt><dd>Wala pang 0.1% (ika-38)</dd></div>
+    <div><dt>Oras online</dt><dd>1.74 bilyong oras</dd></div>
+  </dl>
+  <p class="region"><b>Saan</b>Hilaga at gitnang India (Uttar Pradesh, Bihar, Rajasthan, Madhya Pradesh, Delhi, at iba pa). May mga nagsasalita rin nito sa Nepal at Fiji. Malalaking komunidad na Indian ang nakatira sa mga bansa sa Gulf, United Kingdom, Estados Unidos, at Canada.</p>
+  <div class="persona">
+    <figure><img src="../../language-intro/img/hi.webp" width="800" height="1000" loading="lazy" decoding="async" alt="Isang kathang-isip na persona. Neha Verma, 24, nakatira sa Jaipur. Articled trainee siya sa chartered accountancy."></figure>
+    <div class="ptext"><h3>Persona</h3><p>Neha Verma, 24, nakatira sa Jaipur. Articled trainee siya sa chartered accountancy. Alas-8 ng umaga, bago sumakay sa metro, bumubunot siya ng isang baraha sa kanyang Redmi phone, na parang karugtong ng rashifal na laging tinitingnan ng kanyang ina. Nakababasa rin siya ng Ingles, pero pakiramdam niya ay mas tumatatak sa kanya ang mga kuwento ng kulay sa Hindi. Kapag dumarating ang kuwento sa kulay nito sa pamamagitan ng mga gusali ng “Pink City” ng Jaipur o ng tie-dye ng Rajasthan, pumipili siya ng dupatta na ganoong kulay. Ipinapadala niya sa kanyang ate sa WhatsApp ang mga resultang gusto niya.</p></div>
+  </div>
+  <details><summary>Mga bilang at tala</summary>
+    <div class="scroll"><table class="facts"><thead><tr><th scope="col">Aytem</th><th scope="col">Halaga</th><th scope="col">Tala</th></tr></thead><tbody>
+      <tr><th scope="row">Kabuuang nagsasalita (unang + ikalawang wika)</th><td>611 milyon (ika-3)</td><td>Ethnologue, edisyong 2026</td></tr>
+      <tr><th scope="row">Bahagi sa nilalaman ng web</th><td>Wala pang 0.1% (ika-38)</td><td>W3Techs, Oktubre 2026. Napakakaunti ng web page kumpara sa dami ng nagsasalita</td></tr>
+      <tr><th scope="row">Gumagamit ng internet ayon sa wika</th><td>Wala sa top 10</td><td>Internet World Stats, Marso 2020</td></tr>
+      <tr><th scope="row">Oras online</th><td>Tinatayang 290 milyong gumagamit ng internet, karaniwang 6.0 oras bawat araw, kabuuang 1.74 bilyong oras bawat araw (ika-6)</td><td>Tantiya ni Claude. Ipinapalagay na mga 35% ng mga gumagamit sa India ay gumagamit ng Hindi. Ito ang pinakamahinang palagay</td></tr>
+    </tbody></table></div>
+  </details>
+</section>
+
+<section class="lang" id="es" aria-labelledby="h-es">
+  <p class="kicker">06 · es</p>
+  <h2 id="h-es"><span lang="es">Español</span><small>Espanyol</small></h2>
+  <dl class="nums">
+    <div><dt>Nagsasalita</dt><dd>561 milyon (ika-4)</dd></div>
+    <div><dt>Web</dt><dd>6.0% (ika-2)</dd></div>
+    <div><dt>Oras online</dt><dd>2.96 bilyong oras</dd></div>
+  </dl>
+  <p class="region"><b>Saan</b>Spain at maraming bansa sa Latin America, kabilang ang Mexico, Colombia, Argentina, Peru, Chile, at Venezuela. Marami ring tao sa Estados Unidos ang nagsasalita ng Espanyol sa bahay (hindi pa natitiyak dito ang bilang). Opisyal na wika rin ito ng Equatorial Guinea.</p>
+  <div class="persona">
+    <figure><img src="../../language-intro/img/es.webp" width="800" height="1000" loading="lazy" decoding="async" alt="Isang kathang-isip na persona. Valeria Ortiz, 32, nakatira sa Guadalajara, Mexico. Dental hygienist siya."></figure>
+    <div class="ptext"><h3>Persona</h3><p>Valeria Ortiz, 32, nakatira sa Guadalajara, Mexico. Dental hygienist siya. Alas-9:30 ng gabi, sa sofa pagkatapos ng trabaho, binubuksan niya ang kanyang Android phone; dumating siya sa site na ito mula sa isang kuwento tungkol sa tarot na nakita niya sa TikTok. Gusto niyang basahin ang kahulugan ng baraha, pero ang pinakagusto niya ay ang paghihintay sa pangalan ng kulay sa dulo. Kapag dumarating ang kuwento sa crimson sa pamamagitan ng cochineal ng Mexico (pulang kinukuha mula sa insektong nabubuhay sa cactus), agad niya itong ipinapadala sa kanyang nakababatang kapatid na babae sa WhatsApp. Sa katapusan ng taon, balak niyang gamitin ang site na ito para piliin ang kulay ng kanyang panloob.</p></div>
+  </div>
+  <details><summary>Mga bilang at tala</summary>
+    <div class="scroll"><table class="facts"><thead><tr><th scope="col">Aytem</th><th scope="col">Halaga</th><th scope="col">Tala</th></tr></thead><tbody>
+      <tr><th scope="row">Kabuuang nagsasalita (unang + ikalawang wika)</th><td>561 milyon (ika-4)</td><td>Ethnologue, edisyong 2026</td></tr>
+      <tr><th scope="row">Bahagi sa nilalaman ng web</th><td>6.0% (ika-2)</td><td>W3Techs, Oktubre 2026</td></tr>
+      <tr><th scope="row">Gumagamit ng internet ayon sa wika</th><td>7.9% (ika-3)</td><td>Internet World Stats, Marso 2020</td></tr>
+      <tr><th scope="row">Oras online</th><td>Tinatayang 390 milyong gumagamit ng internet, karaniwang 7.6 oras bawat araw, kabuuang 2.96 bilyong oras bawat araw (ika-3)</td><td>Tantiya ni Claude. Mexico, Spain, Colombia, Argentina, at iba pa, dagdag ang mga taong pangunahing Espanyol ang wika sa Estados Unidos</td></tr>
+    </tbody></table></div>
+  </details>
+</section>
+
+<section class="lang" id="ar" aria-labelledby="h-ar">
+  <p class="kicker">07 · ar</p>
+  <h2 id="h-ar"><span lang="ar" dir="rtl">العربية</span><small>Arabe (Modernong Pamantayang Arabe)</small></h2>
+  <dl class="nums">
+    <div><dt>Nagsasalita</dt><dd>335 milyon (ika-5, Modernong Pamantayang Arabe)</dd></div>
+    <div><dt>Web</dt><dd>0.6% (ika-19)</dd></div>
+    <div><dt>Oras online</dt><dd>2.31 bilyong oras</dd></div>
+  </dl>
+  <p class="region"><b>Saan</b>Opisyal na wika ng mga 22 bansa sa Middle East at North Africa, kabilang ang Egypt, Saudi Arabia, Iraq, Algeria, Morocco, Sudan, Syria, Jordan, at UAE. Marami ring nagsasalita ng Arabe ang nakatira sa Europe (France, Germany, at iba pa) at North America. Ang site ay nakaayos mula kanan pakaliwa.</p>
+  <div class="persona">
+    <figure><img src="../../language-intro/img/ar.webp" width="800" height="1000" loading="lazy" decoding="async" alt="Isang kathang-isip na persona. Nour Haddad, 28, nakatira sa Amman, Jordan. Nagtatrabaho siya sa isang architectural design firm."></figure>
+    <div class="ptext"><h3>Persona</h3><p>Nour Haddad, 28, nakatira sa Amman, Jordan. Nagtatrabaho siya sa isang architectural design firm. Alas-8 ng gabi, binubuksan niya ang kanyang iPhone sa balkonahe ng bahay. Hindi siya naniniwala sa hula; ine-enjoy niya ang larawan ng baraha at ang kuwento bilang “maikling babasahin.” Kapag dumarating ang kuwento sa kulay nito sa pamamagitan ng asul ng mga tile ng arkitekturang Islamiko o ng rosas na bato ng Petra, itinatala niya ito bilang sanggunian para sa mga color scheme sa trabaho. Minsan, ipinapadala niya ang pahina ng resulta sa isang WhatsApp group ng mga kapwa arkitekto.</p></div>
+  </div>
+  <details><summary>Mga bilang at tala</summary>
+    <div class="scroll"><table class="facts"><thead><tr><th scope="col">Aytem</th><th scope="col">Halaga</th><th scope="col">Tala</th></tr></thead><tbody>
+      <tr><th scope="row">Kabuuang nagsasalita (unang + ikalawang wika)</th><td>335 milyon (ika-5, Modernong Pamantayang Arabe)</td><td>Ethnologue, edisyong 2026</td></tr>
+      <tr><th scope="row">Bahagi sa nilalaman ng web</th><td>0.6% (ika-19)</td><td>W3Techs, Oktubre 2026</td></tr>
+      <tr><th scope="row">Gumagamit ng internet ayon sa wika</th><td>5.2% (ika-4)</td><td>Internet World Stats, Marso 2020</td></tr>
+      <tr><th scope="row">Oras online</th><td>Tinatayang 330 milyong gumagamit ng internet, karaniwang 7.0 oras bawat araw, kabuuang 2.31 bilyong oras bawat araw (ika-4)</td><td>Tantiya ni Claude. Egypt, Saudi Arabia, Iraq, Algeria, Morocco, at iba pa</td></tr>
+    </tbody></table></div>
+  </details>
+</section>
+
+<section class="lang" id="fr" aria-labelledby="h-fr">
+  <p class="kicker">08 · fr</p>
+  <h2 id="h-fr"><span lang="fr">Français</span><small>Pranses</small></h2>
+  <dl class="nums">
+    <div><dt>Nagsasalita</dt><dd>334 milyon (ika-6)</dd></div>
+    <div><dt>Web</dt><dd>4.5% (ika-5)</dd></div>
+    <div><dt>Oras online</dt><dd>750 milyong oras</dd></div>
+  </dl>
+  <p class="region"><b>Saan</b>France, timog Belgium, kanlurang Switzerland, Quebec sa Canada, at Luxembourg. Sa West at Central Africa (Côte d’Ivoire, Senegal, Democratic Republic of the Congo, Cameroon, at iba pa), ito ang wika ng mga paaralan at ng pamahalaan. Malawak din itong ginagamit sa Morocco, Algeria, at Tunisia sa North Africa.</p>
+  <div class="persona">
+    <figure><img src="../../language-intro/img/fr.webp" width="800" height="1000" loading="lazy" decoding="async" alt="Isang kathang-isip na persona. Hélène Garnier, 41, nakatira sa Lyon. Nagpapatakbo siya ng isang studio ng bookbinding at konserbasyon ng papel."></figure>
+    <div class="ptext"><h3>Persona</h3><p>Hélène Garnier, 41, nakatira sa Lyon. Nagpapatakbo siya ng isang studio ng bookbinding at konserbasyon ng papel. Alas-10 ng umaga ng Linggo, binubuksan niya ang kanyang tablet sa workbench ng studio. Naaalala niya ang Marseille deck sa bahay ng kanyang lola, at pamilyar sa kanya ang mga pangalan ng Major Arcana. Kapag dumarating ang kuwento sa kulay nito sa pamamagitan ng pagtitina ng seda sa Lyon o ng isang nagbebenta ng kulay sa Paris, ginagamit niya ito sa pagpili ng kulay ng endpaper para sa susunod niyang binding. Art Nouveau ang istilong pinipili niya.</p></div>
+  </div>
+  <details><summary>Mga bilang at tala</summary>
+    <div class="scroll"><table class="facts"><thead><tr><th scope="col">Aytem</th><th scope="col">Halaga</th><th scope="col">Tala</th></tr></thead><tbody>
+      <tr><th scope="row">Kabuuang nagsasalita (unang + ikalawang wika)</th><td>334 milyon (ika-6)</td><td>Ethnologue, edisyong 2026</td></tr>
+      <tr><th scope="row">Bahagi sa nilalaman ng web</th><td>4.5% (ika-5)</td><td>W3Techs, Oktubre 2026</td></tr>
+      <tr><th scope="row">Gumagamit ng internet ayon sa wika</th><td>3.3% (ika-7)</td><td>Internet World Stats, Marso 2020</td></tr>
+      <tr><th scope="row">Oras online</th><td>Tinatayang 125 milyong gumagamit ng internet, karaniwang 6.0 oras bawat araw, kabuuang 750 milyong oras bawat araw (ika-9)</td><td>Tantiya ni Claude. France, Belgium, at Quebec, dagdag ang francophone na Africa</td></tr>
+    </tbody></table></div>
+  </details>
+</section>
+
+<section class="lang" id="bn" aria-labelledby="h-bn">
+  <p class="kicker">09 · bn</p>
+  <h2 id="h-bn"><span lang="bn">বাংলা</span><small>Bengali</small></h2>
+  <dl class="nums">
+    <div><dt>Nagsasalita</dt><dd>274 milyon (ika-7)</dd></div>
+    <div><dt>Web</dt><dd>Wala pang 0.1% (ika-39)</dd></div>
+    <div><dt>Oras online</dt><dd>610 milyong oras</dd></div>
+  </dl>
+  <p class="region"><b>Saan</b>Bangladesh (pambansang wika) at ang mga estado ng India na West Bengal, Tripura, at bahagi ng Assam. Maraming taga-Bangladesh ang nakatira sa United Kingdom (East London), mga bansa sa Gulf, Estados Unidos, at Malaysia.</p>
+  <div class="persona">
+    <figure><img src="../../language-intro/img/bn.webp" width="800" height="1000" loading="lazy" decoding="async" alt="Isang kathang-isip na persona. Farhana Akter, 23, nakatira sa Dhaka. Nag-aaral siya ng English literature sa unibersidad."></figure>
+    <div class="ptext"><h3>Persona</h3><p>Farhana Akter, 23, nakatira sa Dhaka. Nag-aaral siya ng English literature sa unibersidad. Alas-10 ng gabi, habang nagpapahinga sa pag-aaral, tumitingin siya sa Facebook sa kanyang Samsung phone at dumating mula sa pahina ng resulta na ibinahagi ng isang kaibigan. Hindi niya ito tinitingnan bilang hula kundi bilang maikling kuwentong mababasa niya sa Bengali. Kapag dumarating ang kuwento sa ivory sa pamamagitan ng muslin ng Dhaka o habing Jamdani, kinokopya niya ang pangalan ng kulay sa kanyang kuwaderno ng tula.</p></div>
+  </div>
+  <details><summary>Mga bilang at tala</summary>
+    <div class="scroll"><table class="facts"><thead><tr><th scope="col">Aytem</th><th scope="col">Halaga</th><th scope="col">Tala</th></tr></thead><tbody>
+      <tr><th scope="row">Kabuuang nagsasalita (unang + ikalawang wika)</th><td>274 milyon (ika-7)</td><td>Ethnologue, edisyong 2026</td></tr>
+      <tr><th scope="row">Bahagi sa nilalaman ng web</th><td>Wala pang 0.1% (ika-39)</td><td>W3Techs, Oktubre 2026</td></tr>
+      <tr><th scope="row">Gumagamit ng internet ayon sa wika</th><td>Wala sa top 10</td><td>Internet World Stats, Marso 2020</td></tr>
+      <tr><th scope="row">Oras online</th><td>Tinatayang 110 milyong gumagamit ng internet, karaniwang 5.5 oras bawat araw, kabuuang 610 milyong oras bawat araw (ika-10)</td><td>Tantiya ni Claude. Bangladesh, dagdag ang West Bengal</td></tr>
+    </tbody></table></div>
+  </details>
+</section>
+
+<section class="lang" id="pt" aria-labelledby="h-pt">
+  <p class="kicker">10 · pt</p>
+  <h2 id="h-pt"><span lang="pt">Português</span><small>Portuges (Brazil)</small></h2>
+  <dl class="nums">
+    <div><dt>Nagsasalita</dt><dd>269 milyon (ika-8)</dd></div>
+    <div><dt>Web</dt><dd>4.1% (ika-6)</dd></div>
+    <div><dt>Oras online</dt><dd>1.89 bilyong oras</dd></div>
+  </dl>
+  <p class="region"><b>Saan</b>Brazil (pt-BR ang gamit ng site) at Portugal. Opisyal na wika rin ito sa mga bansang Aprikano gaya ng Angola, Mozambique, at Cape Verde. Maraming Brazilian na may lahing Hapones ang nakatira sa Japan. May mga komunidad na Brazilian sa Estados Unidos, Portugal, at Japan.</p>
+  <div class="persona">
+    <figure><img src="../../language-intro/img/pt.webp" width="800" height="1000" loading="lazy" decoding="async" alt="Isang kathang-isip na persona. Juliana Costa, 30, nakatira sa Recife. Nurse siya sa ospital na nagna-night shift din."></figure>
+    <div class="ptext"><h3>Persona</h3><p>Juliana Costa, 30, nakatira sa Recife. Nurse siya sa ospital na nagna-night shift din. Alas-6:30 ng umaga, sa bus pauwi pagkatapos ng night shift, binubuksan niya ang kanyang Samsung phone at bumubunot ng isang baraha. Mas inaabangan niya ang kulay sa dulo ng kuwento kaysa sa kahulugan ng baraha. Kapag dumarating ang kuwento sa kulay nito sa pamamagitan ng pau-brasil (ang punong pinagkukunan ng pulang tina na pinagmulan ng pangalan ng Brazil), ipinapadala niya ito sa WhatsApp group ng mga katrabaho. Balak din niyang bumunot dito para piliin ang kulay ng susuotin niya sa bisperas ng Bagong Taon.</p></div>
+  </div>
+  <details><summary>Mga bilang at tala</summary>
+    <div class="scroll"><table class="facts"><thead><tr><th scope="col">Aytem</th><th scope="col">Halaga</th><th scope="col">Tala</th></tr></thead><tbody>
+      <tr><th scope="row">Kabuuang nagsasalita (unang + ikalawang wika)</th><td>269 milyon (ika-8)</td><td>Ethnologue, edisyong 2026</td></tr>
+      <tr><th scope="row">Bahagi sa nilalaman ng web</th><td>4.1% (ika-6)</td><td>W3Techs, Oktubre 2026</td></tr>
+      <tr><th scope="row">Gumagamit ng internet ayon sa wika</th><td>3.7% (ika-6)</td><td>Internet World Stats, Marso 2020</td></tr>
+      <tr><th scope="row">Oras online</th><td>Tinatayang 210 milyong gumagamit ng internet, karaniwang 9.0 oras bawat araw, kabuuang 1.89 bilyong oras bawat araw (ika-5)</td><td>Tantiya ni Claude. Karamihan ay Brazil. Ang oras online ay kabilang sa pinakamahaba sa mundo</td></tr>
+    </tbody></table></div>
+  </details>
+</section>
+
+<section class="lang" id="id" aria-labelledby="h-id">
+  <p class="kicker">11 · id</p>
+  <h2 id="h-id"><span lang="id">Bahasa Indonesia</span><small>Indones</small></h2>
+  <dl class="nums">
+    <div><dt>Nagsasalita</dt><dd>255 milyon (ika-9)</dd></div>
+    <div><dt>Web</dt><dd>1.2% (ika-13)</dd></div>
+    <div><dt>Oras online</dt><dd>1.55 bilyong oras</dd></div>
+  </dl>
+  <p class="region"><b>Saan</b>Ang pambansang wika ng Indonesia, ginagamit sa paaralan at trabaho ng mahigit 200 milyong tao. Sa Timor-Leste, ito ay working language. Halos nagkakaintindihan ito at ang Malay ng Malaysia, Brunei, at Singapore. Dumarami ang mga Indones na nagtatrabaho sa Japan bilang technical intern trainee o sa ilalim ng programang Specified Skilled Worker.</p>
+  <div class="persona">
+    <figure><img src="../../language-intro/img/id.webp" width="800" height="1000" loading="lazy" decoding="async" alt="Isang kathang-isip na persona. Dimas Pratama, 25, nakatira sa Bandung. Junior graphic designer siya sa isang startup."></figure>
+    <div class="ptext"><h3>Persona</h3><p>Dimas Pratama, 25, nakatira sa Bandung. Junior graphic designer siya sa isang startup. Alas-9 ng umaga, binubuksan niya ang kanyang Android phone sa isang coworking space. Ginagamit niya ito hindi para manghula kundi bilang kasangkapan sa paghahanap ng ideya para sa color scheme. Binabasa niya nang pahapyaw ang kahulugan ng baraha at binabasa nang mabuti ang kuwento ng kulay. Kapag dumarating ang kuwento sa kulay nito sa pamamagitan ng indigo ng batik ng Java o ng gawang-kawayan ng Sunda, ginagawa niya itong base color ng mga draft ng poster niya sa araw na iyon. Sa kanyang Instagram Stories, ibinabahagi lang niya ang pangalan ng kulay.</p></div>
+  </div>
+  <details><summary>Mga bilang at tala</summary>
+    <div class="scroll"><table class="facts"><thead><tr><th scope="col">Aytem</th><th scope="col">Halaga</th><th scope="col">Tala</th></tr></thead><tbody>
+      <tr><th scope="row">Kabuuang nagsasalita (unang + ikalawang wika)</th><td>255 milyon (ika-9)</td><td>Ethnologue, edisyong 2026</td></tr>
+      <tr><th scope="row">Bahagi sa nilalaman ng web</th><td>1.2% (ika-13)</td><td>W3Techs, Oktubre 2026</td></tr>
+      <tr><th scope="row">Gumagamit ng internet ayon sa wika</th><td>4.3% (ika-5)</td><td>Internet World Stats, Marso 2020. Kahati ng Malay sa isang hanay; para sa Indones ang bilang</td></tr>
+      <tr><th scope="row">Oras online</th><td>Tinatayang 210 milyong gumagamit ng internet, karaniwang 7.4 oras bawat araw, kabuuang 1.55 bilyong oras bawat araw (ika-7)</td><td>Tantiya ni Claude</td></tr>
+    </tbody></table></div>
+  </details>
+</section>
+
+<section class="lang" id="ms" aria-labelledby="h-ms">
+  <p class="kicker">12 · ms</p>
+  <h2 id="h-ms"><span lang="ms">Bahasa Melayu</span><small>Malay</small></h2>
+  <dl class="nums">
+    <div><dt>Nagsasalita</dt><dd>hindi alam</dd></div>
+    <div><dt>Web</dt><dd>walang datos</dd></div>
+    <div><dt>Oras online</dt><dd>Mga 160 milyong oras (pansangguniang bilang, labas sa ranggo)</dd></div>
+  </dl>
+  <p class="region"><b>Saan</b>Malaysia, Brunei, at Singapore (pambansang wika). May mga nagsasalita rin ng Malay sa timog Thailand. Sa Malaysia, ginagamit ito ng mga Malay sa araw-araw, at pinag-aaralan din ito sa paaralan ng mga Malaysian na Tsino at Indian.</p>
+  <div class="persona">
+    <figure><img src="../../language-intro/img/ms.webp" width="800" height="1000" loading="lazy" decoding="async" alt="Isang kathang-isip na persona. Nur Aisyah binti Rahman, 27, nakatira sa Shah Alam. Pharmacist siya sa ospital."></figure>
+    <div class="ptext"><h3>Persona</h3><p>Nur Aisyah binti Rahman, 27, nakatira sa Shah Alam. Pharmacist siya sa ospital. Ala-1 ng hapon, sa lunch break niya, nanonood siya sa TikTok sa kanyang Android phone ng mga tip para sa biyahe sa Osaka sa Marso ng susunod na taon. Hindi siya naniniwala sa hula, pero gustong-gusto niya ang larawan ng mga baraha at ang mga kuwento ng kulay bilang “magandang babasahin.” Kapag dumarating ang kuwento sa kulay nito sa pamamagitan ng gintong sinulid ng songket ng Malay o ng daungan ng Malacca, ginagawa niya itong sanggunian sa kulay ng kanyang tudung (belo sa ulo) para sa biyahe. Sa WhatsApp group ng pamilya, ipinapadala lang niya ang pangalan ng kulay.</p></div>
+  </div>
+  <details><summary>Mga bilang at tala</summary>
+    <div class="scroll"><table class="facts"><thead><tr><th scope="col">Aytem</th><th scope="col">Halaga</th><th scope="col">Tala</th></tr></thead><tbody>
+      <tr><th scope="row">Kabuuang nagsasalita (unang + ikalawang wika)</th><td>hindi alam</td><td>Madalas binibilang ang Malay kasama ng Indones bilang isang macrolanguage, kaya walang hiwalay na bilang. Ayon sa pahina ng Wikipedia na “Malay language” (bumabanggit sa Ethnologue, ika-28 edisyon, 2025), ang Malay bilang macrolanguage ay may mga 90 milyong nagsasalita bilang unang wika (2020–2023) at mga 180 milyong nagsasalita bilang ikalawang wika (2020). Kasama sa bilang na ito ang mga lokal na uri ng Malay sa Indonesia, at hindi ito bilang ng Pamantayang Malay lamang</td></tr>
+      <tr><th scope="row">Bahagi sa nilalaman ng web</th><td>walang datos</td><td>Wala sa top 40 ng W3Techs</td></tr>
+      <tr><th scope="row">Gumagamit ng internet ayon sa wika</th><td>Kapareho ng hanay ng Indones</td><td>Sa Internet World Stats, ang bilang sa hanay na Indones/Malay ay ang 4.3% ng Indones lamang</td></tr>
+      <tr><th scope="row">Oras online</th><td>Mga 160 milyong oras bawat araw (pansangguniang bilang, labas sa ranggo)</td><td>Pansangguniang bilang sa labas ng ranggo sa tantiya ni Claude. Mga 60% ng mga gumagamit sa Malaysia, dagdag ang Brunei</td></tr>
+    </tbody></table></div>
+  </details>
+</section>
+
+<section class="lang" id="ur" aria-labelledby="h-ur">
+  <p class="kicker">13 · ur</p>
+  <h2 id="h-ur"><span lang="ur" dir="rtl">اردو</span><small>Urdu</small></h2>
+  <dl class="nums">
+    <div><dt>Nagsasalita</dt><dd>246 milyon (ika-10)</dd></div>
+    <div><dt>Web</dt><dd>walang datos</dd></div>
+    <div><dt>Oras online</dt><dd>520 milyong oras</dd></div>
+  </dl>
+  <p class="region"><b>Saan</b>Pakistan (pambansang wika) at hilagang India (Uttar Pradesh, Hyderabad sa Telangana, Delhi, at iba pa). Maraming may lahing Pakistani ang nakatira sa United Kingdom, mga bansa sa Gulf, Estados Unidos, at Canada. Malapit sa Hindi ang sinasalitang wika; iba ang sulat (sulat-Arabe sa istilong Nastaliq). Ang site ay nakaayos mula kanan pakaliwa.</p>
+  <div class="persona">
+    <figure><img src="../../language-intro/img/ur.webp" width="800" height="1000" loading="lazy" decoding="async" alt="Isang kathang-isip na persona. Hamza Qureshi, 30, nakatira sa Lahore. Software engineer siya sa isang fintech company."></figure>
+    <div class="ptext"><h3>Persona</h3><p>Hamza Qureshi, 30, nakatira sa Lahore. Software engineer siya sa isang fintech company. Alas-12:30 ng hatinggabi, pagkatapos ng trabaho, binubuksan niya ang kanyang Android phone habang umiinom ng chai. Lumalayo siya sa hula, pero gusto niya ang mga pahinang maganda ang pagkaka-typeset ng tekstong Urdu, at pumupunta siya rito para basahin ang mga kuwento. Kapag dumarating ang kuwento sa kulay nito sa pamamagitan ng ultramarine ng mga miniature na Mughal o ng mga tile sa pader ng Lahore Fort, ipinapadala niya ang link sa isang kaibigang makata sa WhatsApp.</p></div>
+  </div>
+  <details><summary>Mga bilang at tala</summary>
+    <div class="scroll"><table class="facts"><thead><tr><th scope="col">Aytem</th><th scope="col">Halaga</th><th scope="col">Tala</th></tr></thead><tbody>
+      <tr><th scope="row">Kabuuang nagsasalita (unang + ikalawang wika)</th><td>246 milyon (ika-10)</td><td>Ethnologue, edisyong 2026</td></tr>
+      <tr><th scope="row">Bahagi sa nilalaman ng web</th><td>walang datos</td><td>Wala sa top 40 ng W3Techs</td></tr>
+      <tr><th scope="row">Gumagamit ng internet ayon sa wika</th><td>Wala sa top 10</td><td>Internet World Stats, Marso 2020</td></tr>
+      <tr><th scope="row">Oras online</th><td>Tinatayang 95 milyong gumagamit ng internet, karaniwang 5.5 oras bawat araw, kabuuang 520 milyong oras bawat araw (ika-13)</td><td>Tantiya ni Claude. Mga 75% ng Pakistan, dagdag ang bahagi ng India</td></tr>
+    </tbody></table></div>
+  </details>
+</section>
+
+<section class="lang" id="ru" aria-labelledby="h-ru">
+  <p class="kicker">14 · ru</p>
+  <h2 id="h-ru"><span lang="ru">Русский</span><small>Ruso</small></h2>
+  <dl class="nums">
+    <div><dt>Nagsasalita</dt><dd>210 milyon (ika-11)</dd></div>
+    <div><dt>Web</dt><dd>3.4% (ika-7)</dd></div>
+    <div><dt>Oras online</dt><dd>1.16 bilyong oras</dd></div>
+  </dl>
+  <p class="region"><b>Saan</b>Opisyal na wika ng Russia, Belarus, Kazakhstan, at Kyrgyzstan. Marami rin sa ibang dating bansang Soviet (Central Asia, Caucasus, mga bansang Baltic) ang gumagamit ng Ruso. May mga komunidad na nagsasalita ng Ruso sa Israel, Germany, at Estados Unidos din.</p>
+  <div class="persona">
+    <figure><img src="../../language-intro/img/ru.webp" width="800" height="1000" loading="lazy" decoding="async" alt="Isang kathang-isip na persona. Анна Соколова (Anna Sokolova), 35, nakatira sa Novosibirsk. Chemical analysis technician siya sa isang research institute."></figure>
+    <div class="ptext"><h3>Persona</h3><p><span lang="ru">Анна Соколова</span> (Anna Sokolova), 35, nakatira sa Novosibirsk. Chemical analysis technician siya sa isang research institute. Alas-10 ng gabi, binubuksan niya ang kanyang Android phone sa kusina habang umiinom ng tsaa. Nalaman niya ang site na ito mula sa isang Telegram channel na nagpapakilala ng kulay at sining. Dahil sa trabaho niya, lalo siyang natutuwang bumunot ng baraha at sundan ang kuwento hanggang sa kulay nito sa pamamagitan ng mga mineral at pigment. Sa mga araw na lumalabas ang malachite green, ipinapakita niya sa kanyang anak na babae ang larawan ng batong iyon.</p></div>
+  </div>
+  <details><summary>Mga bilang at tala</summary>
+    <div class="scroll"><table class="facts"><thead><tr><th scope="col">Aytem</th><th scope="col">Halaga</th><th scope="col">Tala</th></tr></thead><tbody>
+      <tr><th scope="row">Kabuuang nagsasalita (unang + ikalawang wika)</th><td>210 milyon (ika-11)</td><td>Ethnologue, edisyong 2026</td></tr>
+      <tr><th scope="row">Bahagi sa nilalaman ng web</th><td>3.4% (ika-7)</td><td>W3Techs, Oktubre 2026</td></tr>
+      <tr><th scope="row">Gumagamit ng internet ayon sa wika</th><td>2.5% (ika-9)</td><td>Internet World Stats, Marso 2020</td></tr>
+      <tr><th scope="row">Oras online</th><td>Tinatayang 155 milyong gumagamit ng internet, karaniwang 7.5 oras bawat araw, kabuuang 1.16 bilyong oras bawat araw (ika-8)</td><td>Tantiya ni Claude. Russia, dagdag ang Belarus, Kazakhstan, at bahagi ng Central Asia</td></tr>
+    </tbody></table></div>
+  </details>
+</section>
+
+<section class="lang" id="de" aria-labelledby="h-de">
+  <p class="kicker">15 · de</p>
+  <h2 id="h-de"><span lang="de">Deutsch</span><small>Aleman</small></h2>
+  <dl class="nums">
+    <div><dt>Nagsasalita</dt><dd>133 milyon (ika-12)</dd></div>
+    <div><dt>Web</dt><dd>5.9% (ika-3)</dd></div>
+    <div><dt>Oras online</dt><dd>480 milyong oras</dd></div>
+  </dl>
+  <p class="region"><b>Saan</b>Germany, Austria, Switzerland (hilaga at gitna), Liechtenstein, Luxembourg, South Tyrol sa Italy, at silangang Belgium.</p>
+  <div class="persona">
+    <figure><img src="../../language-intro/img/de.webp" width="800" height="1000" loading="lazy" decoding="async" alt="Isang kathang-isip na persona. Jonas Weber, 38, nakatira sa Leipzig. Sound engineer siya sa isang teatro."></figure>
+    <div class="ptext"><h3>Persona</h3><p>Jonas Weber, 38, nakatira sa Leipzig. Sound engineer siya sa isang teatro. Ala-1 ng hapon sa isang karaniwang araw, sa break niya, binubuksan niya ito sa Firefox sa kanyang laptop. Gumagamit siya ng ad blocker at tinatanggihan niya ang mga consent banner. Hindi siya naniniwala sa hula, pero gusto niyang ikumpara ang mga istilo ng baraha (surrealist na litrato, brutalist na grapika). Kapag dumarating ang kuwento sa kulay nito sa pamamagitan ng Prussian blue, na isinilang sa Berlin noong unang bahagi ng ika-18 siglo, natutuwa siya at ikinukuwento ito sa mga katrabaho.</p></div>
+  </div>
+  <details><summary>Mga bilang at tala</summary>
+    <div class="scroll"><table class="facts"><thead><tr><th scope="col">Aytem</th><th scope="col">Halaga</th><th scope="col">Tala</th></tr></thead><tbody>
+      <tr><th scope="row">Kabuuang nagsasalita (unang + ikalawang wika)</th><td>133 milyon (ika-12)</td><td>Ethnologue, edisyong 2026</td></tr>
+      <tr><th scope="row">Bahagi sa nilalaman ng web</th><td>5.9% (ika-3)</td><td>W3Techs, Oktubre 2026</td></tr>
+      <tr><th scope="row">Gumagamit ng internet ayon sa wika</th><td>2.0% (ika-10)</td><td>Internet World Stats, Marso 2020</td></tr>
+      <tr><th scope="row">Oras online</th><td>Tinatayang 93 milyong gumagamit ng internet, karaniwang 5.2 oras bawat araw, kabuuang 480 milyong oras bawat araw (ika-17)</td><td>Tantiya ni Claude. Germany, Austria, Switzerland</td></tr>
+    </tbody></table></div>
+  </details>
+</section>
+
+<section class="lang" id="vi" aria-labelledby="h-vi">
+  <p class="kicker">16 · vi</p>
+  <h2 id="h-vi"><span lang="vi">Tiếng Việt</span><small>Biyetnames</small></h2>
+  <dl class="nums">
+    <div><dt>Nagsasalita</dt><dd>97 milyon (ika-17)</dd></div>
+    <div><dt>Web</dt><dd>0.9% (ika-16)</dd></div>
+    <div><dt>Oras online</dt><dd>500 milyong oras</dd></div>
+  </dl>
+  <p class="region"><b>Saan</b>Vietnam. May malalaking komunidad na Biyetnames sa Estados Unidos (California, Texas), Australia, France, at Canada. Marami ring Biyetnames ang nakatira sa Japan bilang technical intern trainee o estudyante.</p>
+  <div class="persona">
+    <figure><img src="../../language-intro/img/vi.webp" width="800" height="1000" loading="lazy" decoding="async" alt="Isang kathang-isip na persona. Trần Văn Minh, 24, nakatira sa Toyota, Aichi Prefecture. Technical intern trainee siya sa isang pabrika ng piyesa ng sasakyan."></figure>
+    <div class="ptext"><h3>Persona</h3><p>Trần Văn Minh, 24, nakatira sa Toyota, Aichi Prefecture. Technical intern trainee siya sa isang pabrika ng piyesa ng sasakyan. Alas-5 ng hapon, bago pumasok sa night shift, binubuksan niya ang kanyang Android phone sa kanyang kuwarto sa dormitoryo. Ibinahagi ang mga resulta mula sa site na ito sa isang Facebook group ng mga kaibigang nakatira sa Japan. Bumubunot siya ng isang baraha habang ikinukumpara ito sa mga kulay ng kanyang <i lang="vi">mệnh</i> na binabanggit ng kanyang ina. Kapag dumarating ang kuwento sa kulay nito sa pamamagitan ng seda ng mga parol ng Hội An o ng lacquer ng kanyang probinsiya, ipinapadala niya ito sa pamilya sa Zalo.</p></div>
+  </div>
+  <details><summary>Mga bilang at tala</summary>
+    <div class="scroll"><table class="facts"><thead><tr><th scope="col">Aytem</th><th scope="col">Halaga</th><th scope="col">Tala</th></tr></thead><tbody>
+      <tr><th scope="row">Kabuuang nagsasalita (unang + ikalawang wika)</th><td>97 milyon (ika-17)</td><td>Ethnologue, edisyong 2026</td></tr>
+      <tr><th scope="row">Bahagi sa nilalaman ng web</th><td>0.9% (ika-16)</td><td>W3Techs, Oktubre 2026</td></tr>
+      <tr><th scope="row">Gumagamit ng internet ayon sa wika</th><td>Wala sa top 10</td><td>Internet World Stats, Marso 2020</td></tr>
+      <tr><th scope="row">Oras online</th><td>Tinatayang 79 milyong gumagamit ng internet, karaniwang 6.3 oras bawat araw, kabuuang 500 milyong oras bawat araw (ika-15)</td><td>Tantiya ni Claude</td></tr>
+    </tbody></table></div>
+  </details>
+</section>
+
+<section class="lang" id="sw" aria-labelledby="h-sw">
+  <p class="kicker">17 · sw</p>
+  <h2 id="h-sw"><span lang="sw">Kiswahili</span><small>Swahili</small></h2>
+  <dl class="nums">
+    <div><dt>Nagsasalita</dt><dd>95 milyon (ika-19)</dd></div>
+    <div><dt>Web</dt><dd>walang datos</dd></div>
+    <div><dt>Oras online</dt><dd>Walang tantiya</dd></div>
+  </dl>
+  <p class="region"><b>Saan</b>Tanzania at Kenya. Sa Tanzania, ito ang pambansang wika; Swahili ang gamit sa pagtuturo sa primary school, at Ingles na mula secondary school. Sa Kenya, isa ito sa mga opisyal na wika; itinuturo ang mga unang baitang sa katutubong wika o sa Swahili, pagkatapos ay sa Ingles, at sapilitang asignatura ang Swahili. Malawak din itong ginagamit sa Uganda, Rwanda, Burundi, silangang Democratic Republic of the Congo, at Comoros. Isa ito sa mga working language ng African Union.</p>
+  <div class="persona">
+    <figure><img src="../../language-intro/img/sw.webp" width="800" height="1000" loading="lazy" decoding="async" alt="Isang kathang-isip na persona. Amina Juma, 28, nakatira sa Dar es Salaam. Guro siya sa primary school."></figure>
+    <div class="ptext"><h3>Persona</h3><p>Amina Juma, 28, nakatira sa Dar es Salaam. Guro siya sa primary school. Alas-3:30 ng hapon, pagkatapos ng klase, binubuksan niya ang kanyang Android phone sa faculty room. Ipinasa-pasa sa WhatsApp group ng mga katrabaho niya ang isang resulta mula sa site na ito. Bumubunot siya ng isang baraha habang ikinukumpara ito sa mga kulay ng telang kanga. Kapag dumarating ang kuwento sa kulay nito sa pamamagitan ng indigo ng kanga o ng langit sa gabi sa ibabaw ng Indian Ocean, ipinapadala niya ito sa kanyang ina sa WhatsApp.</p></div>
+  </div>
+  <details><summary>Mga bilang at tala</summary>
+    <div class="scroll"><table class="facts"><thead><tr><th scope="col">Aytem</th><th scope="col">Halaga</th><th scope="col">Tala</th></tr></thead><tbody>
+      <tr><th scope="row">Kabuuang nagsasalita (unang + ikalawang wika)</th><td>95 milyon (ika-19)</td><td>Ethnologue, edisyong 2026</td></tr>
+      <tr><th scope="row">Bahagi sa nilalaman ng web</th><td>walang datos</td><td>Wala sa top 40 ng W3Techs</td></tr>
+      <tr><th scope="row">Gumagamit ng internet ayon sa wika</th><td>Wala sa top 10</td><td>Internet World Stats, Marso 2020</td></tr>
+      <tr><th scope="row">Oras online</th><td>Walang tantiya</td><td>Walang hanay para sa Swahili ang tantiya ni Claude. Isinama ang Kenya at Tanzania sa Ingles o sa Swahili sa kabuuan, at hindi hiwalay ang oras para sa Swahili lamang</td></tr>
+    </tbody></table></div>
+  </details>
+</section>
+
+<section class="lang" id="tr" aria-labelledby="h-tr">
+  <p class="kicker">18 · tr</p>
+  <h2 id="h-tr"><span lang="tr">Türkçe</span><small>Turko</small></h2>
+  <dl class="nums">
+    <div><dt>Nagsasalita</dt><dd>94 milyon (ika-20, kapantay ng Hausa)</dd></div>
+    <div><dt>Web</dt><dd>1.6% (ika-11)</dd></div>
+    <div><dt>Oras online</dt><dd>560 milyong oras</dd></div>
+  </dl>
+  <p class="region"><b>Saan</b>Turkey at Northern Cyprus. May malaking komunidad na Turko sa Germany, at marami rin ang nakatira sa Netherlands, Austria, at France. May mga nagsasalita rin nito sa Bulgaria at hilagang Greece.</p>
+  <div class="persona">
+    <figure><img src="../../language-intro/img/tr.webp" width="800" height="1000" loading="lazy" decoding="async" alt="Isang kathang-isip na persona. Elif Yıldız, 33, nakatira sa İzmir. Guro siya ng chemistry sa high school."></figure>
+    <div class="ptext"><h3>Persona</h3><p>Elif Yıldız, 33, nakatira sa İzmir. Guro siya ng chemistry sa high school. Alas-4:30 ng hapon, pagkatapos ng klase, nagpabasa siya ng kapalaran sa latak ng kape kasama ang mga kaibigan sa isang café, saka binuksan ang site na ito sa kanyang iPhone. Sabay-sabay nilang binabasa ang kahulugan ng baraha. Kapag dumarating ang kuwento sa kulay nito sa pamamagitan ng turquoise o ng asul ng mga tile ng İznik, nasasabik ang lahat, at ipinopost niya ito sa kanyang Instagram Stories.</p></div>
+  </div>
+  <details><summary>Mga bilang at tala</summary>
+    <div class="scroll"><table class="facts"><thead><tr><th scope="col">Aytem</th><th scope="col">Halaga</th><th scope="col">Tala</th></tr></thead><tbody>
+      <tr><th scope="row">Kabuuang nagsasalita (unang + ikalawang wika)</th><td>94 milyon (ika-20, kapantay ng Hausa)</td><td>Ethnologue, edisyong 2026</td></tr>
+      <tr><th scope="row">Bahagi sa nilalaman ng web</th><td>1.6% (ika-11)</td><td>W3Techs, Oktubre 2026</td></tr>
+      <tr><th scope="row">Gumagamit ng internet ayon sa wika</th><td>Wala sa top 10</td><td>Internet World Stats, Marso 2020</td></tr>
+      <tr><th scope="row">Oras online</th><td>Tinatayang 80 milyong gumagamit ng internet, karaniwang 7.0 oras bawat araw, kabuuang 560 milyong oras bawat araw (ika-11)</td><td>Tantiya ni Claude</td></tr>
+    </tbody></table></div>
+  </details>
+</section>
+
+<section class="lang" id="tl" aria-labelledby="h-tl">
+  <p class="kicker">19 · tl</p>
+  <h2 id="h-tl"><span lang="fil">Filipino</span></h2>
+  <dl class="nums">
+    <div><dt>Nagsasalita</dt><dd>87 milyon</dd></div>
+    <div><dt>Web</dt><dd>Wala pang 0.1% (ika-40, Tagalog)</dd></div>
+    <div><dt>Oras online</dt><dd>530 milyong oras</dd></div>
+  </dl>
+  <p class="region"><b>Saan</b>Ang pambansang wika ng Pilipinas at opisyal na wika kasama ng Ingles. Ginagamit ito ng mga Pilipinong nagtatrabaho sa buong mundo, kabilang ang Estados Unidos (California, Hawaii), mga bansa sa Gulf, Hong Kong, Singapore, Canada, at Japan.</p>
+  <div class="persona">
+    <figure><img src="../../language-intro/img/tl.webp" width="800" height="1000" loading="lazy" decoding="async" alt="Isang kathang-isip na persona. Joanna “Jo” Dela Cruz, 28, nakatira sa Quezon City. Nagna-night shift siya sa isang call center na nagsisilbi sa Estados Unidos."></figure>
+    <div class="ptext"><h3>Persona</h3><p>Joanna “Jo” Dela Cruz, 28, nakatira sa Quezon City. Nagna-night shift siya sa isang call center na nagsisilbi sa Estados Unidos. Sa break niya nang alas-4 ng madaling-araw, bumubunot siya ng isang baraha sa kanyang Android phone. Ingles ang wika sa trabaho niya, kaya tuwing break, gusto niyang magbasa sa Filipino. Kapag dumarating ang kuwento sa kulay nito sa pamamagitan ng paglubog ng araw sa Manila Bay o ng piña (telang gawa sa hibla ng pinya), ipinopost niya ito sa Facebook at ipinapadala sa pinsang nagtatrabaho sa Middle East.</p></div>
+  </div>
+  <details><summary>Mga bilang at tala</summary>
+    <div class="scroll"><table class="facts"><thead><tr><th scope="col">Aytem</th><th scope="col">Halaga</th><th scope="col">Tala</th></tr></thead><tbody>
+      <tr><th scope="row">Kabuuang nagsasalita (unang + ikalawang wika)</th><td>87 milyon</td><td>Ethnologue, edisyong 2026 (binilang bilang Tagalog)</td></tr>
+      <tr><th scope="row">Bahagi sa nilalaman ng web</th><td>Wala pang 0.1% (ika-40, Tagalog)</td><td>W3Techs, Oktubre 2026</td></tr>
+      <tr><th scope="row">Gumagamit ng internet ayon sa wika</th><td>Wala sa top 10</td><td>Internet World Stats, Marso 2020</td></tr>
+      <tr><th scope="row">Oras online</th><td>Tinatayang 60 milyong gumagamit ng internet, karaniwang 8.9 oras bawat araw, kabuuang 530 milyong oras bawat araw (ika-12)</td><td>Tantiya ni Claude. Ipinapalagay na mga 60% ng mga gumagamit sa Pilipinas; ang natitira ay ibinilang sa Ingles</td></tr>
+    </tbody></table></div>
+  </details>
+</section>
+
+<section class="lang" id="fa" aria-labelledby="h-fa">
+  <p class="kicker">20 · fa</p>
+  <h2 id="h-fa"><span lang="fa" dir="rtl">فارسی</span><small>Persiyano</small></h2>
+  <dl class="nums">
+    <div><dt>Nagsasalita</dt><dd>82 milyon (Persiyano ng Iran)</dd></div>
+    <div><dt>Web</dt><dd>1.0% (ika-14)</dd></div>
+    <div><dt>Oras online</dt><dd>490 milyong oras</dd></div>
+  </dl>
+  <p class="region"><b>Saan</b>Ang opisyal na wika ng Iran. Malalapit na anyo nito ang ginagamit sa Afghanistan (Dari) at Tajikistan (Tajik). May malalaking komunidad na Iranian sa Estados Unidos (Los Angeles), Canada, Germany, United Kingdom, at Turkey. Ang site ay nakaayos mula kanan pakaliwa.</p>
+  <div class="persona">
+    <figure><img src="../../language-intro/img/fa.webp" width="800" height="1000" loading="lazy" decoding="async" alt="Isang kathang-isip na persona. Parisa Hosseini, 31, nakatira sa Isfahan. Nire-restore niya ang mga tile ng mga makasaysayang gusali."></figure>
+    <div class="ptext"><h3>Persona</h3><p>Parisa Hosseini, 31, nakatira sa Isfahan. Nire-restore niya ang mga tile ng mga makasaysayang gusali. Alas-11 ng gabi, pagkatapos ng trabaho, binubuksan niya ang kanyang Android phone. Sa gabi ng Yalda, sabay-sabay na binubuklat ng pamilya niya ang Hafez, kaya pamilyar sa kanya ang pagbasa mula sa iisang baraha. Kapag dumarating ang kuwento sa kulay nito sa pamamagitan ng turquoise ng Nishapur o ng asul ng mga tile ng mosque sa Isfahan, tinititigan niya ito na parang huminto siya sa trabaho. Ipinapadala niya ang link sa kanyang ate na nasa ibang bansa sa Telegram.</p></div>
+  </div>
+  <details><summary>Mga bilang at tala</summary>
+    <div class="scroll"><table class="facts"><thead><tr><th scope="col">Aytem</th><th scope="col">Halaga</th><th scope="col">Tala</th></tr></thead><tbody>
+      <tr><th scope="row">Kabuuang nagsasalita (unang + ikalawang wika)</th><td>82 milyon (Persiyano ng Iran)</td><td>Ethnologue, edisyong 2026. Hindi kasama ang Dari (Afghanistan) o Tajik</td></tr>
+      <tr><th scope="row">Bahagi sa nilalaman ng web</th><td>1.0% (ika-14)</td><td>W3Techs, Oktubre 2026</td></tr>
+      <tr><th scope="row">Gumagamit ng internet ayon sa wika</th><td>Wala sa top 10</td><td>Internet World Stats, Marso 2020</td></tr>
+      <tr><th scope="row">Oras online</th><td>Tinatayang 82 milyong gumagamit ng internet, karaniwang 6.0 oras bawat araw, kabuuang 490 milyong oras bawat araw (ika-16)</td><td>Tantiya ni Claude. Kasama ang Iran at Afghanistan (Dari)</td></tr>
+    </tbody></table></div>
+  </details>
+</section>
+
+<section class="lang" id="ko" aria-labelledby="h-ko">
+  <p class="kicker">21 · ko</p>
+  <h2 id="h-ko"><span lang="ko">한국어</span><small>Koreano</small></h2>
+  <dl class="nums">
+    <div><dt>Nagsasalita</dt><dd>82 milyon</dd></div>
+    <div><dt>Web</dt><dd>0.9% (ika-17)</dd></div>
+    <div><dt>Oras online</dt><dd>270 milyong oras</dd></div>
+  </dl>
+  <p class="region"><b>Saan</b>South Korea at North Korea. May mga komunidad din ng mga taong may ugat sa Korean Peninsula sa Yanbian Korean Autonomous Prefecture sa China, Estados Unidos (Los Angeles, New York), Japan, at Central Asia.</p>
+  <div class="persona">
+    <figure><img src="../../language-intro/img/ko.webp" width="800" height="1000" loading="lazy" decoding="async" alt="Isang kathang-isip na persona. 김서연 (Kim Seo-yeon), 29, nakatira sa Mapo-gu, Seoul. Colorist siya ng mga webtoon."></figure>
+    <div class="ptext"><h3>Persona</h3><p><span lang="ko">김서연</span> (Kim Seo-yeon), 29, nakatira sa Mapo-gu, Seoul. Colorist siya ng mga webtoon. Alas-8:20 ng umaga, binubuksan niya ang kanyang iPhone sa subway. Minsan sa isang buwan, pumupunta siya sa isang tarot café kasama ang mga kaibigan. Natagpuan niya ang site na ito habang naghahanap sa NAVER ng mga tip para sa biyahe sa Fukuoka sa susunod na buwan. Kapag dumarating ang kuwento sa kulay nito sa pamamagitan ng <i lang="ko-Latn">obangsaek</i> ng Korea (limang tradisyonal na kulay) o ng pagtitina ng Japan, isinasama niya ang kulay na iyon sa isang bahagi ng color palette niya sa araw na iyon. Ipinapadala niya ang mga resulta sa mga kaibigan sa KakaoTalk.</p></div>
+  </div>
+  <details><summary>Mga bilang at tala</summary>
+    <div class="scroll"><table class="facts"><thead><tr><th scope="col">Aytem</th><th scope="col">Halaga</th><th scope="col">Tala</th></tr></thead><tbody>
+      <tr><th scope="row">Kabuuang nagsasalita (unang + ikalawang wika)</th><td>82 milyon</td><td>Ethnologue, edisyong 2026</td></tr>
+      <tr><th scope="row">Bahagi sa nilalaman ng web</th><td>0.9% (ika-17)</td><td>W3Techs, Oktubre 2026</td></tr>
+      <tr><th scope="row">Gumagamit ng internet ayon sa wika</th><td>Wala sa top 10</td><td>Internet World Stats, Marso 2020</td></tr>
+      <tr><th scope="row">Oras online</th><td>Tinatayang 50 milyong gumagamit ng internet, karaniwang 5.3 oras bawat araw, kabuuang 270 milyong oras bawat araw (ika-20)</td><td>Tantiya ni Claude</td></tr>
+    </tbody></table></div>
+  </details>
+</section>
+
+<section class="lang" id="th" aria-labelledby="h-th">
+  <p class="kicker">22 · th</p>
+  <h2 id="h-th"><span lang="th">ไทย</span><small>Thai</small></h2>
+  <dl class="nums">
+    <div><dt>Nagsasalita</dt><dd>71 milyon</dd></div>
+    <div><dt>Web</dt><dd>0.3% (ika-28)</dd></div>
+    <div><dt>Oras online</dt><dd>510 milyong oras</dd></div>
+  </dl>
+  <p class="region"><b>Saan</b>Ang pambansang wika ng Thailand. Maraming tao sa Laos ang nakababasa ng Thai. May mga taga-Thailand ding nakatira sa Estados Unidos (Los Angeles), Australia, at Europe.</p>
+  <div class="persona">
+    <figure><img src="../../language-intro/img/th.webp" width="800" height="1000" loading="lazy" decoding="async" alt="Isang kathang-isip na persona. Napassorn “Pim” Srisuk, 27, nakatira sa Bangkok. Nasa marketing siya ng isang cosmetics brand."></figure>
+    <div class="ptext"><h3>Persona</h3><p>Napassorn “Pim” Srisuk, 27, nakatira sa Bangkok. Nasa marketing siya ng isang cosmetics brand. Alas-7 ng umaga, bago magpasya kung ano ang isusuot, bumubunot siya ng isang baraha sa kanyang iPhone. Ang paghahambing ng kulay ng araw ng linggo sa kulay ng site na ito ang kanyang kasiyahan tuwing umaga. Nagpaplano siya ng biyahe sa Hokkaido sa Enero ng susunod na taon. Kapag dumarating ang kuwento sa kulay nito sa pamamagitan ng seda ng Thailand o ng puti ng niyebe ng Hokkaido, isinasama niya ang kulay sa kanyang lipstick o scarf. Ipinapadala niya ito sa mga katrabaho sa LINE.</p></div>
+  </div>
+  <details><summary>Mga bilang at tala</summary>
+    <div class="scroll"><table class="facts"><thead><tr><th scope="col">Aytem</th><th scope="col">Halaga</th><th scope="col">Tala</th></tr></thead><tbody>
+      <tr><th scope="row">Kabuuang nagsasalita (unang + ikalawang wika)</th><td>71 milyon</td><td>Ethnologue, edisyong 2026</td></tr>
+      <tr><th scope="row">Bahagi sa nilalaman ng web</th><td>0.3% (ika-28)</td><td>W3Techs, Oktubre 2026</td></tr>
+      <tr><th scope="row">Gumagamit ng internet ayon sa wika</th><td>Wala sa top 10</td><td>Internet World Stats, Marso 2020</td></tr>
+      <tr><th scope="row">Oras online</th><td>Tinatayang 65 milyong gumagamit ng internet, karaniwang 7.8 oras bawat araw, kabuuang 510 milyong oras bawat araw (ika-14)</td><td>Tantiya ni Claude</td></tr>
+    </tbody></table></div>
+  </details>
+</section>
+
+<section class="lang" id="it" aria-labelledby="h-it">
+  <p class="kicker">23 · it</p>
+  <h2 id="h-it"><span lang="it">Italiano</span><small>Italyano</small></h2>
+  <dl class="nums">
+    <div><dt>Nagsasalita</dt><dd>66 milyon</dd></div>
+    <div><dt>Web</dt><dd>2.8% (ika-8)</dd></div>
+    <div><dt>Oras online</dt><dd>290 milyong oras</dd></div>
+  </dl>
+  <p class="region"><b>Saan</b>Italy, San Marino, timog Switzerland (Ticino), at Vatican City. Maraming may lahing Italyano ang nakatira sa Argentina, Brazil, Estados Unidos, Germany, at iba pa.</p>
+  <div class="persona">
+    <figure><img src="../../language-intro/img/it.webp" width="800" height="1000" loading="lazy" decoding="async" alt="Isang kathang-isip na persona. Giulia Bernardi, 45, nakatira sa Bologna. Pharmacist siya sa isang botika sa kanilang lugar."></figure>
+    <div class="ptext"><h3>Persona</h3><p>Giulia Bernardi, 45, nakatira sa Bologna. Pharmacist siya sa isang botika sa kanilang lugar. Alas-9:30 ng gabi, sa sofa pagkatapos ng hapunan, binubuksan niya ang kanyang Android phone. Noong bata pa siya, naglalaro sila ng kanyang ama ng tarocchino, kaya nagdudulot ng nostalgia ang mga larawan ng Major Arcana. Kapag dumarating ang kuwento sa kulay nito sa pamamagitan ng pulang ladrilyo ng mga portico ng Bologna o ng mga pigment ng mga pintor ng Renaissance, ipinapadala niya ito sa kanyang ama sa WhatsApp. “Classic Tarot” ang istilong pinipili niya.</p></div>
+  </div>
+  <details><summary>Mga bilang at tala</summary>
+    <div class="scroll"><table class="facts"><thead><tr><th scope="col">Aytem</th><th scope="col">Halaga</th><th scope="col">Tala</th></tr></thead><tbody>
+      <tr><th scope="row">Kabuuang nagsasalita (unang + ikalawang wika)</th><td>66 milyon</td><td>Ethnologue, edisyong 2026</td></tr>
+      <tr><th scope="row">Bahagi sa nilalaman ng web</th><td>2.8% (ika-8)</td><td>W3Techs, Oktubre 2026</td></tr>
+      <tr><th scope="row">Gumagamit ng internet ayon sa wika</th><td>Wala sa top 10</td><td>Internet World Stats, Marso 2020</td></tr>
+      <tr><th scope="row">Oras online</th><td>Tinatayang 51 milyong gumagamit ng internet, karaniwang 5.7 oras bawat araw, kabuuang 290 milyong oras bawat araw (ika-19)</td><td>Tantiya ni Claude</td></tr>
+    </tbody></table></div>
+  </details>
+</section>
+
+<section class="lang" id="pl" aria-labelledby="h-pl">
+  <p class="kicker">24 · pl</p>
+  <h2 id="h-pl"><span lang="pl">Polski</span><small>Polako</small></h2>
+  <dl class="nums">
+    <div><dt>Nagsasalita</dt><dd>Mga 42.6 milyon</dd></div>
+    <div><dt>Web</dt><dd>1.8% (ika-10)</dd></div>
+    <div><dt>Oras online</dt><dd>Mga 210 milyong oras (pansangguniang bilang, labas sa ranggo)</dd></div>
+  </dl>
+  <p class="region"><b>Saan</b>Poland. May malalaking komunidad na Polako sa United Kingdom, Germany, Estados Unidos (Chicago), Ireland, at Canada. May mga nagsasalita rin nito sa Lithuania at kanlurang Ukraine.</p>
+  <div class="persona">
+    <figure><img src="../../language-intro/img/pl.webp" width="800" height="1000" loading="lazy" decoding="async" alt="Isang kathang-isip na persona. Marta Kowalczyk, 30, nakatira sa Kraków. UX researcher siya sa isang software company."></figure>
+    <div class="ptext"><h3>Persona</h3><p>Marta Kowalczyk, 30, nakatira sa Kraków. UX researcher siya sa isang software company. Alas-10 ng umaga ng Linggo, binubuksan niya ang kanyang iPhone sa isang café. Taon-taon tuwing Andrzejki, nanghuhula siya gamit ang kandila kasama ang mga kaibigan. Kapag dumarating ang kuwento sa kulay nito sa pamamagitan ng amber ng Baltic o ng Cloth Hall ng Kraków, ipinopost niya ito sa kanyang Instagram Stories. Nagpaplano siya ng biyahe sa Kyoto sa susunod na tagsibol.</p></div>
+  </div>
+  <details><summary>Mga bilang at tala</summary>
+    <div class="scroll"><table class="facts"><thead><tr><th scope="col">Aytem</th><th scope="col">Halaga</th><th scope="col">Tala</th></tr></thead><tbody>
+      <tr><th scope="row">Kabuuang nagsasalita (unang + ikalawang wika)</th><td>Mga 42.6 milyon</td><td>Ethnologue, ika-27 edisyon (mga bilang noong 2021), ayon sa pahina ng Wikipedia na “Polish language.” Wala sa pampublikong listahan ng Ethnologue 2026 (50 milyon pataas)</td></tr>
+      <tr><th scope="row">Bahagi sa nilalaman ng web</th><td>1.8% (ika-10)</td><td>W3Techs, Oktubre 2026</td></tr>
+      <tr><th scope="row">Gumagamit ng internet ayon sa wika</th><td>Wala sa top 10</td><td>Internet World Stats, Marso 2020</td></tr>
+      <tr><th scope="row">Oras online</th><td>Mga 210 milyong oras bawat araw (pansangguniang bilang, labas sa ranggo)</td><td>Pansangguniang bilang sa labas ng ranggo sa tantiya ni Claude</td></tr>
+    </tbody></table></div>
+  </details>
+</section>
+
+<section class="lang" id="uk" aria-labelledby="h-uk">
+  <p class="kicker">25 · uk</p>
+  <h2 id="h-uk"><span lang="uk">Українська</span><small>Ukranyano</small></h2>
+  <dl class="nums">
+    <div><dt>Nagsasalita</dt><dd>Mga 39 milyon</dd></div>
+    <div><dt>Web</dt><dd>0.6% (ika-18)</dd></div>
+    <div><dt>Oras online</dt><dd>Walang tantiya</dd></div>
+  </dl>
+  <p class="region"><b>Saan</b>Ang pambansang wika ng Ukraine. Dahil sa digmaan mula 2022, maraming tao ang lumikas sa mga bansa sa Europe gaya ng Poland, Germany, at Czech Republic. May matatagal na ring komunidad na Ukranyano sa Canada at Estados Unidos. Marami rin ang nagsasalita ng Ruso.</p>
+  <div class="persona">
+    <figure><img src="../../language-intro/img/uk.webp" width="800" height="1000" loading="lazy" decoding="async" alt="Isang kathang-isip na persona. Олена Коваленко (Olena Kovalenko), 37, nakatira sa Lviv. Guro siya sa primary school."></figure>
+    <div class="ptext"><h3>Persona</h3><p><span lang="uk">Олена Коваленко</span> (Olena Kovalenko), 37, nakatira sa Lviv. Guro siya sa primary school. Alas-9 ng gabi, matapos patulugin ang kanyang anak, bumubunot siya ng isang baraha sa kanyang Android phone. Higit sa pagbasa ng kahulugan ng baraha, pinahahalagahan niya ang oras ng pagbasa ng kuwentong maingat na isinulat sa Ukranyano. Kapag dumarating ang kuwento sa kulay nito sa pamamagitan ng pagpipinta ng bulaklak ng Petrykivka o ng lana ng Carpathian, ipinapadala niya ito sa kanyang nakababatang kapatid na babae sa Poland sa Telegram.</p></div>
+  </div>
+  <details><summary>Mga bilang at tala</summary>
+    <div class="scroll"><table class="facts"><thead><tr><th scope="col">Aytem</th><th scope="col">Halaga</th><th scope="col">Tala</th></tr></thead><tbody>
+      <tr><th scope="row">Kabuuang nagsasalita (unang + ikalawang wika)</th><td>Mga 39 milyon</td><td>Ethnologue (2023). Pareho rin ang ibinibigay ng pahina ng Wikipedia na “Ukrainian language” (Ethnologue, ika-28 edisyon)</td></tr>
+      <tr><th scope="row">Bahagi sa nilalaman ng web</th><td>0.6% (ika-18)</td><td>W3Techs, Oktubre 2026</td></tr>
+      <tr><th scope="row">Gumagamit ng internet ayon sa wika</th><td>Wala sa top 10</td><td>Internet World Stats, Marso 2020</td></tr>
+      <tr><th scope="row">Oras online</th><td>Walang tantiya</td><td>Wala ang Ukranyano sa talahanayan ng tantiya ni Claude o sa mga pansangguniang bilang nito sa labas ng ranggo</td></tr>
+    </tbody></table></div>
+  </details>
+</section>
+
+<section class="lang" id="nl" aria-labelledby="h-nl">
+  <p class="kicker">26 · nl</p>
+  <h2 id="h-nl"><span lang="nl">Nederlands</span><small>Olandes</small></h2>
+  <dl class="nums">
+    <div><dt>Nagsasalita</dt><dd>Mga 30 milyon</dd></div>
+    <div><dt>Web</dt><dd>2.1% (ika-9)</dd></div>
+    <div><dt>Oras online</dt><dd>Mga 130 milyong oras (pansangguniang bilang, labas sa ranggo)</dd></div>
+  </dl>
+  <p class="region"><b>Saan</b>Netherlands at hilagang Belgium (Flanders). Opisyal na wika rin ito sa Suriname at sa Aruba at Curaçao sa Caribbean. Ang Afrikaans ng South Africa ay sumanga mula sa Olandes.</p>
+  <div class="persona">
+    <figure><img src="../../language-intro/img/nl.webp" width="800" height="1000" loading="lazy" decoding="async" alt="Isang kathang-isip na persona. Sanne de Vries, 36, nakatira sa Utrecht. Nagtatrabaho siya sa climate policy sa city hall."></figure>
+    <div class="ptext"><h3>Persona</h3><p>Sanne de Vries, 36, nakatira sa Utrecht. Nagtatrabaho siya sa climate policy sa city hall. Alas-12:30, sa kanyang mesa, binuksan niya ang kanyang laptop at napunta sa site na ito habang naghahanap ng pangalan ng kulay. Hindi siya naniniwala sa hula, pero gustong-gusto niya ang mga kuwento kung saan nagmula ang mga pangalan ng kulay. Kapag dumarating ang kuwento sa kulay nito sa pamamagitan ng Delft blue o ng mga pigment na ginamit ng mga Olandes na pintor noong ika-17 siglo, ikinukuwento niya ito sa mga katrabaho. Minsan, bumubunot pa siya ng isa pang baraha bago magbisikleta pauwi.</p></div>
+  </div>
+  <details><summary>Mga bilang at tala</summary>
+    <div class="scroll"><table class="facts"><thead><tr><th scope="col">Aytem</th><th scope="col">Halaga</th><th scope="col">Tala</th></tr></thead><tbody>
+      <tr><th scope="row">Kabuuang nagsasalita (unang + ikalawang wika)</th><td>Mga 30 milyon</td><td>2021. Pareho rin ang ibinibigay ng pahina ng Wikipedia na “Dutch language” (bumabanggit sa Eurobarometer at iba pa)</td></tr>
+      <tr><th scope="row">Bahagi sa nilalaman ng web</th><td>2.1% (ika-9)</td><td>W3Techs, Oktubre 2026. Kasama ang Flemish</td></tr>
+      <tr><th scope="row">Gumagamit ng internet ayon sa wika</th><td>Wala sa top 10</td><td>Internet World Stats, Marso 2020</td></tr>
+      <tr><th scope="row">Oras online</th><td>Mga 130 milyong oras bawat araw (pansangguniang bilang, labas sa ranggo)</td><td>Pansangguniang bilang sa labas ng ranggo sa tantiya ni Claude</td></tr>
+    </tbody></table></div>
+  </details>
+</section>
+
+<section class="lang" id="ang" aria-labelledby="h-ang">
+  <p class="kicker">27 · ang</p>
+  <h2 id="h-ang"><span lang="ang">Englisc</span><small>Lumang Ingles</small></h2>
+  <p class="note">Isang wika para sa laro at kasaysayan. Ito ang Ingles mula mga taong 450 hanggang 1100, at wala nang nagsasalita nito bilang unang wika ngayon. Walang laman ang mga patlang ng bilang.</p>
+  <dl class="nums">
+    <div><dt>Nagsasalita</dt><dd>—</dd></div>
+    <div><dt>Web</dt><dd>—</dd></div>
+    <div><dt>Oras online</dt><dd>—</dd></div>
+  </dl>
+  <p class="region"><b>Sino ang maaaring matuwa rito</b>Mga estudyante at iskolar ng medyebal na panitikang Ingles at ng kasaysayan ng Ingles, mga tagahanga ng <cite>Beowulf</cite> at ng mga akda ni J. R. R. Tolkien, at mga taong interesado sa runes at mitolohiyang Norse. Sa labas ng mundong nagsasalita ng Ingles, umaabot din ito sa mga estudyante ng panitikang Ingles sa Germany, mga bansang Nordic, at Japan.</p>
+  <div class="persona">
+    <figure><img src="../../language-intro/img/ang.webp" width="800" height="1000" loading="lazy" decoding="async" alt="Isang kathang-isip na persona. Hannah Brooks, 24, nakatira sa Leeds, UK. Nag-aaral siya ng Lumang Ingles sa graduate school."></figure>
+    <div class="ptext"><h3>Persona</h3><p>Hannah Brooks, 24, nakatira sa Leeds, UK. Nag-aaral siya ng Lumang Ingles sa graduate school. Alas-5 ng hapon, binuksan niya ang kanyang laptop sa aklatan ng unibersidad at napunta sa site na ito habang naghahanap ng mga banghay ng pandiwa. Katabi ang salin sa modernong Ingles, nag-eenjoy siyang alamin ang mga pangalan ng mga baraha at kulay. Ipinapadala niya ang mga linyang gusto niya sa mga kaklase sa seminar.</p></div>
+  </div>
+  <details><summary>Mga bilang at tala</summary>
+    <div class="scroll"><table class="facts"><thead><tr><th scope="col">Aytem</th><th scope="col">Halaga</th></tr></thead><tbody>
+      <tr><th scope="row">Kabuuang nagsasalita (unang + ikalawang wika)</th><td>—</td></tr>
+      <tr><th scope="row">Bahagi sa nilalaman ng web</th><td>—</td></tr>
+      <tr><th scope="row">Gumagamit ng internet ayon sa wika</th><td>—</td></tr>
+      <tr><th scope="row">Oras online</th><td>—</td></tr>
+    </tbody></table></div>
+  </details>
+</section>
+
+<section class="lang" id="soro" aria-labelledby="h-soro">
+  <p class="kicker">28 · soro</p>
+  <h2 id="h-soro"><span lang="ja">御座候</span><small>Sōrōbun (klasikong istilo ng liham sa Hapones)</small></h2>
+  <p class="note">Isang wika para sa laro at kasaysayan. Ito ang istilo ng mga liham at opisyal na dokumento mula mga taong 1600 hanggang 1868, na may <span lang="ja">候</span> (<i>sōrō</i>) sa dulo ng mga pangungusap. Wala nang nagsasalita nito bilang unang wika ngayon. Walang laman ang mga patlang ng bilang.</p>
+  <dl class="nums">
+    <div><dt>Nagsasalita</dt><dd>—</dd></div>
+    <div><dt>Web</dt><dd>—</dd></div>
+    <div><dt>Oras online</dt><dd>—</dd></div>
+  </dl>
+  <p class="region"><b>Sino ang maaaring matuwa rito</b>Mga taong nag-aaral magbasa ng mga lumang dokumento at cursive na sulat, mga tagahanga ng mga historical novel at ng mga historical drama ng NHK, at mga estudyanteng mahilig sa kasaysayan. Umaabot din ito sa mga taga-ibang bansa na malalim na nag-aral ng Hapones at sa mga iskolar ng kasaysayan ng Japan.</p>
+  <div class="persona">
+    <figure><img src="../../language-intro/img/soro.webp" width="800" height="1000" loading="lazy" decoding="async" alt="Isang kathang-isip na persona. 工藤 誠一 (Seiichi Kudo), 58, nakatira sa Kanazawa. Nagtatrabaho siya sa city hall at pumapasok sa isang kurso tungkol sa mga lumang dokumento tuwing weekend."></figure>
+    <div class="ptext"><h3>Persona</h3><p><span lang="ja">工藤 誠一</span> (Seiichi Kudo), 58, nakatira sa Kanazawa. Nagtatrabaho siya sa city hall at pumapasok sa isang kurso tungkol sa mga lumang dokumento tuwing weekend. Alas-3 ng hapon ng Linggo, binubuksan niya ang kanyang tablet sa sala. Narinig niya ang tungkol sa site mula sa mga kaklase sa kurso. Isa-isa niyang binabasa nang malakas ang mga pangalan ng mga baraha at kulay na nakasulat sa sōrōbun. Kapag dumarating ang kuwento sa kulay nito sa pamamagitan ng pagtitina ng Kaga o ng lumang bayan sa paanan ng kastilyo, isinusulat niya ang pangalan ng kulay sa kuwaderno niya para sa kurso.</p></div>
+  </div>
+  <details><summary>Mga bilang at tala</summary>
+    <div class="scroll"><table class="facts"><thead><tr><th scope="col">Aytem</th><th scope="col">Halaga</th></tr></thead><tbody>
+      <tr><th scope="row">Kabuuang nagsasalita (unang + ikalawang wika)</th><td>—</td></tr>
+      <tr><th scope="row">Bahagi sa nilalaman ng web</th><td>—</td></tr>
+      <tr><th scope="row">Gumagamit ng internet ayon sa wika</th><td>—</td></tr>
+      <tr><th scope="row">Oras online</th><td>—</td></tr>
+    </tbody></table></div>
+  </details>
+</section>
+
+</div>
+
+</body>
+</html>

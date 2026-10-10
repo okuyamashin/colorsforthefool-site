@@ -1,6 +1,6 @@
 # Colors for the Fool
 
-> A tarot site that gives you one lucky color for today. Draw one of the 22 major arcana, read what the card means upright or reversed, then open a short illustrated story that ends with today's lucky color. Free, no sign-up. Written in Japanese and offered in 16 languages, plus two playful historical versions.
+> A tarot site that gives you one lucky color for today. Draw one of the 22 major arcana, read what the card means upright or reversed, then open a short illustrated story that ends with today's lucky color. Free, no sign-up. Written in Japanese and offered in 26 languages, plus two playful historical versions.
 
 How it works:
 
@@ -13,8 +13,8 @@ How it works:
 
 - [Draw a card (English)](https://colorsforthefool.engawa5656.com/en/): the main page. Tap the card to draw, tap again to open today's color.
 - [引く（日本語）](https://colorsforthefool.engawa5656.com/): the original Japanese site.
+- [お店のタロット](https://colorsforthefool.engawa5656.com/shop/): a tarot made for one shop. Every card ends on that shop's item.
 - [Language Reach](https://colorsforthefool.engawa5656.com/en/language-scale.html): why the site is offered in these languages, with speaker, internet and web-content figures.
-- [Card designs](https://colorsforthefool.engawa5656.com/en/design/): alternative visual designs for the deck.
 
 ## The 22 cards (English)
 
@@ -41,26 +41,76 @@ How it works:
 - [20. Judgement](https://colorsforthefool.engawa5656.com/en/cards/judgement/): the card and its 20 lucky colors
 - [21. The World](https://colorsforthefool.engawa5656.com/en/cards/the-world/): the card and its 20 lucky colors
 
+## Designs
+
+The same 22 cards are drawn in other visual styles. Choosing one changes the deck on every language. The catalog is [デザイン](https://colorsforthefool.engawa5656.com/design/). Each style is one page of 22 pictures:
+
+- [現代ファッション誌風](https://colorsforthefool.engawa5656.com/design/editorial-luxury/)
+- [幾何学ミニマル](https://colorsforthefool.engawa5656.com/design/minimal-geometric/)
+- [現代アール・デコ](https://colorsforthefool.engawa5656.com/design/neo-deco/)
+- [サイバー神秘主義](https://colorsforthefool.engawa5656.com/design/cyber-mysticism/)
+- [ブルータリズム系グラフィック](https://colorsforthefool.engawa5656.com/design/brutalist-graphic/)
+- [現代シュルレアリスム写真](https://colorsforthefool.engawa5656.com/design/surreal-photography/)
+- [ガラス・クローム彫刻](https://colorsforthefool.engawa5656.com/design/glass-and-chrome/)
+- [日本の現代ポスター](https://colorsforthefool.engawa5656.com/design/japanese-contemporary-poster/)
+- [現代象徴主義](https://colorsforthefool.engawa5656.com/design/neo-symbolism/)
+- [デジタル・オラクル風](https://colorsforthefool.engawa5656.com/design/luxury-ui/)
+- [インドネシアの影絵](https://colorsforthefool.engawa5656.com/design/wayang-kulit/)
+- [ギリシャ彫刻](https://colorsforthefool.engawa5656.com/design/greek-sculpture/)
+- [キュビスム](https://colorsforthefool.engawa5656.com/design/cubism/)
+- [プラモデルのジオラマ](https://colorsforthefool.engawa5656.com/design/plastic-model-diorama/)
+- [フランス人形](https://colorsforthefool.engawa5656.com/design/french-doll/)
+- [ボタニカルアート](https://colorsforthefool.engawa5656.com/design/botanical-art/)
+- [歯車とエンジンと鉄のロボティクス](https://colorsforthefool.engawa5656.com/design/gear-engine-robotics/)
+- [ロールシャッハテスト](https://colorsforthefool.engawa5656.com/design/rorschach/)
+- [定規とコンパスとペンの作図](https://colorsforthefool.engawa5656.com/design/ruler-compass-pen/)
+- [現代のスーツとドレス](https://colorsforthefool.engawa5656.com/design/suit-and-dress/)
+- [運慶・快慶の木の仏像](https://colorsforthefool.engawa5656.com/design/unkei-kaikei/)
+- [ステンドグラス](https://colorsforthefool.engawa5656.com/design/stained-glass/)
+- [タイルのモザイク](https://colorsforthefool.engawa5656.com/design/tile-mosaic/)
+- [チェスのような駒](https://colorsforthefool.engawa5656.com/design/chess-pieces/)
+- [アール・ヌーヴォー](https://colorsforthefool.engawa5656.com/design/art-nouveau/)
+- [古い古典的なタロット](https://colorsforthefool.engawa5656.com/design/classic-tarot/)
+- [古代エジプト](https://colorsforthefool.engawa5656.com/design/ancient-egypt/)
+- [エングレービング](https://colorsforthefool.engawa5656.com/design/engraving/)
+- [メゾチント](https://colorsforthefool.engawa5656.com/design/mezzotint/)
+- [色鉛筆](https://colorsforthefool.engawa5656.com/design/colored-pencil/)
+- [水彩画](https://colorsforthefool.engawa5656.com/design/watercolor/)
+- [水墨画](https://colorsforthefool.engawa5656.com/design/sumi-e/)
+- [ベルギーのレース編み](https://colorsforthefool.engawa5656.com/design/belgian-lace/)
+
 ## Languages
 
-- [Japanese (original)](https://colorsforthefool.engawa5656.com/) (`ja`)
+The order matches `data/languages.json`.
+
+- [日本語](https://colorsforthefool.engawa5656.com/) (`ja`)
 - [English](https://colorsforthefool.engawa5656.com/en/) (`en`)
-- [Traditional Chinese](https://colorsforthefool.engawa5656.com/zh/) (`zh-Hant`)
-- [Simplified Chinese](https://colorsforthefool.engawa5656.com/zh-hans/) (`zh-Hans`)
-- [Spanish](https://colorsforthefool.engawa5656.com/es/) (`es`)
-- [Portuguese](https://colorsforthefool.engawa5656.com/pt/) (`pt-BR`)
-- [French](https://colorsforthefool.engawa5656.com/fr/) (`fr`)
-- [German](https://colorsforthefool.engawa5656.com/de/) (`de`)
-- [Dutch](https://colorsforthefool.engawa5656.com/nl/) (`nl`)
-- [Russian](https://colorsforthefool.engawa5656.com/ru/) (`ru`)
-- [Arabic](https://colorsforthefool.engawa5656.com/ar/) (`ar`)
-- [Hindi](https://colorsforthefool.engawa5656.com/hi/) (`hi`)
-- [Thai](https://colorsforthefool.engawa5656.com/th/) (`th`)
-- [Indonesian](https://colorsforthefool.engawa5656.com/id/) (`id`)
-- [Malay](https://colorsforthefool.engawa5656.com/ms/) (`ms`)
-- [Vietnamese](https://colorsforthefool.engawa5656.com/vi/) (`vi`)
-- [Old English (playful historical rendering)](https://colorsforthefool.engawa5656.com/ang/) (`ang`)
-- [Edo-period epistolary Japanese, sōrōbun (playful historical rendering)](https://colorsforthefool.engawa5656.com/soro/) (`ja-x-soro`)
+- [简体中文](https://colorsforthefool.engawa5656.com/zh-hans/) (`zh-Hans`)
+- [繁體中文](https://colorsforthefool.engawa5656.com/zh/) (`zh-Hant`)
+- [हिन्दी](https://colorsforthefool.engawa5656.com/hi/) (`hi`)
+- [Español](https://colorsforthefool.engawa5656.com/es/) (`es`)
+- [العربية](https://colorsforthefool.engawa5656.com/ar/) (`ar`)
+- [Français](https://colorsforthefool.engawa5656.com/fr/) (`fr`)
+- [বাংলা](https://colorsforthefool.engawa5656.com/bn/) (`bn`)
+- [Português](https://colorsforthefool.engawa5656.com/pt/) (`pt-BR`)
+- [Bahasa Indonesia](https://colorsforthefool.engawa5656.com/id/) (`id`)
+- [Bahasa Melayu](https://colorsforthefool.engawa5656.com/ms/) (`ms`)
+- [اردو](https://colorsforthefool.engawa5656.com/ur/) (`ur`)
+- [Русский](https://colorsforthefool.engawa5656.com/ru/) (`ru`)
+- [Deutsch](https://colorsforthefool.engawa5656.com/de/) (`de`)
+- [Tiếng Việt](https://colorsforthefool.engawa5656.com/vi/) (`vi`)
+- [Kiswahili](https://colorsforthefool.engawa5656.com/sw/) (`sw`)
+- [Türkçe](https://colorsforthefool.engawa5656.com/tr/) (`tr`)
+- [Filipino](https://colorsforthefool.engawa5656.com/tl/) (`tl`)
+- [فارسی](https://colorsforthefool.engawa5656.com/fa/) (`fa`)
+- [한국어](https://colorsforthefool.engawa5656.com/ko/) (`ko`)
+- [ไทย](https://colorsforthefool.engawa5656.com/th/) (`th`)
+- [Italiano](https://colorsforthefool.engawa5656.com/it/) (`it`)
+- [Polski](https://colorsforthefool.engawa5656.com/pl/) (`pl`)
+- [Українська](https://colorsforthefool.engawa5656.com/uk/) (`uk`)
+- [Nederlands](https://colorsforthefool.engawa5656.com/nl/) (`nl`)
+- [Englisc](https://colorsforthefool.engawa5656.com/ang/) (`ang`, playful historical rendering)
+- [御座候](https://colorsforthefool.engawa5656.com/soro/) (`ja-x-soro`, playful historical rendering)
 
 ## Optional
 

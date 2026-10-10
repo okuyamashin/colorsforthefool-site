@@ -66,6 +66,9 @@ const FACE_VIDEO = {
   "the-magician": "face.mp4",
   "the-lovers": "face.mp4",
   "wheel-of-fortune": "face.mp4",
+  "the-tower": "face.mp4",
+  "the-sun": "face.mp4",
+  "the-world": "face.mp4",
 };
 
 const cardButton = document.querySelector("#card");
@@ -83,6 +86,7 @@ const sheet = document.querySelector("#sheet");
 const guide = document.querySelector("#guide");
 const colorPanel = document.querySelector("#color");
 const scene = document.querySelector("#scene");
+const againButton = document.querySelector("#again-button");
 const story = document.querySelector("#story");
 const library = document.querySelector("#library");
 const libraryLink = document.querySelector("#library-link");
@@ -480,6 +484,10 @@ function paint(animated) {
   revealButton.hidden = state.phase !== "reading";
   revealButton.disabled = false;
   revealButton.textContent = COPY.revealButton;
+  if (againButton) {
+    againButton.hidden = !revealed;
+    if (COPY.drawAgain) againButton.textContent = COPY.drawAgain;
+  }
   colorPanel.hidden = !revealed;
   cardButton.setAttribute("aria-label", revealed ? `${cardTitle(state.card)}, ${drawnLabel}` : COPY.openLabel);
   if (revealed) {
@@ -580,6 +588,7 @@ function returnToDeck() {
   hint.textContent = COPY.hintDraw;
   revealButton.hidden = true;
   revealButton.disabled = false;
+  if (againButton) againButton.hidden = true;
   showError("");
   showGuide();
 }
@@ -748,6 +757,7 @@ revealButton.addEventListener("click", () => {
   if (state && state.phase === "reading") reveal();
 });
 scene.addEventListener("click", foldAway);
+againButton?.addEventListener("click", foldAway);
 async function copyUrl(url) {
   try {
     await navigator.clipboard.writeText(url);

@@ -1,0 +1,789 @@
+<!doctype html>
+<html lang="nl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="De 28 talen van Colors for the Fool: hoeveel mensen elke taal spreken, met daarnaast een fictieve persona en haar of zijn portret.">
+<link rel="icon" href="../../favicon.png" type="image/png">
+<title>Over de talen</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&family=Shippori+Mincho:wght@400;500;700&display=swap">
+<style>
+/* Layout: same paper column as language-scale.html; one card per language (numbers, persona + image, details). */
+:root {
+  --bg: #efe6d6;
+  --bg-glow: #fbf6ec;
+  --paper: #f7f1e4;
+  --ink: #2a2118;
+  --muted: #6d5c48;
+  --gold: #a6843d;
+  --gold-soft: #e4d2a4;
+  --line: rgba(166,132,61,.45);
+  --other: #d3c6ae;
+  --grid: rgba(109,92,72,.18);
+  --font-display: Cinzel, "Palatino Linotype", Palatino, serif;
+  --font-body: "Shippori Mincho", "Hiragino Mincho ProN", "Yu Mincho", serif;
+}
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) {
+  --bg: #1b1610; --bg-glow: #2a2219; --paper: #241e17; --ink: #efe4cf; --muted: #b6a387;
+  --gold: #d2ac5c; --gold-soft: #5a4826; --line: rgba(210,172,92,.4); --other: #4b4134; --grid: rgba(239,228,207,.12);
+  color-scheme: dark; } }
+:root[data-theme="dark"] {
+  --bg: #1b1610; --bg-glow: #2a2219; --paper: #241e17; --ink: #efe4cf; --muted: #b6a387;
+  --gold: #d2ac5c; --gold-soft: #5a4826; --line: rgba(210,172,92,.4); --other: #4b4134; --grid: rgba(239,228,207,.12);
+  color-scheme: dark; }
+
+* { box-sizing: border-box; }
+body {
+  margin: 0; color: var(--ink); background: var(--bg);
+  background-image: radial-gradient(1100px 640px at 50% -8%, var(--bg-glow), var(--bg) 70%);
+  font-family: var(--font-body); font-weight: 500; line-height: 1.85;
+  padding-inline: 16px; padding-block: 0 64px;
+}
+.wrap { width: min(100%, 44rem); margin: 0 auto; }
+a { color: var(--gold); }
+code { font-size: .88em; overflow-wrap: anywhere; }
+.brand { font-family: var(--font-display); font-size: .74rem; letter-spacing: .24em; text-transform: uppercase; padding-block: 1.4rem .2rem; margin: 0; }
+.brand a { color: var(--ink); text-decoration: none; }
+header.hero { text-align: center; padding-block: 2.6rem 1.6rem; }
+.eyebrow { font-family: var(--font-display); letter-spacing: .3em; font-size: .8rem; color: var(--gold); margin: 0; text-transform: uppercase; }
+h1 { font-size: clamp(2rem, 7vw, 2.9rem); letter-spacing: .12em; margin: .3rem 0 .6rem; font-weight: 600; text-wrap: balance; }
+.lede { color: var(--muted); max-width: 34rem; margin: 0 auto; text-wrap: pretty; }
+.ornament { display: flex; align-items: center; gap: .8rem; justify-content: center; color: var(--gold); margin: 1.6rem 0 0; }
+.ornament::before, .ornament::after { content: ""; height: 1px; width: 4.5rem; background: var(--line); }
+
+.topbar { display: flex; justify-content: space-between; align-items: baseline; gap: 1rem; padding-block: 1.4rem .2rem; }
+.topbar .brand { padding-block: 0; }
+.switch { font-size: .82rem; }
+.switch a, .switch span { margin-left: .7rem; }
+.switch span { color: var(--muted); }
+
+.about { font-size: .86rem; color: var(--muted); margin: 0 0 1rem; }
+.about p { margin: .5rem 0; }
+.langs { display: flex; flex-wrap: wrap; gap: .4rem; justify-content: center; margin: 1.2rem 0 0; padding: 0; list-style: none; }
+.langs li { border: 1px solid var(--line); font-size: .85rem; background: var(--paper); }
+.langs li a { display: block; padding: .1rem .7rem; color: var(--ink); text-decoration: none; }
+.langs li a:hover, .langs li a:focus-visible { color: var(--gold); }
+.langs li:nth-last-child(-n+2) { border-style: dashed; }
+.langs li:nth-last-child(-n+2) a { color: var(--muted); }
+
+section.chart, section.lang { margin-top: 3.4rem; scroll-margin-top: 1rem; }
+.chart h2, .lang h2 { font-size: 1.3rem; letter-spacing: .08em; margin: 0; font-weight: 600; text-wrap: balance; }
+.lang h2 small { display: block; font-size: .8rem; letter-spacing: .04em; color: var(--muted); font-weight: 500; }
+.kicker { font-family: var(--font-display); color: var(--gold); letter-spacing: .2em; font-size: .78rem; margin: 0 0 .15rem; }
+p.note { color: var(--muted); font-size: .88rem; margin: .4rem 0 1rem; max-width: 40rem; }
+.chart ul { font-size: .88rem; color: var(--muted); padding-left: 1.1rem; }
+
+.scroll { overflow-x: auto; -webkit-overflow-scrolling: touch; border: 1px solid var(--line); background: var(--paper); }
+table { border-collapse: collapse; font-size: .8rem; line-height: 1.55; }
+table.overview { min-width: 42rem; width: 100%; }
+th, td { padding: .45rem .6rem; border-bottom: 1px solid var(--grid); text-align: left; vertical-align: top; }
+thead th { font-weight: 700; border-bottom: 1px solid var(--line); background: var(--bg-glow); }
+tbody th { font-weight: 700; white-space: nowrap; }
+tbody th a { color: var(--ink); text-decoration: none; }
+tbody tr:last-child th, tbody tr:last-child td { border-bottom: 0; }
+table.overview td { font-variant-numeric: tabular-nums; }
+
+.lang { border-top: 1px solid var(--line); padding-top: 1.6rem; }
+.nums { display: flex; flex-wrap: wrap; gap: 1px; background: var(--line); border: 1px solid var(--line); margin: 1rem 0; }
+.nums div { flex: 1 1 7.6rem; background: var(--paper); padding: .55rem .7rem .6rem; min-width: 0; }
+.nums dt { font-family: var(--font-body); font-size: .72rem; color: var(--muted); letter-spacing: .06em; }
+.nums dd { margin: 0; font-size: .9rem; line-height: 1.45; font-variant-numeric: tabular-nums; overflow-wrap: anywhere; }
+.region { font-size: .9rem; margin: 0 0 1rem; }
+.region b { color: var(--gold); font-weight: 700; margin-right: .6rem; }
+
+.persona { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 15rem); gap: 1.2rem; align-items: start; margin: 1.2rem 0 .8rem; }
+.persona figure { grid-column: 2; grid-row: 1; margin: 0; }
+.persona .ptext { grid-column: 1; grid-row: 1; }
+.persona img { display: block; width: 100%; height: auto; border: 1px solid var(--line); background: var(--paper); }
+.persona h3 { font-size: 1rem; letter-spacing: .08em; margin: 0 0 .3rem; font-weight: 600; }
+.persona p { margin: 0; font-size: .94rem; text-wrap: pretty; }
+@media (max-width: 36rem) {
+  .persona { grid-template-columns: minmax(0, 1fr); }
+  .persona figure, .persona .ptext { grid-column: 1; grid-row: auto; }
+  .persona figure { max-width: 22rem; }
+}
+
+details { border-top: 1px dashed var(--line); padding: .35rem 0; font-size: .88rem; }
+details:last-of-type { border-bottom: 1px dashed var(--line); }
+summary { cursor: pointer; color: var(--gold); letter-spacing: .06em; }
+details[open] summary { margin-bottom: .5rem; }
+details p { margin: .2rem 0 .8rem; color: var(--ink); }
+details h4 { font-size: .86rem; margin: .6rem 0 0; color: var(--muted); font-weight: 700; }
+details pre { white-space: pre-wrap; overflow-wrap: anywhere; font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: .78rem; line-height: 1.6; background: var(--paper); border: 1px solid var(--line); padding: .7rem .8rem; margin: 0 0 .6rem; }
+table.facts { width: 100%; min-width: 34rem; }
+table.facts tbody th { white-space: normal; min-width: 8rem; }
+
+footer { margin-top: 4rem; border-top: 1px solid var(--line); padding-top: 1.2rem; font-size: .8rem; color: var(--muted); }
+footer ul { padding-left: 1.1rem; margin: .4rem 0 1rem; }
+footer ul ul { margin: .2rem 0 .3rem; }
+footer li { margin: .15rem 0; overflow-wrap: anywhere; }
+</style>
+</head>
+<body>
+
+<div class="wrap">
+  <div class="topbar"><p class="brand"><a href="../">Colors for the Fool</a></p><nav class="switch" aria-label="Gerelateerde pagina’s"><span>Over de talen</span></nav></div>
+
+  <header class="hero">
+    <p class="eyebrow">Languages &amp; Readers</p>
+    <h1>Over de talen</h1>
+    <p class="lede">De 28 talen van Colors for the Fool, voorgesteld aan de hand van het aantal mensen dat ze spreekt en van het soort mensen dat hier misschien een kaart komt trekken (stand van 9 oktober 2026).</p>
+    <div class="ornament">✦</div>
+  </header>
+
+  <nav aria-label="Talen">
+    <ul class="langs"><li><a href="#ja"><span lang="ja">日本語</span></a></li><li><a href="#en"><span lang="en">English</span></a></li><li><a href="#zh-hans"><span lang="zh-Hans">简体中文</span></a></li><li><a href="#zh"><span lang="zh-Hant">繁體中文</span></a></li><li><a href="#hi"><span lang="hi">हिन्दी</span></a></li><li><a href="#es"><span lang="es">Español</span></a></li><li><a href="#ar"><span lang="ar" dir="rtl">العربية</span></a></li><li><a href="#fr"><span lang="fr">Français</span></a></li><li><a href="#bn"><span lang="bn">বাংলা</span></a></li><li><a href="#pt"><span lang="pt">Português</span></a></li><li><a href="#id"><span lang="id">Bahasa Indonesia</span></a></li><li><a href="#ms"><span lang="ms">Bahasa Melayu</span></a></li><li><a href="#ur"><span lang="ur" dir="rtl">اردو</span></a></li><li><a href="#ru"><span lang="ru">Русский</span></a></li><li><a href="#de"><span lang="de">Deutsch</span></a></li><li><a href="#vi"><span lang="vi">Tiếng Việt</span></a></li><li><a href="#sw"><span lang="sw">Kiswahili</span></a></li><li><a href="#tr"><span lang="tr">Türkçe</span></a></li><li><a href="#tl"><span lang="fil">Filipino</span></a></li><li><a href="#fa"><span lang="fa" dir="rtl">فارسی</span></a></li><li><a href="#ko"><span lang="ko">한국어</span></a></li><li><a href="#th"><span lang="th">ไทย</span></a></li><li><a href="#it"><span lang="it">Italiano</span></a></li><li><a href="#pl"><span lang="pl">Polski</span></a></li><li><a href="#uk"><span lang="uk">Українська</span></a></li><li><a href="#nl"><span lang="nl">Nederlands</span></a></li><li><a href="#ang"><span lang="ang">Englisc</span></a></li><li><a href="#soro"><span lang="ja">御座候</span></a></li></ul>
+  </nav>
+
+<section class="lang" id="ja" aria-labelledby="h-ja">
+  <p class="kicker">01 · ja</p>
+  <h2 id="h-ja"><span lang="ja">日本語</span><small>Japans</small></h2>
+  <dl class="nums">
+    <div><dt>Sprekers</dt><dd>126 miljoen</dd></div>
+    <div><dt>Web</dt><dd>4,9% (4e)</dd></div>
+    <div><dt>Tijd online</dt><dd>390 miljoen uur</dd></div>
+  </dl>
+  <p class="region"><b>Waar</b>Japan. Buiten Japan lezen mensen van Japanse afkomst in Brazilië en de Verenigde Staten (Hawaï, Californië) het, en Japanners die in het buitenland wonen. Ook leren veel mensen over de hele wereld Japans.</p>
+  <div class="persona">
+    <figure><img src="../../language-intro/img/ja.webp" width="800" height="1000" loading="lazy" decoding="async" alt="Fictieve persona. 森下 由佳 (Yuka Morishita), 34, woont in Fukuoka. Ze is medisch secretaresse in een algemeen ziekenhuis."></figure>
+    <div class="ptext"><h3>Persona</h3><p><span lang="ja">森下 由佳</span> (Yuka Morishita), 34, woont in Fukuoka. Ze is medisch secretaresse in een algemeen ziekenhuis. Om 7.40 uur ’s ochtends opent ze in de metro haar iPhone en komt ze binnen via een Instagram-reel. Ze neemt waarzeggerij niet al te serieus, maar vindt het leuk genoeg om erom te lachen als het niet klopt. Ze trekt één kaart, en als die omgekeerd ligt, besluit ze: “Vandaag is een dag om het rustig aan te doen.” Ze wordt blij als het verhaal via vertrouwde plekken en ambachten, zoals Hakata-weefwerk of indigoverven uit Chikugo, bij haar kleur uitkomt. Een kleur die ze mooi vindt, gebruikt ze als hint voor de zakdoek of nagellak van die dag. Soms stuurt ze een collega een berichtje via LINE: “Vandaag ben ik blijkbaar indigo.”</p></div>
+  </div>
+  <details><summary>Cijfers &amp; toelichting</summary>
+    <div class="scroll"><table class="facts"><thead><tr><th scope="col">Onderdeel</th><th scope="col">Waarde</th><th scope="col">Toelichting</th></tr></thead><tbody>
+      <tr><th scope="row">Totaal aantal sprekers (moedertaal + tweede taal)</th><td>126 miljoen</td><td>Ethnologue, editie 2026</td></tr>
+      <tr><th scope="row">Aandeel in webcontent</th><td>4,9% (4e)</td><td>W3Techs, oktober 2026</td></tr>
+      <tr><th scope="row">Internetgebruikers per taal</th><td>2,6% (8e)</td><td>Internet World Stats, maart 2020</td></tr>
+      <tr><th scope="row">Tijd online</th><td>Schatting: 100 miljoen internetgebruikers, gemiddeld 3,9 uur per dag, in totaal 390 miljoen uur per dag (18e)</td><td>Schatting van Claude. De tijd per persoon hoort bij de kortste ter wereld</td></tr>
+    </tbody></table></div>
+  </details>
+</section>
+
+<section class="lang" id="en" aria-labelledby="h-en">
+  <p class="kicker">02 · en</p>
+  <h2 id="h-en"><span lang="en">English</span><small>Engels</small></h2>
+  <dl class="nums">
+    <div><dt>Sprekers</dt><dd>1,493 miljard (1e)</dd></div>
+    <div><dt>Web</dt><dd>49,5% (1e)</dd></div>
+    <div><dt>Tijd online</dt><dd>5,78 miljard uur</dd></div>
+  </dl>
+  <p class="region"><b>Waar</b>Moedertaal in de Verenigde Staten, het Verenigd Koninkrijk, Canada, Australië, Nieuw-Zeeland en Ierland. In India, de Filipijnen, Nigeria, Singapore, Kenia en elders is het een officiële taal of de onderwijstaal. Over de hele wereld lezen mensen met Engels als tweede taal Engelstalige pagina’s.</p>
+  <div class="persona">
+    <figure><img src="../../language-intro/img/en.webp" width="800" height="1000" loading="lazy" decoding="async" alt="Fictieve persona. Maya Reynolds, 29, woont in Manchester (VK). Ze is onderwijsassistent op een basisschool."></figure>
+    <div class="ptext"><h3>Persona</h3><p>Maya Reynolds, 29, woont in Manchester (VK). Ze is onderwijsassistent op een basisschool. Om 22.00 uur opent ze in bed haar Android-telefoon. Ze kijkt vaak tarotvideo’s op TikTok en vindt het fijn hoe eenvoudig het is om één kaart te trekken. Ze leest de betekenis van de kaart en geniet van het moment waarop aan het eind van het verhaal de naam van een kleur verschijnt. Als het kleurverhaal aansluit bij Britse plekken, zoals de Schotse distel of wol uit Yorkshire, stuurt ze de link naar vriendinnen. Ze wisselt ook graag van kaartstijl om art nouveau met glas-in-lood te vergelijken.</p></div>
+  </div>
+  <details><summary>Cijfers &amp; toelichting</summary>
+    <div class="scroll"><table class="facts"><thead><tr><th scope="col">Onderdeel</th><th scope="col">Waarde</th><th scope="col">Toelichting</th></tr></thead><tbody>
+      <tr><th scope="row">Totaal aantal sprekers (moedertaal + tweede taal)</th><td>1,493 miljard (1e)</td><td>Ethnologue, editie 2026</td></tr>
+      <tr><th scope="row">Aandeel in webcontent</th><td>49,5% (1e)</td><td>W3Techs, oktober 2026</td></tr>
+      <tr><th scope="row">Internetgebruikers per taal</th><td>25,9% (1e)</td><td>Internet World Stats, maart 2020</td></tr>
+      <tr><th scope="row">Tijd online</th><td>Schatting: 850 miljoen internetgebruikers, gemiddeld 6,8 uur per dag, in totaal 5,78 miljard uur per dag (2e)</td><td>Schatting van Claude. Telt alleen mensen die vooral Engels lezen; volgens een opmerking zou het op de 1e plaats staan als lezers met Engels als tweede taal meetelden</td></tr>
+    </tbody></table></div>
+  </details>
+</section>
+
+<section class="lang" id="zh-hans" aria-labelledby="h-zh-hans">
+  <p class="kicker">03 · zh-hans</p>
+  <h2 id="h-zh-hans"><span lang="zh-Hans">简体中文</span><small>Vereenvoudigd Chinees</small></h2>
+  <dl class="nums">
+    <div><dt>Sprekers</dt><dd>1,183 miljard (Mandarijn)</dd></div>
+    <div><dt>Web</dt><dd>1,3% (12e, al het Chinees)</dd></div>
+    <div><dt>Tijd online</dt><dd>6,20 miljard uur (vereenvoudigd + traditioneel)</dd></div>
+  </dl>
+  <p class="region"><b>Waar</b>Het vasteland van China, waar het het schrift van school en overheid is. Ook in de Chinese gemeenschappen van Singapore en Maleisië zijn vereenvoudigde karakters de norm. Er wonen grote Chinese gemeenschappen in Noord-Amerika, Australië, Europa en Zuidoost-Azië, en er studeren veel mensen in het buitenland.</p>
+  <div class="persona">
+    <figure><img src="../../language-intro/img/zh-hans.webp" width="800" height="1000" loading="lazy" decoding="async" alt="Fictieve persona. 林悦 (Lin Yue), 26, woont in Chengdu. Ze is UI-designer bij een gamebedrijf."></figure>
+    <div class="ptext"><h3>Persona</h3><p><span lang="zh-Hans">林悦</span> (Lin Yue), 26, woont in Chengdu. Ze is UI-designer bij een gamebedrijf. Om 12.30 uur, in haar lunchpauze, zocht ze op haar Huawei-telefoon op Xiaohongshu dingen uit voor haar reis naar Kyoto volgende maand, toen ze via de aantekeningen van een reiziger deze site vond. Door haar werk is ze gevoelig voor kleurnamen en kleurpaletten. Ze trekt één kaart, en als het verhaal via seladon uit de Song-dynastie of Shu-brokaat (brokaat uit Sichuan) bij haar kleur uitkomt, maakt ze een screenshot en stuurt die via WeChat naar collega’s. Ze bekijkt de kaarten graag in de inktschilderstijl.</p></div>
+  </div>
+  <details><summary>Cijfers &amp; toelichting</summary>
+    <div class="scroll"><table class="facts"><thead><tr><th scope="col">Onderdeel</th><th scope="col">Waarde</th><th scope="col">Toelichting</th></tr></thead><tbody>
+      <tr><th scope="row">Totaal aantal sprekers (moedertaal + tweede taal)</th><td>1,183 miljard (Mandarijn)</td><td>Ethnologue, editie 2026. Traditioneel en vereenvoudigd Chinees worden maar één keer geteld, als Mandarijn</td></tr>
+      <tr><th scope="row">Aandeel in webcontent</th><td>1,3% (12e, al het Chinees)</td><td>W3Techs maakt geen onderscheid tussen vereenvoudigd en traditioneel Chinees</td></tr>
+      <tr><th scope="row">Internetgebruikers per taal</th><td>19,4% (2e, al het Chinees)</td><td>Internet World Stats, maart 2020</td></tr>
+      <tr><th scope="row">Tijd online</th><td>Schatting: 1,17 miljard internetgebruikers, gemiddeld 5,3 uur per dag, in totaal 6,20 miljard uur per dag (1e, vereenvoudigd + traditioneel)</td><td>Schatting van Claude. De 1,11 miljard op het Chinese vasteland plus Taiwan, Hongkong en overzeese Chinezen</td></tr>
+    </tbody></table></div>
+  </details>
+</section>
+
+<section class="lang" id="zh" aria-labelledby="h-zh">
+  <p class="kicker">04 · zh</p>
+  <h2 id="h-zh"><span lang="zh-Hant">繁體中文</span><small>Traditioneel Chinees</small></h2>
+  <dl class="nums">
+    <div><dt>Sprekers</dt><dd>Samen met vereenvoudigd Chinees geteld als Mandarijn (1,183 miljard)</dd></div>
+    <div><dt>Web</dt><dd>1,3% (12e, al het Chinees)</dd></div>
+    <div><dt>Tijd online</dt><dd>In totaal 6,20 miljard uur per dag, samen met vereenvoudigd Chinees (1e)</dd></div>
+  </dl>
+  <p class="region"><b>Waar</b>Het schrift van Taiwan, Hongkong en Macau. Ook veel mensen in de al lang bestaande Chinese gemeenschappen in Noord-Amerika en Australië gebruiken traditionele karakters. In Taiwan spreekt men Standaardchinees (Huayu); in Hongkong en Macau is de spreektaal Kantonees en volgt het schrift de traditionele schrijfnorm.</p>
+  <div class="persona">
+    <figure><img src="../../language-intro/img/zh.webp" width="800" height="1000" loading="lazy" decoding="async" alt="Fictieve persona. 陳怡君 (Chen Yi-chun), 31, woont in Taichung. Ze werkt achter de balie van een bank."></figure>
+    <div class="ptext"><h3>Persona</h3><p><span lang="zh-Hant">陳怡君</span> (Chen Yi-chun), 31, woont in Taichung. Ze werkt achter de balie van een bank. Om 23.00 uur, voor het slapengaan, plant ze op haar iPhone haar reis naar Kanazawa van volgende maand. Ze opende deze site via een link die een vriendin haar via LINE stuurde. Ze trekt één kaart, ongeveer in dezelfde geest als waarmee je in een tempel een gelukslootje trekt. Als het verhaal via Japanse ambachten zoals Kaga-yuzenverven of bladgoud bij haar kleur uitkomt, krijgt haar reis er een bestemming bij. Ze stuurt de resultaatpagina via LINE terug naar haar vriendin.</p></div>
+  </div>
+  <details><summary>Cijfers &amp; toelichting</summary>
+    <div class="scroll"><table class="facts"><thead><tr><th scope="col">Onderdeel</th><th scope="col">Waarde</th><th scope="col">Toelichting</th></tr></thead><tbody>
+      <tr><th scope="row">Totaal aantal sprekers (moedertaal + tweede taal)</th><td>Samen met vereenvoudigd Chinees geteld als Mandarijn (1,183 miljard)</td><td>Traditioneel en vereenvoudigd Chinees worden maar één keer geteld, als Mandarijn. Geen gegevens over lezers van alleen traditioneel Chinees</td></tr>
+      <tr><th scope="row">Aandeel in webcontent</th><td>1,3% (12e, al het Chinees)</td><td>W3Techs maakt geen onderscheid tussen vereenvoudigd en traditioneel Chinees</td></tr>
+      <tr><th scope="row">Internetgebruikers per taal</th><td>19,4% (2e, al het Chinees)</td><td>Internet World Stats, maart 2020</td></tr>
+      <tr><th scope="row">Tijd online</th><td>In totaal 6,20 miljard uur per dag, samen met vereenvoudigd Chinees (1e)</td><td>Schatting van Claude. Geen aparte schatting voor traditioneel Chinees</td></tr>
+    </tbody></table></div>
+  </details>
+</section>
+
+<section class="lang" id="hi" aria-labelledby="h-hi">
+  <p class="kicker">05 · hi</p>
+  <h2 id="h-hi"><span lang="hi">हिन्दी</span><small>Hindi</small></h2>
+  <dl class="nums">
+    <div><dt>Sprekers</dt><dd>611 miljoen (3e)</dd></div>
+    <div><dt>Web</dt><dd>Minder dan 0,1% (38e)</dd></div>
+    <div><dt>Tijd online</dt><dd>1,74 miljard uur</dd></div>
+  </dl>
+  <p class="region"><b>Waar</b>Noord- en Midden-India (Uttar Pradesh, Bihar, Rajasthan, Madhya Pradesh, Delhi en meer). Er zijn ook sprekers in Nepal en Fiji. Grote Indiase gemeenschappen wonen in de Golfstaten, het Verenigd Koninkrijk, de Verenigde Staten en Canada.</p>
+  <div class="persona">
+    <figure><img src="../../language-intro/img/hi.webp" width="800" height="1000" loading="lazy" decoding="async" alt="Fictieve persona. Neha Verma, 24, woont in Jaipur. Ze is stagiair in opleiding tot registeraccountant."></figure>
+    <div class="ptext"><h3>Persona</h3><p>Neha Verma, 24, woont in Jaipur. Ze is stagiair in opleiding tot registeraccountant. Om 8.00 uur ’s ochtends, voor ze de metro neemt, trekt ze op haar Redmi-telefoon één kaart, als een vervolg op de rashifal die haar moeder altijd bekijkt. Ze kan ook Engels lezen, maar merkt dat kleurverhalen in het Hindi beter blijven hangen. Als het verhaal via de gebouwen van Jaipurs “Roze Stad” of de knoopverftechniek uit Rajasthan bij haar kleur uitkomt, kiest ze een dupatta in die kleur. Resultaten die ze mooi vindt, stuurt ze via WhatsApp naar haar oudere zus.</p></div>
+  </div>
+  <details><summary>Cijfers &amp; toelichting</summary>
+    <div class="scroll"><table class="facts"><thead><tr><th scope="col">Onderdeel</th><th scope="col">Waarde</th><th scope="col">Toelichting</th></tr></thead><tbody>
+      <tr><th scope="row">Totaal aantal sprekers (moedertaal + tweede taal)</th><td>611 miljoen (3e)</td><td>Ethnologue, editie 2026</td></tr>
+      <tr><th scope="row">Aandeel in webcontent</th><td>Minder dan 0,1% (38e)</td><td>W3Techs, oktober 2026. Heel weinig webpagina’s in verhouding tot het aantal sprekers</td></tr>
+      <tr><th scope="row">Internetgebruikers per taal</th><td>Niet in de top 10</td><td>Internet World Stats, maart 2020</td></tr>
+      <tr><th scope="row">Tijd online</th><td>Schatting: 290 miljoen internetgebruikers, gemiddeld 6,0 uur per dag, in totaal 1,74 miljard uur per dag (6e)</td><td>Schatting van Claude. Gaat ervan uit dat ongeveer 35% van de Indiase internetgebruikers Hindi gebruikt. Dit is de wankelste aanname</td></tr>
+    </tbody></table></div>
+  </details>
+</section>
+
+<section class="lang" id="es" aria-labelledby="h-es">
+  <p class="kicker">06 · es</p>
+  <h2 id="h-es"><span lang="es">Español</span><small>Spaans</small></h2>
+  <dl class="nums">
+    <div><dt>Sprekers</dt><dd>561 miljoen (4e)</dd></div>
+    <div><dt>Web</dt><dd>6,0% (2e)</dd></div>
+    <div><dt>Tijd online</dt><dd>2,96 miljard uur</dd></div>
+  </dl>
+  <p class="region"><b>Waar</b>Spanje en veel landen in Latijns-Amerika, waaronder Mexico, Colombia, Argentinië, Peru, Chili en Venezuela. Ook in de Verenigde Staten spreken veel mensen thuis Spaans (het aantal is hier niet gecontroleerd). Daarnaast is het een officiële taal van Equatoriaal-Guinea.</p>
+  <div class="persona">
+    <figure><img src="../../language-intro/img/es.webp" width="800" height="1000" loading="lazy" decoding="async" alt="Fictieve persona. Valeria Ortiz, 32, woont in Guadalajara, Mexico. Ze is mondhygiënist."></figure>
+    <div class="ptext"><h3>Persona</h3><p>Valeria Ortiz, 32, woont in Guadalajara, Mexico. Ze is mondhygiënist. Om 21.30 uur, na het werk op de bank, opent ze haar Android-telefoon; ze kwam op deze site via een tarotverhaal dat ze op TikTok zag. Ze leest graag de betekenis van de kaart, maar het leukst vindt ze het wachten op de naam van de kleur aan het eind. Als het verhaal via Mexicaanse cochenille (een rood dat wordt gewonnen uit een insect dat op cactussen leeft) bij karmozijn uitkomt, stuurt ze het meteen via WhatsApp naar haar jongere zus. Aan het eind van het jaar wil ze met deze site de kleur van haar ondergoed kiezen.</p></div>
+  </div>
+  <details><summary>Cijfers &amp; toelichting</summary>
+    <div class="scroll"><table class="facts"><thead><tr><th scope="col">Onderdeel</th><th scope="col">Waarde</th><th scope="col">Toelichting</th></tr></thead><tbody>
+      <tr><th scope="row">Totaal aantal sprekers (moedertaal + tweede taal)</th><td>561 miljoen (4e)</td><td>Ethnologue, editie 2026</td></tr>
+      <tr><th scope="row">Aandeel in webcontent</th><td>6,0% (2e)</td><td>W3Techs, oktober 2026</td></tr>
+      <tr><th scope="row">Internetgebruikers per taal</th><td>7,9% (3e)</td><td>Internet World Stats, maart 2020</td></tr>
+      <tr><th scope="row">Tijd online</th><td>Schatting: 390 miljoen internetgebruikers, gemiddeld 7,6 uur per dag, in totaal 2,96 miljard uur per dag (3e)</td><td>Schatting van Claude. Mexico, Spanje, Colombia, Argentinië en andere landen, plus mensen in de Verenigde Staten die vooral Spaans gebruiken</td></tr>
+    </tbody></table></div>
+  </details>
+</section>
+
+<section class="lang" id="ar" aria-labelledby="h-ar">
+  <p class="kicker">07 · ar</p>
+  <h2 id="h-ar"><span lang="ar" dir="rtl">العربية</span><small>Arabisch (Modern Standaardarabisch)</small></h2>
+  <dl class="nums">
+    <div><dt>Sprekers</dt><dd>335 miljoen (5e, Modern Standaardarabisch)</dd></div>
+    <div><dt>Web</dt><dd>0,6% (19e)</dd></div>
+    <div><dt>Tijd online</dt><dd>2,31 miljard uur</dd></div>
+  </dl>
+  <p class="region"><b>Waar</b>Officiële taal van zo’n 22 landen in het Midden-Oosten en Noord-Afrika, waaronder Egypte, Saoedi-Arabië, Irak, Algerije, Marokko, Soedan, Syrië, Jordanië en de VAE. Veel Arabischsprekenden wonen ook in Europa (Frankrijk, Duitsland en elders) en Noord-Amerika. De site loopt van rechts naar links.</p>
+  <div class="persona">
+    <figure><img src="../../language-intro/img/ar.webp" width="800" height="1000" loading="lazy" decoding="async" alt="Fictieve persona. Nour Haddad, 28, woont in Amman, Jordanië. Ze werkt bij een architectenbureau."></figure>
+    <div class="ptext"><h3>Persona</h3><p>Nour Haddad, 28, woont in Amman, Jordanië. Ze werkt bij een architectenbureau. Om 20.00 uur opent ze op het balkon thuis haar iPhone. Ze gelooft niet in waarzeggerij; ze geniet van de kaartillustraties en het verhaal als “iets korts om te lezen”. Als het verhaal via het blauw van islamitische bouwtegels of het roze van de rotsen van Petra bij haar kleur uitkomt, noteert ze het als inspiratie voor kleurschema’s op het werk. Soms stuurt ze de resultaatpagina naar een WhatsApp-groep van bevriende architecten.</p></div>
+  </div>
+  <details><summary>Cijfers &amp; toelichting</summary>
+    <div class="scroll"><table class="facts"><thead><tr><th scope="col">Onderdeel</th><th scope="col">Waarde</th><th scope="col">Toelichting</th></tr></thead><tbody>
+      <tr><th scope="row">Totaal aantal sprekers (moedertaal + tweede taal)</th><td>335 miljoen (5e, Modern Standaardarabisch)</td><td>Ethnologue, editie 2026</td></tr>
+      <tr><th scope="row">Aandeel in webcontent</th><td>0,6% (19e)</td><td>W3Techs, oktober 2026</td></tr>
+      <tr><th scope="row">Internetgebruikers per taal</th><td>5,2% (4e)</td><td>Internet World Stats, maart 2020</td></tr>
+      <tr><th scope="row">Tijd online</th><td>Schatting: 330 miljoen internetgebruikers, gemiddeld 7,0 uur per dag, in totaal 2,31 miljard uur per dag (4e)</td><td>Schatting van Claude. Egypte, Saoedi-Arabië, Irak, Algerije, Marokko en andere landen</td></tr>
+    </tbody></table></div>
+  </details>
+</section>
+
+<section class="lang" id="fr" aria-labelledby="h-fr">
+  <p class="kicker">08 · fr</p>
+  <h2 id="h-fr"><span lang="fr">Français</span><small>Frans</small></h2>
+  <dl class="nums">
+    <div><dt>Sprekers</dt><dd>334 miljoen (6e)</dd></div>
+    <div><dt>Web</dt><dd>4,5% (5e)</dd></div>
+    <div><dt>Tijd online</dt><dd>750 miljoen uur</dd></div>
+  </dl>
+  <p class="region"><b>Waar</b>Frankrijk, het zuiden van België, het westen van Zwitserland, Quebec in Canada en Luxemburg. In West- en Centraal-Afrika (Ivoorkust, Senegal, de Democratische Republiek Congo, Kameroen en elders) is het de taal van school en overheid. Ook in Marokko, Algerije en Tunesië in Noord-Afrika wordt het veel gebruikt.</p>
+  <div class="persona">
+    <figure><img src="../../language-intro/img/fr.webp" width="800" height="1000" loading="lazy" decoding="async" alt="Fictieve persona. Hélène Garnier, 41, woont in Lyon. Ze heeft een atelier voor boekbinden en papierrestauratie."></figure>
+    <div class="ptext"><h3>Persona</h3><p>Hélène Garnier, 41, woont in Lyon. Ze heeft een atelier voor boekbinden en papierrestauratie. Op zondagochtend om 10.00 uur opent ze haar tablet aan de werkbank in het atelier. Ze herinnert zich het Marseille-tarot bij haar oma thuis, en de namen van de Grote Arcana klinken haar vertrouwd in de oren. Als het verhaal via het verven van zijde in Lyon of een Parijse kleurenhandelaar bij haar kleur uitkomt, kiest ze daarmee de kleur van het schutblad voor haar volgende band. Ze kiest de art-nouveaustijl.</p></div>
+  </div>
+  <details><summary>Cijfers &amp; toelichting</summary>
+    <div class="scroll"><table class="facts"><thead><tr><th scope="col">Onderdeel</th><th scope="col">Waarde</th><th scope="col">Toelichting</th></tr></thead><tbody>
+      <tr><th scope="row">Totaal aantal sprekers (moedertaal + tweede taal)</th><td>334 miljoen (6e)</td><td>Ethnologue, editie 2026</td></tr>
+      <tr><th scope="row">Aandeel in webcontent</th><td>4,5% (5e)</td><td>W3Techs, oktober 2026</td></tr>
+      <tr><th scope="row">Internetgebruikers per taal</th><td>3,3% (7e)</td><td>Internet World Stats, maart 2020</td></tr>
+      <tr><th scope="row">Tijd online</th><td>Schatting: 125 miljoen internetgebruikers, gemiddeld 6,0 uur per dag, in totaal 750 miljoen uur per dag (9e)</td><td>Schatting van Claude. Frankrijk, België en Quebec, plus Franstalig Afrika</td></tr>
+    </tbody></table></div>
+  </details>
+</section>
+
+<section class="lang" id="bn" aria-labelledby="h-bn">
+  <p class="kicker">09 · bn</p>
+  <h2 id="h-bn"><span lang="bn">বাংলা</span><small>Bengaals</small></h2>
+  <dl class="nums">
+    <div><dt>Sprekers</dt><dd>274 miljoen (7e)</dd></div>
+    <div><dt>Web</dt><dd>Minder dan 0,1% (39e)</dd></div>
+    <div><dt>Tijd online</dt><dd>610 miljoen uur</dd></div>
+  </dl>
+  <p class="region"><b>Waar</b>Bangladesh (nationale taal) en de Indiase deelstaten West-Bengalen, Tripura en delen van Assam. Veel mensen uit Bangladesh wonen in het Verenigd Koninkrijk (Oost-Londen), de Golfstaten, de Verenigde Staten en Maleisië.</p>
+  <div class="persona">
+    <figure><img src="../../language-intro/img/bn.webp" width="800" height="1000" loading="lazy" decoding="async" alt="Fictieve persona. Farhana Akter, 23, woont in Dhaka. Ze studeert Engelse letterkunde aan de universiteit."></figure>
+    <div class="ptext"><h3>Persona</h3><p>Farhana Akter, 23, woont in Dhaka. Ze studeert Engelse letterkunde aan de universiteit. Om 22.00 uur, tijdens een studiepauze, keek ze op haar Samsung-telefoon op Facebook en kwam ze binnen via een resultaatpagina die een vriendin had gedeeld. Ze ziet het niet als waarzeggerij, maar als een kort verhaal dat ze in het Bengaals kan lezen. Als het verhaal via Dhaka-mousseline of jamdani-weefwerk bij ivoor uitkomt, schrijft ze de kleurnaam over in haar poëzieschrift.</p></div>
+  </div>
+  <details><summary>Cijfers &amp; toelichting</summary>
+    <div class="scroll"><table class="facts"><thead><tr><th scope="col">Onderdeel</th><th scope="col">Waarde</th><th scope="col">Toelichting</th></tr></thead><tbody>
+      <tr><th scope="row">Totaal aantal sprekers (moedertaal + tweede taal)</th><td>274 miljoen (7e)</td><td>Ethnologue, editie 2026</td></tr>
+      <tr><th scope="row">Aandeel in webcontent</th><td>Minder dan 0,1% (39e)</td><td>W3Techs, oktober 2026</td></tr>
+      <tr><th scope="row">Internetgebruikers per taal</th><td>Niet in de top 10</td><td>Internet World Stats, maart 2020</td></tr>
+      <tr><th scope="row">Tijd online</th><td>Schatting: 110 miljoen internetgebruikers, gemiddeld 5,5 uur per dag, in totaal 610 miljoen uur per dag (10e)</td><td>Schatting van Claude. Bangladesh plus West-Bengalen</td></tr>
+    </tbody></table></div>
+  </details>
+</section>
+
+<section class="lang" id="pt" aria-labelledby="h-pt">
+  <p class="kicker">10 · pt</p>
+  <h2 id="h-pt"><span lang="pt">Português</span><small>Portugees (Brazilië)</small></h2>
+  <dl class="nums">
+    <div><dt>Sprekers</dt><dd>269 miljoen (8e)</dd></div>
+    <div><dt>Web</dt><dd>4,1% (6e)</dd></div>
+    <div><dt>Tijd online</dt><dd>1,89 miljard uur</dd></div>
+  </dl>
+  <p class="region"><b>Waar</b>Brazilië (de site gebruikt pt-BR) en Portugal. Het is ook een officiële taal in Afrikaanse landen zoals Angola, Mozambique en Kaapverdië. Veel Brazilianen van Japanse afkomst wonen in Japan. Er zijn Braziliaanse gemeenschappen in de Verenigde Staten, Portugal en Japan.</p>
+  <div class="persona">
+    <figure><img src="../../language-intro/img/pt.webp" width="800" height="1000" loading="lazy" decoding="async" alt="Fictieve persona. Juliana Costa, 30, woont in Recife. Ze is verpleegkundige in een ziekenhuis en draait ook nachtdiensten."></figure>
+    <div class="ptext"><h3>Persona</h3><p>Juliana Costa, 30, woont in Recife. Ze is verpleegkundige in een ziekenhuis en draait ook nachtdiensten. Om 6.30 uur ’s ochtends, in de bus naar huis na een nachtdienst, opent ze haar Samsung-telefoon en trekt ze één kaart. Meer dan op de betekenis van de kaart verheugt ze zich op de kleur aan het eind van het verhaal. Als het verhaal via pau-brasil (de rode verfboom waaraan Brazilië zijn naam dankt) bij haar kleur uitkomt, stuurt ze het naar de WhatsApp-groep van haar collega’s. Ook de kleur van haar outfit voor oudejaarsavond wil ze hier trekken.</p></div>
+  </div>
+  <details><summary>Cijfers &amp; toelichting</summary>
+    <div class="scroll"><table class="facts"><thead><tr><th scope="col">Onderdeel</th><th scope="col">Waarde</th><th scope="col">Toelichting</th></tr></thead><tbody>
+      <tr><th scope="row">Totaal aantal sprekers (moedertaal + tweede taal)</th><td>269 miljoen (8e)</td><td>Ethnologue, editie 2026</td></tr>
+      <tr><th scope="row">Aandeel in webcontent</th><td>4,1% (6e)</td><td>W3Techs, oktober 2026</td></tr>
+      <tr><th scope="row">Internetgebruikers per taal</th><td>3,7% (6e)</td><td>Internet World Stats, maart 2020</td></tr>
+      <tr><th scope="row">Tijd online</th><td>Schatting: 210 miljoen internetgebruikers, gemiddeld 9,0 uur per dag, in totaal 1,89 miljard uur per dag (5e)</td><td>Schatting van Claude. Vooral Brazilië. De tijd online hoort bij de langste ter wereld</td></tr>
+    </tbody></table></div>
+  </details>
+</section>
+
+<section class="lang" id="id" aria-labelledby="h-id">
+  <p class="kicker">11 · id</p>
+  <h2 id="h-id"><span lang="id">Bahasa Indonesia</span><small>Indonesisch</small></h2>
+  <dl class="nums">
+    <div><dt>Sprekers</dt><dd>255 miljoen (9e)</dd></div>
+    <div><dt>Web</dt><dd>1,2% (13e)</dd></div>
+    <div><dt>Tijd online</dt><dd>1,55 miljard uur</dd></div>
+  </dl>
+  <p class="region"><b>Waar</b>De nationale taal van Indonesië, die meer dan 200 miljoen mensen op school en op het werk gebruiken. In Oost-Timor is het een werktaal. Het is grotendeels onderling verstaanbaar met het Maleis van Maleisië, Brunei en Singapore. Steeds meer Indonesiërs werken in Japan als technisch stagiair of via het programma voor arbeiders met specifieke vaardigheden.</p>
+  <div class="persona">
+    <figure><img src="../../language-intro/img/id.webp" width="800" height="1000" loading="lazy" decoding="async" alt="Fictieve persona. Dimas Pratama, 25, woont in Bandung. Hij is junior grafisch ontwerper bij een start-up."></figure>
+    <div class="ptext"><h3>Persona</h3><p>Dimas Pratama, 25, woont in Bandung. Hij is junior grafisch ontwerper bij een start-up. Om 9.00 uur ’s ochtends opent hij in een coworkingruimte zijn Android-telefoon. Hij gebruikt de site niet om te waarzeggen, maar als hulpmiddel om ideeën voor kleurschema’s te vinden. De betekenis van de kaart leest hij vluchtig, het kleurverhaal aandachtig. Als het verhaal via Javaans batikindigo of Soendanees bamboeambacht bij zijn kleur uitkomt, maakt hij die de basiskleur van zijn posterschetsen van die dag. In zijn Instagram-stories deelt hij alleen de naam van de kleur.</p></div>
+  </div>
+  <details><summary>Cijfers &amp; toelichting</summary>
+    <div class="scroll"><table class="facts"><thead><tr><th scope="col">Onderdeel</th><th scope="col">Waarde</th><th scope="col">Toelichting</th></tr></thead><tbody>
+      <tr><th scope="row">Totaal aantal sprekers (moedertaal + tweede taal)</th><td>255 miljoen (9e)</td><td>Ethnologue, editie 2026</td></tr>
+      <tr><th scope="row">Aandeel in webcontent</th><td>1,2% (13e)</td><td>W3Techs, oktober 2026</td></tr>
+      <tr><th scope="row">Internetgebruikers per taal</th><td>4,3% (5e)</td><td>Internet World Stats, maart 2020. Deelt een rij met het Maleis; het cijfer is dat van het Indonesisch</td></tr>
+      <tr><th scope="row">Tijd online</th><td>Schatting: 210 miljoen internetgebruikers, gemiddeld 7,4 uur per dag, in totaal 1,55 miljard uur per dag (7e)</td><td>Schatting van Claude</td></tr>
+    </tbody></table></div>
+  </details>
+</section>
+
+<section class="lang" id="ms" aria-labelledby="h-ms">
+  <p class="kicker">12 · ms</p>
+  <h2 id="h-ms"><span lang="ms">Bahasa Melayu</span><small>Maleis</small></h2>
+  <dl class="nums">
+    <div><dt>Sprekers</dt><dd>onbekend</dd></div>
+    <div><dt>Web</dt><dd>geen gegevens</dd></div>
+    <div><dt>Tijd online</dt><dd>Ongeveer 160 miljoen uur (referentiewaarde, buiten de ranglijst)</dd></div>
+  </dl>
+  <p class="region"><b>Waar</b>Maleisië, Brunei en Singapore (nationale taal). Ook in het zuiden van Thailand wonen sprekers van het Maleis. In Maleisië gebruiken Maleiers het in het dagelijks leven, en ook Maleisiërs van Chinese en Indiase afkomst leren het op school.</p>
+  <div class="persona">
+    <figure><img src="../../language-intro/img/ms.webp" width="800" height="1000" loading="lazy" decoding="async" alt="Fictieve persona. Nur Aisyah binti Rahman, 27, woont in Shah Alam. Ze is ziekenhuisapotheker."></figure>
+    <div class="ptext"><h3>Persona</h3><p>Nur Aisyah binti Rahman, 27, woont in Shah Alam. Ze is ziekenhuisapotheker. Om 13.00 uur, in haar lunchpauze, kijkt ze op haar Android-telefoon TikTok voor tips voor een reis naar Osaka in maart volgend jaar. Ze gelooft niet in waarzeggerij, maar houdt van de kaartillustraties en de kleurverhalen als “iets moois om te lezen”. Als het verhaal via de gouddraad van Maleise songket of de haven van Malakka bij haar kleur uitkomt, gebruikt ze dat als inspiratie voor de kleur van haar tudung (hoofddoek) voor de reis. In de familie-WhatsApp-groep stuurt ze alleen de naam van de kleur.</p></div>
+  </div>
+  <details><summary>Cijfers &amp; toelichting</summary>
+    <div class="scroll"><table class="facts"><thead><tr><th scope="col">Onderdeel</th><th scope="col">Waarde</th><th scope="col">Toelichting</th></tr></thead><tbody>
+      <tr><th scope="row">Totaal aantal sprekers (moedertaal + tweede taal)</th><td>onbekend</td><td>Maleis wordt vaak samen met Indonesisch als macrotaal geteld, dus er is geen apart cijfer. De Wikipedia-pagina “Malay language” (met Ethnologue, 28e editie, 2025, als bron) noemt voor Maleis als macrotaal ongeveer 90 miljoen moedertaalsprekers (2020–2023) en ongeveer 180 miljoen tweedetaalsprekers (2020). Deze telling omvat lokale Maleise varianten in Indonesië en betreft niet alleen het Standaardmaleis</td></tr>
+      <tr><th scope="row">Aandeel in webcontent</th><td>geen gegevens</td><td>Niet in de top 40 van W3Techs</td></tr>
+      <tr><th scope="row">Internetgebruikers per taal</th><td>Zelfde rij als Indonesisch</td><td>In Internet World Stats is het cijfer van de rij Indonesisch/Maleis alleen de 4,3% van het Indonesisch</td></tr>
+      <tr><th scope="row">Tijd online</th><td>Ongeveer 160 miljoen uur per dag (referentiewaarde, buiten de ranglijst)</td><td>Referentiewaarde buiten de ranglijst in de schatting van Claude. Ongeveer 60% van de internetgebruikers in Maleisië, plus Brunei</td></tr>
+    </tbody></table></div>
+  </details>
+</section>
+
+<section class="lang" id="ur" aria-labelledby="h-ur">
+  <p class="kicker">13 · ur</p>
+  <h2 id="h-ur"><span lang="ur" dir="rtl">اردو</span><small>Urdu</small></h2>
+  <dl class="nums">
+    <div><dt>Sprekers</dt><dd>246 miljoen (10e)</dd></div>
+    <div><dt>Web</dt><dd>geen gegevens</dd></div>
+    <div><dt>Tijd online</dt><dd>520 miljoen uur</dd></div>
+  </dl>
+  <p class="region"><b>Waar</b>Pakistan (nationale taal) en Noord-India (Uttar Pradesh, Hyderabad in Telangana, Delhi en elders). Veel mensen van Pakistaanse afkomst wonen in het Verenigd Koninkrijk, de Golfstaten, de Verenigde Staten en Canada. De spreektaal ligt dicht bij het Hindi; het schrift (Arabisch schrift in de nastaliq-stijl) is anders. De site loopt van rechts naar links.</p>
+  <div class="persona">
+    <figure><img src="../../language-intro/img/ur.webp" width="800" height="1000" loading="lazy" decoding="async" alt="Fictieve persona. Hamza Qureshi, 30, woont in Lahore. Hij is software-engineer bij een fintechbedrijf."></figure>
+    <div class="ptext"><h3>Persona</h3><p>Hamza Qureshi, 30, woont in Lahore. Hij is software-engineer bij een fintechbedrijf. Om half één ’s nachts, na het werk, opent hij met een kop chai zijn Android-telefoon. Hij houdt afstand van waarzeggerij, maar houdt van pagina’s waarop Urdu mooi is gezet, en komt om de verhalen te lezen. Als het verhaal via het ultramarijn van Mogol-miniaturen of de tegels op de muren van het Fort van Lahore bij zijn kleur uitkomt, stuurt hij de link via WhatsApp naar een bevriende dichter.</p></div>
+  </div>
+  <details><summary>Cijfers &amp; toelichting</summary>
+    <div class="scroll"><table class="facts"><thead><tr><th scope="col">Onderdeel</th><th scope="col">Waarde</th><th scope="col">Toelichting</th></tr></thead><tbody>
+      <tr><th scope="row">Totaal aantal sprekers (moedertaal + tweede taal)</th><td>246 miljoen (10e)</td><td>Ethnologue, editie 2026</td></tr>
+      <tr><th scope="row">Aandeel in webcontent</th><td>geen gegevens</td><td>Niet in de top 40 van W3Techs</td></tr>
+      <tr><th scope="row">Internetgebruikers per taal</th><td>Niet in de top 10</td><td>Internet World Stats, maart 2020</td></tr>
+      <tr><th scope="row">Tijd online</th><td>Schatting: 95 miljoen internetgebruikers, gemiddeld 5,5 uur per dag, in totaal 520 miljoen uur per dag (13e)</td><td>Schatting van Claude. Ongeveer 75% van Pakistan, plus een deel van India</td></tr>
+    </tbody></table></div>
+  </details>
+</section>
+
+<section class="lang" id="ru" aria-labelledby="h-ru">
+  <p class="kicker">14 · ru</p>
+  <h2 id="h-ru"><span lang="ru">Русский</span><small>Russisch</small></h2>
+  <dl class="nums">
+    <div><dt>Sprekers</dt><dd>210 miljoen (11e)</dd></div>
+    <div><dt>Web</dt><dd>3,4% (7e)</dd></div>
+    <div><dt>Tijd online</dt><dd>1,16 miljard uur</dd></div>
+  </dl>
+  <p class="region"><b>Waar</b>Officiële taal van Rusland, Belarus, Kazachstan en Kirgizië. Ook in andere voormalige Sovjetlanden (Centraal-Azië, de Kaukasus, de Baltische staten) gebruiken veel mensen Russisch. Er zijn ook Russischtalige gemeenschappen in Israël, Duitsland en de Verenigde Staten.</p>
+  <div class="persona">
+    <figure><img src="../../language-intro/img/ru.webp" width="800" height="1000" loading="lazy" decoding="async" alt="Fictieve persona. Анна Соколова (Anna Sokolova), 35, woont in Novosibirsk. Ze is analist chemie bij een onderzoeksinstituut."></figure>
+    <div class="ptext"><h3>Persona</h3><p><span lang="ru">Анна Соколова</span> (Anna Sokolova), 35, woont in Novosibirsk. Ze is analist chemie bij een onderzoeksinstituut. Om 22.00 uur opent ze met een kop thee in de keuken haar Android-telefoon. Ze hoorde over deze site via een Telegram-kanaal over kleur en kunst. Door haar werk vindt ze het vooral leuk om een kaart te trekken en het verhaal via mineralen en pigmenten naar haar kleur te volgen. Op dagen dat malachietgroen verschijnt, laat ze haar dochter een foto van de steen zien.</p></div>
+  </div>
+  <details><summary>Cijfers &amp; toelichting</summary>
+    <div class="scroll"><table class="facts"><thead><tr><th scope="col">Onderdeel</th><th scope="col">Waarde</th><th scope="col">Toelichting</th></tr></thead><tbody>
+      <tr><th scope="row">Totaal aantal sprekers (moedertaal + tweede taal)</th><td>210 miljoen (11e)</td><td>Ethnologue, editie 2026</td></tr>
+      <tr><th scope="row">Aandeel in webcontent</th><td>3,4% (7e)</td><td>W3Techs, oktober 2026</td></tr>
+      <tr><th scope="row">Internetgebruikers per taal</th><td>2,5% (9e)</td><td>Internet World Stats, maart 2020</td></tr>
+      <tr><th scope="row">Tijd online</th><td>Schatting: 155 miljoen internetgebruikers, gemiddeld 7,5 uur per dag, in totaal 1,16 miljard uur per dag (8e)</td><td>Schatting van Claude. Rusland, plus Belarus, Kazachstan en delen van Centraal-Azië</td></tr>
+    </tbody></table></div>
+  </details>
+</section>
+
+<section class="lang" id="de" aria-labelledby="h-de">
+  <p class="kicker">15 · de</p>
+  <h2 id="h-de"><span lang="de">Deutsch</span><small>Duits</small></h2>
+  <dl class="nums">
+    <div><dt>Sprekers</dt><dd>133 miljoen (12e)</dd></div>
+    <div><dt>Web</dt><dd>5,9% (3e)</dd></div>
+    <div><dt>Tijd online</dt><dd>480 miljoen uur</dd></div>
+  </dl>
+  <p class="region"><b>Waar</b>Duitsland, Oostenrijk, Zwitserland (noorden en midden), Liechtenstein, Luxemburg, Zuid-Tirol in Italië en Oost-België.</p>
+  <div class="persona">
+    <figure><img src="../../language-intro/img/de.webp" width="800" height="1000" loading="lazy" decoding="async" alt="Fictieve persona. Jonas Weber, 38, woont in Leipzig. Hij is geluidstechnicus bij een theater."></figure>
+    <div class="ptext"><h3>Persona</h3><p>Jonas Weber, 38, woont in Leipzig. Hij is geluidstechnicus bij een theater. Op een doordeweekse dag om 13.00 uur, in zijn pauze, opent hij de site in Firefox op zijn laptop. Hij gebruikt een adblocker en weigert toestemmingsbanners. Hij gelooft niet in waarzeggerij, maar vergelijkt graag de kaartstijlen (surrealistische fotografie, brutalistische grafiek). Als het verhaal via Pruisisch blauw, begin 18e eeuw in Berlijn ontstaan, bij zijn kleur uitkomt, is hij in zijn nopjes en vertelt hij het aan zijn collega’s.</p></div>
+  </div>
+  <details><summary>Cijfers &amp; toelichting</summary>
+    <div class="scroll"><table class="facts"><thead><tr><th scope="col">Onderdeel</th><th scope="col">Waarde</th><th scope="col">Toelichting</th></tr></thead><tbody>
+      <tr><th scope="row">Totaal aantal sprekers (moedertaal + tweede taal)</th><td>133 miljoen (12e)</td><td>Ethnologue, editie 2026</td></tr>
+      <tr><th scope="row">Aandeel in webcontent</th><td>5,9% (3e)</td><td>W3Techs, oktober 2026</td></tr>
+      <tr><th scope="row">Internetgebruikers per taal</th><td>2,0% (10e)</td><td>Internet World Stats, maart 2020</td></tr>
+      <tr><th scope="row">Tijd online</th><td>Schatting: 93 miljoen internetgebruikers, gemiddeld 5,2 uur per dag, in totaal 480 miljoen uur per dag (17e)</td><td>Schatting van Claude. Duitsland, Oostenrijk, Zwitserland</td></tr>
+    </tbody></table></div>
+  </details>
+</section>
+
+<section class="lang" id="vi" aria-labelledby="h-vi">
+  <p class="kicker">16 · vi</p>
+  <h2 id="h-vi"><span lang="vi">Tiếng Việt</span><small>Vietnamees</small></h2>
+  <dl class="nums">
+    <div><dt>Sprekers</dt><dd>97 miljoen (17e)</dd></div>
+    <div><dt>Web</dt><dd>0,9% (16e)</dd></div>
+    <div><dt>Tijd online</dt><dd>500 miljoen uur</dd></div>
+  </dl>
+  <p class="region"><b>Waar</b>Vietnam. Er zijn grote Vietnamese gemeenschappen in de Verenigde Staten (Californië, Texas), Australië, Frankrijk en Canada. Veel Vietnamezen wonen ook in Japan als technisch stagiair of student.</p>
+  <div class="persona">
+    <figure><img src="../../language-intro/img/vi.webp" width="800" height="1000" loading="lazy" decoding="async" alt="Fictieve persona. Trần Văn Minh, 24, woont in Toyota, in de prefectuur Aichi. Hij is technisch stagiair in een fabriek voor auto-onderdelen."></figure>
+    <div class="ptext"><h3>Persona</h3><p>Trần Văn Minh, 24, woont in Toyota, in de prefectuur Aichi. Hij is technisch stagiair in een fabriek voor auto-onderdelen. Om 17.00 uur, voor hij naar de nachtdienst vertrekt, opent hij in zijn kamer in het werknemershuis zijn Android-telefoon. In een Facebookgroep van vrienden die in Japan wonen, waren resultaten van deze site gedeeld. Hij trekt één kaart en vergelijkt die met de kleuren van zijn <i lang="vi">mệnh</i>, waar zijn moeder het over heeft. Als het verhaal via de zijde van de lantaarns van Hội An of het lakwerk uit zijn geboortestreek bij zijn kleur uitkomt, stuurt hij het via Zalo naar zijn familie.</p></div>
+  </div>
+  <details><summary>Cijfers &amp; toelichting</summary>
+    <div class="scroll"><table class="facts"><thead><tr><th scope="col">Onderdeel</th><th scope="col">Waarde</th><th scope="col">Toelichting</th></tr></thead><tbody>
+      <tr><th scope="row">Totaal aantal sprekers (moedertaal + tweede taal)</th><td>97 miljoen (17e)</td><td>Ethnologue, editie 2026</td></tr>
+      <tr><th scope="row">Aandeel in webcontent</th><td>0,9% (16e)</td><td>W3Techs, oktober 2026</td></tr>
+      <tr><th scope="row">Internetgebruikers per taal</th><td>Niet in de top 10</td><td>Internet World Stats, maart 2020</td></tr>
+      <tr><th scope="row">Tijd online</th><td>Schatting: 79 miljoen internetgebruikers, gemiddeld 6,3 uur per dag, in totaal 500 miljoen uur per dag (15e)</td><td>Schatting van Claude</td></tr>
+    </tbody></table></div>
+  </details>
+</section>
+
+<section class="lang" id="sw" aria-labelledby="h-sw">
+  <p class="kicker">17 · sw</p>
+  <h2 id="h-sw"><span lang="sw">Kiswahili</span><small>Swahili</small></h2>
+  <dl class="nums">
+    <div><dt>Sprekers</dt><dd>95 miljoen (19e)</dd></div>
+    <div><dt>Web</dt><dd>geen gegevens</dd></div>
+    <div><dt>Tijd online</dt><dd>Geen schatting</dd></div>
+  </dl>
+  <p class="region"><b>Waar</b>Tanzania en Kenia. In Tanzania is het de nationale taal; op de basisschool wordt in het Swahili lesgegeven en vanaf het voortgezet onderwijs neemt het Engels het over. In Kenia is het een van de officiële talen; de eerste leerjaren worden in de moedertaal of het Swahili gegeven, daarna in het Engels, met Swahili als verplicht vak. Het wordt ook veel gebruikt in Oeganda, Rwanda, Burundi, het oosten van de Democratische Republiek Congo en de Comoren. Het is een van de werktalen van de Afrikaanse Unie.</p>
+  <div class="persona">
+    <figure><img src="../../language-intro/img/sw.webp" width="800" height="1000" loading="lazy" decoding="async" alt="Fictieve persona. Amina Juma, 28, woont in Dar es Salaam. Ze is basisschoolleerkracht."></figure>
+    <div class="ptext"><h3>Persona</h3><p>Amina Juma, 28, woont in Dar es Salaam. Ze is basisschoolleerkracht. Om 15.30 uur, na de lessen, opent ze in de lerarenkamer haar Android-telefoon. In de WhatsApp-groep van haar collega’s was een resultaat van deze site rondgegaan. Ze trekt één kaart en vergelijkt die met de kleuren van kanga-doeken. Als het verhaal via kanga-indigo of de avondlucht boven de Indische Oceaan bij haar kleur uitkomt, stuurt ze het via WhatsApp naar haar moeder.</p></div>
+  </div>
+  <details><summary>Cijfers &amp; toelichting</summary>
+    <div class="scroll"><table class="facts"><thead><tr><th scope="col">Onderdeel</th><th scope="col">Waarde</th><th scope="col">Toelichting</th></tr></thead><tbody>
+      <tr><th scope="row">Totaal aantal sprekers (moedertaal + tweede taal)</th><td>95 miljoen (19e)</td><td>Ethnologue, editie 2026</td></tr>
+      <tr><th scope="row">Aandeel in webcontent</th><td>geen gegevens</td><td>Niet in de top 40 van W3Techs</td></tr>
+      <tr><th scope="row">Internetgebruikers per taal</th><td>Niet in de top 10</td><td>Internet World Stats, maart 2020</td></tr>
+      <tr><th scope="row">Tijd online</th><td>Geen schatting</td><td>De schatting van Claude heeft geen rij voor het Swahili. Kenia en Tanzania zijn in hun geheel bij het Engels of het Swahili ingedeeld, en de tijd voor alleen het Swahili wordt niet apart vermeld</td></tr>
+    </tbody></table></div>
+  </details>
+</section>
+
+<section class="lang" id="tr" aria-labelledby="h-tr">
+  <p class="kicker">18 · tr</p>
+  <h2 id="h-tr"><span lang="tr">Türkçe</span><small>Turks</small></h2>
+  <dl class="nums">
+    <div><dt>Sprekers</dt><dd>94 miljoen (20e, gedeeld met het Hausa)</dd></div>
+    <div><dt>Web</dt><dd>1,6% (11e)</dd></div>
+    <div><dt>Tijd online</dt><dd>560 miljoen uur</dd></div>
+  </dl>
+  <p class="region"><b>Waar</b>Turkije en Noord-Cyprus. Duitsland heeft een grote Turkse gemeenschap, en velen wonen ook in Nederland, Oostenrijk en Frankrijk. Er zijn ook sprekers in Bulgarije en Noord-Griekenland.</p>
+  <div class="persona">
+    <figure><img src="../../language-intro/img/tr.webp" width="800" height="1000" loading="lazy" decoding="async" alt="Fictieve persona. Elif Yıldız, 33, woont in İzmir. Ze is scheikundedocent op een middelbare school."></figure>
+    <div class="ptext"><h3>Persona</h3><p>Elif Yıldız, 33, woont in İzmir. Ze is scheikundedocent op een middelbare school. Om 16.30 uur, na de lessen, liet ze met vriendinnen in een café het koffiedik lezen en opende ze daarna deze site op haar iPhone. Samen met haar vriendinnen leest ze de betekenis van de kaart. Als het verhaal via turkoois of het blauw van İznik-tegels bij haar kleur uitkomt, is iedereen enthousiast en zet ze het in haar Instagram-story.</p></div>
+  </div>
+  <details><summary>Cijfers &amp; toelichting</summary>
+    <div class="scroll"><table class="facts"><thead><tr><th scope="col">Onderdeel</th><th scope="col">Waarde</th><th scope="col">Toelichting</th></tr></thead><tbody>
+      <tr><th scope="row">Totaal aantal sprekers (moedertaal + tweede taal)</th><td>94 miljoen (20e, gedeeld met het Hausa)</td><td>Ethnologue, editie 2026</td></tr>
+      <tr><th scope="row">Aandeel in webcontent</th><td>1,6% (11e)</td><td>W3Techs, oktober 2026</td></tr>
+      <tr><th scope="row">Internetgebruikers per taal</th><td>Niet in de top 10</td><td>Internet World Stats, maart 2020</td></tr>
+      <tr><th scope="row">Tijd online</th><td>Schatting: 80 miljoen internetgebruikers, gemiddeld 7,0 uur per dag, in totaal 560 miljoen uur per dag (11e)</td><td>Schatting van Claude</td></tr>
+    </tbody></table></div>
+  </details>
+</section>
+
+<section class="lang" id="tl" aria-labelledby="h-tl">
+  <p class="kicker">19 · tl</p>
+  <h2 id="h-tl"><span lang="fil">Filipino</span></h2>
+  <dl class="nums">
+    <div><dt>Sprekers</dt><dd>87 miljoen</dd></div>
+    <div><dt>Web</dt><dd>Minder dan 0,1% (40e, Tagalog)</dd></div>
+    <div><dt>Tijd online</dt><dd>530 miljoen uur</dd></div>
+  </dl>
+  <p class="region"><b>Waar</b>De nationale taal van de Filipijnen en naast het Engels een officiële taal. Ze wordt gebruikt door Filipino’s die over de hele wereld werken, onder meer in de Verenigde Staten (Californië, Hawaï), de Golfstaten, Hongkong, Singapore, Canada en Japan.</p>
+  <div class="persona">
+    <figure><img src="../../language-intro/img/tl.webp" width="800" height="1000" loading="lazy" decoding="async" alt="Fictieve persona. Joanna “Jo” Dela Cruz, 28, woont in Quezon City. Ze draait nachtdiensten bij een callcenter voor de Verenigde Staten."></figure>
+    <div class="ptext"><h3>Persona</h3><p>Joanna “Jo” Dela Cruz, 28, woont in Quezon City. Ze draait nachtdiensten bij een callcenter voor de Verenigde Staten. In haar pauze om 4.00 uur ’s nachts trekt ze op haar Android-telefoon één kaart. Haar werk is in het Engels, dus in de pauzes wil ze in het Filipino lezen. Als het verhaal via de zonsondergang boven de Baai van Manilla of piña (stof van ananasvezels) bij haar kleur uitkomt, zet ze het op Facebook en stuurt ze het naar een nicht die in het Midden-Oosten werkt.</p></div>
+  </div>
+  <details><summary>Cijfers &amp; toelichting</summary>
+    <div class="scroll"><table class="facts"><thead><tr><th scope="col">Onderdeel</th><th scope="col">Waarde</th><th scope="col">Toelichting</th></tr></thead><tbody>
+      <tr><th scope="row">Totaal aantal sprekers (moedertaal + tweede taal)</th><td>87 miljoen</td><td>Ethnologue, editie 2026 (geteld als Tagalog)</td></tr>
+      <tr><th scope="row">Aandeel in webcontent</th><td>Minder dan 0,1% (40e, Tagalog)</td><td>W3Techs, oktober 2026</td></tr>
+      <tr><th scope="row">Internetgebruikers per taal</th><td>Niet in de top 10</td><td>Internet World Stats, maart 2020</td></tr>
+      <tr><th scope="row">Tijd online</th><td>Schatting: 60 miljoen internetgebruikers, gemiddeld 8,9 uur per dag, in totaal 530 miljoen uur per dag (12e)</td><td>Schatting van Claude. Gaat uit van ongeveer 60% van de internetgebruikers in de Filipijnen; de rest wordt bij het Engels geteld</td></tr>
+    </tbody></table></div>
+  </details>
+</section>
+
+<section class="lang" id="fa" aria-labelledby="h-fa">
+  <p class="kicker">20 · fa</p>
+  <h2 id="h-fa"><span lang="fa" dir="rtl">فارسی</span><small>Perzisch</small></h2>
+  <dl class="nums">
+    <div><dt>Sprekers</dt><dd>82 miljoen (Iraans Perzisch)</dd></div>
+    <div><dt>Web</dt><dd>1,0% (14e)</dd></div>
+    <div><dt>Tijd online</dt><dd>490 miljoen uur</dd></div>
+  </dl>
+  <p class="region"><b>Waar</b>De officiële taal van Iran. Nauw verwante vormen worden gebruikt in Afghanistan (Dari) en Tadzjikistan (Tadzjieks). Er zijn grote Iraanse gemeenschappen in de Verenigde Staten (Los Angeles), Canada, Duitsland, het Verenigd Koninkrijk en Turkije. De site loopt van rechts naar links.</p>
+  <div class="persona">
+    <figure><img src="../../language-intro/img/fa.webp" width="800" height="1000" loading="lazy" decoding="async" alt="Fictieve persona. Parisa Hosseini, 31, woont in Isfahan. Ze restaureert tegels op historische gebouwen."></figure>
+    <div class="ptext"><h3>Persona</h3><p>Parisa Hosseini, 31, woont in Isfahan. Ze restaureert tegels op historische gebouwen. Om 23.00 uur, als haar werk erop zit, opent ze haar Android-telefoon. In de Yalda-nacht slaat haar familie samen Hafez open, dus een lezing met één kaart voelt vertrouwd. Als het verhaal via turkoois uit Nishapur of het blauw van de moskeetegels van Isfahan bij haar kleur uitkomt, blijft ze ernaar kijken alsof ze haar werk even heeft neergelegd. Ze stuurt de link via Telegram naar haar oudere zus in het buitenland.</p></div>
+  </div>
+  <details><summary>Cijfers &amp; toelichting</summary>
+    <div class="scroll"><table class="facts"><thead><tr><th scope="col">Onderdeel</th><th scope="col">Waarde</th><th scope="col">Toelichting</th></tr></thead><tbody>
+      <tr><th scope="row">Totaal aantal sprekers (moedertaal + tweede taal)</th><td>82 miljoen (Iraans Perzisch)</td><td>Ethnologue, editie 2026. Exclusief Dari (Afghanistan) en Tadzjieks</td></tr>
+      <tr><th scope="row">Aandeel in webcontent</th><td>1,0% (14e)</td><td>W3Techs, oktober 2026</td></tr>
+      <tr><th scope="row">Internetgebruikers per taal</th><td>Niet in de top 10</td><td>Internet World Stats, maart 2020</td></tr>
+      <tr><th scope="row">Tijd online</th><td>Schatting: 82 miljoen internetgebruikers, gemiddeld 6,0 uur per dag, in totaal 490 miljoen uur per dag (16e)</td><td>Schatting van Claude. Iran plus Afghanistan (Dari)</td></tr>
+    </tbody></table></div>
+  </details>
+</section>
+
+<section class="lang" id="ko" aria-labelledby="h-ko">
+  <p class="kicker">21 · ko</p>
+  <h2 id="h-ko"><span lang="ko">한국어</span><small>Koreaans</small></h2>
+  <dl class="nums">
+    <div><dt>Sprekers</dt><dd>82 miljoen</dd></div>
+    <div><dt>Web</dt><dd>0,9% (17e)</dd></div>
+    <div><dt>Tijd online</dt><dd>270 miljoen uur</dd></div>
+  </dl>
+  <p class="region"><b>Waar</b>Zuid-Korea en Noord-Korea. Er zijn ook gemeenschappen met wortels op het Koreaanse schiereiland in de Koreaanse Autonome Prefectuur Yanbian in China, de Verenigde Staten (Los Angeles, New York), Japan en Centraal-Azië.</p>
+  <div class="persona">
+    <figure><img src="../../language-intro/img/ko.webp" width="800" height="1000" loading="lazy" decoding="async" alt="Fictieve persona. 김서연 (Kim Seo-yeon), 29, woont in Mapo-gu, Seoul. Ze is inkleurder van webtoons."></figure>
+    <div class="ptext"><h3>Persona</h3><p><span lang="ko">김서연</span> (Kim Seo-yeon), 29, woont in Mapo-gu, Seoul. Ze is inkleurder van webtoons. Om 8.20 uur ’s ochtends opent ze in de metro haar iPhone. Eens per maand gaat ze met vriendinnen naar een tarotcafé. Ze vond deze site toen ze op NAVER zocht naar tips voor haar reis naar Fukuoka volgende maand. Als het verhaal via het Koreaanse <i lang="ko-Latn">obangsaek</i> (de vijf traditionele kleuren) of Japans verfwerk bij haar kleur uitkomt, verwerkt ze die kleur in een deel van het kleurenpalet van de dag. Ze stuurt de resultaten via KakaoTalk naar vriendinnen.</p></div>
+  </div>
+  <details><summary>Cijfers &amp; toelichting</summary>
+    <div class="scroll"><table class="facts"><thead><tr><th scope="col">Onderdeel</th><th scope="col">Waarde</th><th scope="col">Toelichting</th></tr></thead><tbody>
+      <tr><th scope="row">Totaal aantal sprekers (moedertaal + tweede taal)</th><td>82 miljoen</td><td>Ethnologue, editie 2026</td></tr>
+      <tr><th scope="row">Aandeel in webcontent</th><td>0,9% (17e)</td><td>W3Techs, oktober 2026</td></tr>
+      <tr><th scope="row">Internetgebruikers per taal</th><td>Niet in de top 10</td><td>Internet World Stats, maart 2020</td></tr>
+      <tr><th scope="row">Tijd online</th><td>Schatting: 50 miljoen internetgebruikers, gemiddeld 5,3 uur per dag, in totaal 270 miljoen uur per dag (20e)</td><td>Schatting van Claude</td></tr>
+    </tbody></table></div>
+  </details>
+</section>
+
+<section class="lang" id="th" aria-labelledby="h-th">
+  <p class="kicker">22 · th</p>
+  <h2 id="h-th"><span lang="th">ไทย</span><small>Thai</small></h2>
+  <dl class="nums">
+    <div><dt>Sprekers</dt><dd>71 miljoen</dd></div>
+    <div><dt>Web</dt><dd>0,3% (28e)</dd></div>
+    <div><dt>Tijd online</dt><dd>510 miljoen uur</dd></div>
+  </dl>
+  <p class="region"><b>Waar</b>De nationale taal van Thailand. Veel mensen in Laos kunnen Thai lezen. Mensen uit Thailand wonen ook in de Verenigde Staten (Los Angeles), Australië en Europa.</p>
+  <div class="persona">
+    <figure><img src="../../language-intro/img/th.webp" width="800" height="1000" loading="lazy" decoding="async" alt="Fictieve persona. Napassorn “Pim” Srisuk, 27, woont in Bangkok. Ze werkt in de marketing van een cosmeticamerk."></figure>
+    <div class="ptext"><h3>Persona</h3><p>Napassorn “Pim” Srisuk, 27, woont in Bangkok. Ze werkt in de marketing van een cosmeticamerk. Om 7.00 uur ’s ochtends, voordat ze beslist wat ze aantrekt, trekt ze op haar iPhone één kaart. De kleur van de dag van de week vergelijken met de kleur van deze site is haar ochtendplezier. Ze plant een reis naar Hokkaido in januari volgend jaar. Als het verhaal via Thaise zijde of het wit van de sneeuw op Hokkaido bij haar kleur uitkomt, verwerkt ze die kleur in haar lippenstift of sjaal. Ze stuurt het via LINE naar collega’s.</p></div>
+  </div>
+  <details><summary>Cijfers &amp; toelichting</summary>
+    <div class="scroll"><table class="facts"><thead><tr><th scope="col">Onderdeel</th><th scope="col">Waarde</th><th scope="col">Toelichting</th></tr></thead><tbody>
+      <tr><th scope="row">Totaal aantal sprekers (moedertaal + tweede taal)</th><td>71 miljoen</td><td>Ethnologue, editie 2026</td></tr>
+      <tr><th scope="row">Aandeel in webcontent</th><td>0,3% (28e)</td><td>W3Techs, oktober 2026</td></tr>
+      <tr><th scope="row">Internetgebruikers per taal</th><td>Niet in de top 10</td><td>Internet World Stats, maart 2020</td></tr>
+      <tr><th scope="row">Tijd online</th><td>Schatting: 65 miljoen internetgebruikers, gemiddeld 7,8 uur per dag, in totaal 510 miljoen uur per dag (14e)</td><td>Schatting van Claude</td></tr>
+    </tbody></table></div>
+  </details>
+</section>
+
+<section class="lang" id="it" aria-labelledby="h-it">
+  <p class="kicker">23 · it</p>
+  <h2 id="h-it"><span lang="it">Italiano</span><small>Italiaans</small></h2>
+  <dl class="nums">
+    <div><dt>Sprekers</dt><dd>66 miljoen</dd></div>
+    <div><dt>Web</dt><dd>2,8% (8e)</dd></div>
+    <div><dt>Tijd online</dt><dd>290 miljoen uur</dd></div>
+  </dl>
+  <p class="region"><b>Waar</b>Italië, San Marino, Zuid-Zwitserland (Ticino) en Vaticaanstad. Veel mensen van Italiaanse afkomst wonen in Argentinië, Brazilië, de Verenigde Staten, Duitsland en elders.</p>
+  <div class="persona">
+    <figure><img src="../../language-intro/img/it.webp" width="800" height="1000" loading="lazy" decoding="async" alt="Fictieve persona. Giulia Bernardi, 45, woont in Bologna. Ze is apotheker in een buurtapotheek."></figure>
+    <div class="ptext"><h3>Persona</h3><p>Giulia Bernardi, 45, woont in Bologna. Ze is apotheker in een buurtapotheek. Om 21.30 uur, na het eten op de bank, opent ze haar Android-telefoon. Als kind speelde ze tarocchino met haar vader, dus de afbeeldingen van de Grote Arcana roepen nostalgie op. Als het verhaal via de rode baksteen van de Bolognese arcaden of de pigmenten van renaissanceschilders bij haar kleur uitkomt, stuurt ze het via WhatsApp naar haar vader. Ze kiest de stijl “Klassieke tarot”.</p></div>
+  </div>
+  <details><summary>Cijfers &amp; toelichting</summary>
+    <div class="scroll"><table class="facts"><thead><tr><th scope="col">Onderdeel</th><th scope="col">Waarde</th><th scope="col">Toelichting</th></tr></thead><tbody>
+      <tr><th scope="row">Totaal aantal sprekers (moedertaal + tweede taal)</th><td>66 miljoen</td><td>Ethnologue, editie 2026</td></tr>
+      <tr><th scope="row">Aandeel in webcontent</th><td>2,8% (8e)</td><td>W3Techs, oktober 2026</td></tr>
+      <tr><th scope="row">Internetgebruikers per taal</th><td>Niet in de top 10</td><td>Internet World Stats, maart 2020</td></tr>
+      <tr><th scope="row">Tijd online</th><td>Schatting: 51 miljoen internetgebruikers, gemiddeld 5,7 uur per dag, in totaal 290 miljoen uur per dag (19e)</td><td>Schatting van Claude</td></tr>
+    </tbody></table></div>
+  </details>
+</section>
+
+<section class="lang" id="pl" aria-labelledby="h-pl">
+  <p class="kicker">24 · pl</p>
+  <h2 id="h-pl"><span lang="pl">Polski</span><small>Pools</small></h2>
+  <dl class="nums">
+    <div><dt>Sprekers</dt><dd>Ongeveer 42,6 miljoen</dd></div>
+    <div><dt>Web</dt><dd>1,8% (10e)</dd></div>
+    <div><dt>Tijd online</dt><dd>Ongeveer 210 miljoen uur (referentiewaarde, buiten de ranglijst)</dd></div>
+  </dl>
+  <p class="region"><b>Waar</b>Polen. Er zijn grote Poolse gemeenschappen in het Verenigd Koninkrijk, Duitsland, de Verenigde Staten (Chicago), Ierland en Canada. Er zijn ook sprekers in Litouwen en West-Oekraïne.</p>
+  <div class="persona">
+    <figure><img src="../../language-intro/img/pl.webp" width="800" height="1000" loading="lazy" decoding="async" alt="Fictieve persona. Marta Kowalczyk, 30, woont in Krakau. Ze is UX-onderzoeker bij een softwarebedrijf."></figure>
+    <div class="ptext"><h3>Persona</h3><p>Marta Kowalczyk, 30, woont in Krakau. Ze is UX-onderzoeker bij een softwarebedrijf. Op zondagochtend om 10.00 uur opent ze in een café haar iPhone. Elk jaar op Andrzejki doet ze met vriendinnen aan waswaarzeggerij. Als het verhaal via Baltisch barnsteen of de Lakenhal van Krakau bij haar kleur uitkomt, zet ze het in haar Instagram-story. Ze plant komend voorjaar een reis naar Kyoto.</p></div>
+  </div>
+  <details><summary>Cijfers &amp; toelichting</summary>
+    <div class="scroll"><table class="facts"><thead><tr><th scope="col">Onderdeel</th><th scope="col">Waarde</th><th scope="col">Toelichting</th></tr></thead><tbody>
+      <tr><th scope="row">Totaal aantal sprekers (moedertaal + tweede taal)</th><td>Ongeveer 42,6 miljoen</td><td>Ethnologue, 27e editie (cijfers van 2021), zoals geciteerd op de Wikipedia-pagina “Polish language”. Niet in de openbare lijst van Ethnologue 2026 (50 miljoen of meer)</td></tr>
+      <tr><th scope="row">Aandeel in webcontent</th><td>1,8% (10e)</td><td>W3Techs, oktober 2026</td></tr>
+      <tr><th scope="row">Internetgebruikers per taal</th><td>Niet in de top 10</td><td>Internet World Stats, maart 2020</td></tr>
+      <tr><th scope="row">Tijd online</th><td>Ongeveer 210 miljoen uur per dag (referentiewaarde, buiten de ranglijst)</td><td>Referentiewaarde buiten de ranglijst in de schatting van Claude</td></tr>
+    </tbody></table></div>
+  </details>
+</section>
+
+<section class="lang" id="uk" aria-labelledby="h-uk">
+  <p class="kicker">25 · uk</p>
+  <h2 id="h-uk"><span lang="uk">Українська</span><small>Oekraïens</small></h2>
+  <dl class="nums">
+    <div><dt>Sprekers</dt><dd>Ongeveer 39 miljoen</dd></div>
+    <div><dt>Web</dt><dd>0,6% (18e)</dd></div>
+    <div><dt>Tijd online</dt><dd>Geen schatting</dd></div>
+  </dl>
+  <p class="region"><b>Waar</b>De nationale taal van Oekraïne. Door de oorlog sinds 2022 zijn veel mensen gevlucht naar Europese landen zoals Polen, Duitsland en Tsjechië. Ook Canada en de Verenigde Staten hebben al lang bestaande Oekraïense gemeenschappen. Veel mensen spreken ook Russisch.</p>
+  <div class="persona">
+    <figure><img src="../../language-intro/img/uk.webp" width="800" height="1000" loading="lazy" decoding="async" alt="Fictieve persona. Олена Коваленко (Olena Kovalenko), 37, woont in Lviv. Ze is basisschoolleerkracht."></figure>
+    <div class="ptext"><h3>Persona</h3><p><span lang="uk">Олена Коваленко</span> (Olena Kovalenko), 37, woont in Lviv. Ze is basisschoolleerkracht. Om 21.00 uur, nadat ze haar kind naar bed heeft gebracht, trekt ze op haar Android-telefoon één kaart. Meer nog dan de betekenis van de kaart koestert ze de tijd die ze besteedt aan het lezen van een zorgvuldig in het Oekraïens geschreven verhaal. Als het verhaal via de bloemschilderkunst van Petrykivka of wol uit de Karpaten bij haar kleur uitkomt, stuurt ze het via Telegram naar haar jongere zus in Polen.</p></div>
+  </div>
+  <details><summary>Cijfers &amp; toelichting</summary>
+    <div class="scroll"><table class="facts"><thead><tr><th scope="col">Onderdeel</th><th scope="col">Waarde</th><th scope="col">Toelichting</th></tr></thead><tbody>
+      <tr><th scope="row">Totaal aantal sprekers (moedertaal + tweede taal)</th><td>Ongeveer 39 miljoen</td><td>Ethnologue (2023). De Wikipedia-pagina “Ukrainian language” (Ethnologue, 28e editie) noemt hetzelfde cijfer</td></tr>
+      <tr><th scope="row">Aandeel in webcontent</th><td>0,6% (18e)</td><td>W3Techs, oktober 2026</td></tr>
+      <tr><th scope="row">Internetgebruikers per taal</th><td>Niet in de top 10</td><td>Internet World Stats, maart 2020</td></tr>
+      <tr><th scope="row">Tijd online</th><td>Geen schatting</td><td>Oekraïens staat niet in de tabel van de schatting van Claude en ook niet bij de referentiewaarden buiten de ranglijst</td></tr>
+    </tbody></table></div>
+  </details>
+</section>
+
+<section class="lang" id="nl" aria-labelledby="h-nl">
+  <p class="kicker">26 · nl</p>
+  <h2 id="h-nl"><span lang="nl">Nederlands</span></h2>
+  <dl class="nums">
+    <div><dt>Sprekers</dt><dd>Ongeveer 30 miljoen</dd></div>
+    <div><dt>Web</dt><dd>2,1% (9e)</dd></div>
+    <div><dt>Tijd online</dt><dd>Ongeveer 130 miljoen uur (referentiewaarde, buiten de ranglijst)</dd></div>
+  </dl>
+  <p class="region"><b>Waar</b>Nederland en het noorden van België (Vlaanderen). Het is ook een officiële taal in Suriname en op Aruba en Curaçao in het Caribisch gebied. Het Afrikaans in Zuid-Afrika is uit het Nederlands voortgekomen.</p>
+  <div class="persona">
+    <figure><img src="../../language-intro/img/nl.webp" width="800" height="1000" loading="lazy" decoding="async" alt="Fictieve persona. Sanne de Vries, 36, woont in Utrecht. Ze werkt bij de gemeente aan klimaatbeleid."></figure>
+    <div class="ptext"><h3>Persona</h3><p>Sanne de Vries, 36, woont in Utrecht. Ze werkt bij de gemeente aan klimaatbeleid. Om 12.30 uur opende ze aan haar bureau haar laptop en kwam ze op deze site terwijl ze een kleurnaam opzocht. Ze gelooft niet in waarzeggerij, maar is dol op verhalen over de herkomst van kleurnamen. Als het verhaal via Delfts blauw of de pigmenten van zeventiende-eeuwse Hollandse schilders bij haar kleur uitkomt, vertelt ze het aan haar collega’s. Soms trekt ze nog een kaart voordat ze op de fiets naar huis gaat.</p></div>
+  </div>
+  <details><summary>Cijfers &amp; toelichting</summary>
+    <div class="scroll"><table class="facts"><thead><tr><th scope="col">Onderdeel</th><th scope="col">Waarde</th><th scope="col">Toelichting</th></tr></thead><tbody>
+      <tr><th scope="row">Totaal aantal sprekers (moedertaal + tweede taal)</th><td>Ongeveer 30 miljoen</td><td>2021. De Wikipedia-pagina “Dutch language” (met onder meer Eurobarometer als bron) noemt hetzelfde cijfer</td></tr>
+      <tr><th scope="row">Aandeel in webcontent</th><td>2,1% (9e)</td><td>W3Techs, oktober 2026. Inclusief Vlaams</td></tr>
+      <tr><th scope="row">Internetgebruikers per taal</th><td>Niet in de top 10</td><td>Internet World Stats, maart 2020</td></tr>
+      <tr><th scope="row">Tijd online</th><td>Ongeveer 130 miljoen uur per dag (referentiewaarde, buiten de ranglijst)</td><td>Referentiewaarde buiten de ranglijst in de schatting van Claude</td></tr>
+    </tbody></table></div>
+  </details>
+</section>
+
+<section class="lang" id="ang" aria-labelledby="h-ang">
+  <p class="kicker">27 · ang</p>
+  <h2 id="h-ang"><span lang="ang">Englisc</span><small>Oudengels</small></h2>
+  <p class="note">Een taal voor spel en geschiedenis. Het is het Engels van ongeveer 450 tot 1100, en niemand spreekt het nu nog als moedertaal. De cijfervelden zijn niet van toepassing.</p>
+  <dl class="nums">
+    <div><dt>Sprekers</dt><dd>n.v.t.</dd></div>
+    <div><dt>Web</dt><dd>n.v.t.</dd></div>
+    <div><dt>Tijd online</dt><dd>n.v.t.</dd></div>
+  </dl>
+  <p class="region"><b>Voor wie het leuk kan zijn</b>Studenten en onderzoekers van middeleeuwse Engelse letterkunde en de geschiedenis van het Engels, liefhebbers van <cite>Beowulf</cite> en het werk van J.R.R. Tolkien, en mensen die geïnteresseerd zijn in runen en Noorse mythologie. Buiten de Engelstalige wereld bereikt het ook studenten Engelse letterkunde in Duitsland, Scandinavië en Japan.</p>
+  <div class="persona">
+    <figure><img src="../../language-intro/img/ang.webp" width="800" height="1000" loading="lazy" decoding="async" alt="Fictieve persona. Hannah Brooks, 24, woont in Leeds (VK). Ze studeert Oudengels in een masteropleiding."></figure>
+    <div class="ptext"><h3>Persona</h3><p>Hannah Brooks, 24, woont in Leeds (VK). Ze studeert Oudengels in een masteropleiding. Om 17.00 uur opende ze in de universiteitsbibliotheek haar laptop en kwam ze op deze site terwijl ze werkwoordvervoegingen opzocht. Met een vertaling in modern Engels ernaast puzzelt ze met plezier de namen van de kaarten en kleuren uit. Zinnen die ze mooi vindt, stuurt ze naar haar medestudenten van het werkcollege.</p></div>
+  </div>
+  <details><summary>Cijfers &amp; toelichting</summary>
+    <div class="scroll"><table class="facts"><thead><tr><th scope="col">Onderdeel</th><th scope="col">Waarde</th></tr></thead><tbody>
+      <tr><th scope="row">Totaal aantal sprekers (moedertaal + tweede taal)</th><td>n.v.t.</td></tr>
+      <tr><th scope="row">Aandeel in webcontent</th><td>n.v.t.</td></tr>
+      <tr><th scope="row">Internetgebruikers per taal</th><td>n.v.t.</td></tr>
+      <tr><th scope="row">Tijd online</th><td>n.v.t.</td></tr>
+    </tbody></table></div>
+  </details>
+</section>
+
+<section class="lang" id="soro" aria-labelledby="h-soro">
+  <p class="kicker">28 · soro</p>
+  <h2 id="h-soro"><span lang="ja">御座候</span><small>Sōrōbun (klassieke Japanse briefstijl)</small></h2>
+  <p class="note">Een taal voor spel en geschiedenis. Het is de stijl van brieven en officiële documenten van ongeveer 1600 tot 1868, met <span lang="ja">候</span> (<i>sōrō</i>) aan het eind van de zin. Niemand spreekt het nu nog als moedertaal. De cijfervelden zijn niet van toepassing.</p>
+  <dl class="nums">
+    <div><dt>Sprekers</dt><dd>n.v.t.</dd></div>
+    <div><dt>Web</dt><dd>n.v.t.</dd></div>
+    <div><dt>Tijd online</dt><dd>n.v.t.</dd></div>
+  </dl>
+  <p class="region"><b>Voor wie het leuk kan zijn</b>Mensen die oude documenten en lopend schrift leren lezen, liefhebbers van historische romans en de historische drama’s van NHK, en studenten die van geschiedenis houden. Het bereikt ook mensen in het buitenland die zich grondig in het Japans hebben verdiept, en onderzoekers van de Japanse geschiedenis.</p>
+  <div class="persona">
+    <figure><img src="../../language-intro/img/soro.webp" width="800" height="1000" loading="lazy" decoding="async" alt="Fictieve persona. 工藤 誠一 (Seiichi Kudo), 58, woont in Kanazawa. Hij werkt bij de gemeente en volgt in het weekend een cursus over oude documenten."></figure>
+    <div class="ptext"><h3>Persona</h3><p><span lang="ja">工藤 誠一</span> (Seiichi Kudo), 58, woont in Kanazawa. Hij werkt bij de gemeente en volgt in het weekend een cursus over oude documenten. Op zondagmiddag om 15.00 uur opent hij in de woonkamer zijn tablet. Hij hoorde over de site van medecursisten. Hij leest de in sōrōbun geschreven namen van de kaarten en kleuren een voor een hardop voor. Als het verhaal via Kaga-verfwerk of de oude kasteelstad bij zijn kleur uitkomt, schrijft hij de kleurnaam op in zijn cursusschrift.</p></div>
+  </div>
+  <details><summary>Cijfers &amp; toelichting</summary>
+    <div class="scroll"><table class="facts"><thead><tr><th scope="col">Onderdeel</th><th scope="col">Waarde</th></tr></thead><tbody>
+      <tr><th scope="row">Totaal aantal sprekers (moedertaal + tweede taal)</th><td>n.v.t.</td></tr>
+      <tr><th scope="row">Aandeel in webcontent</th><td>n.v.t.</td></tr>
+      <tr><th scope="row">Internetgebruikers per taal</th><td>n.v.t.</td></tr>
+      <tr><th scope="row">Tijd online</th><td>n.v.t.</td></tr>
+    </tbody></table></div>
+  </details>
+</section>
+
+</div>
+
+</body>
+</html>

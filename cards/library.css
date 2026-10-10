@@ -468,3 +468,59 @@ html[lang="ar"] :is(.brand, .en, .lang-list a) {
   direction: ltr;
   unicode-bidi: isolate;
 }
+
+/* Urdu: right to left, Nastaliq. The script needs deep line height and no letter spacing. */
+html[lang="ur"] body * {
+  letter-spacing: 0 !important;
+  text-indent: 0 !important;
+  font-style: normal;
+}
+
+html[lang="ur"] .lang { text-transform: none; }
+
+html[lang="ur"] :is(.brand, .en, .lang-list a) {
+  direction: ltr;
+  unicode-bidi: isolate;
+}
+
+html[lang="ur"] .brand { letter-spacing: 0.22em !important; }
+
+html[lang="ur"] body { line-height: 2.2; }
+
+html[lang="ur"] :is(h1, h2, h3, .tagline, .orientation, .back, .crumb, .colors .name, button) {
+  line-height: 1.9;
+}
+
+.lang[lang="ur"],
+.lang-list a[lang="ur"],
+.lang-links a[lang="ur"] {
+  font-family: "Noto Nastaliq Urdu", "Jameel Noori Nastaleeq", "Noto Naskh Arabic", serif;
+  letter-spacing: 0;
+  text-transform: none;
+  direction: rtl;
+}
+
+/* Persian: right to left, Noto Naskh Arabic as in Arabic. Joined script, so no letter spacing. */
+html[lang="fa"] body * {
+  letter-spacing: 0 !important;
+  text-indent: 0 !important;
+  font-style: normal;
+}
+
+html[lang="fa"] .lang { text-transform: none; }
+
+html[lang="fa"] :is(.brand, .en, .lang-list a) {
+  direction: ltr;
+  unicode-bidi: isolate;
+}
+
+html[lang="fa"] .brand { letter-spacing: 0.22em !important; }
+
+.lang[lang="fa"],
+.lang-list a[lang="fa"],
+.lang-links a[lang="fa"] {
+  font-family: "Noto Naskh Arabic", "Vazirmatn", Tahoma, serif;
+  letter-spacing: 0;
+  text-transform: none;
+  direction: rtl;
+}

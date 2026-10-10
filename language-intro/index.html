@@ -1,0 +1,789 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Colors for the Fool が対応する28言語の紹介。話す人の数と、架空のペルソナとその画像を並べた読みもの。">
+<link rel="icon" href="../favicon.png" type="image/png">
+<title>言語の紹介</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&family=Shippori+Mincho:wght@400;500;700&display=swap">
+<style>
+/* Layout: same paper column as language-scale.html; one card per language (numbers, persona + image, details). */
+:root {
+  --bg: #efe6d6;
+  --bg-glow: #fbf6ec;
+  --paper: #f7f1e4;
+  --ink: #2a2118;
+  --muted: #6d5c48;
+  --gold: #a6843d;
+  --gold-soft: #e4d2a4;
+  --line: rgba(166,132,61,.45);
+  --other: #d3c6ae;
+  --grid: rgba(109,92,72,.18);
+  --font-display: Cinzel, "Palatino Linotype", Palatino, serif;
+  --font-body: "Shippori Mincho", "Hiragino Mincho ProN", "Yu Mincho", serif;
+}
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) {
+  --bg: #1b1610; --bg-glow: #2a2219; --paper: #241e17; --ink: #efe4cf; --muted: #b6a387;
+  --gold: #d2ac5c; --gold-soft: #5a4826; --line: rgba(210,172,92,.4); --other: #4b4134; --grid: rgba(239,228,207,.12);
+  color-scheme: dark; } }
+:root[data-theme="dark"] {
+  --bg: #1b1610; --bg-glow: #2a2219; --paper: #241e17; --ink: #efe4cf; --muted: #b6a387;
+  --gold: #d2ac5c; --gold-soft: #5a4826; --line: rgba(210,172,92,.4); --other: #4b4134; --grid: rgba(239,228,207,.12);
+  color-scheme: dark; }
+
+* { box-sizing: border-box; }
+body {
+  margin: 0; color: var(--ink); background: var(--bg);
+  background-image: radial-gradient(1100px 640px at 50% -8%, var(--bg-glow), var(--bg) 70%);
+  font-family: var(--font-body); font-weight: 500; line-height: 1.85;
+  padding-inline: 16px; padding-block: 0 64px;
+}
+.wrap { width: min(100%, 44rem); margin: 0 auto; }
+a { color: var(--gold); }
+code { font-size: .88em; overflow-wrap: anywhere; }
+.brand { font-family: var(--font-display); font-size: .74rem; letter-spacing: .24em; text-transform: uppercase; padding-block: 1.4rem .2rem; margin: 0; }
+.brand a { color: var(--ink); text-decoration: none; }
+header.hero { text-align: center; padding-block: 2.6rem 1.6rem; }
+.eyebrow { font-family: var(--font-display); letter-spacing: .3em; font-size: .8rem; color: var(--gold); margin: 0; text-transform: uppercase; }
+h1 { font-size: clamp(2rem, 7vw, 2.9rem); letter-spacing: .12em; margin: .3rem 0 .6rem; font-weight: 600; text-wrap: balance; }
+.lede { color: var(--muted); max-width: 34rem; margin: 0 auto; text-wrap: pretty; }
+.ornament { display: flex; align-items: center; gap: .8rem; justify-content: center; color: var(--gold); margin: 1.6rem 0 0; }
+.ornament::before, .ornament::after { content: ""; height: 1px; width: 4.5rem; background: var(--line); }
+
+.topbar { display: flex; justify-content: space-between; align-items: baseline; gap: 1rem; padding-block: 1.4rem .2rem; }
+.topbar .brand { padding-block: 0; }
+.switch { font-size: .82rem; }
+.switch a, .switch span { margin-left: .7rem; }
+.switch span { color: var(--muted); }
+
+.about { font-size: .86rem; color: var(--muted); margin: 0 0 1rem; }
+.about p { margin: .5rem 0; }
+.langs { display: flex; flex-wrap: wrap; gap: .4rem; justify-content: center; margin: 1.2rem 0 0; padding: 0; list-style: none; }
+.langs li { border: 1px solid var(--line); font-size: .85rem; background: var(--paper); }
+.langs li a { display: block; padding: .1rem .7rem; color: var(--ink); text-decoration: none; }
+.langs li a:hover, .langs li a:focus-visible { color: var(--gold); }
+.langs li:nth-last-child(-n+2) { border-style: dashed; }
+.langs li:nth-last-child(-n+2) a { color: var(--muted); }
+
+section.chart, section.lang { margin-top: 3.4rem; scroll-margin-top: 1rem; }
+.chart h2, .lang h2 { font-size: 1.3rem; letter-spacing: .08em; margin: 0; font-weight: 600; text-wrap: balance; }
+.lang h2 small { display: block; font-size: .8rem; letter-spacing: .04em; color: var(--muted); font-weight: 500; }
+.kicker { font-family: var(--font-display); color: var(--gold); letter-spacing: .2em; font-size: .78rem; margin: 0 0 .15rem; }
+p.note { color: var(--muted); font-size: .88rem; margin: .4rem 0 1rem; max-width: 40rem; }
+.chart ul { font-size: .88rem; color: var(--muted); padding-left: 1.1rem; }
+
+.scroll { overflow-x: auto; -webkit-overflow-scrolling: touch; border: 1px solid var(--line); background: var(--paper); }
+table { border-collapse: collapse; font-size: .8rem; line-height: 1.55; }
+table.overview { min-width: 42rem; width: 100%; }
+th, td { padding: .45rem .6rem; border-bottom: 1px solid var(--grid); text-align: left; vertical-align: top; }
+thead th { font-weight: 700; border-bottom: 1px solid var(--line); background: var(--bg-glow); }
+tbody th { font-weight: 700; white-space: nowrap; }
+tbody th a { color: var(--ink); text-decoration: none; }
+tbody tr:last-child th, tbody tr:last-child td { border-bottom: 0; }
+table.overview td { font-variant-numeric: tabular-nums; }
+
+.lang { border-top: 1px solid var(--line); padding-top: 1.6rem; }
+.nums { display: flex; flex-wrap: wrap; gap: 1px; background: var(--line); border: 1px solid var(--line); margin: 1rem 0; }
+.nums div { flex: 1 1 7.6rem; background: var(--paper); padding: .55rem .7rem .6rem; min-width: 0; }
+.nums dt { font-family: var(--font-body); font-size: .72rem; color: var(--muted); letter-spacing: .06em; }
+.nums dd { margin: 0; font-size: .9rem; line-height: 1.45; font-variant-numeric: tabular-nums; overflow-wrap: anywhere; }
+.region { font-size: .9rem; margin: 0 0 1rem; }
+.region b { color: var(--gold); font-weight: 700; margin-right: .6rem; }
+
+.persona { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 15rem); gap: 1.2rem; align-items: start; margin: 1.2rem 0 .8rem; }
+.persona figure { grid-column: 2; grid-row: 1; margin: 0; }
+.persona .ptext { grid-column: 1; grid-row: 1; }
+.persona img { display: block; width: 100%; height: auto; border: 1px solid var(--line); background: var(--paper); }
+.persona h3 { font-size: 1rem; letter-spacing: .08em; margin: 0 0 .3rem; font-weight: 600; }
+.persona p { margin: 0; font-size: .94rem; text-wrap: pretty; }
+@media (max-width: 36rem) {
+  .persona { grid-template-columns: minmax(0, 1fr); }
+  .persona figure, .persona .ptext { grid-column: 1; grid-row: auto; }
+  .persona figure { max-width: 22rem; }
+}
+
+details { border-top: 1px dashed var(--line); padding: .35rem 0; font-size: .88rem; }
+details:last-of-type { border-bottom: 1px dashed var(--line); }
+summary { cursor: pointer; color: var(--gold); letter-spacing: .06em; }
+details[open] summary { margin-bottom: .5rem; }
+details p { margin: .2rem 0 .8rem; color: var(--ink); }
+details h4 { font-size: .86rem; margin: .6rem 0 0; color: var(--muted); font-weight: 700; }
+details pre { white-space: pre-wrap; overflow-wrap: anywhere; font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: .78rem; line-height: 1.6; background: var(--paper); border: 1px solid var(--line); padding: .7rem .8rem; margin: 0 0 .6rem; }
+table.facts { width: 100%; min-width: 34rem; }
+table.facts tbody th { white-space: normal; min-width: 8rem; }
+
+footer { margin-top: 4rem; border-top: 1px solid var(--line); padding-top: 1.2rem; font-size: .8rem; color: var(--muted); }
+footer ul { padding-left: 1.1rem; margin: .4rem 0 1rem; }
+footer ul ul { margin: .2rem 0 .3rem; }
+footer li { margin: .15rem 0; overflow-wrap: anywhere; }
+</style>
+</head>
+<body>
+
+<div class="wrap">
+  <div class="topbar"><p class="brand"><a href="../">Colors for the Fool</a></p><nav class="switch" aria-label="関連する資料"><span>言語の紹介</span><a href="../language-scale.html">言語の規模</a></nav></div>
+
+  <header class="hero">
+    <p class="eyebrow">Languages &amp; Readers</p>
+    <h1>言語の紹介</h1>
+    <p class="lede">Colors for the Fool が対応する28言語を、話す人の数と、この占いに来てくれそうな人の姿で紹介します（2026年10月9日時点）。</p>
+    <div class="ornament">✦</div>
+  </header>
+
+  <nav aria-label="言語の一覧">
+    <ul class="langs"><li><a href="#ja"><span lang="ja">日本語</span></a></li><li><a href="#en"><span lang="en">English</span></a></li><li><a href="#zh-hans"><span lang="zh-Hans">简体中文</span></a></li><li><a href="#zh"><span lang="zh-Hant">繁體中文</span></a></li><li><a href="#hi"><span lang="hi">हिन्दी</span></a></li><li><a href="#es"><span lang="es">Español</span></a></li><li><a href="#ar"><span lang="ar" dir="rtl">العربية</span></a></li><li><a href="#fr"><span lang="fr">Français</span></a></li><li><a href="#bn"><span lang="bn">বাংলা</span></a></li><li><a href="#pt"><span lang="pt">Português</span></a></li><li><a href="#id"><span lang="id">Bahasa Indonesia</span></a></li><li><a href="#ms"><span lang="ms">Bahasa Melayu</span></a></li><li><a href="#ur"><span lang="ur" dir="rtl">اردو</span></a></li><li><a href="#ru"><span lang="ru">Русский</span></a></li><li><a href="#de"><span lang="de">Deutsch</span></a></li><li><a href="#vi"><span lang="vi">Tiếng Việt</span></a></li><li><a href="#sw"><span lang="sw">Kiswahili</span></a></li><li><a href="#tr"><span lang="tr">Türkçe</span></a></li><li><a href="#tl"><span lang="fil">Filipino</span></a></li><li><a href="#fa"><span lang="fa" dir="rtl">فارسی</span></a></li><li><a href="#ko"><span lang="ko">한국어</span></a></li><li><a href="#th"><span lang="th">ไทย</span></a></li><li><a href="#it"><span lang="it">Italiano</span></a></li><li><a href="#pl"><span lang="pl">Polski</span></a></li><li><a href="#uk"><span lang="uk">Українська</span></a></li><li><a href="#nl"><span lang="nl">Nederlands</span></a></li><li><a href="#ang"><span lang="ang">Englisc</span></a></li><li><a href="#soro"><span lang="ja">御座候</span></a></li></ul>
+  </nav>
+
+<section class="lang" id="ja" aria-labelledby="h-ja">
+  <p class="kicker">01 · ja</p>
+  <h2 id="h-ja"><span lang="ja">日本語</span></h2>
+  <dl class="nums">
+    <div><dt>総話者</dt><dd>1億2,600万人</dd></div>
+    <div><dt>Web</dt><dd>4.9%（4位）</dd></div>
+    <div><dt>消費時間</dt><dd>3.9億時間</dd></div>
+  </dl>
+  <p class="region"><b>地域</b>日本です。国外では、ブラジルや米国（ハワイ、カリフォルニア）の日系の人、海外に住む日本人が読みます。日本語を学ぶ人も世界に多くいます。</p>
+  <div class="persona">
+    <figure><img src="img/ja.webp" width="800" height="1000" loading="lazy" decoding="async" alt="架空のペルソナ。森下 由佳（もりした ゆか）、34歳、福岡市在住。総合病院の医療事務です。"></figure>
+    <div class="ptext"><h3>ペルソナ</h3><p>森下 由佳（もりした ゆか）、34歳、福岡市在住。総合病院の医療事務です。朝7時40分、地下鉄の座席で iPhone を開き、Instagram のリールから来ます。占いは信じすぎない、でも外れても笑える程度に好き、という人です。札を一枚引いて、逆位置なら「今日は無理をしない日」と決めます。物語が、博多織や筑後の藍染のような身近な土地や道具を通って色にたどり着くと、うれしくなります。気に入った色は、その日のハンカチやネイルの色の参考にします。職場の同僚に LINE で「今日の私、藍らしい」と送ることがあります。</p></div>
+  </div>
+  <details><summary>数字と注</summary>
+    <div class="scroll"><table class="facts"><thead><tr><th scope="col">項目</th><th scope="col">値</th><th scope="col">注</th></tr></thead><tbody>
+      <tr><th scope="row">総話者（母語＋第二言語）</th><td>1億2,600万人</td><td>Ethnologue 2026年版</td></tr>
+      <tr><th scope="row">Webコンテンツ量</th><td>4.9%（4位）</td><td>W3Techs、2026年10月</td></tr>
+      <tr><th scope="row">インターネット言語人口</th><td>2.6%（8位）</td><td>Internet World Stats、2020年3月</td></tr>
+      <tr><th scope="row">インターネット利用時間</th><td>推定ネット人口1.0億人、1日平均3.9時間、総消費3.9億時間/日（18位）</td><td>Claude推計。1人あたりの時間は世界で最も短い部類</td></tr>
+    </tbody></table></div>
+  </details>
+</section>
+
+<section class="lang" id="en" aria-labelledby="h-en">
+  <p class="kicker">02 · en</p>
+  <h2 id="h-en"><span lang="en">English</span><small>英語</small></h2>
+  <dl class="nums">
+    <div><dt>総話者</dt><dd>14億9,300万人（1位）</dd></div>
+    <div><dt>Web</dt><dd>49.5%（1位）</dd></div>
+    <div><dt>消費時間</dt><dd>57.8億時間</dd></div>
+  </dl>
+  <p class="region"><b>地域</b>米国、英国、カナダ、オーストラリア、ニュージーランド、アイルランドで母語として話されます。インド、フィリピン、ナイジェリア、シンガポール、ケニアなどでは公用語や教育の言葉です。世界中の第二言語話者が、英語のページを読みます。</p>
+  <div class="persona">
+    <figure><img src="img/en.webp" width="800" height="1000" loading="lazy" decoding="async" alt="架空のペルソナ。Maya Reynolds、29歳、英国マンチェスター在住。小学校の教育補助員です。"></figure>
+    <div class="ptext"><h3>ペルソナ</h3><p>Maya Reynolds、29歳、英国マンチェスター在住。小学校の教育補助員です。夜10時、ベッドで Android のスマートフォンを開きます。TikTok でタロットの動画をよく見ていて、一枚引きの手軽さが気に入っています。札の意味を読んで、物語の最後に色の名前が出るところが好きです。スコットランドのアザミや、ヨークシャーの羊毛のように、英国の土地につながる色の話だと、友人にリンクを送ります。カードの様式を変えて、アール・ヌーヴォーとステンドグラスを見比べるのも楽しんでいます。</p></div>
+  </div>
+  <details><summary>数字と注</summary>
+    <div class="scroll"><table class="facts"><thead><tr><th scope="col">項目</th><th scope="col">値</th><th scope="col">注</th></tr></thead><tbody>
+      <tr><th scope="row">総話者（母語＋第二言語）</th><td>14億9,300万人（1位）</td><td>Ethnologue 2026年版</td></tr>
+      <tr><th scope="row">Webコンテンツ量</th><td>49.5%（1位）</td><td>W3Techs、2026年10月</td></tr>
+      <tr><th scope="row">インターネット言語人口</th><td>25.9%（1位）</td><td>Internet World Stats、2020年3月</td></tr>
+      <tr><th scope="row">インターネット利用時間</th><td>推定ネット人口8.5億人、1日平均6.8時間、総消費57.8億時間/日（2位）</td><td>Claude推計。英語を主に読む人だけを数えています。第二言語で読む人まで含めると1位になるとの注記があります</td></tr>
+    </tbody></table></div>
+  </details>
+</section>
+
+<section class="lang" id="zh-hans" aria-labelledby="h-zh-hans">
+  <p class="kicker">03 · zh-hans</p>
+  <h2 id="h-zh-hans"><span lang="zh-Hans">简体中文</span><small>簡体字中国語</small></h2>
+  <dl class="nums">
+    <div><dt>総話者</dt><dd>11億8,300万人（普通話）</dd></div>
+    <div><dt>Web</dt><dd>1.3%（12位、中国語全体）</dd></div>
+    <div><dt>消費時間</dt><dd>62.0億時間（簡繁合計）</dd></div>
+  </dl>
+  <p class="region"><b>地域</b>中国本土で、学校と行政の文字として使われます。シンガポールとマレーシアの華人社会も簡体字が標準です。北米、豪州、欧州、東南アジアに大きな華人社会があり、留学生も多いです。</p>
+  <div class="persona">
+    <figure><img src="img/zh-hans.webp" width="800" height="1000" loading="lazy" decoding="async" alt="架空のペルソナ。林悦（リン・ユエ）、26歳、成都在住。ゲーム会社の UI デザイナーです。"></figure>
+    <div class="ptext"><h3>ペルソナ</h3><p>林悦（リン・ユエ）、26歳、成都在住。ゲーム会社の UI デザイナーです。昼休みの12時半、Huawei のスマートフォンで、来月の京都旅行を小红书で調べている途中に、旅行者のメモからこのサイトを知りました。仕事柄、色の名前と配色に敏感です。一枚引いて、物語が宋代の青磁や蜀錦（四川の錦）を通って色にたどり着くと、画面を保存して同僚に WeChat で送ります。墨絵（水墨）の様式でカードを見るのが好きです。</p></div>
+  </div>
+  <details><summary>数字と注</summary>
+    <div class="scroll"><table class="facts"><thead><tr><th scope="col">項目</th><th scope="col">値</th><th scope="col">注</th></tr></thead><tbody>
+      <tr><th scope="row">総話者（母語＋第二言語）</th><td>11億8,300万人（普通話）</td><td>Ethnologue 2026年版。繁体字と簡体字は、普通話として1回だけ数えています</td></tr>
+      <tr><th scope="row">Webコンテンツ量</th><td>1.3%（12位、中国語全体）</td><td>W3Techs は簡体字と繁体字を分けていません</td></tr>
+      <tr><th scope="row">インターネット言語人口</th><td>19.4%（2位、中国語全体）</td><td>Internet World Stats、2020年3月</td></tr>
+      <tr><th scope="row">インターネット利用時間</th><td>推定ネット人口11.7億人、1日平均5.3時間、総消費62.0億時間/日（1位、簡繁合計）</td><td>Claude推計。中国本土11.1億人＋台湾・香港・華僑</td></tr>
+    </tbody></table></div>
+  </details>
+</section>
+
+<section class="lang" id="zh" aria-labelledby="h-zh">
+  <p class="kicker">04 · zh</p>
+  <h2 id="h-zh"><span lang="zh-Hant">繁體中文</span><small>繁体字中国語</small></h2>
+  <dl class="nums">
+    <div><dt>総話者</dt><dd>簡体字と同じ普通話として数える（11億8,300万人）</dd></div>
+    <div><dt>Web</dt><dd>1.3%（12位、中国語全体）</dd></div>
+    <div><dt>消費時間</dt><dd>簡体字と合わせて総消費62.0億時間/日（1位）</dd></div>
+  </dl>
+  <p class="region"><b>地域</b>台湾、香港、マカオで使われる文字です。北米や豪州の古くからの華人社会でも、繁体字を使う人が多くいます。台湾は標準中国語（華語）、香港とマカオは話し言葉が広東語で、書くときは繁体字の書き言葉を使います。</p>
+  <div class="persona">
+    <figure><img src="img/zh.webp" width="800" height="1000" loading="lazy" decoding="async" alt="架空のペルソナ。陳怡君（チェン・イージュン）、31歳、台中在住。銀行の窓口担当です。"></figure>
+    <div class="ptext"><h3>ペルソナ</h3><p>陳怡君（チェン・イージュン）、31歳、台中在住。銀行の窓口担当です。夜11時、寝る前に iPhone で翌月の金沢旅行の計画を立てています。友人から LINE で届いたリンクで、このサイトを開きました。廟でおみくじを引くのと同じくらいの気持ちで、一枚引きます。物語が加賀友禅や金箔のような日本の工芸を通って色にたどり着くと、旅行で行く場所が一つ増えます。結果のページを友人に LINE で返します。</p></div>
+  </div>
+  <details><summary>数字と注</summary>
+    <div class="scroll"><table class="facts"><thead><tr><th scope="col">項目</th><th scope="col">値</th><th scope="col">注</th></tr></thead><tbody>
+      <tr><th scope="row">総話者（母語＋第二言語）</th><td>簡体字と同じ普通話として数える（11億8,300万人）</td><td>繁体字と簡体字は、普通話として1回だけ数えています。繁体字を読む人だけの数は資料なし</td></tr>
+      <tr><th scope="row">Webコンテンツ量</th><td>1.3%（12位、中国語全体）</td><td>W3Techs は簡体字と繁体字を分けていません</td></tr>
+      <tr><th scope="row">インターネット言語人口</th><td>19.4%（2位、中国語全体）</td><td>Internet World Stats、2020年3月</td></tr>
+      <tr><th scope="row">インターネット利用時間</th><td>簡体字と合わせて総消費62.0億時間/日（1位）</td><td>Claude推計。繁体字だけの推計は無し</td></tr>
+    </tbody></table></div>
+  </details>
+</section>
+
+<section class="lang" id="hi" aria-labelledby="h-hi">
+  <p class="kicker">05 · hi</p>
+  <h2 id="h-hi"><span lang="hi">हिन्दी</span><small>ヒンディー語</small></h2>
+  <dl class="nums">
+    <div><dt>総話者</dt><dd>6億1,100万人（3位）</dd></div>
+    <div><dt>Web</dt><dd>0.1%未満（38位）</dd></div>
+    <div><dt>消費時間</dt><dd>17.4億時間</dd></div>
+  </dl>
+  <p class="region"><b>地域</b>インドの北部と中部（ウッタル・プラデーシュ、ビハール、ラージャスターン、マディヤ・プラデーシュ、デリーなど）です。ネパールやフィジーにも話者がいます。湾岸諸国、英国、米国、カナダに大きなインド系の人々が住んでいます。</p>
+  <div class="persona">
+    <figure><img src="img/hi.webp" width="800" height="1000" loading="lazy" decoding="async" alt="架空のペルソナ。Neha Verma（ネーハー・ヴァルマー）、24歳、ジャイプル在住。公認会計士の実務研修生です。"></figure>
+    <div class="ptext"><h3>ペルソナ</h3><p>Neha Verma（ネーハー・ヴァルマー）、24歳、ジャイプル在住。公認会計士の実務研修生です。朝8時、メトロに乗る前に Redmi のスマートフォンで、母がいつも見ているラーシファルの続きのように一枚引きます。英語も読めますが、色の物語はヒンディー語のほうが心に残ると感じています。物語が、ジャイプルの「ピンク・シティ」の建物の色や、ラージャスターンの絞り染めを通って色にたどり着くと、その色のドゥパッタを選びます。気に入った結果は WhatsApp で姉に送ります。</p></div>
+  </div>
+  <details><summary>数字と注</summary>
+    <div class="scroll"><table class="facts"><thead><tr><th scope="col">項目</th><th scope="col">値</th><th scope="col">注</th></tr></thead><tbody>
+      <tr><th scope="row">総話者（母語＋第二言語）</th><td>6億1,100万人（3位）</td><td>Ethnologue 2026年版</td></tr>
+      <tr><th scope="row">Webコンテンツ量</th><td>0.1%未満（38位）</td><td>W3Techs、2026年10月。話者の多さに比べて、Webのページはとても少ない</td></tr>
+      <tr><th scope="row">インターネット言語人口</th><td>上位10圏外</td><td>Internet World Stats、2020年3月</td></tr>
+      <tr><th scope="row">インターネット利用時間</th><td>推定ネット人口2.9億人、1日平均6.0時間、総消費17.4億時間/日（6位）</td><td>Claude推計。インドの利用者の約35%をヒンディー語と仮定。いちばん揺れる仮定です</td></tr>
+    </tbody></table></div>
+  </details>
+</section>
+
+<section class="lang" id="es" aria-labelledby="h-es">
+  <p class="kicker">06 · es</p>
+  <h2 id="h-es"><span lang="es">Español</span><small>スペイン語</small></h2>
+  <dl class="nums">
+    <div><dt>総話者</dt><dd>5億6,100万人（4位）</dd></div>
+    <div><dt>Web</dt><dd>6.0%（2位）</dd></div>
+    <div><dt>消費時間</dt><dd>29.6億時間</dd></div>
+  </dl>
+  <p class="region"><b>地域</b>スペイン、メキシコ、コロンビア、アルゼンチン、ペルー、チリ、ベネズエラなど中南米の多くの国です。米国にも、家庭でスペイン語を話す人が多く住んでいます（人数はこの文書では確かめていません）。赤道ギニアでも公用語です。</p>
+  <div class="persona">
+    <figure><img src="img/es.webp" width="800" height="1000" loading="lazy" decoding="async" alt="架空のペルソナ。Valeria Ortiz（バレリア・オルティス）、32歳、メキシコ・グアダラハラ在住。歯科衛生士です。"></figure>
+    <div class="ptext"><h3>ペルソナ</h3><p>Valeria Ortiz（バレリア・オルティス）、32歳、メキシコ・グアダラハラ在住。歯科衛生士です。夜9時半、仕事のあとソファで Android のスマートフォンを開き、TikTok で見たタロットの話からこのサイトに来ました。札の意味を読むのも好きですが、最後に色の名前が出るのを待つのがいちばんの楽しみです。物語が、メキシコのコチニール（サボテンにつく虫から取る赤）を通って深紅にたどり着くと、すぐに妹へ WhatsApp で送ります。年末には、下着の色を決めるのにこのサイトを使おうと考えています。</p></div>
+  </div>
+  <details><summary>数字と注</summary>
+    <div class="scroll"><table class="facts"><thead><tr><th scope="col">項目</th><th scope="col">値</th><th scope="col">注</th></tr></thead><tbody>
+      <tr><th scope="row">総話者（母語＋第二言語）</th><td>5億6,100万人（4位）</td><td>Ethnologue 2026年版</td></tr>
+      <tr><th scope="row">Webコンテンツ量</th><td>6.0%（2位）</td><td>W3Techs、2026年10月</td></tr>
+      <tr><th scope="row">インターネット言語人口</th><td>7.9%（3位）</td><td>Internet World Stats、2020年3月</td></tr>
+      <tr><th scope="row">インターネット利用時間</th><td>推定ネット人口3.9億人、1日平均7.6時間、総消費29.6億時間/日（3位）</td><td>Claude推計。メキシコ、スペイン、コロンビア、アルゼンチンほか、米国のスペイン語主体層</td></tr>
+    </tbody></table></div>
+  </details>
+</section>
+
+<section class="lang" id="ar" aria-labelledby="h-ar">
+  <p class="kicker">07 · ar</p>
+  <h2 id="h-ar"><span lang="ar" dir="rtl">العربية</span><small>アラビア語（現代標準アラビア語）</small></h2>
+  <dl class="nums">
+    <div><dt>総話者</dt><dd>3億3,500万人（5位、現代標準アラビア語）</dd></div>
+    <div><dt>Web</dt><dd>0.6%（19位）</dd></div>
+    <div><dt>消費時間</dt><dd>23.1億時間</dd></div>
+  </dl>
+  <p class="region"><b>地域</b>中東と北アフリカの22か国ほどの公用語です。エジプト、サウジアラビア、イラク、アルジェリア、モロッコ、スーダン、シリア、ヨルダン、UAE などです。欧州（フランス、ドイツなど）と北米にも、アラビア語を使う人が多く住んでいます。サイトは右から左に書く形です。</p>
+  <div class="persona">
+    <figure><img src="img/ar.webp" width="800" height="1000" loading="lazy" decoding="async" alt="架空のペルソナ。Nour Haddad（ヌール・ハッダード）、28歳、ヨルダン・アンマン在住。建築設計事務所で働いています。"></figure>
+    <div class="ptext"><h3>ペルソナ</h3><p>Nour Haddad（ヌール・ハッダード）、28歳、ヨルダン・アンマン在住。建築設計事務所で働いています。夜8時、家のバルコニーで iPhone を開きます。占いを信じるわけではなく、カードの絵と物語を「短い読み物」として楽しんでいます。物語が、イスラーム建築のタイルの青や、ペトラの岩の薔薇色を通って色にたどり着くと、仕事の配色の参考にメモします。結果のページを、建築仲間の WhatsApp グループに送ることがあります。</p></div>
+  </div>
+  <details><summary>数字と注</summary>
+    <div class="scroll"><table class="facts"><thead><tr><th scope="col">項目</th><th scope="col">値</th><th scope="col">注</th></tr></thead><tbody>
+      <tr><th scope="row">総話者（母語＋第二言語）</th><td>3億3,500万人（5位、現代標準アラビア語）</td><td>Ethnologue 2026年版</td></tr>
+      <tr><th scope="row">Webコンテンツ量</th><td>0.6%（19位）</td><td>W3Techs、2026年10月</td></tr>
+      <tr><th scope="row">インターネット言語人口</th><td>5.2%（4位）</td><td>Internet World Stats、2020年3月</td></tr>
+      <tr><th scope="row">インターネット利用時間</th><td>推定ネット人口3.3億人、1日平均7.0時間、総消費23.1億時間/日（4位）</td><td>Claude推計。エジプト、サウジ、イラク、アルジェリア、モロッコほか</td></tr>
+    </tbody></table></div>
+  </details>
+</section>
+
+<section class="lang" id="fr" aria-labelledby="h-fr">
+  <p class="kicker">08 · fr</p>
+  <h2 id="h-fr"><span lang="fr">Français</span><small>フランス語</small></h2>
+  <dl class="nums">
+    <div><dt>総話者</dt><dd>3億3,400万人（6位）</dd></div>
+    <div><dt>Web</dt><dd>4.5%（5位）</dd></div>
+    <div><dt>消費時間</dt><dd>7.5億時間</dd></div>
+  </dl>
+  <p class="region"><b>地域</b>フランス、ベルギー南部、スイス西部、カナダのケベック州、ルクセンブルクです。西アフリカと中部アフリカ（コートジボワール、セネガル、コンゴ民主共和国、カメルーンなど）では、学校と行政の言葉です。北アフリカのモロッコ、アルジェリア、チュニジアでも広く使われます。</p>
+  <div class="persona">
+    <figure><img src="img/fr.webp" width="800" height="1000" loading="lazy" decoding="async" alt="架空のペルソナ。Hélène Garnier（エレーヌ・ガルニエ）、41歳、リヨン在住。製本と紙の修復の工房を営んでいます。"></figure>
+    <div class="ptext"><h3>ペルソナ</h3><p>Hélène Garnier（エレーヌ・ガルニエ）、41歳、リヨン在住。製本と紙の修復の工房を営んでいます。日曜の朝10時、工房の作業台でタブレットを開きます。祖母の家にあったマルセイユ版の札を覚えていて、大アルカナの名前に親しみがあります。物語が、リヨンの絹織物の染めや、パリの絵具商の話を通って色にたどり着くと、次の装丁の見返しの色をそれで決めます。様式はアール・ヌーヴォーを選んでいます。</p></div>
+  </div>
+  <details><summary>数字と注</summary>
+    <div class="scroll"><table class="facts"><thead><tr><th scope="col">項目</th><th scope="col">値</th><th scope="col">注</th></tr></thead><tbody>
+      <tr><th scope="row">総話者（母語＋第二言語）</th><td>3億3,400万人（6位）</td><td>Ethnologue 2026年版</td></tr>
+      <tr><th scope="row">Webコンテンツ量</th><td>4.5%（5位）</td><td>W3Techs、2026年10月</td></tr>
+      <tr><th scope="row">インターネット言語人口</th><td>3.3%（7位）</td><td>Internet World Stats、2020年3月</td></tr>
+      <tr><th scope="row">インターネット利用時間</th><td>推定ネット人口1.25億人、1日平均6.0時間、総消費7.5億時間/日（9位）</td><td>Claude推計。フランス、ベルギー、ケベック＋仏語圏アフリカ</td></tr>
+    </tbody></table></div>
+  </details>
+</section>
+
+<section class="lang" id="bn" aria-labelledby="h-bn">
+  <p class="kicker">09 · bn</p>
+  <h2 id="h-bn"><span lang="bn">বাংলা</span><small>ベンガル語</small></h2>
+  <dl class="nums">
+    <div><dt>総話者</dt><dd>2億7,400万人（7位）</dd></div>
+    <div><dt>Web</dt><dd>0.1%未満（39位）</dd></div>
+    <div><dt>消費時間</dt><dd>6.1億時間</dd></div>
+  </dl>
+  <p class="region"><b>地域</b>バングラデシュ（国語）と、インドの西ベンガル州、トリプラ州、アッサム州の一部です。英国（ロンドン東部）、中東の湾岸諸国、米国、マレーシアに、バングラデシュ出身の人が多く住んでいます。</p>
+  <div class="persona">
+    <figure><img src="img/bn.webp" width="800" height="1000" loading="lazy" decoding="async" alt="架空のペルソナ。Farhana Akter（ファルハナ・アクテル）、23歳、ダッカ在住。大学で英文学を学んでいます。"></figure>
+    <div class="ptext"><h3>ペルソナ</h3><p>Farhana Akter（ファルハナ・アクテル）、23歳、ダッカ在住。大学で英文学を学んでいます。夜10時、勉強の合間に Samsung のスマートフォンで Facebook を見ていて、友人がシェアした結果のページから来ました。占いとしてではなく、ベンガル語で読める短い物語として楽しんでいます。物語が、ダッカのモスリンやジャムダニ織りを通って象牙色にたどり着くと、詩のノートにその色の名前を書き写します。</p></div>
+  </div>
+  <details><summary>数字と注</summary>
+    <div class="scroll"><table class="facts"><thead><tr><th scope="col">項目</th><th scope="col">値</th><th scope="col">注</th></tr></thead><tbody>
+      <tr><th scope="row">総話者（母語＋第二言語）</th><td>2億7,400万人（7位）</td><td>Ethnologue 2026年版</td></tr>
+      <tr><th scope="row">Webコンテンツ量</th><td>0.1%未満（39位）</td><td>W3Techs、2026年10月</td></tr>
+      <tr><th scope="row">インターネット言語人口</th><td>上位10圏外</td><td>Internet World Stats、2020年3月</td></tr>
+      <tr><th scope="row">インターネット利用時間</th><td>推定ネット人口1.1億人、1日平均5.5時間、総消費6.1億時間/日（10位）</td><td>Claude推計。バングラデシュ＋西ベンガル</td></tr>
+    </tbody></table></div>
+  </details>
+</section>
+
+<section class="lang" id="pt" aria-labelledby="h-pt">
+  <p class="kicker">10 · pt</p>
+  <h2 id="h-pt"><span lang="pt">Português</span><small>ポルトガル語（ブラジル）</small></h2>
+  <dl class="nums">
+    <div><dt>総話者</dt><dd>2億6,900万人（8位）</dd></div>
+    <div><dt>Web</dt><dd>4.1%（6位）</dd></div>
+    <div><dt>消費時間</dt><dd>18.9億時間</dd></div>
+  </dl>
+  <p class="region"><b>地域</b>ブラジル（サイトは pt-BR）とポルトガルです。アンゴラ、モザンビーク、カーボベルデなどアフリカの国でも公用語です。日本には、日系のブラジル人が多く住んでいます。米国、ポルトガル、日本にブラジル出身の人の社会があります。</p>
+  <div class="persona">
+    <figure><img src="img/pt.webp" width="800" height="1000" loading="lazy" decoding="async" alt="架空のペルソナ。Juliana Costa（ジュリアナ・コスタ）、30歳、レシフェ在住。病院の看護師で、夜勤もあります。"></figure>
+    <div class="ptext"><h3>ペルソナ</h3><p>Juliana Costa（ジュリアナ・コスタ）、30歳、レシフェ在住。病院の看護師で、夜勤もあります。朝6時半、夜勤明けのバスの中で Samsung のスマートフォンを開き、一枚引きます。札の意味より、物語の最後に出る色を楽しみにしています。物語が、ブラジルの名の由来になったパウ・ブラジル（赤い染料の木）を通って色にたどり着くと、同僚の WhatsApp グループに送ります。大みそかに着る服の色も、ここで引いて決めるつもりです。</p></div>
+  </div>
+  <details><summary>数字と注</summary>
+    <div class="scroll"><table class="facts"><thead><tr><th scope="col">項目</th><th scope="col">値</th><th scope="col">注</th></tr></thead><tbody>
+      <tr><th scope="row">総話者（母語＋第二言語）</th><td>2億6,900万人（8位）</td><td>Ethnologue 2026年版</td></tr>
+      <tr><th scope="row">Webコンテンツ量</th><td>4.1%（6位）</td><td>W3Techs、2026年10月</td></tr>
+      <tr><th scope="row">インターネット言語人口</th><td>3.7%（6位）</td><td>Internet World Stats、2020年3月</td></tr>
+      <tr><th scope="row">インターネット利用時間</th><td>推定ネット人口2.1億人、1日平均9.0時間、総消費18.9億時間/日（5位）</td><td>Claude推計。ブラジルが大半。利用時間は世界最長の部類</td></tr>
+    </tbody></table></div>
+  </details>
+</section>
+
+<section class="lang" id="id" aria-labelledby="h-id">
+  <p class="kicker">11 · id</p>
+  <h2 id="h-id"><span lang="id">Bahasa Indonesia</span><small>インドネシア語</small></h2>
+  <dl class="nums">
+    <div><dt>総話者</dt><dd>2億5,500万人（9位）</dd></div>
+    <div><dt>Web</dt><dd>1.2%（13位）</dd></div>
+    <div><dt>消費時間</dt><dd>15.5億時間</dd></div>
+  </dl>
+  <p class="region"><b>地域</b>インドネシアの国語で、2億を超える人が学校と仕事で使います。東ティモールでは実務の言葉です。マレーシア、ブルネイ、シンガポールのマレー語とは、おおむね通じ合います。日本には、技能実習や特定技能で働くインドネシアの人が増えています。</p>
+  <div class="persona">
+    <figure><img src="img/id.webp" width="800" height="1000" loading="lazy" decoding="async" alt="架空のペルソナ。Dimas Pratama（ディマス・プラタマ）、25歳、バンドン在住。スタートアップの若手グラフィックデザイナーです。"></figure>
+    <div class="ptext"><h3>ペルソナ</h3><p>Dimas Pratama（ディマス・プラタマ）、25歳、バンドン在住。スタートアップの若手グラフィックデザイナーです。朝9時、コワーキングスペースで Android のスマートフォンを開きます。占いとしてではなく、配色のヒントを探す道具として使っています。札の意味は軽く読み、色の物語をじっくり読みます。物語が、ジャワのバティックの藍や、スンダの竹細工を通って色にたどり着くと、その日のポスター案の基調色にします。Instagram のストーリーで、色の名前だけをシェアします。</p></div>
+  </div>
+  <details><summary>数字と注</summary>
+    <div class="scroll"><table class="facts"><thead><tr><th scope="col">項目</th><th scope="col">値</th><th scope="col">注</th></tr></thead><tbody>
+      <tr><th scope="row">総話者（母語＋第二言語）</th><td>2億5,500万人（9位）</td><td>Ethnologue 2026年版</td></tr>
+      <tr><th scope="row">Webコンテンツ量</th><td>1.2%（13位）</td><td>W3Techs、2026年10月</td></tr>
+      <tr><th scope="row">インターネット言語人口</th><td>4.3%（5位）</td><td>Internet World Stats、2020年3月。マレー語と同じ行で、数字はインドネシア語のもの</td></tr>
+      <tr><th scope="row">インターネット利用時間</th><td>推定ネット人口2.1億人、1日平均7.4時間、総消費15.5億時間/日（7位）</td><td>Claude推計</td></tr>
+    </tbody></table></div>
+  </details>
+</section>
+
+<section class="lang" id="ms" aria-labelledby="h-ms">
+  <p class="kicker">12 · ms</p>
+  <h2 id="h-ms"><span lang="ms">Bahasa Melayu</span><small>マレー語</small></h2>
+  <dl class="nums">
+    <div><dt>総話者</dt><dd>不明</dd></div>
+    <div><dt>Web</dt><dd>資料なし</dd></div>
+    <div><dt>消費時間</dt><dd>約1.6億時間（圏外参考値）</dd></div>
+  </dl>
+  <p class="region"><b>地域</b>マレーシア、ブルネイ、シンガポール（国語）です。タイ南部にもマレー語の話者がいます。マレーシアでは、マレー系の人が日常に使い、華人やインド系の人も学校で学びます。</p>
+  <div class="persona">
+    <figure><img src="img/ms.webp" width="800" height="1000" loading="lazy" decoding="async" alt="架空のペルソナ。Nur Aisyah binti Rahman（ヌル・アイシャ）、27歳、シャー・アラム在住。病院の薬剤師です。"></figure>
+    <div class="ptext"><h3>ペルソナ</h3><p>Nur Aisyah binti Rahman（ヌル・アイシャ）、27歳、シャー・アラム在住。病院の薬剤師です。昼休みの1時、Android のスマートフォンで、来年3月の大阪旅行の情報を TikTok で見ています。占いは信じませんが、カードの絵と色の物語は「きれいな読み物」として好きです。物語が、マレーのソンケットの金糸や、マラッカの港の話を通って色にたどり着くと、旅行用のトゥドゥン（スカーフ）の色の参考にします。家族の WhatsApp グループに、色の名前だけを送ります。</p></div>
+  </div>
+  <details><summary>数字と注</summary>
+    <div class="scroll"><table class="facts"><thead><tr><th scope="col">項目</th><th scope="col">値</th><th scope="col">注</th></tr></thead><tbody>
+      <tr><th scope="row">総話者（母語＋第二言語）</th><td>不明</td><td>マレー語は、インドネシア語を含むマクロ言語としてまとめて数えられることが多く、分けた数字がありません。Wikipedia の「Malay language」の頁（Ethnologue 第28版、2025年を引用）は、マクロ言語としてのマレー語を母語約9,000万人（2020〜2023年）、第二言語約1億8,000万人（2020年）としています。この数え方はインドネシアの地方のマレー語を含み、標準マレー語だけの数ではありません</td></tr>
+      <tr><th scope="row">Webコンテンツ量</th><td>資料なし</td><td>W3Techs の上位40に入っていません</td></tr>
+      <tr><th scope="row">インターネット言語人口</th><td>インドネシア語と同じ行</td><td>Internet World Stats では、インドネシア語/マレー語の行の数字はインドネシア語の4.3%だけです</td></tr>
+      <tr><th scope="row">インターネット利用時間</th><td>約1.6億時間/日（圏外参考値）</td><td>Claude推計の圏外参考値。マレーシアの利用者の約6割＋ブルネイ</td></tr>
+    </tbody></table></div>
+  </details>
+</section>
+
+<section class="lang" id="ur" aria-labelledby="h-ur">
+  <p class="kicker">13 · ur</p>
+  <h2 id="h-ur"><span lang="ur" dir="rtl">اردو</span><small>ウルドゥー語</small></h2>
+  <dl class="nums">
+    <div><dt>総話者</dt><dd>2億4,600万人（10位）</dd></div>
+    <div><dt>Web</dt><dd>資料なし</dd></div>
+    <div><dt>消費時間</dt><dd>5.2億時間</dd></div>
+  </dl>
+  <p class="region"><b>地域</b>パキスタン（国語）と、インドの北部（ウッタル・プラデーシュ、テランガーナのハイデラバード、デリーなど）です。英国、湾岸諸国、米国、カナダにパキスタン系の人が多く住んでいます。話し言葉はヒンディー語と近く、文字（ナスタアリーク体のアラビア文字）が違います。サイトは右から左に書く形です。</p>
+  <div class="persona">
+    <figure><img src="img/ur.webp" width="800" height="1000" loading="lazy" decoding="async" alt="架空のペルソナ。Hamza Qureshi（ハムザ・クレーシー）、30歳、ラホール在住。フィンテック企業のソフトウェアエンジニアです。"></figure>
+    <div class="ptext"><h3>ペルソナ</h3><p>Hamza Qureshi（ハムザ・クレーシー）、30歳、ラホール在住。フィンテック企業のソフトウェアエンジニアです。夜12時半、仕事のあと、チャイを飲みながら Android のスマートフォンを開きます。占いには距離を置いていますが、ウルドゥー語の文章が美しく組まれたページが好きで、物語を読みに来ます。物語が、ムガルの細密画の群青や、ラホールの城の壁のタイルを通って色にたどり着くと、詩人の友人に WhatsApp でリンクを送ります。</p></div>
+  </div>
+  <details><summary>数字と注</summary>
+    <div class="scroll"><table class="facts"><thead><tr><th scope="col">項目</th><th scope="col">値</th><th scope="col">注</th></tr></thead><tbody>
+      <tr><th scope="row">総話者（母語＋第二言語）</th><td>2億4,600万人（10位）</td><td>Ethnologue 2026年版</td></tr>
+      <tr><th scope="row">Webコンテンツ量</th><td>資料なし</td><td>W3Techs の上位40に入っていません</td></tr>
+      <tr><th scope="row">インターネット言語人口</th><td>上位10圏外</td><td>Internet World Stats、2020年3月</td></tr>
+      <tr><th scope="row">インターネット利用時間</th><td>推定ネット人口0.95億人、1日平均5.5時間、総消費5.2億時間/日（13位）</td><td>Claude推計。パキスタンの約75%＋インドの一部</td></tr>
+    </tbody></table></div>
+  </details>
+</section>
+
+<section class="lang" id="ru" aria-labelledby="h-ru">
+  <p class="kicker">14 · ru</p>
+  <h2 id="h-ru"><span lang="ru">Русский</span><small>ロシア語</small></h2>
+  <dl class="nums">
+    <div><dt>総話者</dt><dd>2億1,000万人（11位）</dd></div>
+    <div><dt>Web</dt><dd>3.4%（7位）</dd></div>
+    <div><dt>消費時間</dt><dd>11.6億時間</dd></div>
+  </dl>
+  <p class="region"><b>地域</b>ロシア、ベラルーシ、カザフスタン、キルギスで公用語です。旧ソ連の国々（中央アジア、コーカサス、バルト三国）にも、ロシア語を使う人が多くいます。イスラエル、ドイツ、米国にもロシア語を話す人の社会があります。</p>
+  <div class="persona">
+    <figure><img src="img/ru.webp" width="800" height="1000" loading="lazy" decoding="async" alt="架空のペルソナ。Анна Соколова（アンナ・ソコロワ）、35歳、ノヴォシビルスク在住。研究所の化学分析の技術者です。"></figure>
+    <div class="ptext"><h3>ペルソナ</h3><p>Анна Соколова（アンナ・ソコロワ）、35歳、ノヴォシビルスク在住。研究所の化学分析の技術者です。夜10時、台所でお茶を飲みながら Android のスマートフォンを開きます。Telegram の、色と美術を紹介するチャンネルでこのサイトを知りました。札を引いて、物語が鉱物や顔料の話を通って色にたどり着くのが、仕事柄とても楽しいです。孔雀石の緑の話が出た日は、娘にその石の写真を見せます。</p></div>
+  </div>
+  <details><summary>数字と注</summary>
+    <div class="scroll"><table class="facts"><thead><tr><th scope="col">項目</th><th scope="col">値</th><th scope="col">注</th></tr></thead><tbody>
+      <tr><th scope="row">総話者（母語＋第二言語）</th><td>2億1,000万人（11位）</td><td>Ethnologue 2026年版</td></tr>
+      <tr><th scope="row">Webコンテンツ量</th><td>3.4%（7位）</td><td>W3Techs、2026年10月</td></tr>
+      <tr><th scope="row">インターネット言語人口</th><td>2.5%（9位）</td><td>Internet World Stats、2020年3月</td></tr>
+      <tr><th scope="row">インターネット利用時間</th><td>推定ネット人口1.55億人、1日平均7.5時間、総消費11.6億時間/日（8位）</td><td>Claude推計。ロシア＋ベラルーシ、カザフスタンほか中央アジアの一部</td></tr>
+    </tbody></table></div>
+  </details>
+</section>
+
+<section class="lang" id="de" aria-labelledby="h-de">
+  <p class="kicker">15 · de</p>
+  <h2 id="h-de"><span lang="de">Deutsch</span><small>ドイツ語</small></h2>
+  <dl class="nums">
+    <div><dt>総話者</dt><dd>1億3,300万人（12位）</dd></div>
+    <div><dt>Web</dt><dd>5.9%（3位）</dd></div>
+    <div><dt>消費時間</dt><dd>4.8億時間</dd></div>
+  </dl>
+  <p class="region"><b>地域</b>ドイツ、オーストリア、スイス（北部・中部）、リヒテンシュタイン、ルクセンブルク、イタリアの南チロル、ベルギー東部です。</p>
+  <div class="persona">
+    <figure><img src="img/de.webp" width="800" height="1000" loading="lazy" decoding="async" alt="架空のペルソナ。Jonas Weber（ヨナス・ヴェーバー）、38歳、ライプツィヒ在住。劇場の音響技術者です。"></figure>
+    <div class="ptext"><h3>ペルソナ</h3><p>Jonas Weber（ヨナス・ヴェーバー）、38歳、ライプツィヒ在住。劇場の音響技術者です。平日の昼1時、休憩中にノートパソコンの Firefox で開きます。広告ブロッカーを入れていて、同意のバナーは断ります。占いは信じませんが、カードの様式（シュルレアリスムの写真、ブルータリズムのグラフィック）を見比べるのが好きです。物語が、ベルリンで18世紀初めに生まれたプルシアンブルーの話を通って色にたどり着くと、気に入って同僚に話します。</p></div>
+  </div>
+  <details><summary>数字と注</summary>
+    <div class="scroll"><table class="facts"><thead><tr><th scope="col">項目</th><th scope="col">値</th><th scope="col">注</th></tr></thead><tbody>
+      <tr><th scope="row">総話者（母語＋第二言語）</th><td>1億3,300万人（12位）</td><td>Ethnologue 2026年版</td></tr>
+      <tr><th scope="row">Webコンテンツ量</th><td>5.9%（3位）</td><td>W3Techs、2026年10月</td></tr>
+      <tr><th scope="row">インターネット言語人口</th><td>2.0%（10位）</td><td>Internet World Stats、2020年3月</td></tr>
+      <tr><th scope="row">インターネット利用時間</th><td>推定ネット人口0.93億人、1日平均5.2時間、総消費4.8億時間/日（17位）</td><td>Claude推計。ドイツ、オーストリア、スイス</td></tr>
+    </tbody></table></div>
+  </details>
+</section>
+
+<section class="lang" id="vi" aria-labelledby="h-vi">
+  <p class="kicker">16 · vi</p>
+  <h2 id="h-vi"><span lang="vi">Tiếng Việt</span><small>ベトナム語</small></h2>
+  <dl class="nums">
+    <div><dt>総話者</dt><dd>9,700万人（17位）</dd></div>
+    <div><dt>Web</dt><dd>0.9%（16位）</dd></div>
+    <div><dt>消費時間</dt><dd>5.0億時間</dd></div>
+  </dl>
+  <p class="region"><b>地域</b>ベトナムです。米国（カリフォルニア、テキサス）、豪州、フランス、カナダに大きなベトナム系の社会があります。日本にも、技能実習や留学で暮らすベトナムの人が多くいます。</p>
+  <div class="persona">
+    <figure><img src="img/vi.webp" width="800" height="1000" loading="lazy" decoding="async" alt="架空のペルソナ。Trần Văn Minh（チャン・ヴァン・ミン）、24歳、愛知県豊田市在住。自動車部品工場で働く技能実習生です。"></figure>
+    <div class="ptext"><h3>ペルソナ</h3><p>Trần Văn Minh（チャン・ヴァン・ミン）、24歳、愛知県豊田市在住。自動車部品工場で働く技能実習生です。夕方5時、夜勤に出る前に寮の部屋で Android のスマートフォンを開きます。日本で暮らす仲間の Facebook グループで、このサイトの結果がシェアされていました。母の言う mệnh の色と見比べながら、一枚引きます。物語が、ホイアンのランタンの絹や、故郷の漆の話を通って色にたどり着くと、家族に Zalo で送ります。</p></div>
+  </div>
+  <details><summary>数字と注</summary>
+    <div class="scroll"><table class="facts"><thead><tr><th scope="col">項目</th><th scope="col">値</th><th scope="col">注</th></tr></thead><tbody>
+      <tr><th scope="row">総話者（母語＋第二言語）</th><td>9,700万人（17位）</td><td>Ethnologue 2026年版</td></tr>
+      <tr><th scope="row">Webコンテンツ量</th><td>0.9%（16位）</td><td>W3Techs、2026年10月</td></tr>
+      <tr><th scope="row">インターネット言語人口</th><td>上位10圏外</td><td>Internet World Stats、2020年3月</td></tr>
+      <tr><th scope="row">インターネット利用時間</th><td>推定ネット人口0.79億人、1日平均6.3時間、総消費5.0億時間/日（15位）</td><td>Claude推計</td></tr>
+    </tbody></table></div>
+  </details>
+</section>
+
+<section class="lang" id="sw" aria-labelledby="h-sw">
+  <p class="kicker">17 · sw</p>
+  <h2 id="h-sw"><span lang="sw">Kiswahili</span><small>スワヒリ語</small></h2>
+  <dl class="nums">
+    <div><dt>総話者</dt><dd>9,500万人（19位）</dd></div>
+    <div><dt>Web</dt><dd>資料なし</dd></div>
+    <div><dt>消費時間</dt><dd>推計なし</dd></div>
+  </dl>
+  <p class="region"><b>地域</b>タンザニアとケニアです。タンザニアは国語で、小学校はスワヒリ語、中学から英語です。ケニアは公用語の一つで、低学年を母語かスワヒリ語で教え、その後は英語、スワヒリ語は必修の教科です。ウガンダ、ルワンダ、ブルンジ、コンゴ民主共和国の東部、コモロでも広く使われます。アフリカ連合の作業言語の一つです。</p>
+  <div class="persona">
+    <figure><img src="img/sw.webp" width="800" height="1000" loading="lazy" decoding="async" alt="架空のペルソナ。Amina Juma（アミナ・ジュマ）、28歳、ダルエスサラーム在住。小学校の教員です。"></figure>
+    <div class="ptext"><h3>ペルソナ</h3><p>Amina Juma（アミナ・ジュマ）、28歳、ダルエスサラーム在住。小学校の教員です。午後3時半、授業が終わった職員室で Android のスマートフォンを開きます。同僚の WhatsApp のグループで、このサイトの結果が回ってきました。カンガの布の色と見比べながら、一枚引きます。物語が、カンガの藍や、インド洋の夕方の空を通って色にたどり着くと、母に WhatsApp で送ります。</p></div>
+  </div>
+  <details><summary>数字と注</summary>
+    <div class="scroll"><table class="facts"><thead><tr><th scope="col">項目</th><th scope="col">値</th><th scope="col">注</th></tr></thead><tbody>
+      <tr><th scope="row">総話者（母語＋第二言語）</th><td>9,500万人（19位）</td><td>Ethnologue 2026年版</td></tr>
+      <tr><th scope="row">Webコンテンツ量</th><td>資料なし</td><td>W3Techs の上位40に入っていません</td></tr>
+      <tr><th scope="row">インターネット言語人口</th><td>上位10圏外</td><td>Internet World Stats、2020年3月</td></tr>
+      <tr><th scope="row">インターネット利用時間</th><td>推計なし</td><td>Claude推計にスワヒリ語の行がありません。ケニアとタンザニアは、英語かスワヒリ語にまとめて入れてあり、スワヒリ語だけの時間は分かれていません</td></tr>
+    </tbody></table></div>
+  </details>
+</section>
+
+<section class="lang" id="tr" aria-labelledby="h-tr">
+  <p class="kicker">18 · tr</p>
+  <h2 id="h-tr"><span lang="tr">Türkçe</span><small>トルコ語</small></h2>
+  <dl class="nums">
+    <div><dt>総話者</dt><dd>9,400万人（20位、ハウサ語と同じ行）</dd></div>
+    <div><dt>Web</dt><dd>1.6%（11位）</dd></div>
+    <div><dt>消費時間</dt><dd>5.6億時間</dd></div>
+  </dl>
+  <p class="region"><b>地域</b>トルコと北キプロスです。ドイツには大きなトルコ系の社会があり、オランダ、オーストリア、フランスにも多く住んでいます。ブルガリアやギリシャ北部にも話者がいます。</p>
+  <div class="persona">
+    <figure><img src="img/tr.webp" width="800" height="1000" loading="lazy" decoding="async" alt="架空のペルソナ。Elif Yıldız（エリフ・ユルドゥズ）、33歳、イズミル在住。高校の化学の教師です。"></figure>
+    <div class="ptext"><h3>ペルソナ</h3><p>Elif Yıldız（エリフ・ユルドゥズ）、33歳、イズミル在住。高校の化学の教師です。午後4時半、授業が終わってカフェで友人とコーヒー占いをしたあと、iPhone でこのサイトを開きました。札の意味を友人と読み合います。物語がトルコ石やイズニクのタイルの青を通って色にたどり着くと、みんなで盛り上がり、Instagram のストーリーに載せます。</p></div>
+  </div>
+  <details><summary>数字と注</summary>
+    <div class="scroll"><table class="facts"><thead><tr><th scope="col">項目</th><th scope="col">値</th><th scope="col">注</th></tr></thead><tbody>
+      <tr><th scope="row">総話者（母語＋第二言語）</th><td>9,400万人（20位、ハウサ語と同じ行）</td><td>Ethnologue 2026年版</td></tr>
+      <tr><th scope="row">Webコンテンツ量</th><td>1.6%（11位）</td><td>W3Techs、2026年10月</td></tr>
+      <tr><th scope="row">インターネット言語人口</th><td>上位10圏外</td><td>Internet World Stats、2020年3月</td></tr>
+      <tr><th scope="row">インターネット利用時間</th><td>推定ネット人口0.8億人、1日平均7.0時間、総消費5.6億時間/日（11位）</td><td>Claude推計</td></tr>
+    </tbody></table></div>
+  </details>
+</section>
+
+<section class="lang" id="tl" aria-labelledby="h-tl">
+  <p class="kicker">19 · tl</p>
+  <h2 id="h-tl"><span lang="fil">Filipino</span><small>フィリピノ語</small></h2>
+  <dl class="nums">
+    <div><dt>総話者</dt><dd>8,700万人</dd></div>
+    <div><dt>Web</dt><dd>0.1%未満（40位、タガログ語）</dd></div>
+    <div><dt>消費時間</dt><dd>5.3億時間</dd></div>
+  </dl>
+  <p class="region"><b>地域</b>フィリピンの国語で、英語と並ぶ公用語です。米国（カリフォルニア、ハワイ）、中東の湾岸諸国、香港、シンガポール、カナダ、日本など、世界中で働くフィリピンの人が使います。</p>
+  <div class="persona">
+    <figure><img src="img/tl.webp" width="800" height="1000" loading="lazy" decoding="async" alt="架空のペルソナ。Joanna &quot;Jo&quot; Dela Cruz（ジョアンナ・デラ・クルス）、28歳、ケソン市在住。米国向けのコールセンターで夜勤をしています。"></figure>
+    <div class="ptext"><h3>ペルソナ</h3><p>Joanna &quot;Jo&quot; Dela Cruz（ジョアンナ・デラ・クルス）、28歳、ケソン市在住。米国向けのコールセンターで夜勤をしています。明け方4時の休憩に、Android のスマートフォンで一枚引きます。仕事は英語なので、休憩のときはフィリピノ語で読みたいと感じています。物語が、マニラ湾の夕焼けや、ピニャ（パイナップルの繊維の布）を通って色にたどり着くと、Facebook に載せて、中東で働くいとこにも送ります。</p></div>
+  </div>
+  <details><summary>数字と注</summary>
+    <div class="scroll"><table class="facts"><thead><tr><th scope="col">項目</th><th scope="col">値</th><th scope="col">注</th></tr></thead><tbody>
+      <tr><th scope="row">総話者（母語＋第二言語）</th><td>8,700万人</td><td>Ethnologue 2026年版（タガログ語として数えています）</td></tr>
+      <tr><th scope="row">Webコンテンツ量</th><td>0.1%未満（40位、タガログ語）</td><td>W3Techs、2026年10月</td></tr>
+      <tr><th scope="row">インターネット言語人口</th><td>上位10圏外</td><td>Internet World Stats、2020年3月</td></tr>
+      <tr><th scope="row">インターネット利用時間</th><td>推定ネット人口0.6億人、1日平均8.9時間、総消費5.3億時間/日（12位）</td><td>Claude推計。フィリピンの利用者の約6割と仮定し、残りは英語に計上</td></tr>
+    </tbody></table></div>
+  </details>
+</section>
+
+<section class="lang" id="fa" aria-labelledby="h-fa">
+  <p class="kicker">20 · fa</p>
+  <h2 id="h-fa"><span lang="fa" dir="rtl">فارسی</span><small>ペルシャ語</small></h2>
+  <dl class="nums">
+    <div><dt>総話者</dt><dd>8,200万人（イランのペルシャ語）</dd></div>
+    <div><dt>Web</dt><dd>1.0%（14位）</dd></div>
+    <div><dt>消費時間</dt><dd>4.9億時間</dd></div>
+  </dl>
+  <p class="region"><b>地域</b>イランの公用語です。アフガニスタン（ダリー語）とタジキスタン（タジク語）でも、近い言葉が使われます。米国（ロサンゼルス）、カナダ、ドイツ、英国、トルコに、イラン出身の人の大きな社会があります。サイトは右から左に書く形です。</p>
+  <div class="persona">
+    <figure><img src="img/fa.webp" width="800" height="1000" loading="lazy" decoding="async" alt="架空のペルソナ。Parisa Hosseini（パリサ・ホセイニ）、31歳、イスファハーン在住。古い建物のタイルの修復をしています。"></figure>
+    <div class="ptext"><h3>ペルソナ</h3><p>Parisa Hosseini（パリサ・ホセイニ）、31歳、イスファハーン在住。古い建物のタイルの修復をしています。夜11時、作業を終えて Android のスマートフォンを開きます。ヤルダーの夜には家族とハーフェズを開くので、一枚の札で読む占いにもなじみがあります。物語が、ニーシャープールのトルコ石や、イスファハーンのモスクのタイルの青を通って色にたどり着くと、仕事の手を止めたように見入ります。国外に住む姉に Telegram でリンクを送ります。</p></div>
+  </div>
+  <details><summary>数字と注</summary>
+    <div class="scroll"><table class="facts"><thead><tr><th scope="col">項目</th><th scope="col">値</th><th scope="col">注</th></tr></thead><tbody>
+      <tr><th scope="row">総話者（母語＋第二言語）</th><td>8,200万人（イランのペルシャ語）</td><td>Ethnologue 2026年版。ダリー語（アフガニスタン）とタジク語は含みません</td></tr>
+      <tr><th scope="row">Webコンテンツ量</th><td>1.0%（14位）</td><td>W3Techs、2026年10月</td></tr>
+      <tr><th scope="row">インターネット言語人口</th><td>上位10圏外</td><td>Internet World Stats、2020年3月</td></tr>
+      <tr><th scope="row">インターネット利用時間</th><td>推定ネット人口0.82億人、1日平均6.0時間、総消費4.9億時間/日（16位）</td><td>Claude推計。イラン＋アフガニスタン（ダリー語）を含みます</td></tr>
+    </tbody></table></div>
+  </details>
+</section>
+
+<section class="lang" id="ko" aria-labelledby="h-ko">
+  <p class="kicker">21 · ko</p>
+  <h2 id="h-ko"><span lang="ko">한국어</span><small>韓国語</small></h2>
+  <dl class="nums">
+    <div><dt>総話者</dt><dd>8,200万人</dd></div>
+    <div><dt>Web</dt><dd>0.9%（17位）</dd></div>
+    <div><dt>消費時間</dt><dd>2.7億時間</dd></div>
+  </dl>
+  <p class="region"><b>地域</b>韓国と北朝鮮です。中国の延辺朝鮮族自治州、米国（ロサンゼルス、ニューヨーク）、日本、中央アジアにも、朝鮮半島にルーツを持つ人の社会があります。</p>
+  <div class="persona">
+    <figure><img src="img/ko.webp" width="800" height="1000" loading="lazy" decoding="async" alt="架空のペルソナ。김서연（キム・ソヨン）、29歳、ソウル麻浦区在住。ウェブトゥーンの彩色担当です。"></figure>
+    <div class="ptext"><h3>ペルソナ</h3><p>김서연（キム・ソヨン）、29歳、ソウル麻浦区在住。ウェブトゥーンの彩色担当です。朝8時20分、地下鉄の中で iPhone を開きます。月に一度は友人とタロットカフェに行きます。来月の福岡旅行の情報を NAVER で探していて、このサイトを見つけました。物語が、韓国の五方色や、日本の染め物を通って色にたどり着くと、その色をその日の作業の配色に一つ入れます。KakaoTalk で友人に結果を送ります。</p></div>
+  </div>
+  <details><summary>数字と注</summary>
+    <div class="scroll"><table class="facts"><thead><tr><th scope="col">項目</th><th scope="col">値</th><th scope="col">注</th></tr></thead><tbody>
+      <tr><th scope="row">総話者（母語＋第二言語）</th><td>8,200万人</td><td>Ethnologue 2026年版</td></tr>
+      <tr><th scope="row">Webコンテンツ量</th><td>0.9%（17位）</td><td>W3Techs、2026年10月</td></tr>
+      <tr><th scope="row">インターネット言語人口</th><td>上位10圏外</td><td>Internet World Stats、2020年3月</td></tr>
+      <tr><th scope="row">インターネット利用時間</th><td>推定ネット人口0.5億人、1日平均5.3時間、総消費2.7億時間/日（20位）</td><td>Claude推計</td></tr>
+    </tbody></table></div>
+  </details>
+</section>
+
+<section class="lang" id="th" aria-labelledby="h-th">
+  <p class="kicker">22 · th</p>
+  <h2 id="h-th"><span lang="th">ไทย</span><small>タイ語</small></h2>
+  <dl class="nums">
+    <div><dt>総話者</dt><dd>7,100万人</dd></div>
+    <div><dt>Web</dt><dd>0.3%（28位）</dd></div>
+    <div><dt>消費時間</dt><dd>5.1億時間</dd></div>
+  </dl>
+  <p class="region"><b>地域</b>タイの国語です。ラオスの人の多くはタイ語を読めます。米国（ロサンゼルス）、オーストラリア、欧州にもタイ出身の人が住んでいます。</p>
+  <div class="persona">
+    <figure><img src="img/th.webp" width="800" height="1000" loading="lazy" decoding="async" alt="架空のペルソナ。Napassorn &quot;Pim&quot; Srisuk（ナパッソン・&quot;ピム&quot;・シースック）、27歳、バンコク在住。化粧品ブランドのマーケティング担当です。"></figure>
+    <div class="ptext"><h3>ペルソナ</h3><p>Napassorn &quot;Pim&quot; Srisuk（ナパッソン・&quot;ピム&quot;・シースック）、27歳、バンコク在住。化粧品ブランドのマーケティング担当です。朝7時、着る服を決める前に iPhone で一枚引きます。曜日の色と、このサイトの色を見比べるのが毎朝の楽しみです。来年1月の北海道旅行を計画中です。物語が、タイのシルクや、北海道の雪の白を通って色にたどり着くと、その色を口紅やスカーフに取り入れます。LINE で同僚に送ります。</p></div>
+  </div>
+  <details><summary>数字と注</summary>
+    <div class="scroll"><table class="facts"><thead><tr><th scope="col">項目</th><th scope="col">値</th><th scope="col">注</th></tr></thead><tbody>
+      <tr><th scope="row">総話者（母語＋第二言語）</th><td>7,100万人</td><td>Ethnologue 2026年版</td></tr>
+      <tr><th scope="row">Webコンテンツ量</th><td>0.3%（28位）</td><td>W3Techs、2026年10月</td></tr>
+      <tr><th scope="row">インターネット言語人口</th><td>上位10圏外</td><td>Internet World Stats、2020年3月</td></tr>
+      <tr><th scope="row">インターネット利用時間</th><td>推定ネット人口0.65億人、1日平均7.8時間、総消費5.1億時間/日（14位）</td><td>Claude推計</td></tr>
+    </tbody></table></div>
+  </details>
+</section>
+
+<section class="lang" id="it" aria-labelledby="h-it">
+  <p class="kicker">23 · it</p>
+  <h2 id="h-it"><span lang="it">Italiano</span><small>イタリア語</small></h2>
+  <dl class="nums">
+    <div><dt>総話者</dt><dd>6,600万人</dd></div>
+    <div><dt>Web</dt><dd>2.8%（8位）</dd></div>
+    <div><dt>消費時間</dt><dd>2.9億時間</dd></div>
+  </dl>
+  <p class="region"><b>地域</b>イタリア、サンマリノ、スイス南部（ティチーノ州）、バチカンです。アルゼンチン、ブラジル、米国、ドイツなどに、イタリア系の人が多く住んでいます。</p>
+  <div class="persona">
+    <figure><img src="img/it.webp" width="800" height="1000" loading="lazy" decoding="async" alt="架空のペルソナ。Giulia Bernardi（ジュリア・ベルナルディ）、45歳、ボローニャ在住。町の薬局の薬剤師です。"></figure>
+    <div class="ptext"><h3>ペルソナ</h3><p>Giulia Bernardi（ジュリア・ベルナルディ）、45歳、ボローニャ在住。町の薬局の薬剤師です。夜9時半、夕食のあとソファで Android のスマートフォンを開きます。子どものころ、父とタロッキーノで遊んでいたので、大アルカナの絵に懐かしさがあります。物語が、ボローニャの柱廊の赤い煉瓦や、ルネサンスの画家の顔料を通って色にたどり着くと、父に WhatsApp で送ります。様式は「古典のタロット」を選んでいます。</p></div>
+  </div>
+  <details><summary>数字と注</summary>
+    <div class="scroll"><table class="facts"><thead><tr><th scope="col">項目</th><th scope="col">値</th><th scope="col">注</th></tr></thead><tbody>
+      <tr><th scope="row">総話者（母語＋第二言語）</th><td>6,600万人</td><td>Ethnologue 2026年版</td></tr>
+      <tr><th scope="row">Webコンテンツ量</th><td>2.8%（8位）</td><td>W3Techs、2026年10月</td></tr>
+      <tr><th scope="row">インターネット言語人口</th><td>上位10圏外</td><td>Internet World Stats、2020年3月</td></tr>
+      <tr><th scope="row">インターネット利用時間</th><td>推定ネット人口0.51億人、1日平均5.7時間、総消費2.9億時間/日（19位）</td><td>Claude推計</td></tr>
+    </tbody></table></div>
+  </details>
+</section>
+
+<section class="lang" id="pl" aria-labelledby="h-pl">
+  <p class="kicker">24 · pl</p>
+  <h2 id="h-pl"><span lang="pl">Polski</span><small>ポーランド語</small></h2>
+  <dl class="nums">
+    <div><dt>総話者</dt><dd>約4,260万人</dd></div>
+    <div><dt>Web</dt><dd>1.8%（10位）</dd></div>
+    <div><dt>消費時間</dt><dd>約2.1億時間（圏外参考値）</dd></div>
+  </dl>
+  <p class="region"><b>地域</b>ポーランドです。英国、ドイツ、米国（シカゴ）、アイルランド、カナダに、ポーランド系の人の大きな社会があります。リトアニアやウクライナ西部にも話者がいます。</p>
+  <div class="persona">
+    <figure><img src="img/pl.webp" width="800" height="1000" loading="lazy" decoding="async" alt="架空のペルソナ。Marta Kowalczyk（マルタ・コヴァルチク）、30歳、クラクフ在住。ソフトウェア会社の UX リサーチャーです。"></figure>
+    <div class="ptext"><h3>ペルソナ</h3><p>Marta Kowalczyk（マルタ・コヴァルチク）、30歳、クラクフ在住。ソフトウェア会社の UX リサーチャーです。日曜の朝10時、カフェで iPhone を開きます。毎年アンジェイキには友人と蝋占いをしています。物語が、バルト海の琥珀や、クラクフの織物会館の話を通って色にたどり着くと、Instagram のストーリーに載せます。来年の春、京都に行く計画を立てています。</p></div>
+  </div>
+  <details><summary>数字と注</summary>
+    <div class="scroll"><table class="facts"><thead><tr><th scope="col">項目</th><th scope="col">値</th><th scope="col">注</th></tr></thead><tbody>
+      <tr><th scope="row">総話者（母語＋第二言語）</th><td>約4,260万人</td><td>Wikipedia「Polish language」の頁が引く Ethnologue 第27版（数字は2021年）。Ethnologue 2026 の公開一覧（5,000万人以上）には入っていません</td></tr>
+      <tr><th scope="row">Webコンテンツ量</th><td>1.8%（10位）</td><td>W3Techs、2026年10月</td></tr>
+      <tr><th scope="row">インターネット言語人口</th><td>上位10圏外</td><td>Internet World Stats、2020年3月</td></tr>
+      <tr><th scope="row">インターネット利用時間</th><td>約2.1億時間/日（圏外参考値）</td><td>Claude推計の圏外参考値</td></tr>
+    </tbody></table></div>
+  </details>
+</section>
+
+<section class="lang" id="uk" aria-labelledby="h-uk">
+  <p class="kicker">25 · uk</p>
+  <h2 id="h-uk"><span lang="uk">Українська</span><small>ウクライナ語</small></h2>
+  <dl class="nums">
+    <div><dt>総話者</dt><dd>約3,900万人</dd></div>
+    <div><dt>Web</dt><dd>0.6%（18位）</dd></div>
+    <div><dt>消費時間</dt><dd>推計なし</dd></div>
+  </dl>
+  <p class="region"><b>地域</b>ウクライナの国語です。2022年からの戦争で、ポーランド、ドイツ、チェコなど欧州の国に多くの人が避難しています。カナダ、米国にも古くからのウクライナ系の社会があります。ロシア語も話す人が多くいます。</p>
+  <div class="persona">
+    <figure><img src="img/uk.webp" width="800" height="1000" loading="lazy" decoding="async" alt="架空のペルソナ。Олена Коваленко（オレナ・コヴァレンコ）、37歳、リヴィウ在住。小学校の教師です。"></figure>
+    <div class="ptext"><h3>ペルソナ</h3><p>Олена Коваленко（オレナ・コヴァレンコ）、37歳、リヴィウ在住。小学校の教師です。夜9時、子どもを寝かせたあと、Android のスマートフォンで一枚引きます。カードの意味を読むことより、ウクライナ語で丁寧に書かれた物語を読む時間を大事にしています。物語が、ペトルィキウカの花の絵や、カルパチアの羊毛を通って色にたどり着くと、ポーランドに住む妹に Telegram で送ります。</p></div>
+  </div>
+  <details><summary>数字と注</summary>
+    <div class="scroll"><table class="facts"><thead><tr><th scope="col">項目</th><th scope="col">値</th><th scope="col">注</th></tr></thead><tbody>
+      <tr><th scope="row">総話者（母語＋第二言語）</th><td>約3,900万人</td><td>Ethnologue（2023年）。Wikipedia「Ukrainian language」の頁（Ethnologue 第28版）も同じ</td></tr>
+      <tr><th scope="row">Webコンテンツ量</th><td>0.6%（18位）</td><td>W3Techs、2026年10月</td></tr>
+      <tr><th scope="row">インターネット言語人口</th><td>上位10圏外</td><td>Internet World Stats、2020年3月</td></tr>
+      <tr><th scope="row">インターネット利用時間</th><td>推計なし</td><td>Claude推計の表にも圏外参考値にも、ウクライナ語は入っていません</td></tr>
+    </tbody></table></div>
+  </details>
+</section>
+
+<section class="lang" id="nl" aria-labelledby="h-nl">
+  <p class="kicker">26 · nl</p>
+  <h2 id="h-nl"><span lang="nl">Nederlands</span><small>オランダ語</small></h2>
+  <dl class="nums">
+    <div><dt>総話者</dt><dd>約3,000万人</dd></div>
+    <div><dt>Web</dt><dd>2.1%（9位）</dd></div>
+    <div><dt>消費時間</dt><dd>約1.3億時間（圏外参考値）</dd></div>
+  </dl>
+  <p class="region"><b>地域</b>オランダとベルギー北部（フランデレン）です。スリナム、カリブ海のアルバ、キュラソーでも公用語です。南アフリカのアフリカーンス語は、オランダ語から分かれた言葉です。</p>
+  <div class="persona">
+    <figure><img src="img/nl.webp" width="800" height="1000" loading="lazy" decoding="async" alt="架空のペルソナ。Sanne de Vries（サンネ・デ・フリース）、36歳、ユトレヒト在住。市役所の気候政策の担当です。"></figure>
+    <div class="ptext"><h3>ペルソナ</h3><p>Sanne de Vries（サンネ・デ・フリース）、36歳、ユトレヒト在住。市役所の気候政策の担当です。昼12時半、自分の机でノートパソコンを開き、色の名前を検索していてこのサイトに来ました。占いは信じませんが、色の名前の由来の話は大好きです。物語が、デルフト焼きの青や、17世紀のオランダの画家が使った顔料を通って色にたどり着くと、同僚に話します。自転車で帰る前に、もう一枚引くことがあります。</p></div>
+  </div>
+  <details><summary>数字と注</summary>
+    <div class="scroll"><table class="facts"><thead><tr><th scope="col">項目</th><th scope="col">値</th><th scope="col">注</th></tr></thead><tbody>
+      <tr><th scope="row">総話者（母語＋第二言語）</th><td>約3,000万人</td><td>2021年。Wikipedia「Dutch language」の頁（Eurobarometer などを引用）も同じ</td></tr>
+      <tr><th scope="row">Webコンテンツ量</th><td>2.1%（9位）</td><td>W3Techs、2026年10月。フラマン語を含みます</td></tr>
+      <tr><th scope="row">インターネット言語人口</th><td>上位10圏外</td><td>Internet World Stats、2020年3月</td></tr>
+      <tr><th scope="row">インターネット利用時間</th><td>約1.3億時間/日（圏外参考値）</td><td>Claude推計の圏外参考値</td></tr>
+    </tbody></table></div>
+  </details>
+</section>
+
+<section class="lang" id="ang" aria-labelledby="h-ang">
+  <p class="kicker">27 · ang</p>
+  <h2 id="h-ang"><span lang="ang">Englisc</span><small>古英語</small></h2>
+  <p class="note">遊びと歴史のための言語です。おおよそ450年から1100年の英語で、いま母語として話す人はいません。数字の欄は該当なしです。</p>
+  <dl class="nums">
+    <div><dt>総話者</dt><dd>該当なし</dd></div>
+    <div><dt>Web</dt><dd>該当なし</dd></div>
+    <div><dt>消費時間</dt><dd>該当なし</dd></div>
+  </dl>
+  <p class="region"><b>楽しんでくれそうな人</b>中世英文学や英語史を学ぶ学生と研究者、『ベーオウルフ』や J・R・R・トールキンの作品が好きな人、ルーン文字や北欧神話に興味のある人です。英語圏のほか、ドイツや北欧、日本の英文学の学生にも届きます。</p>
+  <div class="persona">
+    <figure><img src="img/ang.webp" width="800" height="1000" loading="lazy" decoding="async" alt="架空のペルソナ。Hannah Brooks（ハンナ・ブルックス）、24歳、英国リーズ在住。大学院で古英語を学んでいます。"></figure>
+    <div class="ptext"><h3>ペルソナ</h3><p>Hannah Brooks（ハンナ・ブルックス）、24歳、英国リーズ在住。大学院で古英語を学んでいます。夕方5時、大学の図書館でノートパソコンを開き、動詞の活用を調べていてこのサイトに来ました。現代英語の対訳を横に置いて、札の名前と色の名前を読み解くのを楽しんでいます。気に入った文は、ゼミの仲間に送ります。</p></div>
+  </div>
+  <details><summary>数字と注</summary>
+    <div class="scroll"><table class="facts"><thead><tr><th scope="col">項目</th><th scope="col">値</th></tr></thead><tbody>
+      <tr><th scope="row">総話者（母語＋第二言語）</th><td>該当なし</td></tr>
+      <tr><th scope="row">Webコンテンツ量</th><td>該当なし</td></tr>
+      <tr><th scope="row">インターネット言語人口</th><td>該当なし</td></tr>
+      <tr><th scope="row">インターネット利用時間</th><td>該当なし</td></tr>
+    </tbody></table></div>
+  </details>
+</section>
+
+<section class="lang" id="soro" aria-labelledby="h-soro">
+  <p class="kicker">28 · soro</p>
+  <h2 id="h-soro"><span lang="ja">御座候</span><small>候文</small></h2>
+  <p class="note">遊びと歴史のための言語です。おおよそ1600年から1868年の、手紙や公の文書の書き方で、文末に「候」を置きます。いま母語として話す人はいません。数字の欄は該当なしです。</p>
+  <dl class="nums">
+    <div><dt>総話者</dt><dd>該当なし</dd></div>
+    <div><dt>Web</dt><dd>該当なし</dd></div>
+    <div><dt>消費時間</dt><dd>該当なし</dd></div>
+  </dl>
+  <p class="region"><b>楽しんでくれそうな人</b>古文書や崩し字を学ぶ人、時代小説や大河ドラマが好きな人、歴史の好きな学生です。日本語を深く学んだ外国の人や、日本史の研究者にも届きます。</p>
+  <div class="persona">
+    <figure><img src="img/soro.webp" width="800" height="1000" loading="lazy" decoding="async" alt="架空のペルソナ。工藤 誠一（くどう せいいち）、58歳、金沢在住。市役所の職員で、週末に古文書の講座に通っています。"></figure>
+    <div class="ptext"><h3>ペルソナ</h3><p>工藤 誠一（くどう せいいち）、58歳、金沢在住。市役所の職員で、週末に古文書の講座に通っています。日曜の午後3時、居間でタブレットを開きます。講座の仲間から聞いて来ました。札の名前と色の名前が候文で書かれているのを、一つずつ声に出して読みます。物語が加賀の染め物や城下町の話を通って色にたどり着くと、講座のノートにその色の名前を書き留めます。</p></div>
+  </div>
+  <details><summary>数字と注</summary>
+    <div class="scroll"><table class="facts"><thead><tr><th scope="col">項目</th><th scope="col">値</th></tr></thead><tbody>
+      <tr><th scope="row">総話者（母語＋第二言語）</th><td>該当なし</td></tr>
+      <tr><th scope="row">Webコンテンツ量</th><td>該当なし</td></tr>
+      <tr><th scope="row">インターネット言語人口</th><td>該当なし</td></tr>
+      <tr><th scope="row">インターネット利用時間</th><td>該当なし</td></tr>
+    </tbody></table></div>
+  </details>
+</section>
+
+</div>
+
+</body>
+</html>

@@ -1,0 +1,798 @@
+<!doctype html>
+<html lang="th">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="แนะนำ 28 ภาษาของ Colors for the Fool ว่าแต่ละภาษามีผู้พูดมากเพียงใด พร้อมเพอร์โซนาสมมติและภาพของพวกเขา">
+<link rel="icon" href="../../favicon.png" type="image/png">
+<title>รู้จักภาษาต่าง ๆ</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&family=Noto+Serif+Thai:wght@400;500;600&family=Shippori+Mincho:wght@400;500;700&display=swap">
+<style>
+/* Layout: same paper column as language-scale.html; one card per language (numbers, persona + image, details). */
+:root {
+  --bg: #efe6d6;
+  --bg-glow: #fbf6ec;
+  --paper: #f7f1e4;
+  --ink: #2a2118;
+  --muted: #6d5c48;
+  --gold: #a6843d;
+  --gold-soft: #e4d2a4;
+  --line: rgba(166,132,61,.45);
+  --other: #d3c6ae;
+  --grid: rgba(109,92,72,.18);
+  --font-display: Cinzel, "Palatino Linotype", Palatino, serif;
+  --font-body: "Noto Serif Thai", "Shippori Mincho", serif;
+}
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) {
+  --bg: #1b1610; --bg-glow: #2a2219; --paper: #241e17; --ink: #efe4cf; --muted: #b6a387;
+  --gold: #d2ac5c; --gold-soft: #5a4826; --line: rgba(210,172,92,.4); --other: #4b4134; --grid: rgba(239,228,207,.12);
+  color-scheme: dark; } }
+:root[data-theme="dark"] {
+  --bg: #1b1610; --bg-glow: #2a2219; --paper: #241e17; --ink: #efe4cf; --muted: #b6a387;
+  --gold: #d2ac5c; --gold-soft: #5a4826; --line: rgba(210,172,92,.4); --other: #4b4134; --grid: rgba(239,228,207,.12);
+  color-scheme: dark; }
+
+* { box-sizing: border-box; }
+body {
+  margin: 0; color: var(--ink); background: var(--bg);
+  background-image: radial-gradient(1100px 640px at 50% -8%, var(--bg-glow), var(--bg) 70%);
+  font-family: var(--font-body); font-weight: 500; line-height: 1.85;
+  padding-inline: 16px; padding-block: 0 64px;
+}
+.wrap { width: min(100%, 44rem); margin: 0 auto; }
+a { color: var(--gold); }
+code { font-size: .88em; overflow-wrap: anywhere; }
+.brand { font-family: var(--font-display); font-size: .74rem; letter-spacing: .24em; text-transform: uppercase; padding-block: 1.4rem .2rem; margin: 0; }
+.brand a { color: var(--ink); text-decoration: none; }
+header.hero { text-align: center; padding-block: 2.6rem 1.6rem; }
+.eyebrow { font-family: var(--font-display); letter-spacing: .3em; font-size: .8rem; color: var(--gold); margin: 0; text-transform: uppercase; }
+h1 { font-size: clamp(2rem, 7vw, 2.9rem); letter-spacing: .12em; margin: .3rem 0 .6rem; font-weight: 600; text-wrap: balance; }
+.lede { color: var(--muted); max-width: 34rem; margin: 0 auto; text-wrap: pretty; }
+.ornament { display: flex; align-items: center; gap: .8rem; justify-content: center; color: var(--gold); margin: 1.6rem 0 0; }
+.ornament::before, .ornament::after { content: ""; height: 1px; width: 4.5rem; background: var(--line); }
+
+.topbar { display: flex; justify-content: space-between; align-items: baseline; gap: 1rem; padding-block: 1.4rem .2rem; }
+.topbar .brand { padding-block: 0; }
+.switch { font-size: .82rem; }
+.switch a, .switch span { margin-left: .7rem; }
+.switch span { color: var(--muted); }
+
+.about { font-size: .86rem; color: var(--muted); margin: 0 0 1rem; }
+.about p { margin: .5rem 0; }
+.langs { display: flex; flex-wrap: wrap; gap: .4rem; justify-content: center; margin: 1.2rem 0 0; padding: 0; list-style: none; }
+.langs li { border: 1px solid var(--line); font-size: .85rem; background: var(--paper); }
+.langs li a { display: block; padding: .1rem .7rem; color: var(--ink); text-decoration: none; }
+.langs li a:hover, .langs li a:focus-visible { color: var(--gold); }
+.langs li:nth-last-child(-n+2) { border-style: dashed; }
+.langs li:nth-last-child(-n+2) a { color: var(--muted); }
+
+section.chart, section.lang { margin-top: 3.4rem; scroll-margin-top: 1rem; }
+.chart h2, .lang h2 { font-size: 1.3rem; letter-spacing: .08em; margin: 0; font-weight: 600; text-wrap: balance; }
+.lang h2 small { display: block; font-size: .8rem; letter-spacing: .04em; color: var(--muted); font-weight: 500; }
+.kicker { font-family: var(--font-display); color: var(--gold); letter-spacing: .2em; font-size: .78rem; margin: 0 0 .15rem; }
+p.note { color: var(--muted); font-size: .88rem; margin: .4rem 0 1rem; max-width: 40rem; }
+.chart ul { font-size: .88rem; color: var(--muted); padding-left: 1.1rem; }
+
+.scroll { overflow-x: auto; -webkit-overflow-scrolling: touch; border: 1px solid var(--line); background: var(--paper); }
+table { border-collapse: collapse; font-size: .8rem; line-height: 1.55; }
+table.overview { min-width: 42rem; width: 100%; }
+th, td { padding: .45rem .6rem; border-bottom: 1px solid var(--grid); text-align: left; vertical-align: top; }
+thead th { font-weight: 700; border-bottom: 1px solid var(--line); background: var(--bg-glow); }
+tbody th { font-weight: 700; white-space: nowrap; }
+tbody th a { color: var(--ink); text-decoration: none; }
+tbody tr:last-child th, tbody tr:last-child td { border-bottom: 0; }
+table.overview td { font-variant-numeric: tabular-nums; }
+
+.lang { border-top: 1px solid var(--line); padding-top: 1.6rem; }
+.nums { display: flex; flex-wrap: wrap; gap: 1px; background: var(--line); border: 1px solid var(--line); margin: 1rem 0; }
+.nums div { flex: 1 1 7.6rem; background: var(--paper); padding: .55rem .7rem .6rem; min-width: 0; }
+.nums dt { font-family: var(--font-body); font-size: .72rem; color: var(--muted); letter-spacing: .06em; }
+.nums dd { margin: 0; font-size: .9rem; line-height: 1.45; font-variant-numeric: tabular-nums; overflow-wrap: anywhere; }
+.region { font-size: .9rem; margin: 0 0 1rem; }
+.region b { color: var(--gold); font-weight: 700; margin-right: .6rem; }
+
+.persona { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 15rem); gap: 1.2rem; align-items: start; margin: 1.2rem 0 .8rem; }
+.persona figure { grid-column: 2; grid-row: 1; margin: 0; }
+.persona .ptext { grid-column: 1; grid-row: 1; }
+.persona img { display: block; width: 100%; height: auto; border: 1px solid var(--line); background: var(--paper); }
+.persona h3 { font-size: 1rem; letter-spacing: .08em; margin: 0 0 .3rem; font-weight: 600; }
+.persona p { margin: 0; font-size: .94rem; text-wrap: pretty; }
+@media (max-width: 36rem) {
+  .persona { grid-template-columns: minmax(0, 1fr); }
+  .persona figure, .persona .ptext { grid-column: 1; grid-row: auto; }
+  .persona figure { max-width: 22rem; }
+}
+
+details { border-top: 1px dashed var(--line); padding: .35rem 0; font-size: .88rem; }
+details:last-of-type { border-bottom: 1px dashed var(--line); }
+summary { cursor: pointer; color: var(--gold); letter-spacing: .06em; }
+details[open] summary { margin-bottom: .5rem; }
+details p { margin: .2rem 0 .8rem; color: var(--ink); }
+details h4 { font-size: .86rem; margin: .6rem 0 0; color: var(--muted); font-weight: 700; }
+details pre { white-space: pre-wrap; overflow-wrap: anywhere; font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: .78rem; line-height: 1.6; background: var(--paper); border: 1px solid var(--line); padding: .7rem .8rem; margin: 0 0 .6rem; }
+table.facts { width: 100%; min-width: 34rem; }
+table.facts tbody th { white-space: normal; min-width: 8rem; }
+
+footer { margin-top: 4rem; border-top: 1px solid var(--line); padding-top: 1.2rem; font-size: .8rem; color: var(--muted); }
+footer ul { padding-left: 1.1rem; margin: .4rem 0 1rem; }
+footer ul ul { margin: .2rem 0 .3rem; }
+footer li { margin: .15rem 0; overflow-wrap: anywhere; }
+
+/* Per-language adjustments (generated by render.py). */
+html[lang="th"] body * {
+  letter-spacing: 0 !important;
+  text-indent: 0 !important;
+}
+html[lang="th"] .brand {
+  letter-spacing: 0.22em !important;
+}
+</style>
+</head>
+<body>
+
+<div class="wrap">
+  <div class="topbar"><p class="brand"><a href="../">Colors for the Fool</a></p><nav class="switch" aria-label="หน้าที่เกี่ยวข้อง"><span>รู้จักภาษาต่าง ๆ</span></nav></div>
+
+  <header class="hero">
+    <p class="eyebrow">Languages &amp; Readers</p>
+    <h1>รู้จักภาษาต่าง ๆ</h1>
+    <p class="lede">แนะนำ 28 ภาษาของ Colors for the Fool ผ่านจำนวนผู้พูด และภาพของผู้คนที่อาจแวะมาดูดวงที่นี่ (ข้อมูล ณ วันที่ 9 ตุลาคม 2569)</p>
+    <div class="ornament">✦</div>
+  </header>
+
+  <nav aria-label="รายชื่อภาษา">
+    <ul class="langs"><li><a href="#ja"><span lang="ja">日本語</span></a></li><li><a href="#en"><span lang="en">English</span></a></li><li><a href="#zh-hans"><span lang="zh-Hans">简体中文</span></a></li><li><a href="#zh"><span lang="zh-Hant">繁體中文</span></a></li><li><a href="#hi"><span lang="hi">हिन्दी</span></a></li><li><a href="#es"><span lang="es">Español</span></a></li><li><a href="#ar"><span lang="ar" dir="rtl">العربية</span></a></li><li><a href="#fr"><span lang="fr">Français</span></a></li><li><a href="#bn"><span lang="bn">বাংলা</span></a></li><li><a href="#pt"><span lang="pt">Português</span></a></li><li><a href="#id"><span lang="id">Bahasa Indonesia</span></a></li><li><a href="#ms"><span lang="ms">Bahasa Melayu</span></a></li><li><a href="#ur"><span lang="ur" dir="rtl">اردو</span></a></li><li><a href="#ru"><span lang="ru">Русский</span></a></li><li><a href="#de"><span lang="de">Deutsch</span></a></li><li><a href="#vi"><span lang="vi">Tiếng Việt</span></a></li><li><a href="#sw"><span lang="sw">Kiswahili</span></a></li><li><a href="#tr"><span lang="tr">Türkçe</span></a></li><li><a href="#tl"><span lang="fil">Filipino</span></a></li><li><a href="#fa"><span lang="fa" dir="rtl">فارسی</span></a></li><li><a href="#ko"><span lang="ko">한국어</span></a></li><li><a href="#th"><span lang="th">ไทย</span></a></li><li><a href="#it"><span lang="it">Italiano</span></a></li><li><a href="#pl"><span lang="pl">Polski</span></a></li><li><a href="#uk"><span lang="uk">Українська</span></a></li><li><a href="#nl"><span lang="nl">Nederlands</span></a></li><li><a href="#ang"><span lang="ang">Englisc</span></a></li><li><a href="#soro"><span lang="ja">御座候</span></a></li></ul>
+  </nav>
+
+<section class="lang" id="ja" aria-labelledby="h-ja">
+  <p class="kicker">01 · ja</p>
+  <h2 id="h-ja"><span lang="ja">日本語</span><small>ภาษาญี่ปุ่น</small></h2>
+  <dl class="nums">
+    <div><dt>ผู้พูด</dt><dd>126 ล้านคน</dd></div>
+    <div><dt>เว็บ</dt><dd>4.9% (อันดับ 4)</dd></div>
+    <div><dt>เวลาออนไลน์</dt><dd>390 ล้านชั่วโมง</dd></div>
+  </dl>
+  <p class="region"><b>พื้นที่</b>ประเทศญี่ปุ่น นอกญี่ปุ่นมีผู้อ่านคือชาวญี่ปุ่นโพ้นทะเลในบราซิลและสหรัฐอเมริกา (ฮาวาย แคลิฟอร์เนีย) และคนญี่ปุ่นที่อาศัยอยู่ต่างประเทศ ทั่วโลกยังมีผู้เรียนภาษาญี่ปุ่นอีกมาก</p>
+  <div class="persona">
+    <figure><img src="../../language-intro/img/ja.webp" width="800" height="1000" loading="lazy" decoding="async" alt="เพอร์โซนาสมมติ 森下 由佳 (Yuka Morishita) อายุ 34 ปี อาศัยอยู่ที่ฟุกุโอกะ ทำงานเป็นเจ้าหน้าที่ธุรการทางการแพทย์ในโรงพยาบาลทั่วไป"></figure>
+    <div class="ptext"><h3>เพอร์โซนา</h3><p><span lang="ja">森下 由佳</span> (Yuka Morishita) อายุ 34 ปี อาศัยอยู่ที่ฟุกุโอกะ ทำงานเป็นเจ้าหน้าที่ธุรการทางการแพทย์ในโรงพยาบาลทั่วไป เวลา 7:40 น. เธอเปิด iPhone บนที่นั่งรถไฟใต้ดิน และเข้ามาจากคลิป Reels ใน Instagram เธอไม่ได้เชื่อดวงจนเกินไป แต่ชอบพอที่จะหัวเราะได้แม้ทายไม่ตรง เธอจั่วไพ่หนึ่งใบ ถ้าออกไพ่กลับหัว ก็ตัดสินใจว่า “วันนี้เป็นวันที่ไม่ต้องฝืนตัวเอง” เธอดีใจเมื่อเรื่องเล่าเดินทางผ่านถิ่นที่และงานฝีมือที่คุ้นเคย อย่างผ้าทอฮากาตะหรือผ้าย้อมครามแห่งชิกุโกะ ก่อนจะไปถึงสี สีที่ถูกใจ เธอใช้เป็นแนวทางเลือกผ้าเช็ดหน้าหรือสีเล็บของวันนั้น บางครั้งเธอส่ง LINE หาเพื่อนร่วมงานว่า “วันนี้ฉันเป็นสีครามล่ะ”</p></div>
+  </div>
+  <details><summary>ตัวเลขและหมายเหตุ</summary>
+    <div class="scroll"><table class="facts"><thead><tr><th scope="col">รายการ</th><th scope="col">ค่า</th><th scope="col">หมายเหตุ</th></tr></thead><tbody>
+      <tr><th scope="row">ผู้พูดทั้งหมด (ภาษาแม่ + ภาษาที่สอง)</th><td>126 ล้านคน</td><td>Ethnologue ฉบับปี 2026</td></tr>
+      <tr><th scope="row">สัดส่วนเนื้อหาบนเว็บ</th><td>4.9% (อันดับ 4)</td><td>W3Techs, ตุลาคม 2026</td></tr>
+      <tr><th scope="row">ผู้ใช้อินเทอร์เน็ตแยกตามภาษา</th><td>2.6% (อันดับ 8)</td><td>Internet World Stats, มีนาคม 2020</td></tr>
+      <tr><th scope="row">เวลาออนไลน์</th><td>ผู้ใช้อินเทอร์เน็ตโดยประมาณ 100 ล้านคน เฉลี่ยวันละ 3.9 ชั่วโมง รวม 390 ล้านชั่วโมงต่อวัน (อันดับ 18)</td><td>ประมาณการของ Claude เวลาต่อคนจัดอยู่ในกลุ่มที่สั้นที่สุดในโลก</td></tr>
+    </tbody></table></div>
+  </details>
+</section>
+
+<section class="lang" id="en" aria-labelledby="h-en">
+  <p class="kicker">02 · en</p>
+  <h2 id="h-en"><span lang="en">English</span><small>ภาษาอังกฤษ</small></h2>
+  <dl class="nums">
+    <div><dt>ผู้พูด</dt><dd>1,493 ล้านคน (อันดับ 1)</dd></div>
+    <div><dt>เว็บ</dt><dd>49.5% (อันดับ 1)</dd></div>
+    <div><dt>เวลาออนไลน์</dt><dd>5,780 ล้านชั่วโมง</dd></div>
+  </dl>
+  <p class="region"><b>พื้นที่</b>ใช้เป็นภาษาแม่ในสหรัฐอเมริกา สหราชอาณาจักร แคนาดา ออสเตรเลีย นิวซีแลนด์ และไอร์แลนด์ ส่วนในอินเดีย ฟิลิปปินส์ ไนจีเรีย สิงคโปร์ เคนยา และที่อื่น ๆ เป็นภาษาราชการหรือภาษาที่ใช้ในการศึกษา ผู้ที่ใช้ภาษาอังกฤษเป็นภาษาที่สองทั่วโลกก็อ่านหน้าภาษาอังกฤษด้วย</p>
+  <div class="persona">
+    <figure><img src="../../language-intro/img/en.webp" width="800" height="1000" loading="lazy" decoding="async" alt="เพอร์โซนาสมมติ Maya Reynolds อายุ 29 ปี อาศัยอยู่ที่แมนเชสเตอร์ สหราชอาณาจักร เป็นผู้ช่วยครูในโรงเรียนประถม"></figure>
+    <div class="ptext"><h3>เพอร์โซนา</h3><p>Maya Reynolds อายุ 29 ปี อาศัยอยู่ที่แมนเชสเตอร์ สหราชอาณาจักร เป็นผู้ช่วยครูในโรงเรียนประถม เวลา 4 ทุ่ม เธอเปิดมือถือ Android บนเตียง เธอดูคลิปไพ่ทาโรต์ใน TikTok บ่อย ๆ และชอบความง่ายของการจั่วไพ่ใบเดียว เธออ่านความหมายของไพ่ และชอบที่สุดตอนที่ชื่อสีปรากฏขึ้นท้ายเรื่อง เมื่อเรื่องของสีเชื่อมโยงกับถิ่นที่ในอังกฤษ อย่างดอกธิสเซิลของสกอตแลนด์หรือขนแกะยอร์กเชียร์ เธอจะส่งลิงก์ให้เพื่อน ๆ เธอยังสนุกกับการเปลี่ยนสไตล์ไพ่เพื่อเทียบอาร์ตนูโวกับกระจกสี</p></div>
+  </div>
+  <details><summary>ตัวเลขและหมายเหตุ</summary>
+    <div class="scroll"><table class="facts"><thead><tr><th scope="col">รายการ</th><th scope="col">ค่า</th><th scope="col">หมายเหตุ</th></tr></thead><tbody>
+      <tr><th scope="row">ผู้พูดทั้งหมด (ภาษาแม่ + ภาษาที่สอง)</th><td>1,493 ล้านคน (อันดับ 1)</td><td>Ethnologue ฉบับปี 2026</td></tr>
+      <tr><th scope="row">สัดส่วนเนื้อหาบนเว็บ</th><td>49.5% (อันดับ 1)</td><td>W3Techs, ตุลาคม 2026</td></tr>
+      <tr><th scope="row">ผู้ใช้อินเทอร์เน็ตแยกตามภาษา</th><td>25.9% (อันดับ 1)</td><td>Internet World Stats, มีนาคม 2020</td></tr>
+      <tr><th scope="row">เวลาออนไลน์</th><td>ผู้ใช้อินเทอร์เน็ตโดยประมาณ 850 ล้านคน เฉลี่ยวันละ 6.8 ชั่วโมง รวม 5,780 ล้านชั่วโมงต่อวัน (อันดับ 2)</td><td>ประมาณการของ Claude นับเฉพาะผู้ที่อ่านภาษาอังกฤษเป็นหลัก มีหมายเหตุว่าหากรวมผู้อ่านที่ใช้เป็นภาษาที่สองด้วยจะขึ้นเป็นอันดับ 1</td></tr>
+    </tbody></table></div>
+  </details>
+</section>
+
+<section class="lang" id="zh-hans" aria-labelledby="h-zh-hans">
+  <p class="kicker">03 · zh-hans</p>
+  <h2 id="h-zh-hans"><span lang="zh-Hans">简体中文</span><small>ภาษาจีนตัวย่อ</small></h2>
+  <dl class="nums">
+    <div><dt>ผู้พูด</dt><dd>1,183 ล้านคน (จีนกลาง)</dd></div>
+    <div><dt>เว็บ</dt><dd>1.3% (อันดับ 12, ภาษาจีนทั้งหมด)</dd></div>
+    <div><dt>เวลาออนไลน์</dt><dd>6,200 ล้านชั่วโมง (ตัวย่อ + ตัวเต็ม)</dd></div>
+  </dl>
+  <p class="region"><b>พื้นที่</b>จีนแผ่นดินใหญ่ ซึ่งใช้เป็นตัวอักษรของโรงเรียนและราชการ ชุมชนชาวจีนในสิงคโปร์และมาเลเซียก็ใช้ตัวย่อเป็นมาตรฐาน มีชุมชนชาวจีนขนาดใหญ่ในอเมริกาเหนือ ออสเตรเลีย ยุโรป และเอเชียตะวันออกเฉียงใต้ และมีนักศึกษาที่ไปเรียนต่างประเทศอีกมาก</p>
+  <div class="persona">
+    <figure><img src="../../language-intro/img/zh-hans.webp" width="800" height="1000" loading="lazy" decoding="async" alt="เพอร์โซนาสมมติ 林悦 (Lin Yue) อายุ 26 ปี อาศัยอยู่ที่เฉิงตู เป็นนักออกแบบ UI ในบริษัทเกม"></figure>
+    <div class="ptext"><h3>เพอร์โซนา</h3><p><span lang="zh-Hans">林悦</span> (Lin Yue) อายุ 26 ปี อาศัยอยู่ที่เฉิงตู เป็นนักออกแบบ UI ในบริษัทเกม เวลา 12:30 น. ช่วงพักเที่ยง ขณะค้นข้อมูลทริปเกียวโตเดือนหน้าใน Xiaohongshu ด้วยมือถือ Huawei เธอได้รู้จักเว็บไซต์นี้จากบันทึกของนักเดินทางคนหนึ่ง ด้วยงานที่ทำ เธอจึงไวต่อชื่อสีและการจับคู่สี เธอจั่วไพ่หนึ่งใบ และเมื่อเรื่องเล่าผ่านเครื่องเคลือบศิลาดลสมัยซ่งหรือผ้าแพรซู่จิ่น (ผ้าแพรของเสฉวน) ไปถึงสี เธอจะบันทึกหน้าจอไว้แล้วส่งให้เพื่อนร่วมงานทาง WeChat เธอชอบดูไพ่ในสไตล์ภาพหมึกจีน</p></div>
+  </div>
+  <details><summary>ตัวเลขและหมายเหตุ</summary>
+    <div class="scroll"><table class="facts"><thead><tr><th scope="col">รายการ</th><th scope="col">ค่า</th><th scope="col">หมายเหตุ</th></tr></thead><tbody>
+      <tr><th scope="row">ผู้พูดทั้งหมด (ภาษาแม่ + ภาษาที่สอง)</th><td>1,183 ล้านคน (จีนกลาง)</td><td>Ethnologue ฉบับปี 2026 ภาษาจีนตัวเต็มและตัวย่อนับเพียงครั้งเดียวในฐานะจีนกลาง</td></tr>
+      <tr><th scope="row">สัดส่วนเนื้อหาบนเว็บ</th><td>1.3% (อันดับ 12, ภาษาจีนทั้งหมด)</td><td>W3Techs ไม่ได้แยกภาษาจีนตัวย่อกับตัวเต็ม</td></tr>
+      <tr><th scope="row">ผู้ใช้อินเทอร์เน็ตแยกตามภาษา</th><td>19.4% (อันดับ 2, ภาษาจีนทั้งหมด)</td><td>Internet World Stats, มีนาคม 2020</td></tr>
+      <tr><th scope="row">เวลาออนไลน์</th><td>ผู้ใช้อินเทอร์เน็ตโดยประมาณ 1,170 ล้านคน เฉลี่ยวันละ 5.3 ชั่วโมง รวม 6,200 ล้านชั่วโมงต่อวัน (อันดับ 1, ตัวย่อ + ตัวเต็ม)</td><td>ประมาณการของ Claude จีนแผ่นดินใหญ่ 1,110 ล้านคน รวมกับไต้หวัน ฮ่องกง และชาวจีนโพ้นทะเล</td></tr>
+    </tbody></table></div>
+  </details>
+</section>
+
+<section class="lang" id="zh" aria-labelledby="h-zh">
+  <p class="kicker">04 · zh</p>
+  <h2 id="h-zh"><span lang="zh-Hant">繁體中文</span><small>ภาษาจีนตัวเต็ม</small></h2>
+  <dl class="nums">
+    <div><dt>ผู้พูด</dt><dd>นับรวมกับตัวย่อในฐานะจีนกลาง (1,183 ล้านคน)</dd></div>
+    <div><dt>เว็บ</dt><dd>1.3% (อันดับ 12, ภาษาจีนทั้งหมด)</dd></div>
+    <div><dt>เวลาออนไลน์</dt><dd>รวมกับตัวย่อ 6,200 ล้านชั่วโมงต่อวัน (อันดับ 1)</dd></div>
+  </dl>
+  <p class="region"><b>พื้นที่</b>ตัวอักษรที่ใช้ในไต้หวัน ฮ่องกง และมาเก๊า ในชุมชนชาวจีนเก่าแก่ของอเมริกาเหนือและออสเตรเลียก็มีผู้ใช้ตัวเต็มอยู่มาก ไต้หวันพูดภาษาจีนมาตรฐาน (หัวอวี่) ส่วนฮ่องกงและมาเก๊าพูดภาษากวางตุ้ง และเขียนด้วยภาษาเขียนมาตรฐานแบบตัวเต็ม</p>
+  <div class="persona">
+    <figure><img src="../../language-intro/img/zh.webp" width="800" height="1000" loading="lazy" decoding="async" alt="เพอร์โซนาสมมติ 陳怡君 (Chen Yi-chun) อายุ 31 ปี อาศัยอยู่ที่ไถจง เป็นพนักงานรับฝากถอนของธนาคาร"></figure>
+    <div class="ptext"><h3>เพอร์โซนา</h3><p><span lang="zh-Hant">陳怡君</span> (Chen Yi-chun) อายุ 31 ปี อาศัยอยู่ที่ไถจง เป็นพนักงานรับฝากถอนของธนาคาร เวลา 5 ทุ่ม ก่อนนอน เธอวางแผนทริปคานาซาวะเดือนหน้าบน iPhone เธอเปิดเว็บไซต์นี้จากลิงก์ที่เพื่อนส่งมาทาง LINE เธอจั่วไพ่หนึ่งใบด้วยความรู้สึกคล้ายการเสี่ยงเซียมซีที่ศาลเจ้า เมื่อเรื่องเล่าผ่านงานฝีมือญี่ปุ่นอย่างผ้าย้อมคางะยูเซ็นหรือแผ่นทองคำเปลวไปถึงสี ทริปของเธอก็มีที่ให้แวะเพิ่มอีกหนึ่งแห่ง เธอส่งหน้าผลลัพธ์กลับไปให้เพื่อนทาง LINE</p></div>
+  </div>
+  <details><summary>ตัวเลขและหมายเหตุ</summary>
+    <div class="scroll"><table class="facts"><thead><tr><th scope="col">รายการ</th><th scope="col">ค่า</th><th scope="col">หมายเหตุ</th></tr></thead><tbody>
+      <tr><th scope="row">ผู้พูดทั้งหมด (ภาษาแม่ + ภาษาที่สอง)</th><td>นับรวมกับตัวย่อในฐานะจีนกลาง (1,183 ล้านคน)</td><td>ภาษาจีนตัวเต็มและตัวย่อนับเพียงครั้งเดียวในฐานะจีนกลาง ไม่มีข้อมูลจำนวนผู้อ่านตัวเต็มโดยเฉพาะ</td></tr>
+      <tr><th scope="row">สัดส่วนเนื้อหาบนเว็บ</th><td>1.3% (อันดับ 12, ภาษาจีนทั้งหมด)</td><td>W3Techs ไม่ได้แยกภาษาจีนตัวย่อกับตัวเต็ม</td></tr>
+      <tr><th scope="row">ผู้ใช้อินเทอร์เน็ตแยกตามภาษา</th><td>19.4% (อันดับ 2, ภาษาจีนทั้งหมด)</td><td>Internet World Stats, มีนาคม 2020</td></tr>
+      <tr><th scope="row">เวลาออนไลน์</th><td>รวมกับตัวย่อ 6,200 ล้านชั่วโมงต่อวัน (อันดับ 1)</td><td>ประมาณการของ Claude ไม่มีการประมาณการแยกสำหรับภาษาจีนตัวเต็ม</td></tr>
+    </tbody></table></div>
+  </details>
+</section>
+
+<section class="lang" id="hi" aria-labelledby="h-hi">
+  <p class="kicker">05 · hi</p>
+  <h2 id="h-hi"><span lang="hi">हिन्दी</span><small>ภาษาฮินดี</small></h2>
+  <dl class="nums">
+    <div><dt>ผู้พูด</dt><dd>611 ล้านคน (อันดับ 3)</dd></div>
+    <div><dt>เว็บ</dt><dd>ต่ำกว่า 0.1% (อันดับ 38)</dd></div>
+    <div><dt>เวลาออนไลน์</dt><dd>1,740 ล้านชั่วโมง</dd></div>
+  </dl>
+  <p class="region"><b>พื้นที่</b>ภาคเหนือและภาคกลางของอินเดีย (อุตตรประเทศ พิหาร ราชสถาน มัธยประเทศ เดลี และอื่น ๆ) ในเนปาลและฟิจิก็มีผู้พูด มีชุมชนชาวอินเดียขนาดใหญ่ในประเทศแถบอ่าวเปอร์เซีย สหราชอาณาจักร สหรัฐอเมริกา และแคนาดา</p>
+  <div class="persona">
+    <figure><img src="../../language-intro/img/hi.webp" width="800" height="1000" loading="lazy" decoding="async" alt="เพอร์โซนาสมมติ Neha Verma อายุ 24 ปี อาศัยอยู่ที่ชัยปุระ เป็นผู้ฝึกงานด้านบัญชีเพื่อเป็นนักบัญชีรับอนุญาต"></figure>
+    <div class="ptext"><h3>เพอร์โซนา</h3><p>Neha Verma อายุ 24 ปี อาศัยอยู่ที่ชัยปุระ เป็นผู้ฝึกงานด้านบัญชีเพื่อเป็นนักบัญชีรับอนุญาต เวลา 8 โมงเช้า ก่อนขึ้นรถไฟฟ้า เธอจั่วไพ่หนึ่งใบบนมือถือ Redmi ราวกับเป็นภาคต่อของ rashifal (ดวงรายวัน) ที่แม่ของเธอดูเป็นประจำ เธออ่านภาษาอังกฤษได้ แต่รู้สึกว่าเรื่องของสีติดอยู่ในใจมากกว่าเมื่ออ่านเป็นภาษาฮินดี เมื่อเรื่องเล่าผ่านอาคารของ “เมืองสีชมพู” ชัยปุระหรือผ้ามัดย้อมแห่งราชสถานไปถึงสี เธอจะเลือกผ้าคลุม dupatta สีนั้น ผลที่ถูกใจ เธอส่งให้พี่สาวทาง WhatsApp</p></div>
+  </div>
+  <details><summary>ตัวเลขและหมายเหตุ</summary>
+    <div class="scroll"><table class="facts"><thead><tr><th scope="col">รายการ</th><th scope="col">ค่า</th><th scope="col">หมายเหตุ</th></tr></thead><tbody>
+      <tr><th scope="row">ผู้พูดทั้งหมด (ภาษาแม่ + ภาษาที่สอง)</th><td>611 ล้านคน (อันดับ 3)</td><td>Ethnologue ฉบับปี 2026</td></tr>
+      <tr><th scope="row">สัดส่วนเนื้อหาบนเว็บ</th><td>ต่ำกว่า 0.1% (อันดับ 38)</td><td>W3Techs, ตุลาคม 2026 หน้าเว็บมีน้อยมากเมื่อเทียบกับจำนวนผู้พูด</td></tr>
+      <tr><th scope="row">ผู้ใช้อินเทอร์เน็ตแยกตามภาษา</th><td>ไม่ติด 10 อันดับแรก</td><td>Internet World Stats, มีนาคม 2020</td></tr>
+      <tr><th scope="row">เวลาออนไลน์</th><td>ผู้ใช้อินเทอร์เน็ตโดยประมาณ 290 ล้านคน เฉลี่ยวันละ 6.0 ชั่วโมง รวม 1,740 ล้านชั่วโมงต่อวัน (อันดับ 6)</td><td>ประมาณการของ Claude สมมติว่าราว 35% ของผู้ใช้ในอินเดียเป็นผู้ใช้ภาษาฮินดี ซึ่งเป็นสมมติฐานที่ไม่แน่นอนที่สุด</td></tr>
+    </tbody></table></div>
+  </details>
+</section>
+
+<section class="lang" id="es" aria-labelledby="h-es">
+  <p class="kicker">06 · es</p>
+  <h2 id="h-es"><span lang="es">Español</span><small>ภาษาสเปน</small></h2>
+  <dl class="nums">
+    <div><dt>ผู้พูด</dt><dd>561 ล้านคน (อันดับ 4)</dd></div>
+    <div><dt>เว็บ</dt><dd>6.0% (อันดับ 2)</dd></div>
+    <div><dt>เวลาออนไลน์</dt><dd>2,960 ล้านชั่วโมง</dd></div>
+  </dl>
+  <p class="region"><b>พื้นที่</b>สเปน และหลายประเทศในละตินอเมริกา เช่น เม็กซิโก โคลอมเบีย อาร์เจนตินา เปรู ชิลี และเวเนซุเอลา ในสหรัฐอเมริกาก็มีคนจำนวนมากที่พูดภาษาสเปนที่บ้าน (ไม่ได้ตรวจสอบจำนวนในที่นี้) และยังเป็นภาษาราชการของอิเควทอเรียลกินีด้วย</p>
+  <div class="persona">
+    <figure><img src="../../language-intro/img/es.webp" width="800" height="1000" loading="lazy" decoding="async" alt="เพอร์โซนาสมมติ Valeria Ortiz อายุ 32 ปี อาศัยอยู่ที่กวาดาลาฮารา เม็กซิโก เป็นทันตาภิบาล"></figure>
+    <div class="ptext"><h3>เพอร์โซนา</h3><p>Valeria Ortiz อายุ 32 ปี อาศัยอยู่ที่กวาดาลาฮารา เม็กซิโก เป็นทันตาภิบาล เวลา 3 ทุ่มครึ่ง บนโซฟาหลังเลิกงาน เธอเปิดมือถือ Android เธอเข้ามาที่เว็บไซต์นี้หลังจากเห็นเรื่องไพ่ทาโรต์ใน TikTok เธอสนุกกับการอ่านความหมายของไพ่ แต่ช่วงที่ชอบที่สุดคือการรอชื่อสีตอนท้าย เมื่อเรื่องเล่าผ่านโคชินีลของเม็กซิโก (สีแดงที่ได้จากแมลงที่อาศัยบนต้นกระบองเพชร) ไปถึงสีแดงเข้ม เธอส่งให้น้องสาวทาง WhatsApp ทันที ปลายปีนี้เธอตั้งใจจะใช้เว็บไซต์นี้เลือกสีชุดชั้นใน</p></div>
+  </div>
+  <details><summary>ตัวเลขและหมายเหตุ</summary>
+    <div class="scroll"><table class="facts"><thead><tr><th scope="col">รายการ</th><th scope="col">ค่า</th><th scope="col">หมายเหตุ</th></tr></thead><tbody>
+      <tr><th scope="row">ผู้พูดทั้งหมด (ภาษาแม่ + ภาษาที่สอง)</th><td>561 ล้านคน (อันดับ 4)</td><td>Ethnologue ฉบับปี 2026</td></tr>
+      <tr><th scope="row">สัดส่วนเนื้อหาบนเว็บ</th><td>6.0% (อันดับ 2)</td><td>W3Techs, ตุลาคม 2026</td></tr>
+      <tr><th scope="row">ผู้ใช้อินเทอร์เน็ตแยกตามภาษา</th><td>7.9% (อันดับ 3)</td><td>Internet World Stats, มีนาคม 2020</td></tr>
+      <tr><th scope="row">เวลาออนไลน์</th><td>ผู้ใช้อินเทอร์เน็ตโดยประมาณ 390 ล้านคน เฉลี่ยวันละ 7.6 ชั่วโมง รวม 2,960 ล้านชั่วโมงต่อวัน (อันดับ 3)</td><td>ประมาณการของ Claude เม็กซิโก สเปน โคลอมเบีย อาร์เจนตินา และอื่น ๆ รวมกับผู้ที่ใช้ภาษาสเปนเป็นหลักในสหรัฐอเมริกา</td></tr>
+    </tbody></table></div>
+  </details>
+</section>
+
+<section class="lang" id="ar" aria-labelledby="h-ar">
+  <p class="kicker">07 · ar</p>
+  <h2 id="h-ar"><span lang="ar" dir="rtl">العربية</span><small>ภาษาอาหรับ (อาหรับมาตรฐานสมัยใหม่)</small></h2>
+  <dl class="nums">
+    <div><dt>ผู้พูด</dt><dd>335 ล้านคน (อันดับ 5, อาหรับมาตรฐานสมัยใหม่)</dd></div>
+    <div><dt>เว็บ</dt><dd>0.6% (อันดับ 19)</dd></div>
+    <div><dt>เวลาออนไลน์</dt><dd>2,310 ล้านชั่วโมง</dd></div>
+  </dl>
+  <p class="region"><b>พื้นที่</b>ภาษาราชการของราว 22 ประเทศในตะวันออกกลางและแอฟริกาเหนือ เช่น อียิปต์ ซาอุดีอาระเบีย อิรัก แอลจีเรีย โมร็อกโก ซูดาน ซีเรีย จอร์แดน และสหรัฐอาหรับเอมิเรตส์ ผู้พูดภาษาอาหรับจำนวนมากยังอาศัยอยู่ในยุโรป (ฝรั่งเศส เยอรมนี และอื่น ๆ) และอเมริกาเหนือ เว็บไซต์จัดหน้าจากขวาไปซ้าย</p>
+  <div class="persona">
+    <figure><img src="../../language-intro/img/ar.webp" width="800" height="1000" loading="lazy" decoding="async" alt="เพอร์โซนาสมมติ Nour Haddad อายุ 28 ปี อาศัยอยู่ที่อัมมาน จอร์แดน ทำงานในสำนักงานออกแบบสถาปัตยกรรม"></figure>
+    <div class="ptext"><h3>เพอร์โซนา</h3><p>Nour Haddad อายุ 28 ปี อาศัยอยู่ที่อัมมาน จอร์แดน ทำงานในสำนักงานออกแบบสถาปัตยกรรม เวลา 2 ทุ่ม เธอเปิด iPhone ที่ระเบียงบ้าน เธอไม่เชื่อเรื่องดูดวง แต่เพลิดเพลินกับภาพไพ่และเรื่องเล่าในฐานะ “บทอ่านสั้น ๆ” เมื่อเรื่องเล่าผ่านสีฟ้าของกระเบื้องสถาปัตยกรรมอิสลามหรือสีชมพูกุหลาบของหินแห่งเพตราไปถึงสี เธอจะจดไว้เป็นข้อมูลอ้างอิงเรื่องการจับคู่สีในงาน บางครั้งเธอส่งหน้าผลลัพธ์เข้ากลุ่ม WhatsApp ของเพื่อนสถาปนิก</p></div>
+  </div>
+  <details><summary>ตัวเลขและหมายเหตุ</summary>
+    <div class="scroll"><table class="facts"><thead><tr><th scope="col">รายการ</th><th scope="col">ค่า</th><th scope="col">หมายเหตุ</th></tr></thead><tbody>
+      <tr><th scope="row">ผู้พูดทั้งหมด (ภาษาแม่ + ภาษาที่สอง)</th><td>335 ล้านคน (อันดับ 5, อาหรับมาตรฐานสมัยใหม่)</td><td>Ethnologue ฉบับปี 2026</td></tr>
+      <tr><th scope="row">สัดส่วนเนื้อหาบนเว็บ</th><td>0.6% (อันดับ 19)</td><td>W3Techs, ตุลาคม 2026</td></tr>
+      <tr><th scope="row">ผู้ใช้อินเทอร์เน็ตแยกตามภาษา</th><td>5.2% (อันดับ 4)</td><td>Internet World Stats, มีนาคม 2020</td></tr>
+      <tr><th scope="row">เวลาออนไลน์</th><td>ผู้ใช้อินเทอร์เน็ตโดยประมาณ 330 ล้านคน เฉลี่ยวันละ 7.0 ชั่วโมง รวม 2,310 ล้านชั่วโมงต่อวัน (อันดับ 4)</td><td>ประมาณการของ Claude อียิปต์ ซาอุดีอาระเบีย อิรัก แอลจีเรีย โมร็อกโก และอื่น ๆ</td></tr>
+    </tbody></table></div>
+  </details>
+</section>
+
+<section class="lang" id="fr" aria-labelledby="h-fr">
+  <p class="kicker">08 · fr</p>
+  <h2 id="h-fr"><span lang="fr">Français</span><small>ภาษาฝรั่งเศส</small></h2>
+  <dl class="nums">
+    <div><dt>ผู้พูด</dt><dd>334 ล้านคน (อันดับ 6)</dd></div>
+    <div><dt>เว็บ</dt><dd>4.5% (อันดับ 5)</dd></div>
+    <div><dt>เวลาออนไลน์</dt><dd>750 ล้านชั่วโมง</dd></div>
+  </dl>
+  <p class="region"><b>พื้นที่</b>ฝรั่งเศส เบลเยียมตอนใต้ สวิตเซอร์แลนด์ตะวันตก รัฐควิเบกในแคนาดา และลักเซมเบิร์ก ในแอฟริกาตะวันตกและแอฟริกากลาง (โกตดิวัวร์ เซเนกัล สาธารณรัฐประชาธิปไตยคองโก แคเมอรูน และอื่น ๆ) เป็นภาษาของโรงเรียนและราชการ และยังใช้กันแพร่หลายในโมร็อกโก แอลจีเรีย และตูนิเซียในแอฟริกาเหนือ</p>
+  <div class="persona">
+    <figure><img src="../../language-intro/img/fr.webp" width="800" height="1000" loading="lazy" decoding="async" alt="เพอร์โซนาสมมติ Hélène Garnier อายุ 41 ปี อาศัยอยู่ที่ลียง เปิดสตูดิโอเข้าเล่มหนังสือและอนุรักษ์กระดาษ"></figure>
+    <div class="ptext"><h3>เพอร์โซนา</h3><p>Hélène Garnier อายุ 41 ปี อาศัยอยู่ที่ลียง เปิดสตูดิโอเข้าเล่มหนังสือและอนุรักษ์กระดาษ เวลา 10 โมงเช้าวันอาทิตย์ เธอเปิดแท็บเล็ตบนโต๊ะทำงานในสตูดิโอ เธอยังจำสำรับไพ่มาร์แซยที่บ้านคุณยายได้ ชื่อของไพ่ชุดเมเจอร์อาร์คานาจึงฟังดูคุ้นเคย เมื่อเรื่องเล่าผ่านการย้อมไหมแห่งลียงหรือร้านขายสีในปารีสไปถึงสี เธอใช้สีนั้นเลือกกระดาษรองปกสำหรับเล่มถัดไป เธอเลือกสไตล์อาร์ตนูโว</p></div>
+  </div>
+  <details><summary>ตัวเลขและหมายเหตุ</summary>
+    <div class="scroll"><table class="facts"><thead><tr><th scope="col">รายการ</th><th scope="col">ค่า</th><th scope="col">หมายเหตุ</th></tr></thead><tbody>
+      <tr><th scope="row">ผู้พูดทั้งหมด (ภาษาแม่ + ภาษาที่สอง)</th><td>334 ล้านคน (อันดับ 6)</td><td>Ethnologue ฉบับปี 2026</td></tr>
+      <tr><th scope="row">สัดส่วนเนื้อหาบนเว็บ</th><td>4.5% (อันดับ 5)</td><td>W3Techs, ตุลาคม 2026</td></tr>
+      <tr><th scope="row">ผู้ใช้อินเทอร์เน็ตแยกตามภาษา</th><td>3.3% (อันดับ 7)</td><td>Internet World Stats, มีนาคม 2020</td></tr>
+      <tr><th scope="row">เวลาออนไลน์</th><td>ผู้ใช้อินเทอร์เน็ตโดยประมาณ 125 ล้านคน เฉลี่ยวันละ 6.0 ชั่วโมง รวม 750 ล้านชั่วโมงต่อวัน (อันดับ 9)</td><td>ประมาณการของ Claude ฝรั่งเศส เบลเยียม และควิเบก รวมกับแอฟริกาที่ใช้ภาษาฝรั่งเศส</td></tr>
+    </tbody></table></div>
+  </details>
+</section>
+
+<section class="lang" id="bn" aria-labelledby="h-bn">
+  <p class="kicker">09 · bn</p>
+  <h2 id="h-bn"><span lang="bn">বাংলা</span><small>ภาษาเบงกาลี</small></h2>
+  <dl class="nums">
+    <div><dt>ผู้พูด</dt><dd>274 ล้านคน (อันดับ 7)</dd></div>
+    <div><dt>เว็บ</dt><dd>ต่ำกว่า 0.1% (อันดับ 39)</dd></div>
+    <div><dt>เวลาออนไลน์</dt><dd>610 ล้านชั่วโมง</dd></div>
+  </dl>
+  <p class="region"><b>พื้นที่</b>บังกลาเทศ (ภาษาประจำชาติ) และรัฐเบงกอลตะวันตก ตริปุระ และบางส่วนของอัสสัมในอินเดีย ชาวบังกลาเทศจำนวนมากอาศัยอยู่ในสหราชอาณาจักร (ลอนดอนตะวันออก) ประเทศแถบอ่าวเปอร์เซีย สหรัฐอเมริกา และมาเลเซีย</p>
+  <div class="persona">
+    <figure><img src="../../language-intro/img/bn.webp" width="800" height="1000" loading="lazy" decoding="async" alt="เพอร์โซนาสมมติ Farhana Akter อายุ 23 ปี อาศัยอยู่ที่ธากา เรียนวรรณคดีอังกฤษในมหาวิทยาลัย"></figure>
+    <div class="ptext"><h3>เพอร์โซนา</h3><p>Farhana Akter อายุ 23 ปี อาศัยอยู่ที่ธากา เรียนวรรณคดีอังกฤษในมหาวิทยาลัย เวลา 4 ทุ่ม ระหว่างพักจากการอ่านหนังสือ เธอเลื่อนดู Facebook บนมือถือ Samsung และเข้ามาจากหน้าผลลัพธ์ที่เพื่อนแชร์ไว้ เธอไม่ได้มองว่าเป็นการดูดวง แต่เป็นเรื่องสั้นที่อ่านเป็นภาษาเบงกาลีได้ เมื่อเรื่องเล่าผ่านผ้ามัสลินแห่งธากาหรือผ้าทอจัมดานีไปถึงสีงาช้าง เธอจะคัดชื่อสีลงในสมุดบทกวีของเธอ</p></div>
+  </div>
+  <details><summary>ตัวเลขและหมายเหตุ</summary>
+    <div class="scroll"><table class="facts"><thead><tr><th scope="col">รายการ</th><th scope="col">ค่า</th><th scope="col">หมายเหตุ</th></tr></thead><tbody>
+      <tr><th scope="row">ผู้พูดทั้งหมด (ภาษาแม่ + ภาษาที่สอง)</th><td>274 ล้านคน (อันดับ 7)</td><td>Ethnologue ฉบับปี 2026</td></tr>
+      <tr><th scope="row">สัดส่วนเนื้อหาบนเว็บ</th><td>ต่ำกว่า 0.1% (อันดับ 39)</td><td>W3Techs, ตุลาคม 2026</td></tr>
+      <tr><th scope="row">ผู้ใช้อินเทอร์เน็ตแยกตามภาษา</th><td>ไม่ติด 10 อันดับแรก</td><td>Internet World Stats, มีนาคม 2020</td></tr>
+      <tr><th scope="row">เวลาออนไลน์</th><td>ผู้ใช้อินเทอร์เน็ตโดยประมาณ 110 ล้านคน เฉลี่ยวันละ 5.5 ชั่วโมง รวม 610 ล้านชั่วโมงต่อวัน (อันดับ 10)</td><td>ประมาณการของ Claude บังกลาเทศรวมกับเบงกอลตะวันตก</td></tr>
+    </tbody></table></div>
+  </details>
+</section>
+
+<section class="lang" id="pt" aria-labelledby="h-pt">
+  <p class="kicker">10 · pt</p>
+  <h2 id="h-pt"><span lang="pt">Português</span><small>ภาษาโปรตุเกส (บราซิล)</small></h2>
+  <dl class="nums">
+    <div><dt>ผู้พูด</dt><dd>269 ล้านคน (อันดับ 8)</dd></div>
+    <div><dt>เว็บ</dt><dd>4.1% (อันดับ 6)</dd></div>
+    <div><dt>เวลาออนไลน์</dt><dd>1,890 ล้านชั่วโมง</dd></div>
+  </dl>
+  <p class="region"><b>พื้นที่</b>บราซิล (เว็บไซต์ใช้ pt-BR) และโปรตุเกส ยังเป็นภาษาราชการของประเทศในแอฟริกา เช่น แองโกลา โมซัมบิก และกาบูเวร์ดี ชาวบราซิลเชื้อสายญี่ปุ่นจำนวนมากอาศัยอยู่ในญี่ปุ่น มีชุมชนชาวบราซิลในสหรัฐอเมริกา โปรตุเกส และญี่ปุ่น</p>
+  <div class="persona">
+    <figure><img src="../../language-intro/img/pt.webp" width="800" height="1000" loading="lazy" decoding="async" alt="เพอร์โซนาสมมติ Juliana Costa อายุ 30 ปี อาศัยอยู่ที่เรซีฟี เป็นพยาบาลโรงพยาบาลที่เข้าเวรดึกด้วย"></figure>
+    <div class="ptext"><h3>เพอร์โซนา</h3><p>Juliana Costa อายุ 30 ปี อาศัยอยู่ที่เรซีฟี เป็นพยาบาลโรงพยาบาลที่เข้าเวรดึกด้วย เวลา 6:30 น. บนรถเมล์กลับบ้านหลังออกเวรดึก เธอเปิดมือถือ Samsung แล้วจั่วไพ่หนึ่งใบ เธอรอคอยสีตอนท้ายเรื่องมากกว่าความหมายของไพ่ เมื่อเรื่องเล่าผ่านต้นเปาบราซิล (ไม้ให้สีย้อมแดงที่เป็นที่มาของชื่อประเทศบราซิล) ไปถึงสี เธอส่งเข้ากลุ่ม WhatsApp ของเพื่อนร่วมงาน เธอยังตั้งใจจะมาจั่วไพ่ที่นี่เพื่อเลือกสีชุดในคืนส่งท้ายปีเก่าด้วย</p></div>
+  </div>
+  <details><summary>ตัวเลขและหมายเหตุ</summary>
+    <div class="scroll"><table class="facts"><thead><tr><th scope="col">รายการ</th><th scope="col">ค่า</th><th scope="col">หมายเหตุ</th></tr></thead><tbody>
+      <tr><th scope="row">ผู้พูดทั้งหมด (ภาษาแม่ + ภาษาที่สอง)</th><td>269 ล้านคน (อันดับ 8)</td><td>Ethnologue ฉบับปี 2026</td></tr>
+      <tr><th scope="row">สัดส่วนเนื้อหาบนเว็บ</th><td>4.1% (อันดับ 6)</td><td>W3Techs, ตุลาคม 2026</td></tr>
+      <tr><th scope="row">ผู้ใช้อินเทอร์เน็ตแยกตามภาษา</th><td>3.7% (อันดับ 6)</td><td>Internet World Stats, มีนาคม 2020</td></tr>
+      <tr><th scope="row">เวลาออนไลน์</th><td>ผู้ใช้อินเทอร์เน็ตโดยประมาณ 210 ล้านคน เฉลี่ยวันละ 9.0 ชั่วโมง รวม 1,890 ล้านชั่วโมงต่อวัน (อันดับ 5)</td><td>ประมาณการของ Claude ส่วนใหญ่เป็นบราซิล เวลาออนไลน์จัดอยู่ในกลุ่มที่ยาวที่สุดในโลก</td></tr>
+    </tbody></table></div>
+  </details>
+</section>
+
+<section class="lang" id="id" aria-labelledby="h-id">
+  <p class="kicker">11 · id</p>
+  <h2 id="h-id"><span lang="id">Bahasa Indonesia</span><small>ภาษาอินโดนีเซีย</small></h2>
+  <dl class="nums">
+    <div><dt>ผู้พูด</dt><dd>255 ล้านคน (อันดับ 9)</dd></div>
+    <div><dt>เว็บ</dt><dd>1.2% (อันดับ 13)</dd></div>
+    <div><dt>เวลาออนไลน์</dt><dd>1,550 ล้านชั่วโมง</dd></div>
+  </dl>
+  <p class="region"><b>พื้นที่</b>ภาษาประจำชาติของอินโดนีเซีย ใช้ในโรงเรียนและที่ทำงานโดยผู้คนกว่า 200 ล้านคน ในติมอร์-เลสเตเป็นภาษาที่ใช้ในการทำงาน โดยรวมสื่อสารกันได้กับภาษามลายูของมาเลเซีย บรูไน และสิงคโปร์ ชาวอินโดนีเซียที่ไปทำงานในญี่ปุ่นในฐานะผู้ฝึกงานด้านเทคนิคหรือแรงงานทักษะเฉพาะมีจำนวนเพิ่มขึ้นเรื่อย ๆ</p>
+  <div class="persona">
+    <figure><img src="../../language-intro/img/id.webp" width="800" height="1000" loading="lazy" decoding="async" alt="เพอร์โซนาสมมติ Dimas Pratama อายุ 25 ปี อาศัยอยู่ที่บันดุง เป็นนักออกแบบกราฟิกระดับจูเนียร์ในสตาร์ทอัพ"></figure>
+    <div class="ptext"><h3>เพอร์โซนา</h3><p>Dimas Pratama อายุ 25 ปี อาศัยอยู่ที่บันดุง เป็นนักออกแบบกราฟิกระดับจูเนียร์ในสตาร์ทอัพ เวลา 9 โมงเช้า เขาเปิดมือถือ Android ที่โคเวิร์กกิงสเปซ เขาไม่ได้ใช้เพื่อดูดวง แต่ใช้เป็นเครื่องมือหาไอเดียการจับคู่สี ความหมายของไพ่เขาอ่านผ่าน ๆ ส่วนเรื่องของสีเขาอ่านอย่างตั้งใจ เมื่อเรื่องเล่าผ่านสีครามของผ้าบาติกชวาหรืองานจักสานไม้ไผ่ของชาวซุนดาไปถึงสี เขาใช้สีนั้นเป็นสีหลักของร่างโปสเตอร์วันนั้น เขาแชร์เพียงชื่อสีลงใน Instagram Stories</p></div>
+  </div>
+  <details><summary>ตัวเลขและหมายเหตุ</summary>
+    <div class="scroll"><table class="facts"><thead><tr><th scope="col">รายการ</th><th scope="col">ค่า</th><th scope="col">หมายเหตุ</th></tr></thead><tbody>
+      <tr><th scope="row">ผู้พูดทั้งหมด (ภาษาแม่ + ภาษาที่สอง)</th><td>255 ล้านคน (อันดับ 9)</td><td>Ethnologue ฉบับปี 2026</td></tr>
+      <tr><th scope="row">สัดส่วนเนื้อหาบนเว็บ</th><td>1.2% (อันดับ 13)</td><td>W3Techs, ตุลาคม 2026</td></tr>
+      <tr><th scope="row">ผู้ใช้อินเทอร์เน็ตแยกตามภาษา</th><td>4.3% (อันดับ 5)</td><td>Internet World Stats, มีนาคม 2020 อยู่แถวเดียวกับภาษามลายู ตัวเลขเป็นของภาษาอินโดนีเซีย</td></tr>
+      <tr><th scope="row">เวลาออนไลน์</th><td>ผู้ใช้อินเทอร์เน็ตโดยประมาณ 210 ล้านคน เฉลี่ยวันละ 7.4 ชั่วโมง รวม 1,550 ล้านชั่วโมงต่อวัน (อันดับ 7)</td><td>ประมาณการของ Claude</td></tr>
+    </tbody></table></div>
+  </details>
+</section>
+
+<section class="lang" id="ms" aria-labelledby="h-ms">
+  <p class="kicker">12 · ms</p>
+  <h2 id="h-ms"><span lang="ms">Bahasa Melayu</span><small>ภาษามลายู</small></h2>
+  <dl class="nums">
+    <div><dt>ผู้พูด</dt><dd>ไม่ทราบ</dd></div>
+    <div><dt>เว็บ</dt><dd>ไม่มีข้อมูล</dd></div>
+    <div><dt>เวลาออนไลน์</dt><dd>ราว 160 ล้านชั่วโมง (ตัวเลขอ้างอิงนอกอันดับ)</dd></div>
+  </dl>
+  <p class="region"><b>พื้นที่</b>มาเลเซีย บรูไน และสิงคโปร์ (ภาษาประจำชาติ) ในภาคใต้ของไทยก็มีผู้พูดภาษามลายู ในมาเลเซีย ชาวมลายูใช้ในชีวิตประจำวัน และชาวมาเลเซียเชื้อสายจีนและอินเดียก็เรียนที่โรงเรียน</p>
+  <div class="persona">
+    <figure><img src="../../language-intro/img/ms.webp" width="800" height="1000" loading="lazy" decoding="async" alt="เพอร์โซนาสมมติ Nur Aisyah binti Rahman อายุ 27 ปี อาศัยอยู่ที่ชาห์อาลัม เป็นเภสัชกรโรงพยาบาล"></figure>
+    <div class="ptext"><h3>เพอร์โซนา</h3><p>Nur Aisyah binti Rahman อายุ 27 ปี อาศัยอยู่ที่ชาห์อาลัม เป็นเภสัชกรโรงพยาบาล เวลาบ่ายโมง ช่วงพักกลางวัน เธอดู TikTok บนมือถือ Android เพื่อหาข้อมูลทริปโอซาก้าในเดือนมีนาคมปีหน้า เธอไม่เชื่อเรื่องดูดวง แต่ชอบภาพไพ่และเรื่องของสีในฐานะ “บทอ่านที่สวยงาม” เมื่อเรื่องเล่าผ่านดิ้นทองของผ้าซงเก็ต (songket) มลายูหรือท่าเรือมะละกาไปถึงสี เธอใช้เป็นแนวทางเลือกสีผ้าคลุมศีรษะ tudung สำหรับทริป เธอส่งเพียงชื่อสีเข้ากลุ่ม WhatsApp ของครอบครัว</p></div>
+  </div>
+  <details><summary>ตัวเลขและหมายเหตุ</summary>
+    <div class="scroll"><table class="facts"><thead><tr><th scope="col">รายการ</th><th scope="col">ค่า</th><th scope="col">หมายเหตุ</th></tr></thead><tbody>
+      <tr><th scope="row">ผู้พูดทั้งหมด (ภาษาแม่ + ภาษาที่สอง)</th><td>ไม่ทราบ</td><td>ภาษามลายูมักถูกนับรวมกับภาษาอินโดนีเซียในฐานะภาษามหภาค จึงไม่มีตัวเลขแยก หน้า Wikipedia “Malay language” (อ้างอิง Ethnologue ฉบับที่ 28, 2025) ระบุว่าภาษามลายูในฐานะภาษามหภาคมีผู้พูดเป็นภาษาแม่ราว 90 ล้านคน (2020–2023) และผู้พูดเป็นภาษาที่สองราว 180 ล้านคน (2020) การนับนี้รวมภาษามลายูท้องถิ่นในอินโดนีเซียด้วย ไม่ใช่จำนวนของภาษามลายูมาตรฐานเพียงอย่างเดียว</td></tr>
+      <tr><th scope="row">สัดส่วนเนื้อหาบนเว็บ</th><td>ไม่มีข้อมูล</td><td>ไม่ติด 40 อันดับแรกของ W3Techs</td></tr>
+      <tr><th scope="row">ผู้ใช้อินเทอร์เน็ตแยกตามภาษา</th><td>อยู่แถวเดียวกับภาษาอินโดนีเซีย</td><td>ใน Internet World Stats ตัวเลขของแถวอินโดนีเซีย/มลายูเป็นเพียง 4.3% ของภาษาอินโดนีเซีย</td></tr>
+      <tr><th scope="row">เวลาออนไลน์</th><td>ราว 160 ล้านชั่วโมงต่อวัน (ตัวเลขอ้างอิงนอกอันดับ)</td><td>ตัวเลขอ้างอิงนอกอันดับในประมาณการของ Claude ราว 60% ของผู้ใช้ในมาเลเซียรวมกับบรูไน</td></tr>
+    </tbody></table></div>
+  </details>
+</section>
+
+<section class="lang" id="ur" aria-labelledby="h-ur">
+  <p class="kicker">13 · ur</p>
+  <h2 id="h-ur"><span lang="ur" dir="rtl">اردو</span><small>ภาษาอูรดู</small></h2>
+  <dl class="nums">
+    <div><dt>ผู้พูด</dt><dd>246 ล้านคน (อันดับ 10)</dd></div>
+    <div><dt>เว็บ</dt><dd>ไม่มีข้อมูล</dd></div>
+    <div><dt>เวลาออนไลน์</dt><dd>520 ล้านชั่วโมง</dd></div>
+  </dl>
+  <p class="region"><b>พื้นที่</b>ปากีสถาน (ภาษาประจำชาติ) และภาคเหนือของอินเดีย (อุตตรประเทศ ไฮเดอราบาดในรัฐเตลังคานา เดลี และอื่น ๆ) ผู้มีเชื้อสายปากีสถานจำนวนมากอาศัยอยู่ในสหราชอาณาจักร ประเทศแถบอ่าวเปอร์เซีย สหรัฐอเมริกา และแคนาดา ภาษาพูดใกล้เคียงกับภาษาฮินดี แต่ตัวอักษร (อักษรอาหรับแบบนัสตะลีก) ต่างกัน เว็บไซต์จัดหน้าจากขวาไปซ้าย</p>
+  <div class="persona">
+    <figure><img src="../../language-intro/img/ur.webp" width="800" height="1000" loading="lazy" decoding="async" alt="เพอร์โซนาสมมติ Hamza Qureshi อายุ 30 ปี อาศัยอยู่ที่ลาฮอร์ เป็นวิศวกรซอฟต์แวร์ในบริษัทฟินเทค"></figure>
+    <div class="ptext"><h3>เพอร์โซนา</h3><p>Hamza Qureshi อายุ 30 ปี อาศัยอยู่ที่ลาฮอร์ เป็นวิศวกรซอฟต์แวร์ในบริษัทฟินเทค เวลาเที่ยงคืนครึ่ง หลังเลิกงาน เขาเปิดมือถือ Android พร้อมชาจายหนึ่งแก้ว เขาไม่ค่อยข้องแวะกับการดูดวง แต่ชอบหน้าเว็บที่จัดตัวอักษรอูรดูไว้อย่างสวยงาม และเข้ามาเพื่ออ่านเรื่องเล่า เมื่อเรื่องเล่าผ่านสีน้ำเงินอัลตรามารีนของจิตรกรรมขนาดเล็กสมัยโมกุลหรือกระเบื้องบนกำแพงป้อมลาฮอร์ไปถึงสี เขาส่งลิงก์ให้เพื่อนที่เป็นกวีทาง WhatsApp</p></div>
+  </div>
+  <details><summary>ตัวเลขและหมายเหตุ</summary>
+    <div class="scroll"><table class="facts"><thead><tr><th scope="col">รายการ</th><th scope="col">ค่า</th><th scope="col">หมายเหตุ</th></tr></thead><tbody>
+      <tr><th scope="row">ผู้พูดทั้งหมด (ภาษาแม่ + ภาษาที่สอง)</th><td>246 ล้านคน (อันดับ 10)</td><td>Ethnologue ฉบับปี 2026</td></tr>
+      <tr><th scope="row">สัดส่วนเนื้อหาบนเว็บ</th><td>ไม่มีข้อมูล</td><td>ไม่ติด 40 อันดับแรกของ W3Techs</td></tr>
+      <tr><th scope="row">ผู้ใช้อินเทอร์เน็ตแยกตามภาษา</th><td>ไม่ติด 10 อันดับแรก</td><td>Internet World Stats, มีนาคม 2020</td></tr>
+      <tr><th scope="row">เวลาออนไลน์</th><td>ผู้ใช้อินเทอร์เน็ตโดยประมาณ 95 ล้านคน เฉลี่ยวันละ 5.5 ชั่วโมง รวม 520 ล้านชั่วโมงต่อวัน (อันดับ 13)</td><td>ประมาณการของ Claude ราว 75% ของปากีสถานรวมกับบางส่วนของอินเดีย</td></tr>
+    </tbody></table></div>
+  </details>
+</section>
+
+<section class="lang" id="ru" aria-labelledby="h-ru">
+  <p class="kicker">14 · ru</p>
+  <h2 id="h-ru"><span lang="ru">Русский</span><small>ภาษารัสเซีย</small></h2>
+  <dl class="nums">
+    <div><dt>ผู้พูด</dt><dd>210 ล้านคน (อันดับ 11)</dd></div>
+    <div><dt>เว็บ</dt><dd>3.4% (อันดับ 7)</dd></div>
+    <div><dt>เวลาออนไลน์</dt><dd>1,160 ล้านชั่วโมง</dd></div>
+  </dl>
+  <p class="region"><b>พื้นที่</b>ภาษาราชการของรัสเซีย เบลารุส คาซัคสถาน และคีร์กีซสถาน ผู้คนจำนวนมากในประเทศอดีตสหภาพโซเวียตอื่น ๆ (เอเชียกลาง คอเคซัส กลุ่มประเทศบอลติก) ก็ใช้ภาษารัสเซีย ในอิสราเอล เยอรมนี และสหรัฐอเมริกาก็มีชุมชนผู้พูดภาษารัสเซีย</p>
+  <div class="persona">
+    <figure><img src="../../language-intro/img/ru.webp" width="800" height="1000" loading="lazy" decoding="async" alt="เพอร์โซนาสมมติ Анна Соколова (Anna Sokolova) อายุ 35 ปี อาศัยอยู่ที่โนโวซีบีสค์ เป็นนักเทคนิคด้านการวิเคราะห์ทางเคมีในสถาบันวิจัย"></figure>
+    <div class="ptext"><h3>เพอร์โซนา</h3><p><span lang="ru">Анна Соколова</span> (Anna Sokolova) อายุ 35 ปี อาศัยอยู่ที่โนโวซีบีสค์ เป็นนักเทคนิคด้านการวิเคราะห์ทางเคมีในสถาบันวิจัย เวลา 4 ทุ่ม เธอเปิดมือถือ Android ในครัวพร้อมจิบชา เธอรู้จักเว็บไซต์นี้จากช่อง Telegram ที่แนะนำเรื่องสีและศิลปะ ด้วยงานที่ทำ เธอจึงสนุกเป็นพิเศษกับการจั่วไพ่หนึ่งใบแล้วตามเรื่องเล่าที่ผ่านแร่และสารสีไปถึงสี วันไหนที่ได้สีเขียวมาลาไคต์ เธอจะเอารูปหินก้อนนั้นให้ลูกสาวดู</p></div>
+  </div>
+  <details><summary>ตัวเลขและหมายเหตุ</summary>
+    <div class="scroll"><table class="facts"><thead><tr><th scope="col">รายการ</th><th scope="col">ค่า</th><th scope="col">หมายเหตุ</th></tr></thead><tbody>
+      <tr><th scope="row">ผู้พูดทั้งหมด (ภาษาแม่ + ภาษาที่สอง)</th><td>210 ล้านคน (อันดับ 11)</td><td>Ethnologue ฉบับปี 2026</td></tr>
+      <tr><th scope="row">สัดส่วนเนื้อหาบนเว็บ</th><td>3.4% (อันดับ 7)</td><td>W3Techs, ตุลาคม 2026</td></tr>
+      <tr><th scope="row">ผู้ใช้อินเทอร์เน็ตแยกตามภาษา</th><td>2.5% (อันดับ 9)</td><td>Internet World Stats, มีนาคม 2020</td></tr>
+      <tr><th scope="row">เวลาออนไลน์</th><td>ผู้ใช้อินเทอร์เน็ตโดยประมาณ 155 ล้านคน เฉลี่ยวันละ 7.5 ชั่วโมง รวม 1,160 ล้านชั่วโมงต่อวัน (อันดับ 8)</td><td>ประมาณการของ Claude รัสเซียรวมกับเบลารุส คาซัคสถาน และบางส่วนของเอเชียกลาง</td></tr>
+    </tbody></table></div>
+  </details>
+</section>
+
+<section class="lang" id="de" aria-labelledby="h-de">
+  <p class="kicker">15 · de</p>
+  <h2 id="h-de"><span lang="de">Deutsch</span><small>ภาษาเยอรมัน</small></h2>
+  <dl class="nums">
+    <div><dt>ผู้พูด</dt><dd>133 ล้านคน (อันดับ 12)</dd></div>
+    <div><dt>เว็บ</dt><dd>5.9% (อันดับ 3)</dd></div>
+    <div><dt>เวลาออนไลน์</dt><dd>480 ล้านชั่วโมง</dd></div>
+  </dl>
+  <p class="region"><b>พื้นที่</b>เยอรมนี ออสเตรีย สวิตเซอร์แลนด์ (ตอนเหนือและตอนกลาง) ลิกเตนสไตน์ ลักเซมเบิร์ก เซาท์ทีโรลในอิตาลี และเบลเยียมตะวันออก</p>
+  <div class="persona">
+    <figure><img src="../../language-intro/img/de.webp" width="800" height="1000" loading="lazy" decoding="async" alt="เพอร์โซนาสมมติ Jonas Weber อายุ 38 ปี อาศัยอยู่ที่ไลพ์ซิช เป็นวิศวกรเสียงประจำโรงละคร"></figure>
+    <div class="ptext"><h3>เพอร์โซนา</h3><p>Jonas Weber อายุ 38 ปี อาศัยอยู่ที่ไลพ์ซิช เป็นวิศวกรเสียงประจำโรงละคร เวลาบ่ายโมงของวันทำงาน ช่วงพัก เขาเปิดเว็บด้วย Firefox บนแล็ปท็อป เขาใช้ตัวบล็อกโฆษณาและกดปฏิเสธแบนเนอร์ขอความยินยอม เขาไม่เชื่อเรื่องดูดวง แต่ชอบเปรียบเทียบสไตล์ไพ่ (ภาพถ่ายเซอร์เรียลลิสม์ กราฟิกแนวบรูทัลลิสม์) เมื่อเรื่องเล่าผ่านสีน้ำเงินปรัสเซียนที่ถือกำเนิดในเบอร์ลินช่วงต้นศตวรรษที่ 18 ไปถึงสี เขาจะดีใจและเล่าให้เพื่อนร่วมงานฟัง</p></div>
+  </div>
+  <details><summary>ตัวเลขและหมายเหตุ</summary>
+    <div class="scroll"><table class="facts"><thead><tr><th scope="col">รายการ</th><th scope="col">ค่า</th><th scope="col">หมายเหตุ</th></tr></thead><tbody>
+      <tr><th scope="row">ผู้พูดทั้งหมด (ภาษาแม่ + ภาษาที่สอง)</th><td>133 ล้านคน (อันดับ 12)</td><td>Ethnologue ฉบับปี 2026</td></tr>
+      <tr><th scope="row">สัดส่วนเนื้อหาบนเว็บ</th><td>5.9% (อันดับ 3)</td><td>W3Techs, ตุลาคม 2026</td></tr>
+      <tr><th scope="row">ผู้ใช้อินเทอร์เน็ตแยกตามภาษา</th><td>2.0% (อันดับ 10)</td><td>Internet World Stats, มีนาคม 2020</td></tr>
+      <tr><th scope="row">เวลาออนไลน์</th><td>ผู้ใช้อินเทอร์เน็ตโดยประมาณ 93 ล้านคน เฉลี่ยวันละ 5.2 ชั่วโมง รวม 480 ล้านชั่วโมงต่อวัน (อันดับ 17)</td><td>ประมาณการของ Claude เยอรมนี ออสเตรีย สวิตเซอร์แลนด์</td></tr>
+    </tbody></table></div>
+  </details>
+</section>
+
+<section class="lang" id="vi" aria-labelledby="h-vi">
+  <p class="kicker">16 · vi</p>
+  <h2 id="h-vi"><span lang="vi">Tiếng Việt</span><small>ภาษาเวียดนาม</small></h2>
+  <dl class="nums">
+    <div><dt>ผู้พูด</dt><dd>97 ล้านคน (อันดับ 17)</dd></div>
+    <div><dt>เว็บ</dt><dd>0.9% (อันดับ 16)</dd></div>
+    <div><dt>เวลาออนไลน์</dt><dd>500 ล้านชั่วโมง</dd></div>
+  </dl>
+  <p class="region"><b>พื้นที่</b>เวียดนาม มีชุมชนชาวเวียดนามขนาดใหญ่ในสหรัฐอเมริกา (แคลิฟอร์เนีย เท็กซัส) ออสเตรเลีย ฝรั่งเศส และแคนาดา ในญี่ปุ่นก็มีชาวเวียดนามจำนวนมากที่อาศัยอยู่ในฐานะผู้ฝึกงานด้านเทคนิคหรือนักศึกษา</p>
+  <div class="persona">
+    <figure><img src="../../language-intro/img/vi.webp" width="800" height="1000" loading="lazy" decoding="async" alt="เพอร์โซนาสมมติ Trần Văn Minh อายุ 24 ปี อาศัยอยู่ที่เมืองโทโยตะ จังหวัดไอจิ เป็นผู้ฝึกงานด้านเทคนิคในโรงงานชิ้นส่วนยานยนต์"></figure>
+    <div class="ptext"><h3>เพอร์โซนา</h3><p>Trần Văn Minh อายุ 24 ปี อาศัยอยู่ที่เมืองโทโยตะ จังหวัดไอจิ เป็นผู้ฝึกงานด้านเทคนิคในโรงงานชิ้นส่วนยานยนต์ เวลา 5 โมงเย็น ก่อนออกไปเข้ากะดึก เขาเปิดมือถือ Android ในห้องหอพัก ผลจากเว็บไซต์นี้เคยถูกแชร์ในกลุ่ม Facebook ของเพื่อน ๆ ที่อาศัยอยู่ในญี่ปุ่น เขาจั่วไพ่หนึ่งใบพลางเทียบกับสีตาม <i lang="vi">mệnh</i> (ธาตุประจำตัว) ที่แม่ของเขาพูดถึง เมื่อเรื่องเล่าผ่านผ้าไหมของโคมไฟฮอยอันหรืองานลงรักของบ้านเกิดไปถึงสี เขาส่งให้ครอบครัวทาง Zalo</p></div>
+  </div>
+  <details><summary>ตัวเลขและหมายเหตุ</summary>
+    <div class="scroll"><table class="facts"><thead><tr><th scope="col">รายการ</th><th scope="col">ค่า</th><th scope="col">หมายเหตุ</th></tr></thead><tbody>
+      <tr><th scope="row">ผู้พูดทั้งหมด (ภาษาแม่ + ภาษาที่สอง)</th><td>97 ล้านคน (อันดับ 17)</td><td>Ethnologue ฉบับปี 2026</td></tr>
+      <tr><th scope="row">สัดส่วนเนื้อหาบนเว็บ</th><td>0.9% (อันดับ 16)</td><td>W3Techs, ตุลาคม 2026</td></tr>
+      <tr><th scope="row">ผู้ใช้อินเทอร์เน็ตแยกตามภาษา</th><td>ไม่ติด 10 อันดับแรก</td><td>Internet World Stats, มีนาคม 2020</td></tr>
+      <tr><th scope="row">เวลาออนไลน์</th><td>ผู้ใช้อินเทอร์เน็ตโดยประมาณ 79 ล้านคน เฉลี่ยวันละ 6.3 ชั่วโมง รวม 500 ล้านชั่วโมงต่อวัน (อันดับ 15)</td><td>ประมาณการของ Claude</td></tr>
+    </tbody></table></div>
+  </details>
+</section>
+
+<section class="lang" id="sw" aria-labelledby="h-sw">
+  <p class="kicker">17 · sw</p>
+  <h2 id="h-sw"><span lang="sw">Kiswahili</span><small>ภาษาสวาฮีลี</small></h2>
+  <dl class="nums">
+    <div><dt>ผู้พูด</dt><dd>95 ล้านคน (อันดับ 19)</dd></div>
+    <div><dt>เว็บ</dt><dd>ไม่มีข้อมูล</dd></div>
+    <div><dt>เวลาออนไลน์</dt><dd>ไม่มีการประมาณการ</dd></div>
+  </dl>
+  <p class="region"><b>พื้นที่</b>แทนซาเนียและเคนยา ในแทนซาเนียเป็นภาษาประจำชาติ ชั้นประถมสอนเป็นภาษาสวาฮีลี และเปลี่ยนเป็นภาษาอังกฤษตั้งแต่ชั้นมัธยม ในเคนยาเป็นหนึ่งในภาษาราชการ ชั้นต้น ๆ สอนเป็นภาษาแม่หรือภาษาสวาฮีลี จากนั้นจึงสอนเป็นภาษาอังกฤษ โดยภาษาสวาฮีลีเป็นวิชาบังคับ ยังใช้กันแพร่หลายในยูกันดา รวันดา บุรุนดี ทางตะวันออกของสาธารณรัฐประชาธิปไตยคองโก และคอโมโรส และเป็นหนึ่งในภาษาทำงานของสหภาพแอฟริกา</p>
+  <div class="persona">
+    <figure><img src="../../language-intro/img/sw.webp" width="800" height="1000" loading="lazy" decoding="async" alt="เพอร์โซนาสมมติ Amina Juma อายุ 28 ปี อาศัยอยู่ที่ดาร์เอสซาลาม เป็นครูประถม"></figure>
+    <div class="ptext"><h3>เพอร์โซนา</h3><p>Amina Juma อายุ 28 ปี อาศัยอยู่ที่ดาร์เอสซาลาม เป็นครูประถม เวลาบ่ายสามโมงครึ่ง หลังเลิกสอน เธอเปิดมือถือ Android ในห้องพักครู ผลจากเว็บไซต์นี้เคยถูกส่งต่อกันในกลุ่ม WhatsApp ของเพื่อนร่วมงาน เธอจั่วไพ่หนึ่งใบพลางเทียบกับสีของผ้าคังกา เมื่อเรื่องเล่าผ่านสีครามของผ้าคังกาหรือท้องฟ้ายามเย็นเหนือมหาสมุทรอินเดียไปถึงสี เธอส่งให้แม่ทาง WhatsApp</p></div>
+  </div>
+  <details><summary>ตัวเลขและหมายเหตุ</summary>
+    <div class="scroll"><table class="facts"><thead><tr><th scope="col">รายการ</th><th scope="col">ค่า</th><th scope="col">หมายเหตุ</th></tr></thead><tbody>
+      <tr><th scope="row">ผู้พูดทั้งหมด (ภาษาแม่ + ภาษาที่สอง)</th><td>95 ล้านคน (อันดับ 19)</td><td>Ethnologue ฉบับปี 2026</td></tr>
+      <tr><th scope="row">สัดส่วนเนื้อหาบนเว็บ</th><td>ไม่มีข้อมูล</td><td>ไม่ติด 40 อันดับแรกของ W3Techs</td></tr>
+      <tr><th scope="row">ผู้ใช้อินเทอร์เน็ตแยกตามภาษา</th><td>ไม่ติด 10 อันดับแรก</td><td>Internet World Stats, มีนาคม 2020</td></tr>
+      <tr><th scope="row">เวลาออนไลน์</th><td>ไม่มีการประมาณการ</td><td>ประมาณการของ Claude ไม่มีแถวสำหรับภาษาสวาฮีลี เคนยาและแทนซาเนียถูกรวมไว้ในภาษาอังกฤษหรือภาษาสวาฮีลีโดยรวม และไม่ได้แยกเวลาของภาษาสวาฮีลีออกมา</td></tr>
+    </tbody></table></div>
+  </details>
+</section>
+
+<section class="lang" id="tr" aria-labelledby="h-tr">
+  <p class="kicker">18 · tr</p>
+  <h2 id="h-tr"><span lang="tr">Türkçe</span><small>ภาษาตุรกี</small></h2>
+  <dl class="nums">
+    <div><dt>ผู้พูด</dt><dd>94 ล้านคน (อันดับ 20 เท่ากับภาษาเฮาซา)</dd></div>
+    <div><dt>เว็บ</dt><dd>1.6% (อันดับ 11)</dd></div>
+    <div><dt>เวลาออนไลน์</dt><dd>560 ล้านชั่วโมง</dd></div>
+  </dl>
+  <p class="region"><b>พื้นที่</b>ตุรกีและไซปรัสเหนือ เยอรมนีมีชุมชนชาวตุรกีขนาดใหญ่ และยังมีอีกมากในเนเธอร์แลนด์ ออสเตรีย และฝรั่งเศส ในบัลแกเรียและกรีซตอนเหนือก็มีผู้พูด</p>
+  <div class="persona">
+    <figure><img src="../../language-intro/img/tr.webp" width="800" height="1000" loading="lazy" decoding="async" alt="เพอร์โซนาสมมติ Elif Yıldız อายุ 33 ปี อาศัยอยู่ที่อิซมีร์ เป็นครูเคมีระดับมัธยมปลาย"></figure>
+    <div class="ptext"><h3>เพอร์โซนา</h3><p>Elif Yıldız อายุ 33 ปี อาศัยอยู่ที่อิซมีร์ เป็นครูเคมีระดับมัธยมปลาย เวลา 4 โมงครึ่งเย็น หลังเลิกสอน เธอไปให้คนดูดวงจากกากกาแฟกับเพื่อน ๆ ที่คาเฟ่ แล้วจึงเปิดเว็บไซต์นี้บน iPhone เธอกับเพื่อน ๆ อ่านความหมายของไพ่ด้วยกัน เมื่อเรื่องเล่าผ่านเทอร์คอยส์หรือสีฟ้าของกระเบื้องอิซนิกไปถึงสี ทุกคนก็ตื่นเต้น และเธอโพสต์ลง Instagram Stories</p></div>
+  </div>
+  <details><summary>ตัวเลขและหมายเหตุ</summary>
+    <div class="scroll"><table class="facts"><thead><tr><th scope="col">รายการ</th><th scope="col">ค่า</th><th scope="col">หมายเหตุ</th></tr></thead><tbody>
+      <tr><th scope="row">ผู้พูดทั้งหมด (ภาษาแม่ + ภาษาที่สอง)</th><td>94 ล้านคน (อันดับ 20 เท่ากับภาษาเฮาซา)</td><td>Ethnologue ฉบับปี 2026</td></tr>
+      <tr><th scope="row">สัดส่วนเนื้อหาบนเว็บ</th><td>1.6% (อันดับ 11)</td><td>W3Techs, ตุลาคม 2026</td></tr>
+      <tr><th scope="row">ผู้ใช้อินเทอร์เน็ตแยกตามภาษา</th><td>ไม่ติด 10 อันดับแรก</td><td>Internet World Stats, มีนาคม 2020</td></tr>
+      <tr><th scope="row">เวลาออนไลน์</th><td>ผู้ใช้อินเทอร์เน็ตโดยประมาณ 80 ล้านคน เฉลี่ยวันละ 7.0 ชั่วโมง รวม 560 ล้านชั่วโมงต่อวัน (อันดับ 11)</td><td>ประมาณการของ Claude</td></tr>
+    </tbody></table></div>
+  </details>
+</section>
+
+<section class="lang" id="tl" aria-labelledby="h-tl">
+  <p class="kicker">19 · tl</p>
+  <h2 id="h-tl"><span lang="fil">Filipino</span><small>ภาษาฟิลิปีโน</small></h2>
+  <dl class="nums">
+    <div><dt>ผู้พูด</dt><dd>87 ล้านคน</dd></div>
+    <div><dt>เว็บ</dt><dd>ต่ำกว่า 0.1% (อันดับ 40, ภาษาตากาล็อก)</dd></div>
+    <div><dt>เวลาออนไลน์</dt><dd>530 ล้านชั่วโมง</dd></div>
+  </dl>
+  <p class="region"><b>พื้นที่</b>ภาษาประจำชาติของฟิลิปปินส์ และเป็นภาษาราชการคู่กับภาษาอังกฤษ ชาวฟิลิปปินส์ที่ทำงานทั่วโลกใช้ภาษานี้ รวมถึงในสหรัฐอเมริกา (แคลิฟอร์เนีย ฮาวาย) ประเทศแถบอ่าวเปอร์เซีย ฮ่องกง สิงคโปร์ แคนาดา และญี่ปุ่น</p>
+  <div class="persona">
+    <figure><img src="../../language-intro/img/tl.webp" width="800" height="1000" loading="lazy" decoding="async" alt="เพอร์โซนาสมมติ Joanna “Jo” Dela Cruz อายุ 28 ปี อาศัยอยู่ที่เกซอนซิตี ทำงานกะดึกที่คอลเซ็นเตอร์ซึ่งให้บริการลูกค้าในสหรัฐอเมริกา"></figure>
+    <div class="ptext"><h3>เพอร์โซนา</h3><p>Joanna “Jo” Dela Cruz อายุ 28 ปี อาศัยอยู่ที่เกซอนซิตี ทำงานกะดึกที่คอลเซ็นเตอร์ซึ่งให้บริการลูกค้าในสหรัฐอเมริกา ช่วงพักตอนตี 4 เธอจั่วไพ่หนึ่งใบบนมือถือ Android งานของเธอใช้ภาษาอังกฤษ ช่วงพักเธอจึงอยากอ่านเป็นภาษาฟิลิปีโน เมื่อเรื่องเล่าผ่านแสงอาทิตย์อัสดงเหนืออ่าวมะนิลาหรือผ้าปีญา (ผ้าทอจากเส้นใยสับปะรด) ไปถึงสี เธอโพสต์ลง Facebook และส่งให้ลูกพี่ลูกน้องที่ทำงานอยู่ในตะวันออกกลาง</p></div>
+  </div>
+  <details><summary>ตัวเลขและหมายเหตุ</summary>
+    <div class="scroll"><table class="facts"><thead><tr><th scope="col">รายการ</th><th scope="col">ค่า</th><th scope="col">หมายเหตุ</th></tr></thead><tbody>
+      <tr><th scope="row">ผู้พูดทั้งหมด (ภาษาแม่ + ภาษาที่สอง)</th><td>87 ล้านคน</td><td>Ethnologue ฉบับปี 2026 (นับเป็นภาษาตากาล็อก)</td></tr>
+      <tr><th scope="row">สัดส่วนเนื้อหาบนเว็บ</th><td>ต่ำกว่า 0.1% (อันดับ 40, ภาษาตากาล็อก)</td><td>W3Techs, ตุลาคม 2026</td></tr>
+      <tr><th scope="row">ผู้ใช้อินเทอร์เน็ตแยกตามภาษา</th><td>ไม่ติด 10 อันดับแรก</td><td>Internet World Stats, มีนาคม 2020</td></tr>
+      <tr><th scope="row">เวลาออนไลน์</th><td>ผู้ใช้อินเทอร์เน็ตโดยประมาณ 60 ล้านคน เฉลี่ยวันละ 8.9 ชั่วโมง รวม 530 ล้านชั่วโมงต่อวัน (อันดับ 12)</td><td>ประมาณการของ Claude สมมติว่าราว 60% ของผู้ใช้ในฟิลิปปินส์ ส่วนที่เหลือนับเป็นภาษาอังกฤษ</td></tr>
+    </tbody></table></div>
+  </details>
+</section>
+
+<section class="lang" id="fa" aria-labelledby="h-fa">
+  <p class="kicker">20 · fa</p>
+  <h2 id="h-fa"><span lang="fa" dir="rtl">فارسی</span><small>ภาษาเปอร์เซีย</small></h2>
+  <dl class="nums">
+    <div><dt>ผู้พูด</dt><dd>82 ล้านคน (เปอร์เซียแบบอิหร่าน)</dd></div>
+    <div><dt>เว็บ</dt><dd>1.0% (อันดับ 14)</dd></div>
+    <div><dt>เวลาออนไลน์</dt><dd>490 ล้านชั่วโมง</dd></div>
+  </dl>
+  <p class="region"><b>พื้นที่</b>ภาษาราชการของอิหร่าน รูปแบบที่ใกล้เคียงกันมากใช้ในอัฟกานิสถาน (ดารี) และทาจิกิสถาน (ทาจิก) มีชุมชนชาวอิหร่านขนาดใหญ่ในสหรัฐอเมริกา (ลอสแอนเจลิส) แคนาดา เยอรมนี สหราชอาณาจักร และตุรกี เว็บไซต์จัดหน้าจากขวาไปซ้าย</p>
+  <div class="persona">
+    <figure><img src="../../language-intro/img/fa.webp" width="800" height="1000" loading="lazy" decoding="async" alt="เพอร์โซนาสมมติ Parisa Hosseini อายุ 31 ปี อาศัยอยู่ที่อิสฟาฮาน ทำงานบูรณะกระเบื้องของอาคารประวัติศาสตร์"></figure>
+    <div class="ptext"><h3>เพอร์โซนา</h3><p>Parisa Hosseini อายุ 31 ปี อาศัยอยู่ที่อิสฟาฮาน ทำงานบูรณะกระเบื้องของอาคารประวัติศาสตร์ เวลา 5 ทุ่ม หลังเสร็จงาน เธอเปิดมือถือ Android ในคืนยัลดา ครอบครัวของเธอจะเปิดกวีนิพนธ์ของฮาเฟซด้วยกัน การทำนายจากไพ่ใบเดียวจึงให้ความรู้สึกคุ้นเคย เมื่อเรื่องเล่าผ่านเทอร์คอยส์แห่งนิชาปูร์หรือสีฟ้าของกระเบื้องมัสยิดในอิสฟาฮานไปถึงสี เธอจะเพ่งมองราวกับได้หยุดพักจากงานชั่วครู่ เธอส่งลิงก์ให้พี่สาวที่อยู่ต่างประเทศทาง Telegram</p></div>
+  </div>
+  <details><summary>ตัวเลขและหมายเหตุ</summary>
+    <div class="scroll"><table class="facts"><thead><tr><th scope="col">รายการ</th><th scope="col">ค่า</th><th scope="col">หมายเหตุ</th></tr></thead><tbody>
+      <tr><th scope="row">ผู้พูดทั้งหมด (ภาษาแม่ + ภาษาที่สอง)</th><td>82 ล้านคน (เปอร์เซียแบบอิหร่าน)</td><td>Ethnologue ฉบับปี 2026 ไม่รวมภาษาดารี (อัฟกานิสถาน) และภาษาทาจิก</td></tr>
+      <tr><th scope="row">สัดส่วนเนื้อหาบนเว็บ</th><td>1.0% (อันดับ 14)</td><td>W3Techs, ตุลาคม 2026</td></tr>
+      <tr><th scope="row">ผู้ใช้อินเทอร์เน็ตแยกตามภาษา</th><td>ไม่ติด 10 อันดับแรก</td><td>Internet World Stats, มีนาคม 2020</td></tr>
+      <tr><th scope="row">เวลาออนไลน์</th><td>ผู้ใช้อินเทอร์เน็ตโดยประมาณ 82 ล้านคน เฉลี่ยวันละ 6.0 ชั่วโมง รวม 490 ล้านชั่วโมงต่อวัน (อันดับ 16)</td><td>ประมาณการของ Claude รวมอิหร่านและอัฟกานิสถาน (ดารี)</td></tr>
+    </tbody></table></div>
+  </details>
+</section>
+
+<section class="lang" id="ko" aria-labelledby="h-ko">
+  <p class="kicker">21 · ko</p>
+  <h2 id="h-ko"><span lang="ko">한국어</span><small>ภาษาเกาหลี</small></h2>
+  <dl class="nums">
+    <div><dt>ผู้พูด</dt><dd>82 ล้านคน</dd></div>
+    <div><dt>เว็บ</dt><dd>0.9% (อันดับ 17)</dd></div>
+    <div><dt>เวลาออนไลน์</dt><dd>270 ล้านชั่วโมง</dd></div>
+  </dl>
+  <p class="region"><b>พื้นที่</b>เกาหลีใต้และเกาหลีเหนือ ยังมีชุมชนของผู้ที่มีรากเหง้าจากคาบสมุทรเกาหลีในเขตปกครองตนเองชนชาติเกาหลีเหยียนเปียนของจีน สหรัฐอเมริกา (ลอสแอนเจลิส นิวยอร์ก) ญี่ปุ่น และเอเชียกลาง</p>
+  <div class="persona">
+    <figure><img src="../../language-intro/img/ko.webp" width="800" height="1000" loading="lazy" decoding="async" alt="เพอร์โซนาสมมติ 김서연 (Kim Seo-yeon) อายุ 29 ปี อาศัยอยู่ที่เขตมาโป โซล เป็นคัลเลอริสต์ลงสีเว็บตูน"></figure>
+    <div class="ptext"><h3>เพอร์โซนา</h3><p><span lang="ko">김서연</span> (Kim Seo-yeon) อายุ 29 ปี อาศัยอยู่ที่เขตมาโป โซล เป็นคัลเลอริสต์ลงสีเว็บตูน เวลา 8:20 น. เธอเปิด iPhone บนรถไฟใต้ดิน เดือนละครั้งเธอจะไปคาเฟ่ไพ่ทาโรต์กับเพื่อน ๆ เธอเจอเว็บไซต์นี้ขณะค้นหาข้อมูลทริปฟุกุโอกะเดือนหน้าใน NAVER เมื่อเรื่องเล่าผ่าน <i lang="ko-Latn">obangsaek</i> (โอบังแซก ห้าสีดั้งเดิม) ของเกาหลีหรืองานย้อมของญี่ปุ่นไปถึงสี เธอจะใส่สีนั้นลงในจานสีของงานวันนั้นหนึ่งสี เธอส่งผลให้เพื่อน ๆ ทาง KakaoTalk</p></div>
+  </div>
+  <details><summary>ตัวเลขและหมายเหตุ</summary>
+    <div class="scroll"><table class="facts"><thead><tr><th scope="col">รายการ</th><th scope="col">ค่า</th><th scope="col">หมายเหตุ</th></tr></thead><tbody>
+      <tr><th scope="row">ผู้พูดทั้งหมด (ภาษาแม่ + ภาษาที่สอง)</th><td>82 ล้านคน</td><td>Ethnologue ฉบับปี 2026</td></tr>
+      <tr><th scope="row">สัดส่วนเนื้อหาบนเว็บ</th><td>0.9% (อันดับ 17)</td><td>W3Techs, ตุลาคม 2026</td></tr>
+      <tr><th scope="row">ผู้ใช้อินเทอร์เน็ตแยกตามภาษา</th><td>ไม่ติด 10 อันดับแรก</td><td>Internet World Stats, มีนาคม 2020</td></tr>
+      <tr><th scope="row">เวลาออนไลน์</th><td>ผู้ใช้อินเทอร์เน็ตโดยประมาณ 50 ล้านคน เฉลี่ยวันละ 5.3 ชั่วโมง รวม 270 ล้านชั่วโมงต่อวัน (อันดับ 20)</td><td>ประมาณการของ Claude</td></tr>
+    </tbody></table></div>
+  </details>
+</section>
+
+<section class="lang" id="th" aria-labelledby="h-th">
+  <p class="kicker">22 · th</p>
+  <h2 id="h-th"><span lang="th">ไทย</span></h2>
+  <dl class="nums">
+    <div><dt>ผู้พูด</dt><dd>71 ล้านคน</dd></div>
+    <div><dt>เว็บ</dt><dd>0.3% (อันดับ 28)</dd></div>
+    <div><dt>เวลาออนไลน์</dt><dd>510 ล้านชั่วโมง</dd></div>
+  </dl>
+  <p class="region"><b>พื้นที่</b>ภาษาประจำชาติของไทย คนลาวจำนวนมากอ่านภาษาไทยได้ คนไทยยังอาศัยอยู่ในสหรัฐอเมริกา (ลอสแอนเจลิส) ออสเตรเลีย และยุโรปด้วย</p>
+  <div class="persona">
+    <figure><img src="../../language-intro/img/th.webp" width="800" height="1000" loading="lazy" decoding="async" alt="เพอร์โซนาสมมติ Napassorn “Pim” Srisuk อายุ 27 ปี อาศัยอยู่ที่กรุงเทพฯ ทำงานด้านการตลาดให้แบรนด์เครื่องสำอาง"></figure>
+    <div class="ptext"><h3>เพอร์โซนา</h3><p>Napassorn “Pim” Srisuk อายุ 27 ปี อาศัยอยู่ที่กรุงเทพฯ ทำงานด้านการตลาดให้แบรนด์เครื่องสำอาง เวลา 7 โมงเช้า ก่อนเลือกชุดที่จะใส่ เธอจั่วไพ่หนึ่งใบบน iPhone การเทียบสีประจำวันกับสีจากเว็บไซต์นี้คือความสุขเล็ก ๆ ทุกเช้าของเธอ เธอกำลังวางแผนเที่ยวฮอกไกโดในเดือนมกราคมปีหน้า เมื่อเรื่องเล่าผ่านผ้าไหมไทยหรือสีขาวของหิมะฮอกไกโดไปถึงสี เธอจะหยิบสีนั้นมาใช้กับลิปสติกหรือผ้าพันคอ เธอส่งให้เพื่อนร่วมงานทาง LINE</p></div>
+  </div>
+  <details><summary>ตัวเลขและหมายเหตุ</summary>
+    <div class="scroll"><table class="facts"><thead><tr><th scope="col">รายการ</th><th scope="col">ค่า</th><th scope="col">หมายเหตุ</th></tr></thead><tbody>
+      <tr><th scope="row">ผู้พูดทั้งหมด (ภาษาแม่ + ภาษาที่สอง)</th><td>71 ล้านคน</td><td>Ethnologue ฉบับปี 2026</td></tr>
+      <tr><th scope="row">สัดส่วนเนื้อหาบนเว็บ</th><td>0.3% (อันดับ 28)</td><td>W3Techs, ตุลาคม 2026</td></tr>
+      <tr><th scope="row">ผู้ใช้อินเทอร์เน็ตแยกตามภาษา</th><td>ไม่ติด 10 อันดับแรก</td><td>Internet World Stats, มีนาคม 2020</td></tr>
+      <tr><th scope="row">เวลาออนไลน์</th><td>ผู้ใช้อินเทอร์เน็ตโดยประมาณ 65 ล้านคน เฉลี่ยวันละ 7.8 ชั่วโมง รวม 510 ล้านชั่วโมงต่อวัน (อันดับ 14)</td><td>ประมาณการของ Claude</td></tr>
+    </tbody></table></div>
+  </details>
+</section>
+
+<section class="lang" id="it" aria-labelledby="h-it">
+  <p class="kicker">23 · it</p>
+  <h2 id="h-it"><span lang="it">Italiano</span><small>ภาษาอิตาลี</small></h2>
+  <dl class="nums">
+    <div><dt>ผู้พูด</dt><dd>66 ล้านคน</dd></div>
+    <div><dt>เว็บ</dt><dd>2.8% (อันดับ 8)</dd></div>
+    <div><dt>เวลาออนไลน์</dt><dd>290 ล้านชั่วโมง</dd></div>
+  </dl>
+  <p class="region"><b>พื้นที่</b>อิตาลี ซานมารีโน สวิตเซอร์แลนด์ตอนใต้ (ตีชีโน) และนครรัฐวาติกัน ผู้มีเชื้อสายอิตาลีจำนวนมากอาศัยอยู่ในอาร์เจนตินา บราซิล สหรัฐอเมริกา เยอรมนี และที่อื่น ๆ</p>
+  <div class="persona">
+    <figure><img src="../../language-intro/img/it.webp" width="800" height="1000" loading="lazy" decoding="async" alt="เพอร์โซนาสมมติ Giulia Bernardi อายุ 45 ปี อาศัยอยู่ที่โบโลญญา เป็นเภสัชกรร้านขายยาประจำย่าน"></figure>
+    <div class="ptext"><h3>เพอร์โซนา</h3><p>Giulia Bernardi อายุ 45 ปี อาศัยอยู่ที่โบโลญญา เป็นเภสัชกรร้านขายยาประจำย่าน เวลา 3 ทุ่มครึ่ง บนโซฟาหลังมื้อเย็น เธอเปิดมือถือ Android ตอนเด็ก ๆ เธอเคยเล่นไพ่ทาร็อกคีโนกับพ่อ ภาพของไพ่เมเจอร์อาร์คานาจึงชวนให้คิดถึงวันเก่า ๆ เมื่อเรื่องเล่าผ่านอิฐแดงของระเบียงทางเดินแห่งโบโลญญาหรือสารสีของจิตรกรยุคเรอเนสซองส์ไปถึงสี เธอส่งให้พ่อทาง WhatsApp เธอเลือกสไตล์ “ทาโรต์คลาสสิก”</p></div>
+  </div>
+  <details><summary>ตัวเลขและหมายเหตุ</summary>
+    <div class="scroll"><table class="facts"><thead><tr><th scope="col">รายการ</th><th scope="col">ค่า</th><th scope="col">หมายเหตุ</th></tr></thead><tbody>
+      <tr><th scope="row">ผู้พูดทั้งหมด (ภาษาแม่ + ภาษาที่สอง)</th><td>66 ล้านคน</td><td>Ethnologue ฉบับปี 2026</td></tr>
+      <tr><th scope="row">สัดส่วนเนื้อหาบนเว็บ</th><td>2.8% (อันดับ 8)</td><td>W3Techs, ตุลาคม 2026</td></tr>
+      <tr><th scope="row">ผู้ใช้อินเทอร์เน็ตแยกตามภาษา</th><td>ไม่ติด 10 อันดับแรก</td><td>Internet World Stats, มีนาคม 2020</td></tr>
+      <tr><th scope="row">เวลาออนไลน์</th><td>ผู้ใช้อินเทอร์เน็ตโดยประมาณ 51 ล้านคน เฉลี่ยวันละ 5.7 ชั่วโมง รวม 290 ล้านชั่วโมงต่อวัน (อันดับ 19)</td><td>ประมาณการของ Claude</td></tr>
+    </tbody></table></div>
+  </details>
+</section>
+
+<section class="lang" id="pl" aria-labelledby="h-pl">
+  <p class="kicker">24 · pl</p>
+  <h2 id="h-pl"><span lang="pl">Polski</span><small>ภาษาโปแลนด์</small></h2>
+  <dl class="nums">
+    <div><dt>ผู้พูด</dt><dd>ราว 42.6 ล้านคน</dd></div>
+    <div><dt>เว็บ</dt><dd>1.8% (อันดับ 10)</dd></div>
+    <div><dt>เวลาออนไลน์</dt><dd>ราว 210 ล้านชั่วโมง (ตัวเลขอ้างอิงนอกอันดับ)</dd></div>
+  </dl>
+  <p class="region"><b>พื้นที่</b>โปแลนด์ มีชุมชนชาวโปแลนด์ขนาดใหญ่ในสหราชอาณาจักร เยอรมนี สหรัฐอเมริกา (ชิคาโก) ไอร์แลนด์ และแคนาดา ในลิทัวเนียและยูเครนตะวันตกก็มีผู้พูด</p>
+  <div class="persona">
+    <figure><img src="../../language-intro/img/pl.webp" width="800" height="1000" loading="lazy" decoding="async" alt="เพอร์โซนาสมมติ Marta Kowalczyk อายุ 30 ปี อาศัยอยู่ที่คราคูฟ เป็นนักวิจัย UX ในบริษัทซอฟต์แวร์"></figure>
+    <div class="ptext"><h3>เพอร์โซนา</h3><p>Marta Kowalczyk อายุ 30 ปี อาศัยอยู่ที่คราคูฟ เป็นนักวิจัย UX ในบริษัทซอฟต์แวร์ เวลา 10 โมงเช้าวันอาทิตย์ เธอเปิด iPhone ที่คาเฟ่ ทุกปีในคืนอันเจย์กี เธอจะเสี่ยงทายด้วยขี้ผึ้งกับเพื่อน ๆ เมื่อเรื่องเล่าผ่านอำพันแห่งทะเลบอลติกหรือหอผ้าแห่งคราคูฟไปถึงสี เธอโพสต์ลง Instagram Stories เธอกำลังวางแผนไปเที่ยวเกียวโตในฤดูใบไม้ผลิปีหน้า</p></div>
+  </div>
+  <details><summary>ตัวเลขและหมายเหตุ</summary>
+    <div class="scroll"><table class="facts"><thead><tr><th scope="col">รายการ</th><th scope="col">ค่า</th><th scope="col">หมายเหตุ</th></tr></thead><tbody>
+      <tr><th scope="row">ผู้พูดทั้งหมด (ภาษาแม่ + ภาษาที่สอง)</th><td>ราว 42.6 ล้านคน</td><td>Ethnologue ฉบับที่ 27 (ตัวเลขปี 2021) ตามที่อ้างในหน้า Wikipedia “Polish language” ไม่อยู่ในรายชื่อสาธารณะของ Ethnologue 2026 (ตั้งแต่ 50 ล้านคนขึ้นไป)</td></tr>
+      <tr><th scope="row">สัดส่วนเนื้อหาบนเว็บ</th><td>1.8% (อันดับ 10)</td><td>W3Techs, ตุลาคม 2026</td></tr>
+      <tr><th scope="row">ผู้ใช้อินเทอร์เน็ตแยกตามภาษา</th><td>ไม่ติด 10 อันดับแรก</td><td>Internet World Stats, มีนาคม 2020</td></tr>
+      <tr><th scope="row">เวลาออนไลน์</th><td>ราว 210 ล้านชั่วโมงต่อวัน (ตัวเลขอ้างอิงนอกอันดับ)</td><td>ตัวเลขอ้างอิงนอกอันดับในประมาณการของ Claude</td></tr>
+    </tbody></table></div>
+  </details>
+</section>
+
+<section class="lang" id="uk" aria-labelledby="h-uk">
+  <p class="kicker">25 · uk</p>
+  <h2 id="h-uk"><span lang="uk">Українська</span><small>ภาษายูเครน</small></h2>
+  <dl class="nums">
+    <div><dt>ผู้พูด</dt><dd>ราว 39 ล้านคน</dd></div>
+    <div><dt>เว็บ</dt><dd>0.6% (อันดับ 18)</dd></div>
+    <div><dt>เวลาออนไลน์</dt><dd>ไม่มีการประมาณการ</dd></div>
+  </dl>
+  <p class="region"><b>พื้นที่</b>ภาษาประจำชาติของยูเครน เพราะสงครามตั้งแต่ปี ค.ศ. 2022 ผู้คนจำนวนมากได้อพยพไปยังประเทศในยุโรป เช่น โปแลนด์ เยอรมนี และเช็กเกีย แคนาดาและสหรัฐอเมริกาก็มีชุมชนชาวยูเครนที่เก่าแก่ หลายคนพูดภาษารัสเซียได้ด้วย</p>
+  <div class="persona">
+    <figure><img src="../../language-intro/img/uk.webp" width="800" height="1000" loading="lazy" decoding="async" alt="เพอร์โซนาสมมติ Олена Коваленко (Olena Kovalenko) อายุ 37 ปี อาศัยอยู่ที่ลวิว เป็นครูประถม"></figure>
+    <div class="ptext"><h3>เพอร์โซนา</h3><p><span lang="uk">Олена Коваленко</span> (Olena Kovalenko) อายุ 37 ปี อาศัยอยู่ที่ลวิว เป็นครูประถม เวลา 3 ทุ่ม หลังกล่อมลูกเข้านอน เธอจั่วไพ่หนึ่งใบบนมือถือ Android มากกว่าการอ่านความหมายของไพ่ เธอให้คุณค่ากับเวลาที่ได้อ่านเรื่องเล่าที่เขียนเป็นภาษายูเครนอย่างประณีต เมื่อเรื่องเล่าผ่านภาพวาดดอกไม้แบบเปตรึกิวกาหรือขนแกะแห่งเทือกเขาคาร์เพเทียนไปถึงสี เธอส่งให้น้องสาวที่อยู่ในโปแลนด์ทาง Telegram</p></div>
+  </div>
+  <details><summary>ตัวเลขและหมายเหตุ</summary>
+    <div class="scroll"><table class="facts"><thead><tr><th scope="col">รายการ</th><th scope="col">ค่า</th><th scope="col">หมายเหตุ</th></tr></thead><tbody>
+      <tr><th scope="row">ผู้พูดทั้งหมด (ภาษาแม่ + ภาษาที่สอง)</th><td>ราว 39 ล้านคน</td><td>Ethnologue (2023) หน้า Wikipedia “Ukrainian language” (Ethnologue ฉบับที่ 28) ให้ตัวเลขเดียวกัน</td></tr>
+      <tr><th scope="row">สัดส่วนเนื้อหาบนเว็บ</th><td>0.6% (อันดับ 18)</td><td>W3Techs, ตุลาคม 2026</td></tr>
+      <tr><th scope="row">ผู้ใช้อินเทอร์เน็ตแยกตามภาษา</th><td>ไม่ติด 10 อันดับแรก</td><td>Internet World Stats, มีนาคม 2020</td></tr>
+      <tr><th scope="row">เวลาออนไลน์</th><td>ไม่มีการประมาณการ</td><td>ภาษายูเครนไม่อยู่ทั้งในตารางประมาณการของ Claude และในตัวเลขอ้างอิงนอกอันดับ</td></tr>
+    </tbody></table></div>
+  </details>
+</section>
+
+<section class="lang" id="nl" aria-labelledby="h-nl">
+  <p class="kicker">26 · nl</p>
+  <h2 id="h-nl"><span lang="nl">Nederlands</span><small>ภาษาดัตช์</small></h2>
+  <dl class="nums">
+    <div><dt>ผู้พูด</dt><dd>ราว 30 ล้านคน</dd></div>
+    <div><dt>เว็บ</dt><dd>2.1% (อันดับ 9)</dd></div>
+    <div><dt>เวลาออนไลน์</dt><dd>ราว 130 ล้านชั่วโมง (ตัวเลขอ้างอิงนอกอันดับ)</dd></div>
+  </dl>
+  <p class="region"><b>พื้นที่</b>เนเธอร์แลนด์และเบลเยียมตอนเหนือ (ฟลานเดอส์) ยังเป็นภาษาราชการในซูรินาม และในอารูบาและกือราเซาแถบแคริบเบียน ภาษาแอฟริคานส์ในแอฟริกาใต้แตกแขนงมาจากภาษาดัตช์</p>
+  <div class="persona">
+    <figure><img src="../../language-intro/img/nl.webp" width="800" height="1000" loading="lazy" decoding="async" alt="เพอร์โซนาสมมติ Sanne de Vries อายุ 36 ปี อาศัยอยู่ที่อูเทรกต์ ทำงานด้านนโยบายสภาพภูมิอากาศที่ศาลาว่าการเมือง"></figure>
+    <div class="ptext"><h3>เพอร์โซนา</h3><p>Sanne de Vries อายุ 36 ปี อาศัยอยู่ที่อูเทรกต์ ทำงานด้านนโยบายสภาพภูมิอากาศที่ศาลาว่าการเมือง เวลา 12:30 น. ที่โต๊ะทำงาน เธอเปิดแล็ปท็อปและมาเจอเว็บไซต์นี้ขณะค้นหาชื่อสีหนึ่ง เธอไม่เชื่อเรื่องดูดวง แต่ชอบเรื่องที่มาของชื่อสีมาก เมื่อเรื่องเล่าผ่านสีน้ำเงินเดลฟต์หรือสารสีที่จิตรกรดัตช์ในศตวรรษที่ 17 ใช้ไปถึงสี เธอจะเล่าให้เพื่อนร่วมงานฟัง บางครั้งเธอจั่วไพ่อีกใบก่อนปั่นจักรยานกลับบ้าน</p></div>
+  </div>
+  <details><summary>ตัวเลขและหมายเหตุ</summary>
+    <div class="scroll"><table class="facts"><thead><tr><th scope="col">รายการ</th><th scope="col">ค่า</th><th scope="col">หมายเหตุ</th></tr></thead><tbody>
+      <tr><th scope="row">ผู้พูดทั้งหมด (ภาษาแม่ + ภาษาที่สอง)</th><td>ราว 30 ล้านคน</td><td>ปี 2021 หน้า Wikipedia “Dutch language” (อ้างอิง Eurobarometer และอื่น ๆ) ให้ตัวเลขเดียวกัน</td></tr>
+      <tr><th scope="row">สัดส่วนเนื้อหาบนเว็บ</th><td>2.1% (อันดับ 9)</td><td>W3Techs, ตุลาคม 2026 รวมภาษาเฟลมิช</td></tr>
+      <tr><th scope="row">ผู้ใช้อินเทอร์เน็ตแยกตามภาษา</th><td>ไม่ติด 10 อันดับแรก</td><td>Internet World Stats, มีนาคม 2020</td></tr>
+      <tr><th scope="row">เวลาออนไลน์</th><td>ราว 130 ล้านชั่วโมงต่อวัน (ตัวเลขอ้างอิงนอกอันดับ)</td><td>ตัวเลขอ้างอิงนอกอันดับในประมาณการของ Claude</td></tr>
+    </tbody></table></div>
+  </details>
+</section>
+
+<section class="lang" id="ang" aria-labelledby="h-ang">
+  <p class="kicker">27 · ang</p>
+  <h2 id="h-ang"><span lang="ang">Englisc</span><small>ภาษาอังกฤษเก่า</small></h2>
+  <p class="note">ภาษาสำหรับความสนุกและประวัติศาสตร์ เป็นภาษาอังกฤษในช่วงราว ค.ศ. 450 ถึง 1100 ปัจจุบันไม่มีใครพูดเป็นภาษาแม่แล้ว ช่องตัวเลขจึงไม่มีข้อมูล</p>
+  <dl class="nums">
+    <div><dt>ผู้พูด</dt><dd>ไม่มี</dd></div>
+    <div><dt>เว็บ</dt><dd>ไม่มี</dd></div>
+    <div><dt>เวลาออนไลน์</dt><dd>ไม่มี</dd></div>
+  </dl>
+  <p class="region"><b>ใครที่อาจชอบ</b>นักศึกษาและนักวิชาการด้านวรรณคดีอังกฤษยุคกลางและประวัติศาสตร์ภาษาอังกฤษ ผู้ชื่นชอบ <cite>เบวูล์ฟ</cite> และผลงานของ เจ. อาร์. อาร์. โทลคีน และผู้ที่สนใจอักษรรูนและเทพปกรณัมนอร์ส นอกโลกที่พูดภาษาอังกฤษ ภาษานี้ยังเข้าถึงนักศึกษาวรรณคดีอังกฤษในเยอรมนี กลุ่มประเทศนอร์ดิก และญี่ปุ่น</p>
+  <div class="persona">
+    <figure><img src="../../language-intro/img/ang.webp" width="800" height="1000" loading="lazy" decoding="async" alt="เพอร์โซนาสมมติ Hannah Brooks อายุ 24 ปี อาศัยอยู่ที่ลีดส์ สหราชอาณาจักร เรียนภาษาอังกฤษเก่าในระดับบัณฑิตศึกษา"></figure>
+    <div class="ptext"><h3>เพอร์โซนา</h3><p>Hannah Brooks อายุ 24 ปี อาศัยอยู่ที่ลีดส์ สหราชอาณาจักร เรียนภาษาอังกฤษเก่าในระดับบัณฑิตศึกษา เวลา 5 โมงเย็น เธอเปิดแล็ปท็อปในห้องสมุดมหาวิทยาลัย และมาเจอเว็บไซต์นี้ขณะค้นการผันกริยา เธอวางคำแปลภาษาอังกฤษสมัยใหม่ไว้ข้าง ๆ แล้วสนุกกับการถอดความชื่อไพ่และชื่อสี ประโยคที่ชอบ เธอส่งให้เพื่อนร่วมสัมมนา</p></div>
+  </div>
+  <details><summary>ตัวเลขและหมายเหตุ</summary>
+    <div class="scroll"><table class="facts"><thead><tr><th scope="col">รายการ</th><th scope="col">ค่า</th></tr></thead><tbody>
+      <tr><th scope="row">ผู้พูดทั้งหมด (ภาษาแม่ + ภาษาที่สอง)</th><td>ไม่มี</td></tr>
+      <tr><th scope="row">สัดส่วนเนื้อหาบนเว็บ</th><td>ไม่มี</td></tr>
+      <tr><th scope="row">ผู้ใช้อินเทอร์เน็ตแยกตามภาษา</th><td>ไม่มี</td></tr>
+      <tr><th scope="row">เวลาออนไลน์</th><td>ไม่มี</td></tr>
+    </tbody></table></div>
+  </details>
+</section>
+
+<section class="lang" id="soro" aria-labelledby="h-soro">
+  <p class="kicker">28 · soro</p>
+  <h2 id="h-soro"><span lang="ja">御座候</span><small>โซโรบุง (ภาษาเขียนแบบจดหมายญี่ปุ่นโบราณ)</small></h2>
+  <p class="note">ภาษาสำหรับความสนุกและประวัติศาสตร์ เป็นลีลาการเขียนจดหมายและเอกสารราชการในช่วงราว ค.ศ. 1600 ถึง 1868 โดยวาง <span lang="ja">候</span> (<i>sōrō</i>) ไว้ท้ายประโยค ปัจจุบันไม่มีใครพูดเป็นภาษาแม่แล้ว ช่องตัวเลขจึงไม่มีข้อมูล</p>
+  <dl class="nums">
+    <div><dt>ผู้พูด</dt><dd>ไม่มี</dd></div>
+    <div><dt>เว็บ</dt><dd>ไม่มี</dd></div>
+    <div><dt>เวลาออนไลน์</dt><dd>ไม่มี</dd></div>
+  </dl>
+  <p class="region"><b>ใครที่อาจชอบ</b>ผู้ที่เรียนอ่านเอกสารโบราณและอักษรหวัด ผู้ชื่นชอบนิยายอิงประวัติศาสตร์และละครย้อนยุคของ NHK และนักเรียนนักศึกษาที่รักประวัติศาสตร์ ภาษานี้ยังเข้าถึงชาวต่างชาติที่เรียนภาษาญี่ปุ่นอย่างลึกซึ้งและนักวิจัยประวัติศาสตร์ญี่ปุ่น</p>
+  <div class="persona">
+    <figure><img src="../../language-intro/img/soro.webp" width="800" height="1000" loading="lazy" decoding="async" alt="เพอร์โซนาสมมติ 工藤 誠一 (Seiichi Kudo) อายุ 58 ปี อาศัยอยู่ที่คานาซาวะ ทำงานที่ศาลาว่าการเมือง และเข้าคอร์สเอกสารโบราณทุกสุดสัปดาห์"></figure>
+    <div class="ptext"><h3>เพอร์โซนา</h3><p><span lang="ja">工藤 誠一</span> (Seiichi Kudo) อายุ 58 ปี อาศัยอยู่ที่คานาซาวะ ทำงานที่ศาลาว่าการเมือง และเข้าคอร์สเอกสารโบราณทุกสุดสัปดาห์ เวลาบ่าย 3 โมงวันอาทิตย์ เขาเปิดแท็บเล็ตในห้องนั่งเล่น เขารู้จักเว็บไซต์นี้จากเพื่อนร่วมคอร์ส เขาอ่านออกเสียงชื่อไพ่และชื่อสีที่เขียนด้วยโซโรบุงทีละชื่อ เมื่อเรื่องเล่าผ่านงานย้อมแห่งคางะหรือเมืองเก่ารอบปราสาทไปถึงสี เขาจดชื่อสีนั้นลงในสมุดของคอร์ส</p></div>
+  </div>
+  <details><summary>ตัวเลขและหมายเหตุ</summary>
+    <div class="scroll"><table class="facts"><thead><tr><th scope="col">รายการ</th><th scope="col">ค่า</th></tr></thead><tbody>
+      <tr><th scope="row">ผู้พูดทั้งหมด (ภาษาแม่ + ภาษาที่สอง)</th><td>ไม่มี</td></tr>
+      <tr><th scope="row">สัดส่วนเนื้อหาบนเว็บ</th><td>ไม่มี</td></tr>
+      <tr><th scope="row">ผู้ใช้อินเทอร์เน็ตแยกตามภาษา</th><td>ไม่มี</td></tr>
+      <tr><th scope="row">เวลาออนไลน์</th><td>ไม่มี</td></tr>
+    </tbody></table></div>
+  </details>
+</section>
+
+</div>
+
+</body>
+</html>

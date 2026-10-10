@@ -1,0 +1,798 @@
+<!doctype html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Colors for the Fool’un 28 diliyle tanışın: her dili kaç kişinin konuştuğu ve yanında kurgusal bir persona ile portresi.">
+<link rel="icon" href="../../favicon.png" type="image/png">
+<title>Diller Hakkında</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&family=Noto+Serif:wght@400;500;600&display=swap">
+<style>
+/* Layout: same paper column as language-scale.html; one card per language (numbers, persona + image, details). */
+:root {
+  --bg: #efe6d6;
+  --bg-glow: #fbf6ec;
+  --paper: #f7f1e4;
+  --ink: #2a2118;
+  --muted: #6d5c48;
+  --gold: #a6843d;
+  --gold-soft: #e4d2a4;
+  --line: rgba(166,132,61,.45);
+  --other: #d3c6ae;
+  --grid: rgba(109,92,72,.18);
+  --font-display: Cinzel, "Palatino Linotype", Palatino, serif;
+  --font-body: "Noto Serif", "Times New Roman", Times, serif;
+}
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) {
+  --bg: #1b1610; --bg-glow: #2a2219; --paper: #241e17; --ink: #efe4cf; --muted: #b6a387;
+  --gold: #d2ac5c; --gold-soft: #5a4826; --line: rgba(210,172,92,.4); --other: #4b4134; --grid: rgba(239,228,207,.12);
+  color-scheme: dark; } }
+:root[data-theme="dark"] {
+  --bg: #1b1610; --bg-glow: #2a2219; --paper: #241e17; --ink: #efe4cf; --muted: #b6a387;
+  --gold: #d2ac5c; --gold-soft: #5a4826; --line: rgba(210,172,92,.4); --other: #4b4134; --grid: rgba(239,228,207,.12);
+  color-scheme: dark; }
+
+* { box-sizing: border-box; }
+body {
+  margin: 0; color: var(--ink); background: var(--bg);
+  background-image: radial-gradient(1100px 640px at 50% -8%, var(--bg-glow), var(--bg) 70%);
+  font-family: var(--font-body); font-weight: 500; line-height: 1.85;
+  padding-inline: 16px; padding-block: 0 64px;
+}
+.wrap { width: min(100%, 44rem); margin: 0 auto; }
+a { color: var(--gold); }
+code { font-size: .88em; overflow-wrap: anywhere; }
+.brand { font-family: var(--font-display); font-size: .74rem; letter-spacing: .24em; text-transform: uppercase; padding-block: 1.4rem .2rem; margin: 0; }
+.brand a { color: var(--ink); text-decoration: none; }
+header.hero { text-align: center; padding-block: 2.6rem 1.6rem; }
+.eyebrow { font-family: var(--font-display); letter-spacing: .3em; font-size: .8rem; color: var(--gold); margin: 0; text-transform: uppercase; }
+h1 { font-size: clamp(2rem, 7vw, 2.9rem); letter-spacing: .12em; margin: .3rem 0 .6rem; font-weight: 600; text-wrap: balance; }
+.lede { color: var(--muted); max-width: 34rem; margin: 0 auto; text-wrap: pretty; }
+.ornament { display: flex; align-items: center; gap: .8rem; justify-content: center; color: var(--gold); margin: 1.6rem 0 0; }
+.ornament::before, .ornament::after { content: ""; height: 1px; width: 4.5rem; background: var(--line); }
+
+.topbar { display: flex; justify-content: space-between; align-items: baseline; gap: 1rem; padding-block: 1.4rem .2rem; }
+.topbar .brand { padding-block: 0; }
+.switch { font-size: .82rem; }
+.switch a, .switch span { margin-left: .7rem; }
+.switch span { color: var(--muted); }
+
+.about { font-size: .86rem; color: var(--muted); margin: 0 0 1rem; }
+.about p { margin: .5rem 0; }
+.langs { display: flex; flex-wrap: wrap; gap: .4rem; justify-content: center; margin: 1.2rem 0 0; padding: 0; list-style: none; }
+.langs li { border: 1px solid var(--line); font-size: .85rem; background: var(--paper); }
+.langs li a { display: block; padding: .1rem .7rem; color: var(--ink); text-decoration: none; }
+.langs li a:hover, .langs li a:focus-visible { color: var(--gold); }
+.langs li:nth-last-child(-n+2) { border-style: dashed; }
+.langs li:nth-last-child(-n+2) a { color: var(--muted); }
+
+section.chart, section.lang { margin-top: 3.4rem; scroll-margin-top: 1rem; }
+.chart h2, .lang h2 { font-size: 1.3rem; letter-spacing: .08em; margin: 0; font-weight: 600; text-wrap: balance; }
+.lang h2 small { display: block; font-size: .8rem; letter-spacing: .04em; color: var(--muted); font-weight: 500; }
+.kicker { font-family: var(--font-display); color: var(--gold); letter-spacing: .2em; font-size: .78rem; margin: 0 0 .15rem; }
+p.note { color: var(--muted); font-size: .88rem; margin: .4rem 0 1rem; max-width: 40rem; }
+.chart ul { font-size: .88rem; color: var(--muted); padding-left: 1.1rem; }
+
+.scroll { overflow-x: auto; -webkit-overflow-scrolling: touch; border: 1px solid var(--line); background: var(--paper); }
+table { border-collapse: collapse; font-size: .8rem; line-height: 1.55; }
+table.overview { min-width: 42rem; width: 100%; }
+th, td { padding: .45rem .6rem; border-bottom: 1px solid var(--grid); text-align: left; vertical-align: top; }
+thead th { font-weight: 700; border-bottom: 1px solid var(--line); background: var(--bg-glow); }
+tbody th { font-weight: 700; white-space: nowrap; }
+tbody th a { color: var(--ink); text-decoration: none; }
+tbody tr:last-child th, tbody tr:last-child td { border-bottom: 0; }
+table.overview td { font-variant-numeric: tabular-nums; }
+
+.lang { border-top: 1px solid var(--line); padding-top: 1.6rem; }
+.nums { display: flex; flex-wrap: wrap; gap: 1px; background: var(--line); border: 1px solid var(--line); margin: 1rem 0; }
+.nums div { flex: 1 1 7.6rem; background: var(--paper); padding: .55rem .7rem .6rem; min-width: 0; }
+.nums dt { font-family: var(--font-body); font-size: .72rem; color: var(--muted); letter-spacing: .06em; }
+.nums dd { margin: 0; font-size: .9rem; line-height: 1.45; font-variant-numeric: tabular-nums; overflow-wrap: anywhere; }
+.region { font-size: .9rem; margin: 0 0 1rem; }
+.region b { color: var(--gold); font-weight: 700; margin-right: .6rem; }
+
+.persona { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 15rem); gap: 1.2rem; align-items: start; margin: 1.2rem 0 .8rem; }
+.persona figure { grid-column: 2; grid-row: 1; margin: 0; }
+.persona .ptext { grid-column: 1; grid-row: 1; }
+.persona img { display: block; width: 100%; height: auto; border: 1px solid var(--line); background: var(--paper); }
+.persona h3 { font-size: 1rem; letter-spacing: .08em; margin: 0 0 .3rem; font-weight: 600; }
+.persona p { margin: 0; font-size: .94rem; text-wrap: pretty; }
+@media (max-width: 36rem) {
+  .persona { grid-template-columns: minmax(0, 1fr); }
+  .persona figure, .persona .ptext { grid-column: 1; grid-row: auto; }
+  .persona figure { max-width: 22rem; }
+}
+
+details { border-top: 1px dashed var(--line); padding: .35rem 0; font-size: .88rem; }
+details:last-of-type { border-bottom: 1px dashed var(--line); }
+summary { cursor: pointer; color: var(--gold); letter-spacing: .06em; }
+details[open] summary { margin-bottom: .5rem; }
+details p { margin: .2rem 0 .8rem; color: var(--ink); }
+details h4 { font-size: .86rem; margin: .6rem 0 0; color: var(--muted); font-weight: 700; }
+details pre { white-space: pre-wrap; overflow-wrap: anywhere; font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: .78rem; line-height: 1.6; background: var(--paper); border: 1px solid var(--line); padding: .7rem .8rem; margin: 0 0 .6rem; }
+table.facts { width: 100%; min-width: 34rem; }
+table.facts tbody th { white-space: normal; min-width: 8rem; }
+
+footer { margin-top: 4rem; border-top: 1px solid var(--line); padding-top: 1.2rem; font-size: .8rem; color: var(--muted); }
+footer ul { padding-left: 1.1rem; margin: .4rem 0 1rem; }
+footer ul ul { margin: .2rem 0 .3rem; }
+footer li { margin: .15rem 0; overflow-wrap: anywhere; }
+
+/* Per-language adjustments (generated by render.py). */
+html[lang="tr"] body * {
+  letter-spacing: 0 !important;
+  text-indent: 0 !important;
+}
+html[lang="tr"] .brand {
+  letter-spacing: 0.22em !important;
+}
+</style>
+</head>
+<body>
+
+<div class="wrap">
+  <div class="topbar"><p class="brand"><a href="../">Colors for the Fool</a></p><nav class="switch" aria-label="İlgili sayfalar"><span>Diller Hakkında</span></nav></div>
+
+  <header class="hero">
+    <p class="eyebrow">Languages &amp; Readers</p>
+    <h1>Diller Hakkında</h1>
+    <p class="lede">Colors for the Fool’un 28 dilini, her birini kaç kişinin konuştuğu ve bu fala kimlerin gelebileceği üzerinden tanıtıyoruz (9 Ekim 2026 itibarıyla).</p>
+    <div class="ornament">✦</div>
+  </header>
+
+  <nav aria-label="Diller">
+    <ul class="langs"><li><a href="#ja"><span lang="ja">日本語</span></a></li><li><a href="#en"><span lang="en">English</span></a></li><li><a href="#zh-hans"><span lang="zh-Hans">简体中文</span></a></li><li><a href="#zh"><span lang="zh-Hant">繁體中文</span></a></li><li><a href="#hi"><span lang="hi">हिन्दी</span></a></li><li><a href="#es"><span lang="es">Español</span></a></li><li><a href="#ar"><span lang="ar" dir="rtl">العربية</span></a></li><li><a href="#fr"><span lang="fr">Français</span></a></li><li><a href="#bn"><span lang="bn">বাংলা</span></a></li><li><a href="#pt"><span lang="pt">Português</span></a></li><li><a href="#id"><span lang="id">Bahasa Indonesia</span></a></li><li><a href="#ms"><span lang="ms">Bahasa Melayu</span></a></li><li><a href="#ur"><span lang="ur" dir="rtl">اردو</span></a></li><li><a href="#ru"><span lang="ru">Русский</span></a></li><li><a href="#de"><span lang="de">Deutsch</span></a></li><li><a href="#vi"><span lang="vi">Tiếng Việt</span></a></li><li><a href="#sw"><span lang="sw">Kiswahili</span></a></li><li><a href="#tr"><span lang="tr">Türkçe</span></a></li><li><a href="#tl"><span lang="fil">Filipino</span></a></li><li><a href="#fa"><span lang="fa" dir="rtl">فارسی</span></a></li><li><a href="#ko"><span lang="ko">한국어</span></a></li><li><a href="#th"><span lang="th">ไทย</span></a></li><li><a href="#it"><span lang="it">Italiano</span></a></li><li><a href="#pl"><span lang="pl">Polski</span></a></li><li><a href="#uk"><span lang="uk">Українська</span></a></li><li><a href="#nl"><span lang="nl">Nederlands</span></a></li><li><a href="#ang"><span lang="ang">Englisc</span></a></li><li><a href="#soro"><span lang="ja">御座候</span></a></li></ul>
+  </nav>
+
+<section class="lang" id="ja" aria-labelledby="h-ja">
+  <p class="kicker">01 · ja</p>
+  <h2 id="h-ja"><span lang="ja">日本語</span><small>Japonca</small></h2>
+  <dl class="nums">
+    <div><dt>Konuşan</dt><dd>126 milyon</dd></div>
+    <div><dt>Web</dt><dd>%4,9 (4. sıra)</dd></div>
+    <div><dt>Çevrim içi süre</dt><dd>390 milyon saat</dd></div>
+  </dl>
+  <p class="region"><b>Nerede</b>Japonya. Japonya dışında, Brezilya’daki ve ABD’deki (Hawaii, Kaliforniya) Japon kökenliler ile yurt dışında yaşayan Japonlar okur. Dünyanın dört bir yanında Japonca öğrenen de çoktur.</p>
+  <div class="persona">
+    <figure><img src="../../language-intro/img/ja.webp" width="800" height="1000" loading="lazy" decoding="async" alt="Kurgusal bir persona. 森下 由佳 (Yuka Morishita), 34 yaşında, Fukuoka’da yaşıyor. Bir genel hastanede tıbbi sekreter."></figure>
+    <div class="ptext"><h3>Persona</h3><p><span lang="ja">森下 由佳</span> (Yuka Morishita), 34 yaşında, Fukuoka’da yaşıyor. Bir genel hastanede tıbbi sekreter. Sabah 7.40’ta metroda oturduğu yerde iPhone’unu açıyor ve bir Instagram Reel’inden buraya geliyor. Fala çok ciddi bakmıyor ama tutmadığında gülüp geçecek kadar seviyor. Tek bir kart çekiyor; ters gelirse “bugün kendimi zorlamayacağım bir gün” diye karar veriyor. Hikâye, Hakata dokuması ya da Chikugo çivit boyacılığı gibi tanıdık yerlerden ve zanaatlerden geçerek rengine vardığında çok seviniyor. Beğendiği rengi o günkü mendilinin ya da ojesinin rengi için bir ipucu olarak kullanıyor. Bazen bir iş arkadaşına LINE’dan yazıyor: “Bugün ben çivit mavisiymişim.”</p></div>
+  </div>
+  <details><summary>Sayılar ve notlar</summary>
+    <div class="scroll"><table class="facts"><thead><tr><th scope="col">Başlık</th><th scope="col">Değer</th><th scope="col">Not</th></tr></thead><tbody>
+      <tr><th scope="row">Toplam konuşan (ana dil + ikinci dil)</th><td>126 milyon</td><td>Ethnologue, 2026 baskısı</td></tr>
+      <tr><th scope="row">Web içeriğindeki payı</th><td>%4,9 (4. sıra)</td><td>W3Techs, Ekim 2026</td></tr>
+      <tr><th scope="row">Dile göre internet kullanıcıları</th><td>%2,6 (8. sıra)</td><td>Internet World Stats, Mart 2020</td></tr>
+      <tr><th scope="row">Çevrim içi süre</th><td>Tahminen 100 milyon internet kullanıcısı, günde ortalama 3,9 saat, toplam günde 390 milyon saat (18. sıra)</td><td>Claude tahmini</td></tr>
+    </tbody></table></div>
+  </details>
+</section>
+
+<section class="lang" id="en" aria-labelledby="h-en">
+  <p class="kicker">02 · en</p>
+  <h2 id="h-en"><span lang="en">English</span><small>İngilizce</small></h2>
+  <dl class="nums">
+    <div><dt>Konuşan</dt><dd>1,493 milyar (1. sıra)</dd></div>
+    <div><dt>Web</dt><dd>%49,5 (1. sıra)</dd></div>
+    <div><dt>Çevrim içi süre</dt><dd>5,78 milyar saat</dd></div>
+  </dl>
+  <p class="region"><b>Nerede</b>ABD, Birleşik Krallık, Kanada, Avustralya, Yeni Zelanda ve İrlanda’da ana dil olarak konuşulur. Hindistan, Filipinler, Nijerya, Singapur, Kenya ve başka yerlerde resmî dil ya da eğitim dilidir. Dünyanın her yerinde ikinci dil olarak bilenler İngilizce sayfaları okur.</p>
+  <div class="persona">
+    <figure><img src="../../language-intro/img/en.webp" width="800" height="1000" loading="lazy" decoding="async" alt="Kurgusal bir persona. Maya Reynolds, 29 yaşında, Birleşik Krallık’ta Manchester’da yaşıyor. Bir ilkokulda öğretmen yardımcısı."></figure>
+    <div class="ptext"><h3>Persona</h3><p>Maya Reynolds, 29 yaşında, Birleşik Krallık’ta Manchester’da yaşıyor. Bir ilkokulda öğretmen yardımcısı. Gece 10’da yatağında Android telefonunu açıyor. TikTok’ta sık sık tarot videoları izliyor ve tek kart çekmenin kolaylığını seviyor. Kartın anlamını okuyor ve hikâyenin sonunda rengin adının belirdiği anı çok seviyor. Rengin hikâyesi İskoç devedikeni ya da Yorkshire yünü gibi Britanya’dan yerlere bağlandığında bağlantıyı arkadaşlarına gönderiyor. Kart stilini değiştirip Art Nouveau ile vitrayı karşılaştırmaktan da keyif alıyor.</p></div>
+  </div>
+  <details><summary>Sayılar ve notlar</summary>
+    <div class="scroll"><table class="facts"><thead><tr><th scope="col">Başlık</th><th scope="col">Değer</th><th scope="col">Not</th></tr></thead><tbody>
+      <tr><th scope="row">Toplam konuşan (ana dil + ikinci dil)</th><td>1,493 milyar (1. sıra)</td><td>Ethnologue, 2026 baskısı</td></tr>
+      <tr><th scope="row">Web içeriğindeki payı</th><td>%49,5 (1. sıra)</td><td>W3Techs, Ekim 2026</td></tr>
+      <tr><th scope="row">Dile göre internet kullanıcıları</th><td>%25,9 (1. sıra)</td><td>Internet World Stats, Mart 2020</td></tr>
+      <tr><th scope="row">Çevrim içi süre</th><td>Tahminen 850 milyon internet kullanıcısı, günde ortalama 6,8 saat, toplam günde 5,78 milyar saat (2. sıra)</td><td>Claude tahmini. Yalnızca ağırlıklı olarak İngilizce okuyanları sayıyor; bir nota göre ikinci dil olarak okuyanlar da katılırsa 1. sırada olurdu</td></tr>
+    </tbody></table></div>
+  </details>
+</section>
+
+<section class="lang" id="zh-hans" aria-labelledby="h-zh-hans">
+  <p class="kicker">03 · zh-hans</p>
+  <h2 id="h-zh-hans"><span lang="zh-Hans">简体中文</span><small>Basitleştirilmiş Çince</small></h2>
+  <dl class="nums">
+    <div><dt>Konuşan</dt><dd>1,183 milyar (Mandarin)</dd></div>
+    <div><dt>Web</dt><dd>%1,3 (12. sıra, tüm Çince)</dd></div>
+    <div><dt>Çevrim içi süre</dt><dd>6,20 milyar saat (Basitleştirilmiş + Geleneksel)</dd></div>
+  </dl>
+  <p class="region"><b>Nerede</b>Okulların ve devletin yazısı olduğu Çin anakarası. Singapur ve Malezya’daki Çin topluluklarında da basitleştirilmiş karakterler standarttır. Kuzey Amerika, Avustralya, Avrupa ve Güneydoğu Asya’da büyük Çin toplulukları, ayrıca yurt dışında okuyan pek çok öğrenci vardır.</p>
+  <div class="persona">
+    <figure><img src="../../language-intro/img/zh-hans.webp" width="800" height="1000" loading="lazy" decoding="async" alt="Kurgusal bir persona. 林悦 (Lin Yue), 26 yaşında, Chengdu’da yaşıyor. Bir oyun şirketinde UI tasarımcısı."></figure>
+    <div class="ptext"><h3>Persona</h3><p><span lang="zh-Hans">林悦</span> (Lin Yue), 26 yaşında, Chengdu’da yaşıyor. Bir oyun şirketinde UI tasarımcısı. Saat 12.30’da, öğle arasında Huawei telefonunda Xiaohongshu’da gelecek ayki Kyoto gezisini araştırırken bir gezginin notları sayesinde bu siteyi buldu. İşi gereği renk adlarına ve paletlere karşı duyarlı. Tek bir kart çekiyor; hikâye Song hanedanı seladonundan ya da Shu brokarından (Sichuan brokarı) geçerek rengine vardığında ekranı kaydedip WeChat’ten iş arkadaşlarına gönderiyor. Kartları mürekkep resmi stilinde görmeyi seviyor.</p></div>
+  </div>
+  <details><summary>Sayılar ve notlar</summary>
+    <div class="scroll"><table class="facts"><thead><tr><th scope="col">Başlık</th><th scope="col">Değer</th><th scope="col">Not</th></tr></thead><tbody>
+      <tr><th scope="row">Toplam konuşan (ana dil + ikinci dil)</th><td>1,183 milyar (Mandarin)</td><td>Ethnologue, 2026 baskısı. Geleneksel ve Basitleştirilmiş Çince, Mandarin olarak yalnızca bir kez sayılıyor</td></tr>
+      <tr><th scope="row">Web içeriğindeki payı</th><td>%1,3 (12. sıra, tüm Çince)</td><td>W3Techs Basitleştirilmiş ve Geleneksel Çinceyi ayırmıyor</td></tr>
+      <tr><th scope="row">Dile göre internet kullanıcıları</th><td>%19,4 (2. sıra, tüm Çince)</td><td>Internet World Stats, Mart 2020</td></tr>
+      <tr><th scope="row">Çevrim içi süre</th><td>Tahminen 1,17 milyar internet kullanıcısı, günde ortalama 5,3 saat, toplam günde 6,20 milyar saat (1. sıra, Basitleştirilmiş + Geleneksel)</td><td>Claude tahmini. Çin anakarasının 1,11 milyarına Tayvan, Hong Kong ve yurt dışındaki Çinliler ekleniyor</td></tr>
+    </tbody></table></div>
+  </details>
+</section>
+
+<section class="lang" id="zh" aria-labelledby="h-zh">
+  <p class="kicker">04 · zh</p>
+  <h2 id="h-zh"><span lang="zh-Hant">繁體中文</span><small>Geleneksel Çince</small></h2>
+  <dl class="nums">
+    <div><dt>Konuşan</dt><dd>Basitleştirilmiş Çince ile birlikte Mandarin olarak sayılır (1,183 milyar)</dd></div>
+    <div><dt>Web</dt><dd>%1,3 (12. sıra, tüm Çince)</dd></div>
+    <div><dt>Çevrim içi süre</dt><dd>Basitleştirilmiş Çince ile birlikte toplam günde 6,20 milyar saat (1. sıra)</dd></div>
+  </dl>
+  <p class="region"><b>Nerede</b>Tayvan, Hong Kong ve Makao’da kullanılan yazı. Kuzey Amerika ve Avustralya’daki köklü Çin topluluklarında da pek çok kişi geleneksel karakterleri kullanır. Tayvan’da Standart Çince (Huayu) konuşulur; Hong Kong ve Makao’da konuşma dili Kantoncadır, yazıda ise geleneksel karakterli yazı standardı kullanılır.</p>
+  <div class="persona">
+    <figure><img src="../../language-intro/img/zh.webp" width="800" height="1000" loading="lazy" decoding="async" alt="Kurgusal bir persona. 陳怡君 (Chen Yi-chun), 31 yaşında, Taichung’da yaşıyor. Bir bankada gişe memuru."></figure>
+    <div class="ptext"><h3>Persona</h3><p><span lang="zh-Hant">陳怡君</span> (Chen Yi-chun), 31 yaşında, Taichung’da yaşıyor. Bir bankada gişe memuru. Gece 11’de, yatmadan önce iPhone’unda gelecek ayki Kanazawa gezisini planlıyor. Siteyi bir arkadaşının LINE’dan gönderdiği bağlantıdan açtı. Tapınakta fal kâğıdı çeker gibi bir ruhla tek bir kart çekiyor. Hikâye Kaga yuzen boyacılığı ya da varak altın gibi Japon zanaatlerinden geçerek rengine vardığında gezisine görülecek bir yer daha ekleniyor. Sonuç sayfasını LINE’dan arkadaşına geri gönderiyor.</p></div>
+  </div>
+  <details><summary>Sayılar ve notlar</summary>
+    <div class="scroll"><table class="facts"><thead><tr><th scope="col">Başlık</th><th scope="col">Değer</th><th scope="col">Not</th></tr></thead><tbody>
+      <tr><th scope="row">Toplam konuşan (ana dil + ikinci dil)</th><td>Basitleştirilmiş Çince ile birlikte Mandarin olarak sayılır (1,183 milyar)</td><td>Geleneksel ve Basitleştirilmiş Çince, Mandarin olarak yalnızca bir kez sayılıyor. Yalnızca Geleneksel Çince okuyanlara dair veri yok</td></tr>
+      <tr><th scope="row">Web içeriğindeki payı</th><td>%1,3 (12. sıra, tüm Çince)</td><td>W3Techs Basitleştirilmiş ve Geleneksel Çinceyi ayırmıyor</td></tr>
+      <tr><th scope="row">Dile göre internet kullanıcıları</th><td>%19,4 (2. sıra, tüm Çince)</td><td>Internet World Stats, Mart 2020</td></tr>
+      <tr><th scope="row">Çevrim içi süre</th><td>Basitleştirilmiş Çince ile birlikte toplam günde 6,20 milyar saat (1. sıra)</td><td>Claude tahmini. Yalnızca Geleneksel Çince için ayrı bir tahmin yok</td></tr>
+    </tbody></table></div>
+  </details>
+</section>
+
+<section class="lang" id="hi" aria-labelledby="h-hi">
+  <p class="kicker">05 · hi</p>
+  <h2 id="h-hi"><span lang="hi">हिन्दी</span><small>Hintçe</small></h2>
+  <dl class="nums">
+    <div><dt>Konuşan</dt><dd>611 milyon (3. sıra)</dd></div>
+    <div><dt>Web</dt><dd>%0,1’in altında (38. sıra)</dd></div>
+    <div><dt>Çevrim içi süre</dt><dd>1,74 milyar saat</dd></div>
+  </dl>
+  <p class="region"><b>Nerede</b>Hindistan’ın kuzeyi ve ortası (Uttar Pradeş, Bihar, Racastan, Madhya Pradeş, Delhi ve diğerleri). Nepal ve Fiji’de de konuşanları vardır. Körfez ülkelerinde, Birleşik Krallık’ta, ABD’de ve Kanada’da büyük Hint toplulukları yaşar.</p>
+  <div class="persona">
+    <figure><img src="../../language-intro/img/hi.webp" width="800" height="1000" loading="lazy" decoding="async" alt="Kurgusal bir persona. Neha Verma, 24 yaşında, Jaipur’da yaşıyor. Yeminli mali müşavirlik stajyeri."></figure>
+    <div class="ptext"><h3>Persona</h3><p>Neha Verma, 24 yaşında, Jaipur’da yaşıyor. Yeminli mali müşavirlik stajyeri. Sabah 8’de, metroya binmeden önce Redmi telefonunda, annesinin her gün baktığı rashifal’ın devamıymış gibi tek bir kart çekiyor. İngilizce de okuyabiliyor ama renk hikâyelerinin Hintçede daha çok aklında kaldığını hissediyor. Hikâye Jaipur’un “Pembe Şehir” binalarından ya da Racastan’ın bağlama boyasından geçerek rengine vardığında o renkte bir dupatta seçiyor. Beğendiği sonuçları WhatsApp’tan ablasına gönderiyor.</p></div>
+  </div>
+  <details><summary>Sayılar ve notlar</summary>
+    <div class="scroll"><table class="facts"><thead><tr><th scope="col">Başlık</th><th scope="col">Değer</th><th scope="col">Not</th></tr></thead><tbody>
+      <tr><th scope="row">Toplam konuşan (ana dil + ikinci dil)</th><td>611 milyon (3. sıra)</td><td>Ethnologue, 2026 baskısı</td></tr>
+      <tr><th scope="row">Web içeriğindeki payı</th><td>%0,1’in altında (38. sıra)</td><td>W3Techs, Ekim 2026. Konuşan sayısına göre web sayfası çok az</td></tr>
+      <tr><th scope="row">Dile göre internet kullanıcıları</th><td>İlk 10’da değil</td><td>Internet World Stats, Mart 2020</td></tr>
+      <tr><th scope="row">Çevrim içi süre</th><td>Tahminen 290 milyon internet kullanıcısı, günde ortalama 6,0 saat, toplam günde 1,74 milyar saat (6. sıra)</td><td>Claude tahmini. Hindistan’daki kullanıcıların yaklaşık %35’inin Hintçe kullandığı varsayılıyor. En sallantılı varsayım bu</td></tr>
+    </tbody></table></div>
+  </details>
+</section>
+
+<section class="lang" id="es" aria-labelledby="h-es">
+  <p class="kicker">06 · es</p>
+  <h2 id="h-es"><span lang="es">Español</span><small>İspanyolca</small></h2>
+  <dl class="nums">
+    <div><dt>Konuşan</dt><dd>561 milyon (4. sıra)</dd></div>
+    <div><dt>Web</dt><dd>%6,0 (2. sıra)</dd></div>
+    <div><dt>Çevrim içi süre</dt><dd>2,96 milyar saat</dd></div>
+  </dl>
+  <p class="region"><b>Nerede</b>İspanya ve Meksika, Kolombiya, Arjantin, Peru, Şili ve Venezuela dahil Latin Amerika’nın pek çok ülkesi. ABD’de de evde İspanyolca konuşan çok kişi var (sayı burada doğrulanmadı). Ekvator Ginesi’nin de resmî dilidir.</p>
+  <div class="persona">
+    <figure><img src="../../language-intro/img/es.webp" width="800" height="1000" loading="lazy" decoding="async" alt="Kurgusal bir persona. Valeria Ortiz, 32 yaşında, Meksika’da Guadalajara’da yaşıyor. Diş hijyenisti."></figure>
+    <div class="ptext"><h3>Persona</h3><p>Valeria Ortiz, 32 yaşında, Meksika’da Guadalajara’da yaşıyor. Diş hijyenisti. Akşam 9.30’da, işten sonra kanepede Android telefonunu açıyor; siteye TikTok’ta gördüğü bir tarot hikâyesinden geldi. Kartın anlamını okumaktan keyif alıyor ama en sevdiği kısım sondaki renk adını beklemek. Hikâye Meksika koşinilinden (kaktüs üzerinde yaşayan bir böcekten elde edilen kırmızı) geçerek kızıla vardığında hemen WhatsApp’tan küçük kız kardeşine gönderiyor. Yıl sonunda iç çamaşırının rengini de bu siteyle seçmeyi düşünüyor.</p></div>
+  </div>
+  <details><summary>Sayılar ve notlar</summary>
+    <div class="scroll"><table class="facts"><thead><tr><th scope="col">Başlık</th><th scope="col">Değer</th><th scope="col">Not</th></tr></thead><tbody>
+      <tr><th scope="row">Toplam konuşan (ana dil + ikinci dil)</th><td>561 milyon (4. sıra)</td><td>Ethnologue, 2026 baskısı</td></tr>
+      <tr><th scope="row">Web içeriğindeki payı</th><td>%6,0 (2. sıra)</td><td>W3Techs, Ekim 2026</td></tr>
+      <tr><th scope="row">Dile göre internet kullanıcıları</th><td>%7,9 (3. sıra)</td><td>Internet World Stats, Mart 2020</td></tr>
+      <tr><th scope="row">Çevrim içi süre</th><td>Tahminen 390 milyon internet kullanıcısı, günde ortalama 7,6 saat, toplam günde 2,96 milyar saat (3. sıra)</td><td>Claude tahmini. Meksika, İspanya, Kolombiya, Arjantin ve diğerleri ile ABD’de ağırlıklı olarak İspanyolca konuşanlar</td></tr>
+    </tbody></table></div>
+  </details>
+</section>
+
+<section class="lang" id="ar" aria-labelledby="h-ar">
+  <p class="kicker">07 · ar</p>
+  <h2 id="h-ar"><span lang="ar" dir="rtl">العربية</span><small>Arapça (Modern Standart Arapça)</small></h2>
+  <dl class="nums">
+    <div><dt>Konuşan</dt><dd>335 milyon (5. sıra, Modern Standart Arapça)</dd></div>
+    <div><dt>Web</dt><dd>%0,6 (19. sıra)</dd></div>
+    <div><dt>Çevrim içi süre</dt><dd>2,31 milyar saat</dd></div>
+  </dl>
+  <p class="region"><b>Nerede</b>Orta Doğu ve Kuzey Afrika’da Mısır, Suudi Arabistan, Irak, Cezayir, Fas, Sudan, Suriye, Ürdün ve BAE dahil 22 kadar ülkenin resmî dili. Avrupa’da (Fransa, Almanya ve başka yerlerde) ve Kuzey Amerika’da da çok sayıda Arapça konuşan yaşar. Site sağdan sola düzenlenir.</p>
+  <div class="persona">
+    <figure><img src="../../language-intro/img/ar.webp" width="800" height="1000" loading="lazy" decoding="async" alt="Kurgusal bir persona. Nour Haddad, 28 yaşında, Ürdün’de Amman’da yaşıyor. Bir mimari tasarım ofisinde çalışıyor."></figure>
+    <div class="ptext"><h3>Persona</h3><p>Nour Haddad, 28 yaşında, Ürdün’de Amman’da yaşıyor. Bir mimari tasarım ofisinde çalışıyor. Akşam 8’de evinin balkonunda iPhone’unu açıyor. Fala inanmıyor; kart resimlerini ve hikâyeyi “kısa bir okuma” olarak seviyor. Hikâye İslam mimarisi çinilerinin mavisinden ya da Petra kayalarının gül renginden geçerek rengine vardığında, işteki renk düzenleri için not alıyor. Bazen sonuç sayfasını mimar arkadaşlarının WhatsApp grubuna gönderiyor.</p></div>
+  </div>
+  <details><summary>Sayılar ve notlar</summary>
+    <div class="scroll"><table class="facts"><thead><tr><th scope="col">Başlık</th><th scope="col">Değer</th><th scope="col">Not</th></tr></thead><tbody>
+      <tr><th scope="row">Toplam konuşan (ana dil + ikinci dil)</th><td>335 milyon (5. sıra, Modern Standart Arapça)</td><td>Ethnologue, 2026 baskısı</td></tr>
+      <tr><th scope="row">Web içeriğindeki payı</th><td>%0,6 (19. sıra)</td><td>W3Techs, Ekim 2026</td></tr>
+      <tr><th scope="row">Dile göre internet kullanıcıları</th><td>%5,2 (4. sıra)</td><td>Internet World Stats, Mart 2020</td></tr>
+      <tr><th scope="row">Çevrim içi süre</th><td>Tahminen 330 milyon internet kullanıcısı, günde ortalama 7,0 saat, toplam günde 2,31 milyar saat (4. sıra)</td><td>Claude tahmini. Mısır, Suudi Arabistan, Irak, Cezayir, Fas ve diğerleri</td></tr>
+    </tbody></table></div>
+  </details>
+</section>
+
+<section class="lang" id="fr" aria-labelledby="h-fr">
+  <p class="kicker">08 · fr</p>
+  <h2 id="h-fr"><span lang="fr">Français</span><small>Fransızca</small></h2>
+  <dl class="nums">
+    <div><dt>Konuşan</dt><dd>334 milyon (6. sıra)</dd></div>
+    <div><dt>Web</dt><dd>%4,5 (5. sıra)</dd></div>
+    <div><dt>Çevrim içi süre</dt><dd>750 milyon saat</dd></div>
+  </dl>
+  <p class="region"><b>Nerede</b>Fransa, Belçika’nın güneyi, İsviçre’nin batısı, Kanada’da Quebec ve Lüksemburg. Batı ve Orta Afrika’da (Fildişi Sahili, Senegal, Kongo Demokratik Cumhuriyeti, Kamerun ve diğerleri) okulların ve devletin dilidir. Kuzey Afrika’da Fas, Cezayir ve Tunus’ta da yaygın olarak kullanılır.</p>
+  <div class="persona">
+    <figure><img src="../../language-intro/img/fr.webp" width="800" height="1000" loading="lazy" decoding="async" alt="Kurgusal bir persona. Hélène Garnier, 41 yaşında, Lyon’da yaşıyor. Bir ciltleme ve kâğıt koruma atölyesi işletiyor."></figure>
+    <div class="ptext"><h3>Persona</h3><p>Hélène Garnier, 41 yaşında, Lyon’da yaşıyor. Bir ciltleme ve kâğıt koruma atölyesi işletiyor. Pazar sabahı saat 10’da atölyedeki tezgâhında tabletini açıyor. Büyükannesinin evindeki Marsilya destesini hatırlıyor; Büyük Arkana’nın adları ona tanıdık geliyor. Hikâye Lyon’un ipek boyacılığından ya da Parisli bir boya tüccarından geçerek rengine vardığında, bir sonraki cildinin forzası için rengi buna göre seçiyor. Art Nouveau stilini tercih ediyor.</p></div>
+  </div>
+  <details><summary>Sayılar ve notlar</summary>
+    <div class="scroll"><table class="facts"><thead><tr><th scope="col">Başlık</th><th scope="col">Değer</th><th scope="col">Not</th></tr></thead><tbody>
+      <tr><th scope="row">Toplam konuşan (ana dil + ikinci dil)</th><td>334 milyon (6. sıra)</td><td>Ethnologue, 2026 baskısı</td></tr>
+      <tr><th scope="row">Web içeriğindeki payı</th><td>%4,5 (5. sıra)</td><td>W3Techs, Ekim 2026</td></tr>
+      <tr><th scope="row">Dile göre internet kullanıcıları</th><td>%3,3 (7. sıra)</td><td>Internet World Stats, Mart 2020</td></tr>
+      <tr><th scope="row">Çevrim içi süre</th><td>Tahminen 125 milyon internet kullanıcısı, günde ortalama 6,0 saat, toplam günde 750 milyon saat (9. sıra)</td><td>Claude tahmini. Fransa, Belçika ve Quebec ile Fransızca konuşulan Afrika</td></tr>
+    </tbody></table></div>
+  </details>
+</section>
+
+<section class="lang" id="bn" aria-labelledby="h-bn">
+  <p class="kicker">09 · bn</p>
+  <h2 id="h-bn"><span lang="bn">বাংলা</span><small>Bengalce</small></h2>
+  <dl class="nums">
+    <div><dt>Konuşan</dt><dd>274 milyon (7. sıra)</dd></div>
+    <div><dt>Web</dt><dd>%0,1’in altında (39. sıra)</dd></div>
+    <div><dt>Çevrim içi süre</dt><dd>610 milyon saat</dd></div>
+  </dl>
+  <p class="region"><b>Nerede</b>Bangladeş (ulusal dil) ve Hindistan’da Batı Bengal, Tripura ve Assam’ın bazı kısımları. Birleşik Krallık’ta (Doğu Londra), Körfez ülkelerinde, ABD’de ve Malezya’da Bangladeşli pek çok kişi yaşar.</p>
+  <div class="persona">
+    <figure><img src="../../language-intro/img/bn.webp" width="800" height="1000" loading="lazy" decoding="async" alt="Kurgusal bir persona. Farhana Akter, 23 yaşında, Dakka’da yaşıyor. Üniversitede İngiliz edebiyatı okuyor."></figure>
+    <div class="ptext"><h3>Persona</h3><p>Farhana Akter, 23 yaşında, Dakka’da yaşıyor. Üniversitede İngiliz edebiyatı okuyor. Gece 10’da, ders arasında Samsung telefonunda Facebook’a bakarken bir arkadaşının paylaştığı sonuç sayfasından geldi. Siteyi fal olarak değil, Bengalce okuyabildiği kısa bir öykü olarak seviyor. Hikâye Dakka muslini ya da Jamdani dokumasından geçerek fildişi rengine vardığında rengin adını şiir defterine yazıyor.</p></div>
+  </div>
+  <details><summary>Sayılar ve notlar</summary>
+    <div class="scroll"><table class="facts"><thead><tr><th scope="col">Başlık</th><th scope="col">Değer</th><th scope="col">Not</th></tr></thead><tbody>
+      <tr><th scope="row">Toplam konuşan (ana dil + ikinci dil)</th><td>274 milyon (7. sıra)</td><td>Ethnologue, 2026 baskısı</td></tr>
+      <tr><th scope="row">Web içeriğindeki payı</th><td>%0,1’in altında (39. sıra)</td><td>W3Techs, Ekim 2026</td></tr>
+      <tr><th scope="row">Dile göre internet kullanıcıları</th><td>İlk 10’da değil</td><td>Internet World Stats, Mart 2020</td></tr>
+      <tr><th scope="row">Çevrim içi süre</th><td>Tahminen 110 milyon internet kullanıcısı, günde ortalama 5,5 saat, toplam günde 610 milyon saat (10. sıra)</td><td>Claude tahmini. Bangladeş ile Batı Bengal</td></tr>
+    </tbody></table></div>
+  </details>
+</section>
+
+<section class="lang" id="pt" aria-labelledby="h-pt">
+  <p class="kicker">10 · pt</p>
+  <h2 id="h-pt"><span lang="pt">Português</span><small>Portekizce (Brezilya)</small></h2>
+  <dl class="nums">
+    <div><dt>Konuşan</dt><dd>269 milyon (8. sıra)</dd></div>
+    <div><dt>Web</dt><dd>%4,1 (6. sıra)</dd></div>
+    <div><dt>Çevrim içi süre</dt><dd>1,89 milyar saat</dd></div>
+  </dl>
+  <p class="region"><b>Nerede</b>Brezilya (site pt-BR kullanır) ve Portekiz. Angola, Mozambik ve Yeşil Burun Adaları gibi Afrika ülkelerinde de resmî dildir. Japonya’da Japon kökenli pek çok Brezilyalı yaşar. ABD’de, Portekiz’de ve Japonya’da Brezilyalı topluluklar vardır.</p>
+  <div class="persona">
+    <figure><img src="../../language-intro/img/pt.webp" width="800" height="1000" loading="lazy" decoding="async" alt="Kurgusal bir persona. Juliana Costa, 30 yaşında, Recife’de yaşıyor. Gece nöbetleri de tutan bir hastane hemşiresi."></figure>
+    <div class="ptext"><h3>Persona</h3><p>Juliana Costa, 30 yaşında, Recife’de yaşıyor. Gece nöbetleri de tutan bir hastane hemşiresi. Sabah 6.30’da, gece nöbetinden eve dönerken otobüste Samsung telefonunu açıp tek bir kart çekiyor. Kartın anlamından çok hikâyenin sonunda gelecek rengi merak ediyor. Hikâye pau-brasil’den (Brezilya’ya adını veren kırmızı boya ağacı) geçerek rengine vardığında iş arkadaşlarının WhatsApp grubuna gönderiyor. Yılbaşı gecesi kıyafetinin rengini seçmek için de burada kart çekmeyi düşünüyor.</p></div>
+  </div>
+  <details><summary>Sayılar ve notlar</summary>
+    <div class="scroll"><table class="facts"><thead><tr><th scope="col">Başlık</th><th scope="col">Değer</th><th scope="col">Not</th></tr></thead><tbody>
+      <tr><th scope="row">Toplam konuşan (ana dil + ikinci dil)</th><td>269 milyon (8. sıra)</td><td>Ethnologue, 2026 baskısı</td></tr>
+      <tr><th scope="row">Web içeriğindeki payı</th><td>%4,1 (6. sıra)</td><td>W3Techs, Ekim 2026</td></tr>
+      <tr><th scope="row">Dile göre internet kullanıcıları</th><td>%3,7 (6. sıra)</td><td>Internet World Stats, Mart 2020</td></tr>
+      <tr><th scope="row">Çevrim içi süre</th><td>Tahminen 210 milyon internet kullanıcısı, günde ortalama 9,0 saat, toplam günde 1,89 milyar saat (5. sıra)</td><td>Claude tahmini. Çoğunluğu Brezilya. Çevrim içi süre dünyanın en uzunları arasında</td></tr>
+    </tbody></table></div>
+  </details>
+</section>
+
+<section class="lang" id="id" aria-labelledby="h-id">
+  <p class="kicker">11 · id</p>
+  <h2 id="h-id"><span lang="id">Bahasa Indonesia</span><small>Endonezce</small></h2>
+  <dl class="nums">
+    <div><dt>Konuşan</dt><dd>255 milyon (9. sıra)</dd></div>
+    <div><dt>Web</dt><dd>%1,2 (13. sıra)</dd></div>
+    <div><dt>Çevrim içi süre</dt><dd>1,55 milyar saat</dd></div>
+  </dl>
+  <p class="region"><b>Nerede</b>Endonezya’nın ulusal dili; okulda ve işte 200 milyondan fazla kişi kullanır. Doğu Timor’da çalışma dilidir. Malezya, Brunei ve Singapur’un Malaycasıyla büyük ölçüde karşılıklı anlaşılabilir. Japonya’da teknik stajyer olarak ya da Belirli Vasıflı İşçi programıyla çalışan Endonezyalıların sayısı artıyor.</p>
+  <div class="persona">
+    <figure><img src="../../language-intro/img/id.webp" width="800" height="1000" loading="lazy" decoding="async" alt="Kurgusal bir persona. Dimas Pratama, 25 yaşında, Bandung’da yaşıyor. Bir girişimde yardımcı grafik tasarımcı."></figure>
+    <div class="ptext"><h3>Persona</h3><p>Dimas Pratama, 25 yaşında, Bandung’da yaşıyor. Bir girişimde yardımcı grafik tasarımcı. Sabah 9’da ortak çalışma alanında Android telefonunu açıyor. Siteyi fal için değil, renk düzeni fikirleri bulmak için bir araç olarak kullanıyor. Kartın anlamına göz gezdiriyor, rengin hikâyesini dikkatle okuyor. Hikâye Cava batiğinin çividinden ya da Sunda bambu işçiliğinden geçerek rengine vardığında, o günkü afiş taslaklarının ana rengini o yapıyor. Instagram hikâyelerinde yalnızca rengin adını paylaşıyor.</p></div>
+  </div>
+  <details><summary>Sayılar ve notlar</summary>
+    <div class="scroll"><table class="facts"><thead><tr><th scope="col">Başlık</th><th scope="col">Değer</th><th scope="col">Not</th></tr></thead><tbody>
+      <tr><th scope="row">Toplam konuşan (ana dil + ikinci dil)</th><td>255 milyon (9. sıra)</td><td>Ethnologue, 2026 baskısı</td></tr>
+      <tr><th scope="row">Web içeriğindeki payı</th><td>%1,2 (13. sıra)</td><td>W3Techs, Ekim 2026</td></tr>
+      <tr><th scope="row">Dile göre internet kullanıcıları</th><td>%4,3 (5. sıra)</td><td>Internet World Stats, Mart 2020. Malayca ile aynı satırda; rakam Endonezceye ait</td></tr>
+      <tr><th scope="row">Çevrim içi süre</th><td>Tahminen 210 milyon internet kullanıcısı, günde ortalama 7,4 saat, toplam günde 1,55 milyar saat (7. sıra)</td><td>Claude tahmini</td></tr>
+    </tbody></table></div>
+  </details>
+</section>
+
+<section class="lang" id="ms" aria-labelledby="h-ms">
+  <p class="kicker">12 · ms</p>
+  <h2 id="h-ms"><span lang="ms">Bahasa Melayu</span><small>Malayca</small></h2>
+  <dl class="nums">
+    <div><dt>Konuşan</dt><dd>bilinmiyor</dd></div>
+    <div><dt>Web</dt><dd>veri yok</dd></div>
+    <div><dt>Çevrim içi süre</dt><dd>Yaklaşık 160 milyon saat (referans değer, sıralama dışı)</dd></div>
+  </dl>
+  <p class="region"><b>Nerede</b>Malezya, Brunei ve Singapur (ulusal dil). Güney Tayland’da da Malayca konuşanlar vardır. Malezya’da Malaylar gündelik hayatta kullanır; Çin ve Hint kökenli Malezyalılar da okulda öğrenir.</p>
+  <div class="persona">
+    <figure><img src="../../language-intro/img/ms.webp" width="800" height="1000" loading="lazy" decoding="async" alt="Kurgusal bir persona. Nur Aisyah binti Rahman, 27 yaşında, Shah Alam’da yaşıyor. Hastane eczacısı."></figure>
+    <div class="ptext"><h3>Persona</h3><p>Nur Aisyah binti Rahman, 27 yaşında, Shah Alam’da yaşıyor. Hastane eczacısı. Öğleden sonra 1’de, öğle arasında Android telefonunda TikTok’ta gelecek yıl mart ayındaki Osaka gezisi için ipuçları izliyor. Fala inanmıyor ama kart resimlerini ve renk hikâyelerini “okunacak güzel bir şey” olarak çok seviyor. Hikâye Malay songketinin altın ipliğinden ya da Malakka limanından geçerek rengine vardığında, gezi için tudung’unun (başörtüsü) rengini buna göre seçiyor. Aile WhatsApp grubuna yalnızca rengin adını gönderiyor.</p></div>
+  </div>
+  <details><summary>Sayılar ve notlar</summary>
+    <div class="scroll"><table class="facts"><thead><tr><th scope="col">Başlık</th><th scope="col">Değer</th><th scope="col">Not</th></tr></thead><tbody>
+      <tr><th scope="row">Toplam konuşan (ana dil + ikinci dil)</th><td>bilinmiyor</td><td>Malayca çoğu zaman Endonezceyle birlikte bir makro dil olarak sayıldığı için ayrı bir rakam yok. Wikipedia’nın “Malay language” sayfası (Ethnologue 28. baskı, 2025’e dayanarak) makro dil olarak Malaycanın yaklaşık 90 milyon ana dil konuşanı (2020–2023) ve yaklaşık 180 milyon ikinci dil konuşanı (2020) olduğunu belirtiyor. Bu sayım Endonezya’daki yerel Malayca çeşitlerini de içeriyor; yalnızca Standart Malaycanın sayısı değil</td></tr>
+      <tr><th scope="row">Web içeriğindeki payı</th><td>veri yok</td><td>W3Techs’in ilk 40’ında yok</td></tr>
+      <tr><th scope="row">Dile göre internet kullanıcıları</th><td>Endonezce ile aynı satırda</td><td>Internet World Stats’te Endonezce/Malayca satırındaki rakam yalnızca Endonezcenin %4,3’ü</td></tr>
+      <tr><th scope="row">Çevrim içi süre</th><td>Günde yaklaşık 160 milyon saat (referans değer, sıralama dışı)</td><td>Claude tahmininde sıralama dışı referans değer. Malezya’daki kullanıcıların yaklaşık %60’ı ile Brunei</td></tr>
+    </tbody></table></div>
+  </details>
+</section>
+
+<section class="lang" id="ur" aria-labelledby="h-ur">
+  <p class="kicker">13 · ur</p>
+  <h2 id="h-ur"><span lang="ur" dir="rtl">اردو</span><small>Urduca</small></h2>
+  <dl class="nums">
+    <div><dt>Konuşan</dt><dd>246 milyon (10. sıra)</dd></div>
+    <div><dt>Web</dt><dd>veri yok</dd></div>
+    <div><dt>Çevrim içi süre</dt><dd>520 milyon saat</dd></div>
+  </dl>
+  <p class="region"><b>Nerede</b>Pakistan (ulusal dil) ve Hindistan’ın kuzeyi (Uttar Pradeş, Telangana’da Haydarabad, Delhi ve diğerleri). Birleşik Krallık’ta, Körfez ülkelerinde, ABD’de ve Kanada’da Pakistan kökenli pek çok kişi yaşar. Konuşma dili Hintçeye yakındır; yazı (nestalik üslubunda Arap yazısı) farklıdır. Site sağdan sola düzenlenir.</p>
+  <div class="persona">
+    <figure><img src="../../language-intro/img/ur.webp" width="800" height="1000" loading="lazy" decoding="async" alt="Kurgusal bir persona. Hamza Qureshi, 30 yaşında, Lahor’da yaşıyor. Bir finansal teknoloji şirketinde yazılım mühendisi."></figure>
+    <div class="ptext"><h3>Persona</h3><p>Hamza Qureshi, 30 yaşında, Lahor’da yaşıyor. Bir finansal teknoloji şirketinde yazılım mühendisi. Gece 12.30’da, işten sonra bir bardak çayla Android telefonunu açıyor. Fala mesafeli ama Urduca metnin güzelce dizildiği sayfaları seviyor ve hikâyeleri okumaya geliyor. Hikâye Babür minyatürlerinin lacivertinden ya da Lahor Kalesi duvarlarının çinilerinden geçerek rengine vardığında bağlantıyı WhatsApp’tan şair bir arkadaşına gönderiyor.</p></div>
+  </div>
+  <details><summary>Sayılar ve notlar</summary>
+    <div class="scroll"><table class="facts"><thead><tr><th scope="col">Başlık</th><th scope="col">Değer</th><th scope="col">Not</th></tr></thead><tbody>
+      <tr><th scope="row">Toplam konuşan (ana dil + ikinci dil)</th><td>246 milyon (10. sıra)</td><td>Ethnologue, 2026 baskısı</td></tr>
+      <tr><th scope="row">Web içeriğindeki payı</th><td>veri yok</td><td>W3Techs’in ilk 40’ında yok</td></tr>
+      <tr><th scope="row">Dile göre internet kullanıcıları</th><td>İlk 10’da değil</td><td>Internet World Stats, Mart 2020</td></tr>
+      <tr><th scope="row">Çevrim içi süre</th><td>Tahminen 95 milyon internet kullanıcısı, günde ortalama 5,5 saat, toplam günde 520 milyon saat (13. sıra)</td><td>Claude tahmini. Pakistan’ın yaklaşık %75’i ile Hindistan’ın bir kısmı</td></tr>
+    </tbody></table></div>
+  </details>
+</section>
+
+<section class="lang" id="ru" aria-labelledby="h-ru">
+  <p class="kicker">14 · ru</p>
+  <h2 id="h-ru"><span lang="ru">Русский</span><small>Rusça</small></h2>
+  <dl class="nums">
+    <div><dt>Konuşan</dt><dd>210 milyon (11. sıra)</dd></div>
+    <div><dt>Web</dt><dd>%3,4 (7. sıra)</dd></div>
+    <div><dt>Çevrim içi süre</dt><dd>1,16 milyar saat</dd></div>
+  </dl>
+  <p class="region"><b>Nerede</b>Rusya, Belarus, Kazakistan ve Kırgızistan’ın resmî dili. Eski Sovyet ülkelerinin diğerlerinde de (Orta Asya, Kafkasya, Baltık ülkeleri) pek çok kişi Rusça kullanır. İsrail’de, Almanya’da ve ABD’de de Rusça konuşan topluluklar vardır.</p>
+  <div class="persona">
+    <figure><img src="../../language-intro/img/ru.webp" width="800" height="1000" loading="lazy" decoding="async" alt="Kurgusal bir persona. Анна Соколова (Anna Sokolova), 35 yaşında, Novosibirsk’te yaşıyor. Bir araştırma enstitüsünde kimyasal analiz teknisyeni."></figure>
+    <div class="ptext"><h3>Persona</h3><p><span lang="ru">Анна Соколова</span> (Anna Sokolova), 35 yaşında, Novosibirsk’te yaşıyor. Bir araştırma enstitüsünde kimyasal analiz teknisyeni. Gece 10’da mutfakta çay eşliğinde Android telefonunu açıyor. Siteyi renkleri ve sanatı tanıtan bir Telegram kanalından öğrendi. İşi gereği, kart çekip hikâyeyi mineraller ve pigmentler üzerinden rengine kadar izlemekten özellikle keyif alıyor. Malakit yeşilinin çıktığı günlerde kızına taşın fotoğrafını gösteriyor.</p></div>
+  </div>
+  <details><summary>Sayılar ve notlar</summary>
+    <div class="scroll"><table class="facts"><thead><tr><th scope="col">Başlık</th><th scope="col">Değer</th><th scope="col">Not</th></tr></thead><tbody>
+      <tr><th scope="row">Toplam konuşan (ana dil + ikinci dil)</th><td>210 milyon (11. sıra)</td><td>Ethnologue, 2026 baskısı</td></tr>
+      <tr><th scope="row">Web içeriğindeki payı</th><td>%3,4 (7. sıra)</td><td>W3Techs, Ekim 2026</td></tr>
+      <tr><th scope="row">Dile göre internet kullanıcıları</th><td>%2,5 (9. sıra)</td><td>Internet World Stats, Mart 2020</td></tr>
+      <tr><th scope="row">Çevrim içi süre</th><td>Tahminen 155 milyon internet kullanıcısı, günde ortalama 7,5 saat, toplam günde 1,16 milyar saat (8. sıra)</td><td>Claude tahmini. Rusya ile Belarus, Kazakistan ve Orta Asya’nın bazı kısımları</td></tr>
+    </tbody></table></div>
+  </details>
+</section>
+
+<section class="lang" id="de" aria-labelledby="h-de">
+  <p class="kicker">15 · de</p>
+  <h2 id="h-de"><span lang="de">Deutsch</span><small>Almanca</small></h2>
+  <dl class="nums">
+    <div><dt>Konuşan</dt><dd>133 milyon (12. sıra)</dd></div>
+    <div><dt>Web</dt><dd>%5,9 (3. sıra)</dd></div>
+    <div><dt>Çevrim içi süre</dt><dd>480 milyon saat</dd></div>
+  </dl>
+  <p class="region"><b>Nerede</b>Almanya, Avusturya, İsviçre (kuzeyi ve ortası), Lihtenştayn, Lüksemburg, İtalya’da Güney Tirol ve Belçika’nın doğusu.</p>
+  <div class="persona">
+    <figure><img src="../../language-intro/img/de.webp" width="800" height="1000" loading="lazy" decoding="async" alt="Kurgusal bir persona. Jonas Weber, 38 yaşında, Leipzig’de yaşıyor. Bir tiyatroda ses mühendisi."></figure>
+    <div class="ptext"><h3>Persona</h3><p>Jonas Weber, 38 yaşında, Leipzig’de yaşıyor. Bir tiyatroda ses mühendisi. Hafta içi bir gün öğleden sonra 1’de, molasında dizüstü bilgisayarındaki Firefox’ta açıyor. Reklam engelleyici kullanıyor, onay pencerelerini reddediyor. Fala inanmıyor ama kart stillerini (gerçeküstücü fotoğraf, brütalist grafik) karşılaştırmayı seviyor. Hikâye 18. yüzyılın başında Berlin’de doğan Prusya mavisinden geçerek rengine vardığında seviniyor ve iş arkadaşlarına anlatıyor.</p></div>
+  </div>
+  <details><summary>Sayılar ve notlar</summary>
+    <div class="scroll"><table class="facts"><thead><tr><th scope="col">Başlık</th><th scope="col">Değer</th><th scope="col">Not</th></tr></thead><tbody>
+      <tr><th scope="row">Toplam konuşan (ana dil + ikinci dil)</th><td>133 milyon (12. sıra)</td><td>Ethnologue, 2026 baskısı</td></tr>
+      <tr><th scope="row">Web içeriğindeki payı</th><td>%5,9 (3. sıra)</td><td>W3Techs, Ekim 2026</td></tr>
+      <tr><th scope="row">Dile göre internet kullanıcıları</th><td>%2,0 (10. sıra)</td><td>Internet World Stats, Mart 2020</td></tr>
+      <tr><th scope="row">Çevrim içi süre</th><td>Tahminen 93 milyon internet kullanıcısı, günde ortalama 5,2 saat, toplam günde 480 milyon saat (17. sıra)</td><td>Claude tahmini. Almanya, Avusturya, İsviçre</td></tr>
+    </tbody></table></div>
+  </details>
+</section>
+
+<section class="lang" id="vi" aria-labelledby="h-vi">
+  <p class="kicker">16 · vi</p>
+  <h2 id="h-vi"><span lang="vi">Tiếng Việt</span><small>Vietnamca</small></h2>
+  <dl class="nums">
+    <div><dt>Konuşan</dt><dd>97 milyon (17. sıra)</dd></div>
+    <div><dt>Web</dt><dd>%0,9 (16. sıra)</dd></div>
+    <div><dt>Çevrim içi süre</dt><dd>500 milyon saat</dd></div>
+  </dl>
+  <p class="region"><b>Nerede</b>Vietnam. ABD’de (Kaliforniya, Teksas), Avustralya’da, Fransa’da ve Kanada’da büyük Vietnam toplulukları vardır. Pek çok Vietnamlı da teknik stajyer ya da öğrenci olarak Japonya’da yaşar.</p>
+  <div class="persona">
+    <figure><img src="../../language-intro/img/vi.webp" width="800" height="1000" loading="lazy" decoding="async" alt="Kurgusal bir persona. Trần Văn Minh, 24 yaşında, Aichi’ye bağlı Toyota şehrinde yaşıyor. Bir otomotiv yedek parça fabrikasında teknik stajyer."></figure>
+    <div class="ptext"><h3>Persona</h3><p>Trần Văn Minh, 24 yaşında, Aichi’ye bağlı Toyota şehrinde yaşıyor. Bir otomotiv yedek parça fabrikasında teknik stajyer. Akşam 5’te, gece vardiyasına çıkmadan önce yurt odasında Android telefonunu açıyor. Japonya’da yaşayan arkadaşlarının Facebook grubunda bu sitenin sonuçları paylaşılmıştı. Annesinin sözünü ettiği <i lang="vi">mệnh</i> renkleriyle karşılaştırarak tek bir kart çekiyor. Hikâye Hội An fenerlerinin ipeğinden ya da memleketinin lake işçiliğinden geçerek rengine vardığında Zalo’dan ailesine gönderiyor.</p></div>
+  </div>
+  <details><summary>Sayılar ve notlar</summary>
+    <div class="scroll"><table class="facts"><thead><tr><th scope="col">Başlık</th><th scope="col">Değer</th><th scope="col">Not</th></tr></thead><tbody>
+      <tr><th scope="row">Toplam konuşan (ana dil + ikinci dil)</th><td>97 milyon (17. sıra)</td><td>Ethnologue, 2026 baskısı</td></tr>
+      <tr><th scope="row">Web içeriğindeki payı</th><td>%0,9 (16. sıra)</td><td>W3Techs, Ekim 2026</td></tr>
+      <tr><th scope="row">Dile göre internet kullanıcıları</th><td>İlk 10’da değil</td><td>Internet World Stats, Mart 2020</td></tr>
+      <tr><th scope="row">Çevrim içi süre</th><td>Tahminen 79 milyon internet kullanıcısı, günde ortalama 6,3 saat, toplam günde 500 milyon saat (15. sıra)</td><td>Claude tahmini</td></tr>
+    </tbody></table></div>
+  </details>
+</section>
+
+<section class="lang" id="sw" aria-labelledby="h-sw">
+  <p class="kicker">17 · sw</p>
+  <h2 id="h-sw"><span lang="sw">Kiswahili</span><small>Svahili</small></h2>
+  <dl class="nums">
+    <div><dt>Konuşan</dt><dd>95 milyon (19. sıra)</dd></div>
+    <div><dt>Web</dt><dd>veri yok</dd></div>
+    <div><dt>Çevrim içi süre</dt><dd>Tahmin yok</dd></div>
+  </dl>
+  <p class="region"><b>Nerede</b>Tanzanya ve Kenya. Tanzanya’da ulusal dildir; ilkokulda eğitim Svahilice yapılır, ortaokuldan itibaren yerini İngilizce alır. Kenya’da resmî dillerden biridir; ilk sınıflarda ana dilde ya da Svahilice, sonra İngilizce eğitim verilir ve Svahilice zorunlu bir derstir. Uganda, Ruanda, Burundi, Kongo Demokratik Cumhuriyeti’nin doğusu ve Komorlar’da da yaygın olarak kullanılır. Afrika Birliği’nin çalışma dillerinden biridir.</p>
+  <div class="persona">
+    <figure><img src="../../language-intro/img/sw.webp" width="800" height="1000" loading="lazy" decoding="async" alt="Kurgusal bir persona. Amina Juma, 28 yaşında, Darüsselam’da yaşıyor. İlkokul öğretmeni."></figure>
+    <div class="ptext"><h3>Persona</h3><p>Amina Juma, 28 yaşında, Darüsselam’da yaşıyor. İlkokul öğretmeni. Öğleden sonra 3.30’da, dersler bittikten sonra öğretmenler odasında Android telefonunu açıyor. İş arkadaşlarının WhatsApp grubunda bu siteden bir sonuç dolaşıyordu. Kanga kumaşının renkleriyle karşılaştırarak tek bir kart çekiyor. Hikâye kanganın çividinden ya da Hint Okyanusu’nun akşam göğünden geçerek rengine vardığında WhatsApp’tan annesine gönderiyor.</p></div>
+  </div>
+  <details><summary>Sayılar ve notlar</summary>
+    <div class="scroll"><table class="facts"><thead><tr><th scope="col">Başlık</th><th scope="col">Değer</th><th scope="col">Not</th></tr></thead><tbody>
+      <tr><th scope="row">Toplam konuşan (ana dil + ikinci dil)</th><td>95 milyon (19. sıra)</td><td>Ethnologue, 2026 baskısı</td></tr>
+      <tr><th scope="row">Web içeriğindeki payı</th><td>veri yok</td><td>W3Techs’in ilk 40’ında yok</td></tr>
+      <tr><th scope="row">Dile göre internet kullanıcıları</th><td>İlk 10’da değil</td><td>Internet World Stats, Mart 2020</td></tr>
+      <tr><th scope="row">Çevrim içi süre</th><td>Tahmin yok</td><td>Claude tahmininde Svahilice için bir satır yok. Kenya ve Tanzanya bütün olarak İngilizce ya da Svahiliceye katılmış; yalnızca Svahilice için süre ayrılmamış</td></tr>
+    </tbody></table></div>
+  </details>
+</section>
+
+<section class="lang" id="tr" aria-labelledby="h-tr">
+  <p class="kicker">18 · tr</p>
+  <h2 id="h-tr"><span lang="tr">Türkçe</span></h2>
+  <dl class="nums">
+    <div><dt>Konuşan</dt><dd>94 milyon (20. sıra, Hausa ile eşit)</dd></div>
+    <div><dt>Web</dt><dd>%1,6 (11. sıra)</dd></div>
+    <div><dt>Çevrim içi süre</dt><dd>560 milyon saat</dd></div>
+  </dl>
+  <p class="region"><b>Nerede</b>Türkiye ve Kuzey Kıbrıs. Almanya’da büyük bir Türk toplumu vardır; Hollanda, Avusturya ve Fransa’da da pek çok kişi yaşar. Bulgaristan’da ve Kuzey Yunanistan’da da konuşanları vardır.</p>
+  <div class="persona">
+    <figure><img src="../../language-intro/img/tr.webp" width="800" height="1000" loading="lazy" decoding="async" alt="Kurgusal bir persona. Elif Yıldız, 33 yaşında, İzmir’de yaşıyor. Bir lisede kimya öğretmeni."></figure>
+    <div class="ptext"><h3>Persona</h3><p>Elif Yıldız, 33 yaşında, İzmir’de yaşıyor. Bir lisede kimya öğretmeni. Öğleden sonra 4.30’da, derslerden sonra bir kafede arkadaşlarıyla kahve falına baktıktan sonra iPhone’unda bu siteyi açtı. Kartın anlamını arkadaşlarıyla birlikte okuyorlar. Hikâye turkuazdan ya da İznik çinilerinin mavisinden geçerek rengine vardığında herkes heyecanlanıyor, o da Instagram hikâyesinde paylaşıyor.</p></div>
+  </div>
+  <details><summary>Sayılar ve notlar</summary>
+    <div class="scroll"><table class="facts"><thead><tr><th scope="col">Başlık</th><th scope="col">Değer</th><th scope="col">Not</th></tr></thead><tbody>
+      <tr><th scope="row">Toplam konuşan (ana dil + ikinci dil)</th><td>94 milyon (20. sıra, Hausa ile eşit)</td><td>Ethnologue, 2026 baskısı</td></tr>
+      <tr><th scope="row">Web içeriğindeki payı</th><td>%1,6 (11. sıra)</td><td>W3Techs, Ekim 2026</td></tr>
+      <tr><th scope="row">Dile göre internet kullanıcıları</th><td>İlk 10’da değil</td><td>Internet World Stats, Mart 2020</td></tr>
+      <tr><th scope="row">Çevrim içi süre</th><td>Tahminen 80 milyon internet kullanıcısı, günde ortalama 7,0 saat, toplam günde 560 milyon saat (11. sıra)</td><td>Claude tahmini</td></tr>
+    </tbody></table></div>
+  </details>
+</section>
+
+<section class="lang" id="tl" aria-labelledby="h-tl">
+  <p class="kicker">19 · tl</p>
+  <h2 id="h-tl"><span lang="fil">Filipino</span><small>Filipince</small></h2>
+  <dl class="nums">
+    <div><dt>Konuşan</dt><dd>87 milyon</dd></div>
+    <div><dt>Web</dt><dd>%0,1’in altında (40. sıra, Tagalogca)</dd></div>
+    <div><dt>Çevrim içi süre</dt><dd>530 milyon saat</dd></div>
+  </dl>
+  <p class="region"><b>Nerede</b>Filipinler’in ulusal dili ve İngilizceyle birlikte resmî dili. ABD (Kaliforniya, Hawaii), Körfez ülkeleri, Hong Kong, Singapur, Kanada ve Japonya dahil dünyanın her yerinde çalışan Filipinliler kullanır.</p>
+  <div class="persona">
+    <figure><img src="../../language-intro/img/tl.webp" width="800" height="1000" loading="lazy" decoding="async" alt="Kurgusal bir persona. Joanna “Jo” Dela Cruz, 28 yaşında, Quezon City’de yaşıyor. ABD’ye hizmet veren bir çağrı merkezinde gece vardiyasında çalışıyor."></figure>
+    <div class="ptext"><h3>Persona</h3><p>Joanna “Jo” Dela Cruz, 28 yaşında, Quezon City’de yaşıyor. ABD’ye hizmet veren bir çağrı merkezinde gece vardiyasında çalışıyor. Sabaha karşı 4’teki molasında Android telefonunda tek bir kart çekiyor. İşi İngilizce olduğu için molalarda Filipince okumak istiyor. Hikâye Manila Körfezi’nin gün batımından ya da piñadan (ananas lifinden yapılan kumaş) geçerek rengine vardığında Facebook’ta paylaşıyor ve Orta Doğu’da çalışan bir kuzenine gönderiyor.</p></div>
+  </div>
+  <details><summary>Sayılar ve notlar</summary>
+    <div class="scroll"><table class="facts"><thead><tr><th scope="col">Başlık</th><th scope="col">Değer</th><th scope="col">Not</th></tr></thead><tbody>
+      <tr><th scope="row">Toplam konuşan (ana dil + ikinci dil)</th><td>87 milyon</td><td>Ethnologue, 2026 baskısı (Tagalogca olarak sayılıyor)</td></tr>
+      <tr><th scope="row">Web içeriğindeki payı</th><td>%0,1’in altında (40. sıra, Tagalogca)</td><td>W3Techs, Ekim 2026</td></tr>
+      <tr><th scope="row">Dile göre internet kullanıcıları</th><td>İlk 10’da değil</td><td>Internet World Stats, Mart 2020</td></tr>
+      <tr><th scope="row">Çevrim içi süre</th><td>Tahminen 60 milyon internet kullanıcısı, günde ortalama 8,9 saat, toplam günde 530 milyon saat (12. sıra)</td><td>Claude tahmini. Filipinler’deki kullanıcıların yaklaşık %60’ı varsayılıyor; geri kalanı İngilizceye sayılıyor</td></tr>
+    </tbody></table></div>
+  </details>
+</section>
+
+<section class="lang" id="fa" aria-labelledby="h-fa">
+  <p class="kicker">20 · fa</p>
+  <h2 id="h-fa"><span lang="fa" dir="rtl">فارسی</span><small>Farsça</small></h2>
+  <dl class="nums">
+    <div><dt>Konuşan</dt><dd>82 milyon (İran Farsçası)</dd></div>
+    <div><dt>Web</dt><dd>%1,0 (14. sıra)</dd></div>
+    <div><dt>Çevrim içi süre</dt><dd>490 milyon saat</dd></div>
+  </dl>
+  <p class="region"><b>Nerede</b>İran’ın resmî dili. Afganistan’da (Darice) ve Tacikistan’da (Tacikçe) çok yakın biçimleri kullanılır. ABD’de (Los Angeles), Kanada’da, Almanya’da, Birleşik Krallık’ta ve Türkiye’de büyük İranlı toplulukları vardır. Site sağdan sola düzenlenir.</p>
+  <div class="persona">
+    <figure><img src="../../language-intro/img/fa.webp" width="800" height="1000" loading="lazy" decoding="async" alt="Kurgusal bir persona. Parisa Hosseini, 31 yaşında, İsfahan’da yaşıyor. Tarihî binaların çinilerini restore ediyor."></figure>
+    <div class="ptext"><h3>Persona</h3><p>Parisa Hosseini, 31 yaşında, İsfahan’da yaşıyor. Tarihî binaların çinilerini restore ediyor. Gece 11’de işini bitirip Android telefonunu açıyor. Yelda gecesi ailesiyle birlikte Hafız divanını açtıkları için tek bir kartla bakılan fal ona tanıdık geliyor. Hikâye Nişabur firuzesinden ya da İsfahan camilerinin çinilerinin mavisinden geçerek rengine vardığında, sanki işini bırakmış gibi dalıp gidiyor. Bağlantıyı yurt dışında yaşayan ablasına Telegram’dan gönderiyor.</p></div>
+  </div>
+  <details><summary>Sayılar ve notlar</summary>
+    <div class="scroll"><table class="facts"><thead><tr><th scope="col">Başlık</th><th scope="col">Değer</th><th scope="col">Not</th></tr></thead><tbody>
+      <tr><th scope="row">Toplam konuşan (ana dil + ikinci dil)</th><td>82 milyon (İran Farsçası)</td><td>Ethnologue, 2026 baskısı. Darice (Afganistan) ve Tacikçe dahil değil</td></tr>
+      <tr><th scope="row">Web içeriğindeki payı</th><td>%1,0 (14. sıra)</td><td>W3Techs, Ekim 2026</td></tr>
+      <tr><th scope="row">Dile göre internet kullanıcıları</th><td>İlk 10’da değil</td><td>Internet World Stats, Mart 2020</td></tr>
+      <tr><th scope="row">Çevrim içi süre</th><td>Tahminen 82 milyon internet kullanıcısı, günde ortalama 6,0 saat, toplam günde 490 milyon saat (16. sıra)</td><td>Claude tahmini. İran ile Afganistan (Darice) dahil</td></tr>
+    </tbody></table></div>
+  </details>
+</section>
+
+<section class="lang" id="ko" aria-labelledby="h-ko">
+  <p class="kicker">21 · ko</p>
+  <h2 id="h-ko"><span lang="ko">한국어</span><small>Korece</small></h2>
+  <dl class="nums">
+    <div><dt>Konuşan</dt><dd>82 milyon</dd></div>
+    <div><dt>Web</dt><dd>%0,9 (17. sıra)</dd></div>
+    <div><dt>Çevrim içi süre</dt><dd>270 milyon saat</dd></div>
+  </dl>
+  <p class="region"><b>Nerede</b>Güney Kore ve Kuzey Kore. Çin’deki Yanbian Kore Özerk İli’nde, ABD’de (Los Angeles, New York), Japonya’da ve Orta Asya’da da kökleri Kore Yarımadası’na uzanan topluluklar vardır.</p>
+  <div class="persona">
+    <figure><img src="../../language-intro/img/ko.webp" width="800" height="1000" loading="lazy" decoding="async" alt="Kurgusal bir persona. 김서연 (Kim Seo-yeon), 29 yaşında, Seul’ün Mapo-gu semtinde yaşıyor. Webtoon renklendiricisi."></figure>
+    <div class="ptext"><h3>Persona</h3><p><span lang="ko">김서연</span> (Kim Seo-yeon), 29 yaşında, Seul’ün Mapo-gu semtinde yaşıyor. Webtoon renklendiricisi. Sabah 8.20’de metroda iPhone’unu açıyor. Ayda bir arkadaşlarıyla tarot kafeye gidiyor. Siteyi NAVER’da gelecek ayki Fukuoka gezisi için ipucu ararken buldu. Hikâye Kore’nin <i lang="ko-Latn">obangsaek</i>’inden (beş geleneksel renk) ya da Japon boyacılığından geçerek rengine vardığında, o rengi günün renk paletinin bir köşesine katıyor. Sonuçları KakaoTalk’tan arkadaşlarına gönderiyor.</p></div>
+  </div>
+  <details><summary>Sayılar ve notlar</summary>
+    <div class="scroll"><table class="facts"><thead><tr><th scope="col">Başlık</th><th scope="col">Değer</th><th scope="col">Not</th></tr></thead><tbody>
+      <tr><th scope="row">Toplam konuşan (ana dil + ikinci dil)</th><td>82 milyon</td><td>Ethnologue, 2026 baskısı</td></tr>
+      <tr><th scope="row">Web içeriğindeki payı</th><td>%0,9 (17. sıra)</td><td>W3Techs, Ekim 2026</td></tr>
+      <tr><th scope="row">Dile göre internet kullanıcıları</th><td>İlk 10’da değil</td><td>Internet World Stats, Mart 2020</td></tr>
+      <tr><th scope="row">Çevrim içi süre</th><td>Tahminen 50 milyon internet kullanıcısı, günde ortalama 5,3 saat, toplam günde 270 milyon saat (20. sıra)</td><td>Claude tahmini</td></tr>
+    </tbody></table></div>
+  </details>
+</section>
+
+<section class="lang" id="th" aria-labelledby="h-th">
+  <p class="kicker">22 · th</p>
+  <h2 id="h-th"><span lang="th">ไทย</span><small>Tayca</small></h2>
+  <dl class="nums">
+    <div><dt>Konuşan</dt><dd>71 milyon</dd></div>
+    <div><dt>Web</dt><dd>%0,3 (28. sıra)</dd></div>
+    <div><dt>Çevrim içi süre</dt><dd>510 milyon saat</dd></div>
+  </dl>
+  <p class="region"><b>Nerede</b>Tayland’ın ulusal dili. Laos’ta pek çok kişi Tayca okuyabilir. Taylandlılar ABD’de (Los Angeles), Avustralya’da ve Avrupa’da da yaşar.</p>
+  <div class="persona">
+    <figure><img src="../../language-intro/img/th.webp" width="800" height="1000" loading="lazy" decoding="async" alt="Kurgusal bir persona. Napassorn “Pim” Srisuk, 27 yaşında, Bangkok’ta yaşıyor. Bir kozmetik markasında pazarlama alanında çalışıyor."></figure>
+    <div class="ptext"><h3>Persona</h3><p>Napassorn “Pim” Srisuk, 27 yaşında, Bangkok’ta yaşıyor. Bir kozmetik markasında pazarlama alanında çalışıyor. Sabah 7’de, ne giyeceğine karar vermeden önce iPhone’unda tek bir kart çekiyor. Haftanın gününün rengiyle bu sitenin rengini karşılaştırmak her sabahki keyfi. Gelecek ocak ayı için bir Hokkaido gezisi planlıyor. Hikâye Tay ipeğinden ya da Hokkaido karının beyazından geçerek rengine vardığında o rengi rujuna ya da eşarbına taşıyor. LINE’dan iş arkadaşlarına gönderiyor.</p></div>
+  </div>
+  <details><summary>Sayılar ve notlar</summary>
+    <div class="scroll"><table class="facts"><thead><tr><th scope="col">Başlık</th><th scope="col">Değer</th><th scope="col">Not</th></tr></thead><tbody>
+      <tr><th scope="row">Toplam konuşan (ana dil + ikinci dil)</th><td>71 milyon</td><td>Ethnologue, 2026 baskısı</td></tr>
+      <tr><th scope="row">Web içeriğindeki payı</th><td>%0,3 (28. sıra)</td><td>W3Techs, Ekim 2026</td></tr>
+      <tr><th scope="row">Dile göre internet kullanıcıları</th><td>İlk 10’da değil</td><td>Internet World Stats, Mart 2020</td></tr>
+      <tr><th scope="row">Çevrim içi süre</th><td>Tahminen 65 milyon internet kullanıcısı, günde ortalama 7,8 saat, toplam günde 510 milyon saat (14. sıra)</td><td>Claude tahmini</td></tr>
+    </tbody></table></div>
+  </details>
+</section>
+
+<section class="lang" id="it" aria-labelledby="h-it">
+  <p class="kicker">23 · it</p>
+  <h2 id="h-it"><span lang="it">Italiano</span><small>İtalyanca</small></h2>
+  <dl class="nums">
+    <div><dt>Konuşan</dt><dd>66 milyon</dd></div>
+    <div><dt>Web</dt><dd>%2,8 (8. sıra)</dd></div>
+    <div><dt>Çevrim içi süre</dt><dd>290 milyon saat</dd></div>
+  </dl>
+  <p class="region"><b>Nerede</b>İtalya, San Marino, İsviçre’nin güneyi (Ticino) ve Vatikan. Arjantin’de, Brezilya’da, ABD’de, Almanya’da ve başka yerlerde İtalyan kökenli çok kişi yaşar.</p>
+  <div class="persona">
+    <figure><img src="../../language-intro/img/it.webp" width="800" height="1000" loading="lazy" decoding="async" alt="Kurgusal bir persona. Giulia Bernardi, 45 yaşında, Bologna’da yaşıyor. Mahalle eczanesinde eczacı."></figure>
+    <div class="ptext"><h3>Persona</h3><p>Giulia Bernardi, 45 yaşında, Bologna’da yaşıyor. Mahalle eczanesinde eczacı. Akşam 9.30’da, yemekten sonra kanepede Android telefonunu açıyor. Çocukken babasıyla tarocchino oynadığı için Büyük Arkana resimleri ona nostaljik geliyor. Hikâye Bologna revaklarının kırmızı tuğlasından ya da Rönesans ressamlarının pigmentlerinden geçerek rengine vardığında WhatsApp’tan babasına gönderiyor. “Klasik Tarot” stilini seçiyor.</p></div>
+  </div>
+  <details><summary>Sayılar ve notlar</summary>
+    <div class="scroll"><table class="facts"><thead><tr><th scope="col">Başlık</th><th scope="col">Değer</th><th scope="col">Not</th></tr></thead><tbody>
+      <tr><th scope="row">Toplam konuşan (ana dil + ikinci dil)</th><td>66 milyon</td><td>Ethnologue, 2026 baskısı</td></tr>
+      <tr><th scope="row">Web içeriğindeki payı</th><td>%2,8 (8. sıra)</td><td>W3Techs, Ekim 2026</td></tr>
+      <tr><th scope="row">Dile göre internet kullanıcıları</th><td>İlk 10’da değil</td><td>Internet World Stats, Mart 2020</td></tr>
+      <tr><th scope="row">Çevrim içi süre</th><td>Tahminen 51 milyon internet kullanıcısı, günde ortalama 5,7 saat, toplam günde 290 milyon saat (19. sıra)</td><td>Claude tahmini</td></tr>
+    </tbody></table></div>
+  </details>
+</section>
+
+<section class="lang" id="pl" aria-labelledby="h-pl">
+  <p class="kicker">24 · pl</p>
+  <h2 id="h-pl"><span lang="pl">Polski</span><small>Lehçe</small></h2>
+  <dl class="nums">
+    <div><dt>Konuşan</dt><dd>Yaklaşık 42,6 milyon</dd></div>
+    <div><dt>Web</dt><dd>%1,8 (10. sıra)</dd></div>
+    <div><dt>Çevrim içi süre</dt><dd>Yaklaşık 210 milyon saat (referans değer, sıralama dışı)</dd></div>
+  </dl>
+  <p class="region"><b>Nerede</b>Polonya. Birleşik Krallık’ta, Almanya’da, ABD’de (Chicago), İrlanda’da ve Kanada’da büyük Polonyalı toplulukları vardır. Litvanya’da ve Batı Ukrayna’da da konuşanları vardır.</p>
+  <div class="persona">
+    <figure><img src="../../language-intro/img/pl.webp" width="800" height="1000" loading="lazy" decoding="async" alt="Kurgusal bir persona. Marta Kowalczyk, 30 yaşında, Krakov’da yaşıyor. Bir yazılım şirketinde UX araştırmacısı."></figure>
+    <div class="ptext"><h3>Persona</h3><p>Marta Kowalczyk, 30 yaşında, Krakov’da yaşıyor. Bir yazılım şirketinde UX araştırmacısı. Pazar sabahı saat 10’da bir kafede iPhone’unu açıyor. Her yıl Andrzejki gecesinde arkadaşlarıyla eritilmiş mumla fala bakıyor. Hikâye Baltık kehribarından ya da Krakov’un Kumaş Hali’nden geçerek rengine vardığında Instagram hikâyesinde paylaşıyor. Gelecek bahar için bir Kyoto gezisi planlıyor.</p></div>
+  </div>
+  <details><summary>Sayılar ve notlar</summary>
+    <div class="scroll"><table class="facts"><thead><tr><th scope="col">Başlık</th><th scope="col">Değer</th><th scope="col">Not</th></tr></thead><tbody>
+      <tr><th scope="row">Toplam konuşan (ana dil + ikinci dil)</th><td>Yaklaşık 42,6 milyon</td><td>Wikipedia’nın “Polish language” sayfasının aktardığı Ethnologue 27. baskı (2021 rakamları). Ethnologue 2026’nın kamuya açık listesinde (50 milyon ve üzeri) yok</td></tr>
+      <tr><th scope="row">Web içeriğindeki payı</th><td>%1,8 (10. sıra)</td><td>W3Techs, Ekim 2026</td></tr>
+      <tr><th scope="row">Dile göre internet kullanıcıları</th><td>İlk 10’da değil</td><td>Internet World Stats, Mart 2020</td></tr>
+      <tr><th scope="row">Çevrim içi süre</th><td>Günde yaklaşık 210 milyon saat (referans değer, sıralama dışı)</td><td>Claude tahmininde sıralama dışı referans değer</td></tr>
+    </tbody></table></div>
+  </details>
+</section>
+
+<section class="lang" id="uk" aria-labelledby="h-uk">
+  <p class="kicker">25 · uk</p>
+  <h2 id="h-uk"><span lang="uk">Українська</span><small>Ukraynaca</small></h2>
+  <dl class="nums">
+    <div><dt>Konuşan</dt><dd>Yaklaşık 39 milyon</dd></div>
+    <div><dt>Web</dt><dd>%0,6 (18. sıra)</dd></div>
+    <div><dt>Çevrim içi süre</dt><dd>Tahmin yok</dd></div>
+  </dl>
+  <p class="region"><b>Nerede</b>Ukrayna’nın ulusal dili. 2022’den beri süren savaş nedeniyle pek çok kişi Polonya, Almanya ve Çekya gibi Avrupa ülkelerine sığındı. Kanada’da ve ABD’de de köklü Ukraynalı toplulukları vardır. Pek çok kişi Rusça da konuşur.</p>
+  <div class="persona">
+    <figure><img src="../../language-intro/img/uk.webp" width="800" height="1000" loading="lazy" decoding="async" alt="Kurgusal bir persona. Олена Коваленко (Olena Kovalenko), 37 yaşında, Lviv’de yaşıyor. İlkokul öğretmeni."></figure>
+    <div class="ptext"><h3>Persona</h3><p><span lang="uk">Олена Коваленко</span> (Olena Kovalenko), 37 yaşında, Lviv’de yaşıyor. İlkokul öğretmeni. Gece 9’da çocuğunu yatırdıktan sonra Android telefonunda tek bir kart çekiyor. Kartın anlamını okumaktan çok, Ukraynaca özenle yazılmış bir hikâyeyi okumaya ayırdığı zamanı değerli buluyor. Hikâye Petrykivka çiçek resminden ya da Karpat yününden geçerek rengine vardığında Telegram’dan Polonya’daki kız kardeşine gönderiyor.</p></div>
+  </div>
+  <details><summary>Sayılar ve notlar</summary>
+    <div class="scroll"><table class="facts"><thead><tr><th scope="col">Başlık</th><th scope="col">Değer</th><th scope="col">Not</th></tr></thead><tbody>
+      <tr><th scope="row">Toplam konuşan (ana dil + ikinci dil)</th><td>Yaklaşık 39 milyon</td><td>Ethnologue (2023). Wikipedia’nın “Ukrainian language” sayfası (Ethnologue 28. baskı) da aynı rakamı veriyor</td></tr>
+      <tr><th scope="row">Web içeriğindeki payı</th><td>%0,6 (18. sıra)</td><td>W3Techs, Ekim 2026</td></tr>
+      <tr><th scope="row">Dile göre internet kullanıcıları</th><td>İlk 10’da değil</td><td>Internet World Stats, Mart 2020</td></tr>
+      <tr><th scope="row">Çevrim içi süre</th><td>Tahmin yok</td><td>Ukraynaca ne Claude tahmini tablosunda ne de sıralama dışı referans değerlerinde var</td></tr>
+    </tbody></table></div>
+  </details>
+</section>
+
+<section class="lang" id="nl" aria-labelledby="h-nl">
+  <p class="kicker">26 · nl</p>
+  <h2 id="h-nl"><span lang="nl">Nederlands</span><small>Felemenkçe</small></h2>
+  <dl class="nums">
+    <div><dt>Konuşan</dt><dd>Yaklaşık 30 milyon</dd></div>
+    <div><dt>Web</dt><dd>%2,1 (9. sıra)</dd></div>
+    <div><dt>Çevrim içi süre</dt><dd>Yaklaşık 130 milyon saat (referans değer, sıralama dışı)</dd></div>
+  </dl>
+  <p class="region"><b>Nerede</b>Hollanda ve Belçika’nın kuzeyi (Flandre). Surinam’da ve Karayipler’deki Aruba ile Curaçao’da da resmî dildir. Güney Afrika’daki Afrikaans, Felemenkçeden ayrılmıştır.</p>
+  <div class="persona">
+    <figure><img src="../../language-intro/img/nl.webp" width="800" height="1000" loading="lazy" decoding="async" alt="Kurgusal bir persona. Sanne de Vries, 36 yaşında, Utrecht’te yaşıyor. Belediyede iklim politikası üzerine çalışıyor."></figure>
+    <div class="ptext"><h3>Persona</h3><p>Sanne de Vries, 36 yaşında, Utrecht’te yaşıyor. Belediyede iklim politikası üzerine çalışıyor. Saat 12.30’da masasında dizüstü bilgisayarını açtı ve bir renk adını ararken bu siteye geldi. Fala inanmıyor ama renk adlarının nereden geldiğine dair hikâyelere bayılıyor. Hikâye Delft mavisinden ya da 17. yüzyıl Hollandalı ressamlarının pigmentlerinden geçerek rengine vardığında iş arkadaşlarına anlatıyor. Bazen bisikletle eve dönmeden önce bir kart daha çekiyor.</p></div>
+  </div>
+  <details><summary>Sayılar ve notlar</summary>
+    <div class="scroll"><table class="facts"><thead><tr><th scope="col">Başlık</th><th scope="col">Değer</th><th scope="col">Not</th></tr></thead><tbody>
+      <tr><th scope="row">Toplam konuşan (ana dil + ikinci dil)</th><td>Yaklaşık 30 milyon</td><td>2021. Wikipedia’nın “Dutch language” sayfası (Eurobarometer ve başka kaynaklara dayanarak) da aynı rakamı veriyor</td></tr>
+      <tr><th scope="row">Web içeriğindeki payı</th><td>%2,1 (9. sıra)</td><td>W3Techs, Ekim 2026. Flamanca dahil</td></tr>
+      <tr><th scope="row">Dile göre internet kullanıcıları</th><td>İlk 10’da değil</td><td>Internet World Stats, Mart 2020</td></tr>
+      <tr><th scope="row">Çevrim içi süre</th><td>Günde yaklaşık 130 milyon saat (referans değer, sıralama dışı)</td><td>Claude tahmininde sıralama dışı referans değer</td></tr>
+    </tbody></table></div>
+  </details>
+</section>
+
+<section class="lang" id="ang" aria-labelledby="h-ang">
+  <p class="kicker">27 · ang</p>
+  <h2 id="h-ang"><span lang="ang">Englisc</span><small>Eski İngilizce</small></h2>
+  <p class="note">Oyun ve tarih için bir dil. Kabaca 450 ile 1100 yılları arasındaki İngilizcedir ve bugün kimse onu ana dil olarak konuşmuyor. Sayı alanları geçerli değil.</p>
+  <dl class="nums">
+    <div><dt>Konuşan</dt><dd>geçerli değil</dd></div>
+    <div><dt>Web</dt><dd>geçerli değil</dd></div>
+    <div><dt>Çevrim içi süre</dt><dd>geçerli değil</dd></div>
+  </dl>
+  <p class="region"><b>Kimler keyif alabilir</b>Orta Çağ İngiliz edebiyatı ve İngilizce tarihi öğrencileri ve araştırmacıları, <cite>Beowulf</cite> ile J. R. R. Tolkien’in eserlerinin hayranları, runlara ve İskandinav mitolojisine ilgi duyanlar. İngilizce konuşulan dünyanın ötesinde Almanya’daki, İskandinav ülkelerindeki ve Japonya’daki İngiliz edebiyatı öğrencilerine de ulaşıyor.</p>
+  <div class="persona">
+    <figure><img src="../../language-intro/img/ang.webp" width="800" height="1000" loading="lazy" decoding="async" alt="Kurgusal bir persona. Hannah Brooks, 24 yaşında, Birleşik Krallık’ta Leeds’te yaşıyor. Lisansüstünde Eski İngilizce çalışıyor."></figure>
+    <div class="ptext"><h3>Persona</h3><p>Hannah Brooks, 24 yaşında, Birleşik Krallık’ta Leeds’te yaşıyor. Lisansüstünde Eski İngilizce çalışıyor. Akşamüstü 5’te üniversite kütüphanesinde dizüstü bilgisayarını açtı ve fiil çekimlerine bakarken bu siteye geldi. Yanında Modern İngilizce bir çeviriyle kartların ve renklerin adlarını çözmekten keyif alıyor. Beğendiği satırları seminer arkadaşlarına gönderiyor.</p></div>
+  </div>
+  <details><summary>Sayılar ve notlar</summary>
+    <div class="scroll"><table class="facts"><thead><tr><th scope="col">Başlık</th><th scope="col">Değer</th></tr></thead><tbody>
+      <tr><th scope="row">Toplam konuşan (ana dil + ikinci dil)</th><td>geçerli değil</td></tr>
+      <tr><th scope="row">Web içeriğindeki payı</th><td>geçerli değil</td></tr>
+      <tr><th scope="row">Dile göre internet kullanıcıları</th><td>geçerli değil</td></tr>
+      <tr><th scope="row">Çevrim içi süre</th><td>geçerli değil</td></tr>
+    </tbody></table></div>
+  </details>
+</section>
+
+<section class="lang" id="soro" aria-labelledby="h-soro">
+  <p class="kicker">28 · soro</p>
+  <h2 id="h-soro"><span lang="ja">御座候</span><small>Sōrōbun (Klasik Japon mektup üslubu)</small></h2>
+  <p class="note">Oyun ve tarih için bir dil. Kabaca 1600 ile 1868 arasındaki mektupların ve resmî belgelerin üslubudur; cümle sonlarına <span lang="ja">候</span> (<i>sōrō</i>) gelir. Bugün kimse onu ana dil olarak konuşmuyor. Sayı alanları geçerli değil.</p>
+  <dl class="nums">
+    <div><dt>Konuşan</dt><dd>geçerli değil</dd></div>
+    <div><dt>Web</dt><dd>geçerli değil</dd></div>
+    <div><dt>Çevrim içi süre</dt><dd>geçerli değil</dd></div>
+  </dl>
+  <p class="region"><b>Kimler keyif alabilir</b>Eski belgeleri ve el yazısı kursif yazıyı okumayı öğrenenler, tarihî romanların ve NHK’nin tarihî dizilerinin hayranları, tarihe meraklı öğrenciler. Japoncayı derinlemesine öğrenmiş yabancılara ve Japon tarihi araştırmacılarına da ulaşıyor.</p>
+  <div class="persona">
+    <figure><img src="../../language-intro/img/soro.webp" width="800" height="1000" loading="lazy" decoding="async" alt="Kurgusal bir persona. 工藤 誠一 (Seiichi Kudo), 58 yaşında, Kanazawa’da yaşıyor. Belediyede çalışıyor ve hafta sonları eski belgeler kursuna gidiyor."></figure>
+    <div class="ptext"><h3>Persona</h3><p><span lang="ja">工藤 誠一</span> (Seiichi Kudo), 58 yaşında, Kanazawa’da yaşıyor. Belediyede çalışıyor ve hafta sonları eski belgeler kursuna gidiyor. Pazar öğleden sonra 3’te oturma odasında tabletini açıyor. Siteyi kurstaki arkadaşlarından duydu. Sōrōbun ile yazılmış kart ve renk adlarını tek tek sesli okuyor. Hikâye Kaga boyacılığından ya da eski kale şehrinden geçerek rengine vardığında rengin adını kurs defterine yazıyor.</p></div>
+  </div>
+  <details><summary>Sayılar ve notlar</summary>
+    <div class="scroll"><table class="facts"><thead><tr><th scope="col">Başlık</th><th scope="col">Değer</th></tr></thead><tbody>
+      <tr><th scope="row">Toplam konuşan (ana dil + ikinci dil)</th><td>geçerli değil</td></tr>
+      <tr><th scope="row">Web içeriğindeki payı</th><td>geçerli değil</td></tr>
+      <tr><th scope="row">Dile göre internet kullanıcıları</th><td>geçerli değil</td></tr>
+      <tr><th scope="row">Çevrim içi süre</th><td>geçerli değil</td></tr>
+    </tbody></table></div>
+  </details>
+</section>
+
+</div>
+
+</body>
+</html>

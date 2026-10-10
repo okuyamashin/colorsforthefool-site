@@ -315,7 +315,8 @@ html.has-reading .guide {
   padding-top: 0.2rem;
 }
 
-.today {
+.today,
+.invite {
   margin: 0.9rem 0 0;
   text-align: center;
   letter-spacing: 0.08em;
@@ -325,16 +326,23 @@ html.has-reading .guide {
 .today a:link,
 .today a:visited,
 .today a:hover,
-.today a:active {
+.today a:active,
+.invite a,
+.invite a:link,
+.invite a:visited,
+.invite a:hover,
+.invite a:active {
   color: #7a5c2e;
   text-decoration: underline;
   text-decoration-color: var(--gold);
   text-underline-offset: 0.18em;
 }
 
-.today a:hover { color: #5c4318; }
+.today a:hover,
+.invite a:hover { color: #5c4318; }
 
-.guide .today { margin: 1.6rem 0 0.2rem; }
+.guide .today,
+.guide .invite { margin: 1.6rem 0 0.2rem; }
 
 .guide .designs {
   margin: 1.45rem 0 0.15rem;

@@ -19,6 +19,10 @@ html[lang="bn"] body {
   font-family: "Noto Serif Bengali", "Bangla Sangam MN", "Nirmala UI", "Vrinda", serif;
 }
 
+html[lang="ur"] body {
+  font-family: "Noto Nastaliq Urdu", "Jameel Noori Nastaleeq", "Noto Naskh Arabic", serif;
+}
+
 html[lang="ru"] body {
   font-family: "Noto Serif", "Shippori Mincho", serif;
 }
@@ -31,12 +35,36 @@ html[lang="vi"] body {
   font-family: "Noto Serif", "Times New Roman", Times, serif;
 }
 
+html[lang="sw"] body {
+  font-family: "Noto Serif", "Times New Roman", Times, serif;
+}
+
+html[lang="tr"] body {
+  font-family: "Noto Serif", "Times New Roman", Times, serif;
+}
+
+html[lang="tl"] body {
+  font-family: "Noto Serif", "Times New Roman", Times, serif;
+}
+
+html[lang="fa"] body {
+  font-family: "Noto Naskh Arabic", "Vazirmatn", Tahoma, serif;
+}
+
 html[lang="ko"] body {
   font-family: "Noto Serif KR", "Nanum Myeongjo", "AppleMyungjo", "Batang", serif;
 }
 
 html[lang="th"] body {
   font-family: "Noto Serif Thai", "Shippori Mincho", serif;
+}
+
+html[lang="it"] body {
+  font-family: "Noto Serif", "Times New Roman", Times, serif;
+}
+
+html[lang="pl"] body {
+  font-family: "Noto Serif", "Times New Roman", Times, serif;
 }
 
 html[lang="uk"] body {
@@ -152,6 +180,119 @@ html[lang="uk"] body * {
 }
 
 html[lang="uk"] .brand {
+  letter-spacing: 0.22em !important;
+}
+
+.lang[lang="tl"],
+.lang-list a[lang="tl"],
+.lang-links a[lang="tl"] {
+  font-family: "Noto Serif", "Times New Roman", Times, serif;
+  font-weight: 500;
+  letter-spacing: 0;
+  text-transform: none;
+}
+
+html[lang="tl"] body * {
+  letter-spacing: 0 !important;
+  text-indent: 0 !important;
+}
+
+html[lang="tl"] .brand {
+  letter-spacing: 0.22em !important;
+}
+
+.lang[lang="tr"],
+.lang-list a[lang="tr"],
+.lang-links a[lang="tr"] {
+  font-family: "Noto Serif", "Times New Roman", Times, serif;
+  font-weight: 500;
+  letter-spacing: 0;
+  text-transform: none;
+}
+
+html[lang="tr"] body * {
+  letter-spacing: 0 !important;
+  text-indent: 0 !important;
+}
+
+html[lang="tr"] .brand {
+  letter-spacing: 0.22em !important;
+}
+
+.lang[lang="ur"],
+.lang-list a[lang="ur"],
+.lang-links a[lang="ur"] {
+  font-family: "Noto Nastaliq Urdu", "Jameel Noori Nastaleeq", "Noto Naskh Arabic", serif;
+  font-weight: 500;
+  letter-spacing: 0;
+  text-transform: none;
+  line-height: 1.9;
+  direction: rtl;
+  unicode-bidi: isolate;
+}
+
+.lang[lang="fa"],
+.lang-list a[lang="fa"],
+.lang-links a[lang="fa"] {
+  font-family: "Noto Naskh Arabic", "Vazirmatn", Tahoma, serif;
+  font-weight: 500;
+  letter-spacing: 0;
+  text-transform: none;
+  direction: rtl;
+  unicode-bidi: isolate;
+}
+
+.lang[lang="it"],
+.lang-list a[lang="it"],
+.lang-links a[lang="it"] {
+  font-family: "Noto Serif", "Times New Roman", Times, serif;
+  font-weight: 500;
+  letter-spacing: 0;
+  text-transform: none;
+}
+
+html[lang="it"] body * {
+  letter-spacing: 0 !important;
+  text-indent: 0 !important;
+}
+
+html[lang="it"] .brand {
+  letter-spacing: 0.22em !important;
+}
+
+.lang[lang="pl"],
+.lang-list a[lang="pl"],
+.lang-links a[lang="pl"] {
+  font-family: "Noto Serif", "Times New Roman", Times, serif;
+  font-weight: 500;
+  letter-spacing: 0;
+  text-transform: none;
+}
+
+html[lang="pl"] body * {
+  letter-spacing: 0 !important;
+  text-indent: 0 !important;
+}
+
+html[lang="pl"] .brand {
+  letter-spacing: 0.22em !important;
+}
+
+.lang[lang="sw"],
+.lang-list a[lang="sw"],
+.lang-links a[lang="sw"] {
+  font-family: "Noto Serif", "Times New Roman", Times, serif;
+  font-weight: 500;
+  letter-spacing: 0;
+  text-transform: none;
+}
+
+html[lang="sw"] body * {
+  letter-spacing: 0 !important;
+  text-indent: 0 !important;
+}
+
+html[lang="sw"] .brand {
   letter-spacing: 0.22em !important;
 }
 
